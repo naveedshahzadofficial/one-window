@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7759431e303e2d722a264a8a991a9e84",
+    "content-hash": "2faae7a4a480cc3116e94a5a8967e29e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -857,6 +857,68 @@
             "time": "2021-04-26T09:17:50+00:00"
         },
         {
+            "name": "hallindavid/manny",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hallindavid/manny.git",
+                "reference": "f36a67a2384d90479f5d2bc7ace784e6fc237fd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hallindavid/manny/zipball/f36a67a2384d90479f5d2bc7ace784e6fc237fd8",
+                "reference": "f36a67a2384d90479f5d2bc7ace784e6fc237fd8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.1@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Manny": "Manny\\Manny"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Manny\\": "src/Manny"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Hallin",
+                    "email": "hallin.david@gmail.com",
+                    "homepage": "https://davidhallin.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "a package of maniulators that hopefully come in useful for those of us who always forget regex when we need it (manny is short for manipulation)",
+            "keywords": [
+                "format",
+                "formatter",
+                "laravel",
+                "manipulation",
+                "number",
+                "regex",
+                "string",
+                "trim"
+            ],
+            "support": {
+                "issues": "https://github.com/hallindavid/manny/issues",
+                "source": "https://github.com/hallindavid/manny/tree/v1.0"
+            },
+            "time": "2020-09-21T17:38:36+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v8.42.1",
             "source": {
@@ -1091,6 +1153,135 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.6.1"
             },
             "time": "2021-03-02T16:53:12+00:00"
+        },
+        {
+            "name": "laravel/ui",
+            "version": "v3.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "e2478cd0342a92ec1c8c77422553bda8ee004fd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/e2478cd0342a92ec1c8c77422553bda8ee004fd0",
+                "reference": "e2478cd0342a92ec1c8c77422553bda8ee004fd0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^8.0",
+                "illuminate/filesystem": "^8.0",
+                "illuminate/support": "^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ui\\UiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Ui\\": "src/",
+                    "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel UI utilities and presets.",
+            "keywords": [
+                "laravel",
+                "ui"
+            ],
+            "support": {
+                "source": "https://github.com/laravel/ui/tree/v3.2.1"
+            },
+            "time": "2021-04-27T18:17:41+00:00"
+        },
+        {
+            "name": "laravelcollective/html",
+            "version": "v6.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "ae15b9c4bf918ec3a78f092b8555551dd693fde3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/ae15b9c4bf918ec3a78f092b8555551dd693fde3",
+                "reference": "ae15b9c4bf918ec3a78f092b8555551dd693fde3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "^6.0|^7.0|^8.0",
+                "illuminate/routing": "^6.0|^7.0|^8.0",
+                "illuminate/session": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "illuminate/view": "^6.0|^7.0|^8.0",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~8.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Collective\\Html\\HtmlServiceProvider"
+                    ],
+                    "aliases": {
+                        "Form": "Collective\\Html\\FormFacade",
+                        "Html": "Collective\\Html\\HtmlFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                },
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "https://laravelcollective.com",
+            "support": {
+                "issues": "https://github.com/LaravelCollective/html/issues",
+                "source": "https://github.com/LaravelCollective/html"
+            },
+            "time": "2020-12-15T20:20:05+00:00"
         },
         {
             "name": "league/commonmark",
@@ -1343,6 +1534,78 @@
                 }
             ],
             "time": "2021-01-18T20:58:21+00:00"
+        },
+        {
+            "name": "livewire/livewire",
+            "version": "v2.4.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/livewire.git",
+                "reference": "33101c83b75728651b9e668a4559f97def7c9138"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/33101c83b75728651b9e668a4559f97def7c9138",
+                "reference": "33101c83b75728651b9e668a4559f97def7c9138",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^7.0|^8.0",
+                "illuminate/support": "^7.0|^8.0",
+                "illuminate/validation": "^7.0|^8.0",
+                "php": "^7.2.5|^8.0",
+                "symfony/http-kernel": "^5.0"
+            },
+            "require-dev": {
+                "calebporzio/sushi": "^2.1",
+                "laravel/framework": "^7.0|^8.0",
+                "mockery/mockery": "^1.3.1",
+                "orchestra/testbench": "^5.0|^6.0",
+                "orchestra/testbench-dusk": "^5.2|^6.0",
+                "phpunit/phpunit": "^8.4|^9.0",
+                "psy/psysh": "@stable"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Livewire\\LivewireServiceProvider"
+                    ],
+                    "aliases": {
+                        "Livewire": "Livewire\\Livewire"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Livewire\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "A front-end framework for Laravel.",
+            "support": {
+                "issues": "https://github.com/livewire/livewire/issues",
+                "source": "https://github.com/livewire/livewire/tree/v2.4.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/calebporzio",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-04-28T15:31:15+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2314,6 +2577,84 @@
                 }
             ],
             "time": "2020-08-18T17:17:46+00:00"
+        },
+        {
+            "name": "spatie/laravel-permission",
+            "version": "4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "29c05324c170c0be108ccb86dd29f6a719c0a617"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/29c05324c170c0be108ccb86dd29f6a719c0a617",
+                "reference": "29c05324c170c0be108ccb86dd29f6a719c0a617",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "^6.0|^7.0|^8.0",
+                "illuminate/container": "^6.0|^7.0|^8.0",
+                "illuminate/contracts": "^6.0|^7.0|^8.0",
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "php": "^7.2.5|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0",
+                "predis/predis": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Permission\\PermissionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Permission\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Permission handling for Laravel 6.0 and up",
+            "homepage": "https://github.com/spatie/laravel-permission",
+            "keywords": [
+                "acl",
+                "laravel",
+                "permission",
+                "permissions",
+                "rbac",
+                "roles",
+                "security",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-permission/issues",
+                "source": "https://github.com/spatie/laravel-permission/tree/4.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-03-22T18:38:29+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
