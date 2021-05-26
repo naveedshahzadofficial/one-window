@@ -1,0 +1,156 @@
+@font-face {
+    font-family: 'poppinsbold';
+    src: url('../fonts/poppins-bold-webfont.woff2') format('woff2'),
+    url('../fonts/poppins-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'poppinsregular';
+    src: url('../fonts/poppins-regular-webfont.woff2') format('woff2'),
+    url('../fonts/poppins-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.auth-row{
+    display: flex;
+}
+/* auth left css */
+.auth-left-bg-img{
+    flex: 1;
+    background-image: url("../img/auth-left-bg.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.auth-left-wrapper{
+    margin: 0 auto;
+    text-align: center;
+}
+.auth-logo{
+    margin-top: 58px;
+}
+.auth-logo-caption{
+    margin-top: 50px;
+}
+.auth-logo-caption span{
+    clear: both;
+    display: block;
+    color: #fff;
+    font-family: 'poppinsbold';
+    font-size: 60px;
+}
+.auth-nbdp-logo{
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+.auth-left-footer{
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    font-family:  'poppinsregular';
+    margin-bottom: 18px;
+}
+
+/* auth right css */
+.auth-right-bg-img{
+    background-color: #30807d;
+    flex: 1;
+}
+.auth-right-wrapper{
+    margin: 0 auto;
+    text-align: center;
+}
+.auth-smeda-logo{
+    margin-top: 58px;
+}
+.auth-login-icon{
+    margin-top: 55px;
+    margin-bottom: 25px;
+}
+.auth-form{
+    width: 60%;
+    margin: 0 auto;
+}
+.auth-form .input-group{
+    margin-bottom: 15px;
+}
+.auth-form .input-group-addon .fa{
+    color: #fff;
+}
+.auth-form .input-group-addon{
+    padding-right: 12px;
+    background-color: transparent;
+}
+.auth-form .input-group-addon .fa.fa-lock{
+    padding-right: 6px;
+}
+.auth-login-btn button{
+    color: #fff;
+    font-weight: bold;
+    background-color:#404040;
+}
+.auth-login-btn button:hover{
+    color: #d3d3d3;
+}
+
+.auth-text {
+    font-size: 14px;
+    color: #fff;
+    font-family: 'poppinsregular';
+}
+.auth-text-sm {
+    font-size: 12px;
+    color: #fff;
+    font-family: 'poppinsregular';
+}
+.auth-remember-me{
+    margin-top: 10px;
+    clear: both;
+}
+.auth-new-register{
+    padding-top: 30px;
+    clear: both;
+}
+.sample-text:hover{
+    cursor: pointer;
+    color: #fff;
+}
+.register_button {
+    color: black;
+    background-color: #fff;
+}
+.auth-right-footer{
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    font-family:  'poppinsregular';
+    margin-bottom: 18px;
+}
+.auth-no-padding-left{
+    padding-left: 0;
+}
+.auth-no-padding-right{
+    padding-right: 0;
+}
+.auth-no-padding{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.auth-default-btn{
+    background-color: #404040;
+    color: #fff;
+    font-weight: bold;
+}

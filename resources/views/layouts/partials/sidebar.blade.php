@@ -1,111 +1,165 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="{{url('/dashboard')}}"  class="brand-link">
-    
-      <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">Admin Panel</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-        
-  
-                    @if(isset(Auth::user()->image) )
-                        
-              <img src="{{ asset('/storage/images/'.Auth::user()->image) }}" class="img-circle elevation-2" alt="User Image">
-                     @else
-                         
-                       <img class="img-circle img-bordered-sm" src=" {{ asset('/storage/images/default-avatar-profile-image.jpg') }}" alt="image">
-                       @endif
-
+<!-- Left side column. contains the sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>@auth
+                    {{ auth()->user()->first_name }}&nbsp;{{ auth()->user()->last_name }}
+                    @endauth</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
         </div>
-        <div class="info">
-          <a href="#" class="d-block">{{Auth::user()->username}}</a>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="{{ url('dashboard') }}" class="nav-link {{ (request()->segment(1) == 'dashboard') ? 'active' : '' }} ">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-            
-          </li>
-        
-        
-           @if(Auth::user()->is_admin==1)
-          <li class="nav-item has-treeview"   >
-            <a href="{{ route('users.index') }}" class="nav-link {{ (request()->segment(1) == 'users') ? 'active' : '' }}">
-            <i class="fa fa-users" aria-hidden="true"></i>
-              <p>
-                Users
-              </p>
-            </a>
-           
-          </li>
-          @endif
-
-         @can('department-list')
-          <li class="nav-item has-treeview">
-            <a href="{{ route('departments.index') }}" class="nav-link {{ (request()->segment(1) == 'departments') ? 'active' : '' }}">
-            <i class="far fa-building" aria-hidden="true"></i>
-              <p>
-                Departments
-              </p>
-            </a>
-           
-          </li>
-             @endcan
-
-              @if(Auth::user()->is_admin==1)
-        
-          
-           <li class="nav-item has-treeview" >
-            <a href="{{ route('roles.index') }}" class="nav-link {{ (request()->segment(1) == 'roles') ? 'active' : '' }} ">
-            <i class="fa fa-user-plus" aria-hidden="true"></i>
-              <p>
-                Roles
-              </p>
-            </a>
-           
-          </li>
-
-        
-           <li class="nav-item has-treeview">
-            <a href="{{ route('permissions.index') }}" class="nav-link  {{ (request()->segment(1) == 'permissions') ? 'active' : '' }}">
-            <i class="fa fa-key" aria-hidden="true"></i>
-              <p>
-                Permissions
-              </p>
-            </a>
-           
-          </li>
-
-            <li class="nav-item has-treeview"   >
-            <a href="{{ route('log.activity') }}" class="nav-link {{ (request()->segment(1) == 'log_activity') ? 'active' : '' }}">
-            <i class="fa fa-history" aria-hidden="true"></i>
-              <p>
-                Activity Log
-              </p>
-            </a>
-           
-          </li>
-
-         @endif
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                    <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>Layout Options</span>
+                    <span class="label label-primary pull-right">4</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+                    <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
+                    <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
+                    <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="../widgets.html">
+                    <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">Hot</small>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Charts</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+                    <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+                    <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+                    <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>UI Elements</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
+                    <li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
+                    <li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
+                    <li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
+                    <li><a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
+                    <li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-edit"></i> <span>Forms</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="../forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
+                    <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
+                    <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-table"></i> <span>Tables</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
+                    <li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="../calendar.html">
+                    <i class="fa fa-calendar"></i> <span>Calendar</span>
+                    <small class="label pull-right bg-red">3</small>
+                </a>
+            </li>
+            <li>
+                <a href="../mailbox/mailbox.html">
+                    <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                    <small class="label pull-right bg-yellow">12</small>
+                </a>
+            </li>
+            <li class="treeview active">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>Examples</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
+                    <li><a href="profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
+                    <li><a href="login.html"><i class="fa fa-circle-o"></i> Login</a></li>
+                    <li><a href="register.html"><i class="fa fa-circle-o"></i> Register</a></li>
+                    <li><a href="lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+                    <li><a href="404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+                    <li><a href="500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+                    <li class="active"><a href="blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-share"></i> <span>Multilevel</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                            <li>
+                                <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                </ul>
+            </li>
+            <li><a href="../../documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+            <li class="header">LABELS</li>
+            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
         </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
+    </section>
     <!-- /.sidebar -->
-  </aside>
+</aside>

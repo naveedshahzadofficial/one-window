@@ -1,74 +1,43 @@
 @extends('layouts.auth')
 @push('title','Reset Password')
 @section('content')
-    <div class="login-box">
+
+    @component('_components.alerts-default')@endcomponent
+
+    <form action="{{ route('password.update') }}" method="post" id='recover_password_form'>
+        {{ csrf_field() }}
+        <input type="hidden" name="token" value="{{ $token }}">
+        <div class="auth-form">
 
 
-        <div class="card-body">
-            <img src="{{ asset('/storage/images/login_screen/Login-Icon.png') }}" class="max-h-150pxlogin_image image_settings" alt="">
-
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-        </div>
-
-
-        <form action="{{ route('password.update') }}" method="post" id='recover_password_form'>
-            {{ csrf_field() }}
-            <input type="hidden" name="token" value="{{ $token }}">
-
-            <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Password" name='password'>
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
-                    </div>
-                </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
             </div>
-            <div class="input-group mb-3">
-                <input type="password" class="form-control" name='password_confirmation' placeholder="Confirm Password">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
-                    </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required>
+            </div>
+
+            <div class="auth-login-btn">
+                <button type="submit" class="btn btn-dark btn-block">Change password</button>
+            </div>
+
+            <div class="auth-remember-me">
+                <div class="pull-right">
+                    <a href="{{ route('login') }}" class="auth-text-sm">Sign In</a>
                 </div>
             </div>
 
-
-            <div class="row">
-
-                <div class="col-12">
-                    <button type="submit" class="btn btn-dark btn-block" style="background-color: #404040;">Change password</button>
-                </div>
-
-            </div>
-            <br>
-
-
-        </form>
-
-
-        <div class="row">
-            <div class="col-8">
-
-            </div>
-
-            <div class="col-4">
-
-                <a href="{{ url('/login') }}" class="login_footer">Sign In</a>
-
-            </div>
 
         </div>
 
+    </form>
 
-
-
-    </div>
 @endsection
