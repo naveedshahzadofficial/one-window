@@ -266,13 +266,7 @@
       <change beforePath="$PROJECT_DIR$/../livewirekit/resources/views/livewire/tailwind/post-votes.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/ApplicationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Applicant/ApplicationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/blank.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/blank.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/layout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
@@ -516,7 +510,7 @@
       <updated>1621923387941</updated>
       <workItem from="1621923396135" duration="24147000" />
       <workItem from="1622007647875" duration="30855000" />
-      <workItem from="1622087938731" duration="19286000" />
+      <workItem from="1622087938731" duration="19705000" />
     </task>
     <servers />
   </component>
