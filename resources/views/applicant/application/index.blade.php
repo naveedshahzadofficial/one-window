@@ -1,4 +1,5 @@
 @extends('_layouts.applicant.app')
+@push('title','Applications')
 @section('content')
 
     <!--begin::Card-->

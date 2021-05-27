@@ -29,7 +29,7 @@ class ApplicationController extends Controller
      */
     public function create()
     {
-        return view('applicant.application.index');
+        return view('applicant.application.create');
     }
 
     /**

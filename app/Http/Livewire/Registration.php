@@ -38,6 +38,7 @@ class Registration extends Component
         'user.email' => 'required|string|email|unique:users,email',
         'user.password' => 'required|string|min:8|confirmed',
     ];
+
     protected $messages = [
         'user.prefix.required' => 'Prefix is required.',
         'user.first_name.required' => 'First Name is required.',
