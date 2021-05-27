@@ -14,44 +14,25 @@
     font-style: normal;
 
 }
-.auth-row{
-    display: flex;
-}
-/* auth left css */
-.auth-left-bg-img{
-    flex: 1;
+
+.auth-left-bg{
     background-image: url("../img/auth-left-bg.jpg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
-.auth-left-wrapper{
-    margin: 0 auto;
-    text-align: center;
-}
-.auth-logo{
-    margin-top: 58px;
+.auth-right-bg{
+    background-color: #30807d;
 }
 .auth-logo-caption{
-    margin-top: 50px;
-}
-.auth-logo-caption span{
-    clear: both;
-    display: block;
+    text-align: center;
     color: #fff;
     font-family: 'poppinsbold';
-    font-size: 60px;
+    font-size: 45px;
 }
-.auth-nbdp-logo{
-    margin-top: 100px;
-    margin-bottom: 50px;
-}
-.auth-left-footer{
-    position:absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+
+.auth-left-footer,.auth-right-footer{
     text-align: center;
     font-size: 12px;
     color: #fff;
@@ -59,48 +40,9 @@
     margin-bottom: 18px;
 }
 
-/* auth right css */
-.auth-right-bg-img{
-    background-color: #30807d;
-    flex: 1;
+.kt_auth_form{
+    width: 300px !important;
 }
-.auth-right-wrapper{
-    margin: 0 auto;
-    text-align: center;
-}
-.auth-smeda-logo{
-    margin-top: 58px;
-}
-.auth-login-icon{
-    margin-top: 55px;
-    margin-bottom: 25px;
-}
-.auth-form{
-    width: 60%;
-    margin: 0 auto;
-}
-.auth-form .input-group{
-    margin-bottom: 15px;
-}
-.auth-form .input-group-addon .fa{
-    color: #fff;
-}
-.auth-form .input-group-addon{
-    padding-right: 12px;
-    background-color: transparent;
-}
-.auth-form .input-group-addon .fa.fa-lock{
-    padding-right: 6px;
-}
-.auth-login-btn button{
-    color: #fff;
-    font-weight: bold;
-    background-color:#404040;
-}
-.auth-login-btn button:hover{
-    color: #d3d3d3;
-}
-
 .auth-text {
     font-size: 14px;
     color: #fff;
@@ -111,13 +53,24 @@
     color: #fff;
     font-family: 'poppinsregular';
 }
-.auth-remember-me{
-    margin-top: 10px;
-    clear: both;
+
+.auth-login-btn{
+    width: 100% !important;
+    color: #fff !important;
+    font-weight: bold;
+    background-color:#404040 !important;
+}
+.auth-login-btn:hover{
+    color: #d3d3d3 !important;
+}
+.auth-default-btn{
+    background-color: #404040;
+    color: #fff;
+    font-weight: bold;
 }
 .auth-new-register{
-    padding-top: 30px;
-    clear: both;
+    display: block;
+    width: 300px !important;
 }
 .sample-text:hover{
     cursor: pointer;
@@ -127,30 +80,15 @@
     color: black;
     background-color: #fff;
 }
-.auth-right-footer{
-    position:absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 12px;
-    color: #fff;
-    font-family:  'poppinsregular';
-    margin-bottom: 18px;
+.auth-no-padding{
+    padding-right: 0 !important;
+    padding-left: 0 !important;
 }
-.auth-no-padding-left{
-    padding-left: 0;
+.auth-no-border-radius{
+    border-left: none !important;
+    border-top-left-radius: 0  !important;
+    border-bottom-left-radius: 0  !important;
 }
 .auth-no-padding-right{
-    padding-right: 0;
-}
-.auth-no-padding{
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.auth-default-btn{
-    background-color: #404040;
-    color: #fff;
-    font-weight: bold;
+    padding-right: 0 !important;
 }
