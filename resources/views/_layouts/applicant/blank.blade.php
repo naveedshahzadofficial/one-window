@@ -9,7 +9,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@stack('title','Authentication') - @stack('app-name',config('app.name', 'Admin Panel'))</title>
         @section('metas')
-            <meta name="description" content="Updates and statistics" />
+            <meta name="description" content="National SME Registration Portal (SMERP)" />
         @show
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
