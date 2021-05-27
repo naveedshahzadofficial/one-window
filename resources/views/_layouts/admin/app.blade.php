@@ -9,7 +9,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@stack('title','Dashboard') - @stack('app-name',config('app.name', 'Admin Panel'))</title>
         @section('metas')
-            <meta name="description" content="Updates and statistics" />
+            <meta name="description" content="National SME Registration Portal (SMERP)" />
         @show
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
@@ -24,7 +24,7 @@
 
 		<!--begin::Page Vendors Styles(used by this page)-->
 		<link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
-
+         <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<!--end::Page Vendors Styles-->
 
 		<!--begin::Global Theme Styles(used by all pages)-->
@@ -156,6 +156,10 @@
         <script src="{{ asset('assets/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-validation/additional-methods.min.js') }}"></script>
 		<!--end::Global Theme Bundle-->
+
+        <!--begin::Page Vendors(used by this page)-->
+        <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+        <!--end::Page Vendors-->
 
 		<!--begin::Page Vendors(used by this page)-->
 		<script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>

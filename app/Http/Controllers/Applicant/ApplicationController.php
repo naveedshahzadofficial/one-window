@@ -14,7 +14,12 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        //
+        return view('applicant.application.index');
+    }
+
+    public function indexAjax()
+    {
+        
     }
 
     /**

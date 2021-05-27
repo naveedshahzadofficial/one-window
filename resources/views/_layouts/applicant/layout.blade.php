@@ -30,10 +30,15 @@
                     @section('subheader-v1')
                         @include('_layouts.applicant.partials._subheader.subheader-v1')
                     @show
-
+                    <!--begin::Entry-->
+                        <div class="d-flex flex-column-fluid">
+                            <!--begin::Container-->
+                            <div class="container">
 						<!--Content area here-->
                         {{ isset($slot)?$slot:'' }}
                         @yield('content')
+                            </div>
+                        </div>
 
 					</div>
 
