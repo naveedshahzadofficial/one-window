@@ -35,7 +35,7 @@
     <!--end: Wizard Nav-->
     <!--begin: Wizard Body-->
     <div class="row justify-content-center py-10 px-8 py-lg-12 px-lg-10">
-        <div class="col-xl-12 col-xxl-7">
+        <div class="col-xl-12 col-xxl-12">
             <!--begin: Wizard Form-->
             <form  class="form" >
                 <!--begin: Wizard Step 1-->
@@ -557,8 +557,99 @@
 
                     </div>
 
+                    <h4 class="mb-10 font-weight-bold text-dark">Business Address</h4>
 
-                </div>
+                    <div class="form-group row">
+
+                        <div class="col-lg-4">
+                            <label>Type: *</label>
+                            <select wire:model="application.business_address_type_id"  class="form-control @error('application.business_address_type_id') is-invalid @enderror">
+                                <option value="">Select Type</option>
+                                @foreach($address_types as $type)
+                                    <option value="{{ $type->id }}">{{ $type->type_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('application.business_address_type_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Form: *</label>
+                            <select wire:model="application.business_address_form_id"  class="form-control @error('application.business_address_form_id') is-invalid @enderror">
+                                <option value="">Select Form</option>
+                                @foreach($address_forms as $form)
+                                    <option value="{{ $form->id }}">{{ $form->form_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('application.business_address_form_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Unit / Address 1: *</label>
+                            <input wire:model="application.business_address_1" type="text" class="form-control @error('application.business_address_1') is-invalid @enderror" placeholder="Address 1" />
+                            @error('application.business_address_1')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                            <label>Complex / Street / Address 2: *</label>
+                            <input wire:model="application.business_address_2" type="text" class="form-control @error('application.business_address_2') is-invalid @enderror" placeholder="Address 2" />
+                            @error('application.business_address_2')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Area/ Locality / Address 3: *</label>
+                            <input wire:model="application.business_address_3" type="text" class="form-control @error('application.business_address_3') is-invalid @enderror" placeholder="Address 3" />
+                            @error('application.business_address_3')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>City: *</label>
+                            <select wire:model="application.business_city_id"  class="form-control @error('application.business_city_id') is-invalid @enderror">
+                                <option value="">Select City</option>
+                                @foreach($cities as $city)
+                                    <option value="{{ $city->id }}">{{ $city->city_name_e }}</option>
+                                @endforeach
+                            </select>
+                            @error('application.business_city_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+
+                        <div class="col-lg-4">
+                            <label>District: *</label>
+                            <select wire:model="application.business_district_id"  class="form-control @error('application.business_district_id') is-invalid @enderror">
+                                <option value="">Select District</option>
+                                @foreach($districts as $district)
+                                    <option value="{{ $district->id }}">{{ $district->district_name_e }}</option>
+                                @endforeach
+                            </select>
+                            @error('application.business_district_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
+                    </div>
+
+
+
+                    </div>
                 <!--end: Wizard Step 2-->
                 <!--begin: Wizard Step 5-->
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">

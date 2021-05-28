@@ -39,9 +39,5 @@
     background-color: #30807d;
     border-color: transparent;
 }
-.container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
-    padding: 0 25px;
-    background-color: #4b9996;
-}
-
+.container-fluid.d-flex.align-items-stretch.justify-content-between {background-color: #4b9996;}
 

@@ -46,6 +46,7 @@ class ApplicationForm extends Component
     // on parent load
     public $business_secotors;
     public $business_sub_secotors;
+    public $business_tehsils;
 
     public $is_minority_status = false;
     public $is_minority_status_other = false;
@@ -127,6 +128,13 @@ class ApplicationForm extends Component
         'proof_of_ownership_file' => 'required|max:5120',
         'registration_certificate_file' => 'required|max:5120',
         'license_registration_file' => 'required|max:5120',
+        'application.business_address_type_id' => 'required',
+        'application.business_address_form_id' => 'required',
+        'application.business_address_1' => 'required',
+        'application.business_address_2' => 'required',
+        'application.business_address_3' => 'required',
+        'application.business_city_id' => 'required',
+        'application.business_district_id' => 'required',
     ];
 
     protected $messages_business_profile = [
@@ -139,11 +147,19 @@ class ApplicationForm extends Component
         'proof_of_ownership_file.required' => 'Please Upload Proof of Ownership.',
         'registration_certificate_file.required' => 'Please Upload Registration Certificate.',
         'license_registration_file.required' => 'Please License /Registration.',
+        'application.business_address_type_id.required' => 'Address Type is required.',
+        'application.business_address_form_id.required' => 'Address Form is required.',
+        'application.business_address_1.required' => 'Address 1 is required.',
+        'application.business_address_2.required' => 'Address 2 is required.',
+        'application.business_address_3.required' => 'Address 3 is required.',
+        'application.business_city_id.required' => 'City is required.',
+        'application.business_district_id.required' => 'District is required.',
+
     ];
 
     public function mount()
     {
-        $this->step = 0;
+        $this->step = 1;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
         $this->designations = DesignationBusiness::where('status',1)->get();
@@ -163,6 +179,7 @@ class ApplicationForm extends Component
         // on parent load
         $this->business_secotors = collect();
         $this->business_sub_secotors = collect();
+        $this->business_tehsils = collect();
 
         $this->application['prefix'] = auth()->user()->prefix;
         $this->application['first_name'] = auth()->user()->first_name;
