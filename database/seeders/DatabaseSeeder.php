@@ -34,5 +34,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BusinessCategorySeeder::class);
         $this->call(BusinessSectorSeeder::class);
         $this->call(BusinessSubSectorSeeder::class);
+        $this->call(ProvinceSeeder::class);
     }
 }

@@ -17,7 +17,9 @@ use App\Models\District;
 use App\Models\EducationLevel;
 use App\Models\MinorityStatus;
 use App\Models\MobileCode;
+use App\Models\Province;
 use App\Models\Question;
+use App\Models\Tehsil;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Manny\Manny;
@@ -42,10 +44,13 @@ class ApplicationForm extends Component
     public $business_registration_status;
     public $business_legal_statuses;
     public $business_categories;
+    public $provinces;
 
     // on parent load
     public $business_secotors;
     public $business_sub_secotors;
+    public $business_cities;
+    public $business_districts;
     public $business_tehsils;
 
     public $is_minority_status = false;
@@ -55,7 +60,7 @@ class ApplicationForm extends Component
     public $is_business_registered = false;
 
     // files
-    public $proof_of_ownership_file,$registration_certificate_file,$license_registration_file;
+    public $proof_of_ownership_file,$registration_certificate_file,$license_registration_file,$business_evidence_ownership_file;
 
 
     public $step;
@@ -120,7 +125,7 @@ class ApplicationForm extends Component
 
     protected $rules_business_profile = [
         'application.business_name' => 'required',
-        'application.business_acquisition_date' => 'required',
+        'application.business_establishment_date' => 'required',
         'application.business_registration_status_id' => 'required',
         'application.business_category_id' => 'required',
         'application.business_sector_id' => 'required',
@@ -128,18 +133,24 @@ class ApplicationForm extends Component
         'proof_of_ownership_file' => 'required|max:5120',
         'registration_certificate_file' => 'required|max:5120',
         'license_registration_file' => 'required|max:5120',
+        'business_evidence_ownership_file' => 'required|max:5120',
         'application.business_address_type_id' => 'required',
         'application.business_address_form_id' => 'required',
         'application.business_address_1' => 'required',
         'application.business_address_2' => 'required',
         'application.business_address_3' => 'required',
+        'application.business_province_id' => 'required',
         'application.business_city_id' => 'required',
         'application.business_district_id' => 'required',
+        'application.business_tehsil_id' => 'required',
+        'application.business_capacity_id' => 'required',
+        'application.business_share_id' => 'required',
+        'application.business_acquisition_date' => 'required',
     ];
 
     protected $messages_business_profile = [
         'application.business_name.required' => 'Business Name is required.',
-        'application.business_acquisition_date.required' => 'Business Acquisition Date is required.',
+        'application.business_establishment_date.required' => 'Business Acquisition Date is required.',
         'application.business_registration_status_id.required' => 'Business Registration Status is required.',
         'application.business_category_id.required' => 'Business Category is required.',
         'application.business_sector_id.required' => 'Sector is required.',
@@ -147,13 +158,19 @@ class ApplicationForm extends Component
         'proof_of_ownership_file.required' => 'Please Upload Proof of Ownership.',
         'registration_certificate_file.required' => 'Please Upload Registration Certificate.',
         'license_registration_file.required' => 'Please License /Registration.',
+        'business_evidence_ownership_file.required' => 'Please Evidence of tenancy/ ownership.',
         'application.business_address_type_id.required' => 'Address Type is required.',
         'application.business_address_form_id.required' => 'Address Form is required.',
         'application.business_address_1.required' => 'Address 1 is required.',
         'application.business_address_2.required' => 'Address 2 is required.',
         'application.business_address_3.required' => 'Address 3 is required.',
+        'application.business_province_id.required' => 'Province is required.',
         'application.business_city_id.required' => 'City is required.',
         'application.business_district_id.required' => 'District is required.',
+        'application.business_tehsil_id.required' => 'Tehsil is required.',
+        'application.business_capacity_id.required' => 'Capacity is required.',
+        'application.business_share_id.required' => 'Share is required.',
+        'application.business_acquisition_date.required' => 'Acquisition Date is required.',
 
     ];
 
@@ -175,10 +192,13 @@ class ApplicationForm extends Component
         $this->business_registration_status = BusinessRegistrationStatus::where('status',1)->get();
         $this->business_legal_statuses = BusinessLegalStatus::where('legal_status',1)->get();
         $this->business_categories = BusinessCategory::where('category_status',1)->get();
+        $this->provinces = Province::where('province_status',1)->get();
 
         // on parent load
         $this->business_secotors = collect();
         $this->business_sub_secotors = collect();
+        $this->business_cities = collect();
+        $this->business_districts = collect();
         $this->business_tehsils = collect();
 
         $this->application['prefix'] = auth()->user()->prefix;
@@ -257,6 +277,13 @@ class ApplicationForm extends Component
             case 'business_sector_id':
                 $this->business_sub_secotors = BusinessSubSector::where('business_sector_id', $value)->where('sub_sector_status',1)->get();
                 break;
+            case 'business_province_id':
+                $this->business_cities = City::where('city_province_id', $value)->where('city_status',1)->get();
+                $this->business_districts = District::where('province_id', $value)->where('district_status',1)->get();
+                break;
+            case 'business_district_id':
+                $this->business_tehsils = Tehsil::where('district_id', $value)->where('tehsil_status',1)->get();
+                break;
         }
     }
 
@@ -284,6 +311,8 @@ class ApplicationForm extends Component
         $this->application['registration_certificate_file']= $this->registration_certificate_file->store('registration_certificates');
         if(!empty($this->license_registration_file))
         $this->application['license_registration_file']= $this->license_registration_file->store('license_registrations');
+        if(!empty($this->business_evidence_ownership_file))
+        $this->application['business_evidence_ownership_file']= $this->business_evidence_ownership_file->store('evidence_ownerships');
 
         //$this->validate($this->rules_business_profile,$this->messages_business_profile);
         //dd($this->application);

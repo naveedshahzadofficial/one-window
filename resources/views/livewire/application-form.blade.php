@@ -426,8 +426,8 @@
 
                         <div class="col-lg-4">
                             <label>Business Acquisition/ Start/ Establishment/ Formation Date: *</label>
-                            <x-date-picker wire:model="application.business_acquisition_date" />
-                            @error('application.business_acquisition_date')
+                            <x-date-picker wire:model="application.business_establishment_date" />
+                            @error('application.business_establishment_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
@@ -537,20 +537,20 @@
                     <h4 class="mb-10 font-weight-bold text-dark">Relevant Attachments</h4>
                     <div class="form-group row">
                         <div class="col-lg-4">
-                                <label>Upload Proof of Ownership</label>
+                                <label>Upload Proof of Ownership: *</label>
                             <input type="file" class="form-control" wire:model="proof_of_ownership_file">
                             <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
                         </div>
 
 
                         <div class="col-lg-4">
-                            <label>Upload Registration Certificate</label>
+                            <label>Upload Registration Certificate: *</label>
                             <input type="file" class="form-control" wire:model="registration_certificate_file">
                             <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
                         </div>
 
                         <div class="col-lg-4">
-                            <label>License /Registration with chamber or Trade body</label>
+                            <label>License /Registration with chamber or Trade body: *</label>
                             <input type="file" class="form-control" wire:model="license_registration_file">
                             <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
                         </div>
@@ -615,14 +615,14 @@
                         </div>
 
                         <div class="col-lg-4">
-                            <label>City: *</label>
-                            <select wire:model="application.business_city_id"  class="form-control @error('application.business_city_id') is-invalid @enderror">
-                                <option value="">Select City</option>
-                                @foreach($cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->city_name_e }}</option>
+                            <label>Provinces: *</label>
+                            <select wire:model="application.business_province_id"  class="form-control @error('application.business_province_id') is-invalid @enderror">
+                                <option value="">Select Province</option>
+                                @foreach($provinces as $province)
+                                    <option value="{{ $province->id }}">{{ $province->province_name }}</option>
                                 @endforeach
                             </select>
-                            @error('application.business_city_id')
+                            @error('application.business_province_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
@@ -632,10 +632,24 @@
                     <div class="form-group row">
 
                         <div class="col-lg-4">
+                            <label>City: *</label>
+                            <select wire:model="application.business_city_id"  class="form-control @error('application.business_city_id') is-invalid @enderror">
+                                <option value="">Select City</option>
+                                @foreach($business_cities as $city)
+                                    <option value="{{ $city->id }}">{{ $city->city_name_e }}</option>
+                                @endforeach
+                            </select>
+                            @error('application.business_city_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
+                        <div class="col-lg-4">
                             <label>District: *</label>
                             <select wire:model="application.business_district_id"  class="form-control @error('application.business_district_id') is-invalid @enderror">
                                 <option value="">Select District</option>
-                                @foreach($districts as $district)
+                                @foreach($business_districts as $district)
                                     <option value="{{ $district->id }}">{{ $district->district_name_e }}</option>
                                 @endforeach
                             </select>
@@ -644,12 +658,72 @@
                             @enderror
                         </div>
 
+                        <div class="col-lg-4">
+                            <label>Tehsil: *</label>
+                            <select wire:model="application.business_tehsil_id"  class="form-control @error('application.business_tehsil_id') is-invalid @enderror">
+                                <option value="">Select Tehsil</option>
+                                @foreach($business_tehsils as $tehsil)
+                                    <option value="{{ $tehsil->id }}">{{ $tehsil->tehsil_name_e }}</option>
+                                @endforeach
+                            </select>
+                            @error('application.business_tehsil_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
 
+
+                    </div>
+
+                    <div class="form-group row">
+
+                    <div class="col-lg-4">
+                        <label>Capacity: *</label>
+                        <select wire:model="application.business_capacity_id"  class="form-control @error('application.business_capacity_id') is-invalid @enderror">
+                            <option value="">Select Capacity</option>
+                            @foreach($address_capacities as $capacity)
+                                <option value="{{ $capacity->id }}">{{ $capacity->capacity_name }}</option>
+                            @endforeach
+                        </select>
+                        @error('application.business_capacity_id')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label>Share: *</label>
+                        <select wire:model="application.business_share_id"  class="form-control @error('application.business_share_id') is-invalid @enderror">
+                            <option value="">Select Share</option>
+                            @foreach($address_shares as $share)
+                                <option value="{{ $share->id }}">{{ $share->share_name }}</option>
+                            @endforeach
+                        </select>
+                        @error('application.business_share_id')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label>Acquisition Date: *</label>
+                        <x-date-picker wire:model="application.business_acquisition_date" />
+                        @error('application.business_acquisition_date')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+                </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                            <label>Evidence of tenancy/ ownership of business premises: *</label>
+                            <input type="file" class="form-control" wire:model="business_evidence_ownership_file">
+                            <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                        </div>
                     </div>
 
 
 
-                    </div>
+              </div>
                 <!--end: Wizard Step 2-->
                 <!--begin: Wizard Step 5-->
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
@@ -676,7 +750,7 @@
                         @if($step >= 2)
                         <button type="button" class="btn btn-success font-weight-bold text-uppercase px-9 py-4 d-block" data-wizard-type="action-submit" wire:loading.attr="disabled" wire:click.prevent="submitApplication">Submit</button>
                         @else
-                        <button type="button" class="btn btn-primary font-weight-bold text-uppercase px-9 py-4 d-block" data-wizard-type="action-next" wire:loading.attr="disabled" wire:click.prevent="submitApplication"  >Save & Next</button>
+                        <button type="button" class="btn btn-success font-weight-bold text-uppercase px-9 py-4 d-block" data-wizard-type="action-next" wire:loading.attr="disabled" wire:click.prevent="submitApplication"  >Save & Next</button>
                         @endif
                     </div>
                 </div>
