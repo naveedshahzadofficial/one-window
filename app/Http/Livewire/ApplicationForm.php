@@ -12,6 +12,7 @@ use App\Models\BusinessRegistrationStatus;
 use App\Models\BusinessSector;
 use App\Models\BusinessSubSector;
 use App\Models\City;
+use App\Models\ConnectionOwnership;
 use App\Models\DesignationBusiness;
 use App\Models\District;
 use App\Models\EducationLevel;
@@ -20,6 +21,7 @@ use App\Models\MobileCode;
 use App\Models\Province;
 use App\Models\Question;
 use App\Models\Tehsil;
+use App\Models\UtilityType;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Manny\Manny;
@@ -45,6 +47,11 @@ class ApplicationForm extends Component
     public $business_legal_statuses;
     public $business_categories;
     public $provinces;
+    public $ownerships;
+    public $utility_types;
+
+    // UtilityConnections
+    public $utility_connections = [];
 
     // on parent load
     public $business_secotors;
@@ -122,7 +129,6 @@ class ApplicationForm extends Component
         'application.residence_share_id.required' => 'Share is required.',
         'application.residence_acquisition_date.required' => 'Acquisition Date is required.',
     ];
-
     protected $rules_business_profile = [
         'application.business_name' => 'required',
         'application.business_establishment_date' => 'required',
@@ -148,8 +154,9 @@ class ApplicationForm extends Component
         'application.business_acquisition_date' => 'required',
         'application.business_contact_number' => 'required',
         'application.business_email' => 'required|email',
+        'application.utility_connection_question_id' => 'required',
+        'application.employees_question_id' => 'required',
     ];
-
     protected $messages_business_profile = [
         'application.business_name.required' => 'Business Name is required.',
         'application.business_establishment_date.required' => 'Business Acquisition Date is required.',
@@ -176,6 +183,8 @@ class ApplicationForm extends Component
         'application.business_contact_number.required' => 'Business Contact No. is required.',
         'application.business_email.required' => 'Email is required.',
         'application.business_email.email' => 'Email format is not valid.',
+        'application.utility_connection_question_id.required' => 'Please select your choice.',
+        'application.employees_question_id.required' => 'Please select your choice.',
 
     ];
 
@@ -198,6 +207,8 @@ class ApplicationForm extends Component
         $this->business_legal_statuses = BusinessLegalStatus::where('legal_status',1)->get();
         $this->business_categories = BusinessCategory::where('category_status',1)->get();
         $this->provinces = Province::where('province_status',1)->get();
+        $this->ownerships = ConnectionOwnership::where('ownership_status',1)->get();
+        $this->utility_types = UtilityType::where('type_status',1)->get();
 
         // on parent load
         $this->business_secotors = collect();
@@ -289,6 +300,13 @@ class ApplicationForm extends Component
             case 'business_district_id':
                 $this->business_tehsils = Tehsil::where('district_id', $value)->where('tehsil_status',1)->get();
                 break;
+            case 'utility_connection_question_id':
+                if($this->questions->firstWhere('id', $value)->name=='Yes'){
+                    $this->utility_connections= [[]];
+                }else{
+                    $this->utility_connections= [];
+                }
+                break;
         }
     }
 
@@ -331,6 +349,29 @@ class ApplicationForm extends Component
         $this->step++;
         session()->flash('success_message', 'Registration has been saved successfully.');
         return $this->redirect(route('applicant.applications.index'));
+    }
+
+    public function addUtilityConnection(){
+        $this->validate([
+            'utility_connections.*.utility_provider_other' => 'required',
+            'utility_connections.*.utility_form_id' => 'required',
+            'utility_connections.*.utility_consumer_number' => 'required',
+            'utility_connections.*.utility_type_id' => 'required',
+            'utility_connections.*.connection_ownership_id' => 'required',
+        ],[
+            'utility_connections.*.utility_provider_other.required' => 'Connection Ownership is required.',
+            'utility_connections.*.utility_form_id.required' => 'Form/Type of Connection is required.',
+            'utility_connections.*.utility_consumer_number.required' => 'Reference/ Consumer Number is required.',
+            'utility_connections.*.utility_type_id.required' => 'Utility Type is required.',
+            'utility_connections.*.connection_ownership_id.required' => 'Provider is required.',
+        ]);
+        $this->utility_connections[] = [];
+    }
+
+    public function removeUtilityConnection($index)
+    {
+        unset($this->utility_connections[$index]);
+        $this->utility_connections = array_values($this->utility_connections);
     }
 
     private function successAlert(){

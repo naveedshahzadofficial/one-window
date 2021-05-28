@@ -23,7 +23,8 @@
             </div>
         </div>
         <div class="card-body">
-            <!--begin: Datatable-->
+        @component('_components.alerts-default')@endcomponent
+        <!--begin: Datatable-->
             <table class="table table-bordered table-checkable" id="my_datatable">
                 <thead>
                 <tr>

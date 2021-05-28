@@ -43,8 +43,8 @@
             <form  class="form" >
 
                 <!--begin: Wizard Step 1-->
-                @if($step==0)
-                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+
+                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="mb-10 font-weight-bold text-dark">Basic Info</h4>
 
                     <div class="form-group row">
@@ -415,12 +415,12 @@
 
 
                 </div>
-                @endif
+
                 <!--end: Wizard Step 1-->
 
                 <!--begin: Wizard Step 2-->
-                @if($step==1)
-                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+
+                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="mb-10 font-weight-bold text-dark">Basic Info</h4>
 
                     <div class="form-group row">
@@ -432,7 +432,7 @@
                                 @enderror
                         </div>
 
-                        <div class="col-lg-4">
+                        <div wire:ignore class="col-lg-4">
                             <label>Business Acquisition/ Start/ Establishment/ Formation Date: *</label>
                             <x-date-picker wire:model="application.business_establishment_date" />
                             @error('application.business_establishment_date')
@@ -738,8 +738,8 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <label>Business Email Address *</label>
-                        <input wire:model="application.business_email" type="text" class="form-control @error('application.business_email') is-invalid @enderror" placeholder="Email Address" />
+                        <label>Business Email Address: *</label>
+                        <input wire:model="application.business_email" type="email" class="form-control @error('application.business_email') is-invalid @enderror" placeholder="Email Address" />
                         @error('application.business_email')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
@@ -766,19 +766,115 @@
 
                     </div>
 
+                    @foreach($utility_connections as $index=>$connection)
                     <div class="form-group row">
+
+                        <div class="col-lg-4">
+                            <label>Connection Ownership: *</label>
+                            <div class="radio-inline">
+                                @foreach($ownerships as $ownership)
+                                    <label class="radio">
+                                        <input wire:model.defer="utility_connections.{{$index}}.connection_ownership_id" type="radio" name="utility_connections[{{$index}}][connection_ownership_id]" value="{{ $ownership->id }}">
+                                        <span></span>{{ $ownership->ownership_name }}</label>
+                                @endforeach
+                            </div>
+                            @if($errors->has("utility_connections.$index.connection_ownership_id"))
+                                <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.connection_ownership_id") }}</div>
+                            @endif
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Utility Type: *</label>
+                            <div class="radio-inline">
+                                @foreach($utility_types as $type)
+                                    <label class="radio">
+                                        <input wire:model.defer="utility_connections.{{$index}}.utility_type_id" type="radio" name="utility_connections[{{$index}}][utility_type_id]" value="{{ $type->id }}">
+                                        <span></span>{{ $type->type_name }}</label>
+                                @endforeach
+                            </div>
+                            @if($errors->has("utility_connections.$index.utility_type_id"))
+                                <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_type_id") }}</div>
+                            @endif
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Reference/ Consumer Number: *</label>
+                            <input wire:model.defer="utility_connections.{{$index}}.utility_consumer_number" type="text" class="form-control @if($errors->has("utility_connections.$index.utility_consumer_number")) is-invalid @endif" placeholder="Consumer Number" />
+                            @if($errors->has("utility_connections.$index.utility_consumer_number"))
+                                <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_consumer_number") }}</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-lg-5">
+                            <label>Form/Type of Connection: *</label>
+                            <div class="radio-inline">
+                                @foreach($address_forms as $form)
+                                    <label class="radio">
+                                        <input wire:model.defer="utility_connections.{{$index}}.utility_form_id" type="radio" name="utility_connections[{{$index}}][utility_form_id]" value="{{ $form->id }}">
+                                        <span></span>{{ $form->form_name }}</label>
+                                @endforeach
+                            </div>
+                            @if($errors->has("utility_connections.$index.utility_form_id"))
+                                <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_form_id") }}</div>
+                            @endif
+                        </div>
+
+                        <div class="col-lg-3">
+                            <label>Provider: *</label>
+                            <input wire:model.defer="utility_connections.{{$index}}.utility_provider_other" type="text" class="form-control @if($errors->has("utility_connections.$index.utility_provider_other")) is-invalid @endif" placeholder="Provider" />
+                            @if($errors->has("utility_connections.$index.utility_provider_other"))
+                            <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_provider_other") }}</div>
+                            @endif
+                        </div>
+                        <div class="col-lg-4 pt-9">
+                        @if($index>0)
+                        <span wire:click.prevent="removeUtilityConnection({{ $index }})" wire:loading.attr="disabled"  class="btn btn-xs btn-icon btn-danger">
+                            <i class="flaticon2-delete"></i>
+                        </span>
+                        @endif
+                        &nbsp;&nbsp;
+                        @if(count($utility_connections)==($index+1))
+                        <span wire:click.prevent="addUtilityConnection" wire:loading.attr="disabled"  class="btn btn-xs btn-icon btn-primary">
+                            <i class="flaticon2-plus"></i>
+                        </span>
+                        @endif
+
+                        </div>
+                    </div>
+                    @endforeach
+
+                    <h4 class="mb-10 font-weight-bold text-dark">Employees Info</h4>
+
+                    <div class="form-group row">
+
+                        <div class="col-lg-4">
+                            <label>Do you have employees? *</label>
+                            <div class="radio-inline">
+                                @foreach($questions as $question)
+                                    <label class="radio">
+                                        <input wire:model="application.employees_question_id" type="radio" name="employees_question_id" value="{{ $question->id }}">
+                                        <span></span>{{ $question->name }}</label>
+                                @endforeach
+                            </div>
+                            @error('application.employees_question_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
+
 
                     </div>
 
 
-
                 </div>
-                @endif
+
                 <!--end: Wizard Step 2-->
 
                 <!--begin: Wizard Step 3-->
-                @if($step==2)
-                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
                     <!--begin::Section-->
                     <h4 class="mb-10 font-weight-bold text-dark">Review your Details and Submit</h4>
                     <h6 class="font-weight-bolder mb-3">Current Address:</h6>
@@ -790,7 +886,6 @@
                     <div class="separator separator-dashed my-5"></div>
                     <!--end::Section-->
                 </div>
-                @endif
                 <!--end: Wizard Step 3-->
 
                 <!--begin: Wizard Actions-->
@@ -815,5 +910,3 @@
     </div>
     <!--end: Wizard Body-->
 </div>
-
-
