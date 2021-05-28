@@ -46,6 +46,10 @@
 
         <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" rel="stylesheet" type="text/css" >
 
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/plugins/datetimepicker/jquery.datetimepicker.min.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/plugins/pikaday/pikaday.css')}}"/>
+
+
         @show
 
         @livewireStyles
@@ -161,6 +165,9 @@
 
         <!--begin::Page Vendors(used by this page)-->
         <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+        <script src="{{asset('assets/plugins/datetimepicker/jquery.datetimepicker.min.js')}}"></script>
+        <script src="{{asset('assets/plugins/pikaday/pikaday.js')}}"></script>
+
         <!--end::Page Vendors-->
 
 		<!--begin::Page Vendors(used by this page)-->
@@ -179,7 +186,10 @@
                 }
             });
         </script>
+
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
         @show
+
 
         @livewireScripts
 

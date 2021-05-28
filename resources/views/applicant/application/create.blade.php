@@ -26,40 +26,35 @@
 @endpush
 
 @push('post-scripts')
-    {{--<script>
-        // Class definition
-        var KTWizard4 = function () {
-            // Base elements
-            var _wizardEl;
-            var _formEl;
-            var _wizard;
-
-            // Private functions
-            var initWizard = function () {
-                // Initialize form wizard
-                _wizard = new KTWizard(_wizardEl, {
-                    startStep: 1, // initial active step number
-                    clickableSteps: false  // allow step clicking
-                });
-
-                // Change event
-                _wizard.on('change', function (wizard) {
-                    KTUtil.scrollTop();
-                });
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "3000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        window.addEventListener('toastr:message', event =>{
+            switch (event.detail.type){
+                case 'success':
+                    toastr.success(event.detail.title);
+                 break;
+                 default:
+                     toastr.info(event.detail.title);
+                 break;
             }
-            return {
-                // public functions
-                init: function () {
-                    _wizardEl = KTUtil.getById('kt_wizard_v4');
-                    _formEl = KTUtil.getById('kt_form');
 
-                    initWizard();
-                }
-            };
-        }();
-
-        jQuery(document).ready(function () {
-            KTWizard4.init();
         });
-    </script>--}}
+
+    </script>
 @endpush

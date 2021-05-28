@@ -266,8 +266,19 @@
       <change beforePath="$PROJECT_DIR$/../livewirekit/resources/views/livewire/tailwind/post-votes.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/smerp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/smerp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/blank.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/blank.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/blank.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/blank.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/application/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -457,6 +468,9 @@
       <path value="$PROJECT_DIR$/vendor/livewire/livewire" />
       <path value="$PROJECT_DIR$/vendor/hallindavid/manny" />
       <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
     </include_path>
   </component>
   <component name="ProjectId" id="1t14hw6WT22DXa42lTEeiHMevt9" />
@@ -472,7 +486,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/db_tables" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -488,10 +502,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/db_tables" />
+      <recent name="$PROJECT_DIR$/public/assets/plugins/pikaday" />
+      <recent name="$PROJECT_DIR$/public/assets/plugins" />
       <recent name="$PROJECT_DIR$/public/assets/img" />
       <recent name="$PROJECT_DIR$/public/assets/fonts" />
-      <recent name="$PROJECT_DIR$/resources/views/_components" />
-      <recent name="$PROJECT_DIR$/resources/views/layouts" />
     </key>
   </component>
   <component name="RunManager">
@@ -510,7 +525,7 @@
       <updated>1621923387941</updated>
       <workItem from="1621923396135" duration="24147000" />
       <workItem from="1622007647875" duration="30855000" />
-      <workItem from="1622087938731" duration="24942000" />
+      <workItem from="1622087938731" duration="54578000" />
     </task>
     <servers />
   </component>
