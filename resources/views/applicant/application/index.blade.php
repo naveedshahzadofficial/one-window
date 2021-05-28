@@ -21,7 +21,7 @@
 													</g>
 												</svg>
                                                 <!--end::Svg Icon-->
-											</span>New Application</a>
+											</span>New Registration</a>
                 <!--end::Button-->
             </div>
         </div>
