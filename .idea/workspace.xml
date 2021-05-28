@@ -268,10 +268,8 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Province.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Province.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_28_072732_create_provinces_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_28_072732_create_provinces_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/application/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/AddressFormSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AddressFormSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/applicant_custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/applicant_custom.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
@@ -527,7 +525,7 @@
       <updated>1621923387941</updated>
       <workItem from="1621923396135" duration="24147000" />
       <workItem from="1622007647875" duration="30855000" />
-      <workItem from="1622087938731" duration="66873000" />
+      <workItem from="1622087938731" duration="68882000" />
     </task>
     <servers />
   </component>

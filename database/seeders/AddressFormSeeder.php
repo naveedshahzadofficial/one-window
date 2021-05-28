@@ -14,7 +14,8 @@ class AddressFormSeeder extends Seeder
      */
     public function run()
     {
-        AddressForm::create(['form_name'=>'Form 1']);
-        AddressForm::create(['form_name'=>'Form 2']);
+        AddressForm::create(['form_name'=>'Commercial']);
+        AddressForm::create(['form_name'=>'Industrial']);
+        AddressForm::create(['form_name'=>'Residential']);
     }
 }

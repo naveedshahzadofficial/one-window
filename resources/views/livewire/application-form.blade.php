@@ -2,6 +2,7 @@
     <!--begin: Wizard Nav-->
     <div class="wizard-nav">
         <div class="wizard-steps px-8 py-8 px-lg-15 py-lg-3">
+
             <!--begin::Wizard Step 1 Nav-->
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
@@ -11,6 +12,7 @@
                 </div>
             </div>
             <!--end::Wizard Step 1 Nav-->
+
             <!--begin::Wizard Step 2 Nav-->
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
@@ -30,6 +32,7 @@
                 </div>
             </div>
             <!--end::Wizard Step 5 Nav-->
+
         </div>
     </div>
     <!--end: Wizard Nav-->
@@ -38,8 +41,10 @@
         <div class="col-xl-12 col-xxl-12">
             <!--begin: Wizard Form-->
             <form  class="form" >
+
                 <!--begin: Wizard Step 1-->
-                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
+                @if($step==0)
+                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                     <h4 class="mb-10 font-weight-bold text-dark">Basic Info</h4>
 
                     <div class="form-group row">
@@ -410,9 +415,12 @@
 
 
                 </div>
+                @endif
                 <!--end: Wizard Step 1-->
+
                 <!--begin: Wizard Step 2-->
-                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
+                @if($step==1)
+                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                     <h4 class="mb-10 font-weight-bold text-dark">Basic Info</h4>
 
                     <div class="form-group row">
@@ -719,14 +727,58 @@
                             <input type="file" class="form-control" wire:model="business_evidence_ownership_file">
                             <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
                         </div>
+
+
+                    <div class="col-lg-4">
+                        <label>Business Contact No. *</label>
+                        <input wire:model="application.business_contact_number" type="text" class="form-control @error('application.business_contact_number') is-invalid @enderror" placeholder="Contact No." />
+                        @error('application.business_contact_number')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label>Business Email Address *</label>
+                        <input wire:model="application.business_email" type="text" class="form-control @error('application.business_email') is-invalid @enderror" placeholder="Email Address" />
+                        @error('application.business_email')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
+                  </div>
+
+                    <h4 class="mb-10 font-weight-bold text-dark">Utility Connections</h4>
+                    <div class="form-group row">
+
+                        <div class="col-lg-4">
+                            <label>Do you have utility connections? *</label>
+                            <div class="radio-inline">
+                                @foreach($questions as $question)
+                                    <label class="radio">
+                                        <input wire:model="application.utility_connection_question_id" type="radio" name="utility_connection_question_id" value="{{ $question->id }}">
+                                        <span></span>{{ $question->name }}</label>
+                                @endforeach
+                            </div>
+                            @error('application.utility_connection_question_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group row">
+
                     </div>
 
 
 
-              </div>
+                </div>
+                @endif
                 <!--end: Wizard Step 2-->
-                <!--begin: Wizard Step 5-->
-                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
+
+                <!--begin: Wizard Step 3-->
+                @if($step==2)
+                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                     <!--begin::Section-->
                     <h4 class="mb-10 font-weight-bold text-dark">Review your Details and Submit</h4>
                     <h6 class="font-weight-bolder mb-3">Current Address:</h6>
@@ -738,7 +790,9 @@
                     <div class="separator separator-dashed my-5"></div>
                     <!--end::Section-->
                 </div>
-                <!--end: Wizard Step 5-->
+                @endif
+                <!--end: Wizard Step 3-->
+
                 <!--begin: Wizard Actions-->
                 <div class="d-flex justify-content-between border-top mt-5 pt-10">
                     <div class="mr-2">

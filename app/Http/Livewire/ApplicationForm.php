@@ -146,6 +146,8 @@ class ApplicationForm extends Component
         'application.business_capacity_id' => 'required',
         'application.business_share_id' => 'required',
         'application.business_acquisition_date' => 'required',
+        'application.business_contact_number' => 'required',
+        'application.business_email' => 'required|email',
     ];
 
     protected $messages_business_profile = [
@@ -171,12 +173,15 @@ class ApplicationForm extends Component
         'application.business_capacity_id.required' => 'Capacity is required.',
         'application.business_share_id.required' => 'Share is required.',
         'application.business_acquisition_date.required' => 'Acquisition Date is required.',
+        'application.business_contact_number.required' => 'Business Contact No. is required.',
+        'application.business_email.required' => 'Email is required.',
+        'application.business_email.email' => 'Email format is not valid.',
 
     ];
 
     public function mount()
     {
-        $this->step = 0;
+        $this->step = 1;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
         $this->designations = DesignationBusiness::where('status',1)->get();
