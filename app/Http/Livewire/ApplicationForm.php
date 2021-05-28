@@ -246,14 +246,15 @@ class ApplicationForm extends Component
     public function submitApplicantProfile()
     {
         //dd($this->application);
-        $this->validate($this->rules_applicant_profile,$this->messages_applicant_profile);
+        //$this->validate($this->rules_applicant_profile,$this->messages_applicant_profile);
         $this->step++;
+        $this->successAlert();
     }
 
     public function submitBusinessProfile()
     {
-        $this->validate($this->rules_business_profile,$this->messages_business_profile);
-        dd($this->application);
+        //$this->validate($this->rules_business_profile,$this->messages_business_profile);
+        //dd($this->application);
         $this->step++;
         $this->successAlert();
     }
@@ -262,6 +263,8 @@ class ApplicationForm extends Component
     {
         // $this->validate();
         $this->step++;
+        session()->flash('success_message', 'Registration has been saved successfully.');
+        return $this->redirect(route('applicant.applications.index'));
     }
 
     private function successAlert(){

@@ -57,7 +57,7 @@
 
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-text">Applications</span>
+										<span class="menu-text">Registrations</span>
 									</a>
 								</li>
 							</ul>

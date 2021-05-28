@@ -1,12 +1,12 @@
 @extends('_layouts.applicant.app')
-@push('title','Applications')
+@push('title','Registrations')
 @section('content')
 
     <!--begin::Card-->
     <div class="card card-custom gutter-b">
         <div class="card-header flex-wrap py-3">
             <div class="card-title">
-                <h3 class="card-label">Applications</h3>
+                <h3 class="card-label">Registrations</h3>
             </div>
             <div class="card-toolbar">
                 <!--begin::Button-->
