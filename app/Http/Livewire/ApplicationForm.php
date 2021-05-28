@@ -143,7 +143,7 @@ class ApplicationForm extends Component
 
     public function mount()
     {
-        $this->step = 1;
+        $this->step = 0;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
         $this->designations = DesignationBusiness::where('status',1)->get();
@@ -269,7 +269,7 @@ class ApplicationForm extends Component
         $this->application['license_registration_file']= $this->license_registration_file->store('license_registrations');
 
         //$this->validate($this->rules_business_profile,$this->messages_business_profile);
-        dd($this->application);
+        //dd($this->application);
         $this->step++;
         $this->successAlert();
     }
