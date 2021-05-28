@@ -159,7 +159,7 @@ class ApplicationForm extends Component
 
     public function mount()
     {
-        $this->step = 1;
+        $this->step = 0;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
         $this->designations = DesignationBusiness::where('status',1)->get();
