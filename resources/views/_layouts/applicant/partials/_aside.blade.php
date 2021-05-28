@@ -7,7 +7,7 @@
 
 						<!--begin::Logo-->
 						<a href="{{ route('applicant.applications.index') }}" class="brand-logo">
-							<img alt="Logo" src="{{ asset('assets/img/main-logo-black.png') }}" class="flex-center h-70px mt-10 ml-10" />
+							<img alt="Logo" src="{{ asset('assets/img/main-logo-black.png') }}" class="flex-center h-60px mt-0 ml-1" />
 						</a>
 
 						<!--end::Logo-->

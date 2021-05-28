@@ -538,30 +538,21 @@
                     <div class="form-group row">
                         <div class="col-lg-4">
                                 <label>Upload Proof of Ownership</label>
-                                <div></div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" wire:model="proof_of_ownership_file">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
+                            <input type="file" class="form-control" wire:model="proof_of_ownership_file">
+                            <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
                         </div>
 
 
                         <div class="col-lg-4">
                             <label>Upload Registration Certificate</label>
-                            <div></div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" wire:model="registration_certificate_file">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                            </div>
+                            <input type="file" class="form-control" wire:model="registration_certificate_file">
+                            <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
                         </div>
 
                         <div class="col-lg-4">
                             <label>License /Registration with chamber or Trade body</label>
-                            <div></div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" wire:model="license_registration_file">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                            </div>
+                            <input type="file" class="form-control" wire:model="license_registration_file">
+                            <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
                         </div>
 
                     </div>

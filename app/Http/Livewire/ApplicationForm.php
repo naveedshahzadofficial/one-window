@@ -124,7 +124,11 @@ class ApplicationForm extends Component
         'application.business_category_id' => 'required',
         'application.business_sector_id' => 'required',
         'application.business_sub_sector_id' => 'required',
+        'proof_of_ownership_file' => 'required|max:5120',
+        'registration_certificate_file' => 'required|max:5120',
+        'license_registration_file' => 'required|max:5120',
     ];
+
     protected $messages_business_profile = [
         'application.business_name.required' => 'Business Name is required.',
         'application.business_acquisition_date.required' => 'Business Acquisition Date is required.',
@@ -132,11 +136,14 @@ class ApplicationForm extends Component
         'application.business_category_id.required' => 'Business Category is required.',
         'application.business_sector_id.required' => 'Sector is required.',
         'application.business_sub_sector_id.required' => 'Sector is required.',
+        'proof_of_ownership_file.required' => 'Please Upload Proof of Ownership.',
+        'registration_certificate_file.required' => 'Please Upload Registration Certificate.',
+        'license_registration_file.required' => 'Please License /Registration.',
     ];
 
     public function mount()
     {
-        $this->step = 0;
+        $this->step = 1;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
         $this->designations = DesignationBusiness::where('status',1)->get();
@@ -253,8 +260,16 @@ class ApplicationForm extends Component
 
     public function submitBusinessProfile()
     {
+
+        if(!empty($this->proof_of_ownership_file))
+        $this->application['proof_of_ownership_file']= $this->proof_of_ownership_file->store('proof_of_ownerships');
+        if(!empty($this->registration_certificate_file))
+        $this->application['registration_certificate_file']= $this->registration_certificate_file->store('registration_certificates');
+        if(!empty($this->license_registration_file))
+        $this->application['license_registration_file']= $this->license_registration_file->store('license_registrations');
+
         //$this->validate($this->rules_business_profile,$this->messages_business_profile);
-        //dd($this->application);
+        dd($this->application);
         $this->step++;
         $this->successAlert();
     }

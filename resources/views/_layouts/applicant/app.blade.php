@@ -48,6 +48,7 @@
 
         <link rel="stylesheet" type="text/css" href="{{asset('assets/plugins/datetimepicker/jquery.datetimepicker.min.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/plugins/pikaday/pikaday.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/applicant_custom.css')}}"/>
 
 
         @show

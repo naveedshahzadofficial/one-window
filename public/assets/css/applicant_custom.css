@@ -1,0 +1,47 @@
+.aside-menu {
+    background-color: #30807d;
+}
+.aside-menu .menu-nav > .menu-item.menu-item-active > .menu-heading, .aside-menu .menu-nav > .menu-item.menu-item-active > .menu-link {
+    background-color: #404040 !important;
+}
+.aside-menu .menu-nav > .menu-item.menu-item-active > .menu-heading .menu-icon, .aside-menu .menu-nav > .menu-item.menu-item-active > .menu-link .menu-icon {
+    color: #B5B5C3 !important;
+}
+.aside-menu .menu-nav > .menu-item.menu-item-active > .menu-heading .menu-text, .aside-menu .menu-nav > .menu-item.menu-item-active > .menu-link .menu-text {
+    color: white;
+}
+.brand {
+    background-color: #30807d;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.card.card-custom > .card-header .card-title, .card.card-custom > .card-header .card-title .card-label {
+    font-weight: 500;
+    font-size: 1.275rem;
+    color: #30807d;
+}
+.card {
+    background-color: #ecf7f6 !important;
+}
+.table-bordered {
+    border: 1px solid #B4B6B9;
+}
+.table-bordered th, .table-bordered td {
+    border: 1px solid #B4B6B9;
+}
+.btn.btn-clean:hover:not(.btn-text):not(:disabled):not(.disabled), .btn.btn-clean:focus:not(.btn-text), .btn.btn-clean.focus:not(.btn-text) {
+    color: #3699FF;
+    background-color: #30807d;
+    border-color: transparent;
+}
+.btn.btn-clean:hover:not(.btn-text):not(:disabled):not(.disabled), .btn.btn-clean:focus:not(.btn-text), .btn.btn-clean.focus:not(.btn-text) {
+    color: #3699FF;
+    background-color: #30807d;
+    border-color: transparent;
+}
+.container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+    padding: 0 25px;
+    background-color: #4b9996;
+}
+
+
