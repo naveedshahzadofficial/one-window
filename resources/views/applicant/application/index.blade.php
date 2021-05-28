@@ -33,23 +33,11 @@
                     <th>No</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Username</th>
                     <th>Phone</th>
                     <th>DOB</th>
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Phone</th>
-                    <th>DOB</th>
-                    <th>Action</th>
-                </tr>
-                </tbody>
             </table>
             <!--end: Datatable-->
         </div>
@@ -61,6 +49,8 @@
 @push('post-scripts')
     <script type="text/javascript">
         var myDataTable;
+        myDataTable = $('#my_datatable').DataTable();
+        /*
         $(function () {
 
             myDataTable = $('#my_datatable').DataTable({
@@ -167,6 +157,6 @@
                 ],
             });
 
-        });
+        });*/
     </script>
 @endpush

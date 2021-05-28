@@ -446,7 +446,123 @@
                         </div>
                     </div>
 
+                    <div class="form-group row @if(!$is_business_registered) d-none @endif">
+
+                        <div class="col-lg-4">
+                            <label>Legal Status of Business: *</label>
+                            <select wire:model="application.business_legal_status_id"  class="form-control @error('application.business_legal_status_id') is-invalid @enderror">
+                                <option value="">Select Business</option>
+                                @foreach($business_legal_statuses as $status)
+                                    <option value="{{ $status->id }}">{{ $status->legal_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('application.business_legal_status_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Business Registration Number: *</label>
+                            <input wire:model="application.business_registration_number" type="text" class="form-control @error('application.business_registration_number') is-invalid @enderror" placeholder="Registration Number" />
+                            @error('application.business_registration_number')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Business Registration Date: *</label>
+                            <x-date-picker wire:model="application.business_registration_date" />
+                            @error('application.business_registration_date')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row  @if(!$is_business_registered) d-none @endif">
+
+                        <div class="col-lg-4">
+                            <label>Business NTN: *</label>
+                            <input wire:model="application.business_ntn_no" type="text" class="form-control @error('application.business_ntn_no') is-invalid @enderror" placeholder="Business NTN" />
+                            @error('application.business_ntn_no')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="form-group row">
+
+                        <div class="col-lg-4">
+                            <label>Business Category: *</label>
+                            <select wire:model="application.business_category_id"  class="form-control @error('application.business_category_id') is-invalid @enderror">
+                                <option value="">Select Category</option>
+                                @foreach($business_categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('application.business_category_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Business Sector: *</label>
+                            <select wire:model="application.business_sector_id"  class="form-control @error('application.business_sector_id') is-invalid @enderror">
+                                <option value="">Select Sector</option>
+                                @foreach($business_secotors as $sector)
+                                    <option value="{{ $sector->id }}">{{ $sector->sector_name_e }}</option>
+                                @endforeach
+                            </select>
+                            @error('application.business_sector_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Business Sub Sector: *</label>
+                            <select wire:model="application.business_sub_sector_id"  class="form-control @error('application.business_sub_sector_id') is-invalid @enderror">
+                                <option value="">Select Sector</option>
+                                @foreach($business_sub_secotors as $sub_sector)
+                                    <option value="{{ $sub_sector->id }}">{{ $sub_sector->sub_sector_name_e }}</option>
+                                @endforeach
+                            </select>
+                            @error('application.business_sub_sector_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
+                    </div>
+
+                    <h4 class="mb-10 font-weight-bold text-dark">Relevant Attachments</h4>
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                                <label>Upload Proof of Ownership</label>
+                                <div></div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" wire:model="proof_of_ownership_file">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                        </div>
+
+
+                        <div class="col-lg-4">
+                            <label>Upload Registration Certificate</label>
+                            <div></div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" wire:model="registration_certificate_file">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>License /Registration with chamber or Trade body</label>
+                            <div></div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" wire:model="license_registration_file">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
 
                     </div>
 

@@ -6,7 +6,11 @@ use App\Models\AddressCapacity;
 use App\Models\AddressForm;
 use App\Models\AddressShare;
 use App\Models\AddressType;
+use App\Models\BusinessCategory;
+use App\Models\BusinessLegalStatus;
 use App\Models\BusinessRegistrationStatus;
+use App\Models\BusinessSector;
+use App\Models\BusinessSubSector;
 use App\Models\City;
 use App\Models\DesignationBusiness;
 use App\Models\District;
@@ -14,12 +18,14 @@ use App\Models\EducationLevel;
 use App\Models\MinorityStatus;
 use App\Models\MobileCode;
 use App\Models\Question;
-use Illuminate\Support\Arr;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Manny\Manny;
 
 class ApplicationForm extends Component
 {
+    use WithFileUploads;
+
     public $prefixes;
     public $genders;
     public $application;
@@ -34,11 +40,21 @@ class ApplicationForm extends Component
     public $address_capacities;
     public $address_shares;
     public $business_registration_status;
+    public $business_legal_statuses;
+    public $business_categories;
+
+    // on parent load
+    public $business_secotors;
+    public $business_sub_secotors;
 
     public $is_minority_status = false;
     public $is_minority_status_other = false;
     public $is_technical_education = false;
     public $is_skilled_worker = false;
+    public $is_business_registered = false;
+
+    // files
+    public $proof_of_ownership_file,$registration_certificate_file,$license_registration_file;
 
 
     public $step;
@@ -48,7 +64,7 @@ class ApplicationForm extends Component
         'submitReview',
     ];
 
-    private $rules_applicant_profile = [
+    protected $rules_applicant_profile = [
         'application.prefix' => 'required',
         'application.first_name' => 'required|string',
         'application.last_name' => 'required|string',
@@ -74,7 +90,7 @@ class ApplicationForm extends Component
         'application.residence_share_id' => 'required',
         'application.residence_acquisition_date' => 'required',
     ];
-    private $messages_applicant_profile = [
+    protected $messages_applicant_profile = [
         'application.prefix.required' => 'Required.',
         'application.first_name.required' => 'First Name is required.',
         'application.last_name.required' => 'First Name is required.',
@@ -101,15 +117,21 @@ class ApplicationForm extends Component
         'application.residence_acquisition_date.required' => 'Acquisition Date is required.',
     ];
 
-    private $rules_business_profile = [
+    protected $rules_business_profile = [
         'application.business_name' => 'required',
         'application.business_acquisition_date' => 'required',
         'application.business_registration_status_id' => 'required',
+        'application.business_category_id' => 'required',
+        'application.business_sector_id' => 'required',
+        'application.business_sub_sector_id' => 'required',
     ];
-    private $messages_business_profile = [
+    protected $messages_business_profile = [
         'application.business_name.required' => 'Business Name is required.',
         'application.business_acquisition_date.required' => 'Business Acquisition Date is required.',
         'application.business_registration_status_id.required' => 'Business Registration Status is required.',
+        'application.business_category_id.required' => 'Business Category is required.',
+        'application.business_sector_id.required' => 'Sector is required.',
+        'application.business_sub_sector_id.required' => 'Sector is required.',
     ];
 
     public function mount()
@@ -128,6 +150,13 @@ class ApplicationForm extends Component
         $this->address_capacities = AddressCapacity::where('capacity_status',1)->get();
         $this->address_shares = AddressShare::where('share_status',1)->get();
         $this->business_registration_status = BusinessRegistrationStatus::where('status',1)->get();
+        $this->business_legal_statuses = BusinessLegalStatus::where('legal_status',1)->get();
+        $this->business_categories = BusinessCategory::where('category_status',1)->get();
+
+        // on parent load
+        $this->business_secotors = collect();
+        $this->business_sub_secotors = collect();
+
         $this->application['prefix'] = auth()->user()->prefix;
         $this->application['first_name'] = auth()->user()->first_name;
         $this->application['last_name'] = auth()->user()->last_name;
@@ -189,6 +218,21 @@ class ApplicationForm extends Component
                     $this->is_skilled_worker = false;
                 }
                 break;
+
+            case 'business_registration_status_id':
+                if($this->business_registration_status->firstWhere('id', $value)->name=='Registered'){
+                    $this->is_business_registered = true;
+                }else{
+                    $this->is_business_registered = false;
+                }
+                break;
+
+            case 'business_category_id':
+                $this->business_secotors = BusinessSector::where('business_category_id', $value)->where('sector_status',1)->get();
+                break;
+            case 'business_sector_id':
+                $this->business_sub_secotors = BusinessSubSector::where('business_sector_id', $value)->where('sub_sector_status',1)->get();
+                break;
         }
     }
 
@@ -209,6 +253,7 @@ class ApplicationForm extends Component
     public function submitBusinessProfile()
     {
         $this->validate($this->rules_business_profile,$this->messages_business_profile);
+        dd($this->application);
         $this->step++;
         $this->successAlert();
     }

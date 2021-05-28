@@ -6,8 +6,8 @@
 					<div class="brand flex-column-auto" id="kt_brand">
 
 						<!--begin::Logo-->
-						<a href="index.html" class="brand-logo">
-							<img alt="Logo" src="{{ asset('assets/media/logos/logo-dark.png') }}" />
+						<a href="{{ route('applicant.applications.index') }}" class="brand-logo">
+							<img alt="Logo" src="{{ asset('assets/img/main-logo-black.png') }}" class="flex-center h-70px mt-10 ml-10" />
 						</a>
 
 						<!--end::Logo-->
@@ -43,7 +43,7 @@
 							<!--begin::Menu Nav-->
 							<ul class="menu-nav">
 								<li class="menu-item menu-item-active" aria-haspopup="true">
-									<a href="javascript:;" class="menu-link">
+									<a href="{{ route('applicant.applications.index') }}" class="menu-link">
 										<span class="svg-icon menu-icon">
 
 											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -57,7 +57,7 @@
 
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-text">Dashboard</span>
+										<span class="menu-text">Applications</span>
 									</a>
 								</li>
 							</ul>
