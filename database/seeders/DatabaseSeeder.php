@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\BusinessSector;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -38,5 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ConnectionOwnershipSeeder::class);
         $this->call(UtilityTypeSeeder::class);
         $this->call(ConnectionProviderSeeder::class);
+        $this->call(FiscalYearSeeder::class);
+        $this->call(CurrencySeeder::class);
     }
 }

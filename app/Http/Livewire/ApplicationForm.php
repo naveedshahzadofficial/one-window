@@ -13,9 +13,11 @@ use App\Models\BusinessSector;
 use App\Models\BusinessSubSector;
 use App\Models\City;
 use App\Models\ConnectionOwnership;
+use App\Models\Currency;
 use App\Models\DesignationBusiness;
 use App\Models\District;
 use App\Models\EducationLevel;
+use App\Models\FiscalYear;
 use App\Models\MinorityStatus;
 use App\Models\MobileCode;
 use App\Models\Province;
@@ -49,6 +51,13 @@ class ApplicationForm extends Component
     public $provinces;
     public $ownerships;
     public $utility_types;
+    public $fiscal_years;
+    public $currencies;
+
+    public $employees;
+    public $employee_types;
+
+    public $employee_numbers;
 
     // UtilityConnections
     public $utility_connections = [];
@@ -65,9 +74,12 @@ class ApplicationForm extends Component
     public $is_technical_education = false;
     public $is_skilled_worker = false;
     public $is_business_registered = false;
+    public $is_employee_info = false;
 
     // files
-    public $proof_of_ownership_file,$registration_certificate_file,$license_registration_file,$business_evidence_ownership_file;
+    public $proof_of_ownership_file,$registration_certificate_file,
+        $license_registration_file,$business_evidence_ownership_file,
+        $business_account_statement_file;
 
 
     public $step;
@@ -156,6 +168,11 @@ class ApplicationForm extends Component
         'application.business_email' => 'required|email',
         'application.utility_connection_question_id' => 'required',
         'application.employees_question_id' => 'required',
+        'application.turnover_fiscal_year_id' => 'required',
+        'application.annual_turnover' => 'required',
+        'business_account_statement_file' => 'required|max:5120',
+        'application.export_fiscal_year_id' => 'required',
+        'application.export_annual_turnover' => 'required',
     ];
     protected $messages_business_profile = [
         'application.business_name.required' => 'Business Name is required.',
@@ -185,14 +202,32 @@ class ApplicationForm extends Component
         'application.business_email.email' => 'Email format is not valid.',
         'application.utility_connection_question_id.required' => 'Please select your choice.',
         'application.employees_question_id.required' => 'Please select your choice.',
+        'application.turnover_fiscal_year_id.required' => 'Please select your choice.',
+        'application.annual_turnover.required' => 'Annual Turnover is required.',
+        'business_account_statement_file.required' => 'Please Upload Statement File.',
+        'application.export_fiscal_year_id.required' => 'Please select your choice.',
+        'application.export_annual_turnover.required' => 'Export Turnover is required.',
+
 
     ];
 
     public function mount()
     {
-        $this->step = 0;
+        $this->step = 1;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
+
+        $this->employee_types = ['permanent'=>'Permanent', 'contractual'=>'Contractual',
+            'daily_wagers'=>'Daily Wagers',
+            'daily_wagers_regular'=>'Daily Wagers (Regular)',
+            'daily_wagers_unregistered'=>'Daily Wagers (Unregistered)',
+            'piece_rate_workers_regular'=>'Piece Rate Workers (Regular)',
+            'piece_rate_workers_unregistered'=>'Piece Rate Workers (Unregistered)'];
+
+        foreach ($this->employee_types as $key=>$emp){
+            $this->employee_types[$key]= null;
+        }
+
         $this->designations = DesignationBusiness::where('status',1)->get();
         $this->questions = Question::where('status',1)->get();
         $this->minority_status = MinorityStatus::where('status',1)->get();
@@ -209,6 +244,10 @@ class ApplicationForm extends Component
         $this->provinces = Province::where('province_status',1)->get();
         $this->ownerships = ConnectionOwnership::where('ownership_status',1)->get();
         $this->utility_types = UtilityType::where('type_status',1)->get();
+        $this->fiscal_years = FiscalYear::where('year_status',1)->get();
+        $this->currencies = Currency::where('currency_status',1)->get();
+
+        $this->employee_numbers = 20;
 
         // on parent load
         $this->business_secotors = collect();
@@ -226,6 +265,7 @@ class ApplicationForm extends Component
         $mobile_code= MobileCode::where('id',auth()->user()->mobile_code_id)->first();
         $this->application['personal_mobile_no'] = ($mobile_code->code_number).auth()->user()->mobile_no;
         $this->application['personal_email'] = auth()->user()->email;
+
     }
     public function render()
     {
@@ -233,7 +273,9 @@ class ApplicationForm extends Component
     }
     public function decreaseStep()
     {
+        if($this->step>0)
         $this->step--;
+        $this->pageChangeDispatch();
     }
     public function updated($propertyName)
     {
@@ -301,10 +343,17 @@ class ApplicationForm extends Component
                 $this->business_tehsils = Tehsil::where('district_id', $value)->where('tehsil_status',1)->get();
                 break;
             case 'utility_connection_question_id':
-                if($this->questions->firstWhere('id', $value)->name=='Yes'){
-                    $this->utility_connections= [[]];
+                if(isset($value) && !empty($value) && $this->questions->firstWhere('id', $value)->name=='Yes'){
+                    $this->utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
                 }else{
-                    $this->utility_connections= [];
+                    $this->utility_connections = [];
+                }
+                break;
+            case 'employees_question_id':
+                if($this->questions->firstWhere('id', $value)->name=='Yes'){
+                    $this->is_employee_info = true;
+                }else{
+                    $this->is_employee_info = false;
                 }
                 break;
         }
@@ -336,6 +385,8 @@ class ApplicationForm extends Component
         $this->application['license_registration_file']= $this->license_registration_file->store('license_registrations');
         if(!empty($this->business_evidence_ownership_file))
         $this->application['business_evidence_ownership_file']= $this->business_evidence_ownership_file->store('evidence_ownerships');
+        if(!empty($this->business_account_statement_file))
+        $this->application['business_account_statement_file']= $this->business_account_statement_file->store('account_statements');
 
         //$this->validate($this->rules_business_profile,$this->messages_business_profile);
         //dd($this->application);
@@ -365,7 +416,7 @@ class ApplicationForm extends Component
             'utility_connections.*.utility_type_id.required' => 'Utility Type is required.',
             'utility_connections.*.connection_ownership_id.required' => 'Provider is required.',
         ]);
-        $this->utility_connections[] = [];
+        $this->utility_connections[] = ['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,];
     }
 
     public function removeUtilityConnection($index)
@@ -381,6 +432,11 @@ class ApplicationForm extends Component
             'title'=> 'Record has been saved successfully.',
             'text'=> '',
         ]);
+        $this->pageChangeDispatch();
+    }
+
+    private function pageChangeDispatch(){
+        //$this->dispatchBrowserEvent('page:tab',['change'=>true]);
     }
 
 
