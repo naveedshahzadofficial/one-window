@@ -26,7 +26,6 @@ use App\Models\Tehsil;
 use App\Models\UtilityType;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Manny\Manny;
 
 class ApplicationForm extends Component
 {
@@ -289,9 +288,6 @@ class ApplicationForm extends Component
     public function updatedApplication($value, $updatedKey)
     {
         switch ($updatedKey){
-            case 'cnic_no':
-                $this->application['cnic_no'] = Manny::mask($value, "11111-1111111-1");
-                break;
             case 'minority_status_question_id':
                     if($this->questions->firstWhere('id', $value)->name=='Yes'){
                         $this->is_minority_status = true;

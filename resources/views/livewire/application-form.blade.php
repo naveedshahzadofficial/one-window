@@ -108,7 +108,7 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>CNIC No. *</label>
-                            <input wire:model="application.cnic_no" type="text" class="form-control @error('application.cnic_no') is-invalid @enderror" placeholder="CNIC No." />
+                            <x-cnic-mask wire:model="application.cnic_no" />
                             @error('application.cnic_no')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
