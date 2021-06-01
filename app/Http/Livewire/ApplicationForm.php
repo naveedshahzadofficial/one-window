@@ -396,13 +396,13 @@ class ApplicationForm extends Component
         $this->registration = tap($this->registration)->update($this->application);
 
 
-        if(tap($this->registration)->utilityConnections()->count())
-           tap($this->registration)->utilityConnections()->delete();
+        if($this->registration->utilityConnections()->count())
+            $this->registration->utilityConnections()->delete();
         $connections = array();
         foreach ($this->utility_connections as $connection){
             array_push($connections,new ApplicationUtilityConnection($connection));
         }
-        tap($this->registration)->utilityConnections()->save($connections);
+        $this->registration->utilityConnections()->saveMany($connections);
 
         $this->step++;
         $this->successAlert();
