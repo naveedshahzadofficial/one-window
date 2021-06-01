@@ -7,6 +7,7 @@ use App\Models\AddressForm;
 use App\Models\AddressShare;
 use App\Models\AddressType;
 use App\Models\Application;
+use App\Models\ApplicationUtilityConnection;
 use App\Models\BusinessCategory;
 use App\Models\BusinessLegalStatus;
 use App\Models\BusinessRegistrationStatus;
@@ -279,11 +280,11 @@ class ApplicationForm extends Component
     }
     public function updated($propertyName)
     {
-        if($this->step==0) {
+       /* if($this->step==0) {
             $this->validateOnly($propertyName,$this->rules_applicant_profile,$this->messages_applicant_profile);
         }else if($this->step==1){
             $this->validateOnly($propertyName,$this->rules_business_profile,$this->messages_business_profile);
-        }
+        }*/
     }
 
     public function updatedApplication($value, $updatedKey)
@@ -393,6 +394,15 @@ class ApplicationForm extends Component
         //$this->validate($this->rules_business_profile,$this->messages_business_profile);
         //dd($this->application);
         $this->registration = tap($this->registration)->update($this->application);
+
+
+        if(tap($this->registration)->utilityConnections()->count())
+           tap($this->registration)->utilityConnections()->delete();
+        $connections = array();
+        foreach ($this->utility_connections as $connection){
+            array_push($connections,new ApplicationUtilityConnection($connection));
+        }
+        tap($this->registration)->utilityConnections()->save($connections);
 
         $this->step++;
         $this->successAlert();

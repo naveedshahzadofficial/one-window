@@ -923,7 +923,7 @@
                     <div class="form-group row">
                     <div class="col-lg-6">
                         <label>Fiscal Year: *</label>
-                        <select wire:model.defer="application.turnover_fiscal_year_id"  class="form-control @error('application.turnover_fiscal_year_id') is-invalid @enderror">
+                        <select wire:model="application.turnover_fiscal_year_id"  class="form-control @error('application.turnover_fiscal_year_id') is-invalid @enderror">
                             <option value="">Select Year</option>
                             @foreach($fiscal_years as $year)
                                 <option value="{{ $year->id }}">{{ $year->year_name }}</option>
@@ -934,13 +934,13 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-6">
-                        <label>Annual Turnover for the selected Fiscal Year (PKR): *</label>
-                        <input wire:model.model.defer="application.annual_turnover" type="text" class="form-control @error('application.annual_turnover') is-invalid @enderror" placeholder="Annual Turnover" />
-                        @error('application.annual_turnover')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
-                        @enderror
-                    </div>
+                        <div class="col-lg-6">
+                            <label>Annual Turnover for the selected Fiscal Year (PKR): *</label>
+                            <input wire:model.defer="application.annual_turnover" type="text" class="form-control @error('application.annual_turnover') is-invalid @enderror" placeholder="Annual Turnover" />
+                            @error('application.annual_turnover')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
 
                     </div>
                     <div class="form-group row">
@@ -954,7 +954,7 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Fiscal Year: *</label>
-                            <select wire:model.defer="application.export_fiscal_year_id"  class="form-control @error('application.export_fiscal_year_id') is-invalid @enderror">
+                            <select wire:model="application.export_fiscal_year_id"  class="form-control @error('application.export_fiscal_year_id') is-invalid @enderror">
                                 <option value="">Select Year</option>
                                 @foreach($fiscal_years as $year)
                                     <option value="{{ $year->id }}">{{ $year->year_name }}</option>
@@ -970,7 +970,7 @@
                             <div class="radio-inline">
                                 @foreach($currencies as $currency)
                                     <label class="radio">
-                                        <input wire:model.defer="application.export_currency_id" type="radio" name="application.export_currency_id" value="{{ $currency->id }}">
+                                        <input wire:model="application.export_currency_id" type="radio" name="application.export_currency_id" value="{{ $currency->id }}">
                                         <span></span>{{ $currency->currency_name }}</label>
                                 @endforeach
                             </div>
@@ -1409,7 +1409,7 @@
 
                     @foreach($employee_types as $key => $type)
                         <h6 class="mb-4 mt-5 font-weight-bold text-dark @if(!$is_employee_info) d-none @endif">{{ $type }}</h6>
-                        <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex justify-content-between pt-5 @if(!$is_employee_info) d-none @endif">
                             @foreach($genders as $gender)
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{{ $gender }}</span>

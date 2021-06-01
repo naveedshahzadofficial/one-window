@@ -26,7 +26,8 @@ class Application extends Model
         'business_city_id', 'business_district_id', 'business_tehsil_id', 'business_capacity_id', 'business_share_id',
         'business_acquisition_date', 'business_evidence_ownership_file', 'business_contact_number',
         'business_email', 'utility_connection_question_id', 'employees_question_id', 'turnover_fiscal_year_id',
-        'annual_turnover', 'business_account_statement_file', 'export_fiscal_year_id', 'export_currency_id', 'export_annual_turnover'];
+        'annual_turnover', 'business_account_statement_file', 'export_fiscal_year_id', 'export_currency_id', 'export_annual_turnover',
+        'user_id'];
 
     /*protected $casts = [
         'cnic_issue_date'=>'datetime:Y-m-d'
@@ -48,5 +49,10 @@ class Application extends Model
                 $this->attributes[$key] = $value;
             break;
         }
+    }
+
+
+    public function utilityConnections(){
+        return $this->hasMany(ApplicationUtilityConnection::class);
     }
 }
