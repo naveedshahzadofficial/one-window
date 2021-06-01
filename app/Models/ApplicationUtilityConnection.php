@@ -9,5 +9,25 @@ class ApplicationUtilityConnection extends Model
 {
     use HasFactory;
     protected $fillable = ['application_id', 'connection_ownership_id', 'utility_type_id', 'utility_consumer_number',
-        'utility_form_id', ];
+        'utility_form_id', 'utility_provider_other' ];
+
+    public function application()
+    {
+        return $this->belongsTo(Application::class);
+    }
+
+    public function connectionOwnership()
+    {
+        return $this->belongsTo(ConnectionOwnership::class);
+    }
+
+    public function utilityType()
+    {
+        return $this->belongsTo(UtilityType::class);
+    }
+
+    public function utilityForm()
+    {
+        return $this->belongsTo(AddressForm::class, 'utility_form_id');
+    }
 }

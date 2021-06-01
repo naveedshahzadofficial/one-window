@@ -1,0 +1,468 @@
+@extends('_layouts.applicant.app')
+@push('title','Registration Show')
+@section('content')
+
+    <!--begin::Card-->
+    <div class="card card-custom gutter-b">
+        <div class="card-header flex-wrap py-3">
+            <div class="card-title">
+                <h3 class="card-label">Registration</h3>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <h4 class="mb-10 font-weight-bold text-dark">Applicant Profile</h4>
+            <h6 class="mb-0 font-weight-bold text-dark">Basic Info</h6>
+            <div class="separator separator-dashed my-5"></div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">First Name: *</span>
+                    <span class="opacity-70">{{ isset($application['prefix'])?$application['prefix']:'' }}&nbsp;{{ isset($application['first_name'])?$application['first_name']:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Middle Name:</span>
+                    <span class="opacity-70">{{ isset($application['middle_name'])?$application['middle_name']:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Last Name: *</span>
+                    <span class="opacity-70">{{ isset($application['last_name'])?$application['last_name']:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Gender: *</span>
+                    <span class="opacity-70">{{ isset($application['gender'])?$application['gender']:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">CNIC No. *</span>
+                    <span class="opacity-70">{{ isset($application['cnic_no'])?$application['cnic_no']:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">CNIC Issue Date: *</span>
+                    <span class="opacity-70">{{ isset($application['cnic_issue_date'])?$application['cnic_issue_date']:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">CNIC Expiry Date: *</span>
+                    <span class="opacity-70">{{ isset($application['cnic_expiry_date'])?$application['cnic_expiry_date']:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Date of Birth: *</span>
+                    <span class="opacity-70">{{ isset($application['date_of_birth'])?$application['date_of_birth']:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Designation in Business: *</span>
+                    <span class="opacity-70">{{ isset($application->designationBusiness->name)?$application->designationBusiness->name:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Do you have Minority Status? *</span>
+                    <span class="opacity-70">{{ isset($application->minorityStatusQuestion->name)?$application->minorityStatusQuestion->name:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root"  @if(isset($application->minorityStatusQuestion->name) && $application->minorityStatusQuestion->name=='No') style="display: none !important;" @endif>
+                    <span class="font-weight-bolder mb-2">Minority Status: *</span>
+                    <span class="opacity-70">{{ isset($application->minorityStatus->name)?$application->minorityStatus->name:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+
+                <div class="d-flex flex-column flex-root"  @if(isset($application->minorityStatus->name) && $application->minorityStatus->name!='Other') style="display: none !important;" @endif>
+                    <span class="font-weight-bolder mb-2">Other: *</span>
+                    <span class="opacity-70">{{ isset($application['minority_status_other'])?$application['minority_status_other']:'' }}</span>
+                </div>
+
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">National Tax Number (Personal): *</span>
+                    <span class="opacity-70">{{ isset($application['ntn_personal'])?$application['ntn_personal']:'' }}</span>
+                </div>
+
+            </div>
+
+            <h6 class="mb-0 mt-10 font-weight-bold text-dark">Qualification Details</h6>
+            <div class="separator separator-dashed my-5"></div>
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Education Level: *</span>
+                    <span class="opacity-70">{{ isset($application->educationLevel->name)?$application->educationLevel->name:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Do you have any Technical Education? *</span>
+                    <span class="opacity-70">{{ isset($application->educationLevelQuestion->name)?$application->educationLevelQuestion->name:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5"  @if(isset($application->educationLevelQuestion->name) && $application->educationLevelQuestion->name=='No') style="display: none !important;" @endif>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Diploma/ Certificate Title: *</span>
+                    <span class="opacity-70">{{ isset($application['certificate_title'])?$application['certificate_title']:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Are you a skilled worker or an artisan? *</span>
+                    <span class="opacity-70">{{ isset($application->skilledWorkerQuestion->name)?$application->skilledWorkerQuestion->name:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root " @if(isset($application->skilledWorkerQuestion->name) && $application->skilledWorkerQuestion->name=='No') style="display: none !important;" @endif>
+                    <span class="font-weight-bolder mb-2">Skill or Art: *</span>
+                    <span class="opacity-70">{{ isset($application['skill_or_art'])?$application['skill_or_art']:'' }}</span>
+                </div>
+            </div>
+
+            <h6 class="mb-0 mt-10 font-weight-bold text-dark">Residence Address (Local)</h6>
+            <div class="separator separator-dashed my-5"></div>
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Type: *</span>
+                    <span class="opacity-70">{{ isset($application->residenceAddressType->type_name)?$application->residenceAddressType->type_name:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Form: *</span>
+                    <span class="opacity-70">{{ isset($application->residenceAddressForm->form_name)?$application->residenceAddressForm->form_name:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Unit / Address 1: *</span>
+                    <span class="opacity-70">{{ isset($application['residence_address_1'])?$application['residence_address_1']:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Complex / Street / Address 2: *</span>
+                    <span class="opacity-70">{{ isset($application['residence_address_2'])?$application['residence_address_2']:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Area/ Locality / Address 3: *</span>
+                    <span class="opacity-70">{{ isset($application['residence_address_3'])?$application['residence_address_3']:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">City: *</span>
+                    <span class="opacity-70">{{ isset($application->residenceCity->city_name_e)?$application->residenceCity->city_name_e:'' }}</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">District: *</span>
+                    <span class="opacity-70">{{ isset($application->residenceDistrict->district_name_e)?$application->residenceDistrict->district_name_e:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Capacity: *</span>
+                    <span class="opacity-70">{{ isset($application->residenceAddressCapacity->capacity_name)?$application->residenceAddressCapacity->capacity_name:'' }}</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Share: *</span>
+                    <span class="opacity-70">{{ isset($application->residenceAddressCapacity->share_name)?$application->residenceAddressCapacity->share_name:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Acquisition Date: *</span>
+                    <span class="opacity-70">{{ isset($application['residence_acquisition_date'])?$application['residence_acquisition_date']:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Mobile No. *</span>
+                    <span class="opacity-70">{{ isset($application['personal_mobile_no'])?$application['personal_mobile_no']:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Email Address: *</span>
+                    <span class="opacity-70">{{ isset($application['personal_email'])?$application['personal_email']:'' }}</span>
+                </div>
+            </div>
+
+            <h4 class="mb-10 mt-10 font-weight-bold text-dark">Business Profile</h4>
+            <h6 class="mb-0 font-weight-bold text-dark">Basic Info</h6>
+            <div class="separator separator-dashed my-5"></div>
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Business Name: *</span>
+                    <span class="opacity-70">{{ isset($application['business_name'])?$application['business_name']:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Business Acquisition/ Start/ Establishment/ Formation Date: *</span>
+                    <span class="opacity-70">{{ isset($application['business_establishment_date'])?$application['business_establishment_date']:'' }}</span>
+                </div>
+
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Business Registration Status: *</span>
+                    <span class="opacity-70">{{ isset($application->businessRegistrationStatus->name)?$application->businessRegistrationStatus->name:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5" @if(isset($application->businessRegistrationStatus->name) && $application->businessRegistrationStatus->name=='Unregistered') style="display: none !important;"  @endif>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Legal Status of Business: *</span>
+                    <span class="opacity-70">{{ isset($application->businessLegalStatus->legal_name)?$application->businessLegalStatus->legal_name:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Business Registration Number: *</span>
+                    <span class="opacity-70">{{ isset($application['business_registration_number'])?$application['business_registration_number']:'' }}</span>
+                </div>
+
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Business Category: *</span>
+                    <span class="opacity-70">{{ isset($application->businessCategory->category_name)?$application->businessCategory->category_name:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Business Sector: *</span>
+                    <span class="opacity-70">{{ isset($application->businessSector->sector_name_e)?$application->businessSector->sector_name_e:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Business Sub Sector: *</span>
+                    <span class="opacity-70">{{ isset($application->businessSubSector->sub_sector_name_e)?$application->businessSubSector->sub_sector_name_e:'' }}</span>
+                </div>
+            </div>
+
+            <h6 class="mb-0 mt-10 font-weight-bold text-dark">Relevant Attachments</h6>
+            <div class="separator separator-dashed my-5"></div>
+
+            <div class="d-flex justify-content-between pt-5">
+                @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
+                    <div class="d-flex flex-column flex-root">
+                        <span class="font-weight-bolder mb-2">Upload Proof of Ownership: *</span>
+                        <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                    </div>
+                @endif
+                @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
+                    <div class="d-flex flex-column flex-root">
+                        <span class="font-weight-bolder mb-2">Upload Registration Certificate: *</span>
+                        <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                    </div>
+                @endif
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
+                    <div class="d-flex flex-column flex-root">
+                        <span class="font-weight-bolder mb-2">License /Registration with chamber or Trade body: *</span>
+                        <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                    </div>
+                @endif
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Type: *</span>
+                    <span class="opacity-70">{{ isset($application->businessAddressType->type_name)?$application->businessAddressType->type_name:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Form: *</span>
+                    <span class="opacity-70">{{ isset($application->businessAddressForm->form_name)?$application->businessAddressForm->form_name:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Unit / Address 1: *</span>
+                    <span class="opacity-70">{{ isset($application['business_address_1'])?$application['business_address_1']:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Complex / Street / Address 2: *</span>
+                    <span class="opacity-70">{{ isset($application['business_address_2'])?$application['business_address_2']:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Area/ Locality / Address 3: *</span>
+                    <span class="opacity-70">{{ isset($application['business_address_3'])?$application['business_address_3']:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Provinces: *</span>
+                    <span class="opacity-70">{{ isset($application->businessProvince->province_name)?$application->businessProvince->province_name:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">City: *</span>
+                    <span class="opacity-70">{{ isset($application->businessCity->city_name_e)?$application->businessCity->city_name_e:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">District: *</span>
+                    <span class="opacity-70">{{ isset($application->businessDistrict->district_name_e)?$application->businessDistrict->district_name_e:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Tehsil: *</span>
+                    <span class="opacity-70">{{ isset($application->businessTehsil->tehsil_name_e)?$application->businessTehsil->tehsil_name_e:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Capacity: *</span>
+                    <span class="opacity-70">{{ isset($application->businessCapacity->capacity_name)?$application->businessCapacity->capacity_name:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Share: *</span>
+                    <span class="opacity-70">{{ isset($application->businessShare->share_name)?$application->businessShare->share_name:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Acquisition Date: *</span>
+                    <span class="opacity-70">{{ isset($application['business_acquisition_date'])?$application['business_acquisition_date']:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
+                    <div class="d-flex flex-column flex-root">
+                        <span class="font-weight-bolder mb-2">Evidence of tenancy/ ownership of business premises: *</span>
+                        <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                    </div>
+                @endif
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Business Contact No. *</span>
+                    <span class="opacity-70">{{ isset($application['business_contact_number'])?$application['business_contact_number']:'' }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Business Email Address: *</span>
+                    <span class="opacity-70">{{ isset($application['business_email'])?$application['business_email']:'' }}</span>
+                </div>
+            </div>
+
+            <h6 class="mb-0 mt-10 font-weight-bold text-dark">Utility Connections</h6>
+            <div class="separator separator-dashed my-5"></div>
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Do you have utility connections? *</span>
+                    <span class="opacity-70">{{ isset($application->utilityConnectionQuestion->name)?$application->utilityConnectionQuestion->name:'' }}</span>
+                </div>
+            </div>
+            @if(isset($application->utilityConnections) && $application->utilityConnections->isNotEmpty())
+            @foreach($application->utilityConnections as $index=>$connection)
+                <div class="d-flex justify-content-between pt-5">
+                    <div class="d-flex flex-column flex-root">
+                        <span class="font-weight-bolder mb-2">Connection Ownership: *</span>
+                        <span class="opacity-70">{{ isset($connection->connectionOwnership->ownership_name)?$connection->connectionOwnership->ownership_name:'' }}</span>
+                    </div>
+                    <div class="d-flex flex-column flex-root">
+                        <span class="font-weight-bolder mb-2">Utility Type: *</span>
+                        <span class="opacity-70">{{ isset($connection->utilityType->type_name)?$connection->utilityType->type_name:'' }}</span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between pt-5">
+                    <div class="d-flex flex-column flex-root">
+                        <span class="font-weight-bolder mb-2">Reference/ Consumer Number: *</span>
+                        <span class="opacity-70">{{ isset($connection['utility_consumer_number'])?$connection['utility_consumer_number']:'' }}</span>
+                    </div>
+                    <div class="d-flex flex-column flex-root">
+                        <span class="font-weight-bolder mb-2">Form/Type of Connection: *</span>
+                        <span class="opacity-70">{{ isset($connection->utilityForm->form_name)?$connection->utilityForm->form_name:'' }}</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between pt-5">
+                    <div class="d-flex flex-column flex-root">
+                        <span class="font-weight-bolder mb-2">Provider: *</span>
+                        <span class="opacity-70">{{ isset($connection['utility_provider_other'])?$connection['utility_provider_other']:'' }}</span>
+                    </div>
+                </div>
+            @endforeach
+            @endif
+
+            <h6 class="mb-0 mt-10 font-weight-bold text-dark">Employees Info</h6>
+            <div class="separator separator-dashed my-5"></div>
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Do you have employees? *</span>
+                    <span class="opacity-70">{{ isset($application->employeesQuestion->name)?$application->employeesQuestion->name:'' }}</span>
+                </div>
+            </div>
+
+            {{--Employee Info Here--}}
+
+            <h4 class="mb-10 mt-10 font-weight-bold text-dark">Annual Turnover</h4>
+            <h6 class="mb-5 font-weight-bold text-dark">Estimated annual turnover in last completed Fiscal Year</h6>
+            <div class="separator separator-dashed my-5"></div>
+            <div class="d-flex justify-content-between pt-5">
+
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Fiscal Year: *</span>
+                    <span class="opacity-70">{{ isset($application->turnoverFiscalYear->year_name)?$application->turnoverFiscalYear->year_name:'' }}</span>
+                </div>
+
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Annual Turnover for the selected Fiscal Year (PKR): *</span>
+                    <span class="opacity-70">{{ isset($application['annual_turnover'])?$application['annual_turnover']:'' }}</span>
+                </div>
+
+            </div>
+
+            @if(isset($application['business_account_statement_file']) && !empty($application['business_account_statement_file']))
+                <div class="d-flex justify-content-between pt-5">
+                    <div class="d-flex flex-column flex-root">
+                        <span class="font-weight-bolder mb-2">Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement): *</span>
+                        <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                    </div>
+                </div>
+            @endif
+
+            <h6 class="mb-5 mt-10 font-weight-bold text-dark">Exports in last completed Fiscal Year</h6>
+            <div class="separator separator-dashed my-5"></div>
+            <div class="d-flex justify-content-between pt-5">
+
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Fiscal Year: *</span>
+                    <span class="opacity-70">{{ isset($application->exportFiscalYear->year_name)?$application->exportFiscalYear->year_name:'' }}</span>
+                </div>
+
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Currency: *</span>
+                    <span class="opacity-70">{{ isset($application->exportCurrency->currency_name)?$application->exportCurrency->currency_name:'' }}</span>
+                </div>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Export Turnover for the selected Fiscal Year (PKR/ USD): *</span>
+                    <span class="opacity-70">{{ isset($application['export_annual_turnover'])?$application['export_annual_turnover']:'' }}</span>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <!--end::Card-->
+
+@endsection

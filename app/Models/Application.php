@@ -55,4 +55,145 @@ class Application extends Model
     public function utilityConnections(){
         return $this->hasMany(ApplicationUtilityConnection::class);
     }
+
+    public function designationBusiness(){
+        return $this->belongsTo(DesignationBusiness::class);
+    }
+    public function minorityStatusQuestion()
+    {
+        return $this->belongsTo(Question::class,'minority_status_question_id');
+    }
+
+    public function minorityStatus()
+    {
+        return $this->belongsTo(MinorityStatus::class);
+    }
+
+    public function educationLevel()
+    {
+        return $this->belongsTo(EducationLevel::class);
+    }
+    public function educationLevelQuestion()
+    {
+        return $this->belongsTo(Question::class,'technical_education_question_id');
+    }
+
+    public function skilledWorkerQuestion()
+    {
+        return $this->belongsTo(Question::class,'skilled_worker_question_id');
+    }
+
+    public function residenceAddressType()
+    {
+        return $this->belongsTo(AddressType::class, 'residence_address_type_id');
+    }
+
+    public function residenceAddressForm()
+    {
+        return $this->belongsTo(AddressForm::class, 'residence_address_form_id');
+    }
+
+    public function residenceCity()
+    {
+        return $this->belongsTo(City::class, 'residence_city_id');
+    }
+
+    public function residenceDistrict()
+    {
+        return $this->belongsTo(District::class, 'residence_district_id');
+    }
+
+    public function residenceAddressCapacity()
+    {
+        return $this->belongsTo(AddressCapacity::class, 'residence_capacity_id');
+    }
+    public function residenceAddressShare()
+    {
+        return $this->belongsTo(AddressShare::class, 'residence_share_id');
+    }
+
+    public function businessRegistrationStatus()
+    {
+        return $this->belongsTo(BusinessRegistrationStatus::class);
+    }
+
+    public function businessLegalStatus()
+    {
+        return $this->belongsTo(BusinessLegalStatus::class);
+    }
+
+    public function businessCategory()
+    {
+        return $this->belongsTo(BusinessCategory::class);
+    }
+
+    public function businessSector()
+    {
+        return $this->belongsTo(BusinessSector::class);
+    }
+
+    public function businessSubSector()
+    {
+        return $this->belongsTo(BusinessSubSector::class);
+    }
+
+    public function businessAddressType()
+    {
+        return $this->belongsTo(AddressType::class, 'business_address_type_id');
+    }
+
+    public function businessAddressForm()
+    {
+        return $this->belongsTo(AddressForm::class, 'business_address_form_id');
+    }
+
+    public function businessProvince()
+    {
+        return $this->belongsTo(Province::class, 'business_province_id');
+    }
+    public function businessCity()
+    {
+        return $this->belongsTo(City::class, 'business_city_id');
+    }
+    public function businessDistrict()
+    {
+        return $this->belongsTo(District::class, 'business_district_id');
+    }
+
+    public function businessTehsil()
+    {
+        return $this->belongsTo(Tehsil::class, 'business_tehsil_id');
+    }
+    public function businessCapacity()
+    {
+        return $this->belongsTo(AddressCapacity::class, 'business_capacity_id');
+    }
+    public function businessShare()
+    {
+        return $this->belongsTo(AddressShare::class, 'business_share_id');
+    }
+    public function utilityConnectionQuestion()
+    {
+        return $this->belongsTo(Question::class,'utility_connection_question_id');
+    }
+
+    public function employeesQuestion()
+    {
+        return $this->belongsTo(Question::class,'employees_question_id');
+    }
+
+    public function turnoverFiscalYear()
+    {
+        return $this->belongsTo(FiscalYear::class,'turnover_fiscal_year_id');
+    }
+
+    public function exportFiscalYear()
+    {
+        return $this->belongsTo(FiscalYear::class,'export_fiscal_year_id');
+    }
+    public function exportCurrency()
+    {
+        return $this->belongsTo(Currency::class,'export_currency_id');
+    }
+
 }

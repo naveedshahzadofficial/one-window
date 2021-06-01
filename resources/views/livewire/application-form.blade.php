@@ -1014,6 +1014,7 @@
                             <span class="opacity-70">{{ isset($application['middle_name'])?$application['middle_name']:'' }}</span>
                         </div>
                     </div>
+
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Last Name: *</span>
@@ -1065,8 +1066,8 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-between pt-5  @if(!$is_minority_status || !$is_minority_status_other) d-none @endif">
-                        <div class="d-flex flex-column flex-root">
+                    <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root  @if(!$is_minority_status_other) d-none @endif ">
                             <span class="font-weight-bolder mb-2">Other: *</span>
                             <span class="opacity-70">{{ isset($application['minority_status_other'])?$application['minority_status_other']:'' }}</span>
                         </div>

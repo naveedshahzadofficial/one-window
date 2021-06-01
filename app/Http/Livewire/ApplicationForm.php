@@ -384,15 +384,15 @@ class ApplicationForm extends Component
         $this->validate($this->rules_business_profile,$this->messages_business_profile);
 
         if(!empty($this->proof_of_ownership_file))
-        $this->application['proof_of_ownership_file']= $this->proof_of_ownership_file->store('proof_of_ownerships');
+        $this->application['proof_of_ownership_file']= $this->proof_of_ownership_file->store('proof_of_ownerships','public');
         if(!empty($this->registration_certificate_file))
-        $this->application['registration_certificate_file']= $this->registration_certificate_file->store('registration_certificates');
+        $this->application['registration_certificate_file']= $this->registration_certificate_file->store('registration_certificates','public');
         if(!empty($this->license_registration_file))
-        $this->application['license_registration_file']= $this->license_registration_file->store('license_registrations');
+        $this->application['license_registration_file']= $this->license_registration_file->store('license_registrations','public');
         if(!empty($this->business_evidence_ownership_file))
-        $this->application['business_evidence_ownership_file']= $this->business_evidence_ownership_file->store('evidence_ownerships');
+        $this->application['business_evidence_ownership_file']= $this->business_evidence_ownership_file->store('evidence_ownerships','public');
         if(!empty($this->business_account_statement_file))
-        $this->application['business_account_statement_file']= $this->business_account_statement_file->store('account_statements');
+        $this->application['business_account_statement_file']= $this->business_account_statement_file->store('account_statements','public');
 
 
         //dd($this->application);
