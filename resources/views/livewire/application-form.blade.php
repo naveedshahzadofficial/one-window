@@ -1407,9 +1407,10 @@
                         </div>
                     </div>
 
+                    @if($is_employee_info)
                     @foreach($employee_types as $key => $type)
-                        <h6 class="mb-4 mt-5 font-weight-bold text-dark @if(!$is_employee_info) d-none @endif">{{ $type }}</h6>
-                        <div class="d-flex justify-content-between pt-5 @if(!$is_employee_info) d-none @endif">
+                        <h6 class="mb-4 mt-5 font-weight-bold text-dark">{{ $type }}</h6>
+                        <div class="d-flex justify-content-between pt-5">
                             @foreach($genders as $gender)
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{{ $gender }}</span>
@@ -1417,9 +1418,10 @@
                             </div>
                             @endforeach
                         </div>
-                @endforeach
+                     @endforeach
+                    @endif
 
-                    <h4 class="mb-10 font-weight-bold text-dark">Annual Turnover</h4>
+                    <h4 class="mb-10 mt-10 font-weight-bold text-dark">Annual Turnover</h4>
                     <h6 class="mb-5 font-weight-bold text-dark">Estimated annual turnover in last completed Fiscal Year</h6>
                     <div class="separator separator-dashed my-5"></div>
                     <div class="d-flex justify-content-between pt-5">

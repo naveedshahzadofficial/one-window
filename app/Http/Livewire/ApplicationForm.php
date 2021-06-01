@@ -367,7 +367,8 @@ class ApplicationForm extends Component
     public function submitApplicantProfile()
     {
         //dd($this->application);
-        //$this->validate($this->rules_applicant_profile,$this->messages_applicant_profile);
+        $this->validate($this->rules_applicant_profile,$this->messages_applicant_profile);
+
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
         else
@@ -380,6 +381,8 @@ class ApplicationForm extends Component
     public function submitBusinessProfile()
     {
 
+        $this->validate($this->rules_business_profile,$this->messages_business_profile);
+
         if(!empty($this->proof_of_ownership_file))
         $this->application['proof_of_ownership_file']= $this->proof_of_ownership_file->store('proof_of_ownerships');
         if(!empty($this->registration_certificate_file))
@@ -391,7 +394,7 @@ class ApplicationForm extends Component
         if(!empty($this->business_account_statement_file))
         $this->application['business_account_statement_file']= $this->business_account_statement_file->store('account_statements');
 
-        //$this->validate($this->rules_business_profile,$this->messages_business_profile);
+
         //dd($this->application);
         $this->registration = tap($this->registration)->update($this->application);
 
@@ -411,7 +414,7 @@ class ApplicationForm extends Component
     public function submitReview()
     {
         // $this->validate();
-        dd($this->application);
+        //dd($this->application);
         $this->step++;
         session()->flash('success_message', 'Registration has been saved successfully.');
         return $this->redirect(route('applicant.applications.index'));
@@ -451,7 +454,7 @@ class ApplicationForm extends Component
     }
 
     private function pageChangeDispatch(){
-        //$this->dispatchBrowserEvent('page:tab',['change'=>true]);
+        $this->dispatchBrowserEvent('page:tab',['change'=>true]);
     }
 
 

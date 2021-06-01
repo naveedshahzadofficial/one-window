@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ApplicationController extends Controller
 {
@@ -17,9 +19,17 @@ class ApplicationController extends Controller
         return view('applicant.application.index');
     }
 
-    public function indexAjax()
+    public function indexAjax(Request $request)
     {
-
+        $query = Application::query()->select("*");
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->addColumn('action', function($row){
+                $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                return $actionBtn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
     /**

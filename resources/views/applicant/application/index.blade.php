@@ -47,8 +47,6 @@
 @push('post-scripts')
     <script type="text/javascript">
         var myDataTable;
-        myDataTable = $('#my_datatable').DataTable();
-        /*
         $(function () {
 
             myDataTable = $('#my_datatable').DataTable({
@@ -66,21 +64,19 @@
                     }
                 },
                 columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'name', name: 'name'},
-                    {data: 'email', name: 'email'},
-                    {data: 'username', name: 'username'},
-                    {data: 'phone', name: 'phone'},
-                    {data: 'dob', name: 'dob'},
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    {data: 'first_name', name: 'first_name'},
+                    {data: 'personal_email', name: 'personal_email'},
+                    {data: 'personal_mobile_no', name: 'personal_mobile_no'},
+                    {data: 'date_of_birth', name: 'date_of_birth'},
                     {
                         data: 'action',
                         name: 'action',
-                        orderable: true,
-                        searchable: true
+                        orderable: false, searchable: false
                     },
                 ],
 
-                dom: 'Blfrtip',
+                dom: 'lfrtip',
 
                 lengthMenu: [
                     [ 10, 20,30,50,100, -1 ],
@@ -155,6 +151,6 @@
                 ],
             });
 
-        });*/
+        });
     </script>
 @endpush
