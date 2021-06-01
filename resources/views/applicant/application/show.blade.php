@@ -248,7 +248,7 @@
                     <div class="d-flex flex-column flex-root">
                         <span class="font-weight-bolder mb-2">Upload Proof of Ownership: *</span>
                         <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                <a href="{{ asset('storage/'.$application['proof_of_ownership_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
                             </span>
                     </div>
                 @endif
@@ -256,7 +256,7 @@
                     <div class="d-flex flex-column flex-root">
                         <span class="font-weight-bolder mb-2">Upload Registration Certificate: *</span>
                         <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                <a href="{{ asset('storage/'.$application['registration_certificate_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
                             </span>
                     </div>
                 @endif
@@ -267,7 +267,7 @@
                     <div class="d-flex flex-column flex-root">
                         <span class="font-weight-bolder mb-2">License /Registration with chamber or Trade body: *</span>
                         <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                <a href="{{ asset('storage/'.$application['license_registration_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
                             </span>
                     </div>
                 @endif
@@ -344,7 +344,7 @@
                     <div class="d-flex flex-column flex-root">
                         <span class="font-weight-bolder mb-2">Evidence of tenancy/ ownership of business premises: *</span>
                         <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                <a href="{{ asset('storage/'.$application['business_evidence_ownership_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
                             </span>
                     </div>
                 @endif
@@ -434,7 +434,7 @@
                     <div class="d-flex flex-column flex-root">
                         <span class="font-weight-bolder mb-2">Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement): *</span>
                         <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                <a href="{{ asset('storage/'.$application['business_account_statement_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
                             </span>
                     </div>
                 </div>
