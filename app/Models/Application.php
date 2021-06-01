@@ -29,9 +29,15 @@ class Application extends Model
         'annual_turnover', 'business_account_statement_file', 'export_fiscal_year_id', 'export_currency_id', 'export_annual_turnover',
         'user_id'];
 
-    /*protected $casts = [
-        'cnic_issue_date'=>'datetime:Y-m-d'
-    ];*/
+    protected $casts = [
+        'cnic_issue_date'=>'datetime:d-m-Y',
+        'cnic_expiry_date'=>'datetime:d-m-Y',
+        'date_of_birth'=>'datetime:d-m-Y',
+        'residence_acquisition_date'=>'datetime:d-m-Y',
+        'business_establishment_date'=>'datetime:d-m-Y',
+        'business_registration_date'=>'datetime:d-m-Y',
+        'business_acquisition_date'=>'datetime:d-m-Y',
+    ];
 
     public function setAttribute($key, $value)
     {
@@ -50,6 +56,7 @@ class Application extends Model
             break;
         }
     }
+
 
 
     public function utilityConnections(){

@@ -412,54 +412,6 @@
 
             {{--Employee Info Here--}}
 
-            <h4 class="mb-10 mt-10 font-weight-bold text-dark">Annual Turnover</h4>
-            <h6 class="mb-5 font-weight-bold text-dark">Estimated annual turnover in last completed Fiscal Year</h6>
-            <div class="separator separator-dashed my-5"></div>
-            <div class="d-flex justify-content-between pt-5">
-
-                <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Fiscal Year: *</span>
-                    <span class="opacity-70">{{ isset($application->turnoverFiscalYear->year_name)?$application->turnoverFiscalYear->year_name:'' }}</span>
-                </div>
-
-                <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Annual Turnover for the selected Fiscal Year (PKR): *</span>
-                    <span class="opacity-70">{{ isset($application['annual_turnover'])?$application['annual_turnover']:'' }}</span>
-                </div>
-
-            </div>
-
-            @if(isset($application['business_account_statement_file']) && !empty($application['business_account_statement_file']))
-                <div class="d-flex justify-content-between pt-5">
-                    <div class="d-flex flex-column flex-root">
-                        <span class="font-weight-bolder mb-2">Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement): *</span>
-                        <span class="opacity-70">
-                                <a href="{{ asset('storage/'.$application['business_account_statement_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
-                            </span>
-                    </div>
-                </div>
-            @endif
-
-            <h6 class="mb-5 mt-10 font-weight-bold text-dark">Exports in last completed Fiscal Year</h6>
-            <div class="separator separator-dashed my-5"></div>
-            <div class="d-flex justify-content-between pt-5">
-
-                <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Fiscal Year: *</span>
-                    <span class="opacity-70">{{ isset($application->exportFiscalYear->year_name)?$application->exportFiscalYear->year_name:'' }}</span>
-                </div>
-
-                <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Currency: *</span>
-                    <span class="opacity-70">{{ isset($application->exportCurrency->currency_name)?$application->exportCurrency->currency_name:'' }}</span>
-                </div>
-                <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Export Turnover for the selected Fiscal Year (PKR/ USD): *</span>
-                    <span class="opacity-70">{{ isset($application['export_annual_turnover'])?$application['export_annual_turnover']:'' }}</span>
-                </div>
-
-            </div>
-
 
         </div>
     </div>

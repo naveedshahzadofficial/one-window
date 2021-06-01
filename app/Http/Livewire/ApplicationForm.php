@@ -15,11 +15,9 @@ use App\Models\BusinessSector;
 use App\Models\BusinessSubSector;
 use App\Models\City;
 use App\Models\ConnectionOwnership;
-use App\Models\Currency;
 use App\Models\DesignationBusiness;
 use App\Models\District;
 use App\Models\EducationLevel;
-use App\Models\FiscalYear;
 use App\Models\MinorityStatus;
 use App\Models\MobileCode;
 use App\Models\Province;
@@ -52,8 +50,6 @@ class ApplicationForm extends Component
     public $provinces;
     public $ownerships;
     public $utility_types;
-    public $fiscal_years;
-    public $currencies;
 
     public $employees;
     public $employee_types;
@@ -79,8 +75,7 @@ class ApplicationForm extends Component
 
     // files
     public $proof_of_ownership_file,$registration_certificate_file,
-        $license_registration_file,$business_evidence_ownership_file,
-        $business_account_statement_file;
+        $license_registration_file,$business_evidence_ownership_file;
 
 
     public $step;
@@ -92,130 +87,10 @@ class ApplicationForm extends Component
 
     public $registration;
 
-    protected $rules_applicant_profile = [
-        'application.prefix' => 'required',
-        'application.first_name' => 'required|string',
-        'application.last_name' => 'required|string',
-        'application.cnic_no' => 'required',
-        'application.gender' => 'required',
-        'application.cnic_issue_date' => 'required',
-        'application.cnic_expiry_date' => 'required',
-        'application.date_of_birth' => 'required',
-        'application.designation_business_id' => 'required',
-        'application.minority_status_question_id' => 'required',
-        'application.ntn_personal' => 'required',
-        'application.education_level_id' => 'required',
-        'application.technical_education_question_id' => 'required',
-        'application.skilled_worker_question_id' => 'required',
-        'application.residence_address_type_id' => 'required',
-        'application.residence_address_form_id' => 'required',
-        'application.residence_address_1' => 'required',
-        'application.residence_address_2' => 'required',
-        'application.residence_address_3' => 'required',
-        'application.residence_city_id' => 'required',
-        'application.residence_district_id' => 'required',
-        'application.residence_capacity_id' => 'required',
-        'application.residence_share_id' => 'required',
-        'application.residence_acquisition_date' => 'required',
-    ];
-    protected $messages_applicant_profile = [
-        'application.prefix.required' => 'Required.',
-        'application.first_name.required' => 'First Name is required.',
-        'application.last_name.required' => 'First Name is required.',
-        'application.cnic_no.required' => 'CNIC is required.',
-        'application.gender.required' => 'Gender is required.',
-        'application.cnic_issue_date.required' => 'Issue Date is required.',
-        'application.cnic_expiry_date.required' => 'Expiry Date is required.',
-        'application.date_of_birth.required' => 'Date of Birth is required.',
-        'application.designation_business_id.required' => 'Designation in Business is required.',
-        'application.minority_status_question_id.required' => 'Please select your choice!',
-        'application.ntn_personal.required' => 'NTN is required',
-        'application.education_level_id.required' => 'Education Level is required',
-        'application.technical_education_question_id.required' => 'Please select your choice',
-        'application.skilled_worker_question_id.required' => 'Please select your choice!',
-        'application.residence_address_type_id.required' => 'Type is required.',
-        'application.residence_address_form_id.required' => 'Form is required.',
-        'application.residence_address_1.required' => 'Address 1 is required.',
-        'application.residence_address_2.required' => 'Address 2 is required.',
-        'application.residence_address_3.required' => 'Address 3 is required.',
-        'application.residence_city_id.required' => 'City is required.',
-        'application.residence_district_id.required' => 'District is required.',
-        'application.residence_capacity_id.required' => 'Capacity is required.',
-        'application.residence_share_id.required' => 'Share is required.',
-        'application.residence_acquisition_date.required' => 'Acquisition Date is required.',
-    ];
-    protected $rules_business_profile = [
-        'application.business_name' => 'required',
-        'application.business_establishment_date' => 'required',
-        'application.business_registration_status_id' => 'required',
-        'application.business_category_id' => 'required',
-        'application.business_sector_id' => 'required',
-        'application.business_sub_sector_id' => 'required',
-        'proof_of_ownership_file' => 'required|max:5120',
-        'registration_certificate_file' => 'required|max:5120',
-        'license_registration_file' => 'required|max:5120',
-        'business_evidence_ownership_file' => 'required|max:5120',
-        'application.business_address_type_id' => 'required',
-        'application.business_address_form_id' => 'required',
-        'application.business_address_1' => 'required',
-        'application.business_address_2' => 'required',
-        'application.business_address_3' => 'required',
-        'application.business_province_id' => 'required',
-        'application.business_city_id' => 'required',
-        'application.business_district_id' => 'required',
-        'application.business_tehsil_id' => 'required',
-        'application.business_capacity_id' => 'required',
-        'application.business_share_id' => 'required',
-        'application.business_acquisition_date' => 'required',
-        'application.business_contact_number' => 'required',
-        'application.business_email' => 'required|email',
-        'application.utility_connection_question_id' => 'required',
-        'application.employees_question_id' => 'required',
-        'application.turnover_fiscal_year_id' => 'required',
-        'application.annual_turnover' => 'required',
-        'business_account_statement_file' => 'required|max:5120',
-        'application.export_fiscal_year_id' => 'required',
-        'application.export_annual_turnover' => 'required',
-    ];
-    protected $messages_business_profile = [
-        'application.business_name.required' => 'Business Name is required.',
-        'application.business_establishment_date.required' => 'Business Acquisition Date is required.',
-        'application.business_registration_status_id.required' => 'Business Registration Status is required.',
-        'application.business_category_id.required' => 'Business Category is required.',
-        'application.business_sector_id.required' => 'Sector is required.',
-        'application.business_sub_sector_id.required' => 'Sector is required.',
-        'proof_of_ownership_file.required' => 'Please Upload Proof of Ownership.',
-        'registration_certificate_file.required' => 'Please Upload Registration Certificate.',
-        'license_registration_file.required' => 'Please License /Registration.',
-        'business_evidence_ownership_file.required' => 'Please Evidence of tenancy/ ownership.',
-        'application.business_address_type_id.required' => 'Address Type is required.',
-        'application.business_address_form_id.required' => 'Address Form is required.',
-        'application.business_address_1.required' => 'Address 1 is required.',
-        'application.business_address_2.required' => 'Address 2 is required.',
-        'application.business_address_3.required' => 'Address 3 is required.',
-        'application.business_province_id.required' => 'Province is required.',
-        'application.business_city_id.required' => 'City is required.',
-        'application.business_district_id.required' => 'District is required.',
-        'application.business_tehsil_id.required' => 'Tehsil is required.',
-        'application.business_capacity_id.required' => 'Capacity is required.',
-        'application.business_share_id.required' => 'Share is required.',
-        'application.business_acquisition_date.required' => 'Acquisition Date is required.',
-        'application.business_contact_number.required' => 'Business Contact No. is required.',
-        'application.business_email.required' => 'Email is required.',
-        'application.business_email.email' => 'Email format is not valid.',
-        'application.utility_connection_question_id.required' => 'Please select your choice.',
-        'application.employees_question_id.required' => 'Please select your choice.',
-        'application.turnover_fiscal_year_id.required' => 'Please select your choice.',
-        'application.annual_turnover.required' => 'Annual Turnover is required.',
-        'business_account_statement_file.required' => 'Please Upload Statement File.',
-        'application.export_fiscal_year_id.required' => 'Please select your choice.',
-        'application.export_annual_turnover.required' => 'Export Turnover is required.',
-
-
-    ];
-
-    public function mount()
+    public function mount($registration=null)
     {
+        $this->registration = null;
+
         $this->step = 0;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
@@ -244,8 +119,7 @@ class ApplicationForm extends Component
         $this->provinces = Province::where('province_status',1)->get();
         $this->ownerships = ConnectionOwnership::where('ownership_status',1)->get();
         $this->utility_types = UtilityType::where('type_status',1)->get();
-        $this->fiscal_years = FiscalYear::where('year_status',1)->get();
-        $this->currencies = Currency::where('currency_status',1)->get();
+
 
         $this->employee_numbers = 20;
 
@@ -266,6 +140,38 @@ class ApplicationForm extends Component
         $mobile_code= MobileCode::where('id',auth()->user()->mobile_code_id)->first();
         $this->application['personal_mobile_no'] = ($mobile_code->code_number).auth()->user()->mobile_no;
         $this->application['personal_email'] = auth()->user()->email;
+
+        if($registration){
+            $this->application = $registration->toArray();
+            $this->utility_connections = $registration->utilityConnections->toArray();
+            $this->registration = $registration;
+            $this->business_secotors = BusinessSector::where('business_category_id', $registration->business_category_id)->where('sector_status',1)->get();
+            $this->business_sub_secotors = BusinessSubSector::where('business_sector_id', $registration->business_sector_id)->where('sub_sector_status',1)->get();
+            $this->business_cities = City::where('city_province_id', $registration->business_province_id)->where('city_status',1)->get();
+            $this->business_districts = District::where('province_id', $registration->business_province_id)->where('district_status',1)->get();
+            $this->business_tehsils = Tehsil::where('district_id', $registration->business_district_id)->where('tehsil_status',1)->get();
+
+            if($this->isYes('minority_status_question_id')){
+                $this->is_minority_status = true;
+            }
+            if(isset($this->application['minority_status_id']) && $this->minority_status->firstWhere('id', $this->application['minority_status_id'])->name=='Other') {
+                $this->is_minority_status_other = true;
+            }
+            if($this->isYes('technical_education_question_id')){
+                $this->is_technical_education = true;
+            }
+
+            if($this->isYes('skilled_worker_question_id')){
+                $this->is_skilled_worker = true;
+            }
+
+            if(isset($this->application['business_registration_status_id']) &&  $this->business_registration_status->firstWhere('id', $this->application['business_registration_status_id'])->name=='Registered'){
+                $this->is_business_registered = true;
+            }
+
+             $is_employee_info = false;
+        }
+
 
     }
     public function render()
@@ -366,8 +272,79 @@ class ApplicationForm extends Component
 
     public function submitApplicantProfile()
     {
-        //dd($this->application);
-        $this->validate($this->rules_applicant_profile,$this->messages_applicant_profile);
+
+         $rules_applicant_profile = [
+        'application.prefix' => 'required',
+        'application.first_name' => 'required|string',
+        'application.last_name' => 'required|string',
+        'application.cnic_no' => 'required',
+        'application.gender' => 'required',
+        'application.cnic_issue_date' => 'required',
+        'application.cnic_expiry_date' => 'required',
+        'application.date_of_birth' => 'required',
+        'application.designation_business_id' => 'required',
+        'application.minority_status_question_id' => 'required',
+        'application.ntn_personal' => 'required',
+        'application.education_level_id' => 'required',
+        'application.technical_education_question_id' => 'required',
+        'application.skilled_worker_question_id' => 'required',
+        'application.residence_address_type_id' => 'required',
+        'application.residence_address_form_id' => 'required',
+        'application.residence_address_1' => 'required',
+        'application.residence_address_2' => 'required',
+        'application.residence_address_3' => 'required',
+        'application.residence_city_id' => 'required',
+        'application.residence_district_id' => 'required',
+        'application.residence_capacity_id' => 'required',
+        'application.residence_share_id' => 'required',
+        'application.residence_acquisition_date' => 'required',
+    ];
+         $messages_applicant_profile = [
+        'application.prefix.required' => 'Required.',
+        'application.first_name.required' => 'First Name is required.',
+        'application.last_name.required' => 'First Name is required.',
+        'application.cnic_no.required' => 'CNIC is required.',
+        'application.gender.required' => 'Gender is required.',
+        'application.cnic_issue_date.required' => 'Issue Date is required.',
+        'application.cnic_expiry_date.required' => 'Expiry Date is required.',
+        'application.date_of_birth.required' => 'Date of Birth is required.',
+        'application.designation_business_id.required' => 'Designation in Business is required.',
+        'application.minority_status_question_id.required' => 'Please select your choice!',
+        'application.ntn_personal.required' => 'NTN is required',
+        'application.education_level_id.required' => 'Education Level is required',
+        'application.technical_education_question_id.required' => 'Please select your choice',
+        'application.skilled_worker_question_id.required' => 'Please select your choice!',
+        'application.residence_address_type_id.required' => 'Type is required.',
+        'application.residence_address_form_id.required' => 'Form is required.',
+        'application.residence_address_1.required' => 'Address 1 is required.',
+        'application.residence_address_2.required' => 'Address 2 is required.',
+        'application.residence_address_3.required' => 'Address 3 is required.',
+        'application.residence_city_id.required' => 'City is required.',
+        'application.residence_district_id.required' => 'District is required.',
+        'application.residence_capacity_id.required' => 'Capacity is required.',
+        'application.residence_share_id.required' => 'Share is required.',
+        'application.residence_acquisition_date.required' => 'Acquisition Date is required.',
+    ];
+
+         if($this->isYes('minority_status_question_id')){
+             $rules_applicant_profile['application.minority_status_id'] = 'required';
+             $messages_applicant_profile['application.minority_status_id.required'] = 'Minority Status is required';
+         }
+        if(isset($this->application['minority_status_id']) && $this->minority_status->firstWhere('id', $this->application['minority_status_id'])->name=='Other') {
+            $rules_applicant_profile['application.minority_status_other'] = 'required';
+            $messages_applicant_profile['application.minority_status_other.required'] = 'Minority Status Other is required';
+        }
+        if($this->isYes('technical_education_question_id')){
+            $rules_applicant_profile['application.certificate_title'] = 'required';
+            $messages_applicant_profile['application.certificate_title.required'] = 'Certificate Title is required';
+        }
+        if($this->isYes('skilled_worker_question_id')){
+            $rules_applicant_profile['application.skill_or_art'] = 'required';
+            $messages_applicant_profile['application.skill_or_art.required'] = 'Skill or Art is required';
+        }
+         //dd($rules_applicant_profile);
+
+        $this->validate($rules_applicant_profile,$messages_applicant_profile);
 
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
@@ -380,8 +357,88 @@ class ApplicationForm extends Component
 
     public function submitBusinessProfile()
     {
+         $rules_business_profile = [
+        'application.business_name' => 'required',
+        'application.business_establishment_date' => 'required',
+        'application.business_registration_status_id' => 'required',
+        'application.business_category_id' => 'required',
+        'application.business_sector_id' => 'required',
+        'application.business_sub_sector_id' => 'required',
+        'application.business_address_type_id' => 'required',
+        'application.business_address_form_id' => 'required',
+        'application.business_address_1' => 'required',
+        'application.business_address_2' => 'required',
+        'application.business_address_3' => 'required',
+        'application.business_province_id' => 'required',
+        'application.business_city_id' => 'required',
+        'application.business_district_id' => 'required',
+        'application.business_tehsil_id' => 'required',
+        'application.business_capacity_id' => 'required',
+        'application.business_share_id' => 'required',
+        'application.business_acquisition_date' => 'required',
+        'application.business_contact_number' => 'required',
+        'application.business_email' => 'required|email',
+        'application.utility_connection_question_id' => 'required',
+        'application.employees_question_id' => 'required'
+    ];
+         $messages_business_profile = [
+        'application.business_name.required' => 'Business Name is required.',
+        'application.business_establishment_date.required' => 'Business Acquisition Date is required.',
+        'application.business_registration_status_id.required' => 'Business Registration Status is required.',
+        'application.business_category_id.required' => 'Business Category is required.',
+        'application.business_sector_id.required' => 'Sector is required.',
+        'application.business_sub_sector_id.required' => 'Sector is required.',
+        'application.business_address_type_id.required' => 'Address Type is required.',
+        'application.business_address_form_id.required' => 'Address Form is required.',
+        'application.business_address_1.required' => 'Address 1 is required.',
+        'application.business_address_2.required' => 'Address 2 is required.',
+        'application.business_address_3.required' => 'Address 3 is required.',
+        'application.business_province_id.required' => 'Province is required.',
+        'application.business_city_id.required' => 'City is required.',
+        'application.business_district_id.required' => 'District is required.',
+        'application.business_tehsil_id.required' => 'Tehsil is required.',
+        'application.business_capacity_id.required' => 'Capacity is required.',
+        'application.business_share_id.required' => 'Share is required.',
+        'application.business_acquisition_date.required' => 'Acquisition Date is required.',
+        'application.business_contact_number.required' => 'Business Contact No. is required.',
+        'application.business_email.required' => 'Email is required.',
+        'application.business_email.email' => 'Email format is not valid.',
+        'application.utility_connection_question_id.required' => 'Please select your choice.',
+        'application.employees_question_id.required' => 'Please select your choice.',
 
-        $this->validate($this->rules_business_profile,$this->messages_business_profile);
+    ];
+
+        if(isset($this->application['business_registration_status_id']) &&  $this->business_registration_status->firstWhere('id', $this->application['business_registration_status_id'])->name=='Registered'){
+            $rules_business_profile['application.business_legal_status_id'] = 'required';
+            $messages_business_profile['application.business_legal_status_id.required'] = 'Legal Status of Business is required';
+
+            $rules_business_profile['application.business_registration_number'] = 'required';
+            $messages_business_profile['application.business_registration_number.required'] = 'Business Registration Number is required';
+
+            $rules_business_profile['application.business_registration_date'] = 'required';
+            $messages_business_profile['application.business_registration_date.required'] = 'Business Registration Date is required';
+
+            $rules_business_profile['application.business_ntn_no'] = 'required';
+            $messages_business_profile['application.business_ntn_no.required'] = 'Business NTN is required';
+
+            if(!isset($this->application['registration_certificate_file']) || empty($this->application['registration_certificate_file'])) {
+                $rules_business_profile['registration_certificate_file'] = 'required|max:5120';
+                $messages_business_profile['registration_certificate_file.required'] = 'Please Upload Evidence of tenancy/ ownership.';
+            }
+
+        }
+
+        if(!isset($this->application['proof_of_ownership_file']) || empty($this->application['proof_of_ownership_file'])) {
+            $rules_business_profile['proof_of_ownership_file'] = 'required';
+            $messages_business_profile['proof_of_ownership_file.required'] = 'Please Upload Proof of Ownership.';
+        }
+
+        if(!isset($this->application['business_evidence_ownership_file']) || empty($this->application['business_evidence_ownership_file'])) {
+            $rules_business_profile['business_evidence_ownership_file'] = 'required';
+            $messages_business_profile['business_evidence_ownership_file.required'] = 'Please Upload Proof of Ownership.';
+        }
+
+        $this->validate($rules_business_profile,$messages_business_profile);
 
         if(!empty($this->proof_of_ownership_file))
         $this->application['proof_of_ownership_file']= $this->proof_of_ownership_file->store('proof_of_ownerships','public');
@@ -391,9 +448,6 @@ class ApplicationForm extends Component
         $this->application['license_registration_file']= $this->license_registration_file->store('license_registrations','public');
         if(!empty($this->business_evidence_ownership_file))
         $this->application['business_evidence_ownership_file']= $this->business_evidence_ownership_file->store('evidence_ownerships','public');
-        if(!empty($this->business_account_statement_file))
-        $this->application['business_account_statement_file']= $this->business_account_statement_file->store('account_statements','public');
-
 
         //dd($this->application);
         $this->registration = tap($this->registration)->update($this->application);
@@ -457,6 +511,9 @@ class ApplicationForm extends Component
         $this->dispatchBrowserEvent('page:tab',['change'=>true]);
     }
 
-
+    private function isYes($key_name){
+        return (isset($this->application[$key_name]) &&
+            $this->questions->firstWhere('id', $this->application[$key_name])->name=='Yes');
+    }
 
 }

@@ -25,7 +25,7 @@ class ApplicationController extends Controller
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row){
-                $actionBtn = '<a href="'.route('applicant.applications.show',$row->id).'" class="edit btn btn-primary btn-sm">View</a>';
+                $actionBtn = '<a href="'.route('applicant.applications.edit',$row->id).'" class="edit btn btn-primary btn-sm"><i class="flaticon-edit"></i></a>&nbsp;<a href="'.route('applicant.applications.show',$row->id).'" class="edit btn btn-primary btn-sm"><i class="flaticon-eye"></i></a>';
                 return $actionBtn;
             })
             ->rawColumns(['action'])
@@ -70,7 +70,7 @@ class ApplicationController extends Controller
        'businessSubSector', 'businessAddressType', 'businessAddressForm', 'businessProvince',
        'businessCity', 'businessDistrict', 'businessTehsil', 'businessCapacity', 'businessShare',
            'utilityConnectionQuestion', 'utilityConnections.connectionOwnership','utilityConnections.utilityType','utilityConnections.utilityForm',
-           'employeesQuestion', 'turnoverFiscalYear', 'exportFiscalYear', 'exportCurrency')
+           'employeesQuestion')
            ->where('user_id', auth()->id())->find($id);
         if(!$application){
             session()->flash('error_message', 'No Record found.');
@@ -87,7 +87,12 @@ class ApplicationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $application =  Application::with('utilityConnections')->where('user_id', auth()->id())->find($id);
+        if(!$application){
+            session()->flash('error_message', 'No Record found.');
+            return redirect(route('applicant.applications.index'));
+        }
+        return view('applicant.application.edit',compact('application'));
     }
 
     /**

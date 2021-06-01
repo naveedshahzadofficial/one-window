@@ -52,7 +52,7 @@
 
                             <div class="col-lg-4 float-left pl-0 ">
                                 <label>Prefix: *</label>
-                                <select wire:model="application.prefix"  class="form-control @error('application.prefix') is-invalid @enderror">
+                                <select wire:model.defer="application.prefix"  class="form-control @error('application.prefix') is-invalid @enderror">
                                     <option value="">Select Prefix</option>
                                     @foreach($prefixes as $prefix)
                                         <option value="{{ $prefix }}">{{ $prefix }}</option>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-lg-8 float-right pl-0 pr-0">
                             <label>First Name: *</label>
-                            <input wire:model="application.first_name" type="text" class="form-control @error('application.first_name') is-invalid @enderror" placeholder="First Name" />
+                            <input wire:model.defer="application.first_name" type="text" class="form-control @error('application.first_name') is-invalid @enderror" placeholder="First Name" />
                             @error('application.first_name')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -73,7 +73,7 @@
 
                         <div class="col-lg-6">
                             <label>Middle Name:</label>
-                            <input wire:model="application.middle_name" type="text" class="form-control @error('application.middle_name') is-invalid @enderror" placeholder="Middle Name" />
+                            <input wire:model.defer="application.middle_name" type="text" class="form-control @error('application.middle_name') is-invalid @enderror" placeholder="Middle Name" />
                             @error('application.middle_name')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -85,7 +85,7 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Last Name: *</label>
-                            <input wire:model="application.last_name" type="text" class="form-control @error('application.last_name') is-invalid @enderror" placeholder="Last Name" />
+                            <input wire:model.defer="application.last_name" type="text" class="form-control @error('application.last_name') is-invalid @enderror" placeholder="Last Name" />
                             @error('application.last_name')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -95,7 +95,7 @@
                                 <div class="radio-inline">
                                     @foreach($genders as $gender)
                                     <label class="radio">
-                                        <input wire:model="application.gender" type="radio" name="gender" value="{{ $gender }}">
+                                        <input wire:model.defer="application.gender" type="radio" name="gender" value="{{ $gender }}">
                                         <span></span>{{ $gender }}</label>
                                     @endforeach
                                 </div>
@@ -108,14 +108,14 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>CNIC No. *</label>
-                            <x-cnic-mask wire:model="application.cnic_no" />
+                            <x-cnic-mask wire:model.defer="application.cnic_no" />
                             @error('application.cnic_no')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-lg-6">
                             <label>CNIC Issue Date: *</label>
-                            <x-date-picker wire:model="application.cnic_issue_date" />
+                            <x-date-picker wire:model.defer="application.cnic_issue_date" />
                             @error('application.cnic_issue_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -126,7 +126,7 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>CNIC Expiry Date: *</label>
-                            <x-date-picker wire:model="application.cnic_expiry_date" />
+                            <x-date-picker wire:model.defer="application.cnic_expiry_date" />
                             @error('application.cnic_expiry_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -134,7 +134,7 @@
 
                         <div class="col-lg-6">
                             <label>Date of Birth: *</label>
-                            <x-date-picker wire:model="application.date_of_birth" />
+                            <x-date-picker wire:model.defer="application.date_of_birth" />
                             @error('application.date_of_birth')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -144,7 +144,7 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Designation in Business: *</label>
-                            <select wire:model="application.designation_business_id"  class="form-control @error('application.designation_business_id') is-invalid @enderror">
+                            <select wire:model.defer="application.designation_business_id"  class="form-control @error('application.designation_business_id') is-invalid @enderror">
                                 <option value="">Select Designation</option>
                                 @foreach($designations as $designation)
                                     <option value="{{ $designation->id }}">{{ $designation->name }}</option>
@@ -186,7 +186,7 @@
 
                         <div class="col-lg-6 @if(!$is_minority_status || !$is_minority_status_other) d-none @endif">
                             <label>Other: *</label>
-                            <input wire:model="application.minority_status_other" type="text" class="form-control @error('application.minority_status_other') is-invalid @enderror" placeholder="Minority Status Other" />
+                            <input wire:model.defer="application.minority_status_other" type="text" class="form-control @error('application.minority_status_other') is-invalid @enderror" placeholder="Minority Status Other" />
                             @error('application.minority_status_other')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -198,7 +198,7 @@
 
                         <div class="col-lg-6">
                             <label>National Tax Number (Personal): *</label>
-                            <input wire:model="application.ntn_personal" type="text" class="form-control @error('application.ntn_personal') is-invalid @enderror" placeholder="NTN (Personal)" />
+                            <input wire:model.defer="application.ntn_personal" type="text" class="form-control @error('application.ntn_personal') is-invalid @enderror" placeholder="NTN (Personal)" />
                             @error('application.ntn_personal')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -212,7 +212,7 @@
 
                         <div class="col-lg-6">
                             <label>Education Level: *</label>
-                            <select wire:model="application.education_level_id"  class="form-control @error('application.education_level_id') is-invalid @enderror">
+                            <select wire:model.defer="application.education_level_id"  class="form-control @error('application.education_level_id') is-invalid @enderror">
                                 <option value="">Select Status</option>
                                 @foreach($education_level as $level)
                                     <option value="{{ $level->id }}">{{ $level->name }}</option>
@@ -243,7 +243,7 @@
 
                         <div class="col-lg-6 @if(!$is_technical_education) d-none @endif">
                             <label>Diploma/ Certificate Title: *</label>
-                            <input wire:model="application.certificate_title" type="text" class="form-control @error('application.certificate_title') is-invalid @enderror" placeholder="Diploma/ Certificate Title" />
+                            <input wire:model.defer="application.certificate_title" type="text" class="form-control @error('application.certificate_title') is-invalid @enderror" placeholder="Diploma/ Certificate Title" />
                             @error('application.minority_status_other')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -267,7 +267,7 @@
 
                         <div class="col-lg-6 @if(!$is_skilled_worker) d-none @endif">
                             <label>Skill or Art: *</label>
-                            <input wire:model="application.skill_or_art" type="text" class="form-control @error('application.skill_or_art') is-invalid @enderror" placeholder="Skill or Art" />
+                            <input wire:model.defer="application.skill_or_art" type="text" class="form-control @error('application.skill_or_art') is-invalid @enderror" placeholder="Skill or Art" />
                             @error('application.skill_or_art')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -280,7 +280,7 @@
 
                         <div class="col-lg-6">
                             <label>Type: *</label>
-                            <select wire:model="application.residence_address_type_id"  class="form-control @error('application.residence_address_type_id') is-invalid @enderror">
+                            <select wire:model.defer="application.residence_address_type_id"  class="form-control @error('application.residence_address_type_id') is-invalid @enderror">
                                 <option value="">Select Type</option>
                                 @foreach($address_types as $type)
                                     <option value="{{ $type->id }}">{{ $type->type_name }}</option>
@@ -293,7 +293,7 @@
 
                         <div class="col-lg-6">
                             <label>Form: *</label>
-                            <select wire:model="application.residence_address_form_id"  class="form-control @error('application.residence_address_form_id') is-invalid @enderror">
+                            <select wire:model.defer="application.residence_address_form_id"  class="form-control @error('application.residence_address_form_id') is-invalid @enderror">
                                 <option value="">Select Form</option>
                                 @foreach($address_forms as $form)
                                     <option value="{{ $form->id }}">{{ $form->form_name }}</option>
@@ -309,7 +309,7 @@
 
                         <div class="col-lg-6">
                             <label>Unit / Address 1: *</label>
-                            <input wire:model="application.residence_address_1" type="text" class="form-control @error('application.residence_address_1') is-invalid @enderror" placeholder="Address 1" />
+                            <input wire:model.defer="application.residence_address_1" type="text" class="form-control @error('application.residence_address_1') is-invalid @enderror" placeholder="Address 1" />
                             @error('application.residence_address_1')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -317,7 +317,7 @@
 
                         <div class="col-lg-6">
                             <label>Complex / Street / Address 2: *</label>
-                            <input wire:model="application.residence_address_2" type="text" class="form-control @error('application.residence_address_2') is-invalid @enderror" placeholder="Address 2" />
+                            <input wire:model.defer="application.residence_address_2" type="text" class="form-control @error('application.residence_address_2') is-invalid @enderror" placeholder="Address 2" />
                             @error('application.residence_address_2')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -330,7 +330,7 @@
 
                         <div class="col-lg-6">
                             <label>Area/ Locality / Address 3: *</label>
-                            <input wire:model="application.residence_address_3" type="text" class="form-control @error('application.residence_address_3') is-invalid @enderror" placeholder="Address 3" />
+                            <input wire:model.defer="application.residence_address_3" type="text" class="form-control @error('application.residence_address_3') is-invalid @enderror" placeholder="Address 3" />
                             @error('application.residence_address_3')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -338,7 +338,7 @@
 
                         <div class="col-lg-6">
                             <label>City: *</label>
-                            <select wire:model="application.residence_city_id"  class="form-control @error('application.residence_city_id') is-invalid @enderror">
+                            <select wire:model.defer="application.residence_city_id"  class="form-control @error('application.residence_city_id') is-invalid @enderror">
                                 <option value="">Select City</option>
                                 @foreach($cities as $city)
                                     <option value="{{ $city->id }}">{{ $city->city_name_e }}</option>
@@ -355,7 +355,7 @@
 
                         <div class="col-lg-6">
                             <label>District: *</label>
-                            <select wire:model="application.residence_district_id"  class="form-control @error('application.residence_district_id') is-invalid @enderror">
+                            <select wire:model.defer="application.residence_district_id"  class="form-control @error('application.residence_district_id') is-invalid @enderror">
                                 <option value="">Select District</option>
                                 @foreach($districts as $district)
                                     <option value="{{ $district->id }}">{{ $district->district_name_e }}</option>
@@ -368,7 +368,7 @@
 
                         <div class="col-lg-6">
                             <label>Capacity: *</label>
-                            <select wire:model="application.residence_capacity_id"  class="form-control @error('application.residence_capacity_id') is-invalid @enderror">
+                            <select wire:model.defer="application.residence_capacity_id"  class="form-control @error('application.residence_capacity_id') is-invalid @enderror">
                                 <option value="">Select Capacity</option>
                                 @foreach($address_capacities as $capacity)
                                     <option value="{{ $capacity->id }}">{{ $capacity->capacity_name }}</option>
@@ -384,7 +384,7 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Share: *</label>
-                            <select wire:model="application.residence_share_id"  class="form-control @error('application.residence_share_id') is-invalid @enderror">
+                            <select wire:model.defer="application.residence_share_id"  class="form-control @error('application.residence_share_id') is-invalid @enderror">
                                 <option value="">Select Share</option>
                                 @foreach($address_shares as $share)
                                     <option value="{{ $share->id }}">{{ $share->share_name }}</option>
@@ -397,7 +397,7 @@
 
                         <div class="col-lg-6">
                             <label>Acquisition Date: *</label>
-                            <x-date-picker wire:model="application.residence_acquisition_date" />
+                            <x-date-picker wire:model.defer="application.residence_acquisition_date" />
                             @error('application.residence_acquisition_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -409,7 +409,7 @@
 
                         <div class="col-lg-6">
                             <label>Mobile No. *</label>
-                            <input readonly wire:model="application.personal_mobile_no" type="text" class="form-control @error('application.personal_mobile_no') is-invalid @enderror" placeholder="Mobile No." />
+                            <input readonly wire:model.defer="application.personal_mobile_no" type="text" class="form-control @error('application.personal_mobile_no') is-invalid @enderror" placeholder="Mobile No." />
                             @error('application.personal_mobile_no')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -417,7 +417,7 @@
 
                         <div class="col-lg-6">
                             <label>Email Address: *</label>
-                            <input readonly wire:model="application.personal_email" type="text" class="form-control @error('application.personal_email') is-invalid @enderror" placeholder="Email Address" />
+                            <input readonly wire:model.defer="application.personal_email" type="text" class="form-control @error('application.personal_email') is-invalid @enderror" placeholder="Email Address" />
                             @error('application.personal_email')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -438,15 +438,15 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                                 <label>Business Name: *</label>
-                                <input wire:model="application.business_name" type="text" class="form-control @error('application.business_name') is-invalid @enderror" placeholder="Business Name" />
+                                <input wire:model.defer="application.business_name" type="text" class="form-control @error('application.business_name') is-invalid @enderror" placeholder="Business Name" />
                                 @error('application.business_name')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Business Acquisition/ Start/ Establishment/ Formation Date: *</label>
-                            <x-date-picker wire:model="application.business_establishment_date" />
+                            <label>Acquisition/ Start Date: *</label>
+                            <x-date-picker wire:model.defer="application.business_establishment_date" />
                             @error('application.business_establishment_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -470,7 +470,7 @@
 
                         <div class="col-lg-6 @if(!$is_business_registered) d-none @endif">
                             <label>Legal Status of Business: *</label>
-                            <select wire:model="application.business_legal_status_id"  class="form-control @error('application.business_legal_status_id') is-invalid @enderror">
+                            <select wire:model.defer="application.business_legal_status_id"  class="form-control @error('application.business_legal_status_id') is-invalid @enderror">
                                 <option value="">Select Business</option>
                                 @foreach($business_legal_statuses as $status)
                                     <option value="{{ $status->id }}">{{ $status->legal_name }}</option>
@@ -487,7 +487,7 @@
 
                         <div class="col-lg-6">
                             <label>Business Registration Number: *</label>
-                            <input wire:model="application.business_registration_number" type="text" class="form-control @error('application.business_registration_number') is-invalid @enderror" placeholder="Registration Number" />
+                            <input wire:model.defer="application.business_registration_number" type="text" class="form-control @error('application.business_registration_number') is-invalid @enderror" placeholder="Registration Number" />
                             @error('application.business_registration_number')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -495,7 +495,7 @@
 
                         <div class="col-lg-6">
                             <label>Business Registration Date: *</label>
-                            <x-date-picker wire:model="application.business_registration_date" />
+                            <x-date-picker wire:model.defer="application.business_registration_date" />
                             @error('application.business_registration_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -506,7 +506,7 @@
                     <div class="form-group row  @if(!$is_business_registered) d-none @endif">
                         <div class="col-lg-6">
                             <label>Business NTN: *</label>
-                            <input wire:model="application.business_ntn_no" type="text" class="form-control @error('application.business_ntn_no') is-invalid @enderror" placeholder="Business NTN" />
+                            <input wire:model.defer="application.business_ntn_no" type="text" class="form-control @error('application.business_ntn_no') is-invalid @enderror" placeholder="Business NTN" />
                             @error('application.business_ntn_no')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -546,7 +546,7 @@
 
                         <div class="col-lg-6">
                             <label>Business Sub Sector: *</label>
-                            <select wire:model="application.business_sub_sector_id"  class="form-control @error('application.business_sub_sector_id') is-invalid @enderror">
+                            <select wire:model.defer="application.business_sub_sector_id"  class="form-control @error('application.business_sub_sector_id') is-invalid @enderror">
                                 <option value="">Select Sector</option>
                                 @foreach($business_sub_secotors as $sub_sector)
                                     <option value="{{ $sub_sector->id }}">{{ $sub_sector->sub_sector_name_e }}</option>
@@ -562,26 +562,59 @@
 
                     <h4 class="mb-10 font-weight-bold text-dark">Relevant Attachments</h4>
                     <div class="form-group row">
-                        <div class="col-lg-6">
-                                <label>Upload Proof of Ownership: *</label>
-                            <input type="file" class="form-control" wire:model="proof_of_ownership_file">
+                        <div x-data="{ open: false }" class="col-lg-6">
+                            <label>Upload Proof of Ownership: *</label>
+
+                            @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
+                            <a href="{{ asset('storage/'.$application['proof_of_ownership_file']) }}" target="_blank" class="file_viewer" title="Proof of Ownership">View File</a>
+                            &nbsp;|&nbsp;
+                            <a @click="open = true" href="javascript:;" class="show_file" x-show="!open" onClick="return false;">Change File
+                            </a><a href="javascript:;" onClick="return false;" x-show="open" @click="open = false">Do Not Change File</a>
+                            @endif
+
+                            <input @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file'])) x-show="open" @endif  type="file" class="form-control" wire:model="proof_of_ownership_file">
                             <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                            @error('proof_of_ownership_file')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
 
+                        <div x-data="{ open: false }" class="col-lg-6">
+                            <label>License /Registration with chamber or Trade body: </label>
 
-                        <div class="col-lg-6">
-                            <label>Upload Registration Certificate: *</label>
-                            <input type="file" class="form-control" wire:model="registration_certificate_file">
+                            @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
+                                <a href="{{ asset('storage/'.$application['license_registration_file']) }}" target="_blank" class="file_viewer" title="License /Registration">View File</a>
+                                &nbsp;|&nbsp;
+                                <a @click="open = true" href="javascript:;" class="show_file" x-show="!open" onClick="return false;">Change File
+                                </a><a href="javascript:;" onClick="return false;" x-show="open" @click="open = false">Do Not Change File</a>
+                            @endif
+
+                            <input  @if(isset($application['license_registration_file']) && !empty($application['license_registration_file'])) x-show="open" @endif  type="file" class="form-control" wire:model="license_registration_file">
                             <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                            @error('license_registration_file')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
+
 
                     </div>
 
-                    <div class="form-group row">
+                    <div x-data="{ open: false }" class="form-group row  @if(!$is_business_registered) d-none @endif">
                         <div class="col-lg-6">
-                            <label>License /Registration with chamber or Trade body: *</label>
-                            <input type="file" class="form-control" wire:model="license_registration_file">
+                            <label>Upload Registration Certificate: *</label>
+
+                            @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
+                                <a href="{{ asset('storage/'.$application['registration_certificate_file']) }}" target="_blank" class="file_viewer" title="Registration Certificate">View File</a>
+                                &nbsp;|&nbsp;
+                                <a @click="open = true" href="javascript:;" class="show_file" x-show="!open" onClick="return false;">Change File
+                                </a><a href="javascript:;" onClick="return false;" x-show="open" @click="open = false">Do Not Change File</a>
+                            @endif
+
+                            <input @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file'])) x-show="open" @endif type="file" class="form-control" wire:model="registration_certificate_file">
                             <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                            @error('registration_certificate_file')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -749,10 +782,21 @@
                 </div>
 
                     <div class="form-group row">
-                        <div class="col-lg-6">
+                        <div x-data="{ open: false }" class="col-lg-6">
                             <label>Evidence of tenancy/ ownership of business premises: *</label>
-                            <input type="file" class="form-control" wire:model="business_evidence_ownership_file">
+
+                            @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
+                                <a href="{{ asset('storage/'.$application['business_evidence_ownership_file']) }}" target="_blank" class="file_viewer" title="Evidence of tenancy/ ownership">View File</a>
+                                &nbsp;|&nbsp;
+                                <a @click="open = true" href="javascript:;" class="show_file" x-show="!open" onClick="return false;">Change File
+                                </a><a href="javascript:;" onClick="return false;" x-show="open" @click="open = false">Do Not Change File</a>
+                            @endif
+
+                            <input @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file'])) x-show="open" @endif type="file" class="form-control" wire:model="business_evidence_ownership_file">
                             <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                            @error('business_evidence_ownership_file')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
 
 
@@ -917,80 +961,6 @@
 
                     </div>
                     @endforeach
-
-                    <h4 class="mb-10 font-weight-bold text-dark">Annual Turnover</h4>
-                    <h6 class="mb-10 font-weight-bold text-dark">Estimated annual turnover in last completed Fiscal Year</h6>
-                    <div class="form-group row">
-                    <div class="col-lg-6">
-                        <label>Fiscal Year: *</label>
-                        <select wire:model="application.turnover_fiscal_year_id"  class="form-control @error('application.turnover_fiscal_year_id') is-invalid @enderror">
-                            <option value="">Select Year</option>
-                            @foreach($fiscal_years as $year)
-                                <option value="{{ $year->id }}">{{ $year->year_name }}</option>
-                            @endforeach
-                        </select>
-                        @error('application.turnover_fiscal_year_id')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                        <div class="col-lg-6">
-                            <label>Annual Turnover for the selected Fiscal Year (PKR): *</label>
-                            <input wire:model.defer="application.annual_turnover" type="text" class="form-control @error('application.annual_turnover') is-invalid @enderror" placeholder="Annual Turnover" />
-                            @error('application.annual_turnover')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-6">
-                            <label>Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement): *</label>
-                            <input type="file" class="form-control" wire:model="business_account_statement_file">
-                            <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
-                        </div>
-                    </div>
-                    <h6 class="mb-10 font-weight-bold text-dark">Exports in last completed Fiscal Year</h6>
-                    <div class="form-group row">
-                        <div class="col-lg-6">
-                            <label>Fiscal Year: *</label>
-                            <select wire:model="application.export_fiscal_year_id"  class="form-control @error('application.export_fiscal_year_id') is-invalid @enderror">
-                                <option value="">Select Year</option>
-                                @foreach($fiscal_years as $year)
-                                    <option value="{{ $year->id }}">{{ $year->year_name }}</option>
-                                @endforeach
-                            </select>
-                            @error('application.export_fiscal_year_id')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="col-lg-6">
-                            <label>Currency: *</label>
-                            <div class="radio-inline">
-                                @foreach($currencies as $currency)
-                                    <label class="radio">
-                                        <input wire:model="application.export_currency_id" type="radio" name="application.export_currency_id" value="{{ $currency->id }}">
-                                        <span></span>{{ $currency->currency_name }}</label>
-                                @endforeach
-                            </div>
-                            @error('application.export_currency_id')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-
-                        <div class="col-lg-6">
-                            <label>Export Turnover for the selected Fiscal Year (PKR/ USD): *</label>
-                            <input wire:model.defer="application.export_annual_turnover" type="text" class="form-control @error('application.export_annual_turnover') is-invalid @enderror" placeholder="Export Annual Turnover" />
-                            @error('application.export_annual_turnover')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-
 
 
                 </div>
@@ -1251,25 +1221,28 @@
                             </span>
                         </div>
                         @endif
-                            @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
+
+                            @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">Upload Registration Certificate: *</span>
+                                    <span class="font-weight-bolder mb-2">License /Registration with chamber or Trade body:</span>
                                     <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
                             </span>
                                 </div>
                             @endif
+
                     </div>
 
-                    <div class="d-flex justify-content-between pt-5">
-                        @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
+                    <div class="d-flex justify-content-between pt-5 @if(!$is_business_registered) d-none @endif ">
+                        @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">License /Registration with chamber or Trade body: *</span>
+                                <span class="font-weight-bolder mb-2">Upload Registration Certificate: *</span>
                                 <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
                             </span>
                             </div>
                         @endif
+
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
@@ -1360,7 +1333,7 @@
                         </div>
                     </div>
 
-                    <h6 class="mb-0 font-weight-bold text-dark">Utility Connections</h6>
+                    <h6 class="mb-0 mt-10 font-weight-bold text-dark">Utility Connections</h6>
                     <div class="separator separator-dashed my-5"></div>
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
@@ -1422,53 +1395,6 @@
                      @endforeach
                     @endif
 
-                    <h4 class="mb-10 mt-10 font-weight-bold text-dark">Annual Turnover</h4>
-                    <h6 class="mb-5 font-weight-bold text-dark">Estimated annual turnover in last completed Fiscal Year</h6>
-                    <div class="separator separator-dashed my-5"></div>
-                    <div class="d-flex justify-content-between pt-5">
-
-                        <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Fiscal Year: *</span>
-                            <span class="opacity-70">{{ isset($application['turnover_fiscal_year_id'])?getCollectionTitle($fiscal_years,'year_name',$application['turnover_fiscal_year_id']):'' }}</span>
-                        </div>
-
-                        <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Annual Turnover for the selected Fiscal Year (PKR): *</span>
-                            <span class="opacity-70">{{ isset($application['annual_turnover'])?$application['annual_turnover']:'' }}</span>
-                        </div>
-
-                    </div>
-
-                    @if(isset($application['business_account_statement_file']) && !empty($application['business_account_statement_file']))
-                        <div class="d-flex justify-content-between pt-5">
-                        <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement): *</span>
-                            <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
-                            </span>
-                        </div>
-                        </div>
-                    @endif
-
-                    <h6 class="mb-5 font-weight-bold text-dark">Exports in last completed Fiscal Year</h6>
-                    <div class="separator separator-dashed my-5"></div>
-                    <div class="d-flex justify-content-between pt-5">
-
-                        <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Fiscal Year: *</span>
-                            <span class="opacity-70">{{ isset($application['export_fiscal_year_id'])?getCollectionTitle($fiscal_years,'year_name',$application['export_fiscal_year_id']):'' }}</span>
-                        </div>
-
-                        <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Currency: *</span>
-                            <span class="opacity-70">{{ isset($application['export_currency_id'])?getCollectionTitle($currencies,'currency_name',$application['export_currency_id']):'' }}</span>
-                        </div>
-                        <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Export Turnover for the selected Fiscal Year (PKR/ USD): *</span>
-                            <span class="opacity-70">{{ isset($application['export_annual_turnover'])?$application['export_annual_turnover']:'' }}</span>
-                        </div>
-
-                    </div>
 
                     <!--end::Section-->
                 </div>

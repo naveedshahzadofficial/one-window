@@ -9,6 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class BusinessSector extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['sector_name_e','sector_name_u', 'sector_remark', 'sector_status'];
+    protected $fillable = ['business_category_id','sector_name_e','sector_name_u', 'sector_remark', 'sector_status'];
 
 }
