@@ -73,7 +73,7 @@
 
                         <div class="col-lg-6">
                             <label>Middle Name:</label>
-                            <input wire:model="application.middle_name" type="text" class="form-control @error('application.middle_name') is-invalid @enderror" placeholder="First Name" />
+                            <input wire:model="application.middle_name" type="text" class="form-control @error('application.middle_name') is-invalid @enderror" placeholder="Middle Name" />
                             @error('application.middle_name')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -85,7 +85,7 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Last Name: *</label>
-                            <input wire:model="application.last_name" type="text" class="form-control @error('application.last_name') is-invalid @enderror" placeholder="First Name" />
+                            <input wire:model="application.last_name" type="text" class="form-control @error('application.last_name') is-invalid @enderror" placeholder="Last Name" />
                             @error('application.last_name')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -903,13 +903,13 @@
                         @foreach($genders as $gender)
                         <div class="col-lg-4">
                             <label>{{ $gender }} </label>
-                            <select wire:model="employees.{{$key.'.'.strtolower($gender)}}"  class="form-control @error("employees.".$key.'.'.strtolower($gender)) is-invalid @enderror">
+                            <select wire:model="employees.{{$key.'_'.strtolower($gender)}}"  class="form-control @error("employees.".$key.'_'.strtolower($gender)) is-invalid @enderror">
                                 <option value="">Select Number</option>
                                 @for($no=1; $no<=$employee_numbers;$no++)
                                     <option value="{{ $no }}">{{ $no }}</option>
                                 @endfor
                             </select>
-                            @error("employees.".$key.'.'.strtolower($gender))
+                            @error("employees.".$key.'_'.strtolower($gender))
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1094,7 +1094,7 @@
                     <div class="d-flex justify-content-between pt-5 @if(!$is_technical_education) d-none @endif">
                     <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Diploma/ Certificate Title: *</span>
-                            <span class="opacity-70">{{ isset($application['minority_status_other'])?$application['minority_status_other']:'' }}</span>
+                            <span class="opacity-70">{{ isset($application['certificate_title'])?$application['certificate_title']:'' }}</span>
                         </div>
                     </div>
 
@@ -1238,8 +1238,234 @@
                         </div>
                     </div>
 
+                    <h6 class="mb-0 font-weight-bold text-dark">Relevant Attachments</h6>
+                    <div class="separator separator-dashed my-5"></div>
 
+                    <div class="d-flex justify-content-between pt-5">
+                        @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Upload Proof of Ownership: *</span>
+                            <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                        </div>
+                        @endif
+                            @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
+                                <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">Upload Registration Certificate: *</span>
+                                    <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                                </div>
+                            @endif
+                    </div>
 
+                    <div class="d-flex justify-content-between pt-5">
+                        @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">License /Registration with chamber or Trade body: *</span>
+                                <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Type: *</span>
+                            <span class="opacity-70">{{ isset($application['business_address_type_id'])?getCollectionTitle($address_types,'type_name',$application['business_address_type_id']):'' }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Form: *</span>
+                            <span class="opacity-70">{{ isset($application['business_address_form_id'])?getCollectionTitle($address_forms,'form_name',$application['business_address_form_id']):'' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Unit / Address 1: *</span>
+                            <span class="opacity-70">{{ isset($application['business_address_1'])?$application['business_address_1']:'' }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Complex / Street / Address 2: *</span>
+                            <span class="opacity-70">{{ isset($application['business_address_2'])?$application['business_address_2']:'' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Area/ Locality / Address 3: *</span>
+                            <span class="opacity-70">{{ isset($application['business_address_3'])?$application['business_address_3']:'' }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Provinces: *</span>
+                            <span class="opacity-70">{{ isset($application['business_province_id'])?getCollectionTitle($provinces,'province_name',$application['business_province_id']):'' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">City: *</span>
+                            <span class="opacity-70">{{ isset($application['business_city_id'])?getCollectionTitle($business_cities,'city_name_e',$application['business_city_id']):'' }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">District: *</span>
+                            <span class="opacity-70">{{ isset($application['business_district_id'])?getCollectionTitle($business_districts,'district_name_e',$application['business_district_id']):'' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Tehsil: *</span>
+                            <span class="opacity-70">{{ isset($application['business_tehsil_id'])?getCollectionTitle($business_tehsils,'tehsil_name_e',$application['business_tehsil_id']):'' }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Capacity: *</span>
+                            <span class="opacity-70">{{ isset($application['business_capacity_id'])?getCollectionTitle($address_capacities,'capacity_name',$application['business_capacity_id']):'' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Share: *</span>
+                            <span class="opacity-70">{{ isset($application['business_share_id'])?getCollectionTitle($address_shares,'share_name',$application['business_share_id']):'' }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Acquisition Date: *</span>
+                            <span class="opacity-70">{{ isset($application['business_acquisition_date'])?$application['business_acquisition_date']:'' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between pt-5">
+                        @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">Evidence of tenancy/ ownership of business premises: *</span>
+                                <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                            </div>
+                        @endif
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">Business Contact No. *</span>
+                                <span class="opacity-70">{{ isset($application['business_contact_number'])?$application['business_contact_number']:'' }}</span>
+                            </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Business Email Address: *</span>
+                            <span class="opacity-70">{{ isset($application['business_email'])?$application['business_email']:'' }}</span>
+                        </div>
+                    </div>
+
+                    <h6 class="mb-0 font-weight-bold text-dark">Utility Connections</h6>
+                    <div class="separator separator-dashed my-5"></div>
+                    <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Do you have utility connections? *</span>
+                            <span class="opacity-70">{{ isset($application['utility_connection_question_id'])?getCollectionTitle($questions,'name',$application['utility_connection_question_id']):'' }}</span>
+                        </div>
+                    </div>
+
+                @foreach($utility_connections as $index=>$connection)
+                        <div class="d-flex justify-content-between pt-5">
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">Connection Ownership: *</span>
+                                <span class="opacity-70">{{ isset($connection['connection_ownership_id'])?getCollectionTitle($ownerships,'ownership_name',$connection['connection_ownership_id']):'' }}</span>
+                            </div>
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">Utility Type: *</span>
+                                <span class="opacity-70">{{ isset($connection['utility_type_id'])?getCollectionTitle($utility_types,'type_name',$connection['utility_type_id']):'' }}</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-5">
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">Reference/ Consumer Number: *</span>
+                                <span class="opacity-70">{{ isset($connection['utility_consumer_number'])?$connection['utility_consumer_number']:'' }}</span>
+                            </div>
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">Form/Type of Connection: *</span>
+                                <span class="opacity-70">{{ isset($connection['utility_form_id'])?getCollectionTitle($address_forms,'form_name',$connection['utility_form_id']):'' }}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between pt-5">
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">Provider: *</span>
+                                <span class="opacity-70">{{ isset($connection['utility_provider_other'])?$connection['utility_provider_other']:'' }}</span>
+                            </div>
+                        </div>
+                @endforeach
+
+                    <h6 class="mb-0 mt-10 font-weight-bold text-dark">Employees Info</h6>
+                    <div class="separator separator-dashed my-5"></div>
+                    <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Do you have employees? *</span>
+                            <span class="opacity-70">{{ isset($application['employees_question_id'])?getCollectionTitle($questions,'name',$application['employees_question_id']):'' }}</span>
+                        </div>
+                    </div>
+
+                    @foreach($employee_types as $key => $type)
+                        <h6 class="mb-4 mt-5 font-weight-bold text-dark @if(!$is_employee_info) d-none @endif">{{ $type }}</h6>
+                        <div class="d-flex justify-content-between pt-5">
+                            @foreach($genders as $gender)
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">{{ $gender }}</span>
+                                <span class="opacity-70">{{ isset($employees[$key.'_'.strtolower($gender)])?$employees[$key.'_'.strtolower($gender)]:'' }}</span>
+                            </div>
+                            @endforeach
+                        </div>
+                @endforeach
+
+                    <h4 class="mb-10 font-weight-bold text-dark">Annual Turnover</h4>
+                    <h6 class="mb-5 font-weight-bold text-dark">Estimated annual turnover in last completed Fiscal Year</h6>
+                    <div class="separator separator-dashed my-5"></div>
+                    <div class="d-flex justify-content-between pt-5">
+
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Fiscal Year: *</span>
+                            <span class="opacity-70">{{ isset($application['turnover_fiscal_year_id'])?getCollectionTitle($fiscal_years,'year_name',$application['turnover_fiscal_year_id']):'' }}</span>
+                        </div>
+
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Annual Turnover for the selected Fiscal Year (PKR): *</span>
+                            <span class="opacity-70">{{ isset($application['annual_turnover'])?$application['annual_turnover']:'' }}</span>
+                        </div>
+
+                    </div>
+
+                    @if(isset($application['business_account_statement_file']) && !empty($application['business_account_statement_file']))
+                        <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement): *</span>
+                            <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                        </div>
+                        </div>
+                    @endif
+
+                    <h6 class="mb-5 font-weight-bold text-dark">Exports in last completed Fiscal Year</h6>
+                    <div class="separator separator-dashed my-5"></div>
+                    <div class="d-flex justify-content-between pt-5">
+
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Fiscal Year: *</span>
+                            <span class="opacity-70">{{ isset($application['export_fiscal_year_id'])?getCollectionTitle($fiscal_years,'year_name',$application['export_fiscal_year_id']):'' }}</span>
+                        </div>
+
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Currency: *</span>
+                            <span class="opacity-70">{{ isset($application['export_currency_id'])?getCollectionTitle($currencies,'currency_name',$application['export_currency_id']):'' }}</span>
+                        </div>
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Export Turnover for the selected Fiscal Year (PKR/ USD): *</span>
+                            <span class="opacity-70">{{ isset($application['export_annual_turnover'])?$application['export_annual_turnover']:'' }}</span>
+                        </div>
+
+                    </div>
 
                     <!--end::Section-->
                 </div>

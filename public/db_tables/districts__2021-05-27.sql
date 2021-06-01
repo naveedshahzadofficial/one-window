@@ -20,28 +20,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table districts
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `districts`;
-
-CREATE TABLE `districts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `district_name_e` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `district_name_u` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `division_id` varchar(11) NOT NULL DEFAULT '',
-  `province_id` int(11) NOT NULL DEFAULT '0',
-  `region_id` int(11) DEFAULT NULL,
-  `district_remark` text,
-  `district_is_business` tinyint(1) DEFAULT '0',
-  `district_status` tinyint(1) DEFAULT '1',
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `province_id` (`province_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 LOCK TABLES `districts` WRITE;
 /*!40000 ALTER TABLE `districts` DISABLE KEYS */;
 

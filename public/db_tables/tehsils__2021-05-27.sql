@@ -20,28 +20,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table tehsils
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tehsils`;
-
-CREATE TABLE `tehsils` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tehsil_name_e` varchar(255) DEFAULT NULL,
-  `tehsil_name_u` varchar(255) DEFAULT NULL,
-  `district_id` int(11) DEFAULT NULL,
-  `province_id` int(11) DEFAULT NULL,
-  `tehsil_is_thq` tinyint(1) NOT NULL DEFAULT '0',
-  `tehsil_remark` text,
-  `tehsil_status` tinyint(1) DEFAULT '1',
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `district_id` (`district_id`),
-  KEY `province_id` (`province_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 LOCK TABLES `tehsils` WRITE;
 /*!40000 ALTER TABLE `tehsils` DISABLE KEYS */;
 

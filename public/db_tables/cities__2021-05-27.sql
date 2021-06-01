@@ -20,24 +20,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table cities
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `cities`;
-
-CREATE TABLE `cities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `city_name_e` varchar(255) NOT NULL,
-  `city_name_u` varchar(500) NOT NULL,
-  `city_province_id` int(1) NOT NULL,
-  `city_remark` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `city_status` tinyint(1) NOT NULL DEFAULT '1',
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 LOCK TABLES `cities` WRITE;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
 

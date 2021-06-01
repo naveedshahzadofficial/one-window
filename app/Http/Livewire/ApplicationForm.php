@@ -6,6 +6,7 @@ use App\Models\AddressCapacity;
 use App\Models\AddressForm;
 use App\Models\AddressShare;
 use App\Models\AddressType;
+use App\Models\Application;
 use App\Models\BusinessCategory;
 use App\Models\BusinessLegalStatus;
 use App\Models\BusinessRegistrationStatus;
@@ -87,6 +88,8 @@ class ApplicationForm extends Component
         'submitBusinessProfile',
         'submitReview',
     ];
+
+    public $registration;
 
     protected $rules_applicant_profile = [
         'application.prefix' => 'required',
@@ -212,7 +215,7 @@ class ApplicationForm extends Component
 
     public function mount()
     {
-        $this->step = 1;
+        $this->step = 0;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
 
@@ -223,9 +226,6 @@ class ApplicationForm extends Component
             'piece_rate_workers_regular'=>'Piece Rate Workers (Regular)',
             'piece_rate_workers_unregistered'=>'Piece Rate Workers (Unregistered)'];
 
-        foreach ($this->employee_types as $key=>$emp){
-            $this->employee_types[$key]= null;
-        }
 
         $this->designations = DesignationBusiness::where('status',1)->get();
         $this->questions = Question::where('status',1)->get();
@@ -255,6 +255,7 @@ class ApplicationForm extends Component
         $this->business_districts = collect();
         $this->business_tehsils = collect();
 
+        $this->application['user_id'] = auth()->id();
         $this->application['prefix'] = auth()->user()->prefix;
         $this->application['first_name'] = auth()->user()->first_name;
         $this->application['last_name'] = auth()->user()->last_name;
@@ -366,6 +367,11 @@ class ApplicationForm extends Component
     {
         //dd($this->application);
         //$this->validate($this->rules_applicant_profile,$this->messages_applicant_profile);
+        if($this->registration)
+            $this->registration = tap($this->registration)->update($this->application);
+        else
+            $this->registration = Application::create($this->application);
+
         $this->step++;
         $this->successAlert();
     }
@@ -386,6 +392,8 @@ class ApplicationForm extends Component
 
         //$this->validate($this->rules_business_profile,$this->messages_business_profile);
         //dd($this->application);
+        $this->registration = tap($this->registration)->update($this->application);
+
         $this->step++;
         $this->successAlert();
     }
@@ -393,6 +401,7 @@ class ApplicationForm extends Component
     public function submitReview()
     {
         // $this->validate();
+        dd($this->application);
         $this->step++;
         session()->flash('success_message', 'Registration has been saved successfully.');
         return $this->redirect(route('applicant.applications.index'));
