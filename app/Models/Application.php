@@ -16,14 +16,14 @@ class Application extends Model
         'minority_status_id', 'minority_status_other', 'ntn_personal', 'education_level_id', 'technical_education_question_id',
         'certificate_title', 'skilled_worker_question_id', 'skill_or_art', 'residence_address_type_id',
         'residence_address_form_id', 'residence_address_1', 'residence_address_2', 'residence_address_3',
-        'residence_city_id', 'residence_district_id', 'residence_capacity_id', 'residence_share_id', 'residence_acquisition_date',
+        'residence_city_id', 'residence_district_id', 'residence_capacity_id', 'residence_share', 'residence_acquisition_date',
         'personal_mobile_no', 'personal_email',
         'business_name', 'business_establishment_date', 'business_registration_status_id', 'business_legal_status_id',
         'business_registration_number', 'business_registration_date', 'business_ntn_no',
         'business_category_id', 'business_sector_id', 'business_sub_sector_id', 'proof_of_ownership_file',
         'registration_certificate_file', 'license_registration_file', 'business_address_type_id', 'business_address_form_id',
         'business_address_1', 'business_address_2', 'business_address_3', 'business_province_id',
-        'business_city_id', 'business_district_id', 'business_tehsil_id', 'business_capacity_id', 'business_share_id',
+        'business_city_id', 'business_district_id', 'business_tehsil_id', 'business_capacity_id', 'business_share',
         'business_acquisition_date', 'business_evidence_ownership_file', 'business_contact_number',
         'business_email', 'utility_connection_question_id', 'employees_question_id', 'turnover_fiscal_year_id',
         'annual_turnover', 'business_account_statement_file', 'export_fiscal_year_id', 'export_currency_id', 'export_annual_turnover',
@@ -58,9 +58,16 @@ class Application extends Model
     }
 
 
+    public function technicalEducations(){
+        return $this->hasMany(ApplicationTechnicalEducation::class);
+    }
 
     public function utilityConnections(){
         return $this->hasMany(ApplicationUtilityConnection::class);
+    }
+
+    public function employeeInfos(){
+        return $this->hasMany(ApplicationEmployeeInfo::class);
     }
 
     public function designationBusiness(){
@@ -114,10 +121,7 @@ class Application extends Model
     {
         return $this->belongsTo(AddressCapacity::class, 'residence_capacity_id');
     }
-    public function residenceAddressShare()
-    {
-        return $this->belongsTo(AddressShare::class, 'residence_share_id');
-    }
+
 
     public function businessRegistrationStatus()
     {
@@ -175,10 +179,7 @@ class Application extends Model
     {
         return $this->belongsTo(AddressCapacity::class, 'business_capacity_id');
     }
-    public function businessShare()
-    {
-        return $this->belongsTo(AddressShare::class, 'business_share_id');
-    }
+
     public function utilityConnectionQuestion()
     {
         return $this->belongsTo(Question::class,'utility_connection_question_id');

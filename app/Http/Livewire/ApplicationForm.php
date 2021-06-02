@@ -4,9 +4,9 @@ namespace App\Http\Livewire;
 
 use App\Models\AddressCapacity;
 use App\Models\AddressForm;
-use App\Models\AddressShare;
 use App\Models\AddressType;
 use App\Models\Application;
+use App\Models\ApplicationTechnicalEducation;
 use App\Models\ApplicationUtilityConnection;
 use App\Models\BusinessCategory;
 use App\Models\BusinessLegalStatus;
@@ -18,6 +18,7 @@ use App\Models\ConnectionOwnership;
 use App\Models\DesignationBusiness;
 use App\Models\District;
 use App\Models\EducationLevel;
+use App\Models\EmployeeType;
 use App\Models\MinorityStatus;
 use App\Models\MobileCode;
 use App\Models\Province;
@@ -43,7 +44,6 @@ class ApplicationForm extends Component
     public $cities;
     public $districts;
     public $address_capacities;
-    public $address_shares;
     public $business_registration_status;
     public $business_legal_statuses;
     public $business_categories;
@@ -51,13 +51,14 @@ class ApplicationForm extends Component
     public $ownerships;
     public $utility_types;
 
-    public $employees;
+    public $employees = [];
     public $employee_types;
 
     public $employee_numbers;
 
     // UtilityConnections
     public $utility_connections = [];
+    public $technical_educations = [];
 
     // on parent load
     public $business_secotors;
@@ -68,7 +69,6 @@ class ApplicationForm extends Component
 
     public $is_minority_status = false;
     public $is_minority_status_other = false;
-    public $is_technical_education = false;
     public $is_skilled_worker = false;
     public $is_business_registered = false;
     public $is_employee_info = false;
@@ -82,26 +82,21 @@ class ApplicationForm extends Component
     private $stepActions = [
         'submitApplicantProfile',
         'submitBusinessProfile',
+        'submitUtilityConnections',
+        'submitEmployeesInfo',
         'submitReview',
     ];
 
     public $registration;
 
+
     public function mount($registration=null)
     {
         $this->registration = null;
 
-        $this->step = 0;
+        $this->step = 1;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
-
-        $this->employee_types = ['permanent'=>'Permanent', 'contractual'=>'Contractual',
-            'daily_wagers'=>'Daily Wagers',
-            'daily_wagers_regular'=>'Daily Wagers (Regular)',
-            'daily_wagers_unregistered'=>'Daily Wagers (Unregistered)',
-            'piece_rate_workers_regular'=>'Piece Rate Workers (Regular)',
-            'piece_rate_workers_unregistered'=>'Piece Rate Workers (Unregistered)'];
-
 
         $this->designations = DesignationBusiness::where('status',1)->get();
         $this->questions = Question::where('status',1)->get();
@@ -112,7 +107,6 @@ class ApplicationForm extends Component
         $this->cities = City::where('city_status',1)->get();
         $this->districts = District::where('district_status',1)->where('province_id',7)->get();
         $this->address_capacities = AddressCapacity::where('capacity_status',1)->get();
-        $this->address_shares = AddressShare::where('share_status',1)->get();
         $this->business_registration_status = BusinessRegistrationStatus::where('status',1)->get();
         $this->business_legal_statuses = BusinessLegalStatus::where('legal_status',1)->get();
         $this->business_categories = BusinessCategory::where('category_status',1)->get();
@@ -120,6 +114,7 @@ class ApplicationForm extends Component
         $this->ownerships = ConnectionOwnership::where('ownership_status',1)->get();
         $this->utility_types = UtilityType::where('type_status',1)->get();
 
+        $this->employee_types = EmployeeType::where('type_status',1)->get();
 
         $this->employee_numbers = 20;
 
@@ -144,6 +139,7 @@ class ApplicationForm extends Component
         if($registration){
             $this->application = $registration->toArray();
             $this->utility_connections = $registration->utilityConnections->toArray();
+            $this->technical_educations = $registration->technicalEducations->toArray();
             $this->registration = $registration;
             $this->business_secotors = BusinessSector::where('business_category_id', $registration->business_category_id)->where('sector_status',1)->get();
             $this->business_sub_secotors = BusinessSubSector::where('business_sector_id', $registration->business_sector_id)->where('sub_sector_status',1)->get();
@@ -157,8 +153,9 @@ class ApplicationForm extends Component
             if(isset($this->application['minority_status_id']) && $this->minority_status->firstWhere('id', $this->application['minority_status_id'])->name=='Other') {
                 $this->is_minority_status_other = true;
             }
+
             if($this->isYes('technical_education_question_id')){
-                $this->is_technical_education = true;
+                //$this->is_technical_education = true;
             }
 
             if($this->isYes('skilled_worker_question_id')){
@@ -212,9 +209,9 @@ class ApplicationForm extends Component
                 break;
             case 'technical_education_question_id':
                 if($this->questions->firstWhere('id', $value)->name=='Yes'){
-                    $this->is_technical_education = true;
+                    $this->technical_educations = [['certificate_title'=>null]];
                 }else{
-                    $this->is_technical_education = false;
+                    $this->technical_educations = [];
                 }
                 break;
                 case 'skilled_worker_question_id':
@@ -258,6 +255,7 @@ class ApplicationForm extends Component
                     $this->is_employee_info = true;
                 }else{
                     $this->is_employee_info = false;
+                    $this->employees = [];
                 }
                 break;
         }
@@ -296,7 +294,7 @@ class ApplicationForm extends Component
         'application.residence_city_id' => 'required',
         'application.residence_district_id' => 'required',
         'application.residence_capacity_id' => 'required',
-        'application.residence_share_id' => 'required',
+        'application.residence_share' => 'required|numeric|min:0|max:100',
         'application.residence_acquisition_date' => 'required',
     ];
          $messages_applicant_profile = [
@@ -322,7 +320,7 @@ class ApplicationForm extends Component
         'application.residence_city_id.required' => 'City is required.',
         'application.residence_district_id.required' => 'District is required.',
         'application.residence_capacity_id.required' => 'Capacity is required.',
-        'application.residence_share_id.required' => 'Share is required.',
+        'application.residence_share.required' => 'Share is required.',
         'application.residence_acquisition_date.required' => 'Acquisition Date is required.',
     ];
 
@@ -335,8 +333,8 @@ class ApplicationForm extends Component
             $messages_applicant_profile['application.minority_status_other.required'] = 'Minority Status Other is required';
         }
         if($this->isYes('technical_education_question_id')){
-            $rules_applicant_profile['application.certificate_title'] = 'required';
-            $messages_applicant_profile['application.certificate_title.required'] = 'Certificate Title is required';
+            $rules_applicant_profile['technical_educations.*.certificate_title'] = 'required';
+            $messages_applicant_profile['technical_educations.*.certificate_title.required'] = 'Diploma/ Certificate Title is required.';
         }
         if($this->isYes('skilled_worker_question_id')){
             $rules_applicant_profile['application.skill_or_art'] = 'required';
@@ -350,6 +348,16 @@ class ApplicationForm extends Component
             $this->registration = tap($this->registration)->update($this->application);
         else
             $this->registration = Application::create($this->application);
+
+        if($this->registration->technicalEducations()->count())
+            $this->registration->technicalEducations()->delete();
+        $educations = array();
+        foreach ($this->technical_educations as $education){
+            array_push($educations,new ApplicationTechnicalEducation($education));
+        }
+        if(count($educations)>0)
+        $this->registration->technicalEducations()->saveMany($educations);
+
 
         $this->step++;
         $this->successAlert();
@@ -374,12 +382,10 @@ class ApplicationForm extends Component
         'application.business_district_id' => 'required',
         'application.business_tehsil_id' => 'required',
         'application.business_capacity_id' => 'required',
-        'application.business_share_id' => 'required',
+        'application.business_share' => 'required|numeric|min:0|max:100',
         'application.business_acquisition_date' => 'required',
         'application.business_contact_number' => 'required',
         'application.business_email' => 'required|email',
-        'application.utility_connection_question_id' => 'required',
-        'application.employees_question_id' => 'required'
     ];
          $messages_business_profile = [
         'application.business_name.required' => 'Business Name is required.',
@@ -398,13 +404,11 @@ class ApplicationForm extends Component
         'application.business_district_id.required' => 'District is required.',
         'application.business_tehsil_id.required' => 'Tehsil is required.',
         'application.business_capacity_id.required' => 'Capacity is required.',
-        'application.business_share_id.required' => 'Share is required.',
+        'application.business_share.required' => 'Share is required.',
         'application.business_acquisition_date.required' => 'Acquisition Date is required.',
         'application.business_contact_number.required' => 'Business Contact No. is required.',
         'application.business_email.required' => 'Email is required.',
         'application.business_email.email' => 'Email format is not valid.',
-        'application.utility_connection_question_id.required' => 'Please select your choice.',
-        'application.employees_question_id.required' => 'Please select your choice.',
 
     ];
 
@@ -453,18 +457,102 @@ class ApplicationForm extends Component
         $this->registration = tap($this->registration)->update($this->application);
 
 
+        $this->step++;
+        $this->successAlert();
+    }
+
+    public function submitUtilityConnections()
+    {
+
+        $rules_utility_connections = [
+            'application.utility_connection_question_id' => 'required',
+        ];
+        $messages_utility_connections = [
+            'application.utility_connection_question_id.required' => 'Please select your choice.',
+
+        ];
+
+        $this->validate($rules_utility_connections,$messages_utility_connections);
+
+        if($this->isYes('utility_connection_question_id')){
+            $this->validate([
+                'utility_connections.*.utility_provider_other' => 'required',
+                'utility_connections.*.utility_form_id' => 'required',
+                'utility_connections.*.utility_consumer_number' => 'required',
+                'utility_connections.*.utility_type_id' => 'required',
+                'utility_connections.*.connection_ownership_id' => 'required',
+            ],[
+                'utility_connections.*.utility_provider_other.required' => 'Connection Ownership is required.',
+                'utility_connections.*.utility_form_id.required' => 'Form/Type of Connection is required.',
+                'utility_connections.*.utility_consumer_number.required' => 'Reference/ Consumer Number is required.',
+                'utility_connections.*.utility_type_id.required' => 'Utility Type is required.',
+                'utility_connections.*.connection_ownership_id.required' => 'Provider is required.',
+            ]);
+        }
+
+
+
         if($this->registration->utilityConnections()->count())
             $this->registration->utilityConnections()->delete();
         $connections = array();
         foreach ($this->utility_connections as $connection){
             array_push($connections,new ApplicationUtilityConnection($connection));
         }
-        $this->registration->utilityConnections()->saveMany($connections);
+        if(count($connections)>0)
+            $this->registration->utilityConnections()->saveMany($connections);
 
         $this->step++;
         $this->successAlert();
     }
 
+    public function submitEmployeesInfo()
+    {
+
+        $rules_employees_info = [
+            'application.employees_question_id' => 'required'
+        ];
+        $messages_employees_info = [
+            'application.employees_question_id.required' => 'Please select your choice.',
+        ];
+
+
+        if($this->isYes('employees_question_id')){
+
+            $total_employee_types = 0;
+            foreach ($this->employees as $index=>$emp) {
+                if(isset($emp['employee_type_id']) && $emp['employee_type_id']) {
+                    $rules_employees_info["employees.$index.male"] = "required_without_all:employees.$index.female,employees.$index.transgender";
+                    $rules_employees_info["employees.$index.female"] = "required_without_all:employees.$index.male,employees.$index.transgender";
+                    $rules_employees_info["employees.$index.transgender"] = "required_without_all:employees.$index.male,employees.$index.female";
+
+                    $messages_employees_info["employees.$index.male.required_without_all"]="The male field is required when none of female / transgender are present.";
+                    $messages_employees_info["employees.$index.female.required_without_all"]="The female field is required when none of male / transgender are present.";
+                    $messages_employees_info["employees.$index.transgender.required_without_all"]="The transgender field is required when none of male / transgender are present.";
+                    $total_employee_types++;
+                }
+            }
+
+            if(!$total_employee_types)
+            $rules_employees_info['employees.0.employee_type_id'] = 'required';
+
+        }
+
+        $this->validate($rules_employees_info,$messages_employees_info);
+
+        if($this->registration->employeeInfos()->count())
+            $this->registration->employeeInfos()->delete();
+
+        $employees = array();
+        foreach ($this->employees as $employee){
+            array_push($employees,new ApplicationUtilityConnection($employee));
+        }
+        if(count($employees)>0)
+            $this->registration->employeeInfos()->saveMany($employee);
+
+
+        $this->step++;
+        $this->successAlert();
+    }
     public function submitReview()
     {
         // $this->validate();
@@ -491,10 +579,25 @@ class ApplicationForm extends Component
         $this->utility_connections[] = ['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,];
     }
 
+    public function addTechnicalEducation(){
+        $this->validate([
+            'technical_educations.*.certificate_title' => 'required',
+        ],[
+            'technical_educations.*.certificate_title.required' => 'Diploma/ Certificate Title is required.',
+        ]);
+        $this->technical_educations[] = ['certificate_title'=>null];
+    }
+
     public function removeUtilityConnection($index)
     {
         unset($this->utility_connections[$index]);
         $this->utility_connections = array_values($this->utility_connections);
+    }
+
+    public function removeTechnicalEducation($index)
+    {
+        unset($this->technical_educations[$index]);
+        $this->technical_educations = array_values($this->technical_educations);
     }
 
     private function successAlert(){

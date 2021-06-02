@@ -1,12 +1,12 @@
 @extends('_layouts.applicant.app')
-@push('title','Registration Show')
+@push('title','SME Show')
 @section('content')
 
     <!--begin::Card-->
     <div class="card card-custom gutter-b">
         <div class="card-header flex-wrap py-3">
             <div class="card-title">
-                <h3 class="card-label">Registration</h3>
+                <h3 class="card-label">SMEs</h3>
             </div>
         </div>
         <div class="card-body">
@@ -104,12 +104,17 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-between pt-5"  @if(isset($application->educationLevelQuestion->name) && $application->educationLevelQuestion->name=='No') style="display: none !important;" @endif>
-                <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Diploma/ Certificate Title: *</span>
-                    <span class="opacity-70">{{ isset($application['certificate_title'])?$application['certificate_title']:'' }}</span>
-                </div>
-            </div>
+
+            @if(isset($application->technicalEducations) && $application->technicalEducations->isNotEmpty())
+                @foreach($application->technicalEducations as $index=>$education)
+                    <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                            <span class="font-weight-bolder mb-2">Diploma/ Certificate Title: *</span>
+                            <span class="opacity-70">{{ isset($education['certificate_title'])?$connection['certificate_title']:'' }}</span>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
 
             <div class="d-flex justify-content-between pt-5">
                 <div class="d-flex flex-column flex-root">
@@ -130,7 +135,7 @@
                     <span class="opacity-70">{{ isset($application->residenceAddressType->type_name)?$application->residenceAddressType->type_name:'' }}</span>
                 </div>
                 <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Form: *</span>
+                    <span class="font-weight-bolder mb-2">Form of Property: *</span>
                     <span class="opacity-70">{{ isset($application->residenceAddressForm->form_name)?$application->residenceAddressForm->form_name:'' }}</span>
                 </div>
             </div>
@@ -168,8 +173,8 @@
             </div>
             <div class="d-flex justify-content-between pt-5">
                 <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Share: *</span>
-                    <span class="opacity-70">{{ isset($application->residenceAddressCapacity->share_name)?$application->residenceAddressCapacity->share_name:'' }}</span>
+                    <span class="font-weight-bolder mb-2">Share %: *</span>
+                    <span class="opacity-70">{{ isset($application->residence_share)?$application->residence_share:'' }}</span>
                 </div>
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">Acquisition Date: *</span>
@@ -279,7 +284,7 @@
                     <span class="opacity-70">{{ isset($application->businessAddressType->type_name)?$application->businessAddressType->type_name:'' }}</span>
                 </div>
                 <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Form: *</span>
+                    <span class="font-weight-bolder mb-2">Form of Property: *</span>
                     <span class="opacity-70">{{ isset($application->businessAddressForm->form_name)?$application->businessAddressForm->form_name:'' }}</span>
                 </div>
             </div>
@@ -330,8 +335,8 @@
 
             <div class="d-flex justify-content-between pt-5">
                 <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Share: *</span>
-                    <span class="opacity-70">{{ isset($application->businessShare->share_name)?$application->businessShare->share_name:'' }}</span>
+                    <span class="font-weight-bolder mb-2">Share %: *</span>
+                    <span class="opacity-70">{{ isset($application->business_share)?$application->business_share:'' }}</span>
                 </div>
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">Acquisition Date: *</span>
@@ -369,6 +374,7 @@
                     <span class="opacity-70">{{ isset($application->utilityConnectionQuestion->name)?$application->utilityConnectionQuestion->name:'' }}</span>
                 </div>
             </div>
+
             @if(isset($application->utilityConnections) && $application->utilityConnections->isNotEmpty())
             @foreach($application->utilityConnections as $index=>$connection)
                 <div class="d-flex justify-content-between pt-5">

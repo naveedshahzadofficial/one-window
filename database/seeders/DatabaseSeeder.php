@@ -39,5 +39,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ConnectionProviderSeeder::class);
         $this->call(FiscalYearSeeder::class);
         $this->call(CurrencySeeder::class);
+        $this->call(EmployeeTypeSeeder::class);
     }
 }

@@ -42,7 +42,7 @@ class CreateApplicationsTable extends Migration
             $table->foreignId('residence_city_id')->nullable()->constrained('cities');
             $table->foreignId('residence_district_id')->nullable()->constrained('districts');
             $table->foreignId('residence_capacity_id')->nullable()->constrained('address_capacities');
-            $table->foreignId('residence_share_id')->nullable()->constrained('address_shares');
+            $table->string('residence_share')->nullable();
             $table->date('residence_acquisition_date')->nullable();
             $table->string('personal_mobile_no')->nullable();
             $table->string('personal_email')->nullable();
@@ -71,7 +71,7 @@ class CreateApplicationsTable extends Migration
             $table->foreignId('business_district_id')->nullable()->constrained('districts');
             $table->foreignId('business_tehsil_id')->nullable()->constrained('tehsils');
             $table->foreignId('business_capacity_id')->nullable()->constrained('address_capacities');
-            $table->foreignId('business_share_id')->nullable()->constrained('address_shares');
+            $table->string("business_share")->nullable();
             $table->date('business_acquisition_date')->nullable();
             $table->string('business_evidence_ownership_file')->nullable();
             $table->string('business_contact_number')->nullable();
