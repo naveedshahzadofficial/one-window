@@ -271,7 +271,7 @@
                     </div>
 
                     @foreach($technical_educations as $index=>$technical_education)
-                    <div class="row form-group">
+                    <div class="row form-group @if(!$is_technical_education) d-none @endif">
                         <div class="col-lg-6">
                             <label>Diploma/ Certificate Title: <span class="text-danger">*</span></label>
                             <input wire:model.defer="technical_educations.{{$index}}.certificate_title" type="text" class="form-control @if($errors->has("technical_educations.$index.certificate_title")) is-invalid @endif" placeholder="Diploma/ Certificate Title" />
@@ -882,7 +882,7 @@
 
                     </div>
                     @foreach($utility_connections as $index=>$connection)
-                        <div class="form-group row">
+                        <div class="form-group row @if(!$is_utility_connection) d-none @endif">
 
                             <div class="col-lg-6">
                                 <label>Utility Type: <span class="text-danger">*</span></label>
@@ -915,7 +915,7 @@
 
 
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row @if(!$is_utility_connection) d-none @endif">
 
                             <div class="col-lg-6">
                                 <label>Form/Type of Connection: <span class="text-danger">*</span></label>
@@ -940,7 +940,7 @@
                             </div>
 
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row @if(!$is_utility_connection) d-none @endif">
 
                             <div class="col-lg-6">
                                 <label>Provider: <span class="text-danger">*</span></label>

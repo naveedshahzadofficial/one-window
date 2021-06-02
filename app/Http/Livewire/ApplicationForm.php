@@ -6,6 +6,7 @@ use App\Models\AddressCapacity;
 use App\Models\AddressForm;
 use App\Models\AddressType;
 use App\Models\Application;
+use App\Models\ApplicationEmployeeInfo;
 use App\Models\ApplicationTechnicalEducation;
 use App\Models\ApplicationUtilityConnection;
 use App\Models\BusinessCategory;
@@ -72,6 +73,8 @@ class ApplicationForm extends Component
     public $is_skilled_worker = false;
     public $is_business_registered = false;
     public $is_employee_info = false;
+    public $is_utility_connection = false;
+    public $is_technical_education = false;
 
     // files
     public $proof_of_ownership_file,$registration_certificate_file,
@@ -136,6 +139,10 @@ class ApplicationForm extends Component
         $this->application['personal_mobile_no'] = ($mobile_code->code_number).auth()->user()->mobile_no;
         $this->application['personal_email'] = auth()->user()->email;
 
+        $this->technical_educations = [['certificate_title'=>null]];
+        $this->utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
+
+
         if($registration){
             $this->application = $registration->toArray();
             $this->utility_connections = $registration->utilityConnections->toArray();
@@ -156,7 +163,15 @@ class ApplicationForm extends Component
             }
 
             if($this->isYes('technical_education_question_id')){
-                //$this->is_technical_education = true;
+                $this->is_technical_education = true;
+            }else{
+                $this->technical_educations = [['certificate_title'=>null]];
+            }
+
+            if($this->isYes('utility_connection_question_id')){
+                $this->is_utility_connection = true;
+            }else{
+                $this->utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
             }
 
             if($this->isYes('skilled_worker_question_id')){
@@ -167,7 +182,9 @@ class ApplicationForm extends Component
                 $this->is_business_registered = true;
             }
 
-             $is_employee_info = false;
+            if($this->isYes('employees_question_id')){
+                $this->is_employee_info = true;
+            }
         }
 
 
@@ -210,9 +227,9 @@ class ApplicationForm extends Component
                 break;
             case 'technical_education_question_id':
                 if($this->questions->firstWhere('id', $value)->name=='Yes'){
-                    $this->technical_educations = [['certificate_title'=>null]];
+                    $this->is_technical_education = true;
                 }else{
-                    $this->technical_educations = [];
+                    $this->is_technical_education = false;
                 }
                 break;
                 case 'skilled_worker_question_id':
@@ -246,9 +263,9 @@ class ApplicationForm extends Component
                 break;
             case 'utility_connection_question_id':
                 if(isset($value) && !empty($value) && $this->questions->firstWhere('id', $value)->name=='Yes'){
-                    $this->utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
+                    $this->is_utility_connection = true;
                 }else{
-                    $this->utility_connections = [];
+                    $this->is_utility_connection = false;
                 }
                 break;
             case 'employees_question_id':
@@ -256,7 +273,6 @@ class ApplicationForm extends Component
                     $this->is_employee_info = true;
                 }else{
                     $this->is_employee_info = false;
-                    $this->employees = [];
                 }
                 break;
         }
@@ -340,6 +356,8 @@ class ApplicationForm extends Component
         if($this->isYes('skilled_worker_question_id')){
             $rules_applicant_profile['application.skill_or_art'] = 'required';
             $messages_applicant_profile['application.skill_or_art.required'] = 'Skill or Art is required';
+        }else{
+            $this->technical_educations = [];
         }
          //dd($rules_applicant_profile);
 
@@ -350,10 +368,11 @@ class ApplicationForm extends Component
         else
             $this->registration = Application::create($this->application);
 
-        if($this->registration->technicalEducations()->count())
+        if($this->registration->technicalEducations->isNotEmpty())
             $this->registration->technicalEducations()->delete();
         $educations = array();
         foreach ($this->technical_educations as $education){
+            if(isset($education['certificate_title']) && !empty($education['certificate_title']))
             array_push($educations,new ApplicationTechnicalEducation($education));
         }
         if(count($educations)>0)
@@ -489,16 +508,19 @@ class ApplicationForm extends Component
                 'utility_connections.*.utility_type_id.required' => 'Utility Type is required.',
                 'utility_connections.*.connection_ownership_id.required' => 'Provider is required.',
             ]);
+        }else{
+            $this->utility_connections = [];
         }
 
         $this->registration = tap($this->registration)->update($this->application);
 
 
-        if($this->registration->utilityConnections()->count())
+        if($this->registration->utilityConnections->isNotEmpty())
             $this->registration->utilityConnections()->delete();
         $connections = array();
         foreach ($this->utility_connections as $connection){
-            array_push($connections,new ApplicationUtilityConnection($connection));
+            if(isset($connection['utility_type_id']) && $connection['utility_type_id'])
+                array_push($connections,new ApplicationUtilityConnection($connection));
         }
         if(count($connections)>0)
             $this->registration->utilityConnections()->saveMany($connections);
@@ -537,19 +559,21 @@ class ApplicationForm extends Component
             if(!$total_employee_types)
             $rules_employees_info['employees.0.employee_type_id'] = 'required';
 
+        }else{
+            $this->utility_connections = [];
         }
 
         $this->validate($rules_employees_info,$messages_employees_info);
 
         $this->registration = tap($this->registration)->update($this->application);
 
-        if($this->registration->employeeInfos()->count())
+        if($this->registration->employeeInfos->isNotEmpty())
             $this->registration->employeeInfos()->delete();
 
         $employees = array();
         foreach ($this->employees as $employee){
             if(isset($employee['employee_type_id']) && $employee['employee_type_id'])
-            array_push($employees,new ApplicationUtilityConnection($employee));
+            array_push($employees,new ApplicationEmployeeInfo($employee));
         }
         if(count($employees)>0)
             $this->registration->employeeInfos()->saveMany($employees);
