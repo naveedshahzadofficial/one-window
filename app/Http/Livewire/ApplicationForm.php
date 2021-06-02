@@ -164,14 +164,10 @@ class ApplicationForm extends Component
 
             if($this->isYes('technical_education_question_id')){
                 $this->is_technical_education = true;
-            }else{
-                $this->technical_educations = [['certificate_title'=>null]];
             }
 
             if($this->isYes('utility_connection_question_id')){
                 $this->is_utility_connection = true;
-            }else{
-                $this->utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
             }
 
             if($this->isYes('skilled_worker_question_id')){
@@ -228,6 +224,8 @@ class ApplicationForm extends Component
             case 'technical_education_question_id':
                 if($this->questions->firstWhere('id', $value)->name=='Yes'){
                     $this->is_technical_education = true;
+                        if(empty($this->technical_educations))
+                        $this->technical_educations = [['certificate_title'=>null]];
                 }else{
                     $this->is_technical_education = false;
                 }
@@ -264,6 +262,8 @@ class ApplicationForm extends Component
             case 'utility_connection_question_id':
                 if(isset($value) && !empty($value) && $this->questions->firstWhere('id', $value)->name=='Yes'){
                     $this->is_utility_connection = true;
+                    if(empty($this->utility_connections))
+                        $this->utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
                 }else{
                     $this->is_utility_connection = false;
                 }
@@ -352,12 +352,13 @@ class ApplicationForm extends Component
         if($this->isYes('technical_education_question_id')){
             $rules_applicant_profile['technical_educations.*.certificate_title'] = 'required';
             $messages_applicant_profile['technical_educations.*.certificate_title.required'] = 'Diploma/ Certificate Title is required.';
+        }else{
+            $this->technical_educations = [];
         }
+
         if($this->isYes('skilled_worker_question_id')){
             $rules_applicant_profile['application.skill_or_art'] = 'required';
             $messages_applicant_profile['application.skill_or_art.required'] = 'Skill or Art is required';
-        }else{
-            $this->technical_educations = [];
         }
          //dd($rules_applicant_profile);
 
