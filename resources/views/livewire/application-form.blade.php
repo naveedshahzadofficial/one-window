@@ -279,7 +279,7 @@
                                 <div class="invalid-feedback d-block">{{ $errors->first("technical_educations.$index.certificate_title") }}</div>
                             @endif
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 mt-9">
                             @if($index>0)
                                 <span wire:click.prevent="removeTechnicalEducation({{ $index }})" wire:loading.attr="disabled"  class="btn btn-xs btn-icon btn-danger">
                             <i class="flaticon2-delete"></i>
@@ -949,7 +949,7 @@
                                     <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_provider_other") }}</div>
                                 @endif
                             </div>
-                            <div class="col-lg-6 pt-9">
+                            <div class="col-lg-6 mt-9">
                                 @if($index>0)
                                     <span wire:click.prevent="removeUtilityConnection({{ $index }})" wire:loading.attr="disabled"  class="btn btn-xs btn-icon btn-danger">
                             <i class="flaticon2-delete"></i>
