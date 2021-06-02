@@ -66,7 +66,7 @@
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                     {data: 'first_name', name: 'first_name', render:function(data,type,row,meta){
-                        return row.first_name+ ""+row.last_name;
+                        return row.first_name+ " "+row.last_name;
                     } },
                     {data: 'personal_email', name: 'personal_email'},
                     {data: 'personal_mobile_no', name: 'personal_mobile_no'},
