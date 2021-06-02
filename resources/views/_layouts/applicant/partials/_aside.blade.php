@@ -57,7 +57,7 @@
 
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-text">Registrations</span>
+										<span class="menu-text">My SMEs</span>
 									</a>
 								</li>
 							</ul>

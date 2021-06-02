@@ -1,12 +1,12 @@
 @extends('_layouts.applicant.app')
-@push('title','Registrations')
+@push('title','My SMEs')
 @section('content')
 
     <!--begin::Card-->
     <div class="card card-custom gutter-b">
         <div class="card-header flex-wrap py-3">
             <div class="card-title">
-                <h3 class="card-label">Registrations</h3>
+                <h3 class="card-label">My SMEs</h3>
             </div>
             <div class="card-toolbar">
                 <!--begin::Button-->
@@ -32,7 +32,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>DOB</th>
+                    <th>Business</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -65,10 +65,12 @@
                 },
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-                    {data: 'first_name', name: 'first_name'},
+                    {data: 'first_name', name: 'first_name', render:function(data,type,row,meta){
+                        return row.first_name+ ""+row.last_name;
+                    } },
                     {data: 'personal_email', name: 'personal_email'},
                     {data: 'personal_mobile_no', name: 'personal_mobile_no'},
-                    {data: 'date_of_birth', name: 'date_of_birth'},
+                    {data: 'business_name', name: 'business_name'},
                     {
                         data: 'action',
                         name: 'action',

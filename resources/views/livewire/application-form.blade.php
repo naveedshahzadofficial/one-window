@@ -49,28 +49,31 @@
 
                     <div class="form-group row">
                         <div class="col-lg-6">
-
-                            <div class="col-lg-4 float-left pl-0 ">
-                                <label>Prefix: *</label>
-                                <select wire:model.defer="application.prefix"  class="form-control @error('application.prefix') is-invalid @enderror">
-                                    <option value="">Select Prefix</option>
-                                    @foreach($prefixes as $prefix)
-                                        <option value="{{ $prefix }}">{{ $prefix }}</option>
-                                    @endforeach
-                                </select>
-                                @error('application.prefix')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
+                            <label>Prefix: <span class="text-danger">*</span></label>
+                            <div class="radio-inline">
+                                @foreach($prefixes as $prefix)
+                                    <label class="radio">
+                                        <input wire:model.defer="application.prefix" type="radio" name="prefix" value="{{ $prefix }}">
+                                        <span></span>{{ $prefix }}</label>
+                                @endforeach
                             </div>
-                            <div class="col-lg-8 float-right pl-0 pr-0">
-                            <label>First Name: *</label>
+                            @error('application.prefix')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>First Name: <span class="text-danger">*</span></label>
                             <input wire:model.defer="application.first_name" type="text" class="form-control @error('application.first_name') is-invalid @enderror" placeholder="First Name" />
                             @error('application.first_name')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
-                            </div>
                         </div>
 
+                    </div>
+
+
+                    <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Middle Name:</label>
                             <input wire:model.defer="application.middle_name" type="text" class="form-control @error('application.middle_name') is-invalid @enderror" placeholder="Middle Name" />
@@ -79,42 +82,51 @@
                             @enderror
                         </div>
 
-                    </div>
-
-
-                    <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Last Name: *</label>
+                            <label>Last Name: <span class="text-danger">*</span></label>
                             <input wire:model.defer="application.last_name" type="text" class="form-control @error('application.last_name') is-invalid @enderror" placeholder="Last Name" />
                             @error('application.last_name')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="col-lg-6">
-                                <label>Gender: *</label>
-                                <div class="radio-inline">
-                                    @foreach($genders as $gender)
-                                    <label class="radio">
-                                        <input wire:model.defer="application.gender" type="radio" name="gender" value="{{ $gender }}">
-                                        <span></span>{{ $gender }}</label>
-                                    @endforeach
-                                </div>
-                            @error('application.gender')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
+
                     </div>
 
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>CNIC No. *</label>
+                            <label>Gender: <span class="text-danger">*</span></label>
+                            <div class="radio-inline">
+                                @foreach($genders as $gender)
+                                    <label class="radio">
+                                        <input wire:model.defer="application.gender" type="radio" name="gender" value="{{ $gender }}">
+                                        <span></span>{{ $gender }}</label>
+                                @endforeach
+                            </div>
+                            @error('application.gender')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>Date of Birth: <span class="text-danger">*</span></label>
+                            <x-date-picker wire:model.defer="application.date_of_birth" />
+                            @error('application.date_of_birth')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-lg-6">
+                            <label>CNIC No. <span class="text-danger">*</span></label>
                             <x-cnic-mask wire:model.defer="application.cnic_no" />
                             @error('application.cnic_no')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-lg-6">
-                            <label>CNIC Issue Date: *</label>
+                            <label>CNIC Issue Date: <span class="text-danger">*</span></label>
                             <x-date-picker wire:model.defer="application.cnic_issue_date" />
                             @error('application.cnic_issue_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -125,7 +137,7 @@
 
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>CNIC Expiry Date: *</label>
+                            <label>CNIC Expiry Date: <span class="text-danger">*</span></label>
                             <x-date-picker wire:model.defer="application.cnic_expiry_date" />
                             @error('application.cnic_expiry_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -133,17 +145,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Date of Birth: *</label>
-                            <x-date-picker wire:model.defer="application.date_of_birth" />
-                            @error('application.date_of_birth')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-lg-6">
-                            <label>Designation in Business: *</label>
+                            <label>Designation in Business: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.designation_business_id"  class="form-control @error('application.designation_business_id') is-invalid @enderror">
                                 <option value="">Select Designation</option>
                                 @foreach($designations as $designation)
@@ -154,8 +156,13 @@
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
+
+                    </div>
+
+                    <div class="form-group row">
+
                         <div class="col-lg-6">
-                            <label>Do you have Minority Status? *</label>
+                            <label>Do you have Minority Status? <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($questions as $question)
                                     <label class="radio">
@@ -172,7 +179,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6 @if(!$is_minority_status) d-none @endif">
-                            <label>Minority Status: *</label>
+                            <label>Minority Status: <span class="text-danger">*</span></label>
                             <select wire:model="application.minority_status_id"  class="form-control @error('application.minority_status_id') is-invalid @enderror">
                                 <option value="">Select Status</option>
                                 @foreach($minority_status as $status)
@@ -185,7 +192,7 @@
                         </div>
 
                         <div class="col-lg-6 @if(!$is_minority_status || !$is_minority_status_other) d-none @endif">
-                            <label>Other: *</label>
+                            <label>Other: <span class="text-danger">*</span></label>
                             <input wire:model.defer="application.minority_status_other" type="text" class="form-control @error('application.minority_status_other') is-invalid @enderror" placeholder="Minority Status Other" />
                             @error('application.minority_status_other')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -197,7 +204,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>National Tax Number (Personal): *</label>
+                            <label>National Tax Number (Personal): <span class="text-danger">*</span></label>
                             <input wire:model.defer="application.ntn_personal" type="text" class="form-control @error('application.ntn_personal') is-invalid @enderror" placeholder="NTN (Personal)" />
                             @error('application.ntn_personal')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -211,7 +218,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Education Level: *</label>
+                            <label>Education Level: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.education_level_id"  class="form-control @error('application.education_level_id') is-invalid @enderror">
                                 <option value="">Select Status</option>
                                 @foreach($education_level as $level)
@@ -228,7 +235,7 @@
 
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Do you have any Technical Education? *</label>
+                            <label>Do you have any Technical Education? <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($questions as $question)
                                     <label class="radio">
@@ -242,7 +249,7 @@
                         </div>
 
                         <div class="col-lg-6 @if(!$is_technical_education) d-none @endif">
-                            <label>Diploma/ Certificate Title: *</label>
+                            <label>Diploma/ Certificate Title: <span class="text-danger">*</span></label>
                             <input wire:model.defer="application.certificate_title" type="text" class="form-control @error('application.certificate_title') is-invalid @enderror" placeholder="Diploma/ Certificate Title" />
                             @error('application.minority_status_other')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -252,7 +259,7 @@
 
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Are you a skilled worker or an artisan? *</label>
+                            <label>Are you a skilled worker or an artisan? <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($questions as $question)
                                     <label class="radio">
@@ -266,7 +273,7 @@
                         </div>
 
                         <div class="col-lg-6 @if(!$is_skilled_worker) d-none @endif">
-                            <label>Skill or Art: *</label>
+                            <label>Skill or Art: <span class="text-danger">*</span></label>
                             <input wire:model.defer="application.skill_or_art" type="text" class="form-control @error('application.skill_or_art') is-invalid @enderror" placeholder="Skill or Art" />
                             @error('application.skill_or_art')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -279,7 +286,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Type: *</label>
+                            <label>Type: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.residence_address_type_id"  class="form-control @error('application.residence_address_type_id') is-invalid @enderror">
                                 <option value="">Select Type</option>
                                 @foreach($address_types as $type)
@@ -292,7 +299,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Form: *</label>
+                            <label>Form: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.residence_address_form_id"  class="form-control @error('application.residence_address_form_id') is-invalid @enderror">
                                 <option value="">Select Form</option>
                                 @foreach($address_forms as $form)
@@ -308,7 +315,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Unit / Address 1: *</label>
+                            <label>Unit / Address 1: <span class="text-danger">*</span></label>
                             <input wire:model.defer="application.residence_address_1" type="text" class="form-control @error('application.residence_address_1') is-invalid @enderror" placeholder="Address 1" />
                             @error('application.residence_address_1')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -316,7 +323,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Complex / Street / Address 2: *</label>
+                            <label>Complex / Street / Address 2: <span class="text-danger">*</span></label>
                             <input wire:model.defer="application.residence_address_2" type="text" class="form-control @error('application.residence_address_2') is-invalid @enderror" placeholder="Address 2" />
                             @error('application.residence_address_2')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -329,7 +336,7 @@
 
 
                         <div class="col-lg-6">
-                            <label>Area/ Locality / Address 3: *</label>
+                            <label>Area/ Locality / Address 3: <span class="text-danger">*</span></label>
                             <input wire:model.defer="application.residence_address_3" type="text" class="form-control @error('application.residence_address_3') is-invalid @enderror" placeholder="Address 3" />
                             @error('application.residence_address_3')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -337,7 +344,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>City: *</label>
+                            <label>City: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.residence_city_id"  class="form-control @error('application.residence_city_id') is-invalid @enderror">
                                 <option value="">Select City</option>
                                 @foreach($cities as $city)
@@ -354,7 +361,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>District: *</label>
+                            <label>District: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.residence_district_id"  class="form-control @error('application.residence_district_id') is-invalid @enderror">
                                 <option value="">Select District</option>
                                 @foreach($districts as $district)
@@ -367,7 +374,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Capacity: *</label>
+                            <label>Capacity: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.residence_capacity_id"  class="form-control @error('application.residence_capacity_id') is-invalid @enderror">
                                 <option value="">Select Capacity</option>
                                 @foreach($address_capacities as $capacity)
@@ -383,7 +390,7 @@
 
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Share: *</label>
+                            <label>Share: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.residence_share_id"  class="form-control @error('application.residence_share_id') is-invalid @enderror">
                                 <option value="">Select Share</option>
                                 @foreach($address_shares as $share)
@@ -396,7 +403,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Acquisition Date: *</label>
+                            <label>Acquisition Date: <span class="text-danger">*</span></label>
                             <x-date-picker wire:model.defer="application.residence_acquisition_date" />
                             @error('application.residence_acquisition_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -408,7 +415,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Mobile No. *</label>
+                            <label>Mobile No. <span class="text-danger">*</span></label>
                             <input readonly wire:model.defer="application.personal_mobile_no" type="text" class="form-control @error('application.personal_mobile_no') is-invalid @enderror" placeholder="Mobile No." />
                             @error('application.personal_mobile_no')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -416,7 +423,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Email Address: *</label>
+                            <label>Email Address: <span class="text-danger">*</span></label>
                             <input readonly wire:model.defer="application.personal_email" type="text" class="form-control @error('application.personal_email') is-invalid @enderror" placeholder="Email Address" />
                             @error('application.personal_email')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -437,7 +444,7 @@
 
                     <div class="form-group row">
                         <div class="col-lg-6">
-                                <label>Business Name: *</label>
+                                <label>Business Name: <span class="text-danger">*</span></label>
                                 <input wire:model.defer="application.business_name" type="text" class="form-control @error('application.business_name') is-invalid @enderror" placeholder="Business Name" />
                                 @error('application.business_name')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -445,7 +452,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Acquisition/ Start Date: *</label>
+                            <label>Acquisition/ Start Date: <span class="text-danger">*</span></label>
                             <x-date-picker wire:model.defer="application.business_establishment_date" />
                             @error('application.business_establishment_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -456,7 +463,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Business Registration Status: *</label>
+                            <label>Business Registration Status: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_registration_status_id"  class="form-control @error('application.business_registration_status_id') is-invalid @enderror">
                                 <option value="">Select Status</option>
                                 @foreach($business_registration_status as $status)
@@ -469,7 +476,7 @@
                         </div>
 
                         <div class="col-lg-6 @if(!$is_business_registered) d-none @endif">
-                            <label>Legal Status of Business: *</label>
+                            <label>Legal Status of Business: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.business_legal_status_id"  class="form-control @error('application.business_legal_status_id') is-invalid @enderror">
                                 <option value="">Select Business</option>
                                 @foreach($business_legal_statuses as $status)
@@ -486,7 +493,7 @@
                     <div class="form-group row @if(!$is_business_registered) d-none @endif">
 
                         <div class="col-lg-6">
-                            <label>Business Registration Number: *</label>
+                            <label>Business Registration Number: <span class="text-danger">*</span></label>
                             <input wire:model.defer="application.business_registration_number" type="text" class="form-control @error('application.business_registration_number') is-invalid @enderror" placeholder="Registration Number" />
                             @error('application.business_registration_number')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -494,7 +501,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Business Registration Date: *</label>
+                            <label>Business Registration Date: <span class="text-danger">*</span></label>
                             <x-date-picker wire:model.defer="application.business_registration_date" />
                             @error('application.business_registration_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -505,7 +512,7 @@
 
                     <div class="form-group row  @if(!$is_business_registered) d-none @endif">
                         <div class="col-lg-6">
-                            <label>Business NTN: *</label>
+                            <label>Business NTN: <span class="text-danger">*</span></label>
                             <input wire:model.defer="application.business_ntn_no" type="text" class="form-control @error('application.business_ntn_no') is-invalid @enderror" placeholder="Business NTN" />
                             @error('application.business_ntn_no')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -516,7 +523,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Business Category: *</label>
+                            <label>Business Category: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_category_id"  class="form-control @error('application.business_category_id') is-invalid @enderror">
                                 <option value="">Select Category</option>
                                 @foreach($business_categories as $category)
@@ -529,7 +536,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Business Sector: *</label>
+                            <label>Business Sector: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_sector_id"  class="form-control @error('application.business_sector_id') is-invalid @enderror">
                                 <option value="">Select Sector</option>
                                 @foreach($business_secotors as $sector)
@@ -545,7 +552,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Business Sub Sector: *</label>
+                            <label>Business Sub Sector: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.business_sub_sector_id"  class="form-control @error('application.business_sub_sector_id') is-invalid @enderror">
                                 <option value="">Select Sector</option>
                                 @foreach($business_sub_secotors as $sub_sector)
@@ -563,7 +570,7 @@
                     <h4 class="mb-10 font-weight-bold text-dark">Relevant Attachments</h4>
                     <div class="form-group row">
                         <div x-data="{ open: false }" class="col-lg-6">
-                            <label>Upload Proof of Ownership: *</label>
+                            <label>Upload Proof of Ownership: <span class="text-danger">*</span></label>
 
                             @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
                             <a href="{{ asset('storage/'.$application['proof_of_ownership_file']) }}" target="_blank" class="file_viewer" title="Proof of Ownership">View File</a>
@@ -601,7 +608,7 @@
 
                     <div x-data="{ open: false }" class="form-group row  @if(!$is_business_registered) d-none @endif">
                         <div class="col-lg-6">
-                            <label>Upload Registration Certificate: *</label>
+                            <label>Upload Registration Certificate: <span class="text-danger">*</span></label>
 
                             @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
                                 <a href="{{ asset('storage/'.$application['registration_certificate_file']) }}" target="_blank" class="file_viewer" title="Registration Certificate">View File</a>
@@ -624,7 +631,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Type: *</label>
+                            <label>Type: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_address_type_id"  class="form-control @error('application.business_address_type_id') is-invalid @enderror">
                                 <option value="">Select Type</option>
                                 @foreach($address_types as $type)
@@ -637,7 +644,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Form: *</label>
+                            <label>Form: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_address_form_id"  class="form-control @error('application.business_address_form_id') is-invalid @enderror">
                                 <option value="">Select Form</option>
                                 @foreach($address_forms as $form)
@@ -653,7 +660,7 @@
 
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Unit / Address 1: *</label>
+                            <label>Unit / Address 1: <span class="text-danger">*</span></label>
                             <input wire:model="application.business_address_1" type="text" class="form-control @error('application.business_address_1') is-invalid @enderror" placeholder="Address 1" />
                             @error('application.business_address_1')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -661,7 +668,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Complex / Street / Address 2: *</label>
+                            <label>Complex / Street / Address 2: <span class="text-danger">*</span></label>
                             <input wire:model="application.business_address_2" type="text" class="form-control @error('application.business_address_2') is-invalid @enderror" placeholder="Address 2" />
                             @error('application.business_address_2')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -673,7 +680,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Area/ Locality / Address 3: *</label>
+                            <label>Area/ Locality / Address 3: <span class="text-danger">*</span></label>
                             <input wire:model="application.business_address_3" type="text" class="form-control @error('application.business_address_3') is-invalid @enderror" placeholder="Address 3" />
                             @error('application.business_address_3')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -681,7 +688,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Provinces: *</label>
+                            <label>Provinces: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_province_id"  class="form-control @error('application.business_province_id') is-invalid @enderror">
                                 <option value="">Select Province</option>
                                 @foreach($provinces as $province)
@@ -698,7 +705,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>City: *</label>
+                            <label>City: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_city_id"  class="form-control @error('application.business_city_id') is-invalid @enderror">
                                 <option value="">Select City</option>
                                 @foreach($business_cities as $city)
@@ -711,7 +718,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>District: *</label>
+                            <label>District: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_district_id"  class="form-control @error('application.business_district_id') is-invalid @enderror">
                                 <option value="">Select District</option>
                                 @foreach($business_districts as $district)
@@ -727,7 +734,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Tehsil: *</label>
+                            <label>Tehsil: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_tehsil_id"  class="form-control @error('application.business_tehsil_id') is-invalid @enderror">
                                 <option value="">Select Tehsil</option>
                                 @foreach($business_tehsils as $tehsil)
@@ -740,7 +747,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Capacity: *</label>
+                            <label>Capacity: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_capacity_id"  class="form-control @error('application.business_capacity_id') is-invalid @enderror">
                                 <option value="">Select Capacity</option>
                                 @foreach($address_capacities as $capacity)
@@ -758,7 +765,7 @@
                     <div class="form-group row">
 
                     <div class="col-lg-6">
-                        <label>Share: *</label>
+                        <label>Share: <span class="text-danger">*</span></label>
                         <select wire:model="application.business_share_id"  class="form-control @error('application.business_share_id') is-invalid @enderror">
                             <option value="">Select Share</option>
                             @foreach($address_shares as $share)
@@ -771,7 +778,7 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <label>Acquisition Date: *</label>
+                        <label>Acquisition Date: <span class="text-danger">*</span></label>
                         <x-date-picker wire:model="application.business_acquisition_date" />
                         @error('application.business_acquisition_date')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -783,7 +790,7 @@
 
                     <div class="form-group row">
                         <div x-data="{ open: false }" class="col-lg-6">
-                            <label>Evidence of tenancy/ ownership of business premises: *</label>
+                            <label>Evidence of tenancy/ ownership of business premises: <span class="text-danger">*</span></label>
 
                             @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
                                 <a href="{{ asset('storage/'.$application['business_evidence_ownership_file']) }}" target="_blank" class="file_viewer" title="Evidence of tenancy/ ownership">View File</a>
@@ -801,7 +808,7 @@
 
 
                     <div class="col-lg-6">
-                        <label>Business Contact No. *</label>
+                        <label>Business Contact No. <span class="text-danger">*</span></label>
                         <input wire:model="application.business_contact_number" type="text" class="form-control @error('application.business_contact_number') is-invalid @enderror" placeholder="Contact No." />
                         @error('application.business_contact_number')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -812,7 +819,7 @@
                     <div class="form-group row">
 
                     <div class="col-lg-6">
-                        <label>Business Email Address: *</label>
+                        <label>Business Email Address: <span class="text-danger">*</span></label>
                         <input wire:model="application.business_email" type="email" class="form-control @error('application.business_email') is-invalid @enderror" placeholder="Email Address" />
                         @error('application.business_email')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -824,7 +831,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Do you have utility connections? *</label>
+                            <label>Do you have utility connections? <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($questions as $question)
                                     <label class="radio">
@@ -844,7 +851,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Connection Ownership: *</label>
+                            <label>Connection Ownership: <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($ownerships as $ownership)
                                     <label class="radio">
@@ -858,7 +865,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Utility Type: *</label>
+                            <label>Utility Type: <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($utility_types as $type)
                                     <label class="radio">
@@ -875,7 +882,7 @@
                         <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Reference/ Consumer Number: *</label>
+                            <label>Reference/ Consumer Number: <span class="text-danger">*</span></label>
                             <input wire:model.defer="utility_connections.{{$index}}.utility_consumer_number" type="text" class="form-control @if($errors->has("utility_connections.$index.utility_consumer_number")) is-invalid @endif" placeholder="Consumer Number" />
                             @if($errors->has("utility_connections.$index.utility_consumer_number"))
                                 <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_consumer_number") }}</div>
@@ -883,7 +890,7 @@
                         </div>
 
                          <div class="col-lg-6">
-                                <label>Form/Type of Connection: *</label>
+                                <label>Form/Type of Connection: <span class="text-danger">*</span></label>
                                 <div class="radio-inline">
                                     @foreach($address_forms as $form)
                                         <label class="radio">
@@ -900,7 +907,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Provider: *</label>
+                            <label>Provider: <span class="text-danger">*</span></label>
                             <input wire:model.defer="utility_connections.{{$index}}.utility_provider_other" type="text" class="form-control @if($errors->has("utility_connections.$index.utility_provider_other")) is-invalid @endif" placeholder="Provider" />
                             @if($errors->has("utility_connections.$index.utility_provider_other"))
                             <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_provider_other") }}</div>
@@ -928,7 +935,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Do you have employees? *</label>
+                            <label>Do you have employees? <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($questions as $question)
                                     <label class="radio">
@@ -976,7 +983,7 @@
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">First Name: *</span>
+                            <span class="font-weight-bolder mb-2">First Name: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['prefix'])?$application['prefix']:'' }}&nbsp;{{ isset($application['first_name'])?$application['first_name']:'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
@@ -987,63 +994,63 @@
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Last Name: *</span>
+                            <span class="font-weight-bolder mb-2">Last Name: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['last_name'])?$application['last_name']:'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Gender: *</span>
+                            <span class="font-weight-bolder mb-2">Gender: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['gender'])?$application['gender']:'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">CNIC No. *</span>
+                            <span class="font-weight-bolder mb-2">CNIC No. <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['cnic_no'])?$application['cnic_no']:'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">CNIC Issue Date: *</span>
+                            <span class="font-weight-bolder mb-2">CNIC Issue Date: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['cnic_issue_date'])?$application['cnic_issue_date']:'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">CNIC Expiry Date: *</span>
+                            <span class="font-weight-bolder mb-2">CNIC Expiry Date: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['cnic_expiry_date'])?$application['cnic_expiry_date']:'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Date of Birth: *</span>
+                            <span class="font-weight-bolder mb-2">Date of Birth: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['date_of_birth'])?$application['date_of_birth']:'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Designation in Business: *</span>
+                            <span class="font-weight-bolder mb-2">Designation in Business: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['designation_business_id'])?getCollectionTitle($designations,'name',$application['designation_business_id']):'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Do you have Minority Status? *</span>
+                            <span class="font-weight-bolder mb-2">Do you have Minority Status? <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['minority_status_question_id'])?getCollectionTitle($questions,'name',$application['minority_status_question_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root @if(!$is_minority_status) d-none @endif">
-                            <span class="font-weight-bolder mb-2">Minority Status: *</span>
+                            <span class="font-weight-bolder mb-2">Minority Status: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['minority_status_id'])?getCollectionTitle($minority_status,'name',$application['minority_status_id']):'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root  @if(!$is_minority_status_other) d-none @endif ">
-                            <span class="font-weight-bolder mb-2">Other: *</span>
+                            <span class="font-weight-bolder mb-2">Other: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['minority_status_other'])?$application['minority_status_other']:'' }}</span>
                         </div>
 
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">National Tax Number (Personal): *</span>
+                            <span class="font-weight-bolder mb-2">National Tax Number (Personal): <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['ntn_personal'])?$application['ntn_personal']:'' }}</span>
                         </div>
 
@@ -1053,29 +1060,29 @@
                     <div class="separator separator-dashed my-5"></div>
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Education Level: *</span>
+                            <span class="font-weight-bolder mb-2">Education Level: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['education_level_id'])?getCollectionTitle($education_level,'name',$application['education_level_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Do you have any Technical Education? *</span>
+                            <span class="font-weight-bolder mb-2">Do you have any Technical Education? <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['technical_education_question_id'])?getCollectionTitle($questions,'name',$application['technical_education_question_id']):'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5 @if(!$is_technical_education) d-none @endif">
                     <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Diploma/ Certificate Title: *</span>
+                            <span class="font-weight-bolder mb-2">Diploma/ Certificate Title: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['certificate_title'])?$application['certificate_title']:'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Are you a skilled worker or an artisan? *</span>
+                            <span class="font-weight-bolder mb-2">Are you a skilled worker or an artisan? <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['skilled_worker_question_id'])?getCollectionTitle($questions,'name',$application['skilled_worker_question_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root  @if(!$is_skilled_worker) d-none @endif">
-                            <span class="font-weight-bolder mb-2">Skill or Art: *</span>
+                            <span class="font-weight-bolder mb-2">Skill or Art: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['skill_or_art'])?$application['skill_or_art']:'' }}</span>
                         </div>
                     </div>
@@ -1084,63 +1091,63 @@
                     <div class="separator separator-dashed my-5"></div>
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Type: *</span>
+                            <span class="font-weight-bolder mb-2">Type: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['residence_address_type_id'])?getCollectionTitle($address_types,'type_name',$application['residence_address_type_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Form: *</span>
+                            <span class="font-weight-bolder mb-2">Form: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['residence_address_form_id'])?getCollectionTitle($address_forms,'form_name',$application['residence_address_form_id']):'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Unit / Address 1: *</span>
+                            <span class="font-weight-bolder mb-2">Unit / Address 1: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['residence_address_1'])?$application['residence_address_1']:'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Complex / Street / Address 2: *</span>
+                            <span class="font-weight-bolder mb-2">Complex / Street / Address 2: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['residence_address_2'])?$application['residence_address_2']:'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Area/ Locality / Address 3: *</span>
+                            <span class="font-weight-bolder mb-2">Area/ Locality / Address 3: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['residence_address_3'])?$application['residence_address_3']:'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">City: *</span>
+                            <span class="font-weight-bolder mb-2">City: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['residence_city_id'])?getCollectionTitle($cities,'city_name_e',$application['residence_city_id']):'' }}</span>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">District: *</span>
+                            <span class="font-weight-bolder mb-2">District: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['residence_district_id'])?getCollectionTitle($districts,'district_name_e',$application['residence_district_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Capacity: *</span>
+                            <span class="font-weight-bolder mb-2">Capacity: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['residence_capacity_id'])?getCollectionTitle($address_capacities,'capacity_name',$application['residence_capacity_id']):'' }}</span>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Share: *</span>
+                            <span class="font-weight-bolder mb-2">Share: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['residence_share_id'])?getCollectionTitle($address_shares,'share_name',$application['residence_share_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Acquisition Date: *</span>
+                            <span class="font-weight-bolder mb-2">Acquisition Date: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['residence_acquisition_date'])?$application['residence_acquisition_date']:'' }}</span>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Mobile No. *</span>
+                            <span class="font-weight-bolder mb-2">Mobile No. <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['personal_mobile_no'])?$application['personal_mobile_no']:'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Email Address: *</span>
+                            <span class="font-weight-bolder mb-2">Email Address: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['personal_email'])?$application['personal_email']:'' }}</span>
                         </div>
                     </div>
@@ -1150,11 +1157,11 @@
                     <div class="separator separator-dashed my-5"></div>
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Business Name: *</span>
+                            <span class="font-weight-bolder mb-2">Business Name: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_name'])?$application['business_name']:'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Business Acquisition/ Start/ Establishment/ Formation Date: *</span>
+                            <span class="font-weight-bolder mb-2">Business Acquisition/ Start/ Establishment/ Formation Date: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_establishment_date'])?$application['business_establishment_date']:'' }}</span>
                         </div>
 
@@ -1162,18 +1169,18 @@
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Business Registration Status: *</span>
+                            <span class="font-weight-bolder mb-2">Business Registration Status: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_registration_status_id'])?getCollectionTitle($business_registration_status,'name',$application['business_registration_status_id']):'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5 @if(!$is_business_registered) d-none @endif">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Legal Status of Business: *</span>
+                            <span class="font-weight-bolder mb-2">Legal Status of Business: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_legal_status_id'])?getCollectionTitle($business_legal_statuses,'legal_name',$application['business_legal_status_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Business Registration Number: *</span>
+                            <span class="font-weight-bolder mb-2">Business Registration Number: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_registration_number'])?$application['business_registration_number']:'' }}</span>
                         </div>
 
@@ -1181,30 +1188,30 @@
 
                     <div class="d-flex justify-content-between pt-5 @if(!$is_business_registered) d-none @endif">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Business Registration Date: *</span>
+                            <span class="font-weight-bolder mb-2">Business Registration Date: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_registration_date'])?$application['business_registration_date']:'' }}</span>
                         </div>
 
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Business NTN: *</span>
+                            <span class="font-weight-bolder mb-2">Business NTN: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_ntn_no'])?$application['business_ntn_no']:'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Business Category: *</span>
+                            <span class="font-weight-bolder mb-2">Business Category: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_category_id'])?getCollectionTitle($business_categories,'category_name',$application['business_category_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Business Sector: *</span>
+                            <span class="font-weight-bolder mb-2">Business Sector: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_sector_id'])?getCollectionTitle($business_secotors,'sector_name_e',$application['business_sector_id']):'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Business Sub Sector: *</span>
+                            <span class="font-weight-bolder mb-2">Business Sub Sector: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_sub_sector_id'])?getCollectionTitle($business_sub_secotors,'sub_sector_name_e',$application['business_sub_sector_id']):'' }}</span>
                         </div>
                     </div>
@@ -1215,7 +1222,7 @@
                     <div class="d-flex justify-content-between pt-5">
                         @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Upload Proof of Ownership: *</span>
+                            <span class="font-weight-bolder mb-2">Upload Proof of Ownership: <span class="text-danger">*</span></span>
                             <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
                             </span>
@@ -1236,7 +1243,7 @@
                     <div class="d-flex justify-content-between pt-5 @if(!$is_business_registered) d-none @endif ">
                         @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Upload Registration Certificate: *</span>
+                                <span class="font-weight-bolder mb-2">Upload Registration Certificate: <span class="text-danger">*</span></span>
                                 <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
                             </span>
@@ -1247,66 +1254,66 @@
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Type: *</span>
+                            <span class="font-weight-bolder mb-2">Type: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_address_type_id'])?getCollectionTitle($address_types,'type_name',$application['business_address_type_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Form: *</span>
+                            <span class="font-weight-bolder mb-2">Form: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_address_form_id'])?getCollectionTitle($address_forms,'form_name',$application['business_address_form_id']):'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Unit / Address 1: *</span>
+                            <span class="font-weight-bolder mb-2">Unit / Address 1: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_address_1'])?$application['business_address_1']:'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Complex / Street / Address 2: *</span>
+                            <span class="font-weight-bolder mb-2">Complex / Street / Address 2: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_address_2'])?$application['business_address_2']:'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Area/ Locality / Address 3: *</span>
+                            <span class="font-weight-bolder mb-2">Area/ Locality / Address 3: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_address_3'])?$application['business_address_3']:'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Provinces: *</span>
+                            <span class="font-weight-bolder mb-2">Provinces: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_province_id'])?getCollectionTitle($provinces,'province_name',$application['business_province_id']):'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">City: *</span>
+                            <span class="font-weight-bolder mb-2">City: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_city_id'])?getCollectionTitle($business_cities,'city_name_e',$application['business_city_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">District: *</span>
+                            <span class="font-weight-bolder mb-2">District: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_district_id'])?getCollectionTitle($business_districts,'district_name_e',$application['business_district_id']):'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Tehsil: *</span>
+                            <span class="font-weight-bolder mb-2">Tehsil: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_tehsil_id'])?getCollectionTitle($business_tehsils,'tehsil_name_e',$application['business_tehsil_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Capacity: *</span>
+                            <span class="font-weight-bolder mb-2">Capacity: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_capacity_id'])?getCollectionTitle($address_capacities,'capacity_name',$application['business_capacity_id']):'' }}</span>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Share: *</span>
+                            <span class="font-weight-bolder mb-2">Share: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_share_id'])?getCollectionTitle($address_shares,'share_name',$application['business_share_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Acquisition Date: *</span>
+                            <span class="font-weight-bolder mb-2">Acquisition Date: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_acquisition_date'])?$application['business_acquisition_date']:'' }}</span>
                         </div>
                     </div>
@@ -1314,21 +1321,21 @@
                     <div class="d-flex justify-content-between pt-5">
                         @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Evidence of tenancy/ ownership of business premises: *</span>
+                                <span class="font-weight-bolder mb-2">Evidence of tenancy/ ownership of business premises: <span class="text-danger">*</span></span>
                                 <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}" target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
                             </span>
                             </div>
                         @endif
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business Contact No. *</span>
+                                <span class="font-weight-bolder mb-2">Business Contact No. <span class="text-danger">*</span></span>
                                 <span class="opacity-70">{{ isset($application['business_contact_number'])?$application['business_contact_number']:'' }}</span>
                             </div>
                     </div>
 
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Business Email Address: *</span>
+                            <span class="font-weight-bolder mb-2">Business Email Address: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_email'])?$application['business_email']:'' }}</span>
                         </div>
                     </div>
@@ -1337,7 +1344,7 @@
                     <div class="separator separator-dashed my-5"></div>
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Do you have utility connections? *</span>
+                            <span class="font-weight-bolder mb-2">Do you have utility connections? <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['utility_connection_question_id'])?getCollectionTitle($questions,'name',$application['utility_connection_question_id']):'' }}</span>
                         </div>
                     </div>
@@ -1345,28 +1352,28 @@
                 @foreach($utility_connections as $index=>$connection)
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Connection Ownership: *</span>
+                                <span class="font-weight-bolder mb-2">Connection Ownership: <span class="text-danger">*</span></span>
                                 <span class="opacity-70">{{ isset($connection['connection_ownership_id'])?getCollectionTitle($ownerships,'ownership_name',$connection['connection_ownership_id']):'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Utility Type: *</span>
+                                <span class="font-weight-bolder mb-2">Utility Type: <span class="text-danger">*</span></span>
                                 <span class="opacity-70">{{ isset($connection['utility_type_id'])?getCollectionTitle($utility_types,'type_name',$connection['utility_type_id']):'' }}</span>
                             </div>
                         </div>
 
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Reference/ Consumer Number: *</span>
+                                <span class="font-weight-bolder mb-2">Reference/ Consumer Number: <span class="text-danger">*</span></span>
                                 <span class="opacity-70">{{ isset($connection['utility_consumer_number'])?$connection['utility_consumer_number']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Form/Type of Connection: *</span>
+                                <span class="font-weight-bolder mb-2">Form/Type of Connection: <span class="text-danger">*</span></span>
                                 <span class="opacity-70">{{ isset($connection['utility_form_id'])?getCollectionTitle($address_forms,'form_name',$connection['utility_form_id']):'' }}</span>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Provider: *</span>
+                                <span class="font-weight-bolder mb-2">Provider: <span class="text-danger">*</span></span>
                                 <span class="opacity-70">{{ isset($connection['utility_provider_other'])?$connection['utility_provider_other']:'' }}</span>
                             </div>
                         </div>
@@ -1376,7 +1383,7 @@
                     <div class="separator separator-dashed my-5"></div>
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Do you have employees? *</span>
+                            <span class="font-weight-bolder mb-2">Do you have employees? <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['employees_question_id'])?getCollectionTitle($questions,'name',$application['employees_question_id']):'' }}</span>
                         </div>
                     </div>

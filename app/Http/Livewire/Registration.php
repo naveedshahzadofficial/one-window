@@ -10,7 +10,6 @@ use App\Models\User;
 use App\Models\TelecomCompany;
 use Illuminate\Support\Facades\Request;
 use Livewire\Component;
-use Manny;
 
 class Registration extends Component
 {
@@ -20,7 +19,8 @@ class Registration extends Component
     public $user;
     public $box_verification = false;
     public $btn_get_code = true;
-    public $otp_code;
+    public $mobile_otp_code;
+    public $email_otp_code;
     public $mobile_number;
     public $verified_at = null;
     public $fail_verified = false;
@@ -76,12 +76,6 @@ class Registration extends Component
             case 'telecom_company_id':
                 $this->mobile_codes = MobileCode::where('telecom_company_id',$value)->where('code_status',1)->get();
                 break;
-            case 'cnic_no':
-                $this->user['cnic_no'] = Manny::mask($this->user['cnic_no'], "11111-1111111-1");
-                break;
-            case 'mobile_no':
-                $this->user['mobile_no'] = Manny::mask($this->user['mobile_no'], "1111111");
-                break;
         }
     }
 
@@ -93,6 +87,8 @@ class Registration extends Component
     public function sendVerificationCode()
     {
         $this->validate([
+            'user.telecom_company_id' => 'required',
+            'user.mobile_code_id' => 'required',
             'user.mobile_no' => 'required|unique:users,mobile_no',
             'user.email' => 'required|string|email|unique:users,email',
         ]);
@@ -102,28 +98,33 @@ class Registration extends Component
         $mobile_code = $this->mobile_codes->firstWhere('id', $this->user['mobile_code_id']);
         $this->mobile_number = $mobile_code->code_number.$this->user['mobile_no'];
 
+        $mobile_otp = mt_rand(100000, 999999);
+        $email_otp = mt_rand(100000, 999999);
+
         $data = new \stdClass;
         $data->name = isset($this->user['first_name'])?$this->user['first_name']:'Applicant';
-        $data->otp_code = mt_rand(100000, 999999);
-        $message_sms = "Your OTP is " . $data->otp_code . ". Use this OTP for verification on";
+        $data->otp_code = $email_otp;
+        $message_sms = "Your OTP is " . $mobile_otp . ". Use this OTP for verification on";
         $message_sms .= " SMERP. Do not give this OTP to anyone.";
 
         OtpCode::create([
             'otp_type'=>'Registration',
             'email'=> $this->user['email'],
             'mobile_no'=> $this->mobile_number,
-            'otp_code'=> $data->otp_code,
+            'mobile_otp_code'=> $mobile_otp,
+            'email_otp_code'=> $email_otp,
             'ip_address'=> Request::ip(),
         ]);
 
-        SendSmsJob::dispatch($this->mobile_number, $message_sms);
-        SendEmailJob::dispatch($this->user['email'],$data,'Registration');
+        //SendSmsJob::dispatch($this->mobile_number, $message_sms);
+        //SendEmailJob::dispatch($this->user['email'],$data,'Registration');
 
     }
 
     public function verificationCode()
     {
-       $otp = OtpCode::where('otp_code',$this->otp_code)
+       $otp = OtpCode::where('mobile_otp_code',$this->mobile_otp_code)
+                ->where('email_otp_code',$this->email_otp_code)
                 ->where('is_used',false)
                 ->where('mobile_no',$this->mobile_number)
                 ->first();

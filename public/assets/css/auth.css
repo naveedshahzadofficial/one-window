@@ -25,6 +25,9 @@
 .auth-right-bg{
     background-color: #30807d;
 }
+.login.login-6 .login-divider > div{
+    width: 0 !important;
+}
 .auth-logo-caption{
     text-align: center;
     color: #fff;
@@ -40,9 +43,6 @@
     margin-bottom: 18px;
 }
 
-.kt_auth_form{
-    width: 300px !important;
-}
 .auth-text {
     font-size: 14px;
     color: #fff;

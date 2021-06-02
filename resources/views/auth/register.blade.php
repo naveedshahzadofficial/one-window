@@ -1,10 +1,16 @@
 @extends('_layouts.applicant.blank')
 @push('title','Registration')
 @section('content')
-    <div class="login login-4 wizard d-flex flex-column flex-lg-row flex-column-fluid">
-        @component('auth.aside-auth') @endcomponent
-        <div class="d-flex flex-center flex-row-fluid auth-right-bg">
-            <div class="d-flex flex-column flex-center pt-lg-0">
+    <!--begin::Login-->
+    <div class="login login-6 login-signin-on login-signin-on d-flex flex-row-fluid" id="kt_login">
+        <div class="d-flex flex-column flex-lg-row flex-row-fluid text-center">
+            @component('auth.aside-auth') @endcomponent
+            <!--begin:Content-->
+                <div class="d-flex w-100 flex-center p-15 position-relative overflow-hidden auth-right-bg">
+                    <div class="login-wrapper">
+                        <!--begin:Sign In Form-->
+                        <div class="login-signin">
+
                 <div class="auth-smeda-logo pt-8">
                     <img src="{{ asset('assets/img/smeda-logo.png') }}" alt="Smeda Logo">
                 </div>
@@ -14,21 +20,36 @@
                 <div class="auth-form pt-5">
                     @component('_components.alerts-default')@endcomponent
 
-                @livewire('registration')
+                    @livewire('registration')
 
                 </div>
 
-                <div class="auth-new-register  pt-15">
-                    <div class="float-right">
-                        <a href="{{ route('login') }}" class="register_button btn btn-white btn-block">Login <i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
+                            <div class="row pt-15">
+                                <div class="col-md-8">&nbsp;</div>
+                                <div class="col-md-4">
+                                    <a href="{{ route('login') }}" class="register_button btn btn-white btn-block">Login <i class="fa fa-arrow-right"></i></a>
+                                </div>
+                            </div>
 
-                <div class="auth-right-footer  pt-30">
-                    &copy Small And Medium Enterprises Development Authority
-                </div>
-
+                        </div>
             </div>
+        </div>
+
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <div class="d-flex flex-column flex-root" style="background-color: #7D7D7D;">
+            <div class="auth-left-footer">
+                &copy Small and Medium Enterprises Development Authority, Government of Pakistan
+            </div>
+
+        </div>
+        <div class="d-flex flex-column flex-root" style="background-color: #30807d;">
+            <div class="auth-right-footer">
+                Powered by Punjab Information Technology Board
+            </div>
+
         </div>
     </div>
 
@@ -36,6 +57,7 @@
 
 
 @push('pre-styles')
+    <link href="{{ asset('assets/css/pages/login/classic/login-6.css') }}" rel="stylesheet" type="text/css" />
     <!--begin::Page Custom Styles(used by this page)-->
     <link href="{{ asset('assets/css/auth.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Page Custom Styles-->

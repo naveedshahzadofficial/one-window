@@ -12,6 +12,8 @@
       <change afterPath="$PROJECT_DIR$/../livewirekit/shopping-cart/.idea/shopping-cart.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../livewirekit/star-rating/.idea/star-rating.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../livewirekit_bk/.idea/livewirekit.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/View/Components/input-mask.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/components/input-mask.blade.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/blade.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/laravel-idea.xml" afterDir="false" />
@@ -267,12 +269,22 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/ApplicationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Applicant/ApplicationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Application.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/BusinessSector.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/BusinessSector.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/application/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/OtpCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/OtpCode.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_26_063855_create_otp_codes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_26_063855_create_otp_codes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/auth.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/auth.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_aside.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_aside.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/application/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/aside-auth.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/aside-auth.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/confirm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/confirm.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/registration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/registration.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -528,7 +540,8 @@
       <workItem from="1621923396135" duration="24147000" />
       <workItem from="1622007647875" duration="30855000" />
       <workItem from="1622087938731" duration="85596000" />
-      <workItem from="1622442953809" duration="65786000" />
+      <workItem from="1622442953809" duration="66155000" />
+      <workItem from="1622611322300" duration="15490000" />
     </task>
     <servers />
   </component>
