@@ -110,7 +110,7 @@
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Diploma/ Certificate Title: *</span>
-                            <span class="opacity-70">{{ isset($education['certificate_title'])?$connection['certificate_title']:'' }}</span>
+                            <span class="opacity-70">{{ isset($education['certificate_title'])?$education['certificate_title']:'' }}</span>
                         </div>
                     </div>
                 @endforeach
