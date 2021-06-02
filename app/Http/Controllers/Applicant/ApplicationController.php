@@ -70,7 +70,7 @@ class ApplicationController extends Controller
        'businessSubSector', 'businessAddressType', 'businessAddressForm', 'businessProvince',
        'businessCity', 'businessDistrict', 'businessTehsil', 'businessCapacity',
            'utilityConnectionQuestion', 'utilityConnections.connectionOwnership','utilityConnections.utilityType','utilityConnections.utilityForm',
-           'employeesQuestion')
+           'employeesQuestion','employeeInfos')
            ->where('user_id', auth()->id())->find($id);
         if(!$application){
             session()->flash('error_message', 'No Record found.');
@@ -87,7 +87,7 @@ class ApplicationController extends Controller
      */
     public function edit($id)
     {
-        $application =  Application::with('utilityConnections','technicalEducations')->where('user_id', auth()->id())->find($id);
+        $application =  Application::with('utilityConnections','technicalEducations','employeeInfos')->where('user_id', auth()->id())->find($id);
         if(!$application){
             session()->flash('error_message', 'No Record found.');
             return redirect(route('applicant.applications.index'));

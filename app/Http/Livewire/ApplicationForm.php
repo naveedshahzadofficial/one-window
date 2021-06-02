@@ -94,7 +94,7 @@ class ApplicationForm extends Component
     {
         $this->registration = null;
 
-        $this->step = 1;
+        $this->step = 0;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
 
@@ -140,6 +140,7 @@ class ApplicationForm extends Component
             $this->application = $registration->toArray();
             $this->utility_connections = $registration->utilityConnections->toArray();
             $this->technical_educations = $registration->technicalEducations->toArray();
+            $this->employees = $registration->employeeInfos->toArray();
             $this->registration = $registration;
             $this->business_secotors = BusinessSector::where('business_category_id', $registration->business_category_id)->where('sector_status',1)->get();
             $this->business_sub_secotors = BusinessSubSector::where('business_sector_id', $registration->business_sector_id)->where('sub_sector_status',1)->get();
@@ -544,10 +545,11 @@ class ApplicationForm extends Component
 
         $employees = array();
         foreach ($this->employees as $employee){
+            if(isset($employee['employee_type_id']) && $employee['employee_type_id'])
             array_push($employees,new ApplicationUtilityConnection($employee));
         }
         if(count($employees)>0)
-            $this->registration->employeeInfos()->saveMany($employee);
+            $this->registration->employeeInfos()->saveMany($employees);
 
 
         $this->step++;

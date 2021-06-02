@@ -988,18 +988,18 @@
                     @if($errors->has("employees.0.employee_type_id"))
                         <div class="alert alert-danger">At least one employee type is required</div>
                     @endif
-                    @foreach($employees as $index => $employee_type)
-                        <div x-data="{ isEmployee : false }" class="employee_info_div @if(!$is_employee_info) d-none @endif">
+                    @foreach($employee_types as $index => $employee_type)
+                        <div  class="employee_info_div @if(!$is_employee_info) d-none @endif">
 
                         <div class="form-group row">
                             <div class="col-lg-12">
                             <label class="checkbox checkbox-success">
-                            <input @click="isEmployee = !isEmployee" wire:model.defer="employees.{{$index}}.employee_type_id"  type="checkbox" name="{{ $employee_type->type_name }}" value="{{ $employee_type->id }}">
+                            <input  wire:model="employees.{{$index}}.employee_type_id"  type="checkbox" name="{{ $employee_type->type_name }}" value="{{ $employee_type->id }}">
                             <span></span>&nbsp;{{  $employee_type->type_name }}</label>
                             </div>
                         </div>
 
-                         <div class="form-group row" x-show="isEmployee">
+                         <div class="form-group row @if(isset($employees[$index]['employee_type_id']) && $employees[$index]['employee_type_id']!=false) d-box @else d-none @endif">
                                 @foreach($genders as $gender)
                                     <div class="col-lg-4">
                                         <label>{{ $gender }} </label>
