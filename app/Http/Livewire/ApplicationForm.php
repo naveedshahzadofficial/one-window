@@ -491,6 +491,7 @@ class ApplicationForm extends Component
             ]);
         }
 
+        $this->registration = tap($this->registration)->update($this->application);
 
 
         if($this->registration->utilityConnections()->count())
@@ -539,6 +540,8 @@ class ApplicationForm extends Component
         }
 
         $this->validate($rules_employees_info,$messages_employees_info);
+
+        $this->registration = tap($this->registration)->update($this->application);
 
         if($this->registration->employeeInfos()->count())
             $this->registration->employeeInfos()->delete();

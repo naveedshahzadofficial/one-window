@@ -70,13 +70,14 @@ class ApplicationController extends Controller
        'businessSubSector', 'businessAddressType', 'businessAddressForm', 'businessProvince',
        'businessCity', 'businessDistrict', 'businessTehsil', 'businessCapacity',
            'utilityConnectionQuestion', 'utilityConnections.connectionOwnership','utilityConnections.utilityType','utilityConnections.utilityForm',
-           'employeesQuestion','employeeInfos')
+           'employeesQuestion','employeeInfos.employeeType')
            ->where('user_id', auth()->id())->find($id);
         if(!$application){
             session()->flash('error_message', 'No Record found.');
             return redirect(route('applicant.applications.index'));
         }
-       return view('applicant.application.show',compact('application'));
+        $genders = ['Male', 'Female', 'Transgender'];
+       return view('applicant.application.show',compact('application','genders'));
     }
 
     /**

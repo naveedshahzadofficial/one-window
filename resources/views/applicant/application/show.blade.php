@@ -416,6 +416,20 @@
                 </div>
             </div>
 
+            @if(isset($application->employeeInfos) && $application->employeeInfos->isNotEmpty())
+            @foreach($application->employeeInfos as $employee)
+                    <h6 class="mb-4 mt-5 font-weight-bold text-dark">{{ isset($employee->employeeType->type_name)?$employee->employeeType->type_name:'' }}</h6>
+                    <div class="d-flex justify-content-between pt-5">
+                        @foreach($genders as $gender)
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">{{ $gender }}</span>
+                                <span class="opacity-70">{{ isset($employee[strtolower($gender)])?$employee[strtolower($gender)]:'' }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach
+            @endif
+
             {{--Employee Info Here--}}
 
 
