@@ -6,16 +6,15 @@
     <div class="card card-custom gutter-b">
         <div class="card-header flex-wrap py-3">
             <div class="card-title">
-                <h3 class="card-label">SMEs</h3>
+                <h3 class="card-label">My SMEs</h3>
             </div>
         </div>
         <div class="card-body">
+            <h4 class="main_section_heading">APPLICANT PROFILE</h4>
+            <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
+            <div class="section_box">
 
-            <h4 class="mb-10 font-weight-bold text-dark">Applicant Profile</h4>
-            <h6 class="mb-0 font-weight-bold text-dark">Basic Info</h6>
-            <div class="separator separator-dashed my-5"></div>
-
-            <div class="d-flex justify-content-between pt-5">
+            <div class="d-flex justify-content-between">
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">First Name: *</span>
                     <span class="opacity-70">{{ isset($application['prefix'])?$application['prefix']:'' }}&nbsp;{{ isset($application['first_name'])?$application['first_name']:'' }}</span>
@@ -79,7 +78,7 @@
 
             <div class="d-flex justify-content-between pt-5">
 
-                <div class="d-flex flex-column flex-root"  @if(isset($application->minorityStatus->name) && $application->minorityStatus->name!='Other') style="display: none !important;" @endif>
+                <div class="d-flex flex-column flex-root @if(isset($application->minorityStatus->name) && $application->minorityStatus->name=='Other') d-box @else d-none-imp @endif">
                     <span class="font-weight-bolder mb-2">Other: *</span>
                     <span class="opacity-70">{{ isset($application['minority_status_other'])?$application['minority_status_other']:'' }}</span>
                 </div>
@@ -90,10 +89,10 @@
                 </div>
 
             </div>
-
-            <h6 class="mb-0 mt-10 font-weight-bold text-dark">Qualification Details</h6>
-            <div class="separator separator-dashed my-5"></div>
-            <div class="d-flex justify-content-between pt-5">
+            </div>
+            <h4 class="mt-10 font-weight-bold section_heading text-white"><span>QUALIFICATION DETAILS</span></h4>
+            <div class="section_box">
+            <div class="d-flex justify-content-between">
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">Education Level: *</span>
                     <span class="opacity-70">{{ isset($application->educationLevel->name)?$application->educationLevel->name:'' }}</span>
@@ -126,12 +125,13 @@
                     <span class="opacity-70">{{ isset($application['skill_or_art'])?$application['skill_or_art']:'' }}</span>
                 </div>
             </div>
+            </div>
 
-            <h6 class="mb-0 mt-10 font-weight-bold text-dark">Residence Address (Local)</h6>
-            <div class="separator separator-dashed my-5"></div>
+            <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RESIDENCE ADDRESS (LOCAL)</span></h4>
+            <div class="section_box">
             <div class="d-flex justify-content-between pt-5">
                 <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Type: *</span>
+                    <span class="font-weight-bolder mb-2">Type of Property: *</span>
                     <span class="opacity-70">{{ isset($application->residenceAddressType->type_name)?$application->residenceAddressType->type_name:'' }}</span>
                 </div>
                 <div class="d-flex flex-column flex-root">
@@ -193,10 +193,12 @@
                 </div>
             </div>
 
-            <h4 class="mb-10 mt-10 font-weight-bold text-dark">Business Profile</h4>
-            <h6 class="mb-0 font-weight-bold text-dark">Basic Info</h6>
-            <div class="separator separator-dashed my-5"></div>
-            <div class="d-flex justify-content-between pt-5">
+            </div>
+
+            <h4 class="mt-10 main_section_heading">BUSINESS PROFILE</h4>
+            <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
+            <div class="section_box">
+            <div class="d-flex justify-content-between">
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">Business Name: *</span>
                     <span class="opacity-70">{{ isset($application['business_name'])?$application['business_name']:'' }}</span>
@@ -244,11 +246,11 @@
                     <span class="opacity-70">{{ isset($application->businessSubSector->sub_sector_name_e)?$application->businessSubSector->sub_sector_name_e:'' }}</span>
                 </div>
             </div>
+            </div>
 
-            <h6 class="mb-0 mt-10 font-weight-bold text-dark">Relevant Attachments</h6>
-            <div class="separator separator-dashed my-5"></div>
-
-            <div class="d-flex justify-content-between pt-5">
+            <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RELEVANT ATTACHMENTS</span></h4>
+            <div class="section_box">
+            <div class="d-flex justify-content-between">
                 @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
                     <div class="d-flex flex-column flex-root">
                         <span class="font-weight-bolder mb-2">Upload Proof of Ownership: *</span>
@@ -277,10 +279,13 @@
                     </div>
                 @endif
             </div>
+            </div>
 
-            <div class="d-flex justify-content-between pt-5">
+            <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BUSINESS ADDRESS</span></h4>
+            <div class="section_box">
+            <div class="d-flex justify-content-between">
                 <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">Type: *</span>
+                    <span class="font-weight-bolder mb-2">Type of Property: *</span>
                     <span class="opacity-70">{{ isset($application->businessAddressType->type_name)?$application->businessAddressType->type_name:'' }}</span>
                 </div>
                 <div class="d-flex flex-column flex-root">
@@ -365,10 +370,12 @@
                     <span class="opacity-70">{{ isset($application['business_email'])?$application['business_email']:'' }}</span>
                 </div>
             </div>
+            </div>
 
-            <h6 class="mb-0 mt-10 font-weight-bold text-dark">Utility Connections</h6>
-            <div class="separator separator-dashed my-5"></div>
-            <div class="d-flex justify-content-between pt-5">
+            <h4 class="mt-10 main_section_heading">UTILITY CONNECTIONS</h4>
+            <h4 class="mt-10 font-weight-bold section_heading text-white"><span>UTILITY CONNECTIONS DETAIL</span></h4>
+            <div class="section_box">
+            <div class="d-flex justify-content-between">
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">Do you have utility connections? *</span>
                     <span class="opacity-70">{{ isset($application->utilityConnectionQuestion->name)?$application->utilityConnectionQuestion->name:'' }}</span>
@@ -406,10 +413,12 @@
                 </div>
             @endforeach
             @endif
+            </div>
 
-            <h6 class="mb-0 mt-10 font-weight-bold text-dark">Employees Info</h6>
-            <div class="separator separator-dashed my-5"></div>
-            <div class="d-flex justify-content-between pt-5">
+            <h4 class="mt-10 main_section_heading">EMPLOYEES INFO</h4>
+            <h4 class="mt-10 font-weight-bold section_heading text-white"><span>EMPLOYEES INFO DETAIL</span></h4>
+            <div class="section_box">
+            <div class="d-flex justify-content-between">
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">Do you have employees? *</span>
                     <span class="opacity-70">{{ isset($application->employeesQuestion->name)?$application->employeesQuestion->name:'' }}</span>
@@ -429,7 +438,7 @@
                     </div>
                 @endforeach
             @endif
-
+            </div>
             {{--Employee Info Here--}}
 
 

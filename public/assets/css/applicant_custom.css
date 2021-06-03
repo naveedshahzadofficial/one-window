@@ -85,7 +85,12 @@
 .wizard.wizard-3 .wizard-step[data-wizard-state="current"] .wizard-label{
     background-color: #30807d;
 }
-
+.main_section_heading{
+    background-color: #404040;
+    padding: 10px 10px;
+    color: white;
+    font-size: 18px;
+}
 .section_heading {
     padding: 5px 0 4px 0px;
     margin-bottom: 0px;
@@ -100,9 +105,10 @@
     font-size: 14px;
     font-weight: 600;
 }
-.radio.radio-success > input:checked ~ span{
+.radio.radio-success > input:checked ~ span, .checkbox.checkbox-success > input:checked ~ span{
     background-color: #30807d;
 }
+
 .section_box{
     background-color: #e6fffc;
     padding: 30px;
@@ -150,4 +156,7 @@ select.form-control,.form-control:focus{
 }
 .btn-custom-dark:hover{
     color: #d3eae8;
+}
+.d-none-imp{
+    display: none !important;
 }

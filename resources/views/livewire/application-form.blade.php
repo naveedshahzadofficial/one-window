@@ -252,7 +252,24 @@
 
                     </div>
                     @foreach($technical_educations as $index=>$technical_education)
-                    <div class="row form-group @if(!$is_technical_education) d-none @endif">
+
+                            @if(count($technical_educations)==($index+1))
+                                <div class="d-flex justify-content-end @if(!$is_technical_education) d-none-imp @endif">
+                                    <div class="py-4">
+                                        <button type="button" wire:click.prevent="addTechnicalEducation" wire:loading.attr="disabled" class="btn btn-custom-color font-weight-bold px-4 py-2 d-block">Add More</button>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="mb-10 section_add_more  @if(!$is_technical_education) d-none @endif">
+                                @if($index>0)
+                                    <div class="d-flex justify-content-end">
+                                    <span wire:click.prevent="removeTechnicalEducation({{ $index }})" wire:loading.attr="disabled"  class="btn btn-xs btn-icon px-4 py-4 btn-custom-color">
+                            <i class="flaticon2-delete text-white"></i>
+                            </span>
+                                    </div>
+                                @endif
+                            <div class="row form-group @if(!$is_technical_education) d-none @endif">
                         <div class="col-lg-6">
                             <label>Diploma/ Certificate Title: <span class="text-danger">*</span></label>
                             <input wire:model.defer="technical_educations.{{$index}}.certificate_title" type="text" class="form-control @if($errors->has("technical_educations.$index.certificate_title")) is-invalid @endif" placeholder="Diploma/ Certificate Title" />
@@ -260,22 +277,10 @@
                                 <div class="invalid-feedback d-block">{{ $errors->first("technical_educations.$index.certificate_title") }}</div>
                             @endif
                         </div>
-                        <div class="col-lg-6 mt-9">
-                            @if($index>0)
-                                <span wire:click.prevent="removeTechnicalEducation({{ $index }})" wire:loading.attr="disabled"  class="btn btn-xs btn-icon btn-danger">
-                            <i class="flaticon2-delete"></i>
-                        </span>
-                            @endif
-                            &nbsp;&nbsp;
-                            @if(count($technical_educations)==($index+1))
-                                <span wire:click.prevent="addTechnicalEducation" wire:loading.attr="disabled"  class="btn btn-xs btn-icon btn-primary">
-                            <i class="flaticon2-plus"></i>
-                        </span>
-                            @endif
-
-                        </div>
                     </div>
+                            </div>
                     @endforeach
+
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Are you a skilled worker or an artisan? <span class="text-danger">*</span></label>
@@ -309,7 +314,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Type: <span class="text-danger">*</span></label>
+                            <label>Type of Property: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.residence_address_type_id"  class="form-control @error('application.residence_address_type_id') is-invalid @enderror">
                                 <option value="">Select Type</option>
                                 @foreach($address_types as $type)
@@ -322,7 +327,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Form: <span class="text-danger">*</span></label>
+                            <label>Form of Property: <span class="text-danger">*</span></label>
                             <select wire:model.defer="application.residence_address_form_id"  class="form-control @error('application.residence_address_form_id') is-invalid @enderror">
                                 <option value="">Select Form</option>
                                 @foreach($address_forms as $form)
@@ -644,7 +649,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Type: <span class="text-danger">*</span></label>
+                            <label>Type of Property: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_address_type_id"  class="form-control @error('application.business_address_type_id') is-invalid @enderror">
                                 <option value="">Select Type</option>
                                 @foreach($address_types as $type)
@@ -657,7 +662,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Form: <span class="text-danger">*</span></label>
+                            <label>Form of Property: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_address_form_id"  class="form-control @error('application.business_address_form_id') is-invalid @enderror">
                                 <option value="">Select Form</option>
                                 @foreach($address_forms as $form)
@@ -859,7 +864,7 @@
                     @foreach($utility_connections as $index=>$connection)
 
                             @if(count($utility_connections)==($index+1))
-                                <div class="d-flex justify-content-end" @if(!$is_utility_connection) style="display: none !important;" @endif>
+                                <div class="d-flex justify-content-end @if(!$is_utility_connection) d-none-imp @endif">
                                     <div class="py-4">
                                     <button type="button" wire:click.prevent="addUtilityConnection" wire:loading.attr="disabled" class="btn btn-custom-color font-weight-bold px-4 py-2 d-block">Add More</button>
                                     </div>
@@ -951,6 +956,8 @@
 
                 <!--begin: Wizard Step 4-->
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
+                    <h4 class="font-weight-bold section_heading text-white"><span>EMPLOYEES INFO</span></h4>
+                    <div class="section_box">
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Do you have employees? <span class="text-danger">*</span></label>
@@ -999,18 +1006,18 @@
 
                         </div>
                     @endforeach
-
+                    </div>
                 </div>
                 <!--end: Wizard Step 4-->
 
                 <!--begin: Wizard Step 3-->
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
                     <!--begin::Section-->
-                    <h4 class="mb-10 font-weight-bold">Applicant Profile</h4>
-                    <h6 class="mb-0 font-weight-bold section_heading text-white">Basic Info</h6>
-                    <div class="separator separator-dashed my-5"></div>
+                    <h4 class="main_section_heading">APPLICANT PROFILE</h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
 
-                    <div class="d-flex justify-content-between pt-5">
+                    <div class="section_box">
+                    <div class="d-flex justify-content-between">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">First Name: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['prefix'])?$application['prefix']:'' }}&nbsp;{{ isset($application['first_name'])?$application['first_name']:'' }}</span>
@@ -1020,7 +1027,6 @@
                             <span class="opacity-70">{{ isset($application['middle_name'])?$application['middle_name']:'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Last Name: <span class="text-danger">*</span></span>
@@ -1031,7 +1037,6 @@
                             <span class="opacity-70">{{ isset($application['gender'])?$application['gender']:'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">CNIC No. <span class="text-danger">*</span></span>
@@ -1042,7 +1047,6 @@
                             <span class="opacity-70">{{ isset($application['cnic_issue_date'])?$application['cnic_issue_date']:'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">CNIC Expiry Date: <span class="text-danger">*</span></span>
@@ -1053,27 +1057,24 @@
                             <span class="opacity-70">{{ isset($application['date_of_birth'])?$application['date_of_birth']:'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Designation in Business: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['designation_business_id'])?getCollectionTitle($designations,'name',$application['designation_business_id']):'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Do you have Minority Status? <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['minority_status_question_id'])?getCollectionTitle($questions,'name',$application['minority_status_question_id']):'' }}</span>
                         </div>
-                        <div class="d-flex flex-column flex-root @if(!$is_minority_status) d-none @endif">
+                        <div class="d-flex flex-column flex-root @if(!$is_minority_status) d-none-imp @endif">
                             <span class="font-weight-bolder mb-2">Minority Status: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['minority_status_id'])?getCollectionTitle($minority_status,'name',$application['minority_status_id']):'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
-                        <div class="d-flex flex-column flex-root  @if(!$is_minority_status_other) d-none @endif ">
+                        <div class="d-flex flex-column flex-root  @if(!$is_minority_status_other) d-none-imp @endif ">
                             <span class="font-weight-bolder mb-2">Other: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['minority_status_other'])?$application['minority_status_other']:'' }}</span>
                         </div>
@@ -1084,10 +1085,11 @@
                         </div>
 
                     </div>
+                    </div>
 
-                    <h6 class="mb-0 mt-10 font-weight-bold text-dark">Qualification Details</h6>
-                    <div class="separator separator-dashed my-5"></div>
-                    <div class="d-flex justify-content-between pt-5">
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>QUALIFICATION DETAILS</span></h4>
+                    <div class="section_box">
+                    <div class="d-flex justify-content-between">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Education Level: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['education_level_id'])?getCollectionTitle($education_level,'name',$application['education_level_id']):'' }}</span>
@@ -1097,7 +1099,6 @@
                             <span class="opacity-70">{{ isset($application['technical_education_question_id'])?getCollectionTitle($questions,'name',$application['technical_education_question_id']):'' }}</span>
                         </div>
                     </div>
-
                     @foreach($technical_educations as $index=>$technical_education)
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
@@ -1106,23 +1107,23 @@
                             </div>
                         </div>
                     @endforeach
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Are you a skilled worker or an artisan? <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['skilled_worker_question_id'])?getCollectionTitle($questions,'name',$application['skilled_worker_question_id']):'' }}</span>
                         </div>
-                        <div class="d-flex flex-column flex-root  @if(!$is_skilled_worker) d-none @endif">
+                        <div class="d-flex flex-column flex-root  @if(!$is_skilled_worker) d-none-imp @endif">
                             <span class="font-weight-bolder mb-2">Skill or Art: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['skill_or_art'])?$application['skill_or_art']:'' }}</span>
                         </div>
                     </div>
+                    </div>
 
-                    <h6 class="mb-0 mt-10 font-weight-bold text-dark">Residence Address (Local)</h6>
-                    <div class="separator separator-dashed my-5"></div>
-                    <div class="d-flex justify-content-between pt-5">
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RESIDENCE ADDRESS (LOCAL)</span></h4>
+                    <div class="section_box">
+                    <div class="d-flex justify-content-between">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Type: <span class="text-danger">*</span></span>
+                            <span class="font-weight-bolder mb-2">Type of Property: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['residence_address_type_id'])?getCollectionTitle($address_types,'type_name',$application['residence_address_type_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
@@ -1130,7 +1131,6 @@
                             <span class="opacity-70">{{ isset($application['residence_address_form_id'])?getCollectionTitle($address_forms,'form_name',$application['residence_address_form_id']):'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Unit / Address 1: <span class="text-danger">*</span></span>
@@ -1141,7 +1141,6 @@
                             <span class="opacity-70">{{ isset($application['residence_address_2'])?$application['residence_address_2']:'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Area/ Locality / Address 3: <span class="text-danger">*</span></span>
@@ -1182,11 +1181,12 @@
                             <span class="opacity-70">{{ isset($application['personal_email'])?$application['personal_email']:'' }}</span>
                         </div>
                     </div>
+                    </div>
 
-                    <h4 class="mb-10 mt-10 font-weight-bold text-dark">Business Profile</h4>
-                    <h6 class="mb-0 font-weight-bold text-dark">Basic Info</h6>
-                    <div class="separator separator-dashed my-5"></div>
-                    <div class="d-flex justify-content-between pt-5">
+                    <h4 class="mt-10 main_section_heading">BUSINESS PROFILE</h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
+                    <div class="section_box">
+                    <div class="d-flex justify-content-between">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Business Name: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_name'])?$application['business_name']:'' }}</span>
@@ -1197,15 +1197,13 @@
                         </div>
 
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Business Registration Status: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_registration_status_id'])?getCollectionTitle($business_registration_status,'name',$application['business_registration_status_id']):'' }}</span>
                         </div>
                     </div>
-
-                    <div class="d-flex justify-content-between pt-5 @if(!$is_business_registered) d-none @endif">
+                    <div class="d-flex justify-content-between pt-5 @if(!$is_business_registered) d-none-imp @endif">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Legal Status of Business: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_legal_status_id'])?getCollectionTitle($business_legal_statuses,'legal_name',$application['business_legal_status_id']):'' }}</span>
@@ -1216,8 +1214,7 @@
                         </div>
 
                     </div>
-
-                    <div class="d-flex justify-content-between pt-5 @if(!$is_business_registered) d-none @endif">
+                    <div class="d-flex justify-content-between pt-5 @if(!$is_business_registered) d-none-imp @endif">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Business Registration Date: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_registration_date'])?$application['business_registration_date']:'' }}</span>
@@ -1228,7 +1225,6 @@
                             <span class="opacity-70">{{ isset($application['business_ntn_no'])?$application['business_ntn_no']:'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Business Category: <span class="text-danger">*</span></span>
@@ -1239,18 +1235,17 @@
                             <span class="opacity-70">{{ isset($application['business_sector_id'])?getCollectionTitle($business_secotors,'sector_name_e',$application['business_sector_id']):'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Business Sub Sector: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_sub_sector_id'])?getCollectionTitle($business_sub_secotors,'sub_sector_name_e',$application['business_sub_sector_id']):'' }}</span>
                         </div>
                     </div>
+                    </div>
 
-                    <h6 class="mb-0 font-weight-bold text-dark">Relevant Attachments</h6>
-                    <div class="separator separator-dashed my-5"></div>
-
-                    <div class="d-flex justify-content-between pt-5">
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RELEVANT ATTACHMENTS</span></h4>
+                    <div class="section_box">
+                    <div class="d-flex justify-content-between">
                         @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Upload Proof of Ownership: <span class="text-danger">*</span></span>
@@ -1270,8 +1265,7 @@
                             @endif
 
                     </div>
-
-                    <div class="d-flex justify-content-between pt-5 @if(!$is_business_registered) d-none @endif ">
+                    <div class="d-flex justify-content-between pt-5 @if(!$is_business_registered) d-none-imp @endif ">
                         @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">Upload Registration Certificate: <span class="text-danger">*</span></span>
@@ -1282,10 +1276,13 @@
                         @endif
 
                     </div>
+                    </div>
 
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BUSINESS ADDRESS</span></h4>
+                    <div class="section_box">
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
-                            <span class="font-weight-bolder mb-2">Type: <span class="text-danger">*</span></span>
+                            <span class="font-weight-bolder mb-2">Type of Property: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_address_type_id'])?getCollectionTitle($address_types,'type_name',$application['business_address_type_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
@@ -1293,7 +1290,6 @@
                             <span class="opacity-70">{{ isset($application['business_address_form_id'])?getCollectionTitle($address_forms,'form_name',$application['business_address_form_id']):'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Unit / Address 1: <span class="text-danger">*</span></span>
@@ -1304,7 +1300,6 @@
                             <span class="opacity-70">{{ isset($application['business_address_2'])?$application['business_address_2']:'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Area/ Locality / Address 3: <span class="text-danger">*</span></span>
@@ -1315,7 +1310,6 @@
                             <span class="opacity-70">{{ isset($application['business_province_id'])?getCollectionTitle($provinces,'province_name',$application['business_province_id']):'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">City: <span class="text-danger">*</span></span>
@@ -1326,7 +1320,6 @@
                             <span class="opacity-70">{{ isset($application['business_district_id'])?getCollectionTitle($business_districts,'district_name_e',$application['business_district_id']):'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Tehsil: <span class="text-danger">*</span></span>
@@ -1337,7 +1330,6 @@
                             <span class="opacity-70">{{ isset($application['business_capacity_id'])?getCollectionTitle($address_capacities,'capacity_name',$application['business_capacity_id']):'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Share %: <span class="text-danger">*</span></span>
@@ -1348,7 +1340,6 @@
                             <span class="opacity-70">{{ isset($application['business_acquisition_date'])?$application['business_acquisition_date']:'' }}</span>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
                             <div class="d-flex flex-column flex-root">
@@ -1363,17 +1354,18 @@
                                 <span class="opacity-70">{{ isset($application['business_contact_number'])?$application['business_contact_number']:'' }}</span>
                             </div>
                     </div>
-
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Business Email Address: <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['business_email'])?$application['business_email']:'' }}</span>
                         </div>
                     </div>
+                    </div>
 
-                    <h6 class="mb-0 mt-10 font-weight-bold text-dark">Utility Connections</h6>
-                    <div class="separator separator-dashed my-5"></div>
-                    <div class="d-flex justify-content-between pt-5">
+                    <h4 class="mt-10 main_section_heading">UTILITY CONNECTIONS</h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>UTILITY CONNECTIONS DETAIL</span></h4>
+                    <div class="section_box">
+                    <div class="d-flex justify-content-between">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Do you have utility connections? <span class="text-danger">*</span></span>
                             <span class="opacity-70">{{ isset($application['utility_connection_question_id'])?getCollectionTitle($questions,'name',$application['utility_connection_question_id']):'' }}</span>
@@ -1409,9 +1401,11 @@
                             </div>
                         </div>
                 @endforeach
+                    </div>
 
-                    <h6 class="mb-0 mt-10 font-weight-bold text-dark">Employees Info</h6>
-                    <div class="separator separator-dashed my-5"></div>
+                    <h4 class="mt-10 main_section_heading">EMPLOYEES INFO</h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>EMPLOYEES INFO DETAIL</span></h4>
+                    <div class="section_box">
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Do you have employees? <span class="text-danger">*</span></span>
@@ -1432,7 +1426,7 @@
                         </div>
                      @endforeach
                     @endif
-
+                    </div>
 
                     <!--end::Section-->
                 </div>
