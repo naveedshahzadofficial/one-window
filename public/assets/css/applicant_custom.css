@@ -50,4 +50,38 @@
 }
 .card.card-custom{
     box-shadow: none;
+    border: none;
+}.card .card-header{
+    border: none;
+}
+
+.wizard.wizard-3 .wizard-label {
+    background-color: #7e9794;
+    padding: 10px !important;
+    border-radius: 10px;
+}
+.wizard.wizard-3 .wizard-label .wizard-title{
+    margin: 0 !important;
+    text-align: center;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: white;
+}
+.wizard.wizard-3 .wizard-step[data-wizard-state="current"] .wizard-label{
+    background-color: #30807d;
+}
+
+.section_heading {
+    padding: 5px 0 4px 0px;
+    margin-bottom: 0px;
+    color: white;
+    background: white;
+    border-bottom: 4px solid #30807d;
+}
+.section_heading span {
+    text-align: center;
+    background: #30807d;
+    padding: 8px 20px 4px 20px;
+    font-size: 14px;
+    font-weight: 600;
 }

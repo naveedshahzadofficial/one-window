@@ -1,13 +1,12 @@
 <div x-data class="wizard wizard-3" id="kt_wizard_v3" data-wizard-state="step-first" data-wizard-clickable="true">
     <!--begin: Wizard Nav-->
     <div class="wizard-nav">
-        <div class="wizard-steps px-8 py-8 px-lg-15 py-lg-3">
+        <div class="wizard-steps  py-0 px-9 py-lg-0 px-lg-9">
 
             <!--begin::Wizard Step 1 Nav-->
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
-                    <h3 class="wizard-title">
-                        Applicant Profile</h3>
+                    <h3 class="wizard-title">Applicant Profile</h3>
                 </div>
             </div>
             <!--end::Wizard Step 1 Nav-->
@@ -15,8 +14,7 @@
             <!--begin::Wizard Step 2 Nav-->
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
-                    <h3 class="wizard-title">
-                        Business Profile</h3>
+                    <h3 class="wizard-title">Business Profile</h3>
                 </div>
             </div>
             <!--end::Wizard Step 2 Nav-->
@@ -24,8 +22,7 @@
             <!--begin::Wizard Step 2 Nav-->
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
-                    <h3 class="wizard-title">
-                        Utility Connections</h3>
+                    <h3 class="wizard-title">Utility Connections</h3>
                 </div>
             </div>
             <!--end::Wizard Step 2 Nav-->
@@ -33,8 +30,7 @@
             <!--begin::Wizard Step 2 Nav-->
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
-                    <h3 class="wizard-title">
-                        Employees Info</h3>
+                    <h3 class="wizard-title">Employees Info</h3>
                 </div>
             </div>
             <!--end::Wizard Step 2 Nav-->
@@ -42,8 +38,7 @@
             <!--begin::Wizard Step 3 Nav-->
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
-                    <h3 class="wizard-title">
-                        Review and Submit</h3>
+                    <h3 class="wizard-title">Review and Submit</h3>
                 </div>
             </div>
             <!--end::Wizard Step 5 Nav-->
@@ -52,7 +47,7 @@
     </div>
     <!--end: Wizard Nav-->
     <!--begin: Wizard Body-->
-    <div class="row justify-content-center py-10 px-8 py-lg-12 px-lg-10">
+    <div class="row justify-content-center py-10 px-8 py-lg-10 px-lg-9">
         <div class="col-xl-12 col-xxl-12">
             <!--begin: Wizard Form-->
             <form  class="form" >
@@ -60,7 +55,7 @@
                 <!--begin: Wizard Step 1-->
 
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="mb-10 font-weight-bold text-dark">Basic Info</h4>
+                    <h4 class="mb-10 font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
 
                     <div class="form-group row">
                         <div class="col-lg-6">
@@ -228,7 +223,7 @@
 
                     </div>
 
-                    <h4 class="mb-10 font-weight-bold text-dark">Qualification Details</h4>
+                    <h4 class="mb-10 font-weight-bold section_heading text-white"><span>QUALIFICATION DETAILS</span></h4>
 
                     <div class="form-group row">
 
@@ -316,7 +311,7 @@
 
                     </div>
 
-                    <h4 class="mb-10 font-weight-bold text-dark">Residence Address (Local)</h4>
+                    <h4 class="mb-10 font-weight-bold section_heading text-white"><span>RESIDENCE ADDRESS (LOCAL)</span></h4>
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -469,7 +464,7 @@
                 <!--begin: Wizard Step 2-->
 
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="mb-10 font-weight-bold text-dark">Basic Info</h4>
+                    <h4 class="mb-10 font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
 
                     <div class="form-group row">
                         <div class="col-lg-6">
@@ -596,7 +591,7 @@
 
                     </div>
 
-                    <h4 class="mb-10 font-weight-bold text-dark">Relevant Attachments</h4>
+                    <h4 class="mb-10 font-weight-bold section_heading text-white">Relevant Attachments</h4>
                     <div class="form-group row">
                         <div x-data="{ open: false }" class="col-lg-6">
                             <label>Upload Proof of Ownership: <span class="text-danger">*</span></label>
@@ -655,7 +650,7 @@
                     </div>
 
 
-                    <h4 class="mb-10 font-weight-bold text-dark">Business Address</h4>
+                    <h4 class="mb-10 font-weight-bold section_heading text-white">Business Address</h4>
 
                     <div class="form-group row">
 
@@ -857,7 +852,7 @@
                 <!--end: Wizard Step 2-->
                 <!--begin: Wizard Step 3-->
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="mb-10 font-weight-bold text-dark">Utility Connections</h4>
+                    <h4 class="mb-10 font-weight-bold section_heading text-white">Utility Connections</h4>
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -1020,8 +1015,8 @@
                 <!--begin: Wizard Step 3-->
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
                     <!--begin::Section-->
-                    <h4 class="mb-10 font-weight-bold text-dark">Applicant Profile</h4>
-                    <h6 class="mb-0 font-weight-bold text-dark">Basic Info</h6>
+                    <h4 class="mb-10 font-weight-bold">Applicant Profile</h4>
+                    <h6 class="mb-0 font-weight-bold section_heading text-white">Basic Info</h6>
                     <div class="separator separator-dashed my-5"></div>
 
                     <div class="d-flex justify-content-between pt-5">
