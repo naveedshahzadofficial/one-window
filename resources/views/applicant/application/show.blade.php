@@ -17,7 +17,7 @@
             <div class="d-flex justify-content-between">
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">First Name: *</span>
-                    <span class="opacity-70">{{ isset($application['prefix'])?$application['prefix']:'' }}&nbsp;{{ isset($application['first_name'])?$application['first_name']:'' }}</span>
+                    <span class="opacity-70">{{ isset($application->prefix->prefix_name)?$application->prefix->prefix_name:'' }}&nbsp;{{ isset($application['first_name'])?$application['first_name']:'' }}</span>
                 </div>
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">Middle Name:</span>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">Gender: *</span>
-                    <span class="opacity-70">{{ isset($application['gender'])?$application['gender']:'' }}</span>
+                    <span class="opacity-70">{{ isset($application->gender->gender_name)?$application->gender->gender_name:'' }}</span>
                 </div>
             </div>
 

@@ -15,11 +15,11 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->string('prefix');
+            $table->foreignId('prefix_id')->nullable()->constrained();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
-            $table->string('gender');
+            $table->foreignId('gender_id')->nullable()->constrained();
             $table->string('cnic_no');
             $table->date('cnic_issue_date');
             $table->date('cnic_expiry_date');

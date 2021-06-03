@@ -20,11 +20,14 @@ use App\Models\DesignationBusiness;
 use App\Models\District;
 use App\Models\EducationLevel;
 use App\Models\EmployeeType;
+use App\Models\Gender;
 use App\Models\MinorityStatus;
 use App\Models\MobileCode;
+use App\Models\Prefix;
 use App\Models\Province;
 use App\Models\Question;
 use App\Models\Tehsil;
+use App\Models\UtilityForm;
 use App\Models\UtilityType;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -40,8 +43,11 @@ class ApplicationForm extends Component
     public $questions;
     public $minority_status;
     public $education_level;
+
     public $address_types;
-    public $address_forms;
+    public $residence_address_forms;
+    public $business_address_forms;
+
     public $cities;
     public $districts;
     public $address_capacities;
@@ -58,6 +64,7 @@ class ApplicationForm extends Component
     public $employee_numbers;
 
     // UtilityConnections
+    public $utility_forms;
     public $utility_connections = [];
     public $technical_educations = [];
 
@@ -98,15 +105,17 @@ class ApplicationForm extends Component
         $this->registration = null;
 
         $this->step = 0;
-        $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
-        $this->genders = ['Male', 'Female', 'Transgender'];
+        $this->prefixes = Prefix::where('prefix_status',1)->get();
+        $this->genders = Gender::where('gender_status',1)->get();
 
         $this->designations = DesignationBusiness::where('status',1)->get();
         $this->questions = Question::where('status',1)->get();
         $this->minority_status = MinorityStatus::where('status',1)->get();
         $this->education_level = EducationLevel::where('status',1)->get();
+
         $this->address_types = AddressType::where('type_status',1)->get();
-        $this->address_forms = AddressForm::where('form_status',1)->get();
+        $this->utility_forms = UtilityForm::where('form_status',1)->get();
+
         $this->cities = City::where('city_status',1)->get();
         $this->districts = District::where('district_status',1)->get();
         $this->address_capacities = AddressCapacity::where('capacity_status',1)->get();
@@ -122,6 +131,8 @@ class ApplicationForm extends Component
         $this->employee_numbers = 20;
 
         // on parent load
+        $this->residence_address_forms = collect();
+        $this->business_address_forms = collect();
         $this->business_secotors = collect();
         $this->business_sub_secotors = collect();
         $this->business_cities = collect();
@@ -149,6 +160,8 @@ class ApplicationForm extends Component
             $this->technical_educations = $registration->technicalEducations->toArray();
             $this->employees = $registration->employeeInfos->toArray();
             $this->registration = $registration;
+            $this->residence_address_forms = AddressForm::where('address_type_id',$registration->residence_address_type_id)->where('form_status',1)->get();
+            $this->business_address_forms = AddressForm::where('address_type_id',$registration->business_address_type_id)->where('form_status',1)->get();
             $this->business_secotors = BusinessSector::where('business_category_id', $registration->business_category_id)->where('sector_status',1)->get();
             $this->business_sub_secotors = BusinessSubSector::where('business_sector_id', $registration->business_sector_id)->where('sub_sector_status',1)->get();
             $this->business_cities = City::where('province_id', $registration->business_province_id)->where('city_status',1)->get();
@@ -237,6 +250,12 @@ class ApplicationForm extends Component
                     $this->is_skilled_worker = false;
                 }
                 break;
+            case 'residence_address_type_id':
+                $this->residence_address_forms = AddressForm::where('address_type_id',$value)->where('form_status',1)->get();
+                break;
+             case 'business_address_type_id':
+                $this->business_address_forms = AddressForm::where('address_type_id',$value)->where('form_status',1)->get();
+                break;
 
             case 'business_registration_status_id':
                 if(isset($value) && !empty($value) && $this->business_registration_status->firstWhere('id', $value)->name=='Registered'){
@@ -289,17 +308,16 @@ class ApplicationForm extends Component
     {
 
          $rules_applicant_profile = [
-        'application.prefix' => 'required',
+        'application.prefix_id' => 'required',
         'application.first_name' => 'required|string',
         'application.last_name' => 'required|string',
         'application.cnic_no' => 'required',
-        'application.gender' => 'required',
+        'application.gender_id' => 'required',
         'application.cnic_issue_date' => 'required',
         'application.cnic_expiry_date' => 'required',
         'application.date_of_birth' => 'required',
         'application.designation_business_id' => 'required',
         'application.minority_status_question_id' => 'required',
-        'application.ntn_personal' => 'required',
         'application.education_level_id' => 'required',
         'application.technical_education_question_id' => 'required',
         'application.skilled_worker_question_id' => 'required',
@@ -315,17 +333,16 @@ class ApplicationForm extends Component
         'application.residence_acquisition_date' => 'required',
     ];
          $messages_applicant_profile = [
-        'application.prefix.required' => 'Required.',
+        'application.prefix_id.required' => 'Required.',
         'application.first_name.required' => 'First Name is required.',
         'application.last_name.required' => 'First Name is required.',
         'application.cnic_no.required' => 'CNIC is required.',
-        'application.gender.required' => 'Gender is required.',
+        'application.gender_id.required' => 'Gender is required.',
         'application.cnic_issue_date.required' => 'Issue Date is required.',
         'application.cnic_expiry_date.required' => 'Expiry Date is required.',
         'application.date_of_birth.required' => 'Date of Birth is required.',
         'application.designation_business_id.required' => 'Designation in Business is required.',
         'application.minority_status_question_id.required' => 'Please select your choice!',
-        'application.ntn_personal.required' => 'NTN is required',
         'application.education_level_id.required' => 'Education Level is required',
         'application.technical_education_question_id.required' => 'Please select your choice',
         'application.skilled_worker_question_id.required' => 'Please select your choice!',

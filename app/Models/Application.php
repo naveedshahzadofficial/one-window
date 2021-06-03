@@ -11,7 +11,7 @@ class Application extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['prefix', 'first_name', 'middle_name', 'last_name', 'gender', 'cnic_no',
+    protected $fillable = ['prefix_id', 'first_name', 'middle_name', 'last_name', 'gender_id', 'cnic_no',
         'cnic_issue_date', 'cnic_expiry_date', 'date_of_birth', 'designation_business_id', 'minority_status_question_id',
         'minority_status_id', 'minority_status_other', 'ntn_personal', 'education_level_id', 'technical_education_question_id',
         'certificate_title', 'skilled_worker_question_id', 'skill_or_art', 'residence_address_type_id',
@@ -68,6 +68,14 @@ class Application extends Model
 
     public function employeeInfos(){
         return $this->hasMany(ApplicationEmployeeInfo::class);
+    }
+
+    public function prefix(){
+        return $this->belongsTo(Prefix::class);
+    }
+
+    public function gender(){
+        return $this->belongsTo(Gender::class);
     }
 
     public function designationBusiness(){

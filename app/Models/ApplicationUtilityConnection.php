@@ -28,6 +28,6 @@ class ApplicationUtilityConnection extends Model
 
     public function utilityForm()
     {
-        return $this->belongsTo(AddressForm::class, 'utility_form_id');
+        return $this->belongsTo(UtilityForm::class, 'utility_form_id');
     }
 }

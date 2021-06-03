@@ -19,7 +19,7 @@ class CreateApplicationUtilityConnectionsTable extends Migration
             $table->foreignId('connection_ownership_id')->nullable()->constrained();
             $table->foreignId('utility_type_id')->nullable()->constrained();
             $table->string('utility_consumer_number')->nullable();
-            $table->foreignId('utility_form_id')->nullable()->constrained('address_forms');
+            $table->foreignId('utility_form_id')->nullable()->constrained();
             $table->string('utility_provider_other')->nullable();
             $table->timestamps();
         });

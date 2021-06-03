@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvinceSeeder::class);
         $this->call(ConnectionOwnershipSeeder::class);
         $this->call(UtilityTypeSeeder::class);
+        $this->call(UtilityFormSeeder::class);
         $this->call(ConnectionProviderSeeder::class);
         $this->call(FiscalYearSeeder::class);
         $this->call(CurrencySeeder::class);

@@ -62,7 +62,7 @@ class ApplicationController extends Controller
     public function show($id)
     {
        $application =  Application::
-        with('designationBusiness', 'minorityStatusQuestion', 'minorityStatus',
+        with('prefix', 'gender','designationBusiness', 'minorityStatusQuestion', 'minorityStatus',
        'educationLevel', 'educationLevelQuestion', 'skilledWorkerQuestion',
            'residenceAddressType', 'residenceAddressForm', 'residenceCity', 'residenceDistrict',
        'residenceAddressCapacity',
