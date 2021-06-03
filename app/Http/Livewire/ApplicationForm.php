@@ -97,7 +97,7 @@ class ApplicationForm extends Component
     {
         $this->registration = null;
 
-        $this->step = 2;
+        $this->step = 0;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
 
