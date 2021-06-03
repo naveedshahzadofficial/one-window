@@ -58,7 +58,7 @@
                     <h4 class="font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
                     <div class="section_box">
                     <div class="form-group row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" wire:ignore>
                             <label>Prefix: <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($prefixes as $prefix)
@@ -114,7 +114,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" wire:ignore>
                             <label>Date of Birth: <span class="text-danger">*</span></label>
                             <x-date-picker wire:model.defer="application.date_of_birth" />
                             @error('application.date_of_birth')
@@ -123,7 +123,7 @@
                         </div>
 
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row" wire:ignore>
 
                         <div class="col-lg-6">
                             <label>CNIC No. <span class="text-danger">*</span></label>
@@ -140,7 +140,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row" wire:ignore>
                         <div class="col-lg-6">
                             <label>CNIC Expiry Date: <span class="text-danger">*</span></label>
                             <x-date-picker wire:model.defer="application.cnic_expiry_date" />
@@ -151,12 +151,7 @@
 
                         <div class="col-lg-6">
                             <label>Designation in Business: <span class="text-danger">*</span></label>
-                            <select wire:model.defer="application.designation_business_id"  class="form-control @error('application.designation_business_id') is-invalid @enderror">
-                                <option value="">Select Designation</option>
-                                @foreach($designations as $designation)
-                                    <option value="{{ $designation->id }}">{{ $designation->name }}</option>
-                                @endforeach
-                            </select>
+                            <x-select2-dropdown wire:model.defer="application.designation_business_id" setFieldName="application.designation_business_id" id="designation_business_id" fieldName="name" :listing="$designations" />
                             @error('application.designation_business_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -819,7 +814,7 @@
 
                     <div class="col-lg-6">
                         <label>Business Contact No. <span class="text-danger">*</span></label>
-                        <input wire:model="application.business_contact_number" type="text" class="form-control @error('application.business_contact_number') is-invalid @enderror" placeholder="Contact No." />
+                        <x-input-mask wire:model.defer="application.business_contact_number" class="business_contact_number" mask="9999-9999999" placeholder="Contact No." isInvalid="" />
                         @error('application.business_contact_number')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
@@ -829,7 +824,7 @@
                     <div class="form-group row">
                     <div class="col-lg-6">
                         <label>Business Email Address: <span class="text-danger">*</span></label>
-                        <input wire:model="application.business_email" type="email" class="form-control @error('application.business_email') is-invalid @enderror" placeholder="Email Address" />
+                        <input wire:model.defer="application.business_email" type="email" class="form-control @error('application.business_email') is-invalid @enderror" placeholder="Email Address" />
                         @error('application.business_email')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
@@ -1456,5 +1451,4 @@
     </div>
     <!--end: Wizard Body-->
 </div>
-
 

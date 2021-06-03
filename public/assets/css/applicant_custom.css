@@ -191,3 +191,22 @@ table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td
     background-color: #30807d;
     border-color: #e6fffc;
 }
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    background-color: #30807d;
+    color: #ffffff;
+    padding: 0.50rem 3rem 0.50rem 1rem;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple, .select2-container--default.select2-container--focus .select2-selection--single, .select2-container--default.select2-container--open .select2-selection--multiple, .select2-container--default.select2-container--open .select2-selection--single{
+    background-color: #30807d;
+    border-color: #e6fffc;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow, .select2-container--default .select2-selection--multiple .select2-selection__arrow{
+    color: #ffffff;
+}
+.select2-container--default .select2-selection--single{
+    background-color: #30807d;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow:after, .select2-container--default .select2-selection--multiple .select2-selection__arrow:after{
+    color: #ffffff !important;
+ }

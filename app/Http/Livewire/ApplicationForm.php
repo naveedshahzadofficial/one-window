@@ -306,7 +306,6 @@ class ApplicationForm extends Component
 
     public function submitApplicantProfile()
     {
-
          $rules_applicant_profile = [
         'application.prefix_id' => 'required',
         'application.first_name' => 'required|string',

@@ -6,14 +6,24 @@ use Illuminate\View\Component;
 
 class Select2Dropdown extends Component
 {
+
+    public $fieldName;
+    public $listing;
+    public $id;
+    public $setFieldName;
+
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param $fieldName
+     * @param $listing
      */
-    public function __construct()
+    public function __construct($fieldName, $listing, $id, $setFieldName)
     {
-        //
+        $this->fieldName = $fieldName;
+        $this->id = $id;
+        $this->listing = $listing;
+        $this->setFieldName = $setFieldName;
     }
 
     /**
