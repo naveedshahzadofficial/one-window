@@ -859,14 +859,22 @@
                     @foreach($utility_connections as $index=>$connection)
 
                             @if(count($utility_connections)==($index+1))
-                                <div class="form-group row">
-                                <span wire:click.prevent="addUtilityConnection" wire:loading.attr="disabled"  class="btn btn-xs btn-icon btn-primary">
-                                <i class="flaticon2-plus"></i>
-                                </span>
+                                <div class="d-flex justify-content-end" @if(!$is_utility_connection) style="display: none !important;" @endif>
+                                    <div class="py-4">
+                                    <button type="button" wire:click.prevent="addUtilityConnection" wire:loading.attr="disabled" class="btn btn-custom-color font-weight-bold px-4 py-2 d-block">Add More</button>
+                                    </div>
                                 </div>
                             @endif
 
                         <div class="section_add_more  @if(!$is_utility_connection) d-none @endif">
+                            @if($index>0)
+                            <div class="d-flex justify-content-end">
+                                    <span wire:click.prevent="removeUtilityConnection({{ $index }})" wire:loading.attr="disabled"  class="btn btn-xs btn-icon px-4 py-4 btn-custom-color">
+                            <i class="flaticon2-delete text-white"></i>
+                            </span>
+                            </div>
+                            @endif
+
                         <div class="form-group row @if(!$is_utility_connection) d-none @endif">
 
                             <div class="col-lg-6">
@@ -933,14 +941,6 @@
                                 @if($errors->has("utility_connections.$index.utility_provider_other"))
                                     <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_provider_other") }}</div>
                                 @endif
-                            </div>
-                            <div class="col-lg-6 mt-9">
-                                @if($index>0)
-                                    <span wire:click.prevent="removeUtilityConnection({{ $index }})" wire:loading.attr="disabled"  class="btn btn-xs btn-icon btn-danger">
-                            <i class="flaticon2-delete"></i>
-                        </span>
-                                @endif
-
                             </div>
                         </div>
                         </div>
