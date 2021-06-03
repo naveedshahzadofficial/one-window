@@ -10,7 +10,7 @@
             </div>
             <div class="card-toolbar">
                 <!--begin::Button-->
-                <a href="{{ route('applicant.applications.create') }}" class="btn btn-success font-weight-bolder">
+                <a href="{{ route('applicant.applications.create') }}" class="btn btn-custom-color font-weight-bolder">
 											<span class="svg-icon svg-icon-white svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Plus.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <rect x="0" y="0" width="24" height="24"/>

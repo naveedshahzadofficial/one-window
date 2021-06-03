@@ -114,9 +114,9 @@
     padding: 30px;
 }
 .section_add_more{
-    background-color: #a2dfd7;
+    background-color: #ddfcf8;
     padding: 30px;
-    box-shadow: 0px 0px 30px 0px rgba(82, 63, 105, 0.5);
+    box-shadow: 0px 0px 5px 0px rgba(82, 63, 105, 0.5);
 }
 .form-control{
     background-color: #e6fffc;
@@ -159,4 +159,35 @@ select.form-control,.form-control:focus{
 }
 .d-none-imp{
     display: none !important;
+}
+div.dataTables_length label{
+    color: #30807d !important;
+}
+.dataTables_wrapper .dataTable tfoot th, .dataTables_wrapper .dataTable thead th{
+    color: #ffffff !important;
+    background-color: #30807d;
+}
+.dataTables_wrapper .dataTable th.sorting_asc, .dataTables_wrapper .dataTable td.sorting_asc{
+    color: #ffffff !important;
+    background-color: #30807d;
+}
+
+.dataTables_wrapper .dataTable{
+    background-color: #e6fffc;
+}
+
+.dataTables_wrapper{
+    background-color: #e6fffc;
+    padding: 20px !important;
+}
+table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td,div.dataTables_wrapper div.dataTables_info{
+    color: #30807d;
+}
+.dataTables_wrapper .dataTables_paginate .pagination .page-item.active > .page-link{
+    background-color: #30807d;
+    color: #ffffff !important;
+}
+.dataTables_wrapper .dataTables_paginate .pagination .page-item.active > .page-link:hover{
+    background-color: #30807d;
+    border-color: #e6fffc;
 }

@@ -25,7 +25,7 @@ class ApplicationController extends Controller
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row){
-                $actionBtn = '<a href="'.route('applicant.applications.edit',$row->id).'" class="edit btn btn-primary btn-sm"><i class="flaticon-edit"></i></a>&nbsp;<a href="'.route('applicant.applications.show',$row->id).'" class="edit btn btn-primary btn-sm"><i class="flaticon-eye"></i></a>';
+                $actionBtn = '<a href="'.route('applicant.applications.edit',$row->id).'" class="edit btn btn-custom-color text-center btn-sm"><i class="flaticon-edit text-white"></i></a>&nbsp;<a href="'.route('applicant.applications.show',$row->id).'" class="edit btn btn-custom-color text-center btn-sm"><i class="flaticon-eye text-white"></i></a>';
                 return $actionBtn;
             })
             ->rawColumns(['action'])
