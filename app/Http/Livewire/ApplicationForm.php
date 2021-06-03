@@ -97,7 +97,7 @@ class ApplicationForm extends Component
     {
         $this->registration = null;
 
-        $this->step = 0;
+        $this->step = 2;
         $this->prefixes = ['Mr.','Ms.','Mrs.','Dr.'];
         $this->genders = ['Male', 'Female', 'Transgender'];
 
@@ -239,7 +239,7 @@ class ApplicationForm extends Component
                 break;
 
             case 'business_registration_status_id':
-                if($this->business_registration_status->firstWhere('id', $value)->name=='Registered'){
+                if(isset($value) && !empty($value) && $this->business_registration_status->firstWhere('id', $value)->name=='Registered'){
                     $this->is_business_registered = true;
                 }else{
                     $this->is_business_registered = false;

@@ -55,14 +55,14 @@
                 <!--begin: Wizard Step 1-->
 
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="mb-10 font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
-
+                    <h4 class="font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
+                    <div class="section_box">
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Prefix: <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($prefixes as $prefix)
-                                    <label class="radio">
+                                    <label class="radio radio-success">
                                         <input wire:model.defer="application.prefix" type="radio" name="prefix" value="{{ $prefix }}">
                                         <span></span>{{ $prefix }}</label>
                                 @endforeach
@@ -81,8 +81,6 @@
                         </div>
 
                     </div>
-
-
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Middle Name:</label>
@@ -101,13 +99,12 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Gender: <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($genders as $gender)
-                                    <label class="radio">
+                                    <label class="radio radio-success">
                                         <input wire:model.defer="application.gender" type="radio" name="gender" value="{{ $gender }}">
                                         <span></span>{{ $gender }}</label>
                                 @endforeach
@@ -143,8 +140,6 @@
                             @enderror
                         </div>
                     </div>
-
-
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>CNIC Expiry Date: <span class="text-danger">*</span></label>
@@ -168,14 +163,13 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row">
 
                         <div class="col-lg-6">
                             <label>Do you have Minority Status? <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($questions as $question)
-                                    <label class="radio">
+                                    <label class="radio radio-success">
                                         <input wire:model="application.minority_status_question_id" type="radio" name="minority_status_question_id" value="{{ $question->id }}">
                                         <span></span>{{ $question->name }}</label>
                                 @endforeach
@@ -185,7 +179,6 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="form-group row">
 
                         <div class="col-lg-6 @if(!$is_minority_status) d-none @endif">
@@ -210,7 +203,6 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -222,9 +214,10 @@
                         </div>
 
                     </div>
+                    </div>
 
-                    <h4 class="mb-10 font-weight-bold section_heading text-white"><span>QUALIFICATION DETAILS</span></h4>
-
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>QUALIFICATION DETAILS</span></h4>
+                    <div class="section_box">
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -242,13 +235,12 @@
 
 
                     </div>
-
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Do you have any Technical Education? <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($questions as $question)
-                                    <label class="radio">
+                                    <label class="radio radio-success">
                                         <input wire:model="application.technical_education_question_id" type="radio" name="technical_education_question_id" value="{{ $question->id }}">
                                         <span></span>{{ $question->name }}</label>
                                 @endforeach
@@ -259,7 +251,6 @@
                         </div>
 
                     </div>
-
                     @foreach($technical_educations as $index=>$technical_education)
                     <div class="row form-group @if(!$is_technical_education) d-none @endif">
                         <div class="col-lg-6">
@@ -285,13 +276,12 @@
                         </div>
                     </div>
                     @endforeach
-
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Are you a skilled worker or an artisan? <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($questions as $question)
-                                    <label class="radio">
+                                    <label class="radio radio-success">
                                         <input wire:model="application.skilled_worker_question_id" type="radio" name="skilled_worker_question_id" value="{{ $question->id }}">
                                         <span></span>{{ $question->name }}</label>
                                 @endforeach
@@ -311,7 +301,11 @@
 
                     </div>
 
-                    <h4 class="mb-10 font-weight-bold section_heading text-white"><span>RESIDENCE ADDRESS (LOCAL)</span></h4>
+                    </div>
+
+
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RESIDENCE ADDRESS (LOCAL)</span></h4>
+                    <div class="section_box">
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -360,7 +354,6 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row">
 
 
@@ -386,7 +379,6 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -416,7 +408,6 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Share %: <span class="text-danger">*</span></label>
@@ -435,7 +426,6 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -455,6 +445,7 @@
                         </div>
 
                     </div>
+                    </div>
 
 
                 </div>
@@ -464,8 +455,9 @@
                 <!--begin: Wizard Step 2-->
 
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="mb-10 font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
+                    <h4 class="font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
 
+                    <div class="section_box">
                     <div class="form-group row">
                         <div class="col-lg-6">
                                 <label>Business Name: <span class="text-danger">*</span></label>
@@ -513,7 +505,6 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row @if(!$is_business_registered) d-none @endif">
 
                         <div class="col-lg-6">
@@ -533,7 +524,6 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row  @if(!$is_business_registered) d-none @endif">
                         <div class="col-lg-6">
                             <label>Business NTN: <span class="text-danger">*</span></label>
@@ -543,7 +533,6 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -572,7 +561,6 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -590,8 +578,10 @@
 
 
                     </div>
+                    </div>
 
-                    <h4 class="mb-10 font-weight-bold section_heading text-white">Relevant Attachments</h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RELEVANT ATTACHMENTS</span></h4>
+                    <div class="section_box">
                     <div class="form-group row">
                         <div x-data="{ open: false }" class="col-lg-6">
                             <label>Upload Proof of Ownership: <span class="text-danger">*</span></label>
@@ -629,7 +619,6 @@
 
 
                     </div>
-
                     <div x-data="{ open: false }" class="form-group row  @if(!$is_business_registered) d-none @endif">
                         <div class="col-lg-6">
                             <label>Upload Registration Certificate: <span class="text-danger">*</span></label>
@@ -648,10 +637,10 @@
                             @enderror
                         </div>
                     </div>
+                    </div>
 
-
-                    <h4 class="mb-10 font-weight-bold section_heading text-white">Business Address</h4>
-
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BUSINESS ADDRESS</span></h4>
+                    <div class="section_box">
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -681,7 +670,6 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Unit / Address 1: <span class="text-danger">*</span></label>
@@ -700,7 +688,6 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -725,7 +712,6 @@
                         </div>
 
                     </div>
-
                     <div class="form-group row">
 
                         <div class="col-lg-6">
@@ -785,7 +771,6 @@
 
 
                     </div>
-
                     <div class="form-group row">
 
                     <div class="col-lg-6">
@@ -806,7 +791,6 @@
 
 
                 </div>
-
                     <div class="form-group row">
                         <div x-data="{ open: false }" class="col-lg-6">
                             <label>Evidence of tenancy/ ownership of business premises: <span class="text-danger">*</span></label>
@@ -836,7 +820,6 @@
 
                     </div>
                     <div class="form-group row">
-
                     <div class="col-lg-6">
                         <label>Business Email Address: <span class="text-danger">*</span></label>
                         <input wire:model="application.business_email" type="email" class="form-control @error('application.business_email') is-invalid @enderror" placeholder="Email Address" />
@@ -844,7 +827,8 @@
                         <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
                     </div>
-                  </div>
+                    </div>
+                    </div>
 
 
                 </div>
@@ -852,14 +836,15 @@
                 <!--end: Wizard Step 2-->
                 <!--begin: Wizard Step 3-->
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="mb-10 font-weight-bold section_heading text-white">Utility Connections</h4>
+                    <h4 class="font-weight-bold section_heading text-white"><span>UTILITY CONNECTIONS</span></h4>
+                    <div class="section_box">
                     <div class="form-group row">
 
                         <div class="col-lg-6">
                             <label>Do you have utility connections? <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($questions as $question)
-                                    <label class="radio">
+                                    <label class="radio radio-success">
                                         <input wire:model="application.utility_connection_question_id" type="radio" name="utility_connection_question_id" value="{{ $question->id }}">
                                         <span></span>{{ $question->name }}</label>
                                 @endforeach
@@ -872,13 +857,23 @@
 
                     </div>
                     @foreach($utility_connections as $index=>$connection)
+
+                            @if(count($utility_connections)==($index+1))
+                                <div class="form-group row">
+                                <span wire:click.prevent="addUtilityConnection" wire:loading.attr="disabled"  class="btn btn-xs btn-icon btn-primary">
+                                <i class="flaticon2-plus"></i>
+                                </span>
+                                </div>
+                            @endif
+
+                        <div class="section_add_more  @if(!$is_utility_connection) d-none @endif">
                         <div class="form-group row @if(!$is_utility_connection) d-none @endif">
 
                             <div class="col-lg-6">
                                 <label>Utility Type: <span class="text-danger">*</span></label>
                                 <div class="radio-inline">
                                     @foreach($utility_types as $type)
-                                        <label class="radio">
+                                        <label class="radio radio-success">
                                             <input wire:model.defer="utility_connections.{{$index}}.utility_type_id" type="radio" name="utility_connections[{{$index}}][utility_type_id]" value="{{ $type->id }}">
                                             <span></span>{{ $type->type_name }}</label>
                                     @endforeach
@@ -892,7 +887,7 @@
                                 <label>Connection Ownership: <span class="text-danger">*</span></label>
                                 <div class="radio-inline">
                                     @foreach($ownerships as $ownership)
-                                        <label class="radio">
+                                        <label class="radio radio-success">
                                             <input wire:model="utility_connections.{{$index}}.connection_ownership_id" type="radio" name="utility_connections[{{$index}}][connection_ownership_id]" value="{{ $ownership->id }}">
                                             <span></span>{{ $ownership->ownership_name }}</label>
                                     @endforeach
@@ -911,7 +906,7 @@
                                 <label>Form/Type of Connection: <span class="text-danger">*</span></label>
                                 <div class="radio-inline">
                                     @foreach($address_forms as $form)
-                                        <label class="radio">
+                                        <label class="radio radio-success">
                                             <input wire:model.defer="utility_connections.{{$index}}.utility_form_id" type="radio" name="utility_connections[{{$index}}][utility_form_id]" value="{{ $form->id }}">
                                             <span></span>{{ $form->form_name }}</label>
                                     @endforeach
@@ -945,16 +940,12 @@
                             <i class="flaticon2-delete"></i>
                         </span>
                                 @endif
-                                &nbsp;&nbsp;
-                                @if(count($utility_connections)==($index+1))
-                                    <span wire:click.prevent="addUtilityConnection" wire:loading.attr="disabled"  class="btn btn-xs btn-icon btn-primary">
-                            <i class="flaticon2-plus"></i>
-                        </span>
-                                @endif
 
                             </div>
                         </div>
+                        </div>
                     @endforeach
+                    </div>
                 </div>
                 <!--end: Wizard Step 3-->
 
@@ -965,7 +956,7 @@
                             <label>Do you have employees? <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($questions as $question)
-                                    <label class="radio">
+                                    <label class="radio radio-success">
                                         <input wire:model="application.employees_question_id" type="radio" name="employees_question_id" value="{{ $question->id }}">
                                         <span></span>{{ $question->name }}</label>
                                 @endforeach
@@ -1448,17 +1439,17 @@
                 <!--end: Wizard Step 3-->
 
                 <!--begin: Wizard Actions-->
-                <div class="d-flex justify-content-between border-top mt-5 pt-10">
+                <div class="d-flex justify-content-between">
                     <div class="mr-2">
                         @if($step> 0 && $step<=4)
-                        <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4 d-block" data-wizard-type="action-prev" wire:click.prevent="decreaseStep"  wire:loading.attr="disabled">Previous</button>
+                        <button type="button" class="btn btn-custom-dark font-weight-bold px-8 py-2 d-block" data-wizard-type="action-prev" wire:click.prevent="decreaseStep"  wire:loading.attr="disabled">Previous</button>
                         @endif
                     </div>
                     <div>
                         @if($step >= 4)
-                        <button type="button" class="btn btn-success font-weight-bold text-uppercase px-9 py-4 d-block" data-wizard-type="action-submit" wire:loading.attr="disabled" wire:click.prevent="submitApplication">Submit</button>
+                        <button type="button" class="btn btn-custom-color font-weight-bold px-8 py-2 d-block" data-wizard-type="action-submit" wire:loading.attr="disabled" wire:click.prevent="submitApplication">Submit</button>
                         @else
-                        <button type="button" class="btn btn-success font-weight-bold text-uppercase px-9 py-4 d-block" data-wizard-type="action-next" wire:loading.attr="disabled" wire:click.prevent="submitApplication"  >Save & Next</button>
+                        <button type="button" class="btn btn-custom-color font-weight-bold px-8 py-2 d-block" data-wizard-type="action-next" wire:loading.attr="disabled" wire:click.prevent="submitApplication"  >Save & Next</button>
                         @endif
                     </div>
                 </div>
