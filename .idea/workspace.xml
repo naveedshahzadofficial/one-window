@@ -266,7 +266,39 @@
       <change beforePath="$PROJECT_DIR$/../livewirekit/resources/views/livewire/tailwind/post-votes.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/application/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/AddressCapacity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AddressCapacity.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/AddressForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AddressForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/AddressType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AddressType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/City.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/City.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/District.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/District.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tehsil.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tehsil.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/TelecomCompany.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TelecomCompany.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_25_110511_create_telecom_companies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_25_110511_create_telecom_companies_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_25_114013_add_columns_to_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_25_114013_add_columns_to_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_231740_create_address_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_27_231740_create_address_types_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_231808_create_address_forms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_27_231808_create_address_forms_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_231809_create_cities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_27_231809_create_cities_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_231809_create_districts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_27_231809_create_districts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_231819_create_tehsils_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_27_231819_create_tehsils_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_231828_create_address_capacities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_27_231828_create_address_capacities_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/AddressCapacitySeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AddressCapacitySeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/AddressFormSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AddressFormSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/AddressTypeSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AddressTypeSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/BusinessLegalStatusSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/BusinessLegalStatusSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/ProvinceSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProvinceSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/TelecomCompanySeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/TelecomCompanySeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/applicant_custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/applicant_custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/db_tables/cities__2021-05-27.sql" beforeDir="false" afterPath="$PROJECT_DIR$/public/db_tables/cities__2021-05-27.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/db_tables/districts__2021-05-27.sql" beforeDir="false" afterPath="$PROJECT_DIR$/public/db_tables/districts__2021-05-27.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/db_tables/tehsils__2021-05-27.sql" beforeDir="false" afterPath="$PROJECT_DIR$/public/db_tables/tehsils__2021-05-27.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_aside.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/application/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/application/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -523,7 +555,8 @@
       <workItem from="1622007647875" duration="30855000" />
       <workItem from="1622087938731" duration="85596000" />
       <workItem from="1622442953809" duration="66155000" />
-      <workItem from="1622611322300" duration="35260000" />
+      <workItem from="1622611322300" duration="35497000" />
+      <workItem from="1622694188695" duration="9627000" />
     </task>
     <servers />
   </component>

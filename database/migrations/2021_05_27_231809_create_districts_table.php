@@ -16,12 +16,12 @@ class CreateDistrictsTable extends Migration
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
             $table->string('district_name_e');
-            $table->string('district_name_u');
-            $table->unsignedInteger('division_id')->nullable();
-            $table->unsignedInteger('province_id')->nullable();
-            $table->unsignedInteger('region_id')->nullable();
+            $table->string('district_name_u')->nullable();
+            $table->string('district_short_name')->nullable();
+            $table->unsignedBigInteger('division_id')->nullable();
+            $table->unsignedBigInteger('province_id')->nullable();
+            $table->unsignedBigInteger('fbr_code_id')->nullable();
             $table->text('district_remark')->nullable();
-            $table->tinyInteger('district_is_business')->default(0);
             $table->boolean('district_status')->default(1);
             $table->softDeletes();
             $table->timestamps();

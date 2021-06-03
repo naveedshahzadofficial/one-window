@@ -15,8 +15,9 @@ class BusinessLegalStatusSeeder extends Seeder
     public function run()
     {
         BusinessLegalStatus::create(['legal_name'=>'Sole Proprietorship']);
-        BusinessLegalStatus::create(['legal_name'=>'Partnership Firm / AoP']);
-        BusinessLegalStatus::create(['legal_name'=>'Private Limited Company']);
+        BusinessLegalStatus::create(['legal_name'=>'Partnership Firm']);
         BusinessLegalStatus::create(['legal_name'=>'Single Member Company']);
+        BusinessLegalStatus::create(['legal_name'=>'Private Limited']);
+        BusinessLegalStatus::create(['legal_name'=>'Public Limited']);
     }
 }

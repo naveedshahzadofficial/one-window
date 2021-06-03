@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\AddressForm;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AddressFormSeeder extends Seeder
 {
@@ -14,8 +14,9 @@ class AddressFormSeeder extends Seeder
      */
     public function run()
     {
-        AddressForm::create(['form_name'=>'Commercial']);
-        AddressForm::create(['form_name'=>'Industrial']);
-        AddressForm::create(['form_name'=>'Residential']);
+
+        $path = public_path('db_tables/address_forms__2021-05-27.sql');
+        $sql = file_get_contents($path);
+        DB::unprepared($sql);
     }
 }

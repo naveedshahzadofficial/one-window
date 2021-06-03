@@ -1,3 +1,9 @@
+#kt_content {
+    background-color: white !important;
+}
+#kt_footer{
+    background-color: #30807d;
+}
 .aside-menu {
     background-color: #30807d;
 }
@@ -16,13 +22,11 @@
     box-shadow: none;
 }
 .card.card-custom > .card-header .card-title, .card.card-custom > .card-header .card-title .card-label {
-    font-weight: 500;
-    font-size: 1.275rem;
+    font-weight: 600;
+    font-size: 1.575rem;
     color: #30807d;
 }
-.card {
-    background-color: #ecf7f6 !important;
-}
+
 .table-bordered {
     border: 1px solid #B4B6B9;
 }
@@ -43,4 +47,7 @@
 .card.card-custom > .card-body {
     padding: 2rem 2.25rem;
     background-color: white;
+}
+.card.card-custom{
+    box-shadow: none;
 }

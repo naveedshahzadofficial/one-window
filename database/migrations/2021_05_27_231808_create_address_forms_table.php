@@ -16,6 +16,8 @@ class CreateAddressFormsTable extends Migration
         Schema::create('address_forms', function (Blueprint $table) {
             $table->id();
             $table->string('form_name');
+            $table->foreignId('address_type_id')->nullable()->constrained();
+            $table->unsignedBigInteger('fbr_code_id')->nullable();
             $table->text('form_remark')->nullable();
             $table->boolean('form_status')->default(1);
             $table->softDeletes();

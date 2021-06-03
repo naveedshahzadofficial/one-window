@@ -16,6 +16,7 @@ class CreateTelecomCompaniesTable extends Migration
         Schema::create('telecom_companies', function (Blueprint $table) {
             $table->id();
             $table->string('company_name');
+            $table->unsignedBigInteger('fbr_code_id')->nullable();
             $table->text('company_remark')->nullable();
             $table->boolean('company_status')->default(1);
             $table->softDeletes();

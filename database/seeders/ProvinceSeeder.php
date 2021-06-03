@@ -14,12 +14,12 @@ class ProvinceSeeder extends Seeder
      */
     public function run()
     {
-        Province::create(['province_name'=>'AZAD KASHMIR']);
+        Province::create(['province_name'=>'AZAD JAMMU AND KASHMIR']);
         Province::create(['province_name'=>'BALUCHISTAN']);
-        Province::create(['province_name'=>'FATA']);
-        Province::create(['province_name'=>'GILGIT-BALTISTAN']);
-        Province::create(['province_name'=>'ISLAMABAD']);
-        Province::create(['province_name'=>'KHYBER-PAKHTUNKHWA']);
+        Province::create(['province_name'=>'FEDERALLY ADMINISTERED TRIBAL AREAS']);
+        Province::create(['province_name'=>'GILGIT BALTISTAN']);
+        Province::create(['province_name'=>'ISLAMABAD CAPITAL TERRITORY']);
+        Province::create(['province_name'=>'KHYBER PAKHTUNKHWA']);
         Province::create(['province_name'=>'PUNJAB']);
         Province::create(['province_name'=>'SINDH']);
     }

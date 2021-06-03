@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class AddressForm extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['form_name', 'form_remark', 'form_status', ];
+    protected $fillable = ['form_name', 'address_type_id', 'fbr_code_id', 'form_remark', 'form_status', ];
 }

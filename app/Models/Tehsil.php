@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Tehsil extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = [ 'tehsil_name_e','tehsil_name_u','district_id','province_id','tehsil_is_thq','tehsil_remark','tehsil_status'];
+    protected $fillable = [ 'tehsil_name_e','tehsil_name_u','district_id','province_id','fbr_code_id','tehsil_remark','tehsil_status'];
 }

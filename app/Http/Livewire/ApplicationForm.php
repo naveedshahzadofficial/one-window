@@ -108,7 +108,7 @@ class ApplicationForm extends Component
         $this->address_types = AddressType::where('type_status',1)->get();
         $this->address_forms = AddressForm::where('form_status',1)->get();
         $this->cities = City::where('city_status',1)->get();
-        $this->districts = District::where('district_status',1)->where('province_id',7)->get();
+        $this->districts = District::where('district_status',1)->get();
         $this->address_capacities = AddressCapacity::where('capacity_status',1)->get();
         $this->business_registration_status = BusinessRegistrationStatus::where('status',1)->get();
         $this->business_legal_statuses = BusinessLegalStatus::where('legal_status',1)->get();
@@ -151,7 +151,7 @@ class ApplicationForm extends Component
             $this->registration = $registration;
             $this->business_secotors = BusinessSector::where('business_category_id', $registration->business_category_id)->where('sector_status',1)->get();
             $this->business_sub_secotors = BusinessSubSector::where('business_sector_id', $registration->business_sector_id)->where('sub_sector_status',1)->get();
-            $this->business_cities = City::where('city_province_id', $registration->business_province_id)->where('city_status',1)->get();
+            $this->business_cities = City::where('province_id', $registration->business_province_id)->where('city_status',1)->get();
             $this->business_districts = District::where('province_id', $registration->business_province_id)->where('district_status',1)->get();
             $this->business_tehsils = Tehsil::where('district_id', $registration->business_district_id)->where('tehsil_status',1)->get();
 
@@ -253,7 +253,7 @@ class ApplicationForm extends Component
                 $this->business_sub_secotors = BusinessSubSector::where('business_sector_id', $value)->where('sub_sector_status',1)->get();
                 break;
             case 'business_province_id':
-                $this->business_cities = City::where('city_province_id', $value)->where('city_status',1)->get();
+                $this->business_cities = City::where('province_id', $value)->where('city_status',1)->get();
                 $this->business_districts = District::where('province_id', $value)->where('district_status',1)->get();
                 break;
             case 'business_district_id':

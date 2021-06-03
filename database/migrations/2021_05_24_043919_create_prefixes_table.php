@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddressCapacitiesTable extends Migration
+class CreatePrefixesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateAddressCapacitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('address_capacities', function (Blueprint $table) {
+        Schema::create('prefixes', function (Blueprint $table) {
             $table->id();
-            $table->string('capacity_name');
+            $table->string('prefix_name');
             $table->unsignedBigInteger('fbr_code_id')->nullable();
-            $table->text('capacity_remark')->nullable();
-            $table->boolean('capacity_status')->default(1);
+            $table->text('prefix_remark')->nullable();
+            $table->boolean('prefix_status')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateAddressCapacitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('address_capacities');
+        Schema::dropIfExists('prefixes');
     }
 }

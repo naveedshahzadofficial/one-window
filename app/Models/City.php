@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class City extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = [ 'city_name_e','city_name_u','city_province_id','city_remark', 'city_status'];
+    protected $fillable = [ 'city_name_e','city_name_u', 'province_id', 'country_id','city_remark', 'city_status'];
 }

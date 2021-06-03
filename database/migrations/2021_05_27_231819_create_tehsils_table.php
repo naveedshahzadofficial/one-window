@@ -17,9 +17,9 @@ class CreateTehsilsTable extends Migration
             $table->id();
             $table->string('tehsil_name_e');
             $table->string('tehsil_name_u');
-            $table->unsignedInteger('district_id')->nullable();
-            $table->unsignedInteger('province_id')->nullable();
-            $table->tinyInteger('tehsil_is_thq')->nullable()->default(0);
+            $table->unsignedBigInteger('district_id')->nullable();
+            $table->unsignedBigInteger('province_id')->nullable();
+            $table->unsignedBigInteger('fbr_code_id')->nullable();
             $table->text('tehsil_remark')->nullable();
             $table->boolean('tehsil_status')->default(1);
             $table->softDeletes();

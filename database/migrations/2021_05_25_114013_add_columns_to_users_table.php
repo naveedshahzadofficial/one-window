@@ -15,7 +15,7 @@ class AddColumnsToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('name');
-            $table->enum('prefix',['Mr.','Ms.','Mrs.','Dr.']);
+            $table->string('prefix');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');

@@ -7,7 +7,7 @@
             <div class="card card-custom ">
                 <div class="card-header flex-wrap py-3">
                     <div class="card-title">
-                        <h3 class="card-label">Update Registration</h3>
+                        <h3 class="card-label">UPDATE REGISTRATION</h3>
                     </div>
                 </div>
 

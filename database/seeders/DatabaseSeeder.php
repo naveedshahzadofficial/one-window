@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(TelecomCompanySeeder::class);
         $this->call(MobileCodeSeeder::class);
+        $this->call(GenderSeeder::class);
+        $this->call(PrefixSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(DesignationBusinessSeeder::class);
         $this->call(MinorityStatusSeeder::class);

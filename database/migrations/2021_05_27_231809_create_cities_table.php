@@ -17,7 +17,8 @@ class CreateCitiesTable extends Migration
             $table->id();
             $table->string('city_name_e');
             $table->string('city_name_u');
-            $table->tinyInteger('city_province_id');
+            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('province_id');
             $table->text('city_remark')->nullable();
             $table->boolean('city_status')->default(1);
             $table->softDeletes();

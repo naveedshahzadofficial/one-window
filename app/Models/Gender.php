@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AddressType extends Model
+class Gender extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['type_name', 'property_category_id', 'fbr_code_id', 'type_remark', 'type_status', ];
+    protected $fillable = ['gender_name', 'fbr_code_id', 'gender_remark', 'gender_status'];
 }

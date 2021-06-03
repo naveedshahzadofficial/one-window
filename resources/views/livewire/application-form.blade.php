@@ -7,8 +7,7 @@
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
                     <h3 class="wizard-title">
-                        <span>1.</span>Applicant Profile</h3>
-                    <div class="wizard-bar"></div>
+                        Applicant Profile</h3>
                 </div>
             </div>
             <!--end::Wizard Step 1 Nav-->
@@ -17,8 +16,7 @@
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
                     <h3 class="wizard-title">
-                        <span>2.</span>Business Profile</h3>
-                    <div class="wizard-bar"></div>
+                        Business Profile</h3>
                 </div>
             </div>
             <!--end::Wizard Step 2 Nav-->
@@ -27,8 +25,7 @@
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
                     <h3 class="wizard-title">
-                        <span>3.</span>Utility Connections</h3>
-                    <div class="wizard-bar"></div>
+                        Utility Connections</h3>
                 </div>
             </div>
             <!--end::Wizard Step 2 Nav-->
@@ -37,8 +34,7 @@
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
                     <h3 class="wizard-title">
-                        <span>4.</span>Employees Info</h3>
-                    <div class="wizard-bar"></div>
+                        Employees Info</h3>
                 </div>
             </div>
             <!--end::Wizard Step 2 Nav-->
@@ -47,8 +43,7 @@
             <div class="wizard-step" data-wizard-type="step" data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
                     <h3 class="wizard-title">
-                        <span>5</span>Review and Submit</h3>
-                    <div class="wizard-bar"></div>
+                        Review and Submit</h3>
                 </div>
             </div>
             <!--end::Wizard Step 5 Nav-->
