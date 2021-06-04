@@ -158,7 +158,7 @@
                         </div>
 
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row" wire:ignore>
 
                         <div class="col-lg-6">
                             <label>Do you have Minority Status? <span class="text-danger">*</span></label>
@@ -174,16 +174,11 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row @if(!$is_minority_status) d-none @endif">
 
-                        <div class="col-lg-6 @if(!$is_minority_status) d-none @endif">
+                        <div wire:ignore class="col-lg-6">
                             <label>Minority Status: <span class="text-danger">*</span></label>
-                            <select wire:model="application.minority_status_id"  class="form-control @error('application.minority_status_id') is-invalid @enderror">
-                                <option value="">Select Status</option>
-                                @foreach($minority_status as $status)
-                                    <option value="{{ $status->id }}">{{ $status->name }}</option>
-                                @endforeach
-                            </select>
+                            <x-select2-dropdown wire:model="application.minority_status_id" setFieldName="application.minority_status_id" id="minority_status_id" fieldName="name" :listing="$minority_status" />
                             @error('application.minority_status_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -215,14 +210,9 @@
                     <div class="section_box">
                     <div class="form-group row">
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" wire:ignore>
                             <label>Education Level: <span class="text-danger">*</span></label>
-                            <select wire:model.defer="application.education_level_id"  class="form-control @error('application.education_level_id') is-invalid @enderror">
-                                <option value="">Select Status</option>
-                                @foreach($education_level as $level)
-                                    <option value="{{ $level->id }}">{{ $level->name }}</option>
-                                @endforeach
-                            </select>
+                            <x-select2-dropdown wire:model.defer="application.education_level_id" setFieldName="application.education_level_id" id="education_level_id" fieldName="name" :listing="$education_level" />
                             @error('application.education_level_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -310,14 +300,9 @@
                     <div class="section_box">
                     <div class="form-group row">
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" wire:ignore>
                             <label>Type of Property: <span class="text-danger">*</span></label>
-                            <select wire:model="application.residence_address_type_id"  class="form-control @error('application.residence_address_type_id') is-invalid @enderror">
-                                <option value="">Select Type</option>
-                                @foreach($address_types as $type)
-                                    <option value="{{ $type->id }}">{{ $type->type_name }}</option>
-                                @endforeach
-                            </select>
+                            <x-select2-dropdown wire:model="application.residence_address_type_id" setFieldName="application.residence_address_type_id" id="residence_address_type_id" fieldName="type_name" :listing="$address_types" />
                             @error('application.residence_address_type_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -367,14 +352,9 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" wire:ignore>
                             <label>City: <span class="text-danger">*</span></label>
-                            <select wire:model.defer="application.residence_city_id"  class="form-control @error('application.residence_city_id') is-invalid @enderror">
-                                <option value="">Select City</option>
-                                @foreach($cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->city_name_e }}</option>
-                                @endforeach
-                            </select>
+                            <x-select2-dropdown wire:model.defer="application.residence_city_id" setFieldName="application.residence_city_id" id="residence_city_id" fieldName="city_name_e" :listing="$cities" />
                             @error('application.residence_city_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -383,27 +363,17 @@
                     </div>
                     <div class="form-group row">
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" wire:ignore>
                             <label>District: <span class="text-danger">*</span></label>
-                            <select wire:model.defer="application.residence_district_id"  class="form-control @error('application.residence_district_id') is-invalid @enderror">
-                                <option value="">Select District</option>
-                                @foreach($districts as $district)
-                                    <option value="{{ $district->id }}">{{ $district->district_name_e }}</option>
-                                @endforeach
-                            </select>
+                            <x-select2-dropdown wire:model.defer="application.residence_district_id" setFieldName="application.residence_district_id" id="residence_district_id" fieldName="district_name_e" :listing="$districts" />
                             @error('application.residence_district_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" wire:ignore>
                             <label>Capacity: <span class="text-danger">*</span></label>
-                            <select wire:model.defer="application.residence_capacity_id"  class="form-control @error('application.residence_capacity_id') is-invalid @enderror">
-                                <option value="">Select Capacity</option>
-                                @foreach($address_capacities as $capacity)
-                                    <option value="{{ $capacity->id }}">{{ $capacity->capacity_name }}</option>
-                                @endforeach
-                            </select>
+                            <x-select2-dropdown wire:model.defer="application.residence_capacity_id" setFieldName="application.residence_capacity_id" id="residence_capacity_id" fieldName="capacity_name" :listing="$address_capacities" />
                             @error('application.residence_capacity_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -419,7 +389,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" wire:ignore>
                             <label>Acquisition Date: <span class="text-danger">*</span></label>
                             <x-date-picker wire:model.defer="application.residence_acquisition_date" />
                             @error('application.residence_acquisition_date')
@@ -535,8 +505,8 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group row">
 
+                    <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Business Category: <span class="text-danger">*</span></label>
                             <select wire:model="application.business_category_id"  class="form-control @error('application.business_category_id') is-invalid @enderror">

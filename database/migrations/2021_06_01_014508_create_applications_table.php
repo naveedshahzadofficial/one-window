@@ -54,9 +54,12 @@ class CreateApplicationsTable extends Migration
             $table->string('business_registration_number')->nullable();
             $table->date('business_registration_date')->nullable();
             $table->string('business_ntn_no')->nullable();
+            $table->foreignId('business_activity_id')->nullable()->constrained();
+
             $table->foreignId('business_category_id')->nullable()->constrained();
             $table->foreignId('business_sector_id')->nullable()->constrained();
             $table->foreignId('business_sub_sector_id')->nullable()->constrained();
+
             $table->string('proof_of_ownership_file')->nullable();
             $table->string('registration_certificate_file')->nullable();
             $table->string('license_registration_file')->nullable();

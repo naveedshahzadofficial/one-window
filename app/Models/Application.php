@@ -20,7 +20,10 @@ class Application extends Model
         'personal_mobile_no', 'personal_email',
         'business_name', 'business_establishment_date', 'business_registration_status_id', 'business_legal_status_id',
         'business_registration_number', 'business_registration_date', 'business_ntn_no',
-        'business_category_id', 'business_sector_id', 'business_sub_sector_id', 'proof_of_ownership_file',
+
+        'business_activity_id', 'business_category_id', 'business_sector_id', 'business_sub_sector_id',
+
+        'proof_of_ownership_file',
         'registration_certificate_file', 'license_registration_file', 'business_address_type_id', 'business_address_form_id',
         'business_address_1', 'business_address_2', 'business_address_3', 'business_province_id',
         'business_city_id', 'business_district_id', 'business_tehsil_id', 'business_capacity_id', 'business_share',
@@ -139,6 +142,11 @@ class Application extends Model
     public function businessLegalStatus()
     {
         return $this->belongsTo(BusinessLegalStatus::class);
+    }
+
+    public function businessActivity()
+    {
+        return $this->belongsTo(BusinessActivity::class);
     }
 
     public function businessCategory()

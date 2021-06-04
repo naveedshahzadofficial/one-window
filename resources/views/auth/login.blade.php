@@ -71,8 +71,8 @@
                     <!--end:Sign In Form-->
 
                     <div class="row mt-15">
-                        <div class="col-md-8 pt-3"><a href="{{ route('register') }}" class="auth-text sample-text"><i class="fa fa-user"></i> Already have not an account</a></div>
-                        <div class="col-md-4"><a href="{{ route('register') }}" class="register_button btn btn-white btn-block w-110px ">Sign Up <i class="fa fa-arrow-right"></i></a></div>
+                        <div class="col-md-8 pt-3 text-left"><a href="{{ route('register') }}" class="auth-text sample-text"><i class="fa fa-user"></i> Already have not an account?</a></div>
+                        <div class="col-md-4"><a href="{{ route('register') }}" class="register_button btn btn-white btn-block">Sign Up <i class="fa fa-arrow-right"></i></a></div>
                     </div>
 
 

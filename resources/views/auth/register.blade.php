@@ -7,7 +7,7 @@
             @component('auth.aside-auth') @endcomponent
             <!--begin:Content-->
                 <div class="d-flex w-100 flex-center p-15 position-relative overflow-hidden auth-right-bg">
-                    <div class="login-wrapper">
+                    <div class="login-wrapper mw-100">
                         <!--begin:Sign In Form-->
                         <div class="login-signin">
 
@@ -25,7 +25,7 @@
                 </div>
 
                             <div class="row pt-15">
-                                <div class="col-md-8">&nbsp;</div>
+                                <div class="col-md-8  pt-3 text-left"><a href="{{ route('login') }}" class="auth-text sample-text"><i class="fa fa-user"></i> Already have an account?</a></div>
                                 <div class="col-md-4">
                                     <a href="{{ route('login') }}" class="register_button btn btn-white btn-block">Login <i class="fa fa-arrow-right"></i></a>
                                 </div>

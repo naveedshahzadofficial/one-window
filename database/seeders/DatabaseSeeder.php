@@ -43,5 +43,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FiscalYearSeeder::class);
         $this->call(CurrencySeeder::class);
         $this->call(EmployeeTypeSeeder::class);
+        $this->call(BusinessActivitySeeder::class);
     }
 }
