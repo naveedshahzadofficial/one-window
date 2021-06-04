@@ -123,6 +123,7 @@
     border: 1px solid #30807d;
     color: #30807d;
     font-size: 0.8rem;
+    border-radius: 5px;
 }
 select.form-control,.form-control:focus{
     color: white;
@@ -145,7 +146,7 @@ select.form-control,.form-control:focus{
 .btn-custom-color{
     color: #ffffff;
     background-color: #30807d;
-    border-color: #e6fffc;
+    border-color: #30807d;
 }
 .btn-custom-color:hover{
     color: #e6fffc;
@@ -210,3 +211,8 @@ table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td
 .select2-container--default .select2-selection--single .select2-selection__arrow:after, .select2-container--default .select2-selection--multiple .select2-selection__arrow:after{
     color: #ffffff !important;
  }
+select.form-control, .form-control:focus {
+    color: white;
+    background-color: #30807d;
+    border-color: #30807d;
+}
