@@ -1,4 +1,4 @@
-<input {{ isset($attributes)?$attributes:'' }} type="text" {{isset($readonly) && !empty($readonly)?$readonly:''}} class="form-control {{isset($isInvalid)?$isInvalid:''}} {{isset($class)?$class:''}}" placeholder="{{ isset($placeholder)?$placeholder:'' }}" onchange="this.dispatchEvent(new InputEvent('input'))" />
+<input {{ isset($attributes)?$attributes:'' }} type="text" {{isset($readonly) && !empty($readonly)?$readonly:''}} class="form-control  {{isset($class)?$class:''}}" placeholder="{{ isset($placeholder)?$placeholder:'' }}" onchange="this.dispatchEvent(new InputEvent('input'))" />
 @push('post-scripts')
     <script>
         $(function (){
