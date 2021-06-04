@@ -16,6 +16,7 @@ class CreateGendersTable extends Migration
         Schema::create('genders', function (Blueprint $table) {
             $table->id();
             $table->string('gender_name');
+            $table->string('gender_name_u');
             $table->unsignedBigInteger('fbr_code_id')->nullable();
             $table->text('gender_remark')->nullable();
             $table->boolean('gender_status')->default(1);

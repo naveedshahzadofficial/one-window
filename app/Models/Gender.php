@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Gender extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['gender_name', 'fbr_code_id', 'gender_remark', 'gender_status'];
+    protected $fillable = ['gender_name', 'gender_name_u', 'fbr_code_id', 'gender_remark', 'gender_status'];
 }

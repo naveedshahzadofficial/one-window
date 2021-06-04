@@ -16,6 +16,7 @@ class CreateEmployeeTypesTable extends Migration
         Schema::create('employee_types', function (Blueprint $table) {
             $table->id();
             $table->string('type_name');
+            $table->string('type_name_u');
             $table->text('type_remark')->nullable();
             $table->boolean('type_status')->default(1);
             $table->softDeletes();

@@ -55,7 +55,7 @@
                 <!--begin: Wizard Step 1-->
 
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
+                    <h4 class="font-weight-bold section_heading text-white"><span>BASIC INFO (<label class="urdu-label" dir="rtl"> تعلیمی تفصیلات </label>)</span></h4>
                     <div class="section_box">
                     <div class="form-group row">
                         <div class="col-lg-6">
@@ -220,7 +220,7 @@
                     </div>
                     </div>
 
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>QUALIFICATION DETAILS</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>QUALIFICATION DETAILS (<label class="urdu-label" dir="rtl"> تعلیمی تفصیلات </label>)</span></h4>
                     <div class="section_box">
                     <div class="form-group row">
 
@@ -312,7 +312,7 @@
                     </div>
 
 
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RESIDENCE ADDRESS (LOCAL)</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RESIDENCE ADDRESS (LOCAL) (<label class="urdu-label" dir="rtl"> رہائش کا پتہ (مقامی) </label>)</span></h4>
                     <div class="section_box">
                     <div class="form-group row">
 
@@ -371,7 +371,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>City: <span class="text-danger">*</span></label>
+                            <label>City: (<span class="urdu-label" dir="rtl"> شہر </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-select2-dropdown wire:model.defer="application.residence_city_id" setFieldName="application.residence_city_id" id="residence_city_id" fieldName="city_name_e" :listing="$cities" />
                             </div>
@@ -384,7 +384,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>District: <span class="text-danger">*</span></label>
+                            <label>District: (<span class="urdu-label" dir="rtl"> ضلع </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-select2-dropdown wire:model.defer="application.residence_district_id" setFieldName="application.residence_district_id" id="residence_district_id" fieldName="district_name_e" :listing="$districts" />
                             </div>
@@ -394,7 +394,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Capacity: <span class="text-danger">*</span></label>
+                            <label>Capacity: (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-select2-dropdown wire:model.defer="application.residence_capacity_id" setFieldName="application.residence_capacity_id" id="residence_capacity_id" fieldName="capacity_name" :listing="$address_capacities" />
                             </div>
@@ -406,7 +406,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Share %: <span class="text-danger">*</span></label>
+                            <label>Share %: (<span class="urdu-label" dir="rtl"> حصہ فیصد </span>)<span class="text-danger">*</span></label>
                             <input wire:model.defer="application.residence_share" type="number" min="0" max="100" class="form-control @error('application.residence_share') is-invalid @enderror" placeholder="0-100" />
                             @error('application.residence_share')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -414,7 +414,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Acquisition Date: <span class="text-danger">*</span></label>
+                            <label>Acquisition Date: (<span class="urdu-label" dir="rtl"> حصول کی تاریخ </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-date-picker wire:model.defer="application.residence_acquisition_date" id="residence_acquisition_date" />
                             </div>
@@ -427,7 +427,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Mobile No. <span class="text-danger"></span></label>
+                            <label>Mobile No. (<span class="urdu-label" dir="rtl"> موبائل نمبر </span>)<span class="text-danger"></span></label>
                             <input readonly wire:model.defer="application.personal_mobile_no" type="text" class="border-0 pl-0 form-control @error('application.personal_mobile_no') is-invalid @enderror" placeholder="Mobile No." />
                             @error('application.personal_mobile_no')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -435,7 +435,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Email Address: <span class="text-danger"></span></label>
+                            <label>Email Address: (<span class="urdu-label" dir="rtl"> ای میل اڈریس </span>)<span class="text-danger"></span></label>
                             <input readonly wire:model.defer="application.personal_email" type="text" class="border-0 pl-0 form-control @error('application.personal_email') is-invalid @enderror" placeholder="Email Address" />
                             @error('application.personal_email')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -453,12 +453,12 @@
                 <!--begin: Wizard Step 2-->
 
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
+                    <h4 class="font-weight-bold section_heading text-white"><span>BASIC INFO (<label class="urdu-label" dir="rtl"> تعلیمی تفصیلات </label>)</span></h4>
 
                     <div class="section_box">
                     <div class="form-group row">
                         <div class="col-lg-6">
-                                <label>Business Name: <span class="text-danger">*</span></label>
+                                <label>Business Name: (<span class="urdu-label" dir="rtl"> کاروبار کا نام </span>)<span class="text-danger">*</span></label>
                                 <input wire:model.defer="application.business_name" type="text" class="form-control @error('application.business_name') is-invalid @enderror" placeholder="Business Name" />
                                 @error('application.business_name')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -466,7 +466,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Acquisition/ Start Date: <span class="text-danger">*</span></label>
+                            <label>Acquisition/ Start Date: (<span class="urdu-label" dir="rtl"> کاروبار کے قیام / حصول / آغاز کی تاریخ </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-date-picker wire:model.defer="application.business_establishment_date" id="business_establishment_date" />
                             </div>
@@ -479,7 +479,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Business Registration Status: <span class="text-danger">*</span></label>
+                            <label>Business Registration Status: (<span class="urdu-label" dir="rtl"> بزنس رجسٹریشن کی حیثیت </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                                 <x-select2-dropdown wire:model.defer="application.business_registration_status_id" setFieldName="application.business_registration_status_id" id="business_registration_status_id" fieldName="name" :listing="$business_registration_status" />
                             </div>
@@ -489,7 +489,7 @@
                         </div>
 
                         <div class="col-lg-6 @if(!$is_business_registered) d-none @endif">
-                            <label>Legal Status of Business: <span class="text-danger">*</span></label>
+                            <label>Legal Status of Business: (<span class="urdu-label" dir="rtl"> کاروباری اندراج کی قانونی حیثیت </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                                 <x-select2-dropdown wire:model.defer="application.business_legal_status_id" setFieldName="application.business_legal_status_id" id="business_legal_status_id" fieldName="legal_name" :listing="$business_legal_statuses" />
                             </div>
@@ -502,7 +502,7 @@
                     <div class="form-group row @if(!$is_business_registered) d-none @endif">
 
                         <div class="col-lg-6">
-                            <label>Business Registration Number: <span class="text-danger">*</span></label>
+                            <label>Business Registration Number: (<span class="urdu-label" dir="rtl"> بزنس رجسٹریشن نمبر </span>)<span class="text-danger">*</span></label>
                             <input wire:model.defer="application.business_registration_number" type="text" class="form-control @error('application.business_registration_number') is-invalid @enderror" placeholder="Registration Number" />
                             @error('application.business_registration_number')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -510,7 +510,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Business Registration Date: <span class="text-danger">*</span></label>
+                            <label>Business Registration Date: (<span class="urdu-label" dir="rtl"> کاروبار کے اندراج کی تاریخ </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-date-picker wire:model.defer="application.business_registration_date" id="business_registration_date" />
                             </div>
@@ -522,7 +522,7 @@
                     </div>
                     <div class="form-group row  @if(!$is_business_registered) d-none @endif">
                         <div class="col-lg-6">
-                            <label>Business NTN: <span class="text-danger">*</span></label>
+                            <label>Business NTN: (<span class="urdu-label" dir="rtl"> کاروبار کا قومی ٹیکس نمبر </span>)<span class="text-danger">*</span></label>
                             <input wire:model.defer="application.business_ntn_no" type="text" class="form-control @error('application.business_ntn_no') is-invalid @enderror" placeholder="Business NTN" />
                             @error('application.business_ntn_no')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -532,7 +532,7 @@
 
                         <div class="form-group row">
                             <div class="col-lg-12">
-                                <label>Business Category: <span class="text-danger">*</span></label>
+                                <label>Business Category: (<span class="urdu-label" dir="rtl"> کاروبار کی قسم </span>)<span class="text-danger">*</span></label>
                                 <div wire:ignore>
                                 <x-multi-column-select2 :listing="$business_activities" wire:model.defer="application.business_activity_id" setFieldName="application.business_activity_id" id="business_activity_id" fieldName="class_name" />
                                 </div>
@@ -544,14 +544,14 @@
 
                     </div>
 
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RELEVANT ATTACHMENTS</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RELEVANT ATTACHMENTS (<label class="urdu-label" dir="rtl"> مطلوبہ دستاویزات </label>)</span></h4>
                     <div class="section_box">
                     <div class="form-group row">
                         <div x-data="{ open: false }" class="col-lg-6">
-                            <label>Upload Proof of Ownership: <span class="text-danger">*</span></label>
+                            <label>Upload Proof of Ownership: (<span class="urdu-label" dir="rtl"> ملکیت کا ثبوت اپ لوڈ کریں </span>)<span class="text-danger">*</span></label>
 
                             @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
-                            <a href="{{ asset('storage/'.$application['proof_of_ownership_file']) }}" target="_blank" class="file_viewer" title="Proof of Ownership">View File</a>
+                                <br><a href="{{ asset('storage/'.$application['proof_of_ownership_file']) }}" target="_blank" class="file_viewer" title="Proof of Ownership">View File</a>
                             &nbsp;|&nbsp;
                             <a @click="open = true" href="javascript:;" class="show_file" x-show="!open" onClick="return false;">Change File
                             </a><a href="javascript:;" onClick="return false;" x-show="open" @click="open = false">Do Not Change File</a>
@@ -565,10 +565,10 @@
                         </div>
 
                         <div x-data="{ open: false }" class="col-lg-6">
-                            <label>License /Registration with chamber or Trade body: </label>
+                            <label>License /Registration with chamber or Trade body:<br>(<span class="urdu-label" dir="rtl"> چیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ اپ لوڈ کریں </span>) </label>
 
                             @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
-                                <a href="{{ asset('storage/'.$application['license_registration_file']) }}" target="_blank" class="file_viewer" title="License /Registration">View File</a>
+                                <br><a href="{{ asset('storage/'.$application['license_registration_file']) }}" target="_blank" class="file_viewer" title="License /Registration">View File</a>
                                 &nbsp;|&nbsp;
                                 <a @click="open = true" href="javascript:;" class="show_file" x-show="!open" onClick="return false;">Change File
                                 </a><a href="javascript:;" onClick="return false;" x-show="open" @click="open = false">Do Not Change File</a>
@@ -585,10 +585,10 @@
                     </div>
                     <div x-data="{ open: false }" class="form-group row  @if(!$is_business_registered) d-none @endif">
                         <div class="col-lg-6">
-                            <label>Upload Registration Certificate: <span class="text-danger">*</span></label>
+                            <label>Upload Registration Certificate: (<span class="urdu-label" dir="rtl"> رجسٹریشن سرٹیفکیٹ اپ لوڈ کریں </span>)<span class="text-danger">*</span></label>
 
                             @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
-                                <a href="{{ asset('storage/'.$application['registration_certificate_file']) }}" target="_blank" class="file_viewer" title="Registration Certificate">View File</a>
+                                <br><a href="{{ asset('storage/'.$application['registration_certificate_file']) }}" target="_blank" class="file_viewer" title="Registration Certificate">View File</a>
                                 &nbsp;|&nbsp;
                                 <a @click="open = true" href="javascript:;" class="show_file" x-show="!open" onClick="return false;">Change File
                                 </a><a href="javascript:;" onClick="return false;" x-show="open" @click="open = false">Do Not Change File</a>
@@ -603,12 +603,12 @@
                     </div>
                     </div>
 
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BUSINESS ADDRESS</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BUSINESS ADDRESS (<label class="urdu-label" dir="rtl"> کاروباری پتہ </label>)</span></h4>
                     <div class="section_box">
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Type of Property: <span class="text-danger">*</span></label>
+                            <label>Type of Property: (<span class="urdu-label" dir="rtl"> پراپرٹی کی قسم </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                                 <x-select2-dropdown
                                     wire:model.defer="application.business_address_type_id"
@@ -623,7 +623,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Form of Property: <span class="text-danger">*</span></label>
+                            <label>Form of Property: (<span class="urdu-label" dir="rtl"> پراپرٹی کی ذیلی قسم </span>)<span class="text-danger">*</span></label>
                             <select wire:model="application.business_address_form_id"  class="form-control @error('application.business_address_form_id') is-invalid @enderror">
                                 <option value="">Select Form</option>
                                 @foreach($business_address_forms as $form)
@@ -638,7 +638,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Unit / Address 1: <span class="text-danger">*</span></label>
+                            <label>Unit / Address 1: (<span class="urdu-label" dir="rtl"> یونٹ نمبر/ گاؤں / حدود نمبر </span>)<span class="text-danger">*</span></label>
                             <input wire:model="application.business_address_1" type="text" class="form-control @error('application.business_address_1') is-invalid @enderror" placeholder="Address 1" />
                             @error('application.business_address_1')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -646,7 +646,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Complex / Street / Address 2: <span class="text-danger">*</span></label>
+                            <label>Complex / Street / Address 2: (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)<span class="text-danger">*</span></label>
                             <input wire:model="application.business_address_2" type="text" class="form-control @error('application.business_address_2') is-invalid @enderror" placeholder="Address 2" />
                             @error('application.business_address_2')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -657,7 +657,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Area/ Locality / Address 3: <span class="text-danger">*</span></label>
+                            <label>Area/ Locality / Address 3: (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک/ گاؤں </span>)<span class="text-danger">*</span></label>
                             <input wire:model="application.business_address_3" type="text" class="form-control @error('application.business_address_3') is-invalid @enderror" placeholder="Address 3" />
                             @error('application.business_address_3')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -665,7 +665,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Provinces: <span class="text-danger">*</span></label>
+                            <label>Provinces: (<span class="urdu-label" dir="rtl"> صوبہ / ریاست </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                                 <x-select2-dropdown
                                     wire:model.defer="application.business_province_id"
@@ -683,7 +683,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>City: <span class="text-danger">*</span></label>
+                            <label>City: (<span class="urdu-label" dir="rtl"> شہر </span>)<span class="text-danger">*</span></label>
                             <select wire:model="application.business_city_id"  class="form-control @error('application.business_city_id') is-invalid @enderror">
                                 <option value="">Select City</option>
                                 @foreach($business_cities as $city)
@@ -696,7 +696,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>District: <span class="text-danger">*</span></label>
+                            <label>District: (<span class="urdu-label" dir="rtl"> ضلع </span>)<span class="text-danger">*</span></label>
                             <select wire:model="application.business_district_id"  class="form-control @error('application.business_district_id') is-invalid @enderror">
                                 <option value="">Select District</option>
                                 @foreach($business_districts as $district)
@@ -712,7 +712,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Tehsil: <span class="text-danger">*</span></label>
+                            <label>Tehsil: (<span class="urdu-label" dir="rtl"> تحصیل </span>)<span class="text-danger">*</span></label>
                             <select wire:model="application.business_tehsil_id"  class="form-control @error('application.business_tehsil_id') is-invalid @enderror">
                                 <option value="">Select Tehsil</option>
                                 @foreach($business_tehsils as $tehsil)
@@ -725,7 +725,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Capacity: <span class="text-danger">*</span></label>
+                            <label>Capacity: (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                                 <x-select2-dropdown
                                     wire:model.defer="application.business_capacity_id"
@@ -744,7 +744,7 @@
                     <div class="form-group row">
 
                     <div class="col-lg-6">
-                        <label>Share %: <span class="text-danger">*</span></label>
+                        <label>Share %: (<span class="urdu-label" dir="rtl"> حصہ فیصد </span>)<span class="text-danger">*</span></label>
                         <input wire:model.defer="application.business_share" type="number" min="0" max="100" class="form-control @error('application.business_share') is-invalid @enderror" placeholder="0-100" />
                         @error('application.business_share')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -752,7 +752,7 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <label>Acquisition Date: <span class="text-danger">*</span></label>
+                        <label>Acquisition Date: (<span class="urdu-label" dir="rtl"> حصول کی تاریخ </span>)<span class="text-danger">*</span></label>
                         <div wire:ignore>
                         <x-date-picker wire:model="application.business_acquisition_date"   id="business_acquisition_date"  />
                         </div>
@@ -765,10 +765,10 @@
                 </div>
                     <div class="form-group row">
                         <div x-data="{ open: false }" class="col-lg-6">
-                            <label>Evidence of tenancy/ ownership of business premises: <span class="text-danger">*</span></label>
+                            <label>Evidence of tenancy/ ownership of business premises:<br>(<span class="urdu-label" dir="rtl"> کرایہ داری / کاروبار کے احاطے کی ملکیت کا ثبوت </span>)<span class="text-danger">*</span></label>
 
                             @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
-                                <a href="{{ asset('storage/'.$application['business_evidence_ownership_file']) }}" target="_blank" class="file_viewer" title="Evidence of tenancy/ ownership">View File</a>
+                                <br><a href="{{ asset('storage/'.$application['business_evidence_ownership_file']) }}" target="_blank" class="file_viewer" title="Evidence of tenancy/ ownership">View File</a>
                                 &nbsp;|&nbsp;
                                 <a @click="open = true" href="javascript:;" class="show_file" x-show="!open" onClick="return false;">Change File
                                 </a><a href="javascript:;" onClick="return false;" x-show="open" @click="open = false">Do Not Change File</a>
@@ -783,7 +783,7 @@
 
 
                     <div class="col-lg-6">
-                        <label>Business Contact No. <span class="text-danger">*</span></label>
+                        <label>Business Contact No. (<span class="urdu-label" dir="rtl"> کاروباری رابطہ نمبر </span>)<span class="text-danger">*</span></label>
                         <div wire:ignore>
                         <x-input-mask wire:model.defer="application.business_contact_number" class="business_contact_number" mask="9999-9999999" placeholder="Contact No." isInvalid="" />
                         </div>
@@ -795,7 +795,7 @@
                     </div>
                     <div class="form-group row">
                     <div class="col-lg-6">
-                        <label>Business Email Address: <span class="text-danger">*</span></label>
+                        <label>Business Email Address: (<span class="urdu-label" dir="rtl"> کاروباری ای میل ایڈریس </span>)<span class="text-danger">*</span></label>
                         <input wire:model.defer="application.business_email" type="email" class="form-control @error('application.business_email') is-invalid @enderror" placeholder="Email Address" />
                         @error('application.business_email')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -810,12 +810,12 @@
                 <!--end: Wizard Step 2-->
                 <!--begin: Wizard Step 3-->
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="font-weight-bold section_heading text-white"><span>UTILITY CONNECTIONS</span></h4>
+                    <h4 class="font-weight-bold section_heading text-white"><span>UTILITY CONNECTIONS (<label class="urdu-label" dir="rtl"> یوٹیلیٹی کننیکشنز </label>)</span></h4>
                     <div class="section_box">
                     <div class="form-group row">
 
-                        <div class="col-lg-6">
-                            <label>Do you have utility connections? <span class="text-danger">*</span></label>
+                        <div class="col-lg-12">
+                            <label>Do you have utility connections? (<span class="urdu-label" dir="rtl"> کیا آپ کے پاس کوئی یوٹیلیٹی کننیکشنز ہے؟ </span>)<span class="text-danger">*</span></label>
                             <div class="radio-inline" wire:ignore>
                                 @foreach($questions as $question)
                                     <label class="radio radio-success">
@@ -844,7 +844,7 @@
                         <div class="form-group row @if(!$is_utility_connection) d-none @endif">
 
                             <div class="col-lg-7">
-                                <label>Utility Type: <span class="text-danger">*</span></label>
+                                <label>Utility Type: (<span class="urdu-label" dir="rtl"> یوٹیلیٹی کنکشن کی قسم </span>)<span class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($utility_types as $type)
                                         <label class="radio radio-success">
@@ -858,7 +858,7 @@
                             </div>
 
                             <div class="col-lg-5">
-                                <label>Connection Ownership: <span class="text-danger">*</span></label>
+                                <label>Connection Ownership: (<span class="urdu-label" dir="rtl"> کنکشن کی ملکیت </span>)<span class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($ownerships as $ownership)
                                         <label class="radio radio-success">
@@ -877,7 +877,7 @@
                         <div class="form-group row @if(!$is_utility_connection) d-none @endif">
 
                             <div class="col-lg-12">
-                                <label>Form/Type of Connection: <span class="text-danger">*</span></label>
+                                <label>Form/Type of Connection: (<span class="urdu-label" dir="rtl"> کنکشن کی قسم </span>)<span class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($utility_forms as $form)
                                         <label class="radio radio-success">
@@ -894,7 +894,7 @@
                         </div>
                         <div class="form-group row @if(!$is_utility_connection) d-none @endif">
                             <div class="col-lg-6">
-                                <label>Reference/ Consumer Number: <span class="text-danger">*</span></label>
+                                <label>Reference/ Consumer Number: (<span class="urdu-label" dir="rtl"> حوالہ / صارف نمبر </span>)<span class="text-danger">*</span></label>
                                 <input wire:model.defer="utility_connections.{{$index}}.utility_consumer_number" type="text" class="form-control @if($errors->has("utility_connections.$index.utility_consumer_number")) is-invalid @endif" placeholder="Consumer Number" />
                                 @if($errors->has("utility_connections.$index.utility_consumer_number"))
                                     <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_consumer_number") }}</div>
@@ -902,7 +902,7 @@
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Provider: <span class="text-danger">*</span></label>
+                                <label>Provider: (<span class="urdu-label" dir="rtl"> سروس مہیا کرنے والا </span>)<span class="text-danger">*</span></label>
                                 <input wire:model.defer="utility_connections.{{$index}}.utility_provider_other" type="text" class="form-control @if($errors->has("utility_connections.$index.utility_provider_other")) is-invalid @endif" placeholder="Provider" />
                                 @if($errors->has("utility_connections.$index.utility_provider_other"))
                                     <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_provider_other") }}</div>
@@ -925,11 +925,11 @@
 
                 <!--begin: Wizard Step 4-->
                 <div class="pb-5" data-wizard-type="step-content" data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="font-weight-bold section_heading text-white"><span>EMPLOYEES INFO</span></h4>
+                    <h4 class="font-weight-bold section_heading text-white"><span>EMPLOYEES INFO  (<label class="urdu-label" dir="rtl"> ملازمین کی معلومات </label>)</span></h4>
                     <div class="section_box">
                     <div class="form-group row">
-                        <div class="col-lg-6">
-                            <label>Do you have employees? <span class="text-danger">*</span></label>
+                        <div class="col-lg-12">
+                            <label>Do you have employees? (<span class="urdu-label" dir="rtl"> کیا آپ کے پاس ملازم ہیں؟ </span>)<span class="text-danger">*</span></label>
                             <div class="radio-inline" wire:ignore>
                                 @foreach($questions as $question)
                                     <label class="radio radio-success">
@@ -952,14 +952,14 @@
                             <div class="col-lg-12" wire:ignore>
                             <label class="checkbox checkbox-success">
                             <input  wire:model="employees.{{$index}}.employee_type_id"  type="checkbox" name="{{ $employee_type->type_name }}" value="{{ $employee_type->id }}">
-                            <span></span>&nbsp;{{  $employee_type->type_name }}</label>
+                            <span></span>&nbsp;{{  $employee_type->type_name }} (<span class="urdu-label" dir="rtl"> {{ $employee_type->type_name_u }} </span>)</label>
                             </div>
                         </div>
 
                          <div class="form-group row @if(isset($employees[$index]['employee_type_id']) && $employees[$index]['employee_type_id']!=false) d-box @else d-none @endif">
                                 @foreach($genders as $gender)
                                     <div class="col-lg-4">
-                                        <label>{{ $gender->gender_name }} </label>
+                                        <label>{{ $gender->gender_name }} (<span class="urdu-label" dir="rtl"> {{ $gender->gender_name_u }} </span>)</label>
                                         <select wire:model="employees.{{$index}}.{{strtolower($gender->gender_name)}}"  class="form-control @error("employees.".$index.'.'.strtolower($gender->gender_name)) is-invalid @enderror">
                                             <option value="">Select Number</option>
                                             @for($no=0; $no<=$employee_numbers;$no++)
