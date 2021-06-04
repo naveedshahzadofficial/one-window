@@ -952,7 +952,7 @@
                             <div class="col-lg-12" wire:ignore>
                             <label class="checkbox checkbox-success">
                             <input  wire:model="employees.{{$index}}.employee_type_id"  type="checkbox" name="{{ $employee_type->type_name }}" value="{{ $employee_type->id }}">
-                            <span></span>&nbsp;{{  $employee_type->type_name }} (<span class="urdu-label" dir="rtl"> {{ $employee_type->type_name_u }} </span>)</label>
+                            <span></span>&nbsp;{{  $employee_type->type_name }} (<lable class="urdu-label" dir="rtl"> {{ $employee_type->type_name_u }} </lable>)</label>
                             </div>
                         </div>
 
