@@ -59,7 +59,7 @@
                     <div class="section_box">
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Prefix: <span class="text-danger">*</span></label>
+                            <label>Prefix: (<span class="urdu-label" dir="rtl"> ٹائٹل </span>)<span class="text-danger">*</span></label>
                             <div class="radio-inline" wire:ignore>
                                 @foreach($prefixes as $prefix)
                                     <label class="radio radio-success">
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>First Name: <span class="text-danger">*</span></label>
+                            <label>First Name: (<span class="urdu-label" dir="rtl"> پہلا نام </span>)<span class="text-danger">*</span></label>
                             <input wire:model.defer="application.first_name" type="text" class="form-control @error('application.first_name') is-invalid @enderror" placeholder="First Name" />
                             @error('application.first_name')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -83,7 +83,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Middle Name:</label>
+                            <label>Middle Name: (<span class="urdu-label" dir="rtl"> درمیانی نام </span>)</label>
                             <input wire:model.defer="application.middle_name" type="text" class="form-control @error('application.middle_name') is-invalid @enderror" placeholder="Middle Name" />
                             @error('application.middle_name')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -91,7 +91,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Last Name: <span class="text-danger">*</span></label>
+                            <label>Last Name: (<span class="urdu-label" dir="rtl"> آخری نام </span>)<span class="text-danger">*</span></label>
                             <input wire:model.defer="application.last_name" type="text" class="form-control @error('application.last_name') is-invalid @enderror" placeholder="Last Name" />
                             @error('application.last_name')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Gender: <span class="text-danger">*</span></label>
+                            <label>Gender: (<span class="urdu-label" dir="rtl"> جنس </span>)<span class="text-danger">*</span></label>
                             <div class="radio-inline" wire:ignore>
                                 @foreach($genders as $gender)
                                     <label class="radio radio-success">
@@ -115,7 +115,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Date of Birth: <span class="text-danger">*</span></label>
+                            <label>Date of Birth: (<span class="urdu-label" dir="rtl"> تاریخ پیدائش (کمپیوٹرائزڈ قومی شناختی کارڈ کے مطابق) </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-date-picker wire:model.defer="application.date_of_birth" id="date_of_birth"/>
                             </div>
@@ -128,7 +128,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>CNIC No. <span class="text-danger">*</span></label>
+                            <label>CNIC No. (<span class="urdu-label" dir="rtl"> قومی شناختی کارڈ نمبر </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-cnic-mask wire:model.defer="application.cnic_no" />
                             </div>
@@ -137,7 +137,7 @@
                             @enderror
                         </div>
                         <div class="col-lg-6">
-                            <label>CNIC Issue Date: <span class="text-danger">*</span></label>
+                            <label>CNIC Issue Date: (<span class="urdu-label" dir="rtl"> شناختی کارڈ کے اجراء کی تاریخ </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-date-picker wire:model.defer="application.cnic_issue_date" id="cnic_issue_date" />
                             </div>
@@ -148,7 +148,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>CNIC Expiry Date: <span class="text-danger">*</span></label>
+                            <label>CNIC Expiry Date: (<span class="urdu-label" dir="rtl"> شناختی کارڈ کی میعاد ختم ہونے کی تاریخ </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-date-picker wire:model.defer="application.cnic_expiry_date" id="cnic_expiry_date" />
                             </div>
@@ -158,7 +158,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Designation in Business: <span class="text-danger">*</span></label>
+                            <label>Designation in Business: (<span class="urdu-label" dir="rtl"> کاروبار میں عہدہ </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-select2-dropdown wire:model.defer="application.designation_business_id" setFieldName="application.designation_business_id" id="designation_business_id" fieldName="name" :listing="$designations" />
                             </div>
@@ -171,7 +171,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Do you have Minority Status? <span class="text-danger">*</span></label>
+                            <label>Do you have Minority Status? (<span class="urdu-label" dir="rtl"> کیا آپ کو اقلیت کا درجہ حاصل ہے؟ </span>)<span class="text-danger">*</span></label>
                             <div class="radio-inline" wire:ignore>
                                 @foreach($questions as $question)
                                     <label class="radio radio-success">
@@ -187,7 +187,7 @@
                     <div class="form-group row @if(!$is_minority_status) d-none @endif">
 
                         <div class="col-lg-6">
-                            <label>Minority Status: <span class="text-danger">*</span></label>
+                            <label>Minority Status: (<span class="urdu-label" dir="rtl"> اقلیت </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-select2-dropdown wire:model="application.minority_status_id" setFieldName="application.minority_status_id" id="minority_status_id" fieldName="name" :listing="$minority_status" />
                             </div>
@@ -197,7 +197,7 @@
                         </div>
 
                         <div class="col-lg-6 @if(!$is_minority_status || !$is_minority_status_other) d-none @endif">
-                            <label>Other: <span class="text-danger">*</span></label>
+                            <label>Other: (<span class="urdu-label" dir="rtl"> دیگر </span>)<span class="text-danger">*</span></label>
                             <input wire:model.defer="application.minority_status_other" type="text" class="form-control @error('application.minority_status_other') is-invalid @enderror" placeholder="Minority Status Other" />
                             @error('application.minority_status_other')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -208,7 +208,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>National Tax Number (Personal): <span class="text-danger"></span></label>
+                            <label>National Tax Number (Personal): (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر (ذاتی) </span>)<span class="text-danger"></span></label>
                             <div wire:ignore>
                             <input wire:model.defer="application.ntn_personal" type="text" class="form-control @error('application.ntn_personal') is-invalid @enderror" placeholder="NTN (Personal)" />
                             </div>
@@ -225,7 +225,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Education Level: <span class="text-danger">*</span></label>
+                            <label>Education Level: (<span class="urdu-label" dir="rtl"> تعلیمی قابلیت </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-select2-dropdown wire:model.defer="application.education_level_id" setFieldName="application.education_level_id" id="education_level_id" fieldName="name" :listing="$education_level" />
                             </div>
@@ -238,7 +238,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Do you have any Technical Education? <span class="text-danger">*</span></label>
+                            <label>Do you have any Technical Education? (<span class="urdu-label" dir="rtl"> تکنیکی تعلیم </span>)<span class="text-danger">*</span></label>
                             <div class="radio-inline" wire:ignore>
                                 @foreach($questions as $question)
                                     <label class="radio radio-success">
@@ -256,7 +256,7 @@
                             <div class="mt-10 section_add_more  @if(!$is_technical_education) d-none @endif">
                             <div class="row form-group @if(!$is_technical_education) d-none @endif">
                         <div class="col-lg-6">
-                            <label>Diploma/ Certificate Title: <span class="text-danger">*</span></label>
+                            <label>Diploma/ Certificate Title: (<span class="urdu-label" dir="rtl"> ڈپلومہ / سرٹیفکیٹ کا عنوان </span>)<span class="text-danger">*</span></label>
                             <input wire:model.defer="technical_educations.{{$index}}.certificate_title" type="text" class="form-control @if($errors->has("technical_educations.$index.certificate_title")) is-invalid @endif" placeholder="Diploma/ Certificate Title" />
                             @if($errors->has("technical_educations.$index.certificate_title"))
                                 <div class="invalid-feedback d-block">{{ $errors->first("technical_educations.$index.certificate_title") }}</div>
@@ -286,7 +286,7 @@
 
                     <div class="form-group row">
                         <div class="col-lg-6">
-                            <label>Are you a skilled worker or an artisan? <span class="text-danger">*</span></label>
+                            <label>Are you a skilled worker or an artisan? (<span class="urdu-label" dir="rtl"> ہنر مند یا کاریگر </span>)<span class="text-danger">*</span></label>
                             <div class="radio-inline" wire:ignore>
                                 @foreach($questions as $question)
                                     <label class="radio radio-success">
@@ -300,7 +300,7 @@
                         </div>
 
                         <div class="col-lg-6 @if(!$is_skilled_worker) d-none @endif">
-                            <label>Skill or Art: <span class="text-danger">*</span></label>
+                            <label>Skill or Art: (<span class="urdu-label" dir="rtl"> ہنر یا فن کی وضاحت کریں </span>)<span class="text-danger">*</span></label>
                             <input wire:model.defer="application.skill_or_art" type="text" class="form-control @error('application.skill_or_art') is-invalid @enderror" placeholder="Skill or Art" />
                             @error('application.skill_or_art')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -317,7 +317,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Type of Property: <span class="text-danger">*</span></label>
+                            <label>Type of Property: (<span class="urdu-label" dir="rtl"> پراپرٹی کی قسم </span>)<span class="text-danger">*</span></label>
                             <div wire:ignore>
                             <x-select2-dropdown wire:model="application.residence_address_type_id" setFieldName="application.residence_address_type_id" id="residence_address_type_id" fieldName="type_name" :listing="$address_types" />
                             </div>
@@ -327,7 +327,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Form of Property: <span class="text-danger">*</span></label>
+                            <label>Form of Property: (<span class="urdu-label" dir="rtl"> پراپرٹی کی ذیلی قسم </span>)<span class="text-danger">*</span></label>
                             <select wire:model.defer="application.residence_address_form_id"  class="form-control @error('application.residence_address_form_id') is-invalid @enderror">
                                 <option value="">Select Form</option>
                                 @foreach($residence_address_forms as $form)
@@ -343,7 +343,7 @@
                     <div class="form-group row">
 
                         <div class="col-lg-6">
-                            <label>Unit / Address 1: <span class="text-danger">*</span></label>
+                            <label>Unit / Address 1: (<span class="urdu-label" dir="rtl"> مکان نمبر / یونٹ نمبر/ گاؤں / حدود نمبر </span>)<span class="text-danger">*</span></label>
                             <input wire:model.defer="application.residence_address_1" type="text" class="form-control @error('application.residence_address_1') is-invalid @enderror" placeholder="Address 1" />
                             @error('application.residence_address_1')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -351,7 +351,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <label>Complex / Street / Address 2: <span class="text-danger">*</span></label>
+                            <label>Complex / Street / Address 2: (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)<span class="text-danger">*</span></label>
                             <input wire:model.defer="application.residence_address_2" type="text" class="form-control @error('application.residence_address_2') is-invalid @enderror" placeholder="Address 2" />
                             @error('application.residence_address_2')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -363,7 +363,7 @@
 
 
                         <div class="col-lg-6">
-                            <label>Area/ Locality / Address 3: <span class="text-danger">*</span></label>
+                            <label>Area/ Locality / Address 3: (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک/ گاؤں </span>)<span class="text-danger">*</span></label>
                             <input wire:model.defer="application.residence_address_3" type="text" class="form-control @error('application.residence_address_3') is-invalid @enderror" placeholder="Address 3" />
                             @error('application.residence_address_3')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
