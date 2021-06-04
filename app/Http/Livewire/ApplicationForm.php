@@ -9,11 +9,9 @@ use App\Models\Application;
 use App\Models\ApplicationEmployeeInfo;
 use App\Models\ApplicationTechnicalEducation;
 use App\Models\ApplicationUtilityConnection;
-use App\Models\BusinessCategory;
+use App\Models\BusinessActivity;
 use App\Models\BusinessLegalStatus;
 use App\Models\BusinessRegistrationStatus;
-use App\Models\BusinessSector;
-use App\Models\BusinessSubSector;
 use App\Models\City;
 use App\Models\ConnectionOwnership;
 use App\Models\DesignationBusiness;
@@ -53,7 +51,6 @@ class ApplicationForm extends Component
     public $address_capacities;
     public $business_registration_status;
     public $business_legal_statuses;
-    public $business_categories;
     public $provinces;
     public $ownerships;
     public $utility_types;
@@ -63,14 +60,14 @@ class ApplicationForm extends Component
 
     public $employee_numbers;
 
+    public $business_activities;
+
     // UtilityConnections
     public $utility_forms;
     public $utility_connections = [];
     public $technical_educations = [];
 
     // on parent load
-    public $business_secotors;
-    public $business_sub_secotors;
     public $business_cities;
     public $business_districts;
     public $business_tehsils;
@@ -121,7 +118,9 @@ class ApplicationForm extends Component
         $this->address_capacities = AddressCapacity::where('capacity_status',1)->get();
         $this->business_registration_status = BusinessRegistrationStatus::where('status',1)->get();
         $this->business_legal_statuses = BusinessLegalStatus::where('legal_status',1)->get();
-        $this->business_categories = BusinessCategory::where('category_status',1)->get();
+
+        $this->business_activities = BusinessActivity::where('activity_status',1)->get();
+
         $this->provinces = Province::where('province_status',1)->get();
         $this->ownerships = ConnectionOwnership::where('ownership_status',1)->get();
         $this->utility_types = UtilityType::where('type_status',1)->get();
@@ -133,8 +132,6 @@ class ApplicationForm extends Component
         // on parent load
         $this->residence_address_forms = collect();
         $this->business_address_forms = collect();
-        $this->business_secotors = collect();
-        $this->business_sub_secotors = collect();
         $this->business_cities = collect();
         $this->business_districts = collect();
         $this->business_tehsils = collect();
@@ -162,8 +159,6 @@ class ApplicationForm extends Component
             $this->registration = $registration;
             $this->residence_address_forms = AddressForm::where('address_type_id',$registration->residence_address_type_id)->where('form_status',1)->get();
             $this->business_address_forms = AddressForm::where('address_type_id',$registration->business_address_type_id)->where('form_status',1)->get();
-            $this->business_secotors = BusinessSector::where('business_category_id', $registration->business_category_id)->where('sector_status',1)->get();
-            $this->business_sub_secotors = BusinessSubSector::where('business_sector_id', $registration->business_sector_id)->where('sub_sector_status',1)->get();
             $this->business_cities = City::where('province_id', $registration->business_province_id)->where('city_status',1)->get();
             $this->business_districts = District::where('province_id', $registration->business_province_id)->where('district_status',1)->get();
             $this->business_tehsils = Tehsil::where('district_id', $registration->business_district_id)->where('tehsil_status',1)->get();
@@ -265,12 +260,6 @@ class ApplicationForm extends Component
                 }
                 break;
 
-            case 'business_category_id':
-                $this->business_secotors = BusinessSector::where('business_category_id', $value)->where('sector_status',1)->get();
-                break;
-            case 'business_sector_id':
-                $this->business_sub_secotors = BusinessSubSector::where('business_sector_id', $value)->where('sub_sector_status',1)->get();
-                break;
             case 'business_province_id':
                 $this->business_cities = City::where('province_id', $value)->where('city_status',1)->get();
                 $this->business_districts = District::where('province_id', $value)->where('district_status',1)->get();
@@ -406,9 +395,7 @@ class ApplicationForm extends Component
         'application.business_name' => 'required',
         'application.business_establishment_date' => 'required',
         'application.business_registration_status_id' => 'required',
-        'application.business_category_id' => 'required',
-        'application.business_sector_id' => 'required',
-        'application.business_sub_sector_id' => 'required',
+        'application.business_activity_id' => 'required',
         'application.business_address_type_id' => 'required',
         'application.business_address_form_id' => 'required',
         'application.business_address_1' => 'required',
@@ -428,9 +415,7 @@ class ApplicationForm extends Component
         'application.business_name.required' => 'Business Name is required.',
         'application.business_establishment_date.required' => 'Business Acquisition Date is required.',
         'application.business_registration_status_id.required' => 'Business Registration Status is required.',
-        'application.business_category_id.required' => 'Business Category is required.',
-        'application.business_sector_id.required' => 'Sector is required.',
-        'application.business_sub_sector_id.required' => 'Sector is required.',
+        'application.business_activity_id.required' => 'Business Category is required.',
         'application.business_address_type_id.required' => 'Address Type is required.',
         'application.business_address_form_id.required' => 'Address Form is required.',
         'application.business_address_1.required' => 'Address 1 is required.',
@@ -464,18 +449,18 @@ class ApplicationForm extends Component
 
             if(!isset($this->application['registration_certificate_file']) || empty($this->application['registration_certificate_file'])) {
                 $rules_business_profile['registration_certificate_file'] = 'required|max:5120';
-                $messages_business_profile['registration_certificate_file.required'] = 'Please Upload Evidence of tenancy/ ownership.';
+                $messages_business_profile['registration_certificate_file.required'] = 'Please Upload Registration Certificate.';
             }
 
         }
 
         if(!isset($this->application['proof_of_ownership_file']) || empty($this->application['proof_of_ownership_file'])) {
-            $rules_business_profile['proof_of_ownership_file'] = 'required';
+            $rules_business_profile['proof_of_ownership_file'] = 'required|max:5120';
             $messages_business_profile['proof_of_ownership_file.required'] = 'Please Upload Proof of Ownership.';
         }
 
         if(!isset($this->application['business_evidence_ownership_file']) || empty($this->application['business_evidence_ownership_file'])) {
-            $rules_business_profile['business_evidence_ownership_file'] = 'required';
+            $rules_business_profile['business_evidence_ownership_file'] = 'required|max:5120';
             $messages_business_profile['business_evidence_ownership_file.required'] = 'Please Upload Proof of Ownership.';
         }
 

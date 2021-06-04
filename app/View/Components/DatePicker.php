@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class DatePicker extends Component
 {
+    public $id;
+
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param $id
      */
-    public function __construct()
+    public function __construct($id)
     {
-        //
+        $this->id = $id;
     }
 
     /**

@@ -216,3 +216,9 @@ select.form-control, .form-control:focus {
     background-color: #30807d;
     border-color: #30807d;
 }
+select.select2{
+    opacity: 100;
+}
+.select2-container--default .select2-results > .select2-results__options{
+    max-height:400px;
+}

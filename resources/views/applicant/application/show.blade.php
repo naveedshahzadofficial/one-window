@@ -232,18 +232,18 @@
             <div class="d-flex justify-content-between pt-5">
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">Business Category: *</span>
-                    <span class="opacity-70">{{ isset($application->businessCategory->category_name)?$application->businessCategory->category_name:'' }}</span>
+                    <span class="opacity-70">{{ isset($application->businessActivity->section_name)?$application->businessActivity->section_name:'' }}</span>
                 </div>
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">Business Sector: *</span>
-                    <span class="opacity-70">{{ isset($application->businessSector->sector_name_e)?$application->businessSector->sector_name_e:'' }}</span>
+                    <span class="opacity-70">{{ isset($application->businessActivity->group_name)?$application->businessActivity->group_name:'' }}</span>
                 </div>
             </div>
 
             <div class="d-flex justify-content-between pt-5">
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">Business Sub Sector: *</span>
-                    <span class="opacity-70">{{ isset($application->businessSubSector->sub_sector_name_e)?$application->businessSubSector->sub_sector_name_e:'' }}</span>
+                    <span class="opacity-70">{{ isset($application->businessActivity->class_name)?$application->businessActivity->class_name:'' }}</span>
                 </div>
             </div>
             </div>

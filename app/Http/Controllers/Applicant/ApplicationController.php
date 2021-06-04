@@ -66,8 +66,7 @@ class ApplicationController extends Controller
        'educationLevel', 'educationLevelQuestion', 'skilledWorkerQuestion',
            'residenceAddressType', 'residenceAddressForm', 'residenceCity', 'residenceDistrict',
        'residenceAddressCapacity',
-       'businessRegistrationStatus', 'businessLegalStatus', 'businessCategory', 'businessSector',
-       'businessSubSector', 'businessAddressType', 'businessAddressForm', 'businessProvince',
+       'businessRegistrationStatus', 'businessLegalStatus', 'businessActivity', 'businessAddressType', 'businessAddressForm', 'businessProvince',
        'businessCity', 'businessDistrict', 'businessTehsil', 'businessCapacity',
            'utilityConnectionQuestion', 'utilityConnections.connectionOwnership','utilityConnections.utilityType','utilityConnections.utilityForm',
            'employeesQuestion','employeeInfos.employeeType')

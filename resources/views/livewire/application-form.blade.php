@@ -58,9 +58,9 @@
                     <h4 class="font-weight-bold section_heading text-white"><span>BASIC INFO</span></h4>
                     <div class="section_box">
                     <div class="form-group row">
-                        <div class="col-lg-6" wire:ignore>
+                        <div class="col-lg-6">
                             <label>Prefix: <span class="text-danger">*</span></label>
-                            <div class="radio-inline">
+                            <div class="radio-inline" wire:ignore>
                                 @foreach($prefixes as $prefix)
                                     <label class="radio radio-success">
                                         <input wire:model.defer="application.prefix_id" type="radio" name="prefix" value="{{ $prefix->id }}">
@@ -102,48 +102,56 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Gender: <span class="text-danger">*</span></label>
-                            <div class="radio-inline">
+                            <div class="radio-inline" wire:ignore>
                                 @foreach($genders as $gender)
                                     <label class="radio radio-success">
                                         <input wire:model.defer="application.gender_id" type="radio" name="gender_id" value="{{ $gender->id }}">
                                         <span></span>{{ $gender->gender_name }}</label>
                                 @endforeach
                             </div>
-                            @error('application.gender')
+                            @error('application.gender_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="col-lg-6" wire:ignore>
+                        <div class="col-lg-6">
                             <label>Date of Birth: <span class="text-danger">*</span></label>
-                            <x-date-picker wire:model.defer="application.date_of_birth" />
+                            <div wire:ignore>
+                            <x-date-picker wire:model.defer="application.date_of_birth" id="date_of_birth"/>
+                            </div>
                             @error('application.date_of_birth')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
 
                     </div>
-                    <div class="form-group row" wire:ignore>
+                    <div class="form-group row">
 
                         <div class="col-lg-6">
                             <label>CNIC No. <span class="text-danger">*</span></label>
+                            <div wire:ignore>
                             <x-cnic-mask wire:model.defer="application.cnic_no" />
+                            </div>
                             @error('application.cnic_no')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-lg-6">
                             <label>CNIC Issue Date: <span class="text-danger">*</span></label>
-                            <x-date-picker wire:model.defer="application.cnic_issue_date" />
+                            <div wire:ignore>
+                            <x-date-picker wire:model.defer="application.cnic_issue_date" id="cnic_issue_date" />
+                            </div>
                             @error('application.cnic_issue_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group row" wire:ignore>
+                    <div class="form-group row">
                         <div class="col-lg-6">
                             <label>CNIC Expiry Date: <span class="text-danger">*</span></label>
-                            <x-date-picker wire:model.defer="application.cnic_expiry_date" />
+                            <div wire:ignore>
+                            <x-date-picker wire:model.defer="application.cnic_expiry_date" id="cnic_expiry_date" />
+                            </div>
                             @error('application.cnic_expiry_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -151,18 +159,20 @@
 
                         <div class="col-lg-6">
                             <label>Designation in Business: <span class="text-danger">*</span></label>
+                            <div wire:ignore>
                             <x-select2-dropdown wire:model.defer="application.designation_business_id" setFieldName="application.designation_business_id" id="designation_business_id" fieldName="name" :listing="$designations" />
+                            </div>
                             @error('application.designation_business_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
 
                     </div>
-                    <div class="form-group row" wire:ignore>
+                    <div class="form-group row">
 
                         <div class="col-lg-6">
                             <label>Do you have Minority Status? <span class="text-danger">*</span></label>
-                            <div class="radio-inline">
+                            <div class="radio-inline" wire:ignore>
                                 @foreach($questions as $question)
                                     <label class="radio radio-success">
                                         <input wire:model="application.minority_status_question_id" type="radio" name="minority_status_question_id" value="{{ $question->id }}">
@@ -176,9 +186,11 @@
                     </div>
                     <div class="form-group row @if(!$is_minority_status) d-none @endif">
 
-                        <div wire:ignore class="col-lg-6">
+                        <div class="col-lg-6">
                             <label>Minority Status: <span class="text-danger">*</span></label>
+                            <div wire:ignore>
                             <x-select2-dropdown wire:model="application.minority_status_id" setFieldName="application.minority_status_id" id="minority_status_id" fieldName="name" :listing="$minority_status" />
+                            </div>
                             @error('application.minority_status_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -197,7 +209,9 @@
 
                         <div class="col-lg-6">
                             <label>National Tax Number (Personal): <span class="text-danger"></span></label>
+                            <div wire:ignore>
                             <input wire:model.defer="application.ntn_personal" type="text" class="form-control @error('application.ntn_personal') is-invalid @enderror" placeholder="NTN (Personal)" />
+                            </div>
                             @error('application.ntn_personal')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -210,9 +224,11 @@
                     <div class="section_box">
                     <div class="form-group row">
 
-                        <div class="col-lg-6" wire:ignore>
+                        <div class="col-lg-6">
                             <label>Education Level: <span class="text-danger">*</span></label>
+                            <div wire:ignore>
                             <x-select2-dropdown wire:model.defer="application.education_level_id" setFieldName="application.education_level_id" id="education_level_id" fieldName="name" :listing="$education_level" />
+                            </div>
                             @error('application.education_level_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -223,7 +239,7 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Do you have any Technical Education? <span class="text-danger">*</span></label>
-                            <div class="radio-inline">
+                            <div class="radio-inline" wire:ignore>
                                 @foreach($questions as $question)
                                     <label class="radio radio-success">
                                         <input wire:model="application.technical_education_question_id" type="radio" name="technical_education_question_id" value="{{ $question->id }}">
@@ -271,7 +287,7 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Are you a skilled worker or an artisan? <span class="text-danger">*</span></label>
-                            <div class="radio-inline">
+                            <div class="radio-inline" wire:ignore>
                                 @foreach($questions as $question)
                                     <label class="radio radio-success">
                                         <input wire:model="application.skilled_worker_question_id" type="radio" name="skilled_worker_question_id" value="{{ $question->id }}">
@@ -300,9 +316,11 @@
                     <div class="section_box">
                     <div class="form-group row">
 
-                        <div class="col-lg-6" wire:ignore>
+                        <div class="col-lg-6">
                             <label>Type of Property: <span class="text-danger">*</span></label>
+                            <div wire:ignore>
                             <x-select2-dropdown wire:model="application.residence_address_type_id" setFieldName="application.residence_address_type_id" id="residence_address_type_id" fieldName="type_name" :listing="$address_types" />
+                            </div>
                             @error('application.residence_address_type_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -352,9 +370,11 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-6" wire:ignore>
+                        <div class="col-lg-6">
                             <label>City: <span class="text-danger">*</span></label>
+                            <div wire:ignore>
                             <x-select2-dropdown wire:model.defer="application.residence_city_id" setFieldName="application.residence_city_id" id="residence_city_id" fieldName="city_name_e" :listing="$cities" />
+                            </div>
                             @error('application.residence_city_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -363,17 +383,21 @@
                     </div>
                     <div class="form-group row">
 
-                        <div class="col-lg-6" wire:ignore>
+                        <div class="col-lg-6">
                             <label>District: <span class="text-danger">*</span></label>
+                            <div wire:ignore>
                             <x-select2-dropdown wire:model.defer="application.residence_district_id" setFieldName="application.residence_district_id" id="residence_district_id" fieldName="district_name_e" :listing="$districts" />
+                            </div>
                             @error('application.residence_district_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="col-lg-6" wire:ignore>
+                        <div class="col-lg-6">
                             <label>Capacity: <span class="text-danger">*</span></label>
+                            <div wire:ignore>
                             <x-select2-dropdown wire:model.defer="application.residence_capacity_id" setFieldName="application.residence_capacity_id" id="residence_capacity_id" fieldName="capacity_name" :listing="$address_capacities" />
+                            </div>
                             @error('application.residence_capacity_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -389,9 +413,11 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-6" wire:ignore>
+                        <div class="col-lg-6">
                             <label>Acquisition Date: <span class="text-danger">*</span></label>
-                            <x-date-picker wire:model.defer="application.residence_acquisition_date" />
+                            <div wire:ignore>
+                            <x-date-picker wire:model.defer="application.residence_acquisition_date" id="residence_acquisition_date" />
+                            </div>
                             @error('application.residence_acquisition_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -441,7 +467,9 @@
 
                         <div class="col-lg-6">
                             <label>Acquisition/ Start Date: <span class="text-danger">*</span></label>
-                            <x-date-picker wire:model.defer="application.business_establishment_date" />
+                            <div wire:ignore>
+                            <x-date-picker wire:model.defer="application.business_establishment_date" id="business_establishment_date" />
+                            </div>
                             @error('application.business_establishment_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -452,12 +480,9 @@
 
                         <div class="col-lg-6">
                             <label>Business Registration Status: <span class="text-danger">*</span></label>
-                            <select wire:model="application.business_registration_status_id"  class="form-control @error('application.business_registration_status_id') is-invalid @enderror">
-                                <option value="">Select Status</option>
-                                @foreach($business_registration_status as $status)
-                                    <option value="{{ $status->id }}">{{ $status->name }}</option>
-                                @endforeach
-                            </select>
+                            <div wire:ignore>
+                                <x-select2-dropdown wire:model.defer="application.business_registration_status_id" setFieldName="application.business_registration_status_id" id="business_registration_status_id" fieldName="name" :listing="$business_registration_status" />
+                            </div>
                             @error('application.business_registration_status_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -465,12 +490,9 @@
 
                         <div class="col-lg-6 @if(!$is_business_registered) d-none @endif">
                             <label>Legal Status of Business: <span class="text-danger">*</span></label>
-                            <select wire:model.defer="application.business_legal_status_id"  class="form-control @error('application.business_legal_status_id') is-invalid @enderror">
-                                <option value="">Select Business</option>
-                                @foreach($business_legal_statuses as $status)
-                                    <option value="{{ $status->id }}">{{ $status->legal_name }}</option>
-                                @endforeach
-                            </select>
+                            <div wire:ignore>
+                                <x-select2-dropdown wire:model.defer="application.business_legal_status_id" setFieldName="application.business_legal_status_id" id="business_legal_status_id" fieldName="legal_name" :listing="$business_legal_statuses" />
+                            </div>
                             @error('application.business_legal_status_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -489,7 +511,9 @@
 
                         <div class="col-lg-6">
                             <label>Business Registration Date: <span class="text-danger">*</span></label>
-                            <x-date-picker wire:model.defer="application.business_registration_date" />
+                            <div wire:ignore>
+                            <x-date-picker wire:model.defer="application.business_registration_date" id="business_registration_date" />
+                            </div>
                             @error('application.business_registration_date')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -506,50 +530,18 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-lg-6">
-                            <label>Business Category: <span class="text-danger">*</span></label>
-                            <select wire:model="application.business_category_id"  class="form-control @error('application.business_category_id') is-invalid @enderror">
-                                <option value="">Select Category</option>
-                                @foreach($business_categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                @endforeach
-                            </select>
-                            @error('application.business_category_id')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
+                        <div class="form-group row">
+                            <div class="col-lg-12">
+                                <label>Business Category: <span class="text-danger">*</span></label>
+                                <div wire:ignore>
+                                <x-multi-column-select2 :listing="$business_activities" wire:model.defer="application.business_activity_id" setFieldName="application.business_activity_id" id="business_activity_id" fieldName="class_name" />
+                                </div>
+                                @error('application.business_activity_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
 
-                        <div class="col-lg-6">
-                            <label>Business Sector: <span class="text-danger">*</span></label>
-                            <select wire:model="application.business_sector_id"  class="form-control @error('application.business_sector_id') is-invalid @enderror">
-                                <option value="">Select Sector</option>
-                                @foreach($business_secotors as $sector)
-                                    <option value="{{ $sector->id }}">{{ $sector->sector_name_e }}</option>
-                                @endforeach
-                            </select>
-                            @error('application.business_sector_id')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-
-                        <div class="col-lg-6">
-                            <label>Business Sub Sector: <span class="text-danger">*</span></label>
-                            <select wire:model.defer="application.business_sub_sector_id"  class="form-control @error('application.business_sub_sector_id') is-invalid @enderror">
-                                <option value="">Select Sector</option>
-                                @foreach($business_sub_secotors as $sub_sector)
-                                    <option value="{{ $sub_sector->id }}">{{ $sub_sector->sub_sector_name_e }}</option>
-                                @endforeach
-                            </select>
-                            @error('application.business_sub_sector_id')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-
-                    </div>
                     </div>
 
                     <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RELEVANT ATTACHMENTS</span></h4>
@@ -617,12 +609,14 @@
 
                         <div class="col-lg-6">
                             <label>Type of Property: <span class="text-danger">*</span></label>
-                            <select wire:model="application.business_address_type_id"  class="form-control @error('application.business_address_type_id') is-invalid @enderror">
-                                <option value="">Select Type</option>
-                                @foreach($address_types as $type)
-                                    <option value="{{ $type->id }}">{{ $type->type_name }}</option>
-                                @endforeach
-                            </select>
+                            <div wire:ignore>
+                                <x-select2-dropdown
+                                    wire:model.defer="application.business_address_type_id"
+                                    setFieldName="application.business_address_type_id"
+                                    id="business_address_type_id"
+                                    fieldName="type_name"
+                                    :listing="$address_types" />
+                            </div>
                             @error('application.business_address_type_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -672,12 +666,14 @@
 
                         <div class="col-lg-6">
                             <label>Provinces: <span class="text-danger">*</span></label>
-                            <select wire:model="application.business_province_id"  class="form-control @error('application.business_province_id') is-invalid @enderror">
-                                <option value="">Select Province</option>
-                                @foreach($provinces as $province)
-                                    <option value="{{ $province->id }}">{{ $province->province_name }}</option>
-                                @endforeach
-                            </select>
+                            <div wire:ignore>
+                                <x-select2-dropdown
+                                    wire:model.defer="application.business_province_id"
+                                    setFieldName="application.business_province_id"
+                                    id="business_province_id"
+                                    fieldName="province_name"
+                                    :listing="$provinces" />
+                            </div>
                             @error('application.business_province_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -730,12 +726,14 @@
 
                         <div class="col-lg-6">
                             <label>Capacity: <span class="text-danger">*</span></label>
-                            <select wire:model="application.business_capacity_id"  class="form-control @error('application.business_capacity_id') is-invalid @enderror">
-                                <option value="">Select Capacity</option>
-                                @foreach($address_capacities as $capacity)
-                                    <option value="{{ $capacity->id }}">{{ $capacity->capacity_name }}</option>
-                                @endforeach
-                            </select>
+                            <div wire:ignore>
+                                <x-select2-dropdown
+                                    wire:model.defer="application.business_capacity_id"
+                                    setFieldName="application.business_capacity_id"
+                                    id="business_capacity_id"
+                                    fieldName="capacity_name"
+                                    :listing="$address_capacities" />
+                            </div>
                             @error('application.business_capacity_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -755,7 +753,9 @@
 
                     <div class="col-lg-6">
                         <label>Acquisition Date: <span class="text-danger">*</span></label>
-                        <x-date-picker wire:model="application.business_acquisition_date" />
+                        <div wire:ignore>
+                        <x-date-picker wire:model="application.business_acquisition_date"   id="business_acquisition_date"  />
+                        </div>
                         @error('application.business_acquisition_date')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
@@ -784,7 +784,9 @@
 
                     <div class="col-lg-6">
                         <label>Business Contact No. <span class="text-danger">*</span></label>
+                        <div wire:ignore>
                         <x-input-mask wire:model.defer="application.business_contact_number" class="business_contact_number" mask="9999-9999999" placeholder="Contact No." isInvalid="" />
+                        </div>
                         @error('application.business_contact_number')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
@@ -814,7 +816,7 @@
 
                         <div class="col-lg-6">
                             <label>Do you have utility connections? <span class="text-danger">*</span></label>
-                            <div class="radio-inline">
+                            <div class="radio-inline" wire:ignore>
                                 @foreach($questions as $question)
                                     <label class="radio radio-success">
                                         <input wire:model="application.utility_connection_question_id" type="radio" name="utility_connection_question_id" value="{{ $question->id }}">
@@ -843,7 +845,7 @@
 
                             <div class="col-lg-7">
                                 <label>Utility Type: <span class="text-danger">*</span></label>
-                                <div class="radio-inline">
+                                <div class="radio-inline" wire:ignore>
                                     @foreach($utility_types as $type)
                                         <label class="radio radio-success">
                                             <input wire:model.defer="utility_connections.{{$index}}.utility_type_id" type="radio" name="utility_connections[{{$index}}][utility_type_id]" value="{{ $type->id }}">
@@ -857,7 +859,7 @@
 
                             <div class="col-lg-5">
                                 <label>Connection Ownership: <span class="text-danger">*</span></label>
-                                <div class="radio-inline">
+                                <div class="radio-inline" wire:ignore>
                                     @foreach($ownerships as $ownership)
                                         <label class="radio radio-success">
                                             <input wire:model="utility_connections.{{$index}}.connection_ownership_id" type="radio" name="utility_connections[{{$index}}][connection_ownership_id]" value="{{ $ownership->id }}">
@@ -876,7 +878,7 @@
 
                             <div class="col-lg-12">
                                 <label>Form/Type of Connection: <span class="text-danger">*</span></label>
-                                <div class="radio-inline">
+                                <div class="radio-inline" wire:ignore>
                                     @foreach($utility_forms as $form)
                                         <label class="radio radio-success">
                                             <input wire:model.defer="utility_connections.{{$index}}.utility_form_id" type="radio" name="utility_connections[{{$index}}][utility_form_id]" value="{{ $form->id }}">
@@ -928,7 +930,7 @@
                     <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Do you have employees? <span class="text-danger">*</span></label>
-                            <div class="radio-inline">
+                            <div class="radio-inline" wire:ignore>
                                 @foreach($questions as $question)
                                     <label class="radio radio-success">
                                         <input wire:model="application.employees_question_id" type="radio" name="employees_question_id" value="{{ $question->id }}">
@@ -947,7 +949,7 @@
                         <div  class="employee_info_div @if(!$is_employee_info) d-none @endif">
 
                         <div class="form-group row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12" wire:ignore>
                             <label class="checkbox checkbox-success">
                             <input  wire:model="employees.{{$index}}.employee_type_id"  type="checkbox" name="{{ $employee_type->type_name }}" value="{{ $employee_type->id }}">
                             <span></span>&nbsp;{{  $employee_type->type_name }}</label>
@@ -1001,7 +1003,7 @@
                         </div>
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Gender: <span class="text-danger">*</span></span>
-                            <span class="opacity-70">{{ isset($application['gender'])?$application['gender']:'' }}</span>
+                            <span class="opacity-70">{{ isset($application['gender_id'])?getCollectionTitle($genders,'gender_name',$application['gender_id']):'' }}</span>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between pt-5">
@@ -1195,17 +1197,17 @@
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Business Category: <span class="text-danger">*</span></span>
-                            <span class="opacity-70">{{ isset($application['business_category_id'])?getCollectionTitle($business_categories,'category_name',$application['business_category_id']):'' }}</span>
+                            <span class="opacity-70">{{ isset($application['business_activity_id'])?getCollectionTitle($business_activities,'section_name',$application['business_activity_id']):'' }}</span>
                         </div>
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Business Sector: <span class="text-danger">*</span></span>
-                            <span class="opacity-70">{{ isset($application['business_sector_id'])?getCollectionTitle($business_secotors,'sector_name_e',$application['business_sector_id']):'' }}</span>
+                            <span class="opacity-70">{{ isset($application['business_activity_id'])?getCollectionTitle($business_activities,'group_name',$application['business_activity_id']):'' }}</span>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between pt-5">
                         <div class="d-flex flex-column flex-root">
                             <span class="font-weight-bolder mb-2">Business Sub Sector: <span class="text-danger">*</span></span>
-                            <span class="opacity-70">{{ isset($application['business_sub_sector_id'])?getCollectionTitle($business_sub_secotors,'sub_sector_name_e',$application['business_sub_sector_id']):'' }}</span>
+                            <span class="opacity-70">{{ isset($application['business_activity_id'])?getCollectionTitle($business_activities,'class_name',$application['business_activity_id']):'' }}</span>
                         </div>
                     </div>
                     </div>

@@ -58,5 +58,6 @@
         window.addEventListener('page:tab', event =>{
             KTUtil.scrollTop(300,3000);
         });
+
     </script>
 @endpush
