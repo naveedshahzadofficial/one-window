@@ -46,7 +46,7 @@
         let formatSelect = function (result) {
 
             if (result.id!=undefined && result.id.length==0) {
-                return '<div class="row" style=" position: absolute; top: 50px; width: 100%; background-color: #30807D; padding: 6px; color: white; "><div class="col-md-3"><b>Section Name</b></div><div class="col-md-3"><b>Division Name</b></div><div class="col-md-3"><b>Group Name</b></div><div class="col-md-3"><b>Class Name</b></div></div>';
+                return '<div class="row" style="z-index: 10; position: absolute; top: 50px; width: 100%; background-color: #30807D; padding: 6px; color: white; "><div class="col-md-3"><b>Section Name</b></div><div class="col-md-3"><b>Division Name</b></div><div class="col-md-3"><b>Group Name</b></div><div class="col-md-3"><b>Class Name</b></div></div>';
             }
             let activity = $(result.element).data('json');
 

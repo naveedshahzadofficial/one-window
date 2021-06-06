@@ -64,8 +64,8 @@ class ApplicationForm extends Component
 
     // UtilityConnections
     public $utility_forms;
-    public $utility_connections = [];
-    public $technical_educations = [];
+    public $utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
+    public $technical_educations = [['certificate_title'=>null]];
 
     // on parent load
     public $business_cities;
@@ -147,14 +147,18 @@ class ApplicationForm extends Component
         $this->application['personal_mobile_no'] = ($mobile_code->code_number).auth()->user()->mobile_no;
         $this->application['personal_email'] = auth()->user()->email;
 
-        $this->technical_educations = [['certificate_title'=>null]];
-        $this->utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
-
 
         if($registration){
             $this->application = $registration->toArray();
-            $this->utility_connections = $registration->utilityConnections->toArray();
+
             $this->technical_educations = $registration->technicalEducations->toArray();
+            if(empty($this->technical_educations))
+                $this->technical_educations = [['certificate_title'=>null]];
+
+            $this->utility_connections = $registration->utilityConnections->toArray();
+            if(empty($this->utility_connections))
+                $this->utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
+
             $this->employees = $registration->employeeInfos->toArray();
             $this->registration = $registration;
             $this->residence_address_forms = AddressForm::where('address_type_id',$registration->residence_address_type_id)->where('form_status',1)->get();
@@ -174,9 +178,6 @@ class ApplicationForm extends Component
                 $this->is_technical_education = true;
             }
 
-            if($this->isYes('utility_connection_question_id')){
-                $this->is_utility_connection = true;
-            }
 
             if($this->isYes('skilled_worker_question_id')){
                 $this->is_skilled_worker = true;
@@ -184,6 +185,10 @@ class ApplicationForm extends Component
 
             if(isset($this->application['business_registration_status_id']) &&  $this->business_registration_status->firstWhere('id', $this->application['business_registration_status_id'])->name=='Registered'){
                 $this->is_business_registered = true;
+            }
+
+            if($this->isYes('utility_connection_question_id')){
+                $this->is_utility_connection = true;
             }
 
             if($this->isYes('employees_question_id')){
@@ -205,83 +210,64 @@ class ApplicationForm extends Component
     }
     public function updated($propertyName)
     {
-       /* if($this->step==0) {
-            $this->validateOnly($propertyName,$this->rules_applicant_profile,$this->messages_applicant_profile);
-        }else if($this->step==1){
-            $this->validateOnly($propertyName,$this->rules_business_profile,$this->messages_business_profile);
-        }*/
+
     }
 
     public function updatedApplication($value, $updatedKey)
     {
         switch ($updatedKey){
-            case 'minority_status_question_id':
-                    if($this->questions->firstWhere('id', $value)->name=='Yes'){
-                        $this->is_minority_status = true;
-                    }else{
-                        $this->is_minority_status = false;
-                    }
-                break;
-            case 'minority_status_id':
-                if(isset($value) && !empty($value) && $this->minority_status->firstWhere('id', $value)->name=='Other'){
-                    $this->is_minority_status_other = true;
-                }else{
-                    $this->is_minority_status_other = false;
-                }
-                break;
-            case 'technical_education_question_id':
-                if($this->questions->firstWhere('id', $value)->name=='Yes'){
-                    $this->is_technical_education = true;
-                        if(empty($this->technical_educations))
-                        $this->technical_educations = [['certificate_title'=>null]];
-                }else{
-                    $this->is_technical_education = false;
-                }
-                break;
-                case 'skilled_worker_question_id':
-                if($this->questions->firstWhere('id', $value)->name=='Yes'){
-                    $this->is_skilled_worker = true;
-                }else{
-                    $this->is_skilled_worker = false;
-                }
-                break;
+
             case 'residence_address_type_id':
+                $this->application['residence_address_form_id'] = null;
                 $this->residence_address_forms = AddressForm::where('address_type_id',$value)->where('form_status',1)->get();
+                $this->dispatchBrowserEvent('child:select2',[
+                    'data'=>$this->residence_address_forms,
+                    'child_id'=>'#residence_address_form_id',
+                    'field_name'=>'form_name',
+                ]);
                 break;
              case 'business_address_type_id':
-                $this->business_address_forms = AddressForm::where('address_type_id',$value)->where('form_status',1)->get();
-                break;
-
-            case 'business_registration_status_id':
-                if(isset($value) && !empty($value) && $this->business_registration_status->firstWhere('id', $value)->name=='Registered'){
-                    $this->is_business_registered = true;
-                }else{
-                    $this->is_business_registered = false;
-                }
+                 $this->application['business_address_form_id'] = null;
+                 $this->business_address_forms = AddressForm::where('address_type_id',$value)->where('form_status',1)->get();
+                 $this->dispatchBrowserEvent('child:select2',[
+                     'data'=>$this->business_address_forms,
+                     'child_id'=>'#business_address_form_id',
+                     'field_name'=>'form_name',
+                 ]);
                 break;
 
             case 'business_province_id':
+                $this->application['business_city_id'] = null;
+                $this->application['business_district_id'] = null;
                 $this->business_cities = City::where('province_id', $value)->where('city_status',1)->get();
                 $this->business_districts = District::where('province_id', $value)->where('district_status',1)->get();
+                $this->dispatchBrowserEvent('child:select2',[
+                    'data'=>$this->business_cities,
+                    'child_id'=>'#business_city_id',
+                    'field_name'=>'city_name_e',
+                ]);
+                $this->dispatchBrowserEvent('child:select2',[
+                    'data'=>$this->business_districts,
+                    'child_id'=>'#business_district_id',
+                    'field_name'=>'district_name_e',
+                ]);
+                $this->application['business_tehsil_id'] = null;
+                $this->business_tehsils = collect();
+                $this->dispatchBrowserEvent('child:select2',[
+                    'data'=>$this->business_tehsils,
+                    'child_id'=>'#business_tehsil_id',
+                    'field_name'=>'tehsil_name_e',
+                ]);
                 break;
+
             case 'business_district_id':
+                $this->application['business_tehsil_id'] = null;
                 $this->business_tehsils = Tehsil::where('district_id', $value)->where('tehsil_status',1)->get();
-                break;
-            case 'utility_connection_question_id':
-                if(isset($value) && !empty($value) && $this->questions->firstWhere('id', $value)->name=='Yes'){
-                    $this->is_utility_connection = true;
-                    if(empty($this->utility_connections))
-                        $this->utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
-                }else{
-                    $this->is_utility_connection = false;
-                }
-                break;
-            case 'employees_question_id':
-                if($this->questions->firstWhere('id', $value)->name=='Yes'){
-                    $this->is_employee_info = true;
-                }else{
-                    $this->is_employee_info = false;
-                }
+                $this->dispatchBrowserEvent('child:select2',[
+                    'data'=>$this->business_tehsils,
+                    'child_id'=>'#business_tehsil_id',
+                    'field_name'=>'tehsil_name_e',
+                ]);
                 break;
         }
     }
@@ -290,11 +276,11 @@ class ApplicationForm extends Component
     {
         $action = $this->stepActions[$this->step];
         $this->$action();
-
     }
 
     public function submitApplicantProfile()
     {
+        //dd($this->application);
          $rules_applicant_profile = [
         'application.prefix_id' => 'required',
         'application.first_name' => 'required|string',
@@ -391,6 +377,8 @@ class ApplicationForm extends Component
 
     public function submitBusinessProfile()
     {
+
+
          $rules_business_profile = [
         'application.business_name' => 'required',
         'application.business_establishment_date' => 'required',

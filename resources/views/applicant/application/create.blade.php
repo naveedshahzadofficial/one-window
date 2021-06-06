@@ -58,5 +58,18 @@
         window.addEventListener('page:tab', event =>{
         KTUtil.scrollTop(300,3000);
         });
+
+        window.addEventListener('child:select2', event =>{
+            console.log(event.detail);
+            let child_id = event.detail.child_id;
+            $(child_id).empty();
+            var newOption = new Option("--- Please Select ---", "", false, false);
+            $(child_id).append(newOption);
+            event.detail.data.forEach(function(row){
+                $(child_id).append('<option value="'+row.id+'">'+row[event.detail.field_name]+'</option>');
+            });
+            $(child_id).trigger('change.select2');
+
+        });
     </script>
 @endpush
