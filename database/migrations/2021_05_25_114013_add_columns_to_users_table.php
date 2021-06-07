@@ -15,14 +15,14 @@ class AddColumnsToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('name');
-            $table->string('prefix');
+            $table->foreignId('prefix_id')->nullable()->constrained();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('cnic_no')->unique();
             $table->string('mobile_no')->unique();
-            $table->foreignId('telecom_company_id')->constrained();
-            $table->foreignId('mobile_code_id')->constrained();
+            $table->foreignId('telecom_company_id')->nullable()->constrained();
+            $table->foreignId('mobile_code_id')->nullable()->constrained();
             $table->boolean('is_admin')->default(0);
             $table->softDeletes();
         });

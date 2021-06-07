@@ -3,9 +3,9 @@
 										<div class="d-flex align-items-center p-8 rounded-top">
 
 											<!--begin::Symbol-->
-											<div class="symbol symbol-md bg-light-primary mr-3 flex-shrink-0">
+											{{--<div class="symbol symbol-md bg-light-primary mr-3 flex-shrink-0">
 												<img src="{{ asset('assets/media/users/300_21.jpg') }}" alt="" />
-											</div>
+											</div>--}}
 
 											<!--end::Symbol-->
 
@@ -22,7 +22,7 @@
 										<div class="navi navi-spacer-x-0 pt-5">
 
 											<!--begin::Item-->
-											<a href="javascript:;" class="navi-item px-8">
+										{{--	<a href="javascript:;" class="navi-item px-8">
 												<div class="navi-link">
 													<div class="navi-icon mr-2">
 														<i class="flaticon2-calendar-3 text-success"></i>
@@ -34,14 +34,14 @@
 														</div>
 													</div>
 												</div>
-											</a>
+											</a>--}}
 
 											<!--end::Item-->
 
 
 
 											<!--begin::Footer-->
-											<div class="navi-separator mt-3"></div>
+										{{--	<div class="navi-separator mt-3"></div>--}}
 											<div class="navi-footer px-8 py-5">
                                                 <a class="btn btn-light-primary font-weight-bold" href="{{ route('logout') }}"
                                                    onclick="event.preventDefault();

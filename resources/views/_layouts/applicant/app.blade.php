@@ -82,6 +82,33 @@
 
 		<!--[html-partial:include:{"file":"partials/_extras/offcanvas/demo-panel.html"}]/-->
 
+
+        <!-- Modal-->
+        <div class="modal fade" id="commonModalScrollable" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title_help">Modal Title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="height: 300px;">
+                       <p class="text-left" id="english_help">
+                           hello english
+                       </p>
+                        <p class="urdu-label text-right" dir="rtl" id="urdu_help">
+                            hello urdu
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-custom-color font-weight-bold" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <script type="text/javascript">
             var BASE_URL = "{{ url('/')}}";
         </script>
@@ -193,6 +220,92 @@
 
 
         @livewireScripts
+
+        <script>
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "3000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+            window.addEventListener('toastr:message', event =>{
+                switch (event.detail.type){
+                    case 'success':
+                        toastr.success(event.detail.title);
+                        break;
+                    default:
+                        toastr.info(event.detail.title);
+                        break;
+                }
+
+            });
+            window.addEventListener('page:tab', event =>{
+                KTUtil.scrollTop(300,3000);
+            });
+
+            window.addEventListener('child:select2', event =>{
+                let child_id = event.detail.child_id;
+                $(child_id).empty();
+                var newOption = new Option("--- Please Select ---", "", false, false);
+                $(child_id).append(newOption);
+                event.detail.data.forEach(function(row){
+                    $(child_id).append('<option value="'+row.id+'">'+row[event.detail.field_name]+'</option>');
+                });
+                $(child_id).trigger('change.select2');
+
+            });
+        </script>
+        <script>
+    <?php
+    $helps = [
+        'residential_share'=>[
+            'title'=>'Share in Residence Place',
+            'body_e'=>'Share in Residence Place',
+            'body_u'=>'Share in Residence Place',
+        ],
+        'proof_of_ownership_file'=>[
+            'title'=>'OwnerShip Title',
+            'body_e'=>'OwnerShip Body English',
+            'body_u'=>'OwnerShip Body Urdu',
+        ],
+        'license_registration_file'=>[
+            'title'=>'registration Title',
+            'body_e'=>'registration Body English',
+            'body_u'=>'registration Body Urdu',
+        ],
+        'business_share'=>[
+            'title'=>'Share in Business Place',
+            'body_e'=>'Share in Business Place',
+            'body_u'=>'Share in Business Place',
+        ],
+        'business_evidence_ownership_file'=>[
+            'title'=>'Business Evidence_Ownership File',
+            'body_e'=>'Business Evidence_Ownership File',
+            'body_u'=>'Business Evidence_Ownership File',
+        ]
+    ];
+
+    ?>
+            function showHelp(index_key){
+               var helps = '<?php echo  json_encode($helps); ?>';
+               var json_helps = JSON.parse(helps);
+                $('#title_help').text(json_helps[index_key].title);
+                $('#english_help').text(json_helps[index_key].body_e);
+                $('#urdu_help').text(json_helps[index_key].body_u);
+                $('#commonModalScrollable').modal('show');
+            }
+        </script>
 
         @stack('post-scripts')
 	</body>

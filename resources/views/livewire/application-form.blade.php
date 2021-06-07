@@ -82,9 +82,23 @@ $wire.set('application.minority_status_id', event.target.value)
                                                                                                      dir="rtl"> بنیادی معلومات </label>)</span>
                     </h4>
                     <div class="section_box">
+
+
+                        <div class="form-group row">
+
+                            <div class="col-lg-6">
+                                <label>{!! __('labels.mobile_no') !!}<span class="text-danger"></span>: {{ isset($application['personal_mobile_no'])?$application['personal_mobile_no']:'' }}</label>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>{!! __('labels.email_address') !!}<span class="text-danger"></span>: {{ isset($application['personal_email'])?$application['personal_email']:'' }}</label>
+                            </div>
+
+                        </div>
+
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Prefix: (<span class="urdu-label" dir="rtl"> ٹائٹل </span>)<span
+                                <label>{!! __('labels.prefix') !!}<span
                                         class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($prefixes as $prefix)
@@ -544,8 +558,8 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Share %: (<span class="urdu-label" dir="rtl"> حصہ فیصد </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.share_percentage') !!}<span
+                                        class="text-danger">*</span> <i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('residential_share')"></i> </label>
                                 <input wire:model.defer="application.residence_share" type="number" min="0" max="100"
                                        class="form-control @error('application.residence_share') is-invalid @enderror"
                                        placeholder="0-100"/>
@@ -555,39 +569,13 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Acquisition Date: (<span class="urdu-label"
-                                                                dir="rtl"> حصول کی تاریخ </span>)<span
+                                <label>{!! __('labels.residence_acquisition_date') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-date-picker wire:model.defer="application.residence_acquisition_date"
                                                    id="residence_acquisition_date"/>
                                 </div>
                                 @error('application.residence_acquisition_date')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                        </div>
-                        <div class="form-group row">
-
-                            <div class="col-lg-6">
-                                <label>Mobile No. (<span class="urdu-label" dir="rtl"> موبائل نمبر </span>)<span
-                                        class="text-danger"></span></label>
-                                <input readonly wire:model.defer="application.personal_mobile_no" type="text"
-                                       class="border-0 pl-0 form-control @error('application.personal_mobile_no') is-invalid @enderror"
-                                       placeholder="Mobile No."/>
-                                @error('application.personal_mobile_no')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-lg-6">
-                                <label>Email Address: (<span class="urdu-label" dir="rtl"> ای میل اڈریس </span>)<span
-                                        class="text-danger"></span></label>
-                                <input readonly wire:model.defer="application.personal_email" type="text"
-                                       class="border-0 pl-0 form-control @error('application.personal_email') is-invalid @enderror"
-                                       placeholder="Email Address"/>
-                                @error('application.personal_email')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -714,9 +702,25 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                         <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Business Category: (<span class="urdu-label" dir="rtl"> کاروبار کی قسم </span>)<span
+                                        class="text-danger">*</span></label>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="application.business_category_id"
+                                                        setFieldName="application.business_category_id"
+                                                        id="business_category_id" fieldName="category_name"
+                                                        :listing="$business_categories"/>
+                                </div>
+                                @error('application.business_legal_status_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <div class="col-lg-12">
-                                <label>Business Category: (<span class="urdu-label"
-                                                                 dir="rtl"> کاروبار کی قسم </span>)<span
+                                <label>Sector: (<span class="urdu-label"
+                                                                 dir="rtl"> کاروبار کا شعبہ </span>)<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-multi-column-select2 :listing="$business_activities"
@@ -738,7 +742,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
                             <div x-data="{ open: false }" class="col-lg-6">
                                 <label>Upload Proof of Ownership: (<span class="urdu-label" dir="rtl"> ملکیت کا ثبوت اپ لوڈ کریں </span>)<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span> <i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('proof_of_ownership_file')"></i></label>
 
                                 @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
                                     <br><a href="{{ asset('storage/'.$application['proof_of_ownership_file']) }}"
@@ -762,7 +766,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             <div x-data="{ open: false }" class="col-lg-6">
                                 <label>License /Registration with chamber or Trade body:<br>(<span class="urdu-label"
                                                                                                    dir="rtl"> چیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ اپ لوڈ کریں </span>)
-                                </label>
+                                    &nbsp;<i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('license_registration_file')"></i></label>
 
                                 @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
                                     <br><a href="{{ asset('storage/'.$application['license_registration_file']) }}"
@@ -786,6 +790,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
 
                         </div>
+
                         <div x-show.transition.opacity="is_business_registered=='Registered'"
                              class="form-group row">
                             <div  x-data="{ open: false }" class="col-lg-6">
@@ -812,6 +817,8 @@ $wire.set('application.minority_status_id', event.target.value)
                                 @enderror
                             </div>
                         </div>
+
+
                     </div>
 
                     <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BUSINESS ADDRESS (<label
@@ -978,8 +985,8 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>Share %: (<span class="urdu-label" dir="rtl"> حصہ فیصد </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.share_percentage') !!}<span
+                                        class="text-danger">*</span>&nbsp;<i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('business_share')"></i></label>
                                 <input wire:model.defer="application.business_share" type="number" min="0" max="100"
                                        class="form-control @error('application.business_share') is-invalid @enderror"
                                        placeholder="0-100"/>
@@ -989,8 +996,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Acquisition Date: (<span class="urdu-label"
-                                                                dir="rtl"> حصول کی تاریخ </span>)<span
+                                <label>{!! __('labels.business_acquisition_date') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-date-picker wire:model="application.business_acquisition_date"
@@ -1007,7 +1013,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             <div x-data="{ open: false }" class="col-lg-6">
                                 <label>Evidence of tenancy/ ownership of business premises:<br>(<span class="urdu-label"
                                                                                                       dir="rtl"> کرایہ داری / کاروبار کے احاطے کی ملکیت کا ثبوت </span>)<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span>&nbsp;<i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('business_evidence_ownership_file')"></i></label>
 
                                 @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
                                     <br><a
@@ -1541,14 +1547,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Share %: (<span class="urdu-label" dir="rtl"> حصہ فیصد </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.share_percentage') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['residence_share'])?$application['residence_share']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Acquisition Date: (<span class="urdu-label"
-                                                                                               dir="rtl"> حصول کی تاریخ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_acquisition_date') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['residence_acquisition_date'])?$application['residence_acquisition_date']:'' }}</span>
@@ -1795,14 +1800,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Share %: (<span class="urdu-label" dir="rtl"> حصہ فیصد </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.share_percentage') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_share'])?$application['business_share']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Acquisition Date: (<span class="urdu-label"
-                                                                                               dir="rtl"> حصول کی تاریخ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_acquisition_date') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_acquisition_date'])?$application['business_acquisition_date']:'' }}</span>
