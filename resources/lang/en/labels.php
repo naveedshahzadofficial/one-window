@@ -25,4 +25,8 @@ return [
     'back' => 'Back (<span class="urdu-label" dir="rtl"> واپس جائیں </span>)',
     'verify_nd_next' => 'Verify & Next (<span class="urdu-label" dir="rtl"> تصدیق کریں اور اگے بھیجیں </span>)',
     'sign_up' => 'Sign-up (<span class="urdu-label" dir="rtl"> سائن اپ کریں </span>)',
+    'residence_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
+    'business_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> کاروبار کے حصول کی تاریخ </span>)',
+    'share_percentage' => 'Share % (<span class="urdu-label" dir="rtl"> حصہ فیصد </span>)',
+    'business_category' => 'Business Category (<span class="urdu-label" dir="rtl"> کاروبار کی قسم </span>)',
 ];

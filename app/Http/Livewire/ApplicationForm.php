@@ -10,6 +10,7 @@ use App\Models\ApplicationEmployeeInfo;
 use App\Models\ApplicationTechnicalEducation;
 use App\Models\ApplicationUtilityConnection;
 use App\Models\BusinessActivity;
+use App\Models\BusinessCategory;
 use App\Models\BusinessLegalStatus;
 use App\Models\BusinessRegistrationStatus;
 use App\Models\City;
@@ -60,6 +61,7 @@ class ApplicationForm extends Component
 
     public $employee_numbers;
 
+    public $business_categories;
     public $business_activities;
 
     // UtilityConnections
@@ -85,6 +87,8 @@ class ApplicationForm extends Component
     public $proof_of_ownership_file,$registration_certificate_file,
         $license_registration_file,$business_evidence_ownership_file;
 
+    public $business_other_files = [];
+
 
     public $step;
     private $stepActions = [
@@ -102,7 +106,7 @@ class ApplicationForm extends Component
     {
         $this->registration = null;
 
-        $this->step = 0;
+        $this->step = 1;
         $this->prefixes = Prefix::where('prefix_status',1)->get();
         $this->genders = Gender::where('gender_status',1)->get();
 
@@ -120,6 +124,7 @@ class ApplicationForm extends Component
         $this->business_registration_status = BusinessRegistrationStatus::where('status',1)->get();
         $this->business_legal_statuses = BusinessLegalStatus::where('legal_status',1)->get();
 
+        $this->business_categories = BusinessCategory::where('category_status',1)->get();
         $this->business_activities = BusinessActivity::where('activity_status',1)->get();
 
         $this->provinces = Province::where('province_status',1)->get();
@@ -387,6 +392,7 @@ class ApplicationForm extends Component
         'application.business_name' => 'required',
         'application.business_establishment_date' => 'required',
         'application.business_registration_status_id' => 'required',
+        'application.business_category_id' => 'required',
         'application.business_activity_id' => 'required',
         'application.business_address_type_id' => 'required',
         'application.business_address_form_id' => 'required',
@@ -407,7 +413,8 @@ class ApplicationForm extends Component
         'application.business_name.required' => 'Business Name is required.',
         'application.business_establishment_date.required' => 'Business Acquisition Date is required.',
         'application.business_registration_status_id.required' => 'Business Registration Status is required.',
-        'application.business_activity_id.required' => 'Business Category is required.',
+        'application.business_category_id.required' => 'Business Category is required.',
+        'application.business_activity_id.required' => 'Business Sector is required.',
         'application.business_address_type_id.required' => 'Address Type is required.',
         'application.business_address_form_id.required' => 'Address Form is required.',
         'application.business_address_1.required' => 'Address 1 is required.',
