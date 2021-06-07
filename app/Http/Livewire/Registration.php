@@ -151,12 +151,13 @@ class Registration extends Component
         ];
 
         $this->validate($otp_verify_rules, $otp_verify_messages);
+        $email = isset($this->user['email'])?$this->user['email']:null;
 
         $otp = OtpCode::where('mobile_otp_code',$this->mobile_otp_code)
             ->where('email_otp_code',$this->email_otp_code)
             ->where('is_used',false)
             ->where('mobile_no',$this->mobile_number)
-            ->where('email',($this->user['email']??null))
+            ->where('email',$email)
             ->latest()
             ->first();
 

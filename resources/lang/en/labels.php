@@ -16,4 +16,13 @@ return [
     'cnic_no' => 'CNIC No. (<span class="urdu-label" dir="rtl"> قومی شناختی کارڈ نمبر </span>)',
     'password' => 'Password (<span class="urdu-label" dir="rtl"> پاس ورڈ </span>)',
     'confirm_password' => 'Confirm Password (<span class="urdu-label" dir="rtl"> پاس ورڈ کی تصدیق کریں </span>)',
+    'forgot_password' => 'Forgot Password? (<span class="urdu-label" dir="rtl"> کیا آپ پاس ورڈ بھول گئے ہیں؟ </span>)',
+    'login' => 'Login (<span class="urdu-label" dir="rtl"> لاگ ان </span>)',
+    'not_an_account' => 'Don\'t have an account? (<span class="urdu-label" dir="rtl"> کیا آپ کا اکاؤنٹ نہیں ہے؟ </span>)',
+    'already_an_account' => 'Already have an account? (<span class="urdu-label" dir="rtl"> پہلے سے ہی اکاؤنٹ ہے؟</span>)',
+    'register_now' => 'Register Now (<span class="urdu-label" dir="rtl"> ابھی رجسٹر کریں </span>)',
+    'send_code' => 'Send Code (<span class="urdu-label" dir="rtl"> کوڈ بھیجیں </span>)',
+    'back' => 'Back (<span class="urdu-label" dir="rtl"> واپس جائیں </span>)',
+    'verify_nd_next' => 'Verify & Next (<span class="urdu-label" dir="rtl"> تصدیق کریں اور اگے بھیجیں </span>)',
+    'sign_up' => 'Sign-up (<span class="urdu-label" dir="rtl"> سائن اپ کریں </span>)',
 ];

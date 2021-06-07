@@ -1,7 +1,20 @@
 <form x-data wire:submit.prevent="submitFormRegistration" class="kt_auth_form" id="kt_auth_form" name="kt_auth_form">
+
     <div class="first_registration_form @if($step==0){{ 'd-box' }}@else{{ 'd-none' }}@endif">
         <h4 class="font-weight-bold text-white text-left">STEP - I</h4>
         <div class="separator separator-dashed my-5"></div>
+
+        <div class="form-group row">
+            <div class="col-lg-12 alert alert-warning" style="background-color: #DFF0D7; border: none;" role="alert">
+                <p class="text-black-50 text-left" >
+                    You must enter a valid Mobile No. and Email address. To activate your account; we will send you verification code on your mobile and email address.
+                </p>
+                <p class="text-black-50 text-right urdu-label line-height-xl" dir="rtl">
+                     اکاؤنٹ بنانے کے لئے آپ کو ایک درست موبائل نمبر اور ای میل اڈریس درج کرنا ہوگا۔  ہم آپ کو آپ کے موبائل اور ای میل اڈریس پر تصدیقی کوڈ بھیجیں گے۔
+                </p>
+            </div>
+        </div>
+
         <div class="form-group row">
             <div class="col-lg-6">
                 <label class="text-white d-block text-left">{!! __('labels.mobile_network') !!}<span
@@ -80,13 +93,7 @@
             </div>
 
         </div>
-        <div class="form-group row">
-            <div class="col-lg-12">
-                <p class="alert alert-warning text-black-50 text-left" style="background-color: #DFF0D7; border: none;" role="alert">
-                    You must enter a valid Mobile No. and Email address. To activate your account; please enter the verification code sent on your Email address.
-                </p>
-            </div>
-        </div>
+
     </div>
 
     <div class="second_registration_form @if($step==1){{ 'd-box' }}@else{{ 'd-none' }}@endif">
@@ -124,7 +131,7 @@
                         class="text-danger">*</span></label>
                 <div class="col-lg-6 pl-0" wire:ignore>
                     <input  wire:model.defer="mobile_otp_code" type="number" name="mobile_otp_code" class="form-control"
-                           placeholder="Mobile OTP">
+                           placeholder="Mobile OTP" maxlength="6">
                 </div>
                 @error('mobile_otp_code')
                 <div class="invalid-feedback d-block text-left">{{ $message }}</div>
@@ -139,7 +146,7 @@
                         class="text-danger">*</span></label>
                 <div class="col-lg-6 pl-0" wire:ignore>
                     <input  wire:model.defer="email_otp_code" type="number" name="email_otp_code" class="form-control"
-                            placeholder="Email OTP">
+                            placeholder="Email OTP" maxlength="6">
                 </div>
                 @error('email_otp_code')
                 <div class="invalid-feedback d-block text-left">{{ $message }}</div>
@@ -237,11 +244,11 @@
         <div class="mr-2">
             @if($step> 0 && $step<2)
                 <button type="button"
-                        class="btn auth-login-btn font-weight-bold  px-21 py-3 d-block"
+                        class="btn auth-login-btn font-weight-bold  px-10 py-3 d-block"
                         data-wizard-type="action-prev"
                         wire:loading.class="spinner spinner-white spinner-right"
                         wire:click.prevent="decreaseStep"
-                        wire:loading.attr="disabled">Back
+                        wire:loading.attr="disabled">{!! __('labels.back') !!}
                 </button>
             @endif
         </div>
@@ -249,20 +256,20 @@
         <div>
             @if($step >= 2)
                 <button type="button"
-                        class="btn auth-login-btn font-weight-bold  px-21 py-3 d-block"
+                        class="btn auth-login-btn font-weight-bold  px-10 py-3 d-block"
                         data-wizard-type="action-submit"
                         wire:loading.class="spinner spinner-white spinner-right"
                         wire:loading.attr="disabled"
-                        wire:click.prevent="submitRegistration">Register
+                        wire:click.prevent="submitRegistration">{!! __('labels.sign_up') !!}
                 </button>
             @else
                 <button type="button"
-                        class="btn auth-login-btn font-weight-bold  px-21 py-3 d-block"
+                        class="btn auth-login-btn font-weight-bold  px-10 py-3 d-block"
                         data-wizard-type="action-next"
                         wire:loading.class="spinner spinner-white spinner-right"
                         wire:loading.attr="disabled"
                         wire:click.prevent="submitRegistration"
-                >{{ $step==1?'Verify & Next':'Next' }}
+                >{!! $step==0?__('labels.send_code'):($step==1?__('labels.verify_nd_next'):'Next') !!}
                 </button>
             @endif
         </div>

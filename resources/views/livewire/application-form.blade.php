@@ -84,7 +84,7 @@ $wire.set('application.minority_status_id', event.target.value)
                     <div class="section_box">
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Prefix: (<span class="urdu-label" dir="rtl"> ٹائٹل </span>)<span
+                                <label>{!! __('labels.prefix') !!}<span
                                         class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($prefixes as $prefix)
