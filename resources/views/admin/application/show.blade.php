@@ -1,4 +1,4 @@
-@extends('_layouts.applicant.app')
+@extends('_layouts.admin.app')
 @push('title','SME Show')
 @section('content')
 
@@ -11,6 +11,7 @@
         </div>
 
          <div class="card-body">
+            
             @component('_components.application_detail',['application'=>$application]) @endcomponent
          </div>
     </div>

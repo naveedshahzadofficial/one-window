@@ -24,8 +24,8 @@
 
 		<!--begin::Page Vendors Styles(used by this page)-->
 		<link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
-         <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
-		<!--end::Page Vendors Styles-->
+        <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+            <!--end::Page Vendors Styles-->
 
 		<!--begin::Global Theme Styles(used by all pages)-->
 		<link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
@@ -42,7 +42,14 @@
 
 		<!--end::Layout Themes-->
 
+
+
         <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" rel="stylesheet" type="text/css" >
+
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/plugins/datetimepicker/jquery.datetimepicker.min.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/plugins/pikaday/pikaday.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/applicant_custom.css')}}"/>
+
 
         @show
 
@@ -56,11 +63,11 @@
 	<!--end::Head-->
 
 	<!--begin::Body-->
-	<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+	<body id="kt_body" class="header-fixed header-mobile-fixed  subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
 
 		<!--[html-partial:include:{"file":"layout.html"}]/-->
         @section('layout')
-            @include('_layouts.admin.layout')
+            @include('_layouts.applicant.layout')
         @show
 
 		<!--[html-partial:include:{"file":"partials/_extras/offcanvas/quick-cart.html"}]/-->
@@ -159,6 +166,9 @@
 
         <!--begin::Page Vendors(used by this page)-->
         <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+        <script src="{{asset('assets/plugins/datetimepicker/jquery.datetimepicker.min.js')}}"></script>
+        <script src="{{asset('assets/plugins/pikaday/pikaday.js')}}"></script>
+
         <!--end::Page Vendors-->
 
 		<!--begin::Page Vendors(used by this page)-->
@@ -177,8 +187,10 @@
                 }
             });
         </script>
+
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
         @show
+
 
         @livewireScripts
 
