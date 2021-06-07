@@ -140,7 +140,7 @@ class ApplicationForm extends Component
         $this->utility_service_providers = collect();
 
         $this->application['user_id'] = auth()->id();
-        $this->application['prefix'] = auth()->user()->prefix;
+        $this->application['prefix_id'] = auth()->user()->prefix_id;
         $this->application['first_name'] = auth()->user()->first_name;
         $this->application['last_name'] = auth()->user()->last_name;
         $this->application['middle_name'] = auth()->user()->middle_name;
