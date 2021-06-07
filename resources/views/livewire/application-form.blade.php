@@ -1179,10 +1179,10 @@ $wire.set('application.minority_status_id', event.target.value)
 
                                 </div>
                                 <div class="form-group row">
-                                    
+
 
                                     <div class="col-lg-6">
-                                        <label>Other: (<span class="urdu-label"
+                                        <label>Provider: (<span class="urdu-label"
                                                                 dir="rtl"> سروس مہیا کرنے والا </span>)<span
                                                 class="text-danger">*</span></label>
                                         <input wire:model.defer="utility_connections.{{$index}}.utility_provider_other"

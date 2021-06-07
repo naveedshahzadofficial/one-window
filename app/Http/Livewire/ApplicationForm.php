@@ -149,6 +149,7 @@ class ApplicationForm extends Component
         $mobile_code= MobileCode::where('id',auth()->user()->mobile_code_id)->first();
         $this->application['personal_mobile_no'] = ($mobile_code->code_number).auth()->user()->mobile_no;
         $this->application['personal_email'] = auth()->user()->email;
+        $this->application['utility_connection_question_id'] = $this->questions->firstWhere('name', 'Yes')->id;
 
 
         if($registration){

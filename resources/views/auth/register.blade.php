@@ -25,7 +25,7 @@
                 </div>
 
                             <div class="row pt-15">
-                                <div class="col-md-8  pt-3 text-left"><a href="{{ route('login') }}" class="auth-text sample-text"><i class="fa fa-user"></i> Already have an account?</a></div>
+                                <div class="col-md-8  pt-3 text-left"><a href="javascript:;" class="auth-text sample-text"><i class="fa fa-user"></i> Already have an account?</a></div>
                                 <div class="col-md-4">
                                     <a href="{{ route('login') }}" class="register_button btn btn-white btn-block">Login <i class="fa fa-arrow-right"></i></a>
                                 </div>
