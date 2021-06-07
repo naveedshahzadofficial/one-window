@@ -71,13 +71,14 @@ class ApplicationForm extends Component
     public $business_cities;
     public $business_districts;
     public $business_tehsils;
+    public $utility_service_providers;
 
     public $is_minority_status = false;
     public $is_minority_status_other = false;
     public $is_skilled_worker = false;
     public $is_business_registered = false;
     public $is_employee_info = false;
-    public $is_utility_connection = false;
+    public $is_utility_connection = true;
     public $is_technical_education = false;
 
     // files
@@ -135,6 +136,8 @@ class ApplicationForm extends Component
         $this->business_cities = collect();
         $this->business_districts = collect();
         $this->business_tehsils = collect();
+
+        $this->utility_service_providers = collect();
 
         $this->application['user_id'] = auth()->id();
         $this->application['prefix'] = auth()->user()->prefix;

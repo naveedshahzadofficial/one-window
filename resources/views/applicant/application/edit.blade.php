@@ -60,7 +60,6 @@
         });
 
         window.addEventListener('child:select2', event =>{
-            console.log(event.detail);
             let child_id = event.detail.child_id;
             $(child_id).empty();
             var newOption = new Option("--- Please Select ---", "", false, false);

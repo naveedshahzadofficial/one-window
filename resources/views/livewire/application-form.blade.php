@@ -1071,7 +1071,8 @@ $wire.set('application.minority_status_id', event.target.value)
                     <h4 class="font-weight-bold section_heading text-white"><span>UTILITY CONNECTIONS (<label
                                 class="urdu-label" dir="rtl"> یوٹیلیٹی کننیکشنز </label>)</span></h4>
                     <div class="section_box">
-                        <div class="form-group row">
+
+                        <div class="form-group row d-none">
 
                             <div class="col-lg-12">
                                 <label>Do you have utility connections? (<span class="urdu-label" dir="rtl"> کیا آپ کے پاس کوئی یوٹیلیٹی کننیکشنز ہے؟ </span>)<span
@@ -1081,7 +1082,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                         <label class="radio radio-success">
                                             <input wire:model.defer="application.utility_connection_question_id"
                                                    @click="is_utility_connection= '{{ $question->name }}'"
-                                                   type="radio"
+                                                   type="radio" @if($question->name=='Yes') checked="checked" @endif
                                                    name="utility_connection_question_id" value="{{ $question->id }}">
                                             <span></span>{{ $question->name }}</label>
                                     @endforeach
@@ -1093,6 +1094,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
 
                         </div>
+
                         @foreach($utility_connections as $index=>$connection)
 
                             <div x-show.transition.opacity="is_utility_connection=='Yes'" class="mt-10 section_add_more">
@@ -1177,6 +1179,25 @@ $wire.set('application.minority_status_id', event.target.value)
 
                                 </div>
                                 <div class="form-group row">
+                                    
+
+                                    <div class="col-lg-6">
+                                        <label>Other: (<span class="urdu-label"
+                                                                dir="rtl"> سروس مہیا کرنے والا </span>)<span
+                                                class="text-danger">*</span></label>
+                                        <input wire:model.defer="utility_connections.{{$index}}.utility_provider_other"
+                                               type="text"
+                                               class="form-control @if($errors->has("utility_connections.$index.utility_provider_other")) is-invalid @endif"
+                                               placeholder="Provider"/>
+                                        @if($errors->has("utility_connections.$index.utility_provider_other"))
+                                            <div
+                                                class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_provider_other") }}</div>
+                                        @endif
+                                    </div>
+
+                                </div>
+
+                                <div class="row form-group">
                                     <div class="col-lg-6">
                                         <label>Reference/ Consumer Number: (<span class="urdu-label" dir="rtl"> حوالہ / صارف نمبر </span>)<span
                                                 class="text-danger">*</span></label>
@@ -1187,20 +1208,6 @@ $wire.set('application.minority_status_id', event.target.value)
                                         @if($errors->has("utility_connections.$index.utility_consumer_number"))
                                             <div
                                                 class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_consumer_number") }}</div>
-                                        @endif
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <label>Provider: (<span class="urdu-label"
-                                                                dir="rtl"> سروس مہیا کرنے والا </span>)<span
-                                                class="text-danger">*</span></label>
-                                        <input wire:model.defer="utility_connections.{{$index}}.utility_provider_other"
-                                               type="text"
-                                               class="form-control @if($errors->has("utility_connections.$index.utility_provider_other")) is-invalid @endif"
-                                               placeholder="Provider"/>
-                                        @if($errors->has("utility_connections.$index.utility_provider_other"))
-                                            <div
-                                                class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_provider_other") }}</div>
                                         @endif
                                     </div>
                                 </div>
