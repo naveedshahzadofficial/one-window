@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
+
+    use AuthenticatesUsers;
 
      protected $redirectTo = 'admin/applications';
      public function __construct()
@@ -21,37 +24,17 @@ class LoginController extends Controller
         return view('admin.auth.login');
     }
 
-
-    public function login(Request $request)
+     public function findUsername()
     {
-          $v = Validator::make($request->all(), [
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-    
-        if ($v->fails())
-        {
+        $fieldValue = request()->input('email');
 
-            return redirect()->back()->withErrors($v->errors());
-        }
+        $login_type = filter_var($fieldValue, FILTER_VALIDATE_EMAIL )
+            ? 'email'
+            : 'username';
 
-          if($request->isMethod('post')){
-            $data = $request->input();
-           
-             if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']  , 'is_admin' => 1]  )) {
+        request()->merge([$login_type => $fieldValue]);
 
-                 return redirect(route('admin.applications.index'));
-            }else{
-                
-                 return redirect()->back()->withErrors('Invailed Username and Password');
-            }
-        }
-
-         return view('admin.auth.login');
-
+        return $login_type;
     }
-
-    
-    
 
 }

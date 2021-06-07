@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth'], 'prefix'=>'applicant', 'as'=>'applicant.'], function () {
+Route::group(['middleware' => ['auth','applicant'], 'prefix'=>'applicant', 'as'=>'applicant.'], function () {
    Route::resource('applications', Applicant\ApplicationController::class);
    Route::post('applications/index-ajax', [Applicant\ApplicationController::class,'indexAjax'])->name('applications.index-ajax');
 });
@@ -34,7 +34,11 @@ Route::group([ 'prefix'=>'admin', 'as'=>'admin.'],function(){
    Route::get('/login', [App\Http\Controllers\Admin\LoginController::class, 'showLoginForm'])->name('login');
    Route::post('/login', [App\Http\Controllers\Admin\LoginController::class, 'login'])->name('login');
    
+  
+    Route::group(['middleware' => \App\Http\Middleware\IsAdmin::class], function () {
+
    Route::resource('applications', App\Http\Controllers\Admin\ApplicationController::class);
    Route::post('applications/index-ajax', [ App\Http\Controllers\Admin\ApplicationController::class,'indexAjax'])->name('applications.index-ajax');
+ });
 
 });
