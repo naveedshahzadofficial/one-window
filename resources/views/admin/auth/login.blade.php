@@ -1,5 +1,5 @@
 @extends('_layouts.admin.blank')
-@push('title','Admin Login')
+@push('title','Login')
 @section('content')
     <!--begin::Login-->
     <div class="login login-6 login-signin-on login-signin-on d-flex flex-row-fluid" id="kt_login">
@@ -23,43 +23,37 @@
                             @component('_components.alerts-default')@endcomponent
                             {{ Form::open(array('route' => 'admin.login','class'=>'kt_auth_form','name'=>'kt_auth_form','id'=>'kt_auth_form')) }}
 
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-																<span class="input-group-text">
-																	<i class="la la-user"></i>
-																</span>
-                                    </div>
+                                <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <label class="text-white d-block text-left">{!! __('labels.email_address') !!}<span
+                                            class="text-danger">*</span></label>
                                     <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
+                                    @error('email')
+                                    <div class="invalid-feedback d-block text-left">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('email')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
+                                </div>
 
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-																<span class="input-group-text">
-																	<i class="la la-lock"></i>
-																</span>
+
+
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="text-white d-block text-left">{!! __('labels.password') !!}<span
+                                                class="text-danger">*</span></label>
+                                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
+                                        @error('password')
+                                        <div class="invalid-feedback d-block text-left">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                                 </div>
-                                @error('password')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
+
 
                             <div class="form-group">
-                                <label class="checkbox checkbox-success auth-text text-white float-left" style="width: 120px;">
-                                    <input type="checkbox"  name="remember">
-                                    <span></span>&nbsp;Remember Me</label>
-                                <a href="{{ route('password.request') }}" class="auth-text-sm float-right">Forgot Password?</a>
+                                <a href="{{ route('password.request') }}" class="auth-text-sm float-right text-hover-white">{!! __('labels.forgot_password') !!}</a>
                             </div>
 
                             <div class="pb-lg-0 pb-5 pt-10">
-                                <button type="submit"  class="btn auth-login-btn font-weight-bolder font-size-h6 px-6 py-2">Sign In</button>
+                                <button type="submit"  class="btn auth-login-btn font-weight-bolder font-size-h6 px-6 py-2">{!! __('labels.login') !!}</button>
                             </div>
 
                             {{  Form::close() }}
@@ -70,11 +64,7 @@
                     </div>
                     <!--end:Sign In Form-->
 
-                    <div class="row mt-15" style="display:none;">
-                        <div class="col-md-8 pt-3 text-left"><a href="javascript:;" class="auth-text sample-text"><i class="fa fa-user"></i> Already have not an account?</a></div>
-                        <div class="col-md-4"><a href="{{ route('register') }}" class="register_button btn btn-white btn-block">Sign Up <i class="fa fa-arrow-right"></i></a></div>
-                    </div>
-
+                   
 
                 </div>
             </div>

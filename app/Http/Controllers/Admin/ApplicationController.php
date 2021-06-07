@@ -76,7 +76,7 @@ class ApplicationController extends Controller
             return redirect(route('admin.applications.index'));
         }
 
-        $genders = ['Male', 'Female', 'Transgender'];
+       $genders = ['Male', 'Female', 'Transgender'];
        return view('admin.application.show',compact('application','genders'));
     }
 

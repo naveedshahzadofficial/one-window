@@ -3,7 +3,7 @@
 
 		<!--[html-partial:include:{"file":"partials/_header-mobile.html"}]/-->
 @section('header-mobile')
-    @include('_layouts.applicant.partials._header-mobile')
+    @include('_layouts.admin.partials._header-mobile')
 @show
 		<div class="d-flex flex-column flex-root">
 
@@ -12,7 +12,7 @@
 
 				<!--[html-partial:include:{"file":"partials/_aside.html"}]/-->
             @section('aside')
-                @include('_layouts.applicant.partials._aside')
+                @include('_layouts.admin.partials._aside')
             @show
 
 				<!--begin::Wrapper-->
@@ -20,7 +20,7 @@
 
 					<!--[html-partial:include:{"file":"partials/_header.html"}]/-->
                 @section('header')
-                    @include('_layouts.applicant.partials._header')
+                    @include('_layouts.admin.partials._header')
                 @show
 
 					<!--begin::Content-->
@@ -43,7 +43,7 @@
 
 					<!--[html-partial:include:{"file":"partials/_footer.html"}]/-->
                     @section('footer')
-                        @include('_layouts.applicant.partials._footer')
+                        @include('_layouts.admin.partials._footer')
                     @show
 				</div>
 

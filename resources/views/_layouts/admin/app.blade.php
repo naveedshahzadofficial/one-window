@@ -67,7 +67,7 @@
 
 		<!--[html-partial:include:{"file":"layout.html"}]/-->
         @section('layout')
-            @include('_layouts.applicant.layout')
+            @include('_layouts.admin.layout')
         @show
 
 		<!--[html-partial:include:{"file":"partials/_extras/offcanvas/quick-cart.html"}]/-->

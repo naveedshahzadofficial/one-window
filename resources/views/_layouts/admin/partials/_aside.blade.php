@@ -6,7 +6,7 @@
 					<div class="brand flex-column-auto" id="kt_brand">
 
 						<!--begin::Logo-->
-						<a href="{{ route('applicant.applications.index') }}" class="brand-logo">
+						<a href="{{ route('admin.applications.index') }}" class="brand-logo">
 							<img alt="Logo" src="{{ asset('assets/img/main-logo.png') }}" class="flex-center h-60px mt-0 ml-1" />
 						</a>
 
@@ -43,7 +43,7 @@
 							<!--begin::Menu Nav-->
 							<ul class="menu-nav my-4">
 								<li class="menu-item menu-item-active" aria-haspopup="true">
-									<a href="{{ route('applicant.applications.index') }}" class="menu-link">
+									<a href="{{ route('admin.applications.index') }}" class="menu-link">
 										<span class="svg-icon svg-icon-white menu-icon" >
 
 											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
