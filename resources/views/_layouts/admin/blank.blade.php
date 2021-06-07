@@ -24,7 +24,6 @@
 
 		<!--begin::Page Vendors Styles(used by this page)-->
 		<link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
-
 		<!--end::Page Vendors Styles-->
 
 		<!--begin::Global Theme Styles(used by all pages)-->
@@ -168,6 +167,7 @@
                 }
             });
         </script>
+
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
         @show
 

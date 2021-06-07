@@ -26,14 +26,16 @@
 					<!--begin::Content-->
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 
-					<!--[html-partial:include:{"file":"partials/_subheader/subheader-v1.html"}]/-->
-                    @section('subheader-v1')
-                        @include('_layouts.admin.partials._subheader.subheader-v1')
-                    @show
 
+                    <!--begin::Entry-->
+                        <div class="d-flex flex-column-fluid">
+                            <!--begin::Container-->
+                            <div class="container">
 						<!--Content area here-->
                         {{ isset($slot)?$slot:'' }}
                         @yield('content')
+                            </div>
+                        </div>
 
 					</div>
 

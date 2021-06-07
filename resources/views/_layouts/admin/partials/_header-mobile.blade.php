@@ -3,8 +3,8 @@
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 
 			<!--begin::Logo-->
-			<a href="index.html">
-				<img alt="Logo" src="{{ asset('assets/media/logos/logo-dark.png') }}" />
+			<a href="{{ route('admin.applications.index') }}">
+				<img alt="Logo" src="{{ asset('assets/img/main-logo-black.png') }}" />
 			</a>
 
 			<!--end::Logo-->
