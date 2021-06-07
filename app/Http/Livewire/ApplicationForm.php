@@ -478,7 +478,7 @@ class ApplicationForm extends Component
     public function submitUtilityConnections()
     {
 
-        $rules_utility_connections = [
+       /* $rules_utility_connections = [
             'application.utility_connection_question_id' => 'required',
         ];
         $messages_utility_connections = [
@@ -486,7 +486,7 @@ class ApplicationForm extends Component
 
         ];
 
-        $this->validate($rules_utility_connections,$messages_utility_connections);
+        $this->validate($rules_utility_connections,$messages_utility_connections);*/
 
         if($this->isYes('utility_connection_question_id')){
             $this->validate([
