@@ -84,9 +84,17 @@ class CreateApplicationsTable extends Migration
             $table->foreignId('turnover_fiscal_year_id')->nullable()->constrained('fiscal_years');
             $table->decimal('annual_turnover',20,2)->nullable();
             $table->string('business_account_statement_file')->nullable();
+
+            $table->foreignId('export_question_id')->nullable()->constrained('questions');
             $table->foreignId('export_fiscal_year_id')->nullable()->constrained('fiscal_years');
             $table->foreignId('export_currency_id')->nullable()->constrained('currencies');
             $table->decimal('export_annual_turnover',20,2)->nullable();
+
+            $table->foreignId('import_question_id')->nullable()->constrained('questions');
+            $table->foreignId('import_fiscal_year_id')->nullable()->constrained('fiscal_years');
+            $table->foreignId('import_currency_id')->nullable()->constrained('currencies');
+            $table->decimal('import_annual_turnover',20,2)->nullable();
+
             $table->foreignId('user_id')->nullable()->constrained();
             $table->softDeletes();
             $table->timestamps();

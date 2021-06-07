@@ -6,7 +6,9 @@ is_technical_education: '{{ $is_technical_education ? 'Yes' : 'No' }}',
 is_skilled_worker: '{{ $is_skilled_worker ? 'Yes' : 'No' }}',
 is_business_registered: '{{ $is_business_registered ? 'Registered' : 'Unregistered' }}',
 is_utility_connection: '{{ $is_utility_connection ? 'Yes' : 'No' }}',
-is_employee_info: '{{ $is_employee_info ? 'Yes' : 'No' }}'
+is_employee_info: '{{ $is_employee_info ? 'Yes' : 'No' }}',
+is_annual_export: '{{ $is_annual_export ? 'Yes' : 'No' }}',
+is_annual_import: '{{ $is_annual_import ? 'Yes' : 'No' }}',
 }"
     x-init="() => {
 select2 = $($refs.minority_status_id).select2();
@@ -38,32 +40,41 @@ $wire.set('application.minority_status_id', event.target.value)
             </div>
             <!--end::Wizard Step 2 Nav-->
 
-            <!--begin::Wizard Step 2 Nav-->
+            <!--begin::Wizard Step 3 Nav-->
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
                     <h3 class="wizard-title">Utility Connections</h3>
                 </div>
             </div>
-            <!--end::Wizard Step 2 Nav-->
+            <!--end::Wizard Step 3 Nav-->
 
-            <!--begin::Wizard Step 2 Nav-->
+            <!--begin::Wizard Step 4 Nav-->
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
                     <h3 class="wizard-title">Employees Info</h3>
                 </div>
             </div>
-            <!--end::Wizard Step 2 Nav-->
+            <!--end::Wizard Step 4 Nav-->
 
-            <!--begin::Wizard Step 3 Nav-->
+            <!--begin::Wizard Step 5 Nav-->
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
+                <div class="wizard-label">
+                    <h3 class="wizard-title">Annual Turnover</h3>
+                </div>
+            </div>
+            <!--end::Wizard Step 5 Nav-->
+
+            <!--begin::Wizard Step 6 Nav-->
+            <div class="wizard-step" data-wizard-type="step"
+                 data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
                     <h3 class="wizard-title">Review and Submit</h3>
                 </div>
             </div>
-            <!--end::Wizard Step 5 Nav-->
+            <!--end::Wizard Step 6 Nav-->
 
         </div>
     </div>
@@ -818,6 +829,57 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                        <div class="col-lg-6 pl-0">
+                            <table class="table table-hover cstm mb-0" >
+                                <thead>
+                                <tr>
+                                    <th colspan="2" class="text-left">
+                                        <label>Any Other Document (<span class="urdu-label" dir="rtl"> کوئی اور دستاویز </span>)<span
+                                                class="text-danger"></span></label>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($business_other_files as $index=>$business_other_file)
+                                <tr>
+                                    <td>
+                                        <input wire:model="business_other_files.{{$index}}.document_file" type="file" name="other_document_file" class="form-control m-input" placeholder="" >
+                                        <span class="form-text text-muted">Files with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 10MB.</span>
+                                        @if($errors->has("business_other_files.$index.document_file"))
+                                            <div
+                                                class="invalid-feedback d-block">{{ $errors->first("business_other_files.$index.document_file") }}</div>
+                                        @endif
+                                    </td>
+
+                                    <td class="text-right">
+                                        @if($index>0)
+                                        <span wire:click.prevent="removeOtherDocument({{ $index }})"
+                                              wire:loading.attr="disabled"
+                                              class="btn btn-xs btn-icon px-4 py-4 btn-custom-color">
+                                        <i class="flaticon2-delete text-white"></i>
+                                    </span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <td colspan="7" class="text-right">
+                                    <div class="py-4">
+                                        <button type="button"
+                                                wire:click.prevent="addOtherDocument"
+                                                wire:loading.class="spinner spinner-white spinner-right"
+                                                wire:loading.attr="disabled"
+                                                class="btn btn-custom-color font-weight-bold px-4 py-2 d-block">
+                                            Add More
+                                        </button>
+                                    </div>
+                                </td>
+                                </tfoot>
+                            </table>
+                        </div>
+                        </div>
 
                     </div>
 
@@ -1070,8 +1132,8 @@ $wire.set('application.minority_status_id', event.target.value)
 
                 </div>
 
-                <!--end: Wizard Step 2-->
-                <!--begin: Wizard Step 3-->
+                <!--end: Wizard Step 2 -->
+                <!--begin: Wizard Step 3 -->
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white"><span>UTILITY CONNECTIONS (<label
@@ -1236,9 +1298,9 @@ $wire.set('application.minority_status_id', event.target.value)
                         @endforeach
                     </div>
                 </div>
-                <!--end: Wizard Step 3-->
+                <!--end: Wizard Step 3 -->
 
-                <!--begin: Wizard Step 4-->
+                <!--begin: Wizard Step 4 -->
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white"><span>EMPLOYEES INFO  (<label
@@ -1308,11 +1370,179 @@ $wire.set('application.minority_status_id', event.target.value)
                         @endforeach
                     </div>
                 </div>
-                <!--end: Wizard Step 4-->
+                <!--end: Wizard Step 4 -->
 
-                <!--begin: Wizard Step 3-->
+                <!--begin: Wizard Step 5 -->
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
+                    <!--begin::Section-->
+
+                    <h4 class="font-weight-bold section_heading text-white"><span>{!! __('labels.estimated_annual_turnover') !!}</span>
+                    </h4>
+                    <div class="section_box">
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>{!! __('labels.fiscal_year') !!} <span class="text-danger">*</span></label>
+                                <select wire:model.defer="application.turnover_fiscal_year_id"  class="form-control @error('application.turnover_fiscal_year_id') is-invalid @enderror">
+                                    <option value="">Select Year</option>
+                                    @foreach($fiscal_years as $year)
+                                        <option value="{{ $year->id }}">{{ $year->year_name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('application.turnover_fiscal_year_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>{!! __('labels.annual_turnover_fiscal_year') !!} <span class="text-danger">*</span></label>
+                                <input wire:model.model.defer="application.annual_turnover" type="text" class="form-control @error('application.annual_turnover') is-invalid @enderror" placeholder="Annual Turnover" />
+                                @error('application.annual_turnover')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>{!! __('labels.business_account_statement') !!} </label>
+                                <input type="file" class="form-control" wire:model="business_account_statement_file">
+                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.exports') !!}</span>
+                    </h4>
+                    <div class="section_box">
+
+                        <div class="form-group row">
+                            <div class="col-lg-12">
+                                <label>{!! __('labels.question_exports') !!} <span class="text-danger">*</span></label>
+                                <div class="radio-inline" wire:ignore>
+                                    @foreach($questions as $question)
+                                        <label class="radio radio-success">
+                                            <input wire:model.defer="application.export_question_id"
+                                                   @click="is_annual_export= '{{ $question->name }}'"
+                                                   type="radio"
+                                                   name="export_question_id" value="{{ $question->id }}">
+                                            <span></span>{{ $question->name }}</label>
+                                    @endforeach
+                                </div>
+                                @error('application.export_question_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                    <div class="form-group row"  x-show.transition.opacity="is_annual_export=='Yes'">
+                        <div class="col-lg-6">
+                            <label>{!! __('labels.fiscal_year') !!} <span class="text-danger">*</span></label>
+                            <select wire:model.defer="application.export_fiscal_year_id"  class="form-control @error('application.export_fiscal_year_id') is-invalid @enderror">
+                                <option value="">Select Year</option>
+                                @foreach($fiscal_years as $year)
+                                    <option value="{{ $year->id }}">{{ $year->year_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('application.export_fiscal_year_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>{!! __('labels.currency') !!} <span class="text-danger">*</span></label>
+                            <div class="radio-inline">
+                                @foreach($currencies as $currency)
+                                    <label class="radio">
+                                        <input wire:model.defer="application.export_currency_id" type="radio" name="application.export_currency_id" value="{{ $currency->id }}">
+                                        <span></span>{{ $currency->currency_name }}</label>
+                                @endforeach
+                            </div>
+                            @error('application.export_currency_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row"  x-show.transition.opacity="is_annual_export=='Yes'">
+
+                        <div class="col-lg-6">
+                            <label>{!! __('labels.export_turnover') !!} <span class="text-danger">*</span></label>
+                            <input wire:model.defer="application.export_annual_turnover" type="text" class="form-control @error('application.export_annual_turnover') is-invalid @enderror" placeholder="Export Annual Turnover" />
+                            @error('application.export_annual_turnover')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    </div>
+
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.exports') !!}</span>
+                    </h4>
+                    <div class="section_box">
+
+                        <div class="form-group row">
+                            <div class="col-lg-12">
+                                <label>{!! __('labels.question_imports') !!}<span class="text-danger">*</span></label>
+                                <div class="radio-inline" wire:ignore>
+                                    @foreach($questions as $question)
+                                        <label class="radio radio-success">
+                                            <input wire:model.defer="application.import_question_id"
+                                                   @click="is_annual_import= '{{ $question->name }}'"
+                                                   type="radio"
+                                                   name="import_question_id" value="{{ $question->id }}">
+                                            <span></span>{{ $question->name }}</label>
+                                    @endforeach
+                                </div>
+                                @error('application.import_question_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row"  x-show.transition.opacity="is_annual_import=='Yes'">
+                            <div class="col-lg-6">
+                                <label>{!! __('labels.fiscal_year') !!} <span class="text-danger">*</span></label>
+                                <select wire:model.defer="application.import_fiscal_year_id"  class="form-control @error('application.export_fiscal_year_id') is-invalid @enderror">
+                                    <option value="">Select Year</option>
+                                    @foreach($fiscal_years as $year)
+                                        <option value="{{ $year->id }}">{{ $year->year_name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('application.import_fiscal_year_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>{!! __('labels.currency') !!} <span class="text-danger">*</span></label>
+                                <div class="radio-inline" wire:ignore>
+                                    @foreach($currencies as $currency)
+                                        <label class="radio">
+                                            <input wire:model.defer="application.import_currency_id" type="radio" name="application.import_currency_id" value="{{ $currency->id }}">
+                                            <span></span>{{ $currency->currency_name }}</label>
+                                    @endforeach
+                                </div>
+                                @error('application.import_currency_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row" x-show.transition.opacity="is_annual_import=='Yes'">
+
+                            <div class="col-lg-6">
+                                <label>{!! __('labels.export_turnover') !!} <span class="text-danger">*</span>:  <span class="text-danger">*</span></label>
+                                <input wire:model.defer="application.import_annual_turnover" type="text" class="form-control @error('application.import_annual_turnover') is-invalid @enderror" placeholder="Import Annual Turnover" />
+                                @error('application.import_annual_turnover')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end: Wizard Step 5 -->
+
+                <!--begin: Wizard Step 5-->
+                <div class="pb-5" data-wizard-type="step-content"
+                     data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
                     <!--begin::Section-->
                     <h4 class="main_section_heading">APPLICANT PROFILE (<span class="urdu-label" dir="rtl"> درخواست دہندہ کی پروفائل </span>)
                     </h4>
@@ -1950,12 +2180,12 @@ $wire.set('application.minority_status_id', event.target.value)
 
                     <!--end::Section-->
                 </div>
-                <!--end: Wizard Step 3-->
+                <!--end: Wizard Step 5 -->
 
                 <!--begin: Wizard Actions-->
                 <div class="d-flex justify-content-between">
                     <div class="mr-2">
-                        @if($step> 0 && $step<=4)
+                        @if($step> 0 && $step<=5)
                             <button type="button"
                                     class="btn btn-custom-dark font-weight-bold px-8 py-2 d-block"
                                     data-wizard-type="action-prev"
@@ -1966,7 +2196,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         @endif
                     </div>
                     <div>
-                        @if($step >= 4)
+                        @if($step >= 5)
                             <button type="button"
                                     class="btn btn-custom-color font-weight-bold px-8 py-2 d-block"
                                     data-wizard-type="action-submit"

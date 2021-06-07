@@ -14,10 +14,10 @@ class UtilityTypeSeeder extends Seeder
      */
     public function run()
     {
-        UtilityType::create(['type_name'=>'Commercial Utility']);
-        UtilityType::create(['type_name'=>'Industrial Utility']);
-        UtilityType::create(['type_name'=>'Personal Utility']);
-        UtilityType::create(['type_name'=>'Residential Utility']);
+        UtilityType::create(['type_name'=>'Commercial']);
+        UtilityType::create(['type_name'=>'Industrial']);
+        UtilityType::create(['type_name'=>'Residential']);
+        UtilityType::create(['type_name'=>'Personal']);
 
     }
 }

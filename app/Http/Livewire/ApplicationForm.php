@@ -7,6 +7,7 @@ use App\Models\AddressForm;
 use App\Models\AddressType;
 use App\Models\Application;
 use App\Models\ApplicationEmployeeInfo;
+use App\Models\ApplicationOtherDocument;
 use App\Models\ApplicationTechnicalEducation;
 use App\Models\ApplicationUtilityConnection;
 use App\Models\BusinessActivity;
@@ -15,10 +16,12 @@ use App\Models\BusinessLegalStatus;
 use App\Models\BusinessRegistrationStatus;
 use App\Models\City;
 use App\Models\ConnectionOwnership;
+use App\Models\Currency;
 use App\Models\DesignationBusiness;
 use App\Models\District;
 use App\Models\EducationLevel;
 use App\Models\EmployeeType;
+use App\Models\FiscalYear;
 use App\Models\Gender;
 use App\Models\MinorityStatus;
 use App\Models\MobileCode;
@@ -64,6 +67,9 @@ class ApplicationForm extends Component
     public $business_categories;
     public $business_activities;
 
+    public $fiscal_years;
+    public $currencies;
+
     // UtilityConnections
     public $utility_forms;
     public $utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
@@ -82,12 +88,14 @@ class ApplicationForm extends Component
     public $is_employee_info = false;
     public $is_utility_connection = true;
     public $is_technical_education = false;
+    public $is_annual_export = false;
+    public $is_annual_import = false;
 
     // files
     public $proof_of_ownership_file,$registration_certificate_file,
-        $license_registration_file,$business_evidence_ownership_file;
+        $license_registration_file,$business_evidence_ownership_file, $business_account_statement_file;
 
-    public $business_other_files = [];
+    public $business_other_files = [['document_file'=>null]];
 
 
     public $step;
@@ -96,6 +104,7 @@ class ApplicationForm extends Component
         'submitBusinessProfile',
         'submitUtilityConnections',
         'submitEmployeesInfo',
+        'submitAnnualTurnover',
         'submitReview',
     ];
 
@@ -133,6 +142,10 @@ class ApplicationForm extends Component
 
         $this->employee_types = EmployeeType::where('type_status',1)->get();
 
+        $this->fiscal_years = FiscalYear::where('year_status',1)->get();
+        $this->currencies = Currency::where('currency_status',1)->get();
+
+
         $this->employee_numbers = 20;
 
         // on parent load
@@ -163,6 +176,10 @@ class ApplicationForm extends Component
             $this->technical_educations = $registration->technicalEducations->toArray();
             if(empty($this->technical_educations))
                 $this->technical_educations = [['certificate_title'=>null]];
+
+            $this->business_other_files = $registration->otherDocuments->toArray();
+            if(empty($this->business_other_files))
+                $this->business_other_files = [['document_file'=>null]];
 
             $this->utility_connections = $registration->utilityConnections->toArray();
             if(empty($this->utility_connections))
@@ -202,6 +219,13 @@ class ApplicationForm extends Component
 
             if($this->isYes('employees_question_id')){
                 $this->is_employee_info = true;
+            }
+
+            if($this->isYes('export_question_id')){
+                $this->is_annual_export = true;
+            }
+            if($this->isYes('import_question_id')){
+                $this->is_annual_import = true;
             }
         }
 
@@ -474,9 +498,19 @@ class ApplicationForm extends Component
         if(!empty($this->business_evidence_ownership_file))
         $this->application['business_evidence_ownership_file']= $this->business_evidence_ownership_file->store('evidence_ownerships','public');
 
+        $other_documents = array();
+        foreach ($this->business_other_files as $business_other_file) {
+            $other_document  =$business_other_file->store('business_other_documents','public');
+            array_push($other_documents,new ApplicationOtherDocument(['document_file'=>$other_document]));
+        }
+
         //dd($this->application);
         $this->registration = tap($this->registration)->update($this->application);
 
+        if($this->registration->otherDocuments->isNotEmpty())
+            $this->registration->otherDocuments()->delete();
+        if(count($other_documents)>0)
+            $this->registration->otherDocuments()->saveMany($other_documents);
 
         $this->step++;
         $this->successAlert();
@@ -609,6 +643,35 @@ class ApplicationForm extends Component
         $this->utility_connections[] = ['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,];
     }
 
+    public function submitAnnualTurnover()
+    {
+        $rules_annual_turnover = [
+            'application.turnover_fiscal_year_id' => 'required',
+            'application.annual_turnover' => 'required'
+        ];
+
+        $messages_annual_turnover= [
+            'application.turnover_fiscal_year_id.required' => 'Please select your choice.',
+            'application.annual_turnover.required' => 'Annual Turnover is required.',
+        ];
+
+        $this->validate($rules_annual_turnover,$messages_annual_turnover);
+
+        if($this->isYes('export_question_id')){
+
+        }
+        if($this->isYes('import_question_id')){
+
+        }
+
+        if(!empty($this->business_account_statement_file))
+            $this->application['business_account_statement_file']= $this->business_account_statement_file->store('business_account_statements','public');
+
+        $this->registration = tap($this->registration)->update($this->application);
+        $this->step++;
+        $this->successAlert();
+    }
+
     public function addTechnicalEducation(){
         $this->validate([
             'technical_educations.*.certificate_title' => 'required',
@@ -616,6 +679,15 @@ class ApplicationForm extends Component
             'technical_educations.*.certificate_title.required' => 'Diploma/ Certificate Title is required.',
         ]);
         $this->technical_educations[] = ['certificate_title'=>null];
+    }
+
+    public function addOtherDocument(){
+       /* $this->validate([
+            'business_other_files.*.document_file' => 'required',
+        ],[
+            'business_other_files.*.document_file.required' => 'Other Document is required.',
+        ]);*/
+        $this->business_other_files[] = ['document_file'=>null];
     }
 
     public function removeUtilityConnection($index)
@@ -628,6 +700,11 @@ class ApplicationForm extends Component
     {
         unset($this->technical_educations[$index]);
         $this->technical_educations = array_values($this->technical_educations);
+    }
+    public function removeOtherDocument($index)
+    {
+        unset($this->business_other_files[$index]);
+        $this->business_other_files = array_values($this->business_other_files);
     }
 
     private function successAlert(){

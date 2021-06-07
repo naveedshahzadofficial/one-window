@@ -29,4 +29,17 @@ return [
     'business_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> کاروبار کے حصول کی تاریخ </span>)',
     'share_percentage' => 'Share % (<span class="urdu-label" dir="rtl"> حصہ فیصد </span>)',
     'business_category' => 'Business Category (<span class="urdu-label" dir="rtl"> کاروبار کی قسم </span>)',
+    // Annual Turn Over
+    'estimated_annual_turnover' => 'Estimated annual turnover in last completed Fiscal Year (<label class="urdu-label" dir="rtl"> آخری مالی سال میں تخمینہ شدہ سالانہ کاروبار </label>)',
+    'fiscal_year' => 'Fiscal Year (<span class="urdu-label" dir="rtl"> مالی سال </span>)',
+    'annual_turnover_fiscal_year' => 'Annual Turnover for the selected Fiscal Year (PKR)<br>(<span class="urdu-label" dir="rtl"> منتخب مالی سال کے لئے سالانہ کاروبار </span>)',
+    'business_account_statement' => 'Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement)<br>(<span class="urdu-label" dir="rtl"> ملحقات - انکم ٹیکس ریٹرن / آڈٹ شدہ بیانات / بزنس اکاؤنٹ بینک کا بیان </span>)',
+    'question_exports' => 'Do you have exports? (<span class="urdu-label" dir="rtl"> کیا آپ کے پاس برآمدات ہیں؟ </span>)',
+    'question_imports' => 'Do you have exports? (<span class="urdu-label" dir="rtl"> کیا آپ کی درآمدات ہیں؟ </span>)',
+    'exports' => 'Exports (<label class="urdu-label" dir="rtl"> برآمدات </label>)',
+    'imports' => 'Imports (<label class="urdu-label" dir="rtl"> درآمدات </label>)',
+    'currency' => 'Currency (<span class="urdu-label" dir="rtl"> کرنسی </span>)',
+    'export_turnover' => 'Export Turnover for the selected Fiscal Year (PKR/ USD) (<span class="urdu-label" dir="rtl"> منتخب مالی سال کے لئے برآمدات کا کاروبار </span>)',
+    'import_turnover' => 'Import Turnover for the selected Fiscal Year (PKR/ USD) (<span class="urdu-label" dir="rtl"> منتخب مالیہ سال کے لئے کاروبار درآمد کریں </span>)',
+
 ];

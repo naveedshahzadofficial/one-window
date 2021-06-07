@@ -29,7 +29,9 @@ class Application extends Model
         'business_city_id', 'business_district_id', 'business_tehsil_id', 'business_capacity_id', 'business_share',
         'business_acquisition_date', 'business_evidence_ownership_file', 'business_contact_number',
         'business_email', 'utility_connection_question_id', 'employees_question_id', 'turnover_fiscal_year_id',
-        'annual_turnover', 'business_account_statement_file', 'export_fiscal_year_id', 'export_currency_id', 'export_annual_turnover',
+        'annual_turnover', 'business_account_statement_file',
+        'export_question_id', 'export_fiscal_year_id', 'export_currency_id', 'export_annual_turnover',
+        'import_question_id', 'import_fiscal_year_id', 'import_currency_id', 'import_annual_turnover',
         'user_id'];
 
     protected $casts = [
@@ -63,6 +65,10 @@ class Application extends Model
 
     public function technicalEducations(){
         return $this->hasMany(ApplicationTechnicalEducation::class);
+    }
+
+    public function otherDocuments(){
+        return $this->hasMany(ApplicationOtherDocument::class);
     }
 
     public function utilityConnections(){
