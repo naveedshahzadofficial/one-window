@@ -265,6 +265,17 @@
                 $(child_id).trigger('change.select2');
 
             });
+
+            window.addEventListener('reinitialization:utility', event =>{
+               console.log(event.detail.id);
+                $(event.detail.id).datetimepicker({
+                    timepicker:false,
+                    format:'d-m-Y',
+                    formatDate:'d-m-Y',
+                    scrollInput : false
+                });
+
+            });
         </script>
         <script>
     <?php

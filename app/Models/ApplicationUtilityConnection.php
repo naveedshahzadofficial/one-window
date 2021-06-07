@@ -9,7 +9,7 @@ class ApplicationUtilityConnection extends Model
 {
     use HasFactory;
     protected $fillable = ['application_id', 'connection_ownership_id', 'utility_type_id', 'utility_consumer_number',
-        'utility_form_id', 'utility_service_provider_id', 'utility_provider_other' ];
+        'utility_form_id', 'utility_service_provider_id', 'utility_provider_other', 'connection_date', 'bill_file' ];
 
     public function application()
     {

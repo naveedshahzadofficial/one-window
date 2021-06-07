@@ -30,6 +30,7 @@ use App\Models\Province;
 use App\Models\Question;
 use App\Models\Tehsil;
 use App\Models\UtilityForm;
+use App\Models\UtilityServiceProvider;
 use App\Models\UtilityType;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -86,7 +87,7 @@ class ApplicationForm extends Component
     public $is_skilled_worker = false;
     public $is_business_registered = false;
     public $is_employee_info = false;
-    public $is_utility_connection = true;
+    public $is_utility_connection = null;
     public $is_technical_education = false;
     public $is_annual_export = false;
     public $is_annual_import = false;
@@ -155,7 +156,7 @@ class ApplicationForm extends Component
         $this->business_districts = collect();
         $this->business_tehsils = collect();
 
-        $this->utility_service_providers = collect();
+        $this->utility_service_providers = UtilityServiceProvider::where('utility_form_id',2)->where('provider_status',1)->get();
 
         $this->application['user_id'] = auth()->id();
         $this->application['prefix_id'] = auth()->user()->prefix_id;
@@ -167,8 +168,6 @@ class ApplicationForm extends Component
         $mobile_code= MobileCode::where('id',auth()->user()->mobile_code_id)->first();
         $this->application['personal_mobile_no'] = ($mobile_code->code_number).auth()->user()->mobile_no;
         $this->application['personal_email'] = auth()->user()->email;
-        $this->application['utility_connection_question_id'] = $this->questions->firstWhere('name', 'Yes')->id;
-
 
         if($registration){
             $this->application = $registration->toArray();
@@ -305,6 +304,22 @@ class ApplicationForm extends Component
         }
     }
 
+    public function updatedUtilityConnections($value, $updatedKey)
+    {
+       $key_index = explode('.',$updatedKey);
+        switch ($key_index[1]) {
+            case 'utility_form_id':
+                $this->utility_service_providers = UtilityServiceProvider::where('utility_form_id',$value)->where('provider_status',1)->get();
+                $this->application["utility_connections.$key_index[0].utility_service_provider_id"] = null;
+                $this->dispatchBrowserEvent('child:select2',[
+                    'data'=>$this->utility_service_providers,
+                    'child_id'=>'#utility_service_provider_id_'.$key_index[0],
+                    'field_name'=>'provider_name',
+                ]);
+                break;
+        }
+
+    }
     public function submitApplication()
     {
         $action = $this->stepActions[$this->step];
@@ -500,8 +515,10 @@ class ApplicationForm extends Component
 
         $other_documents = array();
         foreach ($this->business_other_files as $business_other_file) {
-            $other_document  =$business_other_file->store('business_other_documents','public');
-            array_push($other_documents,new ApplicationOtherDocument(['document_file'=>$other_document]));
+            if(isset($business_other_file['document_file']) && !empty($business_other_file['document_file'])) {
+                $other_document = $business_other_file['document_file']->store('business_other_documents', 'public');
+                array_push($other_documents, new ApplicationOtherDocument(['document_file' => $other_document]));
+            }
         }
 
         //dd($this->application);
@@ -519,7 +536,7 @@ class ApplicationForm extends Component
     public function submitUtilityConnections()
     {
 
-       /* $rules_utility_connections = [
+       $rules_utility_connections = [
             'application.utility_connection_question_id' => 'required',
         ];
         $messages_utility_connections = [
@@ -527,24 +544,26 @@ class ApplicationForm extends Component
 
         ];
 
-        $this->validate($rules_utility_connections,$messages_utility_connections);*/
+        $this->validate($rules_utility_connections,$messages_utility_connections);
 
         if($this->isYes('utility_connection_question_id')){
             $this->validate([
-                'utility_connections.*.utility_provider_other' => 'required',
-                'utility_connections.*.utility_form_id' => 'required',
-                'utility_connections.*.utility_consumer_number' => 'required',
                 'utility_connections.*.utility_type_id' => 'required',
                 'utility_connections.*.connection_ownership_id' => 'required',
+                'utility_connections.*.utility_consumer_number' => 'required',
+                'utility_connections.*.utility_service_provider_id' => 'required',
+                'utility_connections.*.connection_date' => 'required',
+                //'utility_connections.*.bill_file' => 'required',
             ],[
-                'utility_connections.*.utility_provider_other.required' => 'Connection Ownership is required.',
-                'utility_connections.*.utility_form_id.required' => 'Form/Type of Connection is required.',
-                'utility_connections.*.utility_consumer_number.required' => 'Reference/ Consumer Number is required.',
                 'utility_connections.*.utility_type_id.required' => 'Utility Type is required.',
                 'utility_connections.*.connection_ownership_id.required' => 'Provider is required.',
+                'utility_connections.*.utility_consumer_number.required' => 'Reference/ Consumer Number is required.',
+                'utility_connections.*.utility_service_provider_id.required' => 'Service Provider is required.',
+                'utility_connections.*.connection_date.required' => 'Connection Date is required.',
+                //'utility_connections.*.bill_file.required' => 'Paid Utility bill is required.',
             ]);
         }else{
-            $this->utility_connections = [];
+
         }
 
         $this->registration = tap($this->registration)->update($this->application);
@@ -628,19 +647,20 @@ class ApplicationForm extends Component
 
     public function addUtilityConnection(){
         $this->validate([
-            'utility_connections.*.utility_provider_other' => 'required',
-            'utility_connections.*.utility_form_id' => 'required',
-            'utility_connections.*.utility_consumer_number' => 'required',
             'utility_connections.*.utility_type_id' => 'required',
             'utility_connections.*.connection_ownership_id' => 'required',
+            'utility_connections.*.utility_consumer_number' => 'required',
+            'utility_connections.*.utility_service_provider_id' => 'required',
+            'utility_connections.*.connection_date' => 'required',
         ],[
-            'utility_connections.*.utility_provider_other.required' => 'Connection Ownership is required.',
+            'utility_connections.*.utility_provider_id.required' => 'Connection Ownership is required.',
             'utility_connections.*.utility_form_id.required' => 'Form/Type of Connection is required.',
             'utility_connections.*.utility_consumer_number.required' => 'Reference/ Consumer Number is required.',
             'utility_connections.*.utility_type_id.required' => 'Utility Type is required.',
             'utility_connections.*.connection_ownership_id.required' => 'Provider is required.',
         ]);
-        $this->utility_connections[] = ['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,];
+        $this->utility_connections[] = ['utility_type_id'=>null,'utility_form_id'=>null,'connection_ownership_id'=>null,'utility_consumer_number'=>null, 'utility_service_provider_id'=>null,  'connection_date'=>null, 'bill_file'=>null];
+        $this->dispatchBrowserEvent('reinitialization:utility',['id'=>'#connection_date_'.(count($this->utility_connections)-1)]);
     }
 
     public function submitAnnualTurnover()

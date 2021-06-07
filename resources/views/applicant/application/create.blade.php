@@ -24,4 +24,3 @@
 @push('pre-styles')
 <link href="{{ asset('assets/css/pages/wizard/wizard-3.css') }}" rel="stylesheet" type="text/css" />
 @endpush
-

@@ -29,6 +29,16 @@ return [
     'business_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> کاروبار کے حصول کی تاریخ </span>)',
     'share_percentage' => 'Share % (<span class="urdu-label" dir="rtl"> حصہ فیصد </span>)',
     'business_category' => 'Business Category (<span class="urdu-label" dir="rtl"> کاروبار کی قسم </span>)',
+    // Utility Connections
+    'electricity_connection_question' => 'Do you have Electricity Connection? (<span class="urdu-label" dir="rtl"> کیا آپ کے پاس کوئی بجلی کا کنکشن ہے؟ </span>)',
+    'type_of_utility' => 'Type of Utility (<span class="urdu-label" dir="rtl"> یوٹیلیٹی کنکشن کی قسم </span>)',
+    'type_of_connection' => 'Type of Connection (<span class="urdu-label" dir="rtl"> کنکشن کی قسم </span>)',
+    'connection_ownership' => 'Connection Ownership (<span class="urdu-label" dir="rtl"> کنکشن کی ملکیت </span>)',
+    'consumer_number' => 'Reference/ Consumer Number (<span class="urdu-label" dir="rtl"> حوالہ / صارف نمبر </span>)',
+    'service_provider' => 'Service Provider (<span class="urdu-label" dir="rtl"> سروس مہیا کرنے والا </span>)',
+    'connection_date' => 'Connection Date (<span class="urdu-label" dir="rtl"> کنکشن کی تاریخ  </span>)',
+    'business_paid_bill_file' => 'Paid Utility bill of Business Place (<span class="urdu-label" dir="rtl"> بزنس پلیس کا ادا شدہ یوٹیلیٹی بل  </span>)',
+
     // Annual Turn Over
     'estimated_annual_turnover' => 'Estimated annual turnover in last completed Fiscal Year (<label class="urdu-label" dir="rtl"> آخری مالی سال میں تخمینہ شدہ سالانہ کاروبار </label>)',
     'fiscal_year' => 'Fiscal Year (<span class="urdu-label" dir="rtl"> مالی سال </span>)',

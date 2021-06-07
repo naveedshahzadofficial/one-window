@@ -23,6 +23,8 @@ class CreateApplicationUtilityConnectionsTable extends Migration
             $table->bigInteger('utility_service_provider_id')->nullable()->unsigned();
             $table->foreign('utility_service_provider_id','auc_utility_service_provider_id_foreign')->references('id')->on('utility_service_providers');
             $table->string('utility_provider_other')->nullable();
+            $table->string('connection_date')->nullable();
+            $table->string('bill_file')->nullable();
             $table->timestamps();
         });
     }
