@@ -235,8 +235,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>Do you have Minority Status? (<span class="urdu-label" dir="rtl"> کیا آپ کو اقلیت کا درجہ حاصل ہے؟ </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.minority_status_question') !!}<span class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($questions as $question)
                                         <label class="radio radio-success">

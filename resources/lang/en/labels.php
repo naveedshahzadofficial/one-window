@@ -34,6 +34,7 @@ return [
     'cnic_issue_date' => 'CNIC Issue Date (<span class="urdu-label" dir="rtl"> شناختی کارڈ کے اجراء کی تاریخ </span>)',
     'cnic_expiry_date' => 'CNIC Expiry Date (<span class="urdu-label" dir="rtl"> شناختی کارڈ کی میعاد ختم ہونے کی تاریخ </span>)',
     'designation_business' => 'Designation in Business (<span class="urdu-label" dir="rtl"> کاروبار میں عہدہ </span>)',
+    'minority_status_question' => 'Do you have Minority Status? (<span class="urdu-label" dir="rtl"> کیا آپ کو اقلیت کا درجہ حاصل ہے؟ </span>)',
 
     'residence_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
 
