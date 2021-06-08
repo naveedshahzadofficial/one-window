@@ -14,11 +14,8 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-     protected $redirectTo = 'admin/applications';
-     public function __construct()
-    {
-    }
-
+    protected $redirectTo = 'admin/applications';
+     
     public function showLoginForm()
     {
         return view('admin.auth.login');
@@ -35,6 +32,12 @@ class LoginController extends Controller
         request()->merge([$login_type => $fieldValue]);
 
         return $login_type;
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect(route('admin.login'));
     }
 
 }

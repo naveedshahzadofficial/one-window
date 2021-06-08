@@ -1,12 +1,12 @@
 @extends('_layouts.admin.app')
-@push('title','My SMEs Admin Panel')
+@push('title','All SMEs Admin Panel')
 @section('content')
 
     <!--begin::Card-->
     <div class="card card-custom gutter-b">
         <div class="card-header flex-wrap py-3">
             <div class="card-title">
-                <h3 class="card-label">My SMEs</h3>
+                <h3 class="card-label">All SMEs</h3>
             </div>
            
         </div>
