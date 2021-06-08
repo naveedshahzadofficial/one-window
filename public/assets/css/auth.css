@@ -15,6 +15,22 @@
 
 }
 
+@font-face {
+    font-family: 'Noto Nastaliq Urdu Draft';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/notonastaliqurdudraft/NotoNastaliqUrduDraft.eot');
+    src: url('../fonts/notonastaliqurdudraft/NotoNastaliqUrduDraft.eot?#iefix') format('embedded-opentype'), url('../fonts/notonastaliqurdudraft/NotoNastaliqUrduDraft.woff2') format('woff2'), url('../fonts/notonastaliqurdudraft/NotoNastaliqUrduDraft.woff') format('woff'), url('../fonts/notonastaliqurdudraft/NotoNastaliqUrduDraft.ttf') format('truetype');
+}
+.urdu-label {
+    font-size: 9pt;
+    font-weight: 500 !important;
+    font-family: 'Noto Nastaliq Urdu Draft', serif;
+    /*font-family: 'NotoNastaliqUrdu', serif !important;*/
+    text-align: right;
+    padding: 0px 5px;
+}
+
 .auth-left-bg{
     background-image: url("../img/auth-left-bg.jpg");
     -webkit-background-size: cover;
