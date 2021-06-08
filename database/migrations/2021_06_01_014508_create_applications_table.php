@@ -40,8 +40,12 @@ class CreateApplicationsTable extends Migration
             $table->text('residence_address_1')->nullable();
             $table->text('residence_address_2')->nullable();
             $table->text('residence_address_3')->nullable();
+
+            $table->foreignId('residence_province_id')->nullable()->constrained('provinces');
             $table->foreignId('residence_city_id')->nullable()->constrained('cities');
             $table->foreignId('residence_district_id')->nullable()->constrained('districts');
+            $table->foreignId('residence_tehsil_id')->nullable()->constrained('tehsils');
+
             $table->foreignId('residence_capacity_id')->nullable()->constrained('address_capacities');
             $table->string('residence_share')->nullable();
             $table->date('residence_acquisition_date')->nullable();

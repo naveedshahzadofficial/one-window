@@ -32,12 +32,15 @@ return [
 
     // Applicant Profile
     'gender' => 'Gender (<span class="urdu-label" dir="rtl"> جنس </span>)',
-    'date_of_birth' => 'Date of Birth - as per CNIC (<span class="urdu-label" dir="rtl"> تاریخ پیدائش - کمپیوٹرائزڈ قومی شناختی کارڈ کے مطابق </span>)',
+    'date_of_birth' => 'Date of Birth - as per CNIC (<span class="urdu-label" dir="rtl"> تاریخ پیدائش - شناختی کارڈ کے مطابق </span>)',
     'cnic_issue_date' => 'CNIC Issue Date (<span class="urdu-label" dir="rtl"> شناختی کارڈ کے اجراء کی تاریخ </span>)',
     'cnic_expiry_date' => 'CNIC Expiry Date (<span class="urdu-label" dir="rtl"> شناختی کارڈ کی میعاد ختم ہونے کی تاریخ </span>)',
     'designation_business' => 'Designation in Business (<span class="urdu-label" dir="rtl"> کاروبار میں عہدہ </span>)',
     'minority_status_question' => 'Do you have Minority Status? (<span class="urdu-label" dir="rtl"> کیا آپ کو اقلیت کا درجہ حاصل ہے؟ </span>)',
     'cnic_expiry_question' => 'Has your CNIC LifeTime Expiry Date? (<span class="urdu-label" dir="rtl"> کیا آپ کے شناختی کارڈ کی میعاد عمر بھر کیلئے ہے؟ </span>)',
+    'residence_address_1' => 'House No./ Unit No./ Village/ Premises No. (<span class="urdu-label" dir="rtl"> مکان نمبر / یونٹ نمبر/ گاؤں / حدود نمبر </span>)',
+    'residence_address_2' => 'Complex / Street/ Block/ Sector/ Municipality (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)',
+    'residence_address_3' => 'Area / Locality/ Ward No. (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک/ گاؤں </span>)',
 
     'residence_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
 

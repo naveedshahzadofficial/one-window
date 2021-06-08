@@ -16,7 +16,7 @@ class Application extends Model
         'minority_status_id', 'minority_status_other', 'ntn_personal', 'education_level_id', 'technical_education_question_id',
         'certificate_title', 'skilled_worker_question_id', 'skill_or_art', 'residence_address_type_id',
         'residence_address_form_id', 'residence_address_1', 'residence_address_2', 'residence_address_3',
-        'residence_city_id', 'residence_district_id', 'residence_capacity_id', 'residence_share', 'residence_acquisition_date',
+        'residence_province_id','residence_city_id', 'residence_district_id','residence_tehsil_id', 'residence_capacity_id', 'residence_share', 'residence_acquisition_date',
         'personal_mobile_no', 'personal_email',
         'business_name', 'business_establishment_date', 'business_registration_status_id', 'business_legal_status_id',
         'business_registration_number', 'business_registration_date', 'business_ntn_no',

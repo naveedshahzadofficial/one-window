@@ -495,8 +495,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>House No./ Unit No./ Village/ Premises No. (<span class="urdu-label" dir="rtl"> مکان نمبر / یونٹ نمبر/ گاؤں / حدود نمبر </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.residence_address_1') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="application.residence_address_1" type="text"
                                        class="form-control @error('application.residence_address_1') is-invalid @enderror"
                                        placeholder="Address 1"/>
@@ -506,8 +505,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Complex / Street/ Municipality (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.residence_address_2') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="application.residence_address_2" type="text"
                                        class="form-control @error('application.residence_address_2') is-invalid @enderror"
                                        placeholder="Address 2"/>
@@ -521,9 +519,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
 
                             <div class="col-lg-6">
-                                <label>Area / Locality/ Ward No. (<span class="urdu-label"
-                                                                          dir="rtl"> علاقہ/ سڑک/ گاؤں </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.residence_address_3') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="application.residence_address_3" type="text"
                                        class="form-control @error('application.residence_address_3') is-invalid @enderror"
                                        placeholder="Address 3"/>
@@ -533,20 +529,35 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>City: (<span class="urdu-label" dir="rtl"> شہر </span>)<span class="text-danger">*</span></label>
+                                <label>{!! __('labels.province_state') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
-                                    <x-select2-dropdown wire:model.defer="application.residence_city_id"
-                                                        setFieldName="application.residence_city_id"
-                                                        id="residence_city_id" fieldName="city_name_e"
-                                                        :listing="$cities"/>
+                                    <x-select2-dropdown
+                                        wire:model.defer="application.residence_province_id"
+                                        setFieldName="application.residence_province_id"
+                                        id="residence_province_id"
+                                        fieldName="province_name"
+                                        :listing="$provinces"/>
                                 </div>
-                                @error('application.residence_city_id')
+                                @error('application.residence_province_id')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
 
                         </div>
+
                         <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>City: (<span class="urdu-label" dir="rtl"> شہر </span>)<span class="text-danger">*</span></label>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="application.residence_city_id"
+                                                        setFieldName="application.residence_city_id"
+                                                        id="residence_city_id" fieldName="city_name_e"
+                                                        :listing="$residence_cities"/>
+                                </div>
+                                @error('application.residence_city_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
 
                             <div class="col-lg-6">
                                 <label>District: (<span class="urdu-label" dir="rtl"> ضلع </span>)<span
@@ -555,9 +566,27 @@ $wire.set('application.minority_status_id', event.target.value)
                                     <x-select2-dropdown wire:model.defer="application.residence_district_id"
                                                         setFieldName="application.residence_district_id"
                                                         id="residence_district_id" fieldName="district_name_e"
-                                                        :listing="$districts"/>
+                                                        :listing="$residence_districts"/>
                                 </div>
                                 @error('application.residence_district_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-lg-6">
+                                <label>Tehsil: (<span class="urdu-label" dir="rtl"> تحصیل </span>)<span
+                                        class="text-danger">*</span></label>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="application.residence_tehsil_id"
+                                                        setFieldName="application.residence_tehsil_id"
+                                                        id="residence_tehsil_id" fieldName="tehsil_name_e"
+                                                        :listing="$residence_tehsils"/>
+                                </div>
+                                @error('application.business_tehsil_id')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -1826,7 +1855,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                                                                    dir="rtl"> شہر </span>)<span
                                         class="text-danger">*</span></span>
                                 <span
-                                    class="opacity-70">{{ isset($application['residence_city_id'])?getCollectionTitle($cities,'city_name_e',$application['residence_city_id']):'' }}</span>
+                                    class="opacity-70">{{ isset($application['residence_city_id'])?getCollectionTitle($residence_cities,'city_name_e',$application['residence_city_id']):'' }}</span>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between pt-5">
@@ -1835,7 +1864,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                                                                        dir="rtl"> ضلع </span>)<span
                                         class="text-danger">*</span></span>
                                 <span
-                                    class="opacity-70">{{ isset($application['residence_district_id'])?getCollectionTitle($districts,'district_name_e',$application['residence_district_id']):'' }}</span>
+                                    class="opacity-70">{{ isset($application['residence_district_id'])?getCollectionTitle($residence_districts,'district_name_e',$application['residence_district_id']):'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">Capacity: (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)<span

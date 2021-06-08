@@ -50,8 +50,10 @@ class ApplicationForm extends Component
     public $residence_address_forms;
     public $business_address_forms;
 
-    public $cities;
-    public $districts;
+
+    public $residence_cities;
+    public $residence_districts;
+    public $residence_tehsils;
     public $address_capacities;
     public $business_registration_status;
     public $business_legal_statuses;
@@ -129,8 +131,6 @@ class ApplicationForm extends Component
         $this->address_types = AddressType::where('type_status',1)->get();
         $this->utility_forms = UtilityForm::where('form_status',1)->get();
 
-        $this->cities = City::where('city_status',1)->get();
-        $this->districts = District::where('district_status',1)->get();
         $this->address_capacities = AddressCapacity::where('capacity_status',1)->get();
         $this->business_registration_status = BusinessRegistrationStatus::where('status',1)->get();
         $this->business_legal_statuses = BusinessLegalStatus::where('legal_status',1)->get();
@@ -152,6 +152,10 @@ class ApplicationForm extends Component
 
         // on parent load
         $this->residence_address_forms = collect();
+        $this->residence_cities = collect();
+        $this->residence_districts = collect();
+        $this->residence_tehsils = collect();
+
         $this->business_address_forms = collect();
         $this->business_cities = collect();
         $this->business_districts = collect();
@@ -187,6 +191,10 @@ class ApplicationForm extends Component
             $this->employees = $registration->employeeInfos->toArray();
             $this->registration = $registration;
             $this->residence_address_forms = AddressForm::where('address_type_id',$registration->residence_address_type_id)->where('form_status',1)->get();
+            $this->residence_cities = City::where('province_id', $registration->residence_province_id)->where('city_status',1)->get();
+            $this->residence_districts = District::where('province_id', $registration->residence_province_id)->where('district_status',1)->get();
+            $this->residence_tehsils = Tehsil::where('district_id', $registration->residence_district_id)->where('tehsil_status',1)->get();
+
             $this->business_address_forms = AddressForm::where('address_type_id',$registration->business_address_type_id)->where('form_status',1)->get();
             $this->business_cities = City::where('province_id', $registration->business_province_id)->where('city_status',1)->get();
             $this->business_districts = District::where('province_id', $registration->business_province_id)->where('district_status',1)->get();
@@ -261,6 +269,41 @@ class ApplicationForm extends Component
                     'field_name'=>'form_name',
                 ]);
                 break;
+
+            case 'residence_province_id':
+                $this->application['residence_city_id'] = null;
+                $this->application['residence_district_id'] = null;
+                $this->residence_cities = City::where('province_id', $value)->where('city_status',1)->get();
+                $this->residence_districts = District::where('province_id', $value)->where('district_status',1)->get();
+                $this->dispatchBrowserEvent('child:select2',[
+                    'data'=>$this->residence_cities,
+                    'child_id'=>'#residence_city_id',
+                    'field_name'=>'city_name_e',
+                ]);
+                $this->dispatchBrowserEvent('child:select2',[
+                    'data'=>$this->residence_districts,
+                    'child_id'=>'#residence_district_id',
+                    'field_name'=>'district_name_e',
+                ]);
+                $this->application['residence_tehsil_id'] = null;
+                $this->residence_tehsils = collect();
+                $this->dispatchBrowserEvent('child:select2',[
+                    'data'=>$this->residence_tehsils,
+                    'child_id'=>'#residence_tehsil_id',
+                    'field_name'=>'tehsil_name_e',
+                ]);
+                break;
+
+            case 'residence_district_id':
+                $this->application['residence_tehsil_id'] = null;
+                $this->residence_tehsils = Tehsil::where('district_id', $value)->where('tehsil_status',1)->get();
+                $this->dispatchBrowserEvent('child:select2',[
+                    'data'=>$this->residence_tehsils,
+                    'child_id'=>'#residence_tehsil_id',
+                    'field_name'=>'tehsil_name_e',
+                ]);
+                break;
+
              case 'business_address_type_id':
                  $this->application['business_address_form_id'] = null;
                  $this->business_address_forms = AddressForm::where('address_type_id',$value)->where('form_status',1)->get();
@@ -351,8 +394,11 @@ class ApplicationForm extends Component
         'application.residence_address_1' => 'required',
         'application.residence_address_2' => 'required',
         'application.residence_address_3' => 'required',
-        'application.residence_city_id' => 'required',
-        'application.residence_district_id' => 'required',
+         'application.residence_province_id' => 'required',
+         'application.residence_city_id' => 'required',
+         'application.residence_district_id' => 'required',
+         'application.residence_tehsil_id' => 'required',
+         'application.business_capacity_id' => 'required',
         'application.residence_capacity_id' => 'required',
         'application.residence_share' => 'required|numeric|min:0|max:100',
         'application.residence_acquisition_date' => 'required',
@@ -376,8 +422,10 @@ class ApplicationForm extends Component
         'application.residence_address_1.required' => 'Address 1 is required.',
         'application.residence_address_2.required' => 'Address 2 is required.',
         'application.residence_address_3.required' => 'Address 3 is required.',
-        'application.residence_city_id.required' => 'City is required.',
-        'application.residence_district_id.required' => 'District is required.',
+         'application.residence_province_id.required' => 'Province is required.',
+         'application.residence_city_id.required' => 'City is required.',
+         'application.residence_district_id.required' => 'District is required.',
+         'application.residence_tehsil_id.required' => 'Tehsil is required.',
         'application.residence_capacity_id.required' => 'Capacity is required.',
         'application.residence_share.required' => 'Share is required.',
         'application.residence_acquisition_date.required' => 'Acquisition Date is required.',
