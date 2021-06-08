@@ -20,7 +20,9 @@
                         </div>
                         <div class="auth-form pt-5">
                             @component('_components.alerts-default')@endcomponent
-                            {{ Form::open(array('route' => 'password.email','class'=>'kt_auth_form','name'=>'kt_auth_form','id'=>'kt_auth_form')) }}
+                            {{ Form::open(array('route' => 'admin.password.update','class'=>'kt_auth_form','name'=>'kt_auth_form','id'=>'kt_auth_form')) }}
+                            <input type="hidden" name="token" value="{{$token}}">
+
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
