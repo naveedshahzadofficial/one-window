@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\UserResetPasswordNotification;
+use App\Notifications\AdminResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -60,7 +61,12 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new UserResetPasswordNotification($token));
+         $is_admin =  User::where('email',$this->email)->first()->is_admin;
+        if($is_admin){
+            $this->notify(new AdminResetPasswordNotification($token));
+        }else{
+            $this->notify(new UserResetPasswordNotification($token));
+        }
     }
 
 }
