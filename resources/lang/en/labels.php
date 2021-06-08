@@ -41,8 +41,9 @@ return [
     'residence_address_1' => 'House No./ Unit No./ Village/ Premises No. (<span class="urdu-label" dir="rtl"> مکان نمبر / یونٹ نمبر/ گاؤں / حدود نمبر </span>)',
     'residence_address_2' => 'Complex / Street/ Block/ Sector/ Municipality (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)',
     'residence_address_3' => 'Area / Locality/ Ward No. (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک/ گاؤں </span>)',
+    'residence_capacity' => 'Ownership Capacity of Residence Place (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)',
 
-    'residence_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
+    'residence_acquisition_date' => 'Date of Acquisition of Residence Place (<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
 
     // Business Profile
     'business_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> کاروبار کے حصول کی تاریخ </span>)',

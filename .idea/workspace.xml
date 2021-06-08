@@ -12,8 +12,6 @@
       <change afterPath="$PROJECT_DIR$/../livewirekit/shopping-cart/.idea/shopping-cart.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../livewirekit/star-rating/.idea/star-rating.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../livewirekit_bk/.idea/livewirekit.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Notifications/AdminResetPasswordNotification.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Notifications/UserResetPasswordNotification.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/blade.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/laravel-idea.xml" afterDir="false" />
@@ -268,10 +266,7 @@
       <change beforePath="$PROJECT_DIR$/../livewirekit/resources/views/livewire/tailwind/post-votes.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Auth/AdminResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Auth/AdminResetPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/auth/passwords/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/labels.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/labels.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -529,7 +524,7 @@
       <workItem from="1622087938731" duration="85596000" />
       <workItem from="1622442953809" duration="66155000" />
       <workItem from="1622611322300" duration="35497000" />
-      <workItem from="1622694188695" duration="200330000" />
+      <workItem from="1622694188695" duration="200632000" />
     </task>
     <servers />
   </component>

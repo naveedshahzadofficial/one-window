@@ -592,8 +592,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Capacity: (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.residence_capacity') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.residence_capacity_id"
                                                         setFieldName="application.residence_capacity_id"
