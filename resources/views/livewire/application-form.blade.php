@@ -109,8 +109,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>{!! __('labels.prefix') !!}<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.prefix') !!}<span class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($prefixes as $prefix)
                                         <label class="radio radio-success">
@@ -125,8 +124,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>First Name: (<span class="urdu-label" dir="rtl"> پہلا نام </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.first_name') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="application.first_name" type="text"
                                        class="form-control @error('application.first_name') is-invalid @enderror"
                                        placeholder="First Name"/>
@@ -138,7 +136,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Middle Name: (<span class="urdu-label" dir="rtl"> درمیانی نام </span>)</label>
+                                <label>{!! __('labels.middle_name') !!}</label>
                                 <input wire:model.defer="application.middle_name" type="text"
                                        class="form-control @error('application.middle_name') is-invalid @enderror"
                                        placeholder="Middle Name"/>
@@ -148,8 +146,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Last Name: (<span class="urdu-label" dir="rtl"> آخری نام </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.last_name') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="application.last_name" type="text"
                                        class="form-control @error('application.last_name') is-invalid @enderror"
                                        placeholder="Last Name"/>
@@ -161,8 +158,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Gender: (<span class="urdu-label" dir="rtl"> جنس </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.gender') !!}<span class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($genders as $gender)
                                         <label class="radio radio-success">
@@ -177,7 +173,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Date of Birth: (<span class="urdu-label" dir="rtl"> تاریخ پیدائش (کمپیوٹرائزڈ قومی شناختی کارڈ کے مطابق) </span>)<span
+                                <label>{!! __('labels.date_of_birth') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-date-picker wire:model.defer="application.date_of_birth" id="date_of_birth"/>
@@ -191,8 +187,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>CNIC No. (<span class="urdu-label" dir="rtl"> قومی شناختی کارڈ نمبر </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.cnic_no') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-cnic-mask wire:model.defer="application.cnic_no"/>
                                 </div>
@@ -201,8 +196,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                 @enderror
                             </div>
                             <div class="col-lg-6">
-                                <label>CNIC Issue Date: (<span class="urdu-label" dir="rtl"> شناختی کارڈ کے اجراء کی تاریخ </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.cnic_issue_date') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-date-picker wire:model.defer="application.cnic_issue_date" id="cnic_issue_date"/>
                                 </div>
@@ -213,8 +207,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>CNIC Expiry Date: (<span class="urdu-label" dir="rtl"> شناختی کارڈ کی میعاد ختم ہونے کی تاریخ </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.cnic_expiry_date') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-date-picker wire:model.defer="application.cnic_expiry_date"
                                                    id="cnic_expiry_date"/>
@@ -225,9 +218,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Designation in Business: (<span class="urdu-label"
-                                                                       dir="rtl"> کاروبار میں عہدہ </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.designation_business') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.designation_business_id"
                                                         setFieldName="application.designation_business_id"
@@ -244,8 +235,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>Do you have Minority Status? (<span class="urdu-label" dir="rtl"> کیا آپ کو اقلیت کا درجہ حاصل ہے؟ </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.minority_status_question') !!}<span class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($questions as $question)
                                         <label class="radio radio-success">
@@ -924,8 +914,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Unit / Address 1: (<span class="urdu-label" dir="rtl"> یونٹ نمبر/ گاؤں / حدود نمبر </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.business_address_1') !!}<span class="text-danger">*</span></label>
                                 <input wire:model="application.business_address_1" type="text"
                                        class="form-control @error('application.business_address_1') is-invalid @enderror"
                                        placeholder="Address 1"/>
@@ -935,8 +924,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Complex / Street / Address 2: (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.business_address_2') !!}<span class="text-danger">*</span></label>
                                 <input wire:model="application.business_address_2" type="text"
                                        class="form-control @error('application.business_address_2') is-invalid @enderror"
                                        placeholder="Address 2"/>
@@ -949,9 +937,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>Area/ Locality / Address 3: (<span class="urdu-label"
-                                                                          dir="rtl"> علاقہ/ سڑک/ گاؤں </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.business_address_3') !!}<span class="text-danger">*</span></label>
                                 <input wire:model="application.business_address_3" type="text"
                                        class="form-control @error('application.business_address_3') is-invalid @enderror"
                                        placeholder="Address 3"/>
@@ -961,8 +947,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Provinces: (<span class="urdu-label" dir="rtl"> صوبہ / ریاست </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.province_state') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown
                                         wire:model.defer="application.business_province_id"

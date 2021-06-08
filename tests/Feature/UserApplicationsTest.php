@@ -2,13 +2,22 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class UserApplicationsTest extends TestCase
 {
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+        $this->actingAs(User::factory()->create());
+    }
     /**
-     * A basic test example.
+     * A basic feature test example.
      *
      * @return void
      */

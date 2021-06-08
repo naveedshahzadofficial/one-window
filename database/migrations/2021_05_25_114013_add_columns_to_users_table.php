@@ -15,7 +15,7 @@ class AddColumnsToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('name');
-            $table->foreignId('prefix_id')->nullable()->constrained();
+            $table->unsignedBigInteger('prefix_id')->nullable()->constrained();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');

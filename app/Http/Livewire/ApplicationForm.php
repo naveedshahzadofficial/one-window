@@ -515,16 +515,16 @@ class ApplicationForm extends Component
 
         $other_documents = array();
 
-          if(!empty($this->business_other_files)){
+          /*if(!empty($this->business_other_files)){
             foreach ($this->business_other_files as $business_other_file) {
             if(isset($business_other_file['document_file']) && !empty($business_other_file['document_file'])) {
                 $other_document = $business_other_file['document_file']->store('business_other_documents', 'public');
                 array_push($other_documents, new ApplicationOtherDocument(['document_file' => $other_document]));
             }
-        }
-          }
+             }
+          }*/
 
-        
+
 
         //dd($this->application);
         $this->registration = tap($this->registration)->update($this->application);
