@@ -12,7 +12,7 @@
 
          <div class="card-body">
             
-            @component('_components.application_detail',['application'=>$application]) @endcomponent
+            @component('_components.application_detail',['application'=>$application,'genders'=>$genders]) @endcomponent
          </div>
     </div>
     <!--end::Card-->
