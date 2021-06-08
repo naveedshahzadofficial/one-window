@@ -383,7 +383,7 @@ class ApplicationForm extends Component
         'application.residence_acquisition_date.required' => 'Acquisition Date is required.',
     ];
 
-        if($this->isYes('cnic_expiry_question_id')){
+        if(!$this->isYes('cnic_expiry_question_id')){
             $rules_applicant_profile['application.cnic_expiry_date'] = 'required';
             $messages_applicant_profile['application.cnic_expiry_date.required'] = 'Expiry Date is required.';
         }
