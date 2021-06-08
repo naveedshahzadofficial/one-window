@@ -16,6 +16,7 @@ class CreateApplicationOtherDocumentsTable extends Migration
         Schema::create('application_other_documents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('application_id')->nullable()->constrained();
+            $table->string('document_title')->nullable();
             $table->string('document_file')->nullable();
             $table->timestamps();
         });

@@ -24,6 +24,7 @@ class CreateApplicationsTable extends Migration
             $table->date('cnic_issue_date');
             $table->date('cnic_expiry_date');
             $table->date('date_of_birth');
+            $table->foreignId('cnic_expiry_question_id')->nullable()->constrained('questions');
             $table->foreignId('designation_business_id')->nullable()->constrained();
             $table->foreignId('minority_status_question_id')->nullable()->constrained('questions');
             $table->foreignId('minority_status_id')->nullable()->constrained();

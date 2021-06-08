@@ -3,7 +3,7 @@
     <div class="login-wrapper">
         <!--begin:Aside Content-->
         <!--begin::Logo-->
-        <div class="auth-logo max-h-75px">
+        <div class="auth-logo max-h-115px">
             <a href="javascript:;" class="login-logo">
                 <img src="{{ asset('assets/img/main-logo.png') }}" alt="SMERP">
             </a>

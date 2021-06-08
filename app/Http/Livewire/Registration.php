@@ -23,7 +23,6 @@ class Registration extends Component
 
     public $prefixes;
     public $telecom_companies;
-    public $mobile_codes = [];
     public $user;
     public $mobile_otp_code;
     public $email_otp_code;
@@ -36,6 +35,7 @@ class Registration extends Component
         'user.first_name' => 'required|string',
         'user.middle_name' => 'string',
         'user.last_name' => 'required|string',
+        'user.declaration' => 'required',
         'user.cnic_no' => 'required|unique:users,cnic_no',
         'user.password' => 'required|string|min:8|confirmed',
     ];
@@ -44,6 +44,7 @@ class Registration extends Component
         'user.prefix_id.required' => 'Prefix is required.',
         'user.first_name.required' => 'First Name is required.',
         'user.last_name.required' => 'Last Name is required.',
+        'user.declaration.required' => 'Declaration is required.',
         'user.cnic_no.required' => 'CNIC No. is is required.',
         'user.cnic_no.unique' => 'CNIC No. is already register.',
         'user.password.required' => 'Password is required.',
@@ -57,26 +58,8 @@ class Registration extends Component
 
         $this->prefixes = Prefix::where('prefix_status',1)->get();
         $this->telecom_companies = TelecomCompany::where('company_status',1)->get();
-        $this->user['telecom_company_id'] = $this->telecom_companies->first()->id ?? null;
-        $this->mobile_codes = MobileCode::where('telecom_company_id',$this->user['telecom_company_id'])->where('code_status',1)->get();
-        $this->user['mobile_code_id'] = $this->mobile_codes->first()->id ?? null;
-
     }
 
-    public function updatedUser($value, $updatedKey)
-    {
-        switch ($updatedKey){
-            case 'telecom_company_id':
-                $this->user['mobile_code_id'] = null;
-                $this->mobile_codes = MobileCode::where('telecom_company_id',$value)->where('code_status',1)->get();
-                $this->dispatchBrowserEvent('child:select2',[
-                    'data'=>$this->mobile_codes,
-                    'child_id'=>'#mobile_code_id',
-                    'field_name'=>'code_number',
-                ]);
-                break;
-        }
-    }
 
     public function render()
     {
@@ -93,13 +76,11 @@ class Registration extends Component
 
         $otp_send_rules = [
             'user.telecom_company_id' => 'required',
-            'user.mobile_code_id' => 'required',
             'user.mobile_no' => 'required|unique:users,mobile_no|confirmed',
             'user.email' => 'required|string|email|unique:users,email|confirmed',
         ];
         $otp_send_messages = [
             'user.telecom_company_id.required' => 'Company is required.',
-            'user.mobile_code_id.required' => 'Code is required.',
             'user.mobile_no.required' => 'Mobile No. is required.',
             'user.mobile_no.unique' => 'Mobile No. is already register.',
             'user.mobile_no.confirmed' => 'Mobile No. must be same as confirm mobile no.',
@@ -110,8 +91,7 @@ class Registration extends Component
         ];
         $this->validate($otp_send_rules, $otp_send_messages);
 
-        $mobile_code = $this->mobile_codes->firstWhere('id', $this->user['mobile_code_id']);
-        $this->mobile_number = $mobile_code->code_number.$this->user['mobile_no'];
+        $this->mobile_number = $this->user['mobile_no'];
 
         $mobile_otp = mt_rand(100000, 999999);
         $email_otp = mt_rand(100000, 999999);
@@ -125,7 +105,7 @@ class Registration extends Component
         OtpCode::create([
             'otp_type'=>'Registration',
             'email'=> $this->user['email'],
-            'mobile_no'=> $this->mobile_number,
+            'mobile_no'=> str_replace('-','',$this->mobile_number),
             'mobile_otp_code'=> $mobile_otp,
             'email_otp_code'=> $email_otp,
             'ip_address'=> Request::ip(),

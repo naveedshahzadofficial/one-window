@@ -29,26 +29,13 @@
                 <div class="invalid-feedback d-block text-left">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="col-lg-6">
-                <label class="text-white d-block text-left">{!! __('labels.telco_code') !!}<span
-                        class="text-danger">*</span></label>
-                <div wire:ignore>
-                    <x-select2-dropdown wire:model.defer="user.mobile_code_id"
-                                        setFieldName="user.mobile_code_id"
-                                        id="mobile_code_id" fieldName="code_number"
-                                        :listing="$mobile_codes"/>
-                </div>
-                @error('user.mobile_code_id')
-                <div class="invalid-feedback d-block text-left">{{ $message }}</div>
-                @enderror
-            </div>
         </div>
         <div class="form-group row">
             <div class="col-lg-6">
                 <label class="text-white d-block text-left">{!! __('labels.mobile_no') !!}<span
                         class="text-danger">*</span></label>
                 <div wire:ignore>
-                    <x-input-mask wire:model.defer="user.mobile_no"  mask="9999999" placeholder="Mobile No." class="mobile_no" autocomplete="off" />
+                    <x-input-mask wire:model.defer="user.mobile_no"  mask="0399-9999999" placeholder="Mobile No." class="mobile_no" autocomplete="off" />
                 </div>
                 @error('user.mobile_no')
                 <div class="invalid-feedback d-block text-left">{{ $message }}</div>
@@ -59,7 +46,7 @@
                 <label class="text-white d-block text-left">{!! __('labels.confirm_mobile_no') !!}<span
                         class="text-danger">*</span></label>
                 <div wire:ignore>
-                    <x-input-mask wire:model="user.mobile_no_confirmation"  mask="9999999" placeholder="Confirm Mobile No." class="confirm_mobile_no" autocomplete="off" />
+                    <x-input-mask wire:model="user.mobile_no_confirmation"  mask="0399-9999999" placeholder="Confirm Mobile No." class="confirm_mobile_no" autocomplete="off" />
                 </div>
                 @error('user.mobile_no_confirmation')
                 <div class="invalid-feedback d-block text-left">{{ $message }}</div>
@@ -125,26 +112,34 @@
         @endif
 
         <div class="form-group row">
-
-            <div class="col-lg-12">
+                <div class="col-lg-6">
+                    <label class="text-white d-block text-left">{!! __('labels.mobile_no') !!}</label>
+                    <label class="text-white d-block text-left">{{ isset($mobile_number)?$mobile_number:'' }}</label>
+                </div>
+                <div class="col-lg-6">
                 <label class="text-white d-block text-left">{!! __('labels.mobile_otp_code') !!}<span
                         class="text-danger">*</span></label>
-                <div class="col-lg-6 pl-0" wire:ignore>
+                <div wire:ignore>
                     <input  wire:model.defer="mobile_otp_code" type="number" name="mobile_otp_code" class="form-control"
                            placeholder="Mobile OTP" maxlength="6">
                 </div>
                 @error('mobile_otp_code')
                 <div class="invalid-feedback d-block text-left">{{ $message }}</div>
                 @enderror
-            </div>
+                </div>
 
         </div>
         <div class="form-group row">
 
-            <div class="col-lg-12">
+            <div class="col-lg-6">
+                <label class="text-white d-block text-left">{!! __('labels.email_address') !!}</label>
+                <label class="text-white d-block text-left">{{ isset($this->user['email'])?$this->user['email']:'' }}</label>
+            </div>
+
+            <div class="col-lg-6">
                 <label class="text-white d-block text-left">{!! __('labels.email_otp_code') !!}<span
                         class="text-danger">*</span></label>
-                <div class="col-lg-6 pl-0" wire:ignore>
+                <div wire:ignore>
                     <input  wire:model.defer="email_otp_code" type="number" name="email_otp_code" class="form-control"
                             placeholder="Email OTP" maxlength="6">
                 </div>
@@ -189,7 +184,7 @@
             @enderror
         </div>
 
-            <div class="col-lg-6"><label class="text-white d-block text-left">{!! __('labels.middle_name') !!}<span class="text-danger">*</span></label>
+            <div class="col-lg-6"><label class="text-white d-block text-left">{!! __('labels.middle_name') !!}<span class="text-danger"></span></label>
                 <input wire:model.defer="user.middle_name" type="text"
                        class="form-control @error('user.middle_name') is-invalid @enderror"
                        placeholder="Middle Name"/>
@@ -220,6 +215,20 @@
         </div>
 
         <div class="form-group row">
+            <div class="col-lg-6">
+                <label class="text-white d-block text-left">{!! __('labels.mobile_no') !!}</label>
+                <label class="text-white d-block text-left">{{ isset($mobile_number)?$mobile_number:'' }}</label>
+            </div>
+
+            <div class="col-lg-6">
+                <label class="text-white d-block text-left">{!! __('labels.email_address') !!}</label>
+                <label class="text-white d-block text-left">{{ isset($this->user['email'])?$this->user['email']:'' }}</label>
+            </div>
+        </div>
+
+        <div class="separator separator-dashed my-5"></div>
+
+        <div class="form-group row">
 
             <div class="col-lg-6"><label class="text-white d-block text-left">{!! __('labels.password') !!}<span class="text-danger">*</span></label>
                 <input wire:model.defer="user.password" type="password" name="password" class="form-control @error('user.password') is-invalid @enderror" placeholder="Password" autocomplete="off">
@@ -234,6 +243,25 @@
                 <div class="invalid-d-block text-left">{{ $message }}</div>
                 @enderror
             </div>
+
+        </div>
+
+        <div class="row form-group">
+            <div class="col-lg-12" wire:ignore>
+                <label class="checkbox checkbox-success text-white">
+                    <input wire:model.defer="user.declaration" type="checkbox"
+                           name="user.declaration"
+                           id="user_declaration"
+                           value="1">
+                    <span></span>&nbsp;&nbsp;I agree &nbsp;<a class="text-white" href="javascript:;"><b>Terms & Conditions</b></a>&nbsp; of SMEs Portal.&nbsp;</label>
+            </div>
+            <div class="col-lg-12 text-right">
+                <lable wire:click="$toggle('user.declaration', 1)" for="user_declaration" class="urdu-label cursor-pointer text-white text-right" dir="rtl">میں راضی ہوں شرائط و ضوابط ایس ایم ایز پورٹل کا۔</lable>
+                @error('user.declaration')
+                <div class="invalid-feedback d-block text-left">{{ $message }}</div>
+                @enderror
+            </div>
+
 
         </div>
 

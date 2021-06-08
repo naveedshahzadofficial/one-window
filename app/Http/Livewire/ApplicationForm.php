@@ -24,7 +24,6 @@ use App\Models\EmployeeType;
 use App\Models\FiscalYear;
 use App\Models\Gender;
 use App\Models\MinorityStatus;
-use App\Models\MobileCode;
 use App\Models\Prefix;
 use App\Models\Province;
 use App\Models\Question;
@@ -91,12 +90,14 @@ class ApplicationForm extends Component
     public $is_technical_education = false;
     public $is_annual_export = false;
     public $is_annual_import = false;
+    public $is_cnic_lifetime = false;
 
     // files
     public $proof_of_ownership_file,$registration_certificate_file,
         $license_registration_file,$business_evidence_ownership_file, $business_account_statement_file;
 
-    public $business_other_files = [['document_file'=>null]];
+
+    public $business_other_files = [['document_title'=>null,'document_file'=>null]];
 
 
     public $step;
@@ -165,8 +166,7 @@ class ApplicationForm extends Component
         $this->application['middle_name'] = auth()->user()->middle_name;
         $this->application['last_name'] = auth()->user()->last_name;
         $this->application['cnic_no'] = auth()->user()->cnic_no;
-        $mobile_code= MobileCode::where('id',auth()->user()->mobile_code_id)->first();
-        $this->application['personal_mobile_no'] = ($mobile_code->code_number).auth()->user()->mobile_no;
+        $this->application['personal_mobile_no'] = auth()->user()->mobile_no;
         $this->application['personal_email'] = auth()->user()->email;
 
         if($registration){
@@ -178,7 +178,7 @@ class ApplicationForm extends Component
 
             $this->business_other_files = $registration->otherDocuments->toArray();
             if(empty($this->business_other_files))
-                $this->business_other_files = [['document_file'=>null]];
+                $this->business_other_files = [['document_title'=>null,'document_file'=>null]];
 
             $this->utility_connections = $registration->utilityConnections->toArray();
             if(empty($this->utility_connections))
@@ -225,6 +225,9 @@ class ApplicationForm extends Component
             }
             if($this->isYes('import_question_id')){
                 $this->is_annual_import = true;
+            }
+            if($this->isYes('cnic_expiry_question_id')){
+                $this->is_cnic_lifetime = true;
             }
         }
 
@@ -336,7 +339,7 @@ class ApplicationForm extends Component
         'application.cnic_no' => 'required',
         'application.gender_id' => 'required',
         'application.cnic_issue_date' => 'required',
-        'application.cnic_expiry_date' => 'required',
+        'application.cnic_expiry_question_id' => 'required',
         'application.date_of_birth' => 'required',
         'application.designation_business_id' => 'required',
         'application.minority_status_question_id' => 'required',
@@ -361,7 +364,7 @@ class ApplicationForm extends Component
         'application.cnic_no.required' => 'CNIC is required.',
         'application.gender_id.required' => 'Gender is required.',
         'application.cnic_issue_date.required' => 'Issue Date is required.',
-        'application.cnic_expiry_date.required' => 'Expiry Date is required.',
+        'application.cnic_expiry_question_id.required' => 'Please select your choice!',
         'application.date_of_birth.required' => 'Date of Birth is required.',
         'application.designation_business_id.required' => 'Designation in Business is required.',
         'application.minority_status_question_id.required' => 'Please select your choice!',
@@ -380,13 +383,18 @@ class ApplicationForm extends Component
         'application.residence_acquisition_date.required' => 'Acquisition Date is required.',
     ];
 
+        if($this->isYes('cnic_expiry_question_id')){
+            $rules_applicant_profile['application.cnic_expiry_date'] = 'required';
+            $messages_applicant_profile['application.cnic_expiry_date.required'] = 'Expiry Date is required.';
+        }
+
          if($this->isYes('minority_status_question_id')){
              $rules_applicant_profile['application.minority_status_id'] = 'required';
-             $messages_applicant_profile['application.minority_status_id.required'] = 'Minority Status is required';
+             $messages_applicant_profile['application.minority_status_id.required'] = 'Minority Status is required.';
          }
         if(isset($this->application['minority_status_id']) && $this->minority_status->firstWhere('id', $this->application['minority_status_id'])->name=='Other') {
             $rules_applicant_profile['application.minority_status_other'] = 'required';
-            $messages_applicant_profile['application.minority_status_other.required'] = 'Minority Status Other is required';
+            $messages_applicant_profile['application.minority_status_other.required'] = 'Minority Status Other is required.';
         }
         if($this->isYes('technical_education_question_id')){
             $rules_applicant_profile['technical_educations.*.certificate_title'] = 'required';
@@ -397,7 +405,7 @@ class ApplicationForm extends Component
 
         if($this->isYes('skilled_worker_question_id')){
             $rules_applicant_profile['application.skill_or_art'] = 'required';
-            $messages_applicant_profile['application.skill_or_art.required'] = 'Skill or Art is required';
+            $messages_applicant_profile['application.skill_or_art.required'] = 'Skill or Art is required.';
         }
          //dd($rules_applicant_profile);
 
@@ -513,24 +521,28 @@ class ApplicationForm extends Component
         if(!empty($this->business_evidence_ownership_file))
         $this->application['business_evidence_ownership_file']= $this->business_evidence_ownership_file->store('evidence_ownerships','public');
 
+
         $other_documents = array();
 
-          /*if(!empty($this->business_other_files)){
-            foreach ($this->business_other_files as $business_other_file) {
-            if(isset($business_other_file['document_file']) && !empty($business_other_file['document_file'])) {
-                $other_document = $business_other_file['document_file']->store('business_other_documents', 'public');
-                array_push($other_documents, new ApplicationOtherDocument(['document_file' => $other_document]));
+        foreach ($this->business_other_files as $business_other_file){
+            if(isset($business_other_file['new_document_file']) && !empty($business_other_file['new_document_file'])){
+                $business_other_file['document_file'] = $business_other_file['new_document_file']->store('business_other_documents', 'public');
+                unset($business_other_file['new_document_file']);
             }
-             }
-          }*/
+            if(
+                isset($business_other_file['document_file']) &&
+                !empty($business_other_file['document_file']) &&
+                isset($business_other_file['document_title']) &&
+                !empty($business_other_file['document_title'])
+            )
+            array_push($other_documents, new ApplicationOtherDocument($business_other_file));
+        }
 
-
-
-        //dd($this->application);
         $this->registration = tap($this->registration)->update($this->application);
 
         if($this->registration->otherDocuments->isNotEmpty())
             $this->registration->otherDocuments()->delete();
+
         if(count($other_documents)>0)
             $this->registration->otherDocuments()->saveMany($other_documents);
 
@@ -574,13 +586,28 @@ class ApplicationForm extends Component
         $this->registration = tap($this->registration)->update($this->application);
 
 
-        if($this->registration->utilityConnections->isNotEmpty())
-            $this->registration->utilityConnections()->delete();
         $connections = array();
         foreach ($this->utility_connections as $connection){
-            if(isset($connection['utility_type_id']) && $connection['utility_type_id'])
-                array_push($connections,new ApplicationUtilityConnection($connection));
+            if(isset($connection['new_bill_file']) && !empty($connection['new_bill_file'])){
+                $connection['bill_file'] = $connection['new_bill_file']->store('utility_bills', 'public');
+                unset($connection['new_bill_file']);
+            }
+
+            if(!isset($connection['utility_form_id']) || empty($connection['utility_form_id']))
+                $connection['utility_form_id'] = 2;
+
+            if(
+                isset($connection['bill_file']) &&
+                !empty($connection['bill_file']) &&
+                isset($connection['utility_type_id']) &&
+                !empty($connection['utility_type_id'])
+            )
+            array_push($connections,new ApplicationUtilityConnection($connection));
         }
+
+        if($this->registration->utilityConnections->isNotEmpty())
+            $this->registration->utilityConnections()->delete();
+
         if(count($connections)>0)
             $this->registration->utilityConnections()->saveMany($connections);
 
@@ -665,7 +692,7 @@ class ApplicationForm extends Component
             'utility_connections.*.connection_ownership_id.required' => 'Provider is required.',
         ]);
         $this->utility_connections[] = ['utility_type_id'=>null,'utility_form_id'=>null,'connection_ownership_id'=>null,'utility_consumer_number'=>null, 'utility_service_provider_id'=>null,  'connection_date'=>null, 'bill_file'=>null];
-        $this->dispatchBrowserEvent('reinitialization:utility',['id'=>'#connection_date_'.(count($this->utility_connections)-1)]);
+        $this->dispatchBrowserEvent('reinitialization:utility',['id'=>(count($this->utility_connections)-1)]);
     }
 
     public function submitAnnualTurnover()
@@ -689,8 +716,10 @@ class ApplicationForm extends Component
 
         }
 
-        if(!empty($this->business_account_statement_file))
-            $this->application['business_account_statement_file']= $this->business_account_statement_file->store('business_account_statements','public');
+        if(isset($this->business_account_statement_file) && !empty($this->business_account_statement_file)) {
+            $this->application['business_account_statement_file'] = $this->business_account_statement_file->store('business_account_statements', 'public');
+            $this->business_account_statement_file = null;
+        }
 
         $this->registration = tap($this->registration)->update($this->application);
         $this->step++;
@@ -712,7 +741,7 @@ class ApplicationForm extends Component
         ],[
             'business_other_files.*.document_file.required' => 'Other Document is required.',
         ]);*/
-        $this->business_other_files[] = ['document_file'=>null];
+        $this->business_other_files[] = ['document_title'=>null,'document_file'=>null];
     }
 
     public function removeUtilityConnection($index)

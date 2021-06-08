@@ -9,6 +9,7 @@ is_utility_connection: '{{ $is_utility_connection==null?'':($is_utility_connecti
 is_employee_info: '{{ $is_employee_info ? 'Yes' : 'No' }}',
 is_annual_export: '{{ $is_annual_export ? 'Yes' : 'No' }}',
 is_annual_import: '{{ $is_annual_import ? 'Yes' : 'No' }}',
+is_cnic_lifetime: '{{ $is_cnic_lifetime ? 'Yes' : 'No' }}',
 }"
     x-init="() => {
 select2 = $($refs.minority_status_id).select2();
@@ -206,7 +207,25 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
                         </div>
                         <div class="form-group row">
+
                             <div class="col-lg-6">
+                                <label>{!! __('labels.cnic_expiry_question') !!}<span class="text-danger">*</span></label>
+                                <div class="radio-inline" wire:ignore>
+                                    @foreach($questions as $question)
+                                        <label class="radio radio-success">
+                                            <input @click="is_cnic_lifetime= '{{ $question->name }}'"
+                                                   wire:model.defer="application.cnic_expiry_question_id"
+                                                   type="radio" name="cnic_expiry_question_id"
+                                                   value="{{ $question->id }}">
+                                            <span></span>{{ $question->name }}</label>
+                                    @endforeach
+                                </div>
+                                @error('application.cnic_expiry_question_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6" x-show.transition.opacity="is_cnic_lifetime=='No'">
                                 <label>{!! __('labels.cnic_expiry_date') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-date-picker wire:model.defer="application.cnic_expiry_date"
@@ -217,19 +236,20 @@ $wire.set('application.minority_status_id', event.target.value)
                                 @enderror
                             </div>
 
-                            <div class="col-lg-6">
-                                <label>{!! __('labels.designation_business') !!}<span class="text-danger">*</span></label>
-                                <div wire:ignore>
-                                    <x-select2-dropdown wire:model.defer="application.designation_business_id"
-                                                        setFieldName="application.designation_business_id"
-                                                        id="designation_business_id" fieldName="name"
-                                                        :listing="$designations"/>
-                                </div>
-                                @error('application.designation_business_id')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
+                        </div>
+                        <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>{!! __('labels.designation_business') !!}<span class="text-danger">*</span></label>
+                            <div wire:ignore>
+                                <x-select2-dropdown wire:model.defer="application.designation_business_id"
+                                                    setFieldName="application.designation_business_id"
+                                                    id="designation_business_id" fieldName="name"
+                                                    :listing="$designations"/>
                             </div>
-
+                            @error('application.designation_business_id')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
                         </div>
 
                         <div class="form-group row">
@@ -819,57 +839,78 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
                         </div>
 
+                        {{--Other Documents--}}
                         <div class="form-group row">
-                        <div class="col-lg-6 pl-0">
-                            <table class="table table-hover cstm mb-0" >
-                                <thead>
-                                <tr>
-                                    <th colspan="2" class="text-left">
-                                        <label>Any Other Document (<span class="urdu-label" dir="rtl"> کوئی اور دستاویز </span>)<span
-                                                class="text-danger"></span></label>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($business_other_files as $index=>$business_other_file)
-                                <tr>
-                                    <td>
-                                        <input wire:model="business_other_files.{{$index}}.document_file" type="file" name="other_document_file" class="form-control m-input" placeholder="" >
-                                        <span class="form-text text-muted">Files with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
-                                        @if($errors->has("business_other_files.$index.document_file"))
-                                            <div
-                                                class="invalid-feedback d-block">{{ $errors->first("business_other_files.$index.document_file") }}</div>
-                                        @endif
-                                    </td>
-
-                                    <td class="text-right">
+                            <div class="col-lg-12">
+                                <label>Any Other Document: (<span class="urdu-label" dir="rtl"> کوئی اور دستاویز </span>)<span class="text-danger"></span></label>
+                            </div>
+                            <div class="col-lg-12">
+                            @foreach($business_other_files as $index=>$business_other_file)
+                                    <div class="@if($index>0) mt-10 @endif section_add_more">
                                         @if($index>0)
-                                        <span wire:click.prevent="removeOtherDocument({{ $index }})"
-                                              wire:loading.attr="disabled"
-                                              class="btn btn-xs btn-icon px-4 py-4 btn-custom-color">
-                                        <i class="flaticon2-delete text-white"></i>
-                                    </span>
+                                            <div class="d-flex justify-content-end">
+																		<span wire:click.prevent="removeOtherDocument({{ $index }})"
+                                                                              wire:loading.attr="disabled"
+                                                                              class="btn btn-xs btn-icon px-4 py-4 btn-custom-color">
+														<i class="flaticon2-delete text-white"></i>
+														</span>
+                                            </div>
                                         @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-                                </tbody>
-                                <tfoot>
-                                <td colspan="7" class="text-right">
-                                    <div class="py-4">
-                                        <button type="button"
-                                                wire:click.prevent="addOtherDocument"
-                                                wire:loading.class="spinner spinner-white spinner-right"
-                                                wire:loading.attr="disabled"
-                                                class="btn btn-custom-color font-weight-bold px-4 py-2 d-block">
-                                            Add More
-                                        </button>
+                                        <div class="row form-group">
+                                            <div class="col-lg-6">
+                                                <label>Document Title (<span class="urdu-label" dir="rtl"> دستاویز کا عنوان </span>)<span
+                                                        class="text-danger"></span></label>
+                                                <input
+                                                    wire:model.defer="business_other_files.{{$index}}.document_title"
+                                                    type="text"
+                                                    class="form-control @if($errors->has("business_other_files.$index.document_title")) is-invalid @endif"
+                                                    placeholder="Document Title"/>
+                                                @if($errors->has("business_other_files.$index.document_title"))
+                                                    <div
+                                                        class="invalid-feedback d-block">{{ $errors->first("business_other_files.$index.document_title") }}</div>
+                                                @endif
+                                            </div>
+
+                                            <div class="col-lg-6" x-data="{ open: false }">
+                                                <label>Document (<span class="urdu-label" dir="rtl"> دستاویز </span>)<span class="text-danger"></span></label>
+                                                @if(isset($business_other_file['document_file']) && !empty($business_other_file['document_file']))
+                                                    <br><a href="{{ asset('storage/'.$business_other_file['document_file']) }}"
+                                                           target="_blank" class="file_viewer" title="{{ $business_other_file['document_title']??'Other Document' }}">View
+                                                        File</a>
+                                                    &nbsp;|&nbsp;
+                                                    <a @click="open = true" href="javascript:;" class="show_file" x-show="!open"
+                                                       onClick="return false;">Change File
+                                                    </a><a href="javascript:;" onClick="return false;" x-show="open"
+                                                           @click="open = false">Do Not Change File</a>
+                                                @endif
+                                                <input @if(isset($business_other_file['document_file']) && !empty($business_other_file['document_file'])) x-show="open" @endif
+                                                wire:model="business_other_files.{{$index}}.new_document_file" type="file" name="business_other_files.{{$index}}.new_document_file" class="form-control m-input" placeholder="" ><span class="form-text text-muted">Files with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                                @if($errors->has("business_other_files.$index.new_document_file"))
+                                                    <div
+                                                        class="invalid-feedback d-block">{{ $errors->first("business_other_files.$index.new_document_file") }}</div>
+                                                @endif
+                                            </div>
+
+                                        </div>
                                     </div>
-                                </td>
-                                </tfoot>
-                            </table>
+
+                                    @if(count($business_other_files)==($index+1))
+                                        <div class="d-flex justify-content-end">
+                                            <div class="py-4">
+                                                <button type="button"
+                                                        wire:click.prevent="addOtherDocument"
+                                                        wire:loading.class="spinner spinner-white spinner-right"
+                                                        wire:loading.attr="disabled"
+                                                        class="btn btn-custom-color font-weight-bold px-4 py-2 d-block">
+                                                    Add More
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @endif
+                            @endforeach
+                            </div>
                         </div>
-                        </div>
+
 
                     </div>
 
@@ -1241,11 +1282,13 @@ $wire.set('application.minority_status_id', event.target.value)
 
                                         <div class="col-lg-6">
                                             <label>{!! __('labels.service_provider') !!}<span class="text-danger">*</span></label>
-                                            <div wire:ignore>
-                                                <x-select2-dropdown wire:model.defer="utility_connections.{{ $index }}.utility_service_provider_id"
+<div wire:ignore>
+                                                <x-select2-dropdown
+                                                    wire:model.defer="utility_connections.{{ $index }}.utility_service_provider_id"
                                                                     setFieldName="utility_connections.{{ $index }}.utility_service_provider_id"
                                                                     id="utility_service_provider_id_{{ $index }}" fieldName="provider_name"
-                                                                    :listing="$utility_service_providers"/>
+                                                                    :listing="$utility_service_providers"
+                                                />
                                             </div>
                                             @if($errors->has("utility_connections.$index.utility_service_provider_id"))
                                                 <div
@@ -1268,13 +1311,24 @@ $wire.set('application.minority_status_id', event.target.value)
                                             @endif
                                         </div>
 
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-6"  x-data="{ open: false }">
                                             <label>{!! __('labels.business_paid_bill_file') !!}<span
                                                     class="text-danger">*</span></label>
-                                            <input wire:model="utility_connections.{{$index}}.bill_file" type="file" name="utility_connections.{{$index}}.bill_file" class="form-control m-input" placeholder="" >
+                                            @if(isset($connection['bill_file']) && !empty($connection['bill_file']))
+                                                <br><a href="{{ asset('storage/'.$connection['bill_file']) }}"
+                                                       target="_blank" class="file_viewer" title="Utility Bill">View
+                                                    File</a>
+                                                &nbsp;|&nbsp;
+                                                <a @click="open = true" href="javascript:;" class="show_file" x-show="!open"
+                                                   onClick="return false;">Change File
+                                                </a><a href="javascript:;" onClick="return false;" x-show="open"
+                                                       @click="open = false">Do Not Change File</a>
+                                            @endif
+
+                                            <input @if(isset($connection['bill_file']) && !empty($connection['bill_file'])) x-show="open" @endif wire:model="utility_connections.{{$index}}.new_bill_file" type="file" name="utility_connections.{{$index}}.new_bill_file" class="form-control m-input" placeholder="" >
                                             <span class="form-text text-muted">Files with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
-                                            @if($errors->has("utility_connections.$index.bill_file"))
-                                                <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.bill_file") }}</div>
+                                            @if($errors->has("utility_connections.$index.new_bill_file"))
+                                                <div class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.new_bill_file") }}</div>
                                             @endif
                                         </div>
                                     </div>
@@ -1333,38 +1387,41 @@ $wire.set('application.minority_status_id', event.target.value)
                                  class="employee_info_div">
 
                                 <div class="form-group row">
-                                    <div class="col-lg-12" wire:ignore>
+                                    <div class="col-lg-4" wire:ignore>
                                         <label class="checkbox checkbox-success">
                                             <input wire:model="employees.{{$index}}.employee_type_id" type="checkbox"
                                                    name="{{ $employee_type->type_name }}"
                                                    value="{{ $employee_type->id }}">
-                                            <span></span>&nbsp;{{  $employee_type->type_name }} (
-                                            <lable class="urdu-label"
-                                                   dir="rtl"> {{ $employee_type->type_name_u }} </lable>
-                                            )</label>
+                                            <span></span>&nbsp;{{  $employee_type->type_name }}&nbsp;(<lable class="urdu-label" dir="rtl"> {{ $employee_type->type_name_u }} </lable>)</label>
                                     </div>
+
+                                    <div class="col-lg-8 form-group @if(isset($employees[$index]['employee_type_id']) && $employees[$index]['employee_type_id']!=false) d-box @else d-none @endif">
+                                        <div class="row">
+                                        @foreach($genders as $gender)
+                                            <div class="col-lg-4">
+                                                <label>{{ $gender->gender_name }} (<span class="urdu-label"
+                                                                                         dir="rtl"> {{ $gender->gender_name_u }} </span>)</label>
+                                                <select
+                                                    wire:model="employees.{{$index}}.{{strtolower($gender->gender_name)}}"
+                                                    class="form-control @error("employees.".$index.'.'.strtolower($gender->gender_name)) is-invalid @enderror">
+                                                    <option value="">Select Number</option>
+                                                    <option value="0">0</option>
+
+                                                    @for($no=1; $no<=100;$no=$no+10)
+                                                        <option value="{{ $no }}&nbsp;-&nbsp;{{ $no+9 }}">{{ $no.'-'.($no+9) }}</option>
+                                                    @endfor
+                                                </select>
+                                                @error("employees.".$index.'.'.strtolower($gender->gender_name))
+                                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        @endforeach
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                                <div
-                                    class="form-group row @if(isset($employees[$index]['employee_type_id']) && $employees[$index]['employee_type_id']!=false) d-box @else d-none @endif">
-                                    @foreach($genders as $gender)
-                                        <div class="col-lg-4">
-                                            <label>{{ $gender->gender_name }} (<span class="urdu-label"
-                                                                                     dir="rtl"> {{ $gender->gender_name_u }} </span>)</label>
-                                            <select
-                                                wire:model="employees.{{$index}}.{{strtolower($gender->gender_name)}}"
-                                                class="form-control @error("employees.".$index.'.'.strtolower($gender->gender_name)) is-invalid @enderror">
-                                                <option value="">Select Number</option>
-                                                @for($no=0; $no<=$employee_numbers;$no++)
-                                                    <option value="{{ $no }}">{{ $no }}</option>
-                                                @endfor
-                                            </select>
-                                            @error("employees.".$index.'.'.strtolower($gender->gender_name))
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    @endforeach
-                                </div>
+
 
                             </div>
                         @endforeach
@@ -1404,9 +1461,21 @@ $wire.set('application.minority_status_id', event.target.value)
 
                         </div>
                         <div class="form-group row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" x-data="{ open: false }">
                                 <label>{!! __('labels.business_account_statement') !!} </label>
-                                <input type="file" class="form-control" wire:model="business_account_statement_file">
+
+                                @if(isset($application['business_account_statement_file']) && !empty($application['business_account_statement_file']))
+                                    <br><a href="{{ asset('storage/'.$application['business_account_statement_file']) }}"
+                                           target="_blank" class="file_viewer" title="Business Account Statement">View
+                                        File</a>
+                                    &nbsp;|&nbsp;
+                                    <a @click="open = true" href="javascript:;" class="show_file" x-show="!open"
+                                       onClick="return false;">Change File
+                                    </a><a href="javascript:;" onClick="return false;" x-show="open"
+                                           @click="open = false">Do Not Change File</a>
+                                @endif
+
+                                <input type="file" class="form-control" wire:model="business_account_statement_file" @if(isset($application['business_account_statement_file']) && !empty($application['business_account_statement_file'])) x-show="open" @endif >
                                 <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
                             </div>
                         </div>

@@ -17,9 +17,9 @@ class CreateApplicationEmployeeInfosTable extends Migration
             $table->id();
             $table->foreignId('application_id')->nullable()->constrained();
             $table->foreignId('employee_type_id')->nullable()->constrained();
-            $table->integer('male')->nullable()->default(0);
-            $table->integer('female')->nullable()->default(0);
-            $table->integer('transgender')->nullable()->default(0);
+            $table->string('male')->nullable()->default(0);
+            $table->string('female')->nullable()->default(0);
+            $table->string('transgender')->nullable()->default(0);
             $table->timestamps();
         });
     }

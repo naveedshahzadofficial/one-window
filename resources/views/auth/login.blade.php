@@ -7,15 +7,15 @@
             @component('auth.aside-auth') @endcomponent
 
             <!--begin:Content-->
-            <div class="d-flex w-100 flex-center p-15 position-relative overflow-hidden auth-right-bg">
-                <div class="login-wrapper">
+            <div class="d-flex w-100 flex-center  pl-15 pr-15 pt-10 pb-10 position-relative overflow-hidden auth-right-bg">
+                <div class="login-wrapper mw-100">
                     <!--begin:Sign In Form-->
-                    <div class="login-signin">
+                    <div class="login-signin max-w-450px m-auto">
 
-                        <div class="auth-smeda-logo pt-8">
+                        <div class="auth-smeda-logo">
                             <img src="{{ asset('assets/img/smeda-logo.png') }}" alt="Smeda Logo">
                         </div>
-                        <div class="auth-login-icon pt-10">
+                        <div class="auth-login-icon pt-5">
                             <img src="{{ asset('assets/img/login-icon.png') }}" alt="Login Icon">
                         </div>
 
@@ -64,9 +64,10 @@
                     </div>
                     <!--end:Sign In Form-->
 
+
                     <div class="row mt-15">
-                        <div class="col-md-12 pt-3 text-left"><span class="auth-text sample-text">{!! __('labels.not_an_account') !!}</span></div>
-                        <div class="col-md-12 pt-3 "><a href="{{ route('register') }}" class="register_button btn btn-white btn-block">{!! __('labels.register_now') !!} <i class="fa fa-arrow-right float-right"></i></a></div>
+                        <div class="col-md-8 pt-3 text-left"><span class="auth-text sample-text">{!! __('labels.not_an_account') !!}</span></div>
+                        <div class="col-md-4 pl-0"><a href="{{ route('register') }}" class="register_button btn btn-white btn-block">{!! __('labels.register_now') !!} <i class="fa fa-arrow-right float-right"></i></a></div>
                     </div>
 
 

@@ -1,4 +1,5 @@
-<select {{ $attributes }} class="form-control select2" id="{{ $id }}" style="width: 100% !important;" onchange="this.dispatchEvent(new InputEvent('input'))">
+<select {{ $attributes }} class="form-control select2" id="{{ $id }}" style="width: 100% !important;"
+        onchange="this.dispatchEvent(new InputEvent('input'))">
             <option value="">--- Please Select ---</option>
             @isset($listing)
             @foreach($listing as $row)

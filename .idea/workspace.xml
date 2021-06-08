@@ -266,7 +266,26 @@
       <change beforePath="$PROJECT_DIR$/../livewirekit/resources/views/livewire/tailwind/post-votes.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Application.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationOtherDocument.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationOtherDocument.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_01_014508_create_applications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_01_014508_create_applications_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_02_134754_create_application_employee_infos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_02_134754_create_application_employee_infos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_07_152028_create_application_other_documents_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_07_152028_create_application_other_documents_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/EmployeeTypeSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/EmployeeTypeSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/PrefixSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PrefixSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/labels.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/labels.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/aside-auth.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/aside-auth.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/select2-dropdown.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/select2-dropdown.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/registration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/registration.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -524,7 +543,7 @@
       <workItem from="1622087938731" duration="85596000" />
       <workItem from="1622442953809" duration="66155000" />
       <workItem from="1622611322300" duration="35497000" />
-      <workItem from="1622694188695" duration="169920000" />
+      <workItem from="1622694188695" duration="197785000" />
     </task>
     <servers />
   </component>

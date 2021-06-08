@@ -12,7 +12,7 @@ class Application extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['prefix_id', 'first_name', 'middle_name', 'last_name', 'gender_id', 'cnic_no',
-        'cnic_issue_date', 'cnic_expiry_date', 'date_of_birth', 'designation_business_id', 'minority_status_question_id',
+        'cnic_issue_date', 'cnic_expiry_question_id', 'cnic_expiry_date', 'date_of_birth', 'designation_business_id', 'minority_status_question_id',
         'minority_status_id', 'minority_status_other', 'ntn_personal', 'education_level_id', 'technical_education_question_id',
         'certificate_title', 'skilled_worker_question_id', 'skill_or_art', 'residence_address_type_id',
         'residence_address_form_id', 'residence_address_1', 'residence_address_2', 'residence_address_3',
@@ -90,6 +90,12 @@ class Application extends Model
     public function designationBusiness(){
         return $this->belongsTo(DesignationBusiness::class);
     }
+
+    public function cnicExpiryQuestion()
+    {
+        return $this->belongsTo(Question::class,'cnic_expiry_question_id');
+    }
+
     public function minorityStatusQuestion()
     {
         return $this->belongsTo(Question::class,'minority_status_question_id');

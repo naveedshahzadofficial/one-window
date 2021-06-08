@@ -7,61 +7,50 @@
         @component('auth.aside-auth') @endcomponent
 
         <!--begin:Content-->
-            <div class="d-flex w-100 flex-center p-15 position-relative overflow-hidden auth-right-bg">
-                <div class="login-wrapper">
+            <div class="d-flex w-100 flex-center pl-15 pr-15 pt-10 pb-10 position-relative overflow-hidden auth-right-bg">
+                <div class="login-wrapper mw-100">
                     <!--begin:Sign In Form-->
-                    <div class="login-signin">
+                    <div class="login-signin m-auto">
 
                         <div class="auth-smeda-logo pt-8">
                             <img src="{{ asset('assets/img/smeda-logo.png') }}" alt="Smeda Logo">
                         </div>
-                        <div class="auth-login-icon pt-10">
+                        <div class="auth-login-icon pt-5">
                             <img src="{{ asset('assets/img/login-icon.png') }}" alt="Login Icon">
                         </div>
                         <div class="auth-form pt-5">
                             @component('_components.alerts-default')@endcomponent
                             {{ Form::open(array('route' => 'password.email','class'=>'kt_auth_form','name'=>'kt_auth_form','id'=>'kt_auth_form')) }}
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-																<span class="input-group-text">
-																	<i class="la la-envelope"></i>
-																</span>
-                                    </div>
-                                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
-                                </div>
-                                @error('email')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
 
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-																<span class="input-group-text">
-																	<i class="la la-lock"></i>
-																</span>
+                                <div class="form-group row">
+                                    <div class="col-lg-6">
+                                        <label class="text-white d-block text-left">{!! __('labels.email_address') !!}<span
+                                                class="text-danger">*</span></label>
+                                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
+                                        @error('email')
+                                        <div class="invalid-feedback d-block text-left">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                                 </div>
-                                @error('password')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
 
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-																<span class="input-group-text">
-																	<i class="la la-lock"></i>
-																</span>
+                                <div class="form-group row">
+
+                                    <div class="col-lg-6"><label class="text-white d-block text-left">{!! __('labels.password') !!}<span class="text-danger">*</span></label>
+                                        <input  type="password" name="password" class="form-control @error('user.password') is-invalid @enderror" placeholder="Password" autocomplete="off">
+                                        @error('password')
+                                        <div class="invalid-feedback d-block text-left">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <input type="password" id="password" name="password_confirmation" class="form-control" placeholder="Password">
+
+                                    <div class="col-lg-6"><label class="text-white d-block text-left">{!! __('labels.confirm_password') !!}<span class="text-danger">*</span></label>
+                                        <input  type="password"  id="password"  name="password_confirmation" class="form-control" placeholder="Confirm Password" autocomplete="off">
+                                    </div>
+
                                 </div>
-                            </div>
+
 
                             <div class="pb-lg-0 pb-5 pt-10">
-                                <button type="submit"  class="btn auth-login-btn font-weight-bolder font-size-h6 px-6 py-2">Request new password</button>
+                                <button type="submit"  class="btn auth-login-btn font-weight-bolder font-size-h6 px-6 py-2">{!! __('labels.reset_password') !!}</button>
                             </div>
 
                             {{  Form::close() }}
@@ -71,8 +60,8 @@
 
 
                     <div class="row mt-15">
-                        <div class="col-md-12 pt-3 text-left"><span class="auth-text sample-text">{!! __('labels.already_an_account') !!}</span></div>
-                        <div class="col-md-12 pt-3"><a href="{{ route('login') }}" class="register_button btn btn-white btn-block">{!! __('labels.login') !!} <i class="fa fa-arrow-right float-right"></i></a></div>
+                        <div class="col-md-8 pt-3 text-left"><span class="auth-text sample-text">{!! __('labels.already_an_account') !!}</span></div>
+                        <div class="col-md-4 pl-0"><a href="{{ route('login') }}" class="register_button btn btn-white btn-block">{!! __('labels.login') !!} <i class="fa fa-arrow-right float-right"></i></a></div>
                     </div>
 
                 </div>

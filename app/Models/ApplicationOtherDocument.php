@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class ApplicationOtherDocument extends Model
 {
     use HasFactory;
-    protected $fillable = ['application_id', 'document_file' ];
+    protected $fillable = ['application_id', 'document_title', 'document_file' ];
 }
