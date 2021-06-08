@@ -93,7 +93,7 @@
                             <i aria-hidden="true" class="ki ki-close"></i>
                         </button>
                     </div>
-                    <div class="modal-body" style="height: 300px;">
+                    <div class="modal-body" style="height: 120px;">
                        <p class="text-left" id="english_help">
                            hello english
                        </p>
