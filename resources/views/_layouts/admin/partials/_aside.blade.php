@@ -57,7 +57,7 @@
 
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-text">My SMEs</span>
+										<span class="menu-text">All SMEs</span>
 									</a>
 								</li>
 							</ul>

@@ -49,7 +49,7 @@
 
 
                             <div class="form-group">
-                                <a href="{{ route('password.request') }}" class="auth-text-sm float-right text-hover-white">{!! __('labels.forgot_password') !!}</a>
+                                <a href="{{ route('admin.password.request') }}" class="auth-text-sm float-right text-hover-white">{!! __('labels.forgot_password') !!}</a>
                             </div>
 
                             <div class="pb-lg-0 pb-5 pt-10">

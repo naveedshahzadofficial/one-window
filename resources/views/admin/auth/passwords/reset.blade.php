@@ -1,10 +1,10 @@
-@extends('_layouts.applicant.blank')
-@push('title','Reset Password')
+@extends('_layouts.admin.blank')
+@push('title','Admin Reset Password')
 @section('content')
     <!--begin::Login-->
     <div class="login login-6 login-signin-on login-signin-on d-flex flex-row-fluid" id="kt_login">
         <div class="d-flex flex-column flex-lg-row flex-row-fluid text-center">
-        @component('auth.aside-auth') @endcomponent
+        @component('admin.auth.aside-auth') @endcomponent
 
         <!--begin:Content-->
             <div class="d-flex w-100 flex-center p-15 position-relative overflow-hidden auth-right-bg">
@@ -70,11 +70,9 @@
                     <!--end:Sign In Form-->
 
 
-                    <div class="row pt-15">
-                        <div class="col-md-8">&nbsp;</div>
-                        <div class="col-md-4">
-                            <a href="{{ route('login') }}" class="register_button btn btn-white btn-block">Login <i class="fa fa-arrow-right"></i></a>
-                        </div>
+                    <div class="row mt-15">
+                        <div class="col-md-12 pt-3 text-left"><span class="auth-text sample-text">{!! __('labels.already_an_account') !!}</span></div>
+                        <div class="col-md-12 pt-3"><a href="{{ route('admin.login') }}" class="register_button btn btn-white btn-block">{!! __('labels.login') !!} <i class="fa fa-arrow-right float-right"></i></a></div>
                     </div>
 
                 </div>

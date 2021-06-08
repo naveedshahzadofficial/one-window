@@ -1,4 +1,4 @@
-@extends('_layouts.applicant.blank')
+@extends('_layouts.admin.blank')
 @push('title','Email Verification')
 @section('content')
     <div class="login-box">

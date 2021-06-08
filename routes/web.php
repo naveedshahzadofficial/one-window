@@ -29,16 +29,20 @@ Route::group(['middleware' => ['auth','applicant'], 'prefix'=>'applicant', 'as'=
 });
 
 
-
 Route::group([ 'prefix'=>'admin', 'as'=>'admin.'],function(){
    Route::get('/login', [App\Http\Controllers\Admin\LoginController::class, 'showLoginForm'])->name('login');
    Route::post('/login', [App\Http\Controllers\Admin\LoginController::class, 'login'])->name('login');
-   
   
-    Route::group(['middleware' => \App\Http\Middleware\IsAdmin::class], function () {
+   Route::get('/password/reset', [App\Http\Controllers\Admin\Auth\AdminForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+  
+   Route::post('/password/email', [App\Http\Controllers\Admin\Auth\AdminForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
-   Route::resource('applications', App\Http\Controllers\Admin\ApplicationController::class);
-   Route::post('applications/index-ajax', [ App\Http\Controllers\Admin\ApplicationController::class,'indexAjax'])->name('applications.index-ajax');
+   Route::group(['middleware' => \App\Http\Middleware\IsAdmin::class], function () {
+
+      Route::post('/logout', [App\Http\Controllers\Admin\LoginController::class,'logout'])->name('logout');
+      Route::resource('applications', App\Http\Controllers\Admin\ApplicationController::class);
+      Route::post('applications/index-ajax', [ App\Http\Controllers\Admin\ApplicationController::class,'indexAjax'])->name('applications.index-ajax');
+
  });
 
 });
