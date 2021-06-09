@@ -6,8 +6,7 @@
     <div class="section_box">
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.first_name') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.first_name') !!}</span>
                 <span class="opacity-70">{{ isset($application->prefix->prefix_name)?$application->prefix->prefix_name:'' }} {{ isset($application['first_name'])?$application['first_name']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
@@ -18,73 +17,63 @@
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.last_name') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.last_name') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['last_name'])?$application['last_name']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.gender') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.gender') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->gender->gender_name)?$application->gender->gender_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.cnic_no') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.cnic_no') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['cnic_no'])?$application['cnic_no']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.cnic_issue_date') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.cnic_issue_date') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['cnic_issue_date'])?$application['cnic_issue_date']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.cnic_expiry_date') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.cnic_expiry_date') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['cnic_expiry_date'])?$application['cnic_expiry_date']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.date_of_birth') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.date_of_birth') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['date_of_birth'])?$application['date_of_birth']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.designation_business') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.designation_business') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->designationBusiness->name)?$application->designationBusiness->name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.minority_status_question') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.minority_status_question') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->minorityStatusQuestion->name)?$application->minorityStatusQuestion->name:'' }}</span>
             </div>
             <div
                 class="d-flex flex-column flex-root @if(isset($application->minorityStatusQuestion->name) && $application->minorityStatusQuestion->name=='No') d-none-imp @endif">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.minority_status') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.minority_status') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->minorityStatus->name)?$application->minorityStatus->name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root @if(isset($application->minorityStatus->name) && $application->minorityStatus->name=='Other') d-box @else d-none-imp @endif">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.other_than_minority') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.other_than_minority') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['minority_status_other'])?$application['minority_status_other']:'' }}</span>
             </div>
@@ -103,14 +92,12 @@
     <div class="section_box">
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.education_level') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.education_level') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->educationLevel->name)?$application->educationLevel->name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.technical_education_question') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.technical_education_question') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->educationLevelQuestion->name)?$application->educationLevelQuestion->name:'' }}</span>
             </div>
@@ -121,8 +108,7 @@
                 :class="{'d-none-imp': is_technical_education=='No'}"
                 class="d-flex justify-content-between pt-5">
                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.technical_education_detail') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.technical_education_detail') !!}</span>
                     <span
                         class="opacity-70">{{ isset($education['certificate_title'])?$education['certificate_title']:'' }}</span>
                 </div>
@@ -131,15 +117,13 @@
         @endif
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.profession_question') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.profession_question') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->skilledWorkerQuestion->name)?$application->skilledWorkerQuestion->name:'' }}</span>
             </div>
             <div
                 class="d-flex flex-column flex-root @if(isset($application->skilledWorkerQuestion->name) && $application->skilledWorkerQuestion->name=='No') d-none-imp @endif">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.is_skilled_worker') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.is_skilled_worker') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['skill_or_art'])?$application['skill_or_art']:'' }}</span>
             </div>
@@ -151,43 +135,37 @@
     <div class="section_box">
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->residenceAddressType->type_name)?$application->residenceAddressType->type_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->residenceAddressForm->form_name)?$application->residenceAddressForm->form_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_1') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_1') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['residence_address_1'])?$application['residence_address_1']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_2') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_2') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['residence_address_2'])?$application['residence_address_2']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_3') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_3') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['residence_address_3'])?$application['residence_address_3']:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
-								<span class="font-weight-bolder mb-2">{!! __('labels.province') !!}<span
-                                        class="text-danger">*</span></span>
+								<span class="font-weight-bolder mb-2">{!! __('labels.province') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->residenceProvince->province_name)?$application->residenceProvince->province_name:'' }}</span>
             </div>
@@ -196,15 +174,13 @@
 
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.city') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.city') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->residenceCity->city_name_e)?$application->residenceCity->city_name_e:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.district') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.district') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->residenceDistrict->district_name_e)?$application->residenceDistrict->district_name_e:'' }}</span>
             </div>
@@ -214,43 +190,37 @@
         <div class="d-flex justify-content-between pt-5">
 
             <div class="d-flex flex-column flex-root">
-															<span class="font-weight-bolder mb-2">{!! __('labels.tehsil') !!}<span
-                                                                    class="text-danger">*</span></span>
+															<span class="font-weight-bolder mb-2">{!! __('labels.tehsil') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->residenceTehsil->tehsil_name_e)?$application->residenceTehsil->tehsil_name_e:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.property_capacity') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.property_capacity') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->residenceAddressCapacity->capacity_name)?$application->residenceAddressCapacity->capacity_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.share_percentage') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.share_percentage') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['residence_share'])?$application['residence_share']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_acquisition_date') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_acquisition_date') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['residence_acquisition_date'])?$application['residence_acquisition_date']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.mobile_no') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.mobile_no') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['personal_mobile_no'])?$application['personal_mobile_no']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.email_address') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.email_address') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['personal_email'])?$application['personal_email']:'' }}</span>
             </div>
@@ -263,14 +233,12 @@
     <div class="section_box">
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_name') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_name') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_name'])?$application['business_name']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_acquisition_start_date') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_acquisition_start_date') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_establishment_date'])?$application['business_establishment_date']:'' }}</span>
             </div>
@@ -278,8 +246,7 @@
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_status') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_status') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->businessRegistrationStatus->name)?$application->businessRegistrationStatus->name:'' }}</span>
             </div>
@@ -287,14 +254,12 @@
         <div
             class="d-flex justify-content-between pt-5 @if(isset($application->businessRegistrationStatus->name) && $application->businessRegistrationStatus->name=='Unregistered') d-none-imp  @endif">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_legal_status') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_legal_status') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->businessLegalStatus->legal_name)?$application->businessLegalStatus->legal_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_no') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_no') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_registration_number'])?$application['business_registration_number']:'' }}</span>
             </div>
@@ -303,37 +268,32 @@
         <div
             class="d-flex justify-content-between pt-5 @if(isset($application->businessRegistrationStatus->name) && $application->businessRegistrationStatus->name=='Unregistered') d-none-imp  @endif">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_date') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_date') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_registration_date'])?$application['business_registration_date']:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_ntn_no') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_ntn_no') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_ntn_no'])?$application['business_ntn_no']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_category') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_category') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->businessCategory->category_name)?$application->businessCategory->category_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_sector') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_sector') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->businessActivity->group_name)?$application->businessActivity->group_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_sub_sector') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_sub_sector') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->businessActivity->class_name)?$application->businessActivity->class_name:'' }}</span>
             </div>
@@ -345,8 +305,7 @@
         <div class="d-flex justify-content-between">
             @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.ownership_proof') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.ownership_proof') !!}</span>
                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
@@ -369,8 +328,7 @@
             class="d-flex justify-content-between pt-5 @if(isset($application->businessRegistrationStatus->name) && $application->businessRegistrationStatus->name=='Unregistered') d-none-imp  @endif">
             @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.registration_certificate') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.registration_certificate') !!}</span>
                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
@@ -382,22 +340,19 @@
 
         @if(isset($application->otherDocuments) && $application->otherDocuments->isNotEmpty())
 
-            <span class="font-weight-bolder mb-2">{!! __('labels.other_documents_heading') !!}<span
-                    class="text-danger">*</span></span>
+            <span class="font-weight-bolder mb-2">{!! __('labels.other_documents_heading') !!}</span>
 
             @foreach($application->otherDocuments as $other_file)
                 <div class="d-flex justify-content-between pt-5">
                     <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.document_title') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.document_title') !!}</span>
                         <span
                             class="opacity-70">{{ isset($other_file['document_title'])?$other_file['document_title']:'' }}</span>
                     </div>
 
                     @if(isset($other_file['document_file']) && !empty($other_file['document_file']))
                         <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.document') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.document') !!}</span>
                             <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($other_file['document_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
@@ -417,42 +372,36 @@
     <div class="section_box">
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->businessAddressType->type_name)?$application->businessAddressType->type_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.property_form') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.property_form') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->businessAddressForm->form_name)?$application->businessAddressForm->form_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_address_1') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_address_1') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_address_1'])?$application['business_address_1']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_address_2') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_address_2') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_address_2'])?$application['business_address_2']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_address_3') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_address_3') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_address_3'])?$application['business_address_3']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.province') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.province') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->businessProvince->province_name)?$application->businessProvince->province_name:'' }}</span>
             </div>
@@ -464,36 +413,31 @@
                     class="opacity-70">{{ isset($application->businessCity->city_name_e)?$application->businessCity->city_name_e:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.district') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.district') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->businessDistrict->district_name_e)?$application->businessDistrict->district_name_e:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.tehsil') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.tehsil') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->businessTehsil->tehsil_name_e)?$application->businessTehsil->tehsil_name_e:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_capacity') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_capacity') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->businessCapacity->capacity_name)?$application->businessCapacity->capacity_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.share_business_place') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.share_business_place') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_share'])?$application['business_share']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_acquisition_date_place') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_acquisition_date_place') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_acquisition_date'])?$application['business_acquisition_date']:'' }}</span>
             </div>
@@ -501,8 +445,7 @@
         <div class="d-flex justify-content-between pt-5">
             @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.business_evidence_tenancy') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.business_evidence_tenancy') !!}</span>
                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
@@ -514,15 +457,13 @@
         <div class="d-flex justify-content-between pt-5">
 
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_contact_no') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_contact_no') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_contact_number'])?$application['business_contact_number']:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_email_address') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_email_address') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['business_email'])?$application['business_email']:'' }}</span>
             </div>
@@ -536,8 +477,7 @@
     <div class="section_box">
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.utility_connections_question') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.utility_connections_question') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->utilityConnectionQuestion->name)?$application->utilityConnectionQuestion->name:'' }}</span>
             </div>
@@ -547,8 +487,7 @@
             <div class="d-flex justify-content-between pt-5">
 
                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.type_of_utility') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.type_of_utility') !!}</span>
                     <span
                         class="opacity-70">{{ isset($connection->utilityForm->form_name)?$connection->utilityForm->form_name:'' }}</span>
                 </div>
@@ -558,15 +497,13 @@
             <div class="d-flex justify-content-between pt-5">
 
                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.type_of_connection') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.type_of_connection') !!}</span>
                     <span
                         class="opacity-70">{{ isset($connection->utilityType->type_name)?$connection->utilityType->type_name:'' }}</span>
                 </div>
 
                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.connection_ownership') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.connection_ownership') !!}</span>
                     <span
                         class="opacity-70">{{ isset($connection->connectionOwnership->ownership_name)?$connection->connectionOwnership->ownership_name:'' }}</span>
                 </div>
@@ -576,30 +513,26 @@
 
             <div class="d-flex justify-content-between pt-5">
                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.consumer_number') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.consumer_number') !!}</span>
                     <span
                         class="opacity-70">{{ isset($connection['utility_consumer_number'])?$connection['utility_consumer_number']:'' }}</span>
                 </div>
                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.service_provider') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.service_provider') !!}</span>
                     <span
                         class="opacity-70">{{ isset($connection->utilityServiceProvider->provider_name)?$connection->utilityServiceProvider->provider_name:'' }}</span>
                 </div>
             </div>
             <div class="d-flex justify-content-between pt-5">
                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.connection_date') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.connection_date') !!}</span>
                     <span
                         class="opacity-70">{{ isset($connection['connection_date'])?$connection['connection_date']:'' }}</span>
                 </div>
 
                 @if(isset($connection['bill_file']) && !empty($connection['bill_file']))
                     <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.business_paid_bill_file') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.business_paid_bill_file') !!}</span>
                         <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($connection['bill_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
@@ -618,8 +551,7 @@
     <div class="section_box">
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.employees_question') !!}<span
-                                        class="text-danger">*</span></span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.employees_question') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application->employeesQuestion->name)?$application->employeesQuestion->name:'' }}</span>
             </div>
@@ -653,15 +585,13 @@
     <div class="section_box">
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}</span>
                 <span
                     class="opacity-70">{{ isset($employee->turnoverFiscalYear->year_name)?$employee->turnoverFiscalYear->year_name:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.annual_turnover_fiscal_year') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.annual_turnover_fiscal_year') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['annual_turnover'])?$application['annual_turnover']:'' }}</span>
             </div>
@@ -671,8 +601,7 @@
 
             @if(isset($application['business_account_statement_file']) && !empty($application['business_account_statement_file']))
                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.business_account_statement') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.business_account_statement') !!}</span>
                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
@@ -689,8 +618,7 @@
     <div class="section_box">
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.question_exports') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.question_exports') !!}</span>
                 <span
                     class="opacity-70">{{ isset($employee->exportQuestion->name)?$employee->exportQuestion->name:'' }}</span>
             </div>
@@ -698,22 +626,19 @@
 
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}</span>
                 <span
                     class="opacity-70">{{ isset($employee->exportQuestion->year_name)?$employee->exportQuestion->year_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}</span>
                 <span
                     class="opacity-70">{{ isset($employee->exportCurrency->currency_name)?$employee->exportCurrency->currency_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.export_turnover') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.export_turnover') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['export_annual_turnover'])?$application['export_annual_turnover']:'' }}</span>
             </div>
@@ -728,8 +653,7 @@
         <div class="d-flex justify-content-between pt-5">
 
             <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.question_imports') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.question_imports') !!}</span>
                 <span
                     class="opacity-70">{{ isset($employee->importQuestion->name)?$employee->importQuestion->name:'' }}</span>
             </div>
@@ -740,22 +664,19 @@
 
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}</span>
                 <span
                     class="opacity-70">{{ isset($employee->importFiscalYear->year_name)?$employee->importFiscalYear->year_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}</span>
                 <span
                     class="opacity-70">{{ isset($employee->importCurrency->currency_name)?$employee->importCurrency->currency_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.import_turnover') !!}<span
-                                            class="text-danger">*</span></span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.import_turnover') !!}</span>
                 <span
                     class="opacity-70">{{ isset($application['import_annual_turnover'])?$application['import_annual_turnover']:'' }}</span>
             </div>

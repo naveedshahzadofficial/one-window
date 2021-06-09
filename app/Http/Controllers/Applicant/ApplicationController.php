@@ -70,7 +70,7 @@ class ApplicationController extends Controller
        'businessRegistrationStatus', 'businessLegalStatus', 'businessActivity', 'businessAddressType', 'businessAddressForm', 'businessProvince',
        'businessCity', 'businessDistrict', 'businessTehsil', 'businessCapacity',
            'utilityConnectionQuestion', 'utilityConnections.connectionOwnership','utilityConnections.utilityType','utilityConnections.utilityForm',
-           'employeesQuestion','employeeInfos.employeeType')
+           'employeesQuestion','employeeInfos.employeeType','turnoverFiscalYear', 'exportQuestion','exportFiscalYear', 'exportCurrency','importQuestion','importFiscalYear','importCurrency')
            ->where('user_id', auth()->id())->find($id);
         if(!$application){
             session()->flash('error_message', 'No Record found.');

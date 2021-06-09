@@ -72,7 +72,7 @@ class ApplicationController extends Controller
        'businessRegistrationStatus', 'businessLegalStatus', 'businessActivity', 'businessAddressType', 'businessAddressForm', 'businessProvince',
        'businessCity', 'businessDistrict', 'businessTehsil', 'businessCapacity',
            'utilityConnectionQuestion', 'utilityConnections.connectionOwnership','utilityConnections.utilityType','utilityConnections.utilityForm',
-           'employeesQuestion','employeeInfos.employeeType')->find($id);;
+           'employeesQuestion','employeeInfos.employeeType','turnoverFiscalYear', 'exportQuestion','exportFiscalYear', 'exportCurrency','importQuestion','importFiscalYear','importCurrency')->find($id);;
         if(!$application){
             session()->flash('error_message', 'No Record found.');
             return redirect(route('admin.applications.index'));
