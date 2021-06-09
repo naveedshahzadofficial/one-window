@@ -628,7 +628,7 @@
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->exportQuestion->year_name)?$application->exportQuestion->year_name:'' }}</span>
+                    class="opacity-70">{{ isset($application->exportFiscalYear->year_name)?$application->exportFiscalYear->year_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}</span>
