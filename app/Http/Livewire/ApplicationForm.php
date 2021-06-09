@@ -636,7 +636,7 @@ class ApplicationForm extends Component
                 if(isset($conn['new_bill_file']) && !empty($conn['new_bill_file'])){
                     $rules_utility_connections["utility_connections.$index.new_bill_file"] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
                     $messages_utility_connections["utility_connections.$index.new_bill_file.mimes"] = 'Utility bill must be a file of type: jpg, jpeg, png, pdf.';
-                }else if(!isset($connection['bill_file']) && empty($connection['bill_file'])){
+                }else if(!isset($conn['bill_file']) && empty($conn['bill_file'])){
                     $rules_utility_connections["utility_connections.$index.new_bill_file"] = 'required';
                     $messages_utility_connections["utility_connections.$index.new_bill_file.required"] = 'Paid Utility bill is required.';
                 }
