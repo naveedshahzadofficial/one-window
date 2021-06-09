@@ -32,20 +32,20 @@ return [
 'add_more' => ' Add More',
 'province_state' => 'Province/ State (<span class="urdu-label" dir="rtl"> صوبہ / ریاست </span>)',
 'province' => 'Province (<span class="urdu-label" dir="rtl"> صوبہ  </span>)',
-'city' => 'City: (<span class="urdu-label" dir="rtl"> شہر </span>)',
-'district' => 'District: (<span class="urdu-label" dir="rtl"> ضلع </span>)',
-'tehsil' => 'Tehsil: (<span class="urdu-label" dir="rtl"> تحصیل</span>)',
-'sector' => 'Sector: (<span class="urdu-label" dir="rtl">  کاروبار کا شعبہ   </span>)',
+'city' => 'City (<span class="urdu-label" dir="rtl"> شہر </span>)',
+'district' => 'District (<span class="urdu-label" dir="rtl"> ضلع </span>)',
+'tehsil' => 'Tehsil (<span class="urdu-label" dir="rtl"> تحصیل</span>)',
+'sector' => 'Sector (<span class="urdu-label" dir="rtl">  کاروبار کا شعبہ   </span>)',
 // document commons
-'business_other_documents' => 'Any Other Document: (<span class="urdu-label" dir="rtl"> کوئی اور دستاویز </span>)',
-'other_documents_heading' => 'Any Other Document: (<label class="urdu-label" dir="rtl"> کوئی اور دستاویز </label>)',
+'business_other_documents' => 'Any Other Document (<span class="urdu-label" dir="rtl"> کوئی اور دستاویز </span>)',
+'other_documents_heading' => 'Any Other Document (<label class="urdu-label" dir="rtl"> کوئی اور دستاویز </label>)',
 'document_title' => 'Document Title  (<span class="urdu-label" dir="rtl"> دستاویز کا عنوان </span>)',
-'document' => 'Document  (<span class="urdu-label" dir="rtl"> ستاویز </span>)',
+'document' => 'Document  (<span class="urdu-label" dir="rtl"> دستاویز </span>)',
 // property commons
-'property_type' => 'Type of Property: (<span class="urdu-label" dir="rtl">  پراپرٹی کی قسم </span>)',
-'property_form' => 'Form of Property: (<span class="urdu-label" dir="rtl">  پراپرٹی کی ذیلی قسم </span>)',
+'property_type' => 'Type of Property (<span class="urdu-label" dir="rtl">  پراپرٹی کی قسم </span>)',
+'property_form' => 'Form of Property (<span class="urdu-label" dir="rtl">  پراپرٹی کی ذیلی قسم </span>)',
 
-'property_capacity' => 'Capacity: (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)',
+'property_capacity' => 'Capacity (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)',
 
 
 // Main Tabs
@@ -80,17 +80,17 @@ return [
 'designation_business' => 'Designation in Business (<span class="urdu-label" dir="rtl"> کاروبار میں عہدہ </span>)',
 'minority_status_question' => 'Do you have Minority Status? (<span class="urdu-label" dir="rtl"> کیا آپ کو اقلیت کا درجہ حاصل ہے؟ </span>)',
 
-'minority_status' => 'Minority Status: (<span class="urdu-label" dir="rtl"> اقلیت </span>)',
-'other_than_minority' => 'Other: (<span class="urdu-label" dir="rtl"> دیگر </span>)',
-'national_tax_number' => 'National Tax Number (Personal): (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر - ذاتی </span>)',
+'minority_status' => 'Minority Status (<span class="urdu-label" dir="rtl"> اقلیت </span>)',
+'other_than_minority' => 'Other (<span class="urdu-label" dir="rtl"> دیگر </span>)',
+'national_tax_number' => 'National Tax Number (Personal) (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر - ذاتی </span>)',
 
-'education_level' => 'Education Level: (<span class="urdu-label" dir="rtl"> تعلیمی قابلیت </span>)',
+'education_level' => 'Education Level (<span class="urdu-label" dir="rtl"> تعلیمی قابلیت </span>)',
 'technical_education_question' => 'Do you have any Technical Education? (<span class="urdu-label" dir="rtl"> تکنیکی تعلیم </span>)',
-'technical_education_detail' => 'Diploma/ Certificate Title:  (<span class="urdu-label" dir="rtl"> ڈپلومہ / سرٹیفکیٹ کا عنوان </span>)',
+'technical_education_detail' => 'Diploma/ Certificate Title  (<span class="urdu-label" dir="rtl"> ڈپلومہ / سرٹیفکیٹ کا عنوان </span>)',
 
 'profession_question' => 'Are you a skilled worker or an artisan? (<span class="urdu-label" dir="rtl"> ہنر مند یا کاریگر  </span>)',
 
-'is_skilled_worker' => 'Skill or Art: (<span class="urdu-label" dir="rtl"> ہنر یا فن کی وضاحت کریں </span>)',
+'is_skilled_worker' => 'Skill or Art (<span class="urdu-label" dir="rtl"> ہنر یا فن کی وضاحت کریں </span>)',
 
 
 'cnic_expiry_question' => 'Has your CNIC LifeTime Expiry Date? (<span class="urdu-label" dir="rtl"> کیا آپ کے شناختی کارڈ کی میعاد عمر بھر کیلئے ہے؟ </span>)',
@@ -107,39 +107,39 @@ return [
 // Business Profile
 'business_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> کاروبار کے حصول کی تاریخ </span>)',
 'business_category' => 'Business Category (<span class="urdu-label" dir="rtl"> کاروبار کی قسم </span>)',
-'business_address_1' => 'Building No. / Unit No. / Plaza No. / Village. (<span class="urdu-label" dir="rtl"> عمارت نمبر / یونٹ نمبر / پلازہ نمبر / گاؤں </span>)',
+'business_address_1' => 'Building No. / Unit No. / Plaza No. / Village (<span class="urdu-label" dir="rtl"> عمارت نمبر / یونٹ نمبر / پلازہ نمبر / گاؤں </span>)',
 'business_address_2' => 'Complex / Street / Block / Sector (<span class="urdu-label" dir="rtl">  کمپلیکس / اسٹریٹ / بلاک / سیکٹر </span>)',
-'business_address_3' => 'Area/ Locality. (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک/  </span>)',
+'business_address_3' => 'Area/ Locality (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک  </span>)',
 
-'business_name' => 'Business Name: (<span class="urdu-label" dir="rtl"> کاروبار کا نام </span>)',
-'business_acquisition_start_date' => 'Business Acquisition/ Start/ Establishment/ Formation Date: (<span class="urdu-label" dir="rtl"> کاروباری حصول / آغاز / قیام / تشکیل کی تاریخ  </span>)',
-'business_registration_status' => 'Business Registration Status: (<span class="urdu-label" dir="rtl">  کاروباری اندراج کی حیثیت    </span>)',
-'business_legal_status' => 'Business Legal Status: (<span class="urdu-label" dir="rtl">  کاروباری قانونی حیثیت        </span>)',
-'business_registration_no' => 'Business Registration No: (<span class="urdu-label" dir="rtl">   بزنس رجسٹریشن نمبر      </span>)',
-'business_registration_date' => 'Business Registration Date: (<span class="urdu-label" dir="rtl">   بزنس رجسٹریشن کی تاریخ    </span>)',
+'business_name' => 'Business Name (<span class="urdu-label" dir="rtl"> کاروبار کا نام </span>)',
+'business_acquisition_start_date' => 'Business Acquisition/ Start/ Establishment/ Formation Date (<span class="urdu-label" dir="rtl"> کاروباری حصول / آغاز / قیام / تشکیل کی تاریخ  </span>)',
+'business_registration_status' => 'Business Registration Status (<span class="urdu-label" dir="rtl">  کاروباری اندراج کی حیثیت    </span>)',
+'business_legal_status' => 'Business Legal Status (<span class="urdu-label" dir="rtl">  کاروباری قانونی حیثیت        </span>)',
+'business_registration_no' => 'Business Registration No (<span class="urdu-label" dir="rtl">   بزنس رجسٹریشن نمبر      </span>)',
+'business_registration_date' => 'Business Registration Date (<span class="urdu-label" dir="rtl">   بزنس رجسٹریشن کی تاریخ    </span>)',
 
-'business_ntn_no' => 'National Tax Number (Business): (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر - کاروبار  </span>)',
+'business_ntn_no' => 'National Tax Number (Business) (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر - کاروبار  </span>)',
 
-'business_category' => 'Business Category: (<span class="urdu-label" dir="rtl"> کاروبار کی قسم    </span>)',
+'business_category' => 'Business Category (<span class="urdu-label" dir="rtl"> کاروبار کی قسم    </span>)',
 
-'ownership_proof' => 'Upload Proof of Ownership: (<span class="urdu-label" dir="rtl"> ملکیت کا ثبوت  </span>)',
+'ownership_proof' => 'Upload Proof of Ownership (<span class="urdu-label" dir="rtl"> ملکیت کا ثبوت  </span>)',
 
-'registration_proof' => 'License /Registration with chamber or Trade body: (<span class="urdu-label" dir="rtl"> لچیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ   </span>)',
+'registration_proof' => 'License /Registration with chamber or Trade body (<span class="urdu-label" dir="rtl"> چیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ   </span>)',
 
-'registration_certificate' => 'Upload Registration Certificate: (<span class="urdu-label" dir="rtl"> رجسٹریشن سرٹیفکیٹ  </span>)',
+'registration_certificate' => 'Upload Registration Certificate (<span class="urdu-label" dir="rtl"> رجسٹریشن سرٹیفکیٹ  </span>)',
 
-'share_business_place' => 'Share in Business Place: (<span class="urdu-label" dir="rtl"> بزنس پلیس میں شئیر کریں</span>)',
+'share_business_place' => 'Share in Business Place (<span class="urdu-label" dir="rtl"> کاروبار کی جگہ میں حصہ</span>)',
 
-'ownership_capacity_business' => 'Ownership Capacity of Business Place: (<span class="urdu-label" dir="rtl">  کاروبار کی جگہ کی ملکیت کی اہلیت    </span>)',
+'ownership_capacity_business' => 'Ownership Capacity of Business Place (<span class="urdu-label" dir="rtl">  کاروبار کی جگہ کی ملکیت    </span>)',
 
 'business_acquisition_date_place' => 'Date of Acquisition of Business Place (<span class="urdu-label" dir="rtl"> کاروباری جگہ کے حصول کی تاریخ   </span>)',
 
 
-'business_evidence_tenancy' => 'Evidence of Ownership/ Tenancy of Business Place:<br>(<span class="urdu-label"  dir="rtl">کاروباری جگہ کی ملکیت / کرایہ داری کا ثبوت  </span>)',
+'business_evidence_tenancy' => 'Evidence of Ownership/ Tenancy of Business Place<br>(<span class="urdu-label"  dir="rtl">کاروباری جگہ کی ملکیت / کرایہ داری کا ثبوت  </span>)',
 
 'business_contact_no' => 'Business Contact No. (<span class="urdu-label" dir="rtl"> کاروباری رابطہ نمبر </span>)',
 
-'business_email_address' => 'Business Email Address: (<span class="urdu-label" dir="rtl"> کاروباری ای میل ایڈریس </span>)',
+'business_email_address' => 'Business Email Address (<span class="urdu-label" dir="rtl"> کاروباری ای میل ایڈریس </span>)',
 
 
 // Utility Connections
@@ -150,8 +150,7 @@ return [
 'consumer_number' => 'Reference/ Consumer Number (<span class="urdu-label" dir="rtl"> حوالہ / صارف نمبر </span>)',
 'service_provider' => 'Service Provider (<span class="urdu-label" dir="rtl"> سروس مہیا کرنے والا </span>)',
 'connection_date' => 'Connection Date (<span class="urdu-label" dir="rtl"> کنکشن کی تاریخ  </span>)',
-'business_paid_bill_file' => 'Paid Utility bill of Business Place (not older than 3 months) (<span class="urdu-label" dir="rtl"> کاروباری احاطے کا ادا شدہ یوٹیلیٹی بل جو تین ماہ سے زیادہ پرانا نہیں ہے کی کاپی اپ لوڈ کریں
-</span>)',
+'business_paid_bill_file' => 'Paid Utility bill of Business Place (not older than 3 months) (<span class="urdu-label" dir="rtl"> کاروباری جگہ کا ادا شدہ یوٹیلیٹی بل - تین ماہ سے پرانا نہ ہو </span>)',
 
 
 
@@ -163,28 +162,28 @@ return [
 // Annual Turn Over
 'estimated_annual_turnover' => 'ESTIMATED ANNUAL TURNOVER IN LAST COMPLETED FISCAL YEAR (<label class="urdu-label" dir="rtl"> آخری مالی سال میں تخمینہ شدہ سالانہ کاروبار </label>)',
 'fiscal_year' => 'Fiscal Year (<span class="urdu-label" dir="rtl"> مالی سال </span>)',
-'annual_turnover_fiscal_year' => 'Annual Turnover for the selected Fiscal Year (PKR)<br>(<span class="urdu-label" dir="rtl"> منتخب مالی سال کے لئے سالانہ کاروبار </span>)',
-'business_account_statement' => 'Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement)<br>(<span class="urdu-label" dir="rtl"> ملحقات - انکم ٹیکس ریٹرن / آڈٹ شدہ بیانات / بزنس اکاؤنٹ بینک کا بیان </span>)',
-'question_exports' => 'Do you have exports? (<span class="urdu-label" dir="rtl"> کیا آپ کے پاس برآمدات ہیں؟ </span>)',
+'annual_turnover_fiscal_year' => 'Annual Turnover for the selected Fiscal Year (PKR)<br>(<span class="urdu-label" dir="rtl"> منتخب مالی سال کا کاروبار </span>)',
+'business_account_statement' => 'Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement)<br>(<span class="urdu-label" dir="rtl"> ملحقات - انکم ٹیکس ریٹرن / آڈٹ شدہ بیانات / کاروباری اکاؤنٹ کی بینک اسٹیٹمنٹ </span>)',
+'question_exports' => 'Do you have exports? (<span class="urdu-label" dir="rtl"> کیا آپ کی برآمدات ہیں؟ </span>)',
 'question_imports' => 'Do you have imports? (<span class="urdu-label" dir="rtl"> کیا آپ کی درآمدات ہیں؟ </span>)',
 'exports' => 'EXPORTS (<label class="urdu-label" dir="rtl"> برآمدات </label>)',
 'imports' => 'IMPORTS (<label class="urdu-label" dir="rtl"> درآمدات </label>)',
 'currency' => 'Currency (<span class="urdu-label" dir="rtl"> کرنسی </span>)',
-'export_turnover' => 'Export Turnover for the selected Fiscal Year (PKR/ USD) (<span class="urdu-label" dir="rtl"> منتخب مالی سال کے لئے برآمدات کا کاروبار </span>)',
-'import_turnover' => 'Import Turnover for the selected Fiscal Year (PKR/ USD) (<span class="urdu-label" dir="rtl"> منتخب مالیہ سال کے لئے کاروبار درآمد کریں </span>)',
+'export_turnover' => 'Export Turnover for the selected Fiscal Year (PKR/ USD) (<span class="urdu-label" dir="rtl"> منتخب مالی سال میں برآمدات کا حجم </span>)',
+'import_turnover' => 'Import Turnover for the selected Fiscal Year (PKR/ USD) (<span class="urdu-label" dir="rtl"> منتخب مالیہ سال میں درآمدات کا حجم </span>)',
 
 //review
 
 'review_applicant_profile' => 'APPLICANT PROFILE (<span class="urdu-label" dir="rtl"> درخواست دہندہ کی پروفائل </span>)',
 'review_business_profile' => 'BUSINESS PROFILE (<span class="urdu-label" dir="rtl"> بزنس پروفائل </span>)',
-'business_sector' => 'Business Sector: (<span class="urdu-label"  dir="rtl"> کاروبار کا شعبہ </span>)',
-'business_sub_sector' => 'Business Sub Sector: (<span class="urdu-label" dir="rtl"> کاروبار کا شعبہ </span>)',
+'business_sector' => 'Business Sector (<span class="urdu-label"  dir="rtl"> کاروبار کا شعبہ </span>)',
+'business_sub_sector' => 'Business Sub Sector (<span class="urdu-label" dir="rtl"> کاروبار کا شعبہ </span>)',
 
 'utility_connections_detail' => 'UTILITY CONNECTIONS DETAIL (<label class="urdu-label" dir="rtl"> یوٹیلیٹی کننیکشنز </label>)',
 
 'utility_connections_question' => 'Do you have Electricity Connection? (<span  class="urdu-label" dir="rtl"> کیا آپ کے پاس کوئی بجلی کا کنکشن ہے؟ </span>)',
 
-'connection_type' => 'Form/Type of Connection: (<span class="urdu-label" dir="rtl"> کنکشن کی قسم </span>)',
+'connection_type' => 'Form/Type of Connection (<span class="urdu-label" dir="rtl"> کنکشن کی قسم </span>)',
 'save_and_next' => 'Save & Next (<span class="urdu-label" dir="rtl"> محفوظ کریں اور آگے بڑھیں </span>)',
 'submit_form' => 'Submit (<span class="urdu-label" dir="rtl"> جمع کروائیں </span>)',
 'previous' => 'Back (<span class="urdu-label" dir="rtl"> پیچھے جائیں </span>)',
