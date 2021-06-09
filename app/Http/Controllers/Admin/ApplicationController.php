@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gender;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\Application;
@@ -16,7 +17,7 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        
+
        return view('admin.application.index');
     }
 
@@ -77,7 +78,7 @@ class ApplicationController extends Controller
             return redirect(route('admin.applications.index'));
         }
 
-       $genders = ['Male', 'Female', 'Transgender'];
+       $genders = Gender::where('gender_status',1)->get();
        return view('admin.application.show',compact('application','genders'));
     }
 

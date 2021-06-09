@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Application;
+use App\Models\Gender;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -75,7 +76,7 @@ class ApplicationController extends Controller
             session()->flash('error_message', 'No Record found.');
             return redirect(route('applicant.applications.index'));
         }
-        $genders = ['Male', 'Female', 'Transgender'];
+        $genders = Gender::where('gender_status',1)->get();
        return view('applicant.application.show',compact('application','genders'));
     }
 
