@@ -398,7 +398,6 @@ class ApplicationForm extends Component
          'application.residence_city_id' => 'required',
          'application.residence_district_id' => 'required',
          'application.residence_tehsil_id' => 'required',
-         'application.business_capacity_id' => 'required',
         'application.residence_capacity_id' => 'required',
         'application.residence_share' => 'required|numeric|min:0|max:100',
         'application.residence_acquisition_date' => 'required',
