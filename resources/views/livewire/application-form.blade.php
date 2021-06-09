@@ -1979,7 +1979,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                             class="text-danger">*</span></span>
                                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
-                                   target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                                 </div>
                             @endif
@@ -1989,7 +1989,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                     <span class="font-weight-bolder mb-2">{!! __('labels.registration_proof') !!} </span>
                                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}"
-                                   target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                                 </div>
                             @endif
@@ -2004,7 +2004,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                             class="text-danger">*</span></span>
                                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
-                                   target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                                 </div>
                             @endif
@@ -2030,7 +2030,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                             class="text-danger">*</span></span>
                                         <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($other_file['document_file']) }}"
-                                   target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                                     </div>
                                 @endif
@@ -2135,18 +2135,21 @@ $wire.set('application.minority_status_id', event.target.value)
                                             class="text-danger">*</span></span>
                                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}"
-                                   target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                                 </div>
                             @endif
+
+                        </div>
+                        <div class="d-flex justify-content-between pt-5">
+                            
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_contact_no') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_contact_number'])?$application['business_contact_number']:'' }}</span>
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-between pt-5">
+
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_email_address') !!}<span
                                         class="text-danger">*</span></span>
@@ -2229,7 +2232,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                             class="text-danger">*</span></span>
                                         <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($connection['bill_file']) }}"
-                                   target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                                     </div>
                                 @endif
@@ -2301,7 +2304,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                             class="text-danger">*</span></span>
                                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}"
-                                   target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                                 </div>
                             @endif
