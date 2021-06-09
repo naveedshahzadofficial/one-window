@@ -636,14 +636,13 @@ $wire.set('application.minority_status_id', event.target.value)
 
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="font-weight-bold section_heading text-white"><span>BASIC INFO (<label class="urdu-label"
-                                                                                                     dir="rtl"> بنیادی معلومات </label>)</span>
+                    <h4 class="font-weight-bold section_heading text-white"><span>{!! __('labels.basic_info') !!}</span>
                     </h4>
 
                     <div class="section_box">
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Business Name: (<span class="urdu-label" dir="rtl"> کاروبار کا نام </span>)<span
+                                <label>{!! __('labels.business_name') !!}<span
                                         class="text-danger">*</span></label>
                                 <input wire:model.defer="application.business_name" type="text"
                                        class="form-control @error('application.business_name') is-invalid @enderror"
@@ -654,7 +653,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Acquisition/ Start Date: (<span class="urdu-label" dir="rtl"> کاروبار کے قیام / حصول / آغاز کی تاریخ </span>)<span
+                                <label>{!! __('labels.business_acquisition_start_date') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-date-picker wire:model.defer="application.business_establishment_date"
@@ -671,7 +670,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             <div class="form-group row">
 
                                 <div class="col-lg-6">
-                                    <label>Business Registration Status: (<span class="urdu-label" dir="rtl"> بزنس رجسٹریشن کی حیثیت </span>)<span
+                                    <label>{!! __('labels.business_registration_status') !!}<span
                                             class="text-danger">*</span></label>
                                     <div class="radio-inline" wire:ignore>
                                         @foreach($business_registration_status as $brs)
@@ -689,7 +688,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                 </div>
 
                                 <div x-show.transition.opacity="is_business_registered=='Registered'" class="col-lg-6">
-                                    <label>Legal Status of Business: (<span class="urdu-label" dir="rtl"> کاروباری اندراج کی قانونی حیثیت </span>)<span
+                                    <label>{!! __('labels.business_legal_status') !!}<span
                                             class="text-danger">*</span></label>
                                     <div wire:ignore>
                                         <x-select2-dropdown wire:model.defer="application.business_legal_status_id"
@@ -707,7 +706,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                  class="form-group row">
 
                                 <div class="col-lg-6">
-                                    <label>Business Registration Number: (<span class="urdu-label" dir="rtl"> بزنس رجسٹریشن نمبر </span>)<span
+                                    <label>{!! __('labels.business_registration_no') !!}<span
                                             class="text-danger">*</span></label>
                                     <input wire:model.defer="application.business_registration_number" type="text"
                                            class="form-control @error('application.business_registration_number') is-invalid @enderror"
@@ -718,7 +717,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                 </div>
 
                                 <div class="col-lg-6">
-                                    <label>Business Registration Date: (<span class="urdu-label" dir="rtl"> کاروبار کے اندراج کی تاریخ </span>)<span
+                                    <label>{!! __('labels.business_registration_date') !!}<span
                                             class="text-danger">*</span></label>
                                     <div wire:ignore>
                                         <x-date-picker wire:model.defer="application.business_registration_date"
@@ -733,8 +732,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             <div x-show.transition.opacity="is_business_registered=='Registered'"
                                  class="form-group row">
                                 <div class="col-lg-6">
-                                    <label>Business NTN: (<span class="urdu-label"
-                                                                dir="rtl"> کاروبار کا قومی ٹیکس نمبر </span>)<span
+                                    <label>{!! __('labels.business_ntn_no') !!}<span
                                             class="text-danger">*</span></label>
                                     <input wire:model.defer="application.business_ntn_no" type="text"
                                            class="form-control @error('application.business_ntn_no') is-invalid @enderror"
@@ -747,7 +745,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Business Category: (<span class="urdu-label" dir="rtl"> کاروبار کی قسم </span>)<span
+                                <label>{!! __('labels.business_category') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.business_category_id"
@@ -763,8 +761,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                         <div class="form-group row">
                             <div class="col-lg-12">
-                                <label>Sector: (<span class="urdu-label"
-                                                                 dir="rtl"> کاروبار کا شعبہ </span>)<span
+                                <label>{!! __('labels.sector') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-multi-column-select2 :listing="$business_activities"
@@ -780,12 +777,11 @@ $wire.set('application.minority_status_id', event.target.value)
 
                     </div>
 
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RELEVANT ATTACHMENTS (<label
-                                class="urdu-label" dir="rtl"> مطلوبہ دستاویزات </label>)</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.relevent_attachment') !!}</span></h4>
                     <div class="section_box">
                         <div class="form-group row">
                             <div x-data="{ open: false }" class="col-lg-6">
-                                <label>Upload Proof of Ownership: (<span class="urdu-label" dir="rtl"> ملکیت کا ثبوت اپ لوڈ کریں </span>)<span
+                                <label>{!!__('labels.ownership_proof') !!}<span
                                         class="text-danger">*</span> <i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('proof_of_ownership_file')"></i></label>
 
                                 @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
@@ -808,8 +804,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div x-data="{ open: false }" class="col-lg-6">
-                                <label>License /Registration with chamber or Trade body:<br>(<span class="urdu-label"
-                                                                                                   dir="rtl"> چیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ اپ لوڈ کریں </span>)
+                                <label>{!!__('labels.registration_proof') !!}
                                     &nbsp;<i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('license_registration_file')"></i></label>
 
                                 @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
@@ -838,7 +833,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div x-show.transition.opacity="is_business_registered=='Registered'"
                              class="form-group row">
                             <div  x-data="{ open: false }" class="col-lg-6">
-                                <label>Upload Registration Certificate: (<span class="urdu-label" dir="rtl"> رجسٹریشن سرٹیفکیٹ اپ لوڈ کریں </span>)<span
+                                <label>{!!__('labels.registration_certificate') !!}<span
                                         class="text-danger">*</span></label>
 
                                 @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
@@ -865,7 +860,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         {{--Other Documents--}}
                         <div class="form-group row">
                             <div class="col-lg-12">
-                                <label>Any Other Document: (<span class="urdu-label" dir="rtl"> کوئی اور دستاویز </span>)<span class="text-danger"></span></label>
+                                <label>{!!__('labels.business_other_documents') !!}<span class="text-danger"></span></label>
                             </div>
                             <div class="col-lg-12">
                             @foreach($business_other_files as $index=>$business_other_file)
@@ -881,7 +876,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                         @endif
                                         <div class="row form-group">
                                             <div class="col-lg-6">
-                                                <label>Document Title (<span class="urdu-label" dir="rtl"> دستاویز کا عنوان </span>)<span
+                                                <label>{!!__('labels.document_title') !!}<span
                                                         class="text-danger"></span></label>
                                                 <input
                                                     wire:model.defer="business_other_files.{{$index}}.document_title"
@@ -895,7 +890,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                             </div>
 
                                             <div class="col-lg-6" x-data="{ open: false }">
-                                                <label>Document (<span class="urdu-label" dir="rtl"> دستاویز </span>)<span class="text-danger"></span></label>
+                                                <label>{!!__('labels.document') !!}</label>
                                                 @if(isset($business_other_file['document_file']) && !empty($business_other_file['document_file']))
                                                     <br><a href="{{ asset('storage/'.$business_other_file['document_file']) }}"
                                                            target="_blank" class="file_viewer" title="{{ $business_other_file['document_title']??'Other Document' }}">View
@@ -925,7 +920,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                                         wire:loading.class="spinner spinner-white spinner-right"
                                                         wire:loading.attr="disabled"
                                                         class="btn btn-custom-color font-weight-bold px-4 py-2 d-block">
-                                                    Add More
+                                                   {!!__('labels.add_more') !!}
                                                 </button>
                                             </div>
                                         </div>
@@ -937,14 +932,12 @@ $wire.set('application.minority_status_id', event.target.value)
 
                     </div>
 
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BUSINESS ADDRESS (<label
-                                class="urdu-label" dir="rtl"> کاروباری پتہ </label>)</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>  {!!__('labels.business_address') !!}</span></h4>
                     <div class="section_box">
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>Type of Property: (<span class="urdu-label"
-                                                                dir="rtl"> پراپرٹی کی قسم </span>)<span
+                                <label>{!!__('labels.property_type') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown
@@ -960,8 +953,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Form of Property: (<span class="urdu-label"
-                                                                dir="rtl"> پراپرٹی کی ذیلی قسم </span>)<span
+                                <label>{!!__('labels.property_form') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.business_address_form_id"
@@ -1011,7 +1003,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>{!! __('labels.province_state') !!}<span class="text-danger">*</span></label>
+                                <label>{!! __('labels.province') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown
                                         wire:model.defer="application.business_province_id"
@@ -1029,7 +1021,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>City: (<span class="urdu-label" dir="rtl"> شہر </span>)<span class="text-danger">*</span></label>
+                                <label>{!! __('labels.city') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.business_city_id"
                                                         setFieldName="application.business_city_id"
@@ -1043,7 +1035,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>District: (<span class="urdu-label" dir="rtl"> ضلع </span>)<span
+                                <label>{!! __('labels.district') !!}<span
                                         class="text-danger">*</span></label>
 
                                 <div wire:ignore>
@@ -1062,7 +1054,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>Tehsil: (<span class="urdu-label" dir="rtl"> تحصیل </span>)<span
+                                <label>{!! __('labels.tehsil') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.business_tehsil_id"
@@ -1076,7 +1068,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Capacity: (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)<span
+                                <label>{!! __('labels.ownership_capacity_business') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown
@@ -1096,7 +1088,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>{!! __('labels.share_percentage') !!}<span
+                                <label>{!! __('labels.share_business_place') !!}<span
                                         class="text-danger">*</span>&nbsp;<i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('business_share')"></i></label>
                                 <input wire:model.defer="application.business_share" type="number" min="0" max="100"
                                        class="form-control @error('application.business_share') is-invalid @enderror"
@@ -1107,7 +1099,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>{!! __('labels.business_acquisition_date') !!}<span
+                                <label>{!! __('labels.business_acquisition_date_place') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-date-picker wire:model="application.business_acquisition_date"
@@ -1122,8 +1114,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="form-group row">
                             <div x-data="{ open: false }" class="col-lg-6">
-                                <label>Evidence of tenancy/ ownership of business premises:<br>(<span class="urdu-label"
-                                                                                                      dir="rtl"> کرایہ داری / کاروبار کے احاطے کی ملکیت کا ثبوت </span>)<span
+                                <label>{!! __('labels.business_evidence_tenancy') !!}<span
                                         class="text-danger">*</span>&nbsp;<i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('business_evidence_ownership_file')"></i></label>
 
                                 @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
@@ -1152,8 +1143,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Business Contact No. (<span class="urdu-label"
-                                                                   dir="rtl"> کاروباری رابطہ نمبر </span>)<span
+                                <label>{!! __('labels.business_contact_no') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-input-mask wire:model.defer="application.business_contact_number"
@@ -1166,7 +1156,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Business Email Address: (<span class="urdu-label" dir="rtl"> کاروباری ای میل ایڈریس </span>)<span
+                                <label>{!! __('labels.business_email_address') !!}<span
                                         class="text-danger">*</span></label>
                                 <input wire:model.defer="application.business_email" type="email"
                                        class="form-control @error('application.business_email') is-invalid @enderror"
@@ -1185,8 +1175,7 @@ $wire.set('application.minority_status_id', event.target.value)
                 <!--begin: Wizard Step 3 -->
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="font-weight-bold section_heading text-white"><span>UTILITY CONNECTIONS (<label
-                                class="urdu-label" dir="rtl"> یوٹیلیٹی کننیکشنز </label>)</span></h4>
+                    <h4 class="font-weight-bold section_heading text-white"><span>{!! __('labels.utility_connections_heading') !!}</span></h4>
                     <div class="section_box">
 
                         <div class="form-group row">
@@ -1380,12 +1369,12 @@ $wire.set('application.minority_status_id', event.target.value)
                 <!--begin: Wizard Step 4 -->
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="font-weight-bold section_heading text-white"><span>EMPLOYEES INFO  (<label
-                                class="urdu-label" dir="rtl"> ملازمین کی معلومات </label>)</span></h4>
+
+                    <h4 class="font-weight-bold section_heading text-white"><span>  {!!  __('labels.employee_info_heading') !!}</span></h4>
                     <div class="section_box">
                         <div class="form-group row">
                             <div class="col-lg-12">
-                                <label>Do you have employees? (<span class="urdu-label" dir="rtl"> کیا آپ کے پاس ملازم ہیں؟ </span>)<span
+                                <label> {!!  __('labels.employees_question') !!}<span
                                         class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($questions as $question)
@@ -1566,7 +1555,7 @@ $wire.set('application.minority_status_id', event.target.value)
                     </div>
                     </div>
 
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.exports') !!}</span>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.imports') !!}</span>
                     </h4>
                     <div class="section_box">
 
@@ -1620,7 +1609,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row" x-show.transition.opacity="is_annual_import=='Yes'">
 
                             <div class="col-lg-6">
-                                <label>{!! __('labels.export_turnover') !!} <span class="text-danger">*</span>:  <span class="text-danger">*</span></label>
+                                <label>{!! __('labels.import_turnover') !!} <span class="text-danger">*</span></label>
                                 <input wire:model.defer="application.import_annual_turnover" type="text" class="form-control @error('application.import_annual_turnover') is-invalid @enderror" placeholder="Import Annual Turnover" />
                                 @error('application.import_annual_turnover')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -1636,34 +1625,32 @@ $wire.set('application.minority_status_id', event.target.value)
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
                     <!--begin::Section-->
-                    <h4 class="main_section_heading">APPLICANT PROFILE (<span class="urdu-label" dir="rtl"> درخواست دہندہ کی پروفائل </span>)
+                    <h4 class="main_section_heading">{!! __('labels.review_applicant_profile') !!}
                     </h4>
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BASIC INFO (<label
-                                class="urdu-label" dir="rtl"> بنیادی معلومات </label>)</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.basic_info') !!}</span></h4>
 
                     <div class="section_box">
                         <div class="d-flex justify-content-between">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">First Name: (<span class="urdu-label" dir="rtl"> پہلا نام </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.first_name') !!}<span
                                         class="text-danger">*</span></span>
                                 <span class="opacity-70">{{ isset($application['prefix_id'])?getCollectionTitle($prefixes,'prefix_name',$application['prefix_id']):'' }}&nbsp;{{ isset($application['first_name'])?$application['first_name']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Middle Name: (<span class="urdu-label" dir="rtl"> درمیانی نام </span>)</span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.middle_name') !!}</span>
                                 <span
                                     class="opacity-70">{{ isset($application['middle_name'])?$application['middle_name']:'' }}</span>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Last Name: (<span class="urdu-label" dir="rtl"> آخری نام </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.last_name') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['last_name'])?$application['last_name']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Gender: (<span class="urdu-label"
-                                                                                     dir="rtl"> جنس </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.gender') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['gender_id'])?getCollectionTitle($genders,'gender_name',$application['gender_id']):'' }}</span>
@@ -1671,14 +1658,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">CNIC No. (<span class="urdu-label" dir="rtl"> قومی شناختی کارڈ نمبر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.cnic_no') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['cnic_no'])?$application['cnic_no']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">CNIC Issue Date: (<span class="urdu-label"
-                                                                                              dir="rtl"> شناختی کارڈ کے اجراء کی تاریخ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.cnic_issue_date') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['cnic_issue_date'])?$application['cnic_issue_date']:'' }}</span>
@@ -1686,15 +1672,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">CNIC Expiry Date: (<span class="urdu-label"
-                                                                                               dir="rtl"> شناختی کارڈ کی میعاد ختم ہونے کی تاریخ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.cnic_expiry_date') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['cnic_expiry_date'])?$application['cnic_expiry_date']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Date of Birth: (<span class="urdu-label"
-                                                                                            dir="rtl"> تاریخ پیدائش (کمپیوٹرائزڈ قومی شناختی کارڈ کے مطابق) </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.date_of_birth') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['date_of_birth'])?$application['date_of_birth']:'' }}</span>
@@ -1702,8 +1686,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Designation in Business: (<span class="urdu-label"
-                                                                                                      dir="rtl"> کاروبار میں عہدہ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.designation_business') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['designation_business_id'])?getCollectionTitle($designations,'name',$application['designation_business_id']):'' }}</span>
@@ -1711,8 +1694,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Do you have Minority Status? (<span
-                                        class="urdu-label" dir="rtl"> کیا آپ کو اقلیت کا درجہ حاصل ہے؟ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.minority_status_question') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['minority_status_question_id'])?getCollectionTitle($questions,'name',$application['minority_status_question_id']):'' }}</span>
@@ -1720,8 +1702,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             <div
                                 :class="{'d-none-imp': is_minority_status=='No'}"
                                 class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Minority Status: (<span class="urdu-label"
-                                                                                              dir="rtl"> اقلیت </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.minority_status') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['minority_status_id'])?getCollectionTitle($minority_status,'name',$application['minority_status_id']):'' }}</span>
@@ -1731,16 +1712,14 @@ $wire.set('application.minority_status_id', event.target.value)
                             <div
                                 :class="{'d-none-imp': !is_minority_status_other || is_minority_status=='No'}"
                                 class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Other: (<span class="urdu-label"
-                                                                                    dir="rtl"> دیگر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.other_than_minority') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['minority_status_other'])?$application['minority_status_other']:'' }}</span>
                             </div>
 
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">National Tax Number (Personal): (<span
-                                        class="urdu-label" dir="rtl"> قومی ٹیکس نمبر (ذاتی) </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.national_tax_number') !!}<span
                                         class="text-danger"></span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['ntn_personal'])?$application['ntn_personal']:'' }}</span>
@@ -1749,20 +1728,17 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                     </div>
 
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>QUALIFICATION DETAILS (<label
-                                class="urdu-label" dir="rtl"> تعلیمی تفصیلات </label>)</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.qualification_details') !!}</span></h4>
                     <div class="section_box">
                         <div class="d-flex justify-content-between">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Education Level: (<span class="urdu-label"
-                                                                                              dir="rtl"> تعلیمی قابلیت </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.education_level') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['education_level_id'])?getCollectionTitle($education_level,'name',$application['education_level_id']):'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Do you have any Technical Education?  (<span
-                                        class="urdu-label" dir="rtl"> تکنیکی تعلیم </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.technical_education_question') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['technical_education_question_id'])?getCollectionTitle($questions,'name',$application['technical_education_question_id']):'' }}</span>
@@ -1773,8 +1749,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                 :class="{'d-none-imp': is_technical_education=='No'}"
                                 class="d-flex justify-content-between pt-5">
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">Diploma/ Certificate Title: (<span
-                                            class="urdu-label" dir="rtl"> ڈپلومہ / سرٹیفکیٹ کا عنوان </span>)<span
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.technical_education_detail') !!}<span
                                             class="text-danger">*</span></span>
                                     <span
                                         class="opacity-70">{{ isset($technical_education['certificate_title'])?$technical_education['certificate_title']:'' }}</span>
@@ -1783,8 +1758,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         @endforeach
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Are you a skilled worker or an artisan? (<span
-                                        class="urdu-label" dir="rtl"> ہنر مند یا کاریگر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.profession_question') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['skilled_worker_question_id'])?getCollectionTitle($questions,'name',$application['skilled_worker_question_id']):'' }}</span>
@@ -1792,7 +1766,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             <div
                                 :class="{'d-none-imp': is_skilled_worker=='No'}"
                                 class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Skill or Art: (<span class="urdu-label" dir="rtl"> ہنر یا فن کی وضاحت کریں </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.is_skilled_worker') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['skill_or_art'])?$application['skill_or_art']:'' }}</span>
@@ -1801,20 +1775,17 @@ $wire.set('application.minority_status_id', event.target.value)
                     </div>
 
                     <h4 class="mt-10 font-weight-bold section_heading text-white">
-                        <span>RESIDENCE ADDRESS (LOCAL) (<label class="urdu-label"
-                                                                dir="rtl"> رہائش کا پتہ (مقامی) </label>)</span></h4>
+                        <span>{!! __('labels.residence_address') !!}</span></h4>
                     <div class="section_box">
                         <div class="d-flex justify-content-between">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Type of Property: (<span class="urdu-label"
-                                                                                               dir="rtl"> پراپرٹی کی قسم </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['residence_address_type_id'])?getCollectionTitle($address_types,'type_name',$application['residence_address_type_id']):'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Form of Property: (<span class="urdu-label"
-                                                                                               dir="rtl"> پراپرٹی کی ذیلی قسم </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['residence_address_form_id'])?getCollectionTitle($residence_address_forms,'form_name',$application['residence_address_form_id']):'' }}</span>
@@ -1822,15 +1793,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Unit / Address 1: (<span class="urdu-label"
-                                                                                               dir="rtl"> مکان نمبر / یونٹ نمبر/ گاؤں / حدود نمبر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_1') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['residence_address_1'])?$application['residence_address_1']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Complex / Street / Address 2: (<span
-                                        class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_2') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['residence_address_2'])?$application['residence_address_2']:'' }}</span>
@@ -1838,15 +1807,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Area/ Locality / Address 3: (<span
-                                        class="urdu-label" dir="rtl"> علاقہ/ سڑک/ گاؤں </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_3') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['residence_address_3'])?$application['residence_address_3']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">City: (<span class="urdu-label"
-                                                                                   dir="rtl"> شہر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.city') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['residence_city_id'])?getCollectionTitle($residence_cities,'city_name_e',$application['residence_city_id']):'' }}</span>
@@ -1854,14 +1821,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">District: (<span class="urdu-label"
-                                                                                       dir="rtl"> ضلع </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.district') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['residence_district_id'])?getCollectionTitle($residence_districts,'district_name_e',$application['residence_district_id']):'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Capacity: (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.property_capacity') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['residence_capacity_id'])?getCollectionTitle($address_capacities,'capacity_name',$application['residence_capacity_id']):'' }}</span>
@@ -1883,14 +1849,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Mobile No. (<span class="urdu-label" dir="rtl"> موبائل نمبر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.mobile_no') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['personal_mobile_no'])?$application['personal_mobile_no']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Email Address: (<span class="urdu-label"
-                                                                                            dir="rtl"> ای میل اڈریس </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.email_address') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['personal_email'])?$application['personal_email']:'' }}</span>
@@ -1898,23 +1863,19 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                     </div>
 
-                    <h4 class="mt-10 main_section_heading">BUSINESS PROFILE (<span class="urdu-label" dir="rtl"> بزنس پروفائل </span>)
+                    <h4 class="mt-10 main_section_heading">{!! __('labels.review_business_profile') !!}
                     </h4>
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BASIC INFO (<label
-                                class="urdu-label" dir="rtl"> بنیادی معلومات </label>)</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.basic_info') !!}</span></h4>
                     <div class="section_box">
                         <div class="d-flex justify-content-between">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business Name: (<span class="urdu-label"
-                                                                                            dir="rtl"> کاروبار کا نام </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_name') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_name'])?$application['business_name']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business Acquisition/ Start/ Establishment/ Formation Date: (<span
-                                        class="urdu-label"
-                                        dir="rtl"> کاروبار کے قیام / حصول / آغاز کی تاریخ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_acquisition_start_date') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_establishment_date'])?$application['business_establishment_date']:'' }}</span>
@@ -1923,8 +1884,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business Registration Status: (<span
-                                        class="urdu-label" dir="rtl"> بزنس رجسٹریشن کی حیثیت </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_status') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_registration_status_id'])?getCollectionTitle($business_registration_status,'name',$application['business_registration_status_id']):'' }}</span>
@@ -1934,15 +1894,13 @@ $wire.set('application.minority_status_id', event.target.value)
                             :class="{'d-none-imp': is_business_registered=='Registered'}"
                             class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Legal Status of Business: (<span
-                                        class="urdu-label" dir="rtl"> کاروباری اندراج کی قانونی حیثیت </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_legal_status') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_legal_status_id'])?getCollectionTitle($business_legal_statuses,'legal_name',$application['business_legal_status_id']):'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business Registration Number: (<span
-                                        class="urdu-label" dir="rtl"> بزنس رجسٹریشن نمبر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_no') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_registration_number'])?$application['business_registration_number']:'' }}</span>
@@ -1953,15 +1911,14 @@ $wire.set('application.minority_status_id', event.target.value)
                             :class="{'d-none-imp': is_business_registered=='Registered'}"
                             class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business Registration Date: (<span
-                                        class="urdu-label" dir="rtl"> کاروبار کے اندراج کی تاریخ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_date') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_registration_date'])?$application['business_registration_date']:'' }}</span>
                             </div>
 
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business NTN: (<span class="urdu-label" dir="rtl"> کاروبار کا قومی ٹیکس نمبر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_ntn_no') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_ntn_no'])?$application['business_ntn_no']:'' }}</span>
@@ -1969,15 +1926,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business Category: (<span class="urdu-label"
-                                                                                                dir="rtl"> کاروبار کی قسم </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_category') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_activity_id'])?getCollectionTitle($business_activities,'section_name',$application['business_activity_id']):'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business Sector: (<span class="urdu-label"
-                                                                                              dir="rtl"> کاروبار کا شعبہ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_sector') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_activity_id'])?getCollectionTitle($business_activities,'group_name',$application['business_activity_id']):'' }}</span>
@@ -1985,8 +1940,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business Sub Sector: (<span class="urdu-label"
-                                                                                                  dir="rtl"> کاروبار کا شعبہ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_sub_sector') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_activity_id'])?getCollectionTitle($business_activities,'class_name',$application['business_activity_id']):'' }}</span>
@@ -1994,14 +1948,12 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                     </div>
 
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>RELEVANT ATTACHMENTS (<label
-                                class="urdu-label" dir="rtl"> مطلوبہ دستاویزات </label>)</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.relevent_attachment') !!}</span></h4>
                     <div class="section_box">
                         <div class="d-flex justify-content-between">
                             @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">Upload Proof of Ownership: (<span
-                                            class="urdu-label" dir="rtl"> ملکیت کا ثبوت اپ لوڈ کریں </span>)<span
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.ownership_proof') !!}<span
                                             class="text-danger">*</span></span>
                                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
@@ -2012,8 +1964,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                             @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">License /Registration with chamber or Trade body:<br>(<span
-                                            class="urdu-label" dir="rtl"> چیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ اپ لوڈ کریں </span>) </span>
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.registration_proof') !!} </span>
                                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}"
                                    target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
@@ -2027,8 +1978,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             class="d-flex justify-content-between pt-5">
                             @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">Upload Registration Certificate: (<span
-                                            class="urdu-label" dir="rtl"> رجسٹریشن سرٹیفکیٹ اپ لوڈ کریں </span>)<span
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.registration_certificate') !!}<span
                                             class="text-danger">*</span></span>
                                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
@@ -2040,20 +1990,17 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                     </div>
 
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>BUSINESS ADDRESS (<label
-                                class="urdu-label" dir="rtl"> کاروباری پتہ </label>)</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.business_address') !!}</span></h4>
                     <div class="section_box">
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Type of Property: (<span class="urdu-label"
-                                                                                               dir="rtl"> پراپرٹی کی قسم </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_address_type_id'])?getCollectionTitle($address_types,'type_name',$application['business_address_type_id']):'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Form of Property: (<span class="urdu-label"
-                                                                                               dir="rtl"> پراپرٹی کی ذیلی قسم </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.property_form') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_address_form_id'])?getCollectionTitle($business_address_forms,'form_name',$application['business_address_form_id']):'' }}</span>
@@ -2061,15 +2008,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Unit / Address 1: (<span class="urdu-label"
-                                                                                               dir="rtl"> یونٹ نمبر/ گاؤں / حدود نمبر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_address_1') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_address_1'])?$application['business_address_1']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Complex / Street / Address 2: (<span
-                                        class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_address_2') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_address_2'])?$application['business_address_2']:'' }}</span>
@@ -2077,14 +2022,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Area/ Locality / Address 3: (<span
-                                        class="urdu-label" dir="rtl"> علاقہ/ سڑک/ گاؤں </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_address_3') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_address_3'])?$application['business_address_3']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Provinces: (<span class="urdu-label" dir="rtl"> صوبہ / ریاست </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.province') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_province_id'])?getCollectionTitle($provinces,'province_name',$application['business_province_id']):'' }}</span>
@@ -2092,14 +2036,12 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">City: (<span class="urdu-label"
-                                                                                   dir="rtl"> شہر </span>)</span>
+                                <span class="font-weight-bolder mb-2">{!! __('labels.city') !!}</span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_city_id'])?getCollectionTitle($business_cities,'city_name_e',$application['business_city_id']):'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">District: (<span class="urdu-label"
-                                                                                       dir="rtl"> ضلع </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.district') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_district_id'])?getCollectionTitle($business_districts,'district_name_e',$application['business_district_id']):'' }}</span>
@@ -2107,14 +2049,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Tehsil: (<span class="urdu-label"
-                                                                                     dir="rtl"> تحصیل </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.tehsil') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_tehsil_id'])?getCollectionTitle($business_tehsils,'tehsil_name_e',$application['business_tehsil_id']):'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Capacity: (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.residence_capacity') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_capacity_id'])?getCollectionTitle($address_capacities,'capacity_name',$application['business_capacity_id']):'' }}</span>
@@ -2122,13 +2063,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.share_percentage') !!}<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.share_business_place') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_share'])?$application['business_share']:'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.business_acquisition_date') !!}<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_acquisition_date_place') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_acquisition_date'])?$application['business_acquisition_date']:'' }}</span>
@@ -2137,9 +2078,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="d-flex justify-content-between pt-5">
                             @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">Evidence of tenancy/ ownership of business premises:<br>(<span
-                                            class="urdu-label"
-                                            dir="rtl"> کرایہ داری / کاروبار کے احاطے کی ملکیت کا ثبوت </span>)<span
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.business_evidence_tenancy') !!}<span
                                             class="text-danger">*</span></span>
                                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}"
@@ -2148,8 +2087,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                 </div>
                             @endif
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business Contact No. (<span class="urdu-label"
-                                                                                                  dir="rtl"> کاروباری رابطہ نمبر </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_contact_no') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_contact_number'])?$application['business_contact_number']:'' }}</span>
@@ -2157,8 +2095,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Business Email Address: (<span class="urdu-label"
-                                                                                                     dir="rtl"> کاروباری ای میل ایڈریس </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.business_email_address') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['business_email'])?$application['business_email']:'' }}</span>
@@ -2166,17 +2103,14 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                     </div>
 
-                    <h4 class="mt-10 main_section_heading">UTILITY CONNECTIONS (<span class="urdu-label" dir="rtl"> یوٹیلیٹی کننیکشنز </span>)
+                    <h4 class="mt-10 main_section_heading">{!! __('labels.utility_connections_heading') !!}
                     </h4>
                     <h4 class="mt-10 font-weight-bold section_heading text-white">
-                        <span>UTILITY CONNECTIONS DETAIL (<label class="urdu-label"
-                                                                 dir="rtl"> یوٹیلیٹی کننیکشنز </label>)</span></h4>
+                        <span>{!! __('labels.utility_connections_detail') !!}</span></h4>
                     <div class="section_box">
                         <div class="d-flex justify-content-between">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Do you have utility connections? (<span
-                                        class="urdu-label"
-                                        dir="rtl"> کیا آپ کے پاس کوئی یوٹیلیٹی کننیکشنز ہے؟ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.utility_connections_question') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['utility_connection_question_id'])?getCollectionTitle($questions,'name',$application['utility_connection_question_id']):'' }}</span>
@@ -2188,15 +2122,13 @@ $wire.set('application.minority_status_id', event.target.value)
                                 :class="{'d-none-imp': is_utility_connection=='Yes'}"
                                 class="d-flex justify-content-between pt-5">
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">Connection Ownership: (<span
-                                            class="urdu-label" dir="rtl"> کنکشن کی ملکیت </span>)<span
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.connection_ownership') !!}<span
                                             class="text-danger">*</span></span>
                                     <span
                                         class="opacity-70">{{ isset($connection['connection_ownership_id'])?getCollectionTitle($ownerships,'ownership_name',$connection['connection_ownership_id']):'' }}</span>
                                 </div>
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">Utility Type: (<span class="urdu-label"
-                                                                                               dir="rtl"> یوٹیلیٹی کنکشن کی قسم </span>)<span
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.utility_type') !!}<span
                                             class="text-danger">*</span></span>
                                     <span
                                         class="opacity-70">{{ isset($connection['utility_type_id'])?getCollectionTitle($utility_types,'type_name',$connection['utility_type_id']):'' }}</span>
@@ -2207,15 +2139,13 @@ $wire.set('application.minority_status_id', event.target.value)
                                 :class="{'d-none-imp': is_utility_connection=='Yes'}"
                                 class="d-flex justify-content-between pt-5">
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">Reference/ Consumer Number: (<span
-                                            class="urdu-label" dir="rtl"> حوالہ / صارف نمبر </span>)<span
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.consumer_number') !!}<span
                                             class="text-danger">*</span></span>
                                     <span
                                         class="opacity-70">{{ isset($connection['utility_consumer_number'])?$connection['utility_consumer_number']:'' }}</span>
                                 </div>
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">Form/Type of Connection: (<span
-                                            class="urdu-label" dir="rtl"> کنکشن کی قسم </span>)<span
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.connection_type') !!}<span
                                             class="text-danger">*</span></span>
                                     <span
                                         class="opacity-70">{{ isset($connection['utility_form_id'])?getCollectionTitle($utility_forms,'form_name',$connection['utility_form_id']):'' }}</span>
@@ -2225,7 +2155,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                 :class="{'d-none-imp': is_utility_connection=='Yes'}"
                                 class="d-flex justify-content-between pt-5">
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">Provider: (<span class="urdu-label" dir="rtl"> سروس مہیا کرنے والا </span>)<span
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.service_provider') !!}<<span
                                             class="text-danger">*</span></span>
                                     <span
                                         class="opacity-70">{{ isset($connection['utility_provider_other'])?$connection['utility_provider_other']:'' }}</span>
@@ -2234,15 +2164,13 @@ $wire.set('application.minority_status_id', event.target.value)
                         @endforeach
                     </div>
 
-                    <h4 class="mt-10 main_section_heading">EMPLOYEES INFO (<span class="urdu-label" dir="rtl"> سروس مہیا کرنے والا </span>)
+                    <h4 class="mt-10 main_section_heading">{!! __('labels.employee_info_heading') !!}
                     </h4>
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>EMPLOYEES INFO DETAIL (<label
-                                class="urdu-label" dir="rtl"> سروس مہیا کرنے والا </label>)</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.employee_info_detail') !!}</span></h4>
                     <div class="section_box">
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">Do you have employees? (<span class="urdu-label"
-                                                                                                    dir="rtl"> کیا آپ کے پاس ملازم ہیں؟ </span>)<span
+                                <span class="font-weight-bolder mb-2">{!! __('labels.employees_question') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['employees_question_id'])?getCollectionTitle($questions,'name',$application['employees_question_id']):'' }}</span>
