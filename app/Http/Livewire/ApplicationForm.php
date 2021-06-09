@@ -119,7 +119,7 @@ class ApplicationForm extends Component
     {
         $this->registration = null;
 
-        $this->step = 1;
+        $this->step = 0;
         $this->prefixes = Prefix::where('prefix_status',1)->get();
         $this->genders = Gender::where('gender_status',1)->get();
 
