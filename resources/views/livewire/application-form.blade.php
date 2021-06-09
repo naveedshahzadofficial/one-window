@@ -1812,20 +1812,42 @@ $wire.set('application.minority_status_id', event.target.value)
                                 <span
                                     class="opacity-70">{{ isset($application['residence_address_3'])?$application['residence_address_3']:'' }}</span>
                             </div>
+
                             <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.city') !!}<span
+								<span class="font-weight-bolder mb-2">{!! __('labels.province') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
-                                    class="opacity-70">{{ isset($application['residence_city_id'])?getCollectionTitle($residence_cities,'city_name_e',$application['residence_city_id']):'' }}</span>
+                                    class="opacity-70">{{ isset($application['residence_province_id'])?getCollectionTitle($provinces,'province_name',$application['residence_province_id']):'' }}</span>
                             </div>
+
                         </div>
+
                         <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">{!! __('labels.city') !!}<span
+                                        class="text-danger">*</span></span>
+                            <span
+                                class="opacity-70">{{ isset($application['residence_city_id'])?getCollectionTitle($residence_cities,'city_name_e',$application['residence_city_id']):'' }}</span>
+                        </div>
+
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.district') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
                                     class="opacity-70">{{ isset($application['residence_district_id'])?getCollectionTitle($residence_districts,'district_name_e',$application['residence_district_id']):'' }}</span>
                             </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-5">
+
+                            <div class="d-flex flex-column flex-root">
+															<span class="font-weight-bolder mb-2">{!! __('labels.tehsil') !!}<span
+                                                                    class="text-danger">*</span></span>
+                                <span
+                                    class="opacity-70">{{ isset($application['residence_tehsil_id'])?getCollectionTitle($residence_tehsils,'tehsil_name_e',$application['residence_tehsil_id']):'' }}</span>
+                            </div>
+
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.property_capacity') !!}<span
                                         class="text-danger">*</span></span>
@@ -2352,7 +2374,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                     data-wizard-type="action-prev"
                                     wire:loading.class="spinner spinner-white spinner-right"
                                     wire:click.prevent="decreaseStep"
-                                    wire:loading.attr="disabled">Previous
+                                    wire:loading.attr="disabled">{!! __('labels.previous') !!}
                             </button>
                         @endif
                     </div>
@@ -2363,7 +2385,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                     data-wizard-type="action-submit"
                                     wire:loading.class="spinner spinner-white spinner-right"
                                     wire:loading.attr="disabled"
-                                    wire:click.prevent="submitApplication">Submit
+                                    wire:click.prevent="submitApplication">{!! __('labels.submit_form') !!}
                             </button>
                         @else
                             <button type="button"
@@ -2372,7 +2394,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                     wire:loading.class="spinner spinner-white spinner-right"
                                     wire:loading.attr="disabled"
                                     wire:click.prevent="submitApplication"
-                            >Save & Next
+                            >{!! __('labels.save_and_next') !!}
                             </button>
                         @endif
                     </div>

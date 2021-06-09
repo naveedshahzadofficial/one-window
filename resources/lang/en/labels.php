@@ -58,7 +58,7 @@ return [
 //Headings
 'basic_info' => 'BASIC INFO (<label class="urdu-label" dir="rtl"> بنیادی معلومات   </label>)',
 'qualification_details' => 'QUALIFICATION DETAILS (<label class="urdu-label" dir="rtl"> تعلیمی تفصیلات </label>)',
-'residence_address' => 'RESIDENCE ADDRESS (LOCAL) (<label class="urdu-label" dir="rtl"> رہائش کا پتہ (مقامی) </label>)',
+'residence_address' => 'RESIDENCE ADDRESS (LOCAL) (<label class="urdu-label" dir="rtl"> رہائش کا پتہ - مقامی </label>)',
 
 'relevent_attachment' => 'RELEVANT ATTACHMENTS (<label class="urdu-label" dir="rtl"> رمطلوبہ دستاویزات    </label>)',
 
@@ -81,7 +81,7 @@ return [
 
 'minority_status' => 'Minority Status: (<span class="urdu-label" dir="rtl"> اقلیت </span>)',
 'other_than_minority' => 'Other: (<span class="urdu-label" dir="rtl"> دیگر </span>)',
-'national_tax_number' => 'National Tax Number (Personal): (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر (ذاتی) </span>)',
+'national_tax_number' => 'National Tax Number (Personal): (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر - ذاتی </span>)',
 
 'education_level' => 'Education Level: (<span class="urdu-label" dir="rtl"> تعلیمی قابلیت </span>)',
 'technical_education_question' => 'Do you have any Technical Education? (<span class="urdu-label" dir="rtl"> تکنیکی تعلیم </span>)',
@@ -95,7 +95,7 @@ return [
 'cnic_expiry_question' => 'Has your CNIC LifeTime Expiry Date? (<span class="urdu-label" dir="rtl"> کیا آپ کے شناختی کارڈ کی میعاد عمر بھر کیلئے ہے؟ </span>)',
 'residence_address_1' => 'House No./ Unit No./ Village/ Premises No. (<span class="urdu-label" dir="rtl"> مکان نمبر / یونٹ نمبر/ گاؤں / حدود نمبر </span>)',
 'residence_address_2' => 'Complex / Street/ Block/ Sector/ Municipality (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)',
-'residence_address_3' => 'Area / Locality/ Ward No. (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک/ گاؤں </span>)',
+'residence_address_3' => 'Area / Locality/ Ward No. (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک/ وارڈ نمبر </span>)',
 'residence_capacity' => 'Ownership Capacity of Residence Place (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)',
 
 'residence_acquisition_date' => 'Date of Acquisition of Residence Place (<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
@@ -184,6 +184,9 @@ return [
 'utility_connections_question' => 'Do you have Electricity Connection? (<span  class="urdu-label" dir="rtl"> کیا آپ کے پاس کوئی بجلی کا کنکشن ہے؟ </span>)',
 
 'connection_type' => 'Form/Type of Connection: (<span class="urdu-label" dir="rtl"> کنکشن کی قسم </span>)',
+'save_and_next' => 'Save & Next (<span class="urdu-label" dir="rtl"> محفوظ کریں اور آگے بڑھیں </span>)',
+'submit_form' => 'Submit (<span class="urdu-label" dir="rtl"> جمع کروائیں </span>)',
+'previous' => 'Back (<span class="urdu-label" dir="rtl"> پیچھے جائیں </span>)',
 
 
 ];
