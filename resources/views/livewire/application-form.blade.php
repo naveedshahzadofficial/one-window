@@ -1951,7 +1951,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_category') !!}<span
                                         class="text-danger">*</span></span>
                                 <span
-                                    class="opacity-70">{{ isset($application['business_activity_id'])?getCollectionTitle($business_activities,'section_name',$application['business_activity_id']):'' }}</span>
+                                    class="opacity-70">{{ isset($application['business_category_id'])?getCollectionTitle(business_categories,'category_name',$application['business_category_id']):'' }}</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_sector') !!}<span

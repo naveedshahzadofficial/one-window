@@ -129,6 +129,10 @@ class Application extends Model
     {
         return $this->belongsTo(AddressForm::class, 'residence_address_form_id');
     }
+    public function residenceProvince()
+    {
+        return $this->belongsTo(Province::class, 'residence_province_id');
+    }
 
     public function residenceCity()
     {
@@ -138,6 +142,10 @@ class Application extends Model
     public function residenceDistrict()
     {
         return $this->belongsTo(District::class, 'residence_district_id');
+    }
+    public function residenceTehsil()
+    {
+        return $this->belongsTo(Tehsil::class, 'residence_tehsil_id');
     }
 
     public function residenceAddressCapacity()
@@ -190,6 +198,8 @@ class Application extends Model
     {
         return $this->belongsTo(Province::class, 'business_province_id');
     }
+
+
     public function businessCity()
     {
         return $this->belongsTo(City::class, 'business_city_id');
@@ -223,13 +233,32 @@ class Application extends Model
         return $this->belongsTo(FiscalYear::class,'turnover_fiscal_year_id');
     }
 
+    public function exportQuestion()
+    {
+        return $this->belongsTo(Question::class,'export_question_id');
+    }
+
     public function exportFiscalYear()
     {
         return $this->belongsTo(FiscalYear::class,'export_fiscal_year_id');
     }
+
     public function exportCurrency()
     {
         return $this->belongsTo(Currency::class,'export_currency_id');
+    }
+
+    public function importQuestion()
+    {
+        return $this->belongsTo(Question::class,'import_question_id');
+    }
+    public function imporFiscalYear()
+    {
+        return $this->belongsTo(FiscalYear::class,'import_fiscal_year_id');
+    }
+    public function importCurrency()
+    {
+        return $this->belongsTo(Currency::class,'import_currency_id');
     }
 
 }
