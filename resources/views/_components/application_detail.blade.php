@@ -116,7 +116,7 @@
             </div>
         </div>
         @if(isset($application->technicalEducations) && $application->technicalEducations->isNotEmpty())
-        @foreach($technical_educations as $index=>$technical_education)
+        @foreach($application->technicalEducations as $index=>$technical_education)
             <div
                 :class="{'d-none-imp': is_technical_education=='No'}"
                 class="d-flex justify-content-between pt-5">
