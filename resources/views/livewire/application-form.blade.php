@@ -2142,7 +2142,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                         </div>
                         <div class="d-flex justify-content-between pt-5">
-                            
+
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_contact_no') !!}<span
                                         class="text-danger">*</span></span>

@@ -8,7 +8,7 @@
             <div class="card-title">
                 <h3 class="card-label">All SMEs</h3>
             </div>
-           
+
         </div>
         <div class="card-body">
         @component('_components.alerts-default')@endcomponent
@@ -17,10 +17,10 @@
                 <thead>
                 <tr>
                     <th>No</th>
+                    <th>Business</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Business</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -53,12 +53,12 @@
                 },
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    {data: 'business_name', name: 'business_name'},
                     {data: 'first_name', name: 'first_name', render:function(data,type,row,meta){
                         return row.first_name+ " "+row.last_name;
                     } },
                     {data: 'personal_email', name: 'personal_email'},
                     {data: 'personal_mobile_no', name: 'personal_mobile_no'},
-                    {data: 'business_name', name: 'business_name'},
                     {
                         data: 'action',
                         name: 'action',
