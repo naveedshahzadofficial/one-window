@@ -24,11 +24,10 @@ class AddressTypeSeeder extends Seeder
         AddressType::create(['type_name'=>'Public Property', 'property_category_id'=>1,'fbr_code_id'=>118]);
         AddressType::create(['type_name'=>'Religious Property', 'property_category_id'=>1,'fbr_code_id'=>119]);
         AddressType::create(['type_name'=>'Residential Property', 'property_category_id'=>1,'fbr_code_id'=>114]);
-        AddressType::create(['type_name'=>'Any other', 'property_category_id'=>1,'fbr_code_id'=>null]);
-        AddressType::create(['type_name'=>'Agriculture Land', 'property_category_id'=>2,'fbr_code_id'=>null]);
-        AddressType::create(['type_name'=>'Building', 'property_category_id'=>2,'fbr_code_id'=>null]);
-        AddressType::create(['type_name'=>'House', 'property_category_id'=>2,'fbr_code_id'=>null]);
-        AddressType::create(['type_name'=>'Shop', 'property_category_id'=>2,'fbr_code_id'=>null]);
-        AddressType::create(['type_name'=>'Any other', 'property_category_id'=>2,'fbr_code_id'=>null]);
+        AddressType::create(['type_name'=>'Agriculture Land', 'property_category_id'=>2,'fbr_code_id'=>null,'type_status'=>0]);
+        AddressType::create(['type_name'=>'Building', 'property_category_id'=>2,'fbr_code_id'=>null,'type_status'=>0]);
+        AddressType::create(['type_name'=>'House', 'property_category_id'=>2,'fbr_code_id'=>null,'type_status'=>0]);
+        AddressType::create(['type_name'=>'Shop', 'property_category_id'=>2,'fbr_code_id'=>null,'type_status'=>0]);
+        AddressType::create(['type_name'=>'Any other', 'property_category_id'=>2,'fbr_code_id'=>null,'type_status'=>0]);
     }
 }

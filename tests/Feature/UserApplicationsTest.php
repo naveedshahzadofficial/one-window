@@ -21,7 +21,7 @@ class UserApplicationsTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_can_create_new_application()
     {
         $response = $this->get('/');
 

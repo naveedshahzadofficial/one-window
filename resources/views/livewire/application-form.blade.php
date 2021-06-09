@@ -313,7 +313,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                 <div wire:ignore>
                                     <input wire:model.defer="application.ntn_personal" type="text"
                                            class="form-control @error('application.ntn_personal') is-invalid @enderror"
-                                           placeholder="NTN (Personal)"/>
+                                           placeholder="NTN (Personal)" maxlength="15"/>
                                 </div>
                                 @error('application.ntn_personal')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -743,7 +743,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                             class="text-danger">*</span></label>
                                     <input wire:model.defer="application.business_ntn_no" type="text"
                                            class="form-control @error('application.business_ntn_no') is-invalid @enderror"
-                                           placeholder="Business NTN"/>
+                                           placeholder="Business NTN" maxlength="15" />
                                     @error('application.business_ntn_no')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                     @enderror

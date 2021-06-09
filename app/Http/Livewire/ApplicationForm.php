@@ -119,7 +119,7 @@ class ApplicationForm extends Component
     {
         $this->registration = null;
 
-        $this->step = 0;
+        $this->step = 1;
         $this->prefixes = Prefix::where('prefix_status',1)->get();
         $this->genders = Gender::where('gender_status',1)->get();
 
@@ -540,33 +540,55 @@ class ApplicationForm extends Component
             $rules_business_profile['application.business_ntn_no'] = 'required';
             $messages_business_profile['application.business_ntn_no.required'] = 'Business NTN is required';
 
-            if(!isset($this->application['registration_certificate_file']) || empty($this->application['registration_certificate_file'])) {
-                $rules_business_profile['registration_certificate_file'] = 'required|max:5120';
+            if(!isset($this->application['registration_certificate_file']) || empty($this->application['registration_certificate_file']) || !empty($this->registration_certificate_file)) {
+                $rules_business_profile['registration_certificate_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
                 $messages_business_profile['registration_certificate_file.required'] = 'Please Upload Registration Certificate.';
             }
 
         }
 
-        if(!isset($this->application['proof_of_ownership_file']) || empty($this->application['proof_of_ownership_file'])) {
-            $rules_business_profile['proof_of_ownership_file'] = 'required|max:5120';
+        if(!isset($this->application['proof_of_ownership_file']) || empty($this->application['proof_of_ownership_file'])  || !empty($this->proof_of_ownership_file)) {
+            $rules_business_profile['proof_of_ownership_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
             $messages_business_profile['proof_of_ownership_file.required'] = 'Please Upload Proof of Ownership.';
         }
 
-        if(!isset($this->application['business_evidence_ownership_file']) || empty($this->application['business_evidence_ownership_file'])) {
-            $rules_business_profile['business_evidence_ownership_file'] = 'required|max:5120';
-            $messages_business_profile['business_evidence_ownership_file.required'] = 'Please Upload Proof of Ownership.';
+        if(!empty($this->license_registration_file)) {
+            $rules_business_profile['license_registration_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
         }
+
+        if(!isset($this->application['business_evidence_ownership_file']) || empty($this->application['business_evidence_ownership_file'])   || !empty($this->business_evidence_ownership_file)) {
+            $rules_business_profile['business_evidence_ownership_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
+            $messages_business_profile['business_evidence_ownership_file.required'] = 'Please Upload Business Evidence of Ownership.';
+        }
+
+        if(isset($this->business_other_files) && !empty($this->business_other_files)){
+            foreach ($this->business_other_files as $index=>$bof){
+                if(isset($bof['new_document_file']) && !empty($bof['new_document_file'])){
+                $rules_business_profile["business_other_files.$index.new_document_file"] = 'mimes:jpg,jpeg,png,pdf|max:5120';
+                $messages_business_profile["business_other_files.$index.new_document_file.mimes"] = 'The document file must be a file of type: jpg, jpeg, png, pdf.';
+                }
+            }
+        }
+
 
         $this->validate($rules_business_profile,$messages_business_profile);
 
-        if(!empty($this->proof_of_ownership_file))
-        $this->application['proof_of_ownership_file']= $this->proof_of_ownership_file->store('proof_of_ownerships','public');
-        if(!empty($this->registration_certificate_file))
-        $this->application['registration_certificate_file']= $this->registration_certificate_file->store('registration_certificates','public');
-        if(!empty($this->license_registration_file))
-        $this->application['license_registration_file']= $this->license_registration_file->store('license_registrations','public');
-        if(!empty($this->business_evidence_ownership_file))
-        $this->application['business_evidence_ownership_file']= $this->business_evidence_ownership_file->store('evidence_ownerships','public');
+        if(!empty($this->proof_of_ownership_file)) {
+            $this->application['proof_of_ownership_file'] = $this->proof_of_ownership_file->store('proof_of_ownerships', 'public');
+            $this->proof_of_ownership_file = null;
+        }
+        if(!empty($this->registration_certificate_file)) {
+            $this->application['registration_certificate_file'] = $this->registration_certificate_file->store('registration_certificates', 'public');
+            $this->registration_certificate_file = null;
+        }
+        if(!empty($this->license_registration_file)) {
+            $this->application['license_registration_file'] = $this->license_registration_file->store('license_registrations', 'public');
+            $this->license_registration_file = null;
+        }
+        if(!empty($this->business_evidence_ownership_file)) {
+            $this->application['business_evidence_ownership_file'] = $this->business_evidence_ownership_file->store('evidence_ownerships', 'public');
+            $this->business_evidence_ownership_file = null;
+        }
 
 
         $other_documents = array();
@@ -607,6 +629,21 @@ class ApplicationForm extends Component
             'application.utility_connection_question_id.required' => 'Please select your choice.',
 
         ];
+
+        if(isset($this->business_other_files) && !empty($this->business_other_files)){
+            foreach ($this->utility_connections as $index=>$conn){
+
+                if(isset($conn['new_bill_file']) && !empty($conn['new_bill_file'])){
+                    $rules_utility_connections["utility_connections.$index.new_bill_file"] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
+                    $messages_utility_connections["utility_connections.$index.new_bill_file.mimes"] = 'Utility bill must be a file of type: jpg, jpeg, png, pdf.';
+                }else if(!isset($connection['bill_file']) && empty($connection['bill_file'])){
+                    $rules_utility_connections["utility_connections.$index.new_bill_file"] = 'required';
+                    $messages_utility_connections["utility_connections.$index.new_bill_file.required"] = 'Paid Utility bill is required.';
+                }
+
+            }
+        }
+
 
         $this->validate($rules_utility_connections,$messages_utility_connections);
 
@@ -754,6 +791,11 @@ class ApplicationForm extends Component
             'application.annual_turnover.required' => 'Annual Turnover is required.',
         ];
 
+        if(!isset($this->application['business_account_statement_file']) || empty($this->application['business_account_statement_file'])   || !empty($this->business_account_statement_file)) {
+            $rules_business_profile['business_account_statement_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
+            $messages_business_profile['business_account_statement_file.required'] = 'Please Upload Business Account Statement.';
+        }
+
         $this->validate($rules_annual_turnover,$messages_annual_turnover);
 
         if($this->isYes('export_question_id')){
@@ -783,11 +825,13 @@ class ApplicationForm extends Component
     }
 
     public function addOtherDocument(){
-       /* $this->validate([
-            'business_other_files.*.document_file' => 'required',
+        $this->validate([
+            'business_other_files.*.document_title' => 'required',
+            'business_other_files.*.new_document_file' => 'mimes:jpg,jpeg,png,pdf|max:5120',
         ],[
-            'business_other_files.*.document_file.required' => 'Other Document is required.',
-        ]);*/
+            'business_other_files.*.document_title.required' => 'Other Document Title is required.',
+            'business_other_files.*.new_document_file.mimes' => 'The document file must be a file of type: jpg, jpeg, png, pdf.',
+        ]);
         $this->business_other_files[] = ['document_title'=>null,'document_file'=>null];
     }
 

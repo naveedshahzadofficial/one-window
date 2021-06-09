@@ -30,7 +30,8 @@ class UserSignUpMail extends Mailable
     public function build()
     {
         return $this->view('mails.user_sign_up',compact(['user'=>$this->user]))
-            ->from('no-reply@smerp.punjab.gov.pk','National SME Registration Portal (SMERP)')->subject('SMERP - Register');
+            ->from('no-reply@smerp.punjab.gov.pk','National SME Registration Portal (SMERP)')
+            ->subject('SMERP - Register');
 
     }
 }
