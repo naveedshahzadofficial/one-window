@@ -2118,26 +2118,37 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
 
                         @foreach($utility_connections as $index=>$connection)
-                            <div
-                                :class="{'d-none-imp': is_utility_connection=='Yes'}"
-                                class="d-flex justify-content-between pt-5">
+                            <div class="d-flex justify-content-between pt-5">
+
+                                <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.type_of_utility') !!}<span
+                                            class="text-danger">*</span></span>
+                                    <span
+                                        class="opacity-70">{{ isset($connection['utility_form_id'])?getCollectionTitle($utility_forms,'form_name',$connection['utility_form_id']):'' }}</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex justify-content-between pt-5">
+
+                                <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.type_of_connection') !!}<span
+                                            class="text-danger">*</span></span>
+                                    <span
+                                        class="opacity-70">{{ isset($connection['utility_type_id'])?getCollectionTitle($utility_types,'type_name',$connection['utility_type_id']):'' }}</span>
+                                </div>
+
                                 <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.connection_ownership') !!}<span
                                             class="text-danger">*</span></span>
                                     <span
                                         class="opacity-70">{{ isset($connection['connection_ownership_id'])?getCollectionTitle($ownerships,'ownership_name',$connection['connection_ownership_id']):'' }}</span>
                                 </div>
-                                <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.utility_type') !!}<span
-                                            class="text-danger">*</span></span>
-                                    <span
-                                        class="opacity-70">{{ isset($connection['utility_type_id'])?getCollectionTitle($utility_types,'type_name',$connection['utility_type_id']):'' }}</span>
-                                </div>
+
+
                             </div>
 
-                            <div
-                                :class="{'d-none-imp': is_utility_connection=='Yes'}"
-                                class="d-flex justify-content-between pt-5">
+                            <div class="d-flex justify-content-between pt-5">
                                 <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.consumer_number') !!}<span
                                             class="text-danger">*</span></span>
@@ -2145,21 +2156,31 @@ $wire.set('application.minority_status_id', event.target.value)
                                         class="opacity-70">{{ isset($connection['utility_consumer_number'])?$connection['utility_consumer_number']:'' }}</span>
                                 </div>
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.connection_type') !!}<span
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.service_provider') !!}<span
                                             class="text-danger">*</span></span>
                                     <span
-                                        class="opacity-70">{{ isset($connection['utility_form_id'])?getCollectionTitle($utility_forms,'form_name',$connection['utility_form_id']):'' }}</span>
+                                        class="opacity-70">{{ isset($connection['utility_provider_id'])?getCollectionTitle($utility_service_providers,'provider_name',$connection['utility_provider_id']):'' }}</span>
                                 </div>
                             </div>
-                            <div
-                                :class="{'d-none-imp': is_utility_connection=='Yes'}"
-                                class="d-flex justify-content-between pt-5">
+                            <div class="d-flex justify-content-between pt-5">
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.service_provider') !!}<<span
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.connection_date') !!}<span
                                             class="text-danger">*</span></span>
                                     <span
-                                        class="opacity-70">{{ isset($connection['utility_provider_other'])?$connection['utility_provider_other']:'' }}</span>
+                                        class="opacity-70">{{ isset($connection['connection_date'])?$connection['connection_date']:'' }}</span>
                                 </div>
+
+                                @if(isset($connection['bill_file']) && !empty($connection['bill_file']))
+                                    <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.business_paid_bill_file') !!}<span
+                                            class="text-danger">*</span></span>
+                                        <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($connection['bill_file']) }}"
+                                   target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                                    </div>
+                                @endif
+
                             </div>
                         @endforeach
                     </div>
@@ -2197,6 +2218,126 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                     </div>
+
+                    <h4 class="mt-10 main_section_heading">{!! __('labels.turnover_heading') !!}
+                    </h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white">
+                        <span>{!! __('labels.estimated_annual_turnover') !!}</span></h4>
+                    <div class="section_box">
+                        <div class="d-flex justify-content-between pt-5">
+                        <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}<span
+                                            class="text-danger">*</span></span>
+                            <span
+                                class="opacity-70">{{ isset($application['turnover_fiscal_year_id'])?getCollectionTitle($fiscal_years,'year_name',$application['turnover_fiscal_year_id']):'' }}</span>
+                        </div>
+
+                        <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.annual_turnover_fiscal_year') !!}<span
+                                            class="text-danger">*</span></span>
+                            <span
+                                class="opacity-70">{{ isset($application['annual_turnover'])?$application['annual_turnover']:'' }}</span>
+                        </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-5">
+
+                            @if(isset($application['business_account_statement_file']) && !empty($application['business_account_statement_file']))
+                                <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.business_account_statement') !!}<span
+                                            class="text-danger">*</span></span>
+                                    <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}"
+                                   target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                                </div>
+                            @endif
+
+                        </div>
+
+                    </div>
+
+                    <h4 class="mt-10 font-weight-bold section_heading text-white">
+                        <span>{!! __('labels.exports') !!}</span></h4>
+                    <div class="section_box">
+                        <div class="d-flex justify-content-between pt-5">
+                            <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.question_exports') !!}<span
+                                            class="text-danger">*</span></span>
+                                <span
+                                    class="opacity-70">{{ isset($application['export_question_id'])?getCollectionTitle($questions,'name',$application['export_question_id']):'' }}</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-5">
+                            <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}<span
+                                            class="text-danger">*</span></span>
+                                <span
+                                    class="opacity-70">{{ isset($application['export_fiscal_year_id'])?getCollectionTitle($fiscal_years,'year_name',$application['export_fiscal_year_id']):'' }}</span>
+                            </div>
+                            <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}<span
+                                            class="text-danger">*</span></span>
+                                <span
+                                    class="opacity-70">{{ isset($application['export_currency_id'])?getCollectionTitle($currencies,'currency_name',$application['export_currency_id']):'' }}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between pt-5">
+                            <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.export_turnover') !!}<span
+                                            class="text-danger">*</span></span>
+                                <span
+                                    class="opacity-70">{{ isset($application['export_annual_turnover'])?$application['export_annual_turnover']:'' }}</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <h4 class="mt-10 font-weight-bold section_heading text-white">
+                        <span>{!! __('labels.imports') !!}</span></h4>
+                    <div class="section_box">
+
+                        <div class="d-flex justify-content-between pt-5">
+
+                            <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.question_imports') !!}<span
+                                            class="text-danger">*</span></span>
+                                <span
+                                    class="opacity-70">{{ isset($application['import_question_id'])?getCollectionTitle($questions,'name',$application['import_question_id']):'' }}</span>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-between pt-5">
+                            <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}<span
+                                            class="text-danger">*</span></span>
+                                <span
+                                    class="opacity-70">{{ isset($application['import_fiscal_year_id'])?getCollectionTitle($fiscal_years,'year_name',$application['import_fiscal_year_id']):'' }}</span>
+                            </div>
+                            <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}<span
+                                            class="text-danger">*</span></span>
+                                <span
+                                    class="opacity-70">{{ isset($application['import_currency_id'])?getCollectionTitle($currencies,'currency_name',$application['import_currency_id']):'' }}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between pt-5">
+                            <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.import_turnover') !!}<span
+                                            class="text-danger">*</span></span>
+                                <span
+                                    class="opacity-70">{{ isset($application['import_annual_turnover'])?$application['import_annual_turnover']:'' }}</span>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
 
                     <!--end::Section-->
                 </div>

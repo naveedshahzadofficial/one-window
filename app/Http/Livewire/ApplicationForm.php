@@ -222,6 +222,8 @@ class ApplicationForm extends Component
 
             if($this->isYes('utility_connection_question_id')){
                 $this->is_utility_connection = true;
+            }else{
+                $this->is_utility_connection = false;
             }
 
             if($this->isYes('employees_question_id')){
