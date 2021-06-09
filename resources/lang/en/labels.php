@@ -29,6 +29,27 @@ return [
     'reset_password' => 'Reset Password (<span class="urdu-label" dir="rtl"> پاس ورڈ ری سیٹ </span>)',
     // Commons
     'share_percentage' => 'Share % (<span class="urdu-label" dir="rtl"> حصہ فیصد </span>)',
+    'add_more' => ' Add More',
+     'province_state' => 'Province/ State (<span class="urdu-label" dir="rtl"> صوبہ / ریاست </span>)',
+      'city' => 'City: (<span class="urdu-label" dir="rtl"> شہر </span>)',
+      'district' => 'District: (<span class="urdu-label" dir="rtl"> ضلع </span>)',
+       'tehsil' => 'Tehsil: (<span class="urdu-label" dir="rtl"> تحصیل</span>)',
+
+
+    // Main Tabs
+    'applicant_profile' => 'Applicant Profile',
+    'business_profile' => 'Business Profile',
+    'utility_connections' => 'Utility Connections',
+    'employees_info' => 'Employees Info',
+    'annual_turnover' => 'Annual Turnover',
+    'review_submit' => 'Review and Submit',
+
+    //Headings
+    'basic_info' => 'BASIC INFO (<label class="urdu-label" dir="rtl"> بنیادی معلومات   </label>)',
+    'qualification_details' => 'QUALIFICATION DETAILS (<label class="urdu-label" dir="rtl"> تعلیمی تفصیلات </label>)',
+    'residence_address' => 'RESIDENCE ADDRESS (LOCAL) (<label class="urdu-label"
+                                                                dir="rtl"> رہائش کا پتہ (مقامی) </label>)',
+
 
     // Applicant Profile
     'gender' => 'Gender (<span class="urdu-label" dir="rtl"> جنس </span>)',
@@ -37,6 +58,20 @@ return [
     'cnic_expiry_date' => 'CNIC Expiry Date (<span class="urdu-label" dir="rtl"> شناختی کارڈ کی میعاد ختم ہونے کی تاریخ </span>)',
     'designation_business' => 'Designation in Business (<span class="urdu-label" dir="rtl"> کاروبار میں عہدہ </span>)',
     'minority_status_question' => 'Do you have Minority Status? (<span class="urdu-label" dir="rtl"> کیا آپ کو اقلیت کا درجہ حاصل ہے؟ </span>)',
+
+    'minority_status' => 'Minority Status: (<span class="urdu-label" dir="rtl"> اقلیت </span>)',
+    'other_than_minority' => 'Other: (<span class="urdu-label" dir="rtl"> دیگر </span>)',
+    'national_tax_number' => 'National Tax Number (Personal): (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر (ذاتی) </span>)',
+
+      'education_level' => 'Education Level: (<span class="urdu-label" dir="rtl"> تعلیمی قابلیت </span>)',
+       'technical_education_question' => 'Do you have any Technical Education? (<span class="urdu-label" dir="rtl"> تکنیکی تعلیم </span>)',
+       'technical_education_detail' => 'Diploma/ Certificate Title:  (<span class="urdu-label" dir="rtl"> ڈپلومہ / سرٹیفکیٹ کا عنوان </span>)',
+
+        'profession_question' => 'Are you a skilled worker or an artisan? (<span class="urdu-label" dir="rtl"> ہنر مند یا کاریگر  </span>)',
+
+    'is_skilled_worker' => 'Skill or Art: (<span class="urdu-label" dir="rtl"> ہنر یا فن کی وضاحت کریں </span>)',
+
+
     'cnic_expiry_question' => 'Has your CNIC LifeTime Expiry Date? (<span class="urdu-label" dir="rtl"> کیا آپ کے شناختی کارڈ کی میعاد عمر بھر کیلئے ہے؟ </span>)',
     'residence_address_1' => 'House No./ Unit No./ Village/ Premises No. (<span class="urdu-label" dir="rtl"> مکان نمبر / یونٹ نمبر/ گاؤں / حدود نمبر </span>)',
     'residence_address_2' => 'Complex / Street/ Block/ Sector/ Municipality (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)',
@@ -44,13 +79,19 @@ return [
 
     'residence_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
 
+     'property_type' => 'Type of Property: (<span class="urdu-label" dir="rtl">  پراپرٹی کی قسم </span>)',
+      'property_form' => 'Form of Property: (<span class="urdu-label" dir="rtl">  پراپرٹی کی ذیلی قسم </span>)',
+
+      'property_capacity' => 'Capacity: (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)',
+
+
     // Business Profile
     'business_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> کاروبار کے حصول کی تاریخ </span>)',
     'business_category' => 'Business Category (<span class="urdu-label" dir="rtl"> کاروبار کی قسم </span>)',
     'business_address_1' => 'Unit No./ Village/ Premises No. (<span class="urdu-label" dir="rtl"> یونٹ نمبر/ گاؤں / حدود نمبر </span>)',
     'business_address_2' => 'Complex / Street/ Municipality (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)',
     'business_address_3' => 'Area / Locality/ Ward No. (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک/ گاؤں </span>)',
-    'province_state' => 'Province/ State (<span class="urdu-label" dir="rtl"> صوبہ / ریاست </span>)',
+   
 
     // Utility Connections
     'electricity_connection_question' => 'Do you have Electricity Connection? (<span class="urdu-label" dir="rtl"> کیا آپ کے پاس کوئی بجلی کا کنکشن ہے؟ </span>)',

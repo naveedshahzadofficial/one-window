@@ -27,7 +27,7 @@ $wire.set('application.minority_status_id', event.target.value)
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
-                    <h3 class="wizard-title">Applicant Profile</h3>
+                    <h3 class="wizard-title">{!! __('labels.applicant_profile') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 1 Nav-->
@@ -36,7 +36,7 @@ $wire.set('application.minority_status_id', event.target.value)
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
-                    <h3 class="wizard-title">Business Profile</h3>
+                    <h3 class="wizard-title">{!! __('labels.business_profile') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 2 Nav-->
@@ -45,7 +45,7 @@ $wire.set('application.minority_status_id', event.target.value)
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
-                    <h3 class="wizard-title">Utility Connections</h3>
+                    <h3 class="wizard-title">{!! __('labels.utility_connections') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 3 Nav-->
@@ -54,7 +54,7 @@ $wire.set('application.minority_status_id', event.target.value)
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
-                    <h3 class="wizard-title">Employees Info</h3>
+                    <h3 class="wizard-title">{!! __('labels.employees_info') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 4 Nav-->
@@ -63,7 +63,7 @@ $wire.set('application.minority_status_id', event.target.value)
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
-                    <h3 class="wizard-title">Annual Turnover</h3>
+                    <h3 class="wizard-title">{!! __('labels.annual_turnover') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 5 Nav-->
@@ -72,7 +72,7 @@ $wire.set('application.minority_status_id', event.target.value)
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
                 <div class="wizard-label">
-                    <h3 class="wizard-title">Review and Submit</h3>
+                    <h3 class="wizard-title">{!! __('labels.review_submit') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 6 Nav-->
@@ -90,8 +90,8 @@ $wire.set('application.minority_status_id', event.target.value)
 
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="font-weight-bold section_heading text-white"><span>BASIC INFO (<label class="urdu-label"
-                                                                                                     dir="rtl"> بنیادی معلومات </label>)</span>
+                    <h4 class="font-weight-bold section_heading text-white">
+                      <span>  {!! __('labels.basic_info') !!}</span>
                     </h4>
                     <div class="section_box">
 
@@ -274,8 +274,8 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row" x-show.transition.opacity="is_minority_status=='Yes'">
 
                             <div class="col-lg-6">
-                                <label>Minority Status: (<span class="urdu-label" dir="rtl"> اقلیت </span>)<span
-                                        class="text-danger">*</span></label>
+                                <label>{!! __('labels.minority_status') !!}
+                                    <span class="text-danger">*</span></label>
 
                                 <div wire:ignore>
                                     <select wire:model.defer="application.minority_status_id" x-ref="minority_status_id"
@@ -293,7 +293,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6" x-show.transition.opacity="is_minority_status_other">
-                                <label>Other: (<span class="urdu-label" dir="rtl"> دیگر </span>)<span
+                                <label>{!! __('labels.other_than_minority') !!}<span
                                         class="text-danger">*</span></label>
                                 <input wire:model.defer="application.minority_status_other" type="text"
                                        class="form-control @error('application.minority_status_other') is-invalid @enderror"
@@ -308,7 +308,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>National Tax Number (Personal): (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر (ذاتی) </span>)<span
+                                <label>{!! __('labels.national_tax_number') !!}<span
                                         class="text-danger"></span></label>
                                 <div wire:ignore>
                                     <input wire:model.defer="application.ntn_personal" type="text"
@@ -323,13 +323,12 @@ $wire.set('application.minority_status_id', event.target.value)
                         </div>
                     </div>
 
-                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>QUALIFICATION DETAILS (<label
-                                class="urdu-label" dir="rtl"> تعلیمی تفصیلات </label>)</span></h4>
+                    <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.qualification_details') !!}</span></h4>
                     <div class="section_box">
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>Education Level: (<span class="urdu-label" dir="rtl"> تعلیمی قابلیت </span>)<span
+                                <label>{!! __('labels.education_level') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.education_level_id"
@@ -348,7 +347,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label>Do you have any Technical Education? (<span class="urdu-label" dir="rtl"> تکنیکی تعلیم </span>)<span
+                                    <label>{!! __('labels.technical_education_question') !!}<span
                                             class="text-danger">*</span></label>
                                     <div class="radio-inline" wire:ignore>
                                         @foreach($questions as $question)
@@ -372,7 +371,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                     <div class="mt-10 section_add_more">
                                         <div class="row form-group">
                                             <div class="col-lg-6">
-                                                <label>Diploma/ Certificate Title: (<span class="urdu-label" dir="rtl"> ڈپلومہ / سرٹیفکیٹ کا عنوان </span>)<span
+                                                <label>{!! __('labels.technical_education_detail') !!}<span
                                                         class="text-danger">*</span></label>
                                                 <input
                                                     wire:model.defer="technical_educations.{{$index}}.certificate_title"
@@ -406,7 +405,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                                         wire:loading.class="spinner spinner-white spinner-right"
                                                         wire:loading.attr="disabled"
                                                         class="btn btn-custom-color font-weight-bold px-4 py-2 d-block">
-                                                    Add More
+                                                    {!! __('labels.add_more') !!}
                                                 </button>
                                             </div>
                                         </div>
@@ -418,7 +417,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>Are you a skilled worker or an artisan? (<span class="urdu-label" dir="rtl"> ہنر مند یا کاریگر </span>)<span
+                                <label>{!! __('labels.profession_question') !!}<span
                                         class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($questions as $question)
@@ -438,8 +437,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             <div
                                 x-show.transition.opacity="is_skilled_worker=='Yes'"
                                 class="col-lg-6">
-                                <label>Skill or Art: (<span class="urdu-label"
-                                                            dir="rtl"> ہنر یا فن کی وضاحت کریں </span>)<span
+                                <label>{!! __('labels.is_skilled_worker') !!}<span
                                         class="text-danger">*</span></label>
                                 <input wire:model.defer="application.skill_or_art" type="text"
                                        class="form-control @error('application.skill_or_art') is-invalid @enderror"
@@ -455,14 +453,12 @@ $wire.set('application.minority_status_id', event.target.value)
 
 
                     <h4 class="mt-10 font-weight-bold section_heading text-white">
-                        <span>RESIDENCE ADDRESS (LOCAL) (<label class="urdu-label"
-                                                                dir="rtl"> رہائش کا پتہ (مقامی) </label>)</span></h4>
+                        <span>{!! __('labels.residence_address') !!}</span></h4>
                     <div class="section_box">
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>Type of Property: (<span class="urdu-label"
-                                                                dir="rtl"> پراپرٹی کی قسم </span>)<span
+                                <label>{!! __('labels.property_type') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.residence_address_type_id"
@@ -476,8 +472,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Form of Property: (<span class="urdu-label"
-                                                                dir="rtl"> پراپرٹی کی ذیلی قسم </span>)<span
+                                <label>{!! __('labels.property_form') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.residence_address_form_id"
@@ -547,7 +542,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label>City: (<span class="urdu-label" dir="rtl"> شہر </span>)<span class="text-danger">*</span></label>
+                                <label>{!! __('labels.city') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.residence_city_id"
                                                         setFieldName="application.residence_city_id"
@@ -560,7 +555,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>District: (<span class="urdu-label" dir="rtl"> ضلع </span>)<span
+                                <label>{!! __('labels.district') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.residence_district_id"
@@ -578,7 +573,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
 
                             <div class="col-lg-6">
-                                <label>Tehsil: (<span class="urdu-label" dir="rtl"> تحصیل </span>)<span
+                                <label>{!! __('labels.tehsil') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.residence_tehsil_id"
@@ -592,7 +587,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Capacity: (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)<span
+                                <label>{!! __('labels.property_capacity') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.residence_capacity_id"
