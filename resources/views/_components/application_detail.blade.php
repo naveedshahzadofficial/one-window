@@ -743,13 +743,13 @@
                                     <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}<span
                                             class="text-danger">*</span></span>
                 <span
-                    class="opacity-70">imporFiscalYear</span>
+                    class="opacity-70">{{ isset($employee->importFiscalYear->year_name)?$employee->importFiscalYear->year_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}<span
                                             class="text-danger">*</span></span>
                 <span
-                    class="opacity-70">{{ isset($employee->importCurrency->currrency_name)?$employee->importCurrency->currrency_name:'' }}</span>
+                    class="opacity-70">{{ isset($employee->importCurrency->currency_name)?$employee->importCurrency->currency_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">

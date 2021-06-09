@@ -252,7 +252,7 @@ class Application extends Model
     {
         return $this->belongsTo(Question::class,'import_question_id');
     }
-    public function imporFiscalYear()
+    public function importFiscalYear()
     {
         return $this->belongsTo(FiscalYear::class,'import_fiscal_year_id');
     }
