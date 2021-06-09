@@ -38,6 +38,7 @@ return [
 'sector' => 'Sector: (<span class="urdu-label" dir="rtl">  کاروبار کا شعبہ   </span>)',
 // document commons
 'business_other_documents' => 'Any Other Document: (<span class="urdu-label" dir="rtl"> کوئی اور دستاویز </span>)',
+'other_documents_heading' => 'Any Other Document: (<label class="urdu-label" dir="rtl"> کوئی اور دستاویز </label>)',
 'document_title' => 'Document Title  (<span class="urdu-label" dir="rtl"> دستاویز کا عنوان </span>)',
 'document' => 'Document  (<span class="urdu-label" dir="rtl"> ستاویز </span>)',
 // property commons
@@ -60,7 +61,7 @@ return [
 'qualification_details' => 'QUALIFICATION DETAILS (<label class="urdu-label" dir="rtl"> تعلیمی تفصیلات </label>)',
 'residence_address' => 'RESIDENCE ADDRESS (LOCAL) (<label class="urdu-label" dir="rtl"> رہائش کا پتہ - مقامی </label>)',
 
-'relevent_attachment' => 'RELEVANT ATTACHMENTS (<label class="urdu-label" dir="rtl"> رمطلوبہ دستاویزات    </label>)',
+'relevent_attachment' => 'ATTACHMENTS (<label class="urdu-label" dir="rtl"> دستاویزات  </label>)',
 
 'business_address' => 'BUSINESS ADDRESS (<label class="urdu-label" dir="rtl"> کاروباری پتہ </label>)',
 'utility_connections_heading' => 'UTILITY CONNECTIONS (<label class="urdu-label" dir="rtl"> یوٹیلیٹی کننیکشنز </label>)',
@@ -117,15 +118,15 @@ return [
 'business_registration_no' => 'Business Registration No: (<span class="urdu-label" dir="rtl">   بزنس رجسٹریشن نمبر      </span>)',
 'business_registration_date' => 'Business Registration Date: (<span class="urdu-label" dir="rtl">   بزنس رجسٹریشن کی تاریخ    </span>)',
 
-'business_ntn_no' => 'National Tax Number (Business): (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر    ( کاروبار   )   </span>)',
+'business_ntn_no' => 'National Tax Number (Business): (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر - کاروبار  </span>)',
 
 'business_category' => 'Business Category: (<span class="urdu-label" dir="rtl"> کاروبار کی قسم    </span>)',
 
 'ownership_proof' => 'Upload Proof of Ownership: (<span class="urdu-label" dir="rtl"> ملکیت کا ثبوت  </span>)',
 
-'registration_proof' => 'License /Registration with chamber or Trade body: (<span class="urdu-label" dir="rtl"> لچیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ اپ لوڈ کریں     </span>)',
+'registration_proof' => 'License /Registration with chamber or Trade body: (<span class="urdu-label" dir="rtl"> لچیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ   </span>)',
 
-'registration_certificate' => 'Upload Registration Certificate: (<span class="urdu-label" dir="rtl"> رجسٹریشن سرٹیفکیٹ اپ لوڈ کریں </span>)',
+'registration_certificate' => 'Upload Registration Certificate: (<span class="urdu-label" dir="rtl"> رجسٹریشن سرٹیفکیٹ  </span>)',
 
 'share_business_place' => 'Share in Business Place: (<span class="urdu-label" dir="rtl"> بزنس پلیس میں شئیر کریں</span>)',
 

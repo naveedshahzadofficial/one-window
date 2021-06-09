@@ -2010,6 +2010,37 @@ $wire.set('application.minority_status_id', event.target.value)
                             @endif
 
                         </div>
+
+                        @if(isset($business_other_files) && count($business_other_files)>0)
+                        <span class="font-weight-bolder mb-2">{!! __('labels.other_documents_heading') !!}<span
+                                class="text-danger">*</span></span>
+
+                        @foreach($business_other_files as $other_file)
+                            <div class="d-flex justify-content-between pt-5">
+                                <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">{!! __('labels.document_title') !!}<span
+                                        class="text-danger">*</span></span>
+                                    <span
+                                        class="opacity-70">{{ isset($other_file['document_title'])?$other_file['document_title']:'' }}</span>
+                                </div>
+
+                                @if(isset($other_file['document_file']) && !empty($other_file['document_file']))
+                                    <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">{!! __('labels.document') !!}<span
+                                            class="text-danger">*</span></span>
+                                        <span class="opacity-70">
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($other_file['document_file']) }}"
+                                   target="_blank" class="hand">Download&nbsp;<i class="flaticon2-download"></i></a>
+                            </span>
+                                    </div>
+                                @endif
+
+
+                            </div>
+
+                        @endforeach
+                            @endif
+
                     </div>
 
                     <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.business_address') !!}</span></h4>
