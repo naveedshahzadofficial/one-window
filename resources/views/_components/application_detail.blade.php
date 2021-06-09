@@ -587,7 +587,7 @@
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($employee->turnoverFiscalYear->year_name)?$employee->turnoverFiscalYear->year_name:'' }}</span>
+                    class="opacity-70">{{ isset($application->turnoverFiscalYear->year_name)?$application->turnoverFiscalYear->year_name:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
@@ -620,7 +620,7 @@
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.question_exports') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($employee->exportQuestion->name)?$employee->exportQuestion->name:'' }}</span>
+                    class="opacity-70">{{ isset($application->exportQuestion->name)?$application->exportQuestion->name:'' }}</span>
             </div>
         </div>
 
@@ -628,12 +628,12 @@
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($employee->exportQuestion->year_name)?$employee->exportQuestion->year_name:'' }}</span>
+                    class="opacity-70">{{ isset($application->exportQuestion->year_name)?$application->exportQuestion->year_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($employee->exportCurrency->currency_name)?$employee->exportCurrency->currency_name:'' }}</span>
+                    class="opacity-70">{{ isset($application->exportCurrency->currency_name)?$application->exportCurrency->currency_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
@@ -655,7 +655,7 @@
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.question_imports') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($employee->importQuestion->name)?$employee->importQuestion->name:'' }}</span>
+                    class="opacity-70">{{ isset($application->importQuestion->name)?$application->importQuestion->name:'' }}</span>
             </div>
 
 
@@ -666,12 +666,12 @@
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($employee->importFiscalYear->year_name)?$employee->importFiscalYear->year_name:'' }}</span>
+                    class="opacity-70">{{ isset($application->importFiscalYear->year_name)?$application->importFiscalYear->year_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($employee->importCurrency->currency_name)?$employee->importCurrency->currency_name:'' }}</span>
+                    class="opacity-70">{{ isset($application->importCurrency->currency_name)?$application->importCurrency->currency_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
