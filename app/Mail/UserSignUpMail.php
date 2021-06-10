@@ -29,9 +29,7 @@ class UserSignUpMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.user_sign_up',compact(['user'=>$this->user]))
-            ->from(env('MAIL_FROM_ADDRESS', 'muhammad.khalid@pitb.gov.pk'),env('MAIL_FROM_NAME', 'Muhammad Khalid'))
-            ->subject('SMERP - Register');
+        return $this->view('mails.user_sign_up',compact(['user'=>$this->user]))->subject('SMERP - Register');
 
     }
 }

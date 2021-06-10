@@ -40,9 +40,7 @@ class AdminResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage())
-            ->from(env('MAIL_FROM_ADDRESS', 'muhammad.khalid@pitb.gov.pk'),env('MAIL_FROM_NAME', 'Muhammad Khalid'))
-            ->greeting('Hello!')
+        return (new MailMessage())->greeting('Hello!')
             ->level('info')
             ->subject('Request to reset password')
             ->line('You are receiving this email because we received a password reset request for your account.')

@@ -29,8 +29,7 @@ class DefaultMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.default',compact(['data'=>$this->data]))
-            ->from(env('MAIL_FROM_ADDRESS', 'muhammad.khalid@pitb.gov.pk'),env('MAIL_FROM_NAME', 'Muhammad Khalid'))->subject($this->data->subject);
+        return $this->view('mails.default',compact(['data'=>$this->data]))->subject($this->data->subject);
 
     }
 }

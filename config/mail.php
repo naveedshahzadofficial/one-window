@@ -85,7 +85,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'muhammad.khalid@pitb.gov.pk'),
-        'name' => env('MAIL_FROM_NAME', 'Muhammad Khalid'),
+        'name' => env('MAIL_FROM_NAME', 'National SME Registration Portal (SMERP)'),
     ],
 
     /*
