@@ -484,7 +484,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets/fonts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Services" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -501,11 +501,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Services" />
       <recent name="$PROJECT_DIR$/public/assets/fonts" />
       <recent name="$PROJECT_DIR$/database/migrations" />
       <recent name="$PROJECT_DIR$/resources/views/components" />
       <recent name="$PROJECT_DIR$/public/db_tables" />
-      <recent name="$PROJECT_DIR$/public/assets/plugins/pikaday" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin/Auth" />
@@ -535,7 +535,7 @@
       <workItem from="1623235357614" duration="24095000" />
       <workItem from="1623307956364" duration="2097000" />
       <workItem from="1623310073813" duration="10507000" />
-      <workItem from="1623328909542" duration="2198000" />
+      <workItem from="1623328909542" duration="9915000" />
     </task>
     <servers />
   </component>

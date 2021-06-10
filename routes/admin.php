@@ -20,5 +20,4 @@ Route::get('/login', [Auth\LoginController::class, 'showLoginForm'])->name('logi
         Route::post('applications/index-ajax', [ Admin\ApplicationController::class,'indexAjax'])->name('applications.index-ajax');
 
         Route::get('dashboard', [ Admin\DashboardController::class,'index'])->name('dashboard');
-        Route::post('dashboard/district-graph-ajax', [ Admin\DashboardController::class,'district_graph_data'])->name('dashboard.district-graph-ajax');
     });

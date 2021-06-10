@@ -21,8 +21,9 @@
 @endsection
 
 @push('post-scripts')
-    <script src="{{ asset('assets/plugins/highchart/highcharts.js') }}"></script>
-    <script src="{{ asset('assets/plugins/highchart/exporting.js') }}"></script>
+    <script src="http://github.highcharts.com/master/highcharts.js"></script>
+    <script src="http://github.highcharts.com/master/modules/exporting.js"></script>
+    <script src="http://github.highcharts.com/master/modules/drilldown.js"></script>
 
     <script>
         function mLoaderHide() {
@@ -47,21 +48,13 @@
             },
            // colors:['#716ACA','#95CEFF','#F76BC1','#4a813e','#F71610'],
             title: {
-                text: 'SMEs Province Graph'
+                text: 'SMEs Graph'
             },
             credits: {
                 enabled: false
             },
             xAxis: {
-                categories: <?php echo isset($province_graph_data['provinces'])?$province_graph_data['provinces']:'[]';?>,
-                labels: {
-//useHTML: true,
-                    formatter: function () {
-                        var index_url = 'javascirpt:;';
-                        //index_url = index_url.replace('did', this.value.id);
-                        return '<a onclick="filterGraphData('+this.value.id+')" href="javascript:;" >'+ this.value.province_name + '</a>';
-                    }
-                }
+                type: 'category'
             },
             yAxis: {
                 min: 0,
@@ -109,7 +102,7 @@
                     point: {
                         events: {
                             click: function () {
-                                //location.href = this.options.url;
+                                location.href = this.options.url;
                             }
                         }
                     },
@@ -127,25 +120,13 @@
                 }
             },
             //colors:['#716ACA','#95CEFF','#F76BC1','#4a813e','#F71610'],
-            series:<?php echo isset($province_graph_data['series'])?json_encode($province_graph_data['series']):'[]';?>
-        });
-
-    function filterGraphData(province_id) {
-        $('#mloader').css('display','block');
-
-        $.post('{{ route('admin.dashboard.district-graph-ajax') }}',{province_id:province_id},function(response){
-            var chart = $('#bar_chart_div').highcharts();
-            if (response.status) {
-                chart.series[0].setData(response.data[0]);
-                chart.series[1].setData(response.data[1]);
-                mLoaderHide();
-            }else{
-                smes_graph_obj.series[0].setData([]);
-                mLoaderHide();
+            series: <?php echo isset($province_graph_data['series'])?json_encode($province_graph_data['series']):'[]';?>,
+            drilldown: {
+                series: <?php echo isset($province_graph_data['drilldown_series'])?json_encode($province_graph_data['drilldown_series']):'[]';?>,
             }
 
-        },"json");
-    }
+        });
+
 
     </script>
 
