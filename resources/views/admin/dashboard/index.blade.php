@@ -11,7 +11,9 @@
 
         </div>
         <div class="card-body">
-
+            <div class="container" style="position: relative;">
+                <div id="mloader" class="m-loader m-loader--lg m-loader--success" style="z-index: 999999; height: 300px; width: 100px; position: absolute; left: 50%; margin-left: -50px; top: 50%; margin-top: -50px;"></div>
+            </div>
             <div style="min-width: 310px; min-height: 400px; margin: 0 auto; margin-top: 30px;" id="smes_column_bar_graph" class="flot-chart"></div>
 
         </div>
@@ -23,6 +25,11 @@
     <script src="{{ asset('assets/plugins/highchart/exporting.js') }}"></script>
 
     <script>
+        function mLoaderHide() {
+            setTimeout(function () {
+                $('#mloader').css('display','none');
+            }, 600);
+        }
 
     Highcharts.setOptions({
             lang: {
@@ -40,19 +47,19 @@
             },
            // colors:['#716ACA','#95CEFF','#F76BC1','#4a813e','#F71610'],
             title: {
-                text: 'SMEs Graph'
+                text: 'SMEs Province Graph'
             },
             credits: {
                 enabled: false
             },
             xAxis: {
-                categories: <?php echo isset($smes_graph_data['provinces'])?$smes_graph_data['provinces']:'[]';?>,
+                categories: <?php echo isset($province_graph_data['provinces'])?$province_graph_data['provinces']:'[]';?>,
                 labels: {
 //useHTML: true,
                     formatter: function () {
                         var index_url = 'javascirpt:;';
                         //index_url = index_url.replace('did', this.value.id);
-                        return '<a href="' + index_url + '">' + this.value.province_name + '</a>';
+                        return '<a onclick="filterGraphData('+this.value.id+')" href="javascript:;" >'+ this.value.province_name + '</a>';
                     }
                 }
             },
@@ -102,7 +109,7 @@
                     point: {
                         events: {
                             click: function () {
-                                location.href = this.options.url;
+                                //location.href = this.options.url;
                             }
                         }
                     },
@@ -120,8 +127,25 @@
                 }
             },
             //colors:['#716ACA','#95CEFF','#F76BC1','#4a813e','#F71610'],
-            series:<?php echo isset($smes_graph_data['series'])?json_encode($smes_graph_data['series']):'[]';?>
+            series:<?php echo isset($province_graph_data['series'])?json_encode($province_graph_data['series']):'[]';?>
         });
+
+    function filterGraphData(province_id) {
+        $('#mloader').css('display','block');
+
+        $.post('{{ route('admin.dashboard.district-graph-ajax') }}',{province_id:province_id},function(response){
+            var chart = $('#bar_chart_div').highcharts();
+            if (response.status) {
+                chart.series[0].setData(response.data[0]);
+                chart.series[1].setData(response.data[1]);
+                mLoaderHide();
+            }else{
+                smes_graph_obj.series[0].setData([]);
+                mLoaderHide();
+            }
+
+        },"json");
+    }
 
     </script>
 

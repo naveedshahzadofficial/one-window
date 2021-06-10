@@ -12,11 +12,11 @@ class DashboardController extends Controller
     public function index()
     {
         $data = array();
-        $data['smes_graph_data'] = $this->smes_graph_data();
+        $data['province_graph_data'] = $this->province_graph_data();
         return view('admin.dashboard.index')->with($data);
     }
 
-    private function smes_graph_data()
+    private function province_graph_data()
     {
         $series = array();
         $provinces = Province::where('province_status',1)->get();
@@ -37,6 +37,11 @@ class DashboardController extends Controller
         $data['series'] = $series;
         $data['provinces'] = $provinces;
         return $data;
+
+    }
+
+    public function district_graph_data()
+    {
 
     }
 
