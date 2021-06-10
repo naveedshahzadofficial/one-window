@@ -21,9 +21,9 @@
 @endsection
 
 @push('post-scripts')
-    <script src="http://github.highcharts.com/master/highcharts.js"></script>
-    <script src="http://github.highcharts.com/master/modules/exporting.js"></script>
-    <script src="http://github.highcharts.com/master/modules/drilldown.js"></script>
+    <script src="https://github.highcharts.com/master/highcharts.js"></script>
+    <script src="https://github.highcharts.com/master/modules/exporting.js"></script>
+    <script src="https://github.highcharts.com/master/modules/drilldown.js"></script>
 
     <script>
         function mLoaderHide() {
