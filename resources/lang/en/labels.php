@@ -28,7 +28,7 @@ return [
 'submit' => 'Submit (<span class="urdu-label" dir="rtl"> بھیجیں </span>)',
 'reset_password' => 'Reset Password (<span class="urdu-label" dir="rtl"> پاس ورڈ ری سیٹ </span>)',
 // Commons
-'share_percentage' => 'Share % (<span class="urdu-label" dir="rtl"> حصہ فیصد </span>)',
+'share_percentage' => 'Share in Residence Place % (<span class="urdu-label" dir="rtl"> رہائش کی جگہ میں حصہ </span>)',
 'add_more' => ' Add More',
 'province_state' => 'Province/ State (<span class="urdu-label" dir="rtl"> صوبہ / ریاست </span>)',
 'province' => 'Province (<span class="urdu-label" dir="rtl"> صوبہ  </span>)',
@@ -128,7 +128,7 @@ return [
 
 'registration_certificate' => 'Upload Registration Certificate (<span class="urdu-label" dir="rtl"> رجسٹریشن سرٹیفکیٹ  </span>)',
 
-'share_business_place' => 'Share in Business Place (<span class="urdu-label" dir="rtl"> کاروبار کی جگہ میں حصہ</span>)',
+'share_business_place' => 'Share in Business Place % (<span class="urdu-label" dir="rtl"> کاروبار کی جگہ میں حصہ</span>)',
 
 'ownership_capacity_business' => 'Ownership Capacity of Business Place (<span class="urdu-label" dir="rtl">  کاروبار کی جگہ کی ملکیت    </span>)',
 
