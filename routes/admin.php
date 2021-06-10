@@ -14,7 +14,7 @@ Route::get('/login', [Auth\LoginController::class, 'showLoginForm'])->name('logi
     Route::get('/password/reset/{token}', [Auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('/password/reset', [Auth\ResetPasswordController::class, 'reset'])->name('password.update');
 
-    Route::group(['middleware' => IsAdmin::class], function () {
+    Route::group(['middleware' => ['auth',IsAdmin::class]], function () {
         Route::post('/logout', [Auth\LoginController::class,'logout'])->name('logout');
         Route::resource('applications', Admin\ApplicationController::class);
         Route::post('applications/index-ajax', [ Admin\ApplicationController::class,'indexAjax'])->name('applications.index-ajax');

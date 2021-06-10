@@ -10,4 +10,9 @@ class BusinessCategory extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = ['category_name', 'category_remark', 'category_status'];
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
 }

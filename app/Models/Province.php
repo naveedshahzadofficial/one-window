@@ -11,4 +11,9 @@ class Province extends Model
     use HasFactory,SoftDeletes;
 
     protected $fillable = ['province_name', 'province_remark', 'province_status'];
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
 }
