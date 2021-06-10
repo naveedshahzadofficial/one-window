@@ -30,7 +30,7 @@ class DefaultMail extends Mailable
     public function build()
     {
         return $this->view('mails.default',compact(['data'=>$this->data]))
-            ->from('no-reply@smerp.punjab.gov.pk','National SME Registration Portal (SMERP)')->subject($this->data->subject);
+            ->from(env('MAIL_FROM_ADDRESS', 'muhammad.khalid@pitb.gov.pk'),env('MAIL_FROM_NAME', 'Muhammad Khalid'))->subject($this->data->subject);
 
     }
 }

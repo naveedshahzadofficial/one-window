@@ -19,5 +19,5 @@ Route::get('/login', [Auth\LoginController::class, 'showLoginForm'])->name('logi
         Route::resource('applications', Admin\ApplicationController::class);
         Route::post('applications/index-ajax', [ Admin\ApplicationController::class,'indexAjax'])->name('applications.index-ajax');
 
-        Route::post('dashboard', [ Admin\DashboardController::class,'index'])->name('dashboard');
+        Route::get('dashboard', [ Admin\DashboardController::class,'index'])->name('dashboard');
     });
