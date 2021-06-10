@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Password;
 use Auth;
 
-class AdminResetPasswordController extends Controller
+class ResetPasswordController extends Controller
 {
     use ResetsPasswords;
 
@@ -29,7 +29,7 @@ class AdminResetPasswordController extends Controller
         //$this->middleware('guest:admin');
     }
 
-  
+
 
     protected function broker()
     {
