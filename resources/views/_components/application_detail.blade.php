@@ -307,7 +307,7 @@
                 <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.ownership_proof') !!}</span>
                     <span class="opacity-70">
-                                <a href="{{ url('/') }}{{  \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                 </div>
@@ -317,7 +317,7 @@
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">{!! __('labels.registration_proof') !!} </span>
                     <span class="opacity-70">
-                                <a href="{{ url('/') }}{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}"
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                 </div>
@@ -330,7 +330,7 @@
                 <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.registration_certificate') !!}</span>
                     <span class="opacity-70">
-                                <a href="{{ url('/') }}{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                 </div>
@@ -354,7 +354,7 @@
                         <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.document') !!}</span>
                             <span class="opacity-70">
-                                <a href="{{ url('/') }}{{ \Illuminate\Support\Facades\Storage::url($other_file['document_file']) }}"
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($other_file['document_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                         </div>
@@ -447,7 +447,7 @@
                 <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.business_evidence_tenancy') !!}</span>
                     <span class="opacity-70">
-                                <a href="{{ url('/') }}{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}"
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                 </div>
@@ -534,7 +534,7 @@
                     <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.business_paid_bill_file') !!}</span>
                         <span class="opacity-70">
-                                <a href=" {{ url('/') }}{{  \Illuminate\Support\Facades\Storage::url($connection['bill_file']) }}"
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($connection['bill_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                     </div>
@@ -603,7 +603,7 @@
                 <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.business_account_statement') !!}</span>
                     <span class="opacity-70">
-                                <a href="{{ url('/') }}{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}"
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
                             </span>
                 </div>
