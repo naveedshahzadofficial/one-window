@@ -286,7 +286,7 @@
         <script>
     <?php
     $helps = [
-        'residential_address_type'=>[
+        'residence_address_type'=>[
             'title'=>'Type of Property Residence Place',
             'body_e'=>'Type of Property Residence Place',
             'body_u'=>'Type of Property Residence Place',
