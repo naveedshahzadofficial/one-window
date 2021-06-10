@@ -459,7 +459,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                             <div class="col-lg-6">
                                 <label>{!! __('labels.property_type') !!}<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span> <i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('residence_address_type')"></i> </label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.residence_address_type_id"
                                                         setFieldName="application.residence_address_type_id"
@@ -473,7 +473,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                             <div class="col-lg-6">
                                 <label>{!! __('labels.property_form') !!}<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span> <i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('residence_address_form')"></i> </label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.residence_address_form_id"
                                                         setFieldName="application.residence_address_form_id"
@@ -733,7 +733,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                  class="form-group row">
                                 <div class="col-lg-6">
                                     <label>{!! __('labels.business_ntn_no') !!}<span
-                                            class="text-danger">*</span></label>
+                                            class="text-danger"></span></label>
                                     <input wire:model.defer="application.business_ntn_no" type="text"
                                            class="form-control @error('application.business_ntn_no') is-invalid @enderror"
                                            placeholder="Business NTN" maxlength="15" />
@@ -762,7 +762,8 @@ $wire.set('application.minority_status_id', event.target.value)
                         <div class="form-group row">
                             <div class="col-lg-12">
                                 <label>{!! __('labels.sector') !!}<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span> <i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('business_sectors')"></i>
+                                    <a wire:ignore href="javascript:;"><i class="fa fa-file-word text-hover-primary cursor-pointer"></i></a></label>
                                 <div wire:ignore>
                                     <x-multi-column-select2 :listing="$business_activities"
                                                             wire:model.defer="application.business_activity_id"
@@ -938,7 +939,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                             <div class="col-lg-6">
                                 <label>{!!__('labels.property_type') !!}<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span> <i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('business_address_type')"></i> </label>
                                 <div wire:ignore>
                                     <x-select2-dropdown
                                         wire:model.defer="application.business_address_type_id"
@@ -954,7 +955,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                             <div class="col-lg-6">
                                 <label>{!!__('labels.property_form') !!}<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span> <i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('business_address_form')"></i> </label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="application.business_address_form_id"
                                                         setFieldName="application.business_address_form_id"
@@ -1100,7 +1101,7 @@ $wire.set('application.minority_status_id', event.target.value)
 
                             <div class="col-lg-6">
                                 <label>{!! __('labels.business_acquisition_date_place') !!}<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span> <i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('business_acquisition_date')"></i> </label>
                                 <div wire:ignore>
                                     <x-date-picker wire:model="application.business_acquisition_date"
                                                    id="business_acquisition_date"/>
@@ -1685,11 +1686,6 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
                         </div>
                         <div class="d-flex justify-content-between pt-5">
-                            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.minority_status_question') !!}</span>
-                                <span
-                                    class="opacity-70">{{ isset($application['minority_status_question_id'])?getCollectionTitle($questions,'name',$application['minority_status_question_id']):'' }}</span>
-                            </div>
                             <div
                                 :class="{'d-none-imp': is_minority_status=='No'}"
                                 class="d-flex flex-column flex-root">
@@ -1725,11 +1721,6 @@ $wire.set('application.minority_status_id', event.target.value)
                                 <span
                                     class="opacity-70">{{ isset($application['education_level_id'])?getCollectionTitle($education_level,'name',$application['education_level_id']):'' }}</span>
                             </div>
-                            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.technical_education_question') !!}</span>
-                                <span
-                                    class="opacity-70">{{ isset($application['technical_education_question_id'])?getCollectionTitle($questions,'name',$application['technical_education_question_id']):'' }}</span>
-                            </div>
                         </div>
                         @foreach($technical_educations as $index=>$technical_education)
                             <div
@@ -1743,11 +1734,7 @@ $wire.set('application.minority_status_id', event.target.value)
                             </div>
                         @endforeach
                         <div class="d-flex justify-content-between pt-5">
-                            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.profession_question') !!}</span>
-                                <span
-                                    class="opacity-70">{{ isset($application['skilled_worker_question_id'])?getCollectionTitle($questions,'name',$application['skilled_worker_question_id']):'' }}</span>
-                            </div>
+
                             <div
                                 :class="{'d-none-imp': is_skilled_worker=='No'}"
                                 class="d-flex flex-column flex-root">
@@ -2105,13 +2092,7 @@ $wire.set('application.minority_status_id', event.target.value)
                     <h4 class="mt-10 font-weight-bold section_heading text-white">
                         <span>{!! __('labels.utility_connections_detail') !!}</span></h4>
                     <div class="section_box">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.utility_connections_question') !!}</span>
-                                <span
-                                    class="opacity-70">{{ isset($application['utility_connection_question_id'])?getCollectionTitle($questions,'name',$application['utility_connection_question_id']):'' }}</span>
-                            </div>
-                        </div>
+
 
                         @foreach($utility_connections as $index=>$connection)
                             <div class="d-flex justify-content-between pt-5">
@@ -2178,13 +2159,6 @@ $wire.set('application.minority_status_id', event.target.value)
                     </h4>
                     <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.employee_info_detail') !!}</span></h4>
                     <div class="section_box">
-                        <div class="d-flex justify-content-between pt-5">
-                            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.employees_question') !!}</span>
-                                <span
-                                    class="opacity-70">{{ isset($application['employees_question_id'])?getCollectionTitle($questions,'name',$application['employees_question_id']):'' }}</span>
-                            </div>
-                        </div>
 
                         <div x-show="is_employee_info=='Yes'">
                             @foreach($employees as $employee)
@@ -2245,13 +2219,6 @@ $wire.set('application.minority_status_id', event.target.value)
                     <h4 class="mt-10 font-weight-bold section_heading text-white">
                         <span>{!! __('labels.exports') !!}</span></h4>
                     <div class="section_box">
-                        <div class="d-flex justify-content-between pt-5">
-                            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.question_exports') !!}</span>
-                                <span
-                                    class="opacity-70">{{ isset($application['export_question_id'])?getCollectionTitle($questions,'name',$application['export_question_id']):'' }}</span>
-                            </div>
-                        </div>
 
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
@@ -2279,16 +2246,6 @@ $wire.set('application.minority_status_id', event.target.value)
                         <span>{!! __('labels.imports') !!}</span></h4>
                     <div class="section_box">
 
-                        <div class="d-flex justify-content-between pt-5">
-
-                            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.question_imports') !!}</span>
-                                <span
-                                    class="opacity-70">{{ isset($application['import_question_id'])?getCollectionTitle($questions,'name',$application['import_question_id']):'' }}</span>
-                            </div>
-
-
-                        </div>
 
 
                         <div class="d-flex justify-content-between pt-5">

@@ -59,7 +59,7 @@ return [
 //Headings
 'basic_info' => 'BASIC INFO (<label class="urdu-label" dir="rtl"> بنیادی معلومات   </label>)',
 'qualification_details' => 'QUALIFICATION DETAILS (<label class="urdu-label" dir="rtl"> تعلیمی تفصیلات </label>)',
-'residence_address' => 'RESIDENCE ADDRESS (LOCAL) (<label class="urdu-label" dir="rtl"> رہائش کا پتہ - مقامی </label>)',
+'residence_address' => 'RESIDENCE ADDRESS (<label class="urdu-label" dir="rtl"> رہائش کا پتہ </label>)',
 
 'relevent_attachment' => 'ATTACHMENTS (<label class="urdu-label" dir="rtl"> دستاویزات  </label>)',
 
@@ -77,7 +77,7 @@ return [
 'date_of_birth' => 'Date of Birth - as per CNIC (<span class="urdu-label" dir="rtl"> تاریخ پیدائش - شناختی کارڈ کے مطابق </span>)',
 'cnic_issue_date' => 'CNIC Issue Date (<span class="urdu-label" dir="rtl"> شناختی کارڈ کے اجراء کی تاریخ </span>)',
 'cnic_expiry_date' => 'CNIC Expiry Date (<span class="urdu-label" dir="rtl"> شناختی کارڈ کی میعاد ختم ہونے کی تاریخ </span>)',
-'designation_business' => 'Designation in Business (<span class="urdu-label" dir="rtl"> کاروبار میں عہدہ </span>)',
+'designation_business' => 'Status in Business (<span class="urdu-label" dir="rtl"> کاروبار میں آپ کی حیثیت </span>)',
 'minority_status_question' => 'Do you have Minority Status? (<span class="urdu-label" dir="rtl"> کیا آپ کو اقلیت کا درجہ حاصل ہے؟ </span>)',
 
 'minority_status' => 'Minority Status (<span class="urdu-label" dir="rtl"> اقلیت </span>)',
@@ -93,10 +93,10 @@ return [
 'is_skilled_worker' => 'Skill or Art (<span class="urdu-label" dir="rtl"> ہنر یا فن کی وضاحت کریں </span>)',
 
 
-'cnic_expiry_question' => 'Has your CNIC LifeTime Expiry Date? (<span class="urdu-label" dir="rtl"> کیا آپ کے شناختی کارڈ کی میعاد عمر بھر کیلئے ہے؟ </span>)',
-'residence_address_1' => 'House No./ Unit No./ Village/ Premises No. (<span class="urdu-label" dir="rtl"> مکان نمبر / یونٹ نمبر/ گاؤں / حدود نمبر </span>)',
-'residence_address_2' => 'Complex / Street/ Block/ Sector/ Municipality (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)',
-'residence_address_3' => 'Area / Locality/ Ward No. (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک/ وارڈ نمبر </span>)',
+'cnic_expiry_question' => 'Does your CNIC have life-time expiry? (<span class="urdu-label" dir="rtl"> کیا آپ کے شناختی کارڈ کی میعاد عمر بھر کیلئے ہے؟ </span>)',
+'residence_address_1' => 'House No./ Unit No./ Village (<span class="urdu-label" dir="rtl"> مکان نمبر / یونٹ نمبر/ گاؤں </span>)',
+'residence_address_2' => 'Complex/ Street/ Block/ Sector (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)',
+'residence_address_3' => 'Area/ Locality (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک </span>)',
 'residence_capacity' => 'Ownership Capacity of Residence Place (<span class="urdu-label" dir="rtl">  رہائش گاہ کی ملکیت   </span>)',
 
 'residence_acquisition_date' => 'Date of Acquisition of Residence Place (<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
@@ -112,10 +112,10 @@ return [
 'business_address_3' => 'Area/ Locality (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک  </span>)',
 
 'business_name' => 'Business Name (<span class="urdu-label" dir="rtl"> کاروبار کا نام </span>)',
-'business_acquisition_start_date' => 'Business Acquisition/ Start/ Establishment/ Formation Date (<span class="urdu-label" dir="rtl"> کاروباری حصول / آغاز / قیام / تشکیل کی تاریخ  </span>)',
+'business_acquisition_start_date' => 'Business Acquisition/ Start Date (<span class="urdu-label" dir="rtl"> کاروبار کے آغاز / قیام کی تاریخ  </span>)',
 'business_registration_status' => 'Business Registration Status (<span class="urdu-label" dir="rtl">  کاروباری اندراج کی حیثیت    </span>)',
 'business_legal_status' => 'Business Legal Status (<span class="urdu-label" dir="rtl">  کاروباری قانونی حیثیت        </span>)',
-'business_registration_no' => 'Business Registration No (<span class="urdu-label" dir="rtl">   بزنس رجسٹریشن نمبر      </span>)',
+'business_registration_no' => 'Business Registration No. (<span class="urdu-label" dir="rtl">   بزنس رجسٹریشن نمبر      </span>)',
 'business_registration_date' => 'Business Registration Date (<span class="urdu-label" dir="rtl">   بزنس رجسٹریشن کی تاریخ    </span>)',
 
 'business_ntn_no' => 'National Tax Number (Business) (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر - کاروبار  </span>)',

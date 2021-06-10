@@ -22,7 +22,7 @@ class GraphService{
         $province_counts = Application::select('business_province_id', DB::raw('count(*) as total'))->groupBy('business_province_id')->get();
         $district_counts = Application::select('business_district_id', DB::raw('count(*) as total'))->groupBy('business_district_id')->get();
         $category_counts = Application::select('business_province_id','business_district_id','business_category_id', DB::raw('count(*) as total'))->groupBy('business_province_id','business_district_id','business_category_id')->get();
-        $provinces = Province::where('province_status',1)->get();
+        $provinces = Province::withCount('applications')->where('province_status',1)->get();
         $districts = District::where('district_status',1)->get();
         $business_categories =  BusinessCategory::where('category_status',1)->get();
 

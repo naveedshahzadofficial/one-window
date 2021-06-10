@@ -7,10 +7,10 @@
         <div class="form-group row">
             <div class="col-lg-12 alert alert-warning" style="background-color: #DFF0D7; border: none;" role="alert">
                 <p class="text-black-50 text-left" >
-                    You must enter a valid Mobile No. and Email address. To activate your account; we will send you verification code on your mobile and email address.
+                    To register please enter a valid Mobile No. and Email address as verification codes will be sent on your mobile and email.
                 </p>
                 <p class="text-black-50 text-right urdu-label line-height-xl" dir="rtl">
-                     اکاؤنٹ بنانے کے لئے آپ کو ایک درست موبائل نمبر اور ای میل اڈریس درج کرنا ہوگا۔  ہم آپ کو آپ کے موبائل اور ای میل اڈریس پر تصدیقی کوڈ بھیجیں گے۔
+                    اکاؤنٹ بنانے کے لئے درست موبائل نمبر اور ای میل اڈریس درج کریں جن پر تصدیقی کوڈ بھیجا جائے گا۔
                 </p>
             </div>
         </div>
@@ -89,7 +89,7 @@
         <div class="form-group row">
         <div class="col-lg-12 alert alert-warning" style="background-color: #DFF0D7; border: none;" role="alert">
             <p class="text-black-50 text-left" >
-               Please enter the mobile verification code and email verification code you received at mobile no. <b>{{ isset($mobile_number)?$mobile_number:'' }}</b> and email address: <b>{{ isset($this->user['email'])?$this->user['email']:'' }}</b> to verify your mobile number and email address.
+                Please enter the verification codes received on <b>{{ isset($mobile_number)?$mobile_number:'' }}</b> and <b>{{ isset($this->user['email'])?$this->user['email']:'' }}</b>
             </p>
             <p class="text-black-50 text-right urdu-label" dir="rtl">
                 براہ کرم اپنے موبائل نمبر اور ای میل ایڈریس کی تصدیق کے لئے موبائل نمبر اور ای میل ایڈریس پر موصول ہونے والا موبائل تصدیقی کوڈ اور ای میل تصدیقی کوڈ درج کریں۔

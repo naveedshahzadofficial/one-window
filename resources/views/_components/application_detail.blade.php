@@ -59,11 +59,6 @@
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
-            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.minority_status_question') !!}</span>
-                <span
-                    class="opacity-70">{{ isset($application->minorityStatusQuestion->name)?$application->minorityStatusQuestion->name:'' }}</span>
-            </div>
             <div
                 class="d-flex flex-column flex-root @if(isset($application->minorityStatusQuestion->name) && $application->minorityStatusQuestion->name=='No') d-none-imp @endif">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.minority_status') !!}</span>
@@ -96,11 +91,6 @@
                 <span
                     class="opacity-70">{{ isset($application->educationLevel->name)?$application->educationLevel->name:'' }}</span>
             </div>
-            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.technical_education_question') !!}</span>
-                <span
-                    class="opacity-70">{{ isset($application->educationLevelQuestion->name)?$application->educationLevelQuestion->name:'' }}</span>
-            </div>
         </div>
         @if(isset($application->technicalEducations) && $application->technicalEducations->isNotEmpty())
         @foreach($application->technicalEducations as $index=>$technical_education)
@@ -116,11 +106,6 @@
         @endforeach
         @endif
         <div class="d-flex justify-content-between pt-5">
-            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.profession_question') !!}</span>
-                <span
-                    class="opacity-70">{{ isset($application->skilledWorkerQuestion->name)?$application->skilledWorkerQuestion->name:'' }}</span>
-            </div>
             <div
                 class="d-flex flex-column flex-root @if(isset($application->skilledWorkerQuestion->name) && $application->skilledWorkerQuestion->name=='No') d-none-imp @endif">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.is_skilled_worker') !!}</span>
@@ -475,13 +460,7 @@
     <h4 class="mt-10 font-weight-bold section_heading text-white">
         <span>{!! __('labels.utility_connections_detail') !!}</span></h4>
     <div class="section_box">
-        <div class="d-flex justify-content-between">
-            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.utility_connections_question') !!}</span>
-                <span
-                    class="opacity-70">{{ isset($application->utilityConnectionQuestion->name)?$application->utilityConnectionQuestion->name:'' }}</span>
-            </div>
-        </div>
+
         @if(isset($application->utilityConnections) && $application->utilityConnections->isNotEmpty())
         @foreach($application->utilityConnections as $index=>$connection)
             <div class="d-flex justify-content-between pt-5">
@@ -549,13 +528,6 @@
     </h4>
     <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.employee_info_detail') !!}</span></h4>
     <div class="section_box">
-        <div class="d-flex justify-content-between pt-5">
-            <div class="d-flex flex-column flex-root">
-                                <span class="font-weight-bolder mb-2">{!! __('labels.employees_question') !!}</span>
-                <span
-                    class="opacity-70">{{ isset($application->employeesQuestion->name)?$application->employeesQuestion->name:'' }}</span>
-            </div>
-        </div>
 
         @if(isset($application->employeeInfos) && $application->employeeInfos->isNotEmpty())
             @foreach($application->employeeInfos as $employee)
@@ -616,13 +588,6 @@
     <h4 class="mt-10 font-weight-bold section_heading text-white">
         <span>{!! __('labels.exports') !!}</span></h4>
     <div class="section_box">
-        <div class="d-flex justify-content-between pt-5">
-            <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.question_exports') !!}</span>
-                <span
-                    class="opacity-70">{{ isset($application->exportQuestion->name)?$application->exportQuestion->name:'' }}</span>
-            </div>
-        </div>
 
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
@@ -650,16 +615,6 @@
         <span>{!! __('labels.imports') !!}</span></h4>
     <div class="section_box">
 
-        <div class="d-flex justify-content-between pt-5">
-
-            <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.question_imports') !!}</span>
-                <span
-                    class="opacity-70">{{ isset($application->importQuestion->name)?$application->importQuestion->name:'' }}</span>
-            </div>
-
-
-        </div>
 
 
         <div class="d-flex justify-content-between pt-5">

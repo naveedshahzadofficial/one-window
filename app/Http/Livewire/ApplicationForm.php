@@ -539,8 +539,8 @@ class ApplicationForm extends Component
             $rules_business_profile['application.business_registration_date'] = 'required';
             $messages_business_profile['application.business_registration_date.required'] = 'Business Registration Date is required';
 
-            $rules_business_profile['application.business_ntn_no'] = 'required';
-            $messages_business_profile['application.business_ntn_no.required'] = 'Business NTN is required';
+            // $rules_business_profile['application.business_ntn_no'] = 'required';
+            //$messages_business_profile['application.business_ntn_no.required'] = 'Business NTN is required';
 
             if(!isset($this->application['registration_certificate_file']) || empty($this->application['registration_certificate_file']) || !empty($this->registration_certificate_file)) {
                 $rules_business_profile['registration_certificate_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';

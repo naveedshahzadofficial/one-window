@@ -286,6 +286,36 @@
         <script>
     <?php
     $helps = [
+        'residential_address_type'=>[
+            'title'=>'Type of Property Residence Place',
+            'body_e'=>'Type of Property Residence Place',
+            'body_u'=>'Type of Property Residence Place',
+        ],
+        'residence_address_form'=>[
+            'title'=>'Form of property Residence Place',
+            'body_e'=>'Form of property Residence Place',
+            'body_u'=>'Form of property Residence Place',
+        ],
+        'business_address_type'=>[
+            'title'=>'Type of Property Business Place',
+            'body_e'=>'Type of Property Business Place',
+            'body_u'=>'Type of Property Business Place',
+        ],
+        'business_address_form'=>[
+            'title'=>'Form of property Business Place',
+            'body_e'=>'Form of property Business Place',
+            'body_u'=>'Form of property Business Place',
+        ],
+        'business_acquisition_date'=>[
+            'title'=>'Acquisition Date Business Place',
+            'body_e'=>'Acquisition Date Business Place',
+            'body_u'=>'Acquisition Date Business Place',
+        ],
+        'business_sectors'=>[
+            'title'=>'Sector in Business',
+            'body_e'=>'Sector in Business',
+            'body_u'=>'Sector in Business',
+        ],
         'residential_share'=>[
             'title'=>'Share in Residence Place',
             'body_e'=>'Share in Residence Place',
