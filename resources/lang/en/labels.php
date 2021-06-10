@@ -67,7 +67,7 @@ return [
 'utility_connections_heading' => 'UTILITY CONNECTIONS (<label class="urdu-label" dir="rtl"> یوٹیلیٹی کننیکشنز </label>)',
 
 'employee_info_heading' => 'EMPLOYEES INFO  (<label class="urdu-label" dir="rtl"> ملازمین کی معلومات </label>)',
-'employee_info_detail' => 'EMPLOYEES INFO DETAIL (<label class="urdu-label" dir="rtl"> سروس مہیا کرنے والا </label>)',
+'employee_info_detail' => 'EMPLOYEES INFO DETAIL (<label class="urdu-label" dir="rtl">  ملازمین سے متعلق تفصیلات  </label>)',
 
 'turnover_heading' => 'ANNUAL TURNOVER  (<label class="urdu-label" dir="rtl"> سالانہ کاروبار </label>)',
 
@@ -97,7 +97,7 @@ return [
 'residence_address_1' => 'House No./ Unit No./ Village/ Premises No. (<span class="urdu-label" dir="rtl"> مکان نمبر / یونٹ نمبر/ گاؤں / حدود نمبر </span>)',
 'residence_address_2' => 'Complex / Street/ Block/ Sector/ Municipality (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)',
 'residence_address_3' => 'Area / Locality/ Ward No. (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک/ وارڈ نمبر </span>)',
-'residence_capacity' => 'Ownership Capacity of Residence Place (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)',
+'residence_capacity' => 'Ownership Capacity of Residence Place (<span class="urdu-label" dir="rtl">  رہائش گاہ کی ملکیت   </span>)',
 
 'residence_acquisition_date' => 'Date of Acquisition of Residence Place (<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
 
@@ -164,13 +164,13 @@ return [
 'fiscal_year' => 'Fiscal Year (<span class="urdu-label" dir="rtl"> مالی سال </span>)',
 'annual_turnover_fiscal_year' => 'Annual Turnover for the selected Fiscal Year (PKR)<br>(<span class="urdu-label" dir="rtl"> منتخب مالی سال کا کاروبار </span>)',
 'business_account_statement' => 'Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement)<br>(<span class="urdu-label" dir="rtl"> ملحقات - انکم ٹیکس ریٹرن / آڈٹ شدہ بیانات / کاروباری اکاؤنٹ کی بینک اسٹیٹمنٹ </span>)',
-'question_exports' => 'Do you have exports? (<span class="urdu-label" dir="rtl"> کیا آپ کی برآمدات ہیں؟ </span>)',
+'question_exports' => 'Do you have exports? (<span class="urdu-label" dir="rtl">   کیا آپ کے پاس برآمدات ہیں؟    </span>)',
 'question_imports' => 'Do you have imports? (<span class="urdu-label" dir="rtl"> کیا آپ کی درآمدات ہیں؟ </span>)',
 'exports' => 'EXPORTS (<label class="urdu-label" dir="rtl"> برآمدات </label>)',
 'imports' => 'IMPORTS (<label class="urdu-label" dir="rtl"> درآمدات </label>)',
 'currency' => 'Currency (<span class="urdu-label" dir="rtl"> کرنسی </span>)',
 'export_turnover' => 'Export Turnover for the selected Fiscal Year (PKR/ USD) (<span class="urdu-label" dir="rtl"> منتخب مالی سال میں برآمدات کا حجم </span>)',
-'import_turnover' => 'Import Turnover for the selected Fiscal Year (PKR/ USD) (<span class="urdu-label" dir="rtl"> منتخب مالیہ سال میں درآمدات کا حجم </span>)',
+'import_turnover' => 'Import Turnover for the selected Fiscal Year (PKR/ USD) (<span class="urdu-label" dir="rtl"> منتخب مالی  سال میں درآمدات کا حجم   </span>)',
 
 //review
 
@@ -179,7 +179,7 @@ return [
 'business_sector' => 'Business Sector (<span class="urdu-label"  dir="rtl"> کاروبار کا شعبہ </span>)',
 'business_sub_sector' => 'Business Sub Sector (<span class="urdu-label" dir="rtl"> کاروبار کا شعبہ </span>)',
 
-'utility_connections_detail' => 'UTILITY CONNECTIONS DETAIL (<label class="urdu-label" dir="rtl"> یوٹیلیٹی کننیکشنز </label>)',
+'utility_connections_detail' => 'UTILITY CONNECTIONS DETAIL (<label class="urdu-label" dir="rtl">یوٹیلیٹی کننیکشنز   کی  تفصیلات </label>)',
 
 'utility_connections_question' => 'Do you have Electricity Connection? (<span  class="urdu-label" dir="rtl"> کیا آپ کے پاس کوئی بجلی کا کنکشن ہے؟ </span>)',
 

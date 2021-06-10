@@ -1621,7 +1621,7 @@ $wire.set('application.minority_status_id', event.target.value)
                 </div>
                 <!--end: Wizard Step 5 -->
 
-                <!--begin: Wizard Step 5-->
+                <!--begin: Wizard Step 6-->
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
                     <!--begin::Section-->

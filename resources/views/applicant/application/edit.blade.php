@@ -1,5 +1,5 @@
 @extends('_layouts.applicant.app')
-@push('title','New Registration')
+@push('title','Update Registration')
 @section('content')
     <div class="row">
         <div class="col-lg-12">
