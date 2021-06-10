@@ -105,13 +105,13 @@ class Registration extends Component
         OtpCode::create([
             'otp_type'=>'Registration',
             'email'=> $this->user['email'],
-            'mobile_no'=> str_replace('-','',$this->mobile_number),
+            'mobile_no'=> $this->mobile_number,
             'mobile_otp_code'=> $mobile_otp,
             'email_otp_code'=> $email_otp,
             'ip_address'=> Request::ip(),
         ]);
 
-        //SendSmsJob::dispatch($this->mobile_number, $message_sms);
+        //SendSmsJob::dispatch(str_replace('-','',$this->mobile_number), $message_sms);
         //SendEmailJob::dispatch($this->user['email'],$data,'Registration');
 
 
