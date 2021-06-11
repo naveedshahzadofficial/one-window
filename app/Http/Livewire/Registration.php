@@ -108,11 +108,11 @@ class Registration extends Component
             'mobile_no'=> $this->mobile_number,
             'mobile_otp_code'=> $mobile_otp,
             'email_otp_code'=> $email_otp,
-            'ip_address'=> Request::ip(),
+            'ip_address'=> Request::ip()??null,
         ]);
 
-        //SendSmsJob::dispatch(str_replace('-','',$this->mobile_number), $message_sms);
-        //SendEmailJob::dispatch($this->user['email'],$data,'Registration');
+        SendSmsJob::dispatch(str_replace('-','',$this->mobile_number), $message_sms);
+        SendEmailJob::dispatch($this->user['email'],$data,'Registration');
 
 
         $this->step++;
