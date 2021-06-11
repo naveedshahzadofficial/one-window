@@ -7,15 +7,15 @@
 
 							<!--begin::Copyright-->
 							<div class="text-white order-2 order-md-1">
-								<span class="text-white font-weight-bold mr-2">2021©</span>
-								<a href="http://keenthemes.com/metronic" target="_blank" class="text-white text-hover-primary">SMERP</a>
+								<span class="text-white font-weight-bold mr-2">Powered by Punjab Information Technology Board</span>
 							</div>
 
 							<!--end::Copyright-->
 
 							<!--begin::Nav-->
 							<div class="nav nav-dark">
-							</div>
+                                <span class="text-white font-weight-bold mr-2">&copy; Small and Medium Enterprises Development Authority, Government of Pakistan</span>
+                            </div>
 
 							<!--end::Nav-->
 						</div>

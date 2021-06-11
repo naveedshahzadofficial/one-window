@@ -784,7 +784,6 @@ $wire.set('application.minority_status_id', event.target.value)
                             <div x-data="{ open: false }" class="col-lg-6">
                                 <label>{!!__('labels.ownership_proof') !!}<span
                                         class="text-danger">*</span> <i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('proof_of_ownership_file')"></i></label>
-
                                 @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
                                     <br><a href="{{ asset('storage/'.$application['proof_of_ownership_file']) }}"
                                            target="_blank" class="file_viewer" title="Proof of Ownership">View File</a>
@@ -1919,69 +1918,49 @@ $wire.set('application.minority_status_id', event.target.value)
 
                     <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.relevent_attachment') !!}</span></h4>
                     <div class="section_box">
-                        <div class="d-flex justify-content-between">
+                        <table class="table">
+                            <head>
+                                <tr>
+                                    <th>{!! __('labels.document_title') !!}</th>
+                                    <th>{!! __('labels.document') !!}</th>
+                                </tr>
+                            </head>
+                            <tbody>
                             @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
-                                <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.ownership_proof') !!}</span>
-                                    <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
-                            </span>
-                                </div>
+                                <tr>
+                                    <td>{!! __('labels.ownership_proof') !!}</td>
+                                    <td> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
+                                            target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
+                                </tr>
                             @endif
-
                             @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
-                                <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.registration_proof') !!} </span>
-                                    <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
-                            </span>
-                                </div>
+                                <tr>
+                                    <td>{!! __('labels.registration_proof') !!}</td>
+                                    <td> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}"
+                                            target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
+                                </tr>
                             @endif
-
-                        </div>
-                        <div
-                            :class="{'d-none-imp': is_business_registered=='Registered'}"
-                            class="d-flex justify-content-between pt-5">
                             @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
-                                <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.registration_certificate') !!}</span>
-                                    <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
-                            </span>
-                                </div>
+                                <tr :class="{'d-none-imp': is_business_registered=='Registered'}" class="d-box">
+                                    <td>{!! __('labels.registration_certificate') !!}</td>
+                                    <td> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
+                                            target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
+                                </tr>
+                            @endif
+                            @if(isset($business_other_files) && count($business_other_files)>0)
+                            @foreach($business_other_files as $other_file)
+                            @if(isset($other_file['document_file']) && !empty($other_file['document_file']))
+                                <tr :class="{'d-none-imp': is_business_registered=='Registered'}" class="d-box">
+                                    <td>{{ isset($other_file['document_title'])?$other_file['document_title']:'' }}</td>
+                                    <td> <a href="{{ \Illuminate\Support\Facades\Storage::url($other_file['document_file']) }}"
+                                            target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
+                                </tr>
+                            @endif
+                            @endforeach
                             @endif
 
-                        </div>
-
-                        @if(isset($business_other_files) && count($business_other_files)>0)
-                            <span class="font-weight-bolder mb-2">{!! __('labels.other_documents_heading') !!}</span>
-
-                            @foreach($business_other_files as $other_file)
-                                <div class="d-flex justify-content-between pt-5">
-                                    <div class="d-flex flex-column flex-root">
-                                        <span class="font-weight-bolder mb-2">{!! __('labels.document_title') !!}</span>
-                                        <span
-                                            class="opacity-70">{{ isset($other_file['document_title'])?$other_file['document_title']:'' }}</span>
-                                    </div>
-
-                                    @if(isset($other_file['document_file']) && !empty($other_file['document_file']))
-                                        <div class="d-flex flex-column flex-root">
-                                            <span class="font-weight-bolder mb-2">{!! __('labels.document') !!}</span>
-                                            <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($other_file['document_file']) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
-                            </span>
-                                        </div>
-                                    @endif
-
-
-                                </div>
-
-                            @endforeach
-                        @endif
+                            </tbody>
+                        </table>
 
                     </div>
 

@@ -31,7 +31,7 @@ return [
 'share_percentage' => 'Share in Residence Place % (<span class="urdu-label" dir="rtl"> رہائش کی جگہ میں حصہ </span>)',
 'add_more' => ' Add More',
 'province_state' => 'Province/ State (<span class="urdu-label" dir="rtl"> صوبہ / ریاست </span>)',
-'province' => 'Province (<span class="urdu-label" dir="rtl"> صوبہ  </span>)',
+'province' => 'Province/ State (<span class="urdu-label" dir="rtl"> صوبہ / ریاست  </span>)',
 'city' => 'City (<span class="urdu-label" dir="rtl"> شہر </span>)',
 'district' => 'District (<span class="urdu-label" dir="rtl"> ضلع </span>)',
 'tehsil' => 'Tehsil (<span class="urdu-label" dir="rtl"> تحصیل</span>)',
@@ -184,7 +184,7 @@ return [
 'utility_connections_question' => 'Do you have Electricity Connection? (<span  class="urdu-label" dir="rtl"> کیا آپ کے پاس کوئی بجلی کا کنکشن ہے؟ </span>)',
 
 'connection_type' => 'Form/Type of Connection (<span class="urdu-label" dir="rtl"> کنکشن کی قسم </span>)',
-'save_and_next' => 'Save & Next (<span class="urdu-label" dir="rtl"> محفوظ کریں اور آگے بڑھیں </span>)',
+'save_and_next' => 'Save & Next (<span class="urdu-label" dir="rtl"> محفوظ کریں اور آگے جائیں </span>)',
 'submit_form' => 'Submit (<span class="urdu-label" dir="rtl"> جمع کروائیں </span>)',
 'previous' => 'Back (<span class="urdu-label" dir="rtl"> پیچھے جائیں </span>)',
 

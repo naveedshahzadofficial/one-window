@@ -17,8 +17,8 @@
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>Business</th>
-                    <th>Name</th>
+                    <th>Business Name</th>
+                    <th>Applicant Name</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Action</th>
