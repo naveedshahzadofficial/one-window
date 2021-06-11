@@ -14,29 +14,34 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    public function __construct()
+    {
+        $this->middleware("guest:admin", ['except' => ['logout']]);
+    }
+
     protected $redirectTo = 'admin/applications';
 
     public function showLoginForm()
     {
         return view('admin.auth.login');
     }
-
-     public function findUsername()
+    protected function guard()
     {
-        $fieldValue = request()->input('email');
+        return Auth::guard('admin');
+    }
 
-        $login_type = filter_var($fieldValue, FILTER_VALIDATE_EMAIL )
-            ? 'email'
-            : 'username';
-
-        request()->merge([$login_type => $fieldValue]);
-
-        return $login_type;
+    public function authenticated(Request $request, $user)
+    {
+        if (!$user->admin_status) {
+            Auth::guard('admin')->logout();
+            return back()->with('error_message', 'Your account is inactive, please contact your administrator.');
+        }
+        return redirect()->intended($this->redirectPath());
     }
 
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
         return redirect(route('admin.login'));
     }
 

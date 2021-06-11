@@ -17,12 +17,12 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('guest:admin');
+        $this->middleware('guest:admin');
     }
 
     protected function broker()
     {
-        return Password::broker();
+        return Password::broker('admins');
     }
 
     public function showLinkRequestForm()

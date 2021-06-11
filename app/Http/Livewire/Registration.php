@@ -155,6 +155,7 @@ class Registration extends Component
     public function submitFormRegistration()
     {
         $this->validate();
+        $this->user['password'] = bcrypt($this->user['password']);
         User::create($this->user);
         session()->flash('success_message', 'User has been register successfully.');
         return $this->redirect(route('login'));

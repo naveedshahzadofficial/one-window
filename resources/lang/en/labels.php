@@ -76,7 +76,7 @@ return [
 'gender' => 'Gender (<span class="urdu-label" dir="rtl"> جنس </span>)',
 'date_of_birth' => 'Date of Birth - as per CNIC (<span class="urdu-label" dir="rtl"> تاریخ پیدائش - شناختی کارڈ کے مطابق </span>)',
 'cnic_issue_date' => 'CNIC Issue Date (<span class="urdu-label" dir="rtl"> شناختی کارڈ کے اجراء کی تاریخ </span>)',
-'cnic_expiry_date' => 'CNIC Expiry Date (<span class="urdu-label" dir="rtl"> شناختی کارڈ کی میعاد ختم ہونے کی تاریخ </span>)',
+'cnic_expiry_date' => 'CNIC Expiry Date <br>(<span class="urdu-label" dir="rtl"> شناختی کارڈ کی میعاد ختم ہونے کی تاریخ </span>)',
 'designation_business' => 'Status in Business (<span class="urdu-label" dir="rtl"> کاروبار میں آپ کی حیثیت </span>)',
 'minority_status_question' => 'Do you have Minority Status? (<span class="urdu-label" dir="rtl"> کیا آپ کو اقلیت کا درجہ حاصل ہے؟ </span>)',
 
@@ -124,7 +124,7 @@ return [
 
 'ownership_proof' => 'Upload Proof of Ownership (<span class="urdu-label" dir="rtl"> ملکیت کا ثبوت  </span>)',
 
-'registration_proof' => 'License /Registration with chamber or Trade body (<span class="urdu-label" dir="rtl"> چیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ   </span>)',
+'registration_proof' => 'License /Registration with chamber or Trade body <br>(<span class="urdu-label" dir="rtl"> چیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ   </span>)',
 
 'registration_certificate' => 'Upload Registration Certificate (<span class="urdu-label" dir="rtl"> رجسٹریشن سرٹیفکیٹ  </span>)',
 
@@ -169,8 +169,8 @@ return [
 'exports' => 'EXPORTS (<label class="urdu-label" dir="rtl"> برآمدات </label>)',
 'imports' => 'IMPORTS (<label class="urdu-label" dir="rtl"> درآمدات </label>)',
 'currency' => 'Currency (<span class="urdu-label" dir="rtl"> کرنسی </span>)',
-'export_turnover' => 'Export Turnover for the selected Fiscal Year (PKR/ USD) (<span class="urdu-label" dir="rtl"> منتخب مالی سال میں برآمدات کا حجم </span>)',
-'import_turnover' => 'Import Turnover for the selected Fiscal Year (PKR/ USD) (<span class="urdu-label" dir="rtl"> منتخب مالی  سال میں درآمدات کا حجم   </span>)',
+'export_turnover' => 'Export Turnover for the selected Fiscal Year (PKR/ USD) <br>(<span class="urdu-label" dir="rtl"> منتخب مالی سال میں برآمدات کا حجم </span>)',
+'import_turnover' => 'Import Turnover for the selected Fiscal Year (PKR/ USD) <br>(<span class="urdu-label" dir="rtl"> منتخب مالی  سال میں درآمدات کا حجم   </span>)',
 
 //review
 

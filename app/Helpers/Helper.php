@@ -10,3 +10,24 @@ function getCollectionTitle($data, $key, $id){
     $row = $data->firstWhere('id', $id);
     return isset($row->{$key})?$row->{$key}:'';
 }
+
+if (!function_exists('isActiveRoute')) {
+
+    function isActiveRoute($route, $output = "menu-item-active")
+    {
+        if (\Illuminate\Support\Facades\Route::currentRouteName() == $route) return $output;
+    }
+
+}
+
+if (!function_exists('areActiveRoutes')) {
+
+    function areActiveRoutes(Array $routes, $output = "menu-item-active")
+    {
+        foreach ($routes as $route)
+        {
+            if (\Illuminate\Support\Facades\Route::currentRouteName() == $route) return $output;
+        }
+
+    }
+}
