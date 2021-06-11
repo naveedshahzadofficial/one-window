@@ -42,9 +42,8 @@
                             <!--end:Sign In Form-->
 
 
-                        <div class="row mt-20">
-                            <div class="col-md-8 pt-3 text-left"><span class="auth-text sample-text">{!! __('labels.already_an_account') !!}</span></div>
-                            <div class="col-md-4 pl-0"><a href="{{ route('login') }}" class="register_button btn btn-white btn-block">{!! __('labels.login') !!} <i class="fa fa-arrow-right float-right"></i></a></div>
+                        <div class="row mt-15">
+                            <div class="col-md-12 pt-3 text-center"><a href="{{ route('login') }}"><span class="auth-text sample-text">{!! __('labels.already_an_account') !!}</span></a></div>
                         </div>
 
 

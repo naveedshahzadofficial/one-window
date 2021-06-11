@@ -7,7 +7,7 @@
             @component('auth.aside-auth') @endcomponent
 
             <!--begin:Content-->
-            <div class="d-flex w-100 flex-center  pl-15 pr-15 pt-10 pb-10 position-relative overflow-hidden auth-right-bg">
+            <div class="d-flex w-100 flex-center  pl-15 pr-15 pt-5 pb-5 position-relative overflow-hidden auth-right-bg">
                 <div class="login-wrapper mw-100">
                     <!--begin:Sign In Form-->
                     <div class="login-signin max-w-450px m-auto">
@@ -45,14 +45,13 @@
                                         <div class="invalid-feedback d-block text-left">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="col-lg-12 mt-1">
+                                        <a href="{{ route('password.request') }}" class="auth-text-sm auth-underline float-right text-hover-white">{!! __('labels.forgot_password') !!}</a>
+                                    </div>
                                 </div>
 
 
-                            <div class="form-group">
-                                <a href="{{ route('password.request') }}" class="auth-text-sm float-right text-hover-white">{!! __('labels.forgot_password') !!}</a>
-                            </div>
-
-                            <div class="pb-lg-0 pb-5 pt-10">
+                            <div class="pb-lg-0 pb-5 pt-5">
                                 <button type="submit"  class="btn auth-login-btn font-weight-bolder font-size-h6 px-6 py-2">{!! __('labels.login') !!}</button>
                             </div>
 
@@ -66,8 +65,7 @@
 
 
                     <div class="row mt-15">
-                        <div class="col-md-8 pt-3 text-left"><span class="auth-text sample-text">{!! __('labels.not_an_account') !!}</span></div>
-                        <div class="col-md-4 pl-0"><a href="{{ route('register') }}" class="register_button btn btn-white btn-block">{!! __('labels.register_now') !!} <i class="fa fa-arrow-right float-right"></i></a></div>
+                        <div class="col-md-12 pt-3 text-center"><a href="{{ route('register') }}"><span class="auth-text sample-text">{!! __('labels.not_an_account') !!}</span></a></div>
                     </div>
 
 

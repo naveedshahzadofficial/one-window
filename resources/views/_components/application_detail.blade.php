@@ -291,28 +291,28 @@
             <head>
                 <tr>
                     <th>{!! __('labels.document_title') !!}</th>
-                    <th>{!! __('labels.document') !!}</th>
+                    <th class="text-center">{!! __('labels.document') !!}</th>
                 </tr>
             </head>
             <tbody>
             @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
                 <tr>
                     <td>{!! __('labels.ownership_proof') !!}</td>
-                    <td> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
+                    <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
                             target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
                 </tr>
             @endif
             @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
                 <tr>
                     <td>{!! __('labels.registration_proof') !!}</td>
-                    <td> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}"
+                    <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}"
                             target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
                 </tr>
             @endif
             @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
                 <tr class="d-box @if(isset($application->businessRegistrationStatus->name) && $application->businessRegistrationStatus->name=='Unregistered') d-none-imp  @endif">
                     <td>{!! __('labels.registration_certificate') !!}</td>
-                    <td> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
+                    <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
                             target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
                 </tr>
             @endif
@@ -321,7 +321,7 @@
                     @if(isset($other_file['document_file']) && !empty($other_file['document_file']))
                         <tr :class="{'d-none-imp': is_business_registered=='Registered'}" class="d-box">
                             <td>{{ isset($other_file['document_title'])?$other_file['document_title']:'' }}</td>
-                            <td> <a href="{{ \Illuminate\Support\Facades\Storage::url($other_file['document_file']) }}"
+                            <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($other_file['document_file']) }}"
                                     target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
                         </tr>
                     @endif
