@@ -14,12 +14,12 @@ class UtilityFormSeeder extends Seeder
      */
     public function run()
     {
-        UtilityForm::create(['form_name'=>'Cell', 'fbr_code_id'=>12001]);
         UtilityForm::create(['form_name'=>'Electricity', 'fbr_code_id'=>12002]);
         UtilityForm::create(['form_name'=>'Gas', 'fbr_code_id'=>12003]);
-        UtilityForm::create(['form_name'=>'Internet', 'fbr_code_id'=>12006]);
-        UtilityForm::create(['form_name'=>'Tel', 'fbr_code_id'=>12004]);
         UtilityForm::create(['form_name'=>'Water', 'fbr_code_id'=>12005]);
+        UtilityForm::create(['form_name'=>'Internet', 'fbr_code_id'=>12006]);
+        UtilityForm::create(['form_name'=>'Telephone', 'fbr_code_id'=>12004]);
+        UtilityForm::create(['form_name'=>'Mobile Phone', 'fbr_code_id'=>12001]);
 
     }
 }

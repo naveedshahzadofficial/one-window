@@ -81,7 +81,8 @@ class ApplicationForm extends Component
     public $business_cities;
     public $business_districts;
     public $business_tehsils;
-    public $utility_service_providers;
+    public $all_utility_service_providers;
+    public $utility_service_providers= [];
 
     public $is_minority_status = false;
     public $is_minority_status_other = false;
@@ -161,7 +162,9 @@ class ApplicationForm extends Component
         $this->business_districts = collect();
         $this->business_tehsils = collect();
 
-        $this->utility_service_providers = UtilityServiceProvider::where('utility_form_id',2)->where('provider_status',1)->get();
+        $this->all_utility_service_providers = UtilityServiceProvider::where('provider_status',1)->get();
+
+        $this->utility_service_providers[0] = UtilityServiceProvider::where('utility_form_id',2)->where('provider_status',1)->get();
 
         $this->application['user_id'] = auth()->id();
         $this->application['prefix_id'] = auth()->user()->prefix_id;
@@ -187,7 +190,12 @@ class ApplicationForm extends Component
             $this->utility_connections = $registration->utilityConnections->toArray();
             if(empty($this->utility_connections))
                 $this->utility_connections = [['utility_provider_other'=>null, 'utility_form_id'=>null, 'utility_consumer_number'=>null, 'utility_type_id'=>null, 'connection_ownership_id'=>null,]];
+            else{
+                foreach ($this->utility_connections as $index=>$connection){
+                    $this->utility_service_providers[$index] = UtilityServiceProvider::where('utility_form_id',$connection['utility_form_id'])->where('provider_status',1)->get();
+                }
 
+            }
             $this->employees = $registration->employeeInfos->toArray();
             $this->registration = $registration;
             $this->residence_address_forms = AddressForm::where('address_type_id',$registration->residence_address_type_id)->where('form_status',1)->get();
@@ -357,10 +365,10 @@ class ApplicationForm extends Component
        $key_index = explode('.',$updatedKey);
         switch ($key_index[1]) {
             case 'utility_form_id':
-                $this->utility_service_providers = UtilityServiceProvider::where('utility_form_id',$value)->where('provider_status',1)->get();
+                $this->utility_service_providers[$key_index[0]] = UtilityServiceProvider::where('utility_form_id',$value)->where('provider_status',1)->get();
                 $this->application["utility_connections.$key_index[0].utility_service_provider_id"] = null;
                 $this->dispatchBrowserEvent('child:select2',[
-                    'data'=>$this->utility_service_providers,
+                    'data'=>$this->utility_service_providers[$key_index[0]],
                     'child_id'=>'#utility_service_provider_id_'.$key_index[0],
                     'field_name'=>'provider_name',
                 ]);

@@ -48,7 +48,10 @@
                 ajax: {
                     url: '{{ route('admin.applications.index-ajax') }}',
                     type: "POST",
-                    data: function (data) {
+                    data: function (row) {
+                        row.province_id='{{request()->get('province_id')}}'
+                        row.district_id='{{request()->get('district_id')}}'
+                        row.business_category_id='{{request()->get('business_category_id')}}'
                     }
                 },
                 columns: [

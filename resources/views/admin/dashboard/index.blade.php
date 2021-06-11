@@ -54,7 +54,12 @@
                 enabled: false
             },
             xAxis: {
-                type: 'category'
+                type: 'category',
+                labels: {
+                    formatter: function () {
+                        return '<span>'+ this.value + '</span>'
+                    }
+                }
             },
             yAxis: {
                 min: 0,
@@ -102,6 +107,7 @@
                     point: {
                         events: {
                             click: function () {
+                                if(this.options!=undefined && this.options.url!=undefined && this.options.url!=null && this.options.url!='')
                                 location.href = this.options.url;
                             }
                         }

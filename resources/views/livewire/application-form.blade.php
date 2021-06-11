@@ -11,12 +11,18 @@ is_annual_export: '{{ $is_annual_export ? 'Yes' : 'No' }}',
 is_annual_import: '{{ $is_annual_import ? 'Yes' : 'No' }}',
 is_cnic_lifetime: '{{ $is_cnic_lifetime ? 'Yes' : 'No' }}',
 }"
-    x-init="() => {
+x-init="() => {
 select2 = $($refs.minority_status_id).select2();
 select2.on('select2:select', (event) => {
 is_minority_status_other = event.target.value==9?true:false;
 $wire.set('application.minority_status_id', event.target.value)
 });
+  @foreach($utility_connections as $index=>$connection)
+    select2_{{ $index }}_usp = $($refs.utility_service_provider_id_{{ $index }}).select2();
+select2_{{ $index }}_usp.on('select2:select', (event) => {
+$wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.target.value)
+});
+@endforeach
 }"
     class="wizard wizard-3" id="kt_wizard_v3" data-wizard-state="step-first" data-wizard-clickable="true">
     <!--begin: Wizard Nav-->
@@ -1203,6 +1209,7 @@ $wire.set('application.minority_status_id', event.target.value)
                         @foreach($utility_connections as $index=>$connection)
 
                             <div x-show.transition.opacity="is_utility_connection=='Yes' || is_utility_connection=='No'" class="mt-10 section_add_more">
+
                                 @if($index>0)
                                     <div class="d-flex justify-content-end">
                                     <span wire:click.prevent="removeUtilityConnection({{ $index }})"
@@ -1214,12 +1221,12 @@ $wire.set('application.minority_status_id', event.target.value)
                                 @endif
 
 
-                                    <div class="form-group row" x-show.transition.opacity="is_utility_connection=='No'">
+                                    <div class="form-group row" x-show.transition.opacity="is_utility_connection=='No' @if($index>0) {{ '|| true' }} @endif">
                                         <div class="col-lg-12">
                                             <label>{!! __('labels.type_of_utility') !!}<span class="text-danger">*</span></label>
                                             <div class="radio-inline" wire:ignore>
                                                 @foreach($utility_forms as $form)
-                                                    <label class="radio radio-success">
+                                                    <label class="radio radio-success" @if($form->form_name=='Electricity') x-show.transition.opacity="is_utility_connection=='Yes'" @endif  @if($index>0 && $form->form_name=='Electricity') x-show.transition.opacity="is_utility_connection=='No'" @endif>
                                                         <input
                                                             wire:model.defer="utility_connections.{{$index}}.utility_form_id"
                                                             type="radio"
@@ -1294,14 +1301,21 @@ $wire.set('application.minority_status_id', event.target.value)
 
                                         <div class="col-lg-6">
                                             <label>{!! __('labels.service_provider') !!}<span class="text-danger">*</span></label>
-<div wire:ignore>
-                                                <x-select2-dropdown
-                                                    wire:model.defer="utility_connections.{{ $index }}.utility_service_provider_id"
-                                                                    setFieldName="utility_connections.{{ $index }}.utility_service_provider_id"
-                                                                    id="utility_service_provider_id_{{ $index }}" fieldName="provider_name"
-                                                                    :listing="$utility_service_providers"
-                                                />
+
+                                            <div
+                                                wire:ignore>
+                                                <select wire:model.defer="utility_connections.{{ $index }}.utility_service_provider_id" id="utility_service_provider_id_{{ $index }}" x-ref="utility_service_provider_id_{{ $index }}"
+                                                        class="form-control select2" style="width: 100% !important;">
+                                                    <option value="">--- Please Select ---</option>
+                                                    @if(isset($utility_service_providers[$index]))
+                                                    @foreach($utility_service_providers[$index] as $row)
+                                                        <option value="{{ $row['id'] }}">{{ $row['provider_name'] }}</option>
+                                                    @endforeach
+                                                    @endif
+
+                                                </select>
                                             </div>
+
                                             @if($errors->has("utility_connections.$index.utility_service_provider_id"))
                                                 <div
                                                     class="invalid-feedback d-block">{{ $errors->first("utility_connections.$index.utility_service_provider_id") }}</div>
@@ -2110,7 +2124,7 @@ $wire.set('application.minority_status_id', event.target.value)
                                 <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.service_provider') !!}</span>
                                     <span
-                                        class="opacity-70">{{ isset($connection['utility_provider_id'])?getCollectionTitle($utility_service_providers,'provider_name',$connection['utility_provider_id']):'' }}</span>
+                                        class="opacity-70">{{ isset($connection['utility_provider_id'])?getCollectionTitle($all_utility_service_providers,'provider_name',$connection['utility_provider_id']):'' }}</span>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between pt-5">

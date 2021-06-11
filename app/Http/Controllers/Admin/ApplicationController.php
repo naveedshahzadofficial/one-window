@@ -23,7 +23,20 @@ class ApplicationController extends Controller
 
    public function indexAjax(Request $request)
     {
+        $province_id = isset($request->province_id) && !empty($request->province_id) ?$request->province_id: '';
+        $district_id = isset($request->district_id) && !empty($request->district_id) ?$request->district_id: '';
+        $business_category_id = isset($request->business_category_id) && !empty($request->business_category_id) ?$request->business_category_id: '';
+
         $query = Application::query()->select("*");
+        if (!empty($province_id)) {
+            $query->where('business_province_id',  $province_id);
+        }
+        if (!empty($district_id)) {
+            $query->where('business_district_id',  $district_id);
+        }
+        if (!empty($business_category_id)) {
+            $query->where('business_category_id',  $business_category_id);
+        }
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row){

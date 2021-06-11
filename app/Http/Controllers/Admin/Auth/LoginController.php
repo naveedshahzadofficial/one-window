@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +20,7 @@ class LoginController extends Controller
         $this->middleware("guest:admin", ['except' => ['logout']]);
     }
 
-    protected $redirectTo = 'admin/applications';
+    protected $redirectTo = RouteServiceProvider::ADMIN_HOME;
 
     public function showLoginForm()
     {
