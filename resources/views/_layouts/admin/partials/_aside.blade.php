@@ -56,7 +56,7 @@
 											</svg>
                                             <!--end::Svg Icon-->
 										</span>
-                                        <span class="menu-text">Dashboard</span>
+                                        <span class="menu-text text-white">Dashboard</span>
                                     </a>
                                 </li>
 
@@ -75,7 +75,7 @@
 
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-text">All SMEs</span>
+										<span class="menu-text text-white">All SMEs</span>
 									</a>
 								</li>
 							</ul>
