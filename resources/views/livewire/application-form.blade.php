@@ -2156,6 +2156,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                         <div x-show="is_employee_info=='Yes'">
                             @foreach($employees as $employee)
+                                @if(isset($employee['employee_type_id']) && !empty($employee['employee_type_id']))
                                 <h6 class="mb-4 mt-5 font-weight-bold text-dark">{{ isset($employee['employee_type_id'])?getCollectionTitle($employee_types,'type_name',$employee['employee_type_id']):'' }}
                                     &nbsp;(<span class="urdu-label"
                                                  dir="rtl"> {{ isset($employee['employee_type_id'])?getCollectionTitle($employee_types,'type_name_u',$employee['employee_type_id']):'' }} </span>)
@@ -2170,6 +2171,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                         </div>
                                     @endforeach
                                 </div>
+                                @endif
                             @endforeach
                         </div>
 
