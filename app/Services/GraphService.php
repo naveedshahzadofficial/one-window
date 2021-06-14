@@ -27,8 +27,8 @@ class GraphService{
     public function __construct()
     {
         $this->category_counts = Application::select('business_province_id','business_district_id','business_category_id', DB::raw('count(*) as total'))->groupBy('business_province_id','business_district_id','business_category_id')->get();
-        $this->provinces = Province::withCount('applications')->where('province_status',1)->get();
-        $this->districts = District::withCount('applications')->where('district_status',1)->get();
+        $this->provinces = Province::withCount('applications')->orderBy('applications_count', 'desc')->where('province_status',1)->get();
+        $this->districts = District::withCount('applications')->orderBy('applications_count', 'desc')->where('district_status',1)->get();
         $this->business_categories =  BusinessCategory::where('category_status',1)->get();
 
         $this->series = array();
