@@ -620,7 +620,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                             <div class="col-lg-6">
                                 <label>{!! __('labels.residence_acquisition_date') !!}<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span> <i wire:ignore class="fa fa-question-circle text-primary cursor-pointer" onclick="showHelp('residence_acquisition_date')"></i> </label>
                                 <div wire:ignore>
                                     <x-date-picker wire:model.defer="application.residence_acquisition_date"
                                                    id="residence_acquisition_date"/>

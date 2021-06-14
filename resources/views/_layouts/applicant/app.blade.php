@@ -311,6 +311,11 @@
             'body_e'=>'Acquisition Date Business Place',
             'body_u'=>'Acquisition Date Business Place',
         ],
+        'residence_acquisition_date'=>[
+            'title'=>'Acquisition Date Residence Place',
+            'body_e'=>'Acquisition Date Residence Place',
+            'body_u'=>'Acquisition Date Residence Place',
+        ],
         'business_sectors'=>[
             'title'=>'Sector in Business',
             'body_e'=>'Sector in Business',
