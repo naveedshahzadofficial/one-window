@@ -1412,7 +1412,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <div x-show.transition.opacity="is_employee_info=='Yes'"
                                  class="employee_info_div">
 
-                                <div class="form-group row mb-0">
+                                <div class="form-group row">
                                     <div class="mt-7 col-lg-6" wire:ignore>
                                         <label class="checkbox checkbox-success">
                                             <input wire:model="employees.{{$index}}.employee_type_id" type="checkbox"
