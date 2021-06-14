@@ -63,7 +63,7 @@
             },
             yAxis: {
                 min: 0,
-                tickInterval: 100,
+                tickInterval: 1,
                 title: {
                     text: ''
                 },
