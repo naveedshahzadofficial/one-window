@@ -29,6 +29,8 @@ class CreateApplicationsTable extends Migration
             $table->foreignId('minority_status_question_id')->nullable()->constrained('questions');
             $table->foreignId('minority_status_id')->nullable()->constrained();
             $table->string('minority_status_other')->nullable();
+            $table->foreignId('active_taxpayer_question_id')->nullable()->constrained('questions');
+            $table->foreignId('disability_question_id')->nullable()->constrained('questions');
             $table->string('ntn_personal')->nullable();
             $table->foreignId('education_level_id')->nullable()->constrained();
             $table->foreignId('technical_education_question_id')->nullable()->constrained('questions');

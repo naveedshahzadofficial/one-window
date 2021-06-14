@@ -73,15 +73,29 @@
                     class="opacity-70">{{ isset($application['minority_status_other'])?$application['minority_status_other']:'' }}</span>
             </div>
 
+
+        </div>
+
+        <div class="d-flex justify-content-between pt-5">
+
+            <div class="d-flex justify-content-between pt-5">
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">{!! __('labels.active_taxpayer') !!}</span>
+                    <span
+                        class="opacity-70">{{ optional($application->activeTaxpayerQuestion)->name }}</span>
+                </div>
+            </div>
+
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.national_tax_number') !!}<span
                                         class="text-danger"></span></span>
-                <span
-                    class="opacity-70">{{ isset($application['ntn_personal'])?$application['ntn_personal']:'' }}</span>
+                <span class="opacity-70">{{ isset($application['ntn_personal'])?$application['ntn_personal']:'' }}</span>
             </div>
 
         </div>
-    </div>
+
+
+        </div>
 
     <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.qualification_details') !!}</span></h4>
     <div class="section_box">

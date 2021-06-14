@@ -36,6 +36,7 @@
 
 
 
+
                                 <div class="form-group row">
                                     <div class="col-lg-12">
                                         <label class="text-white d-block text-left">{!! __('labels.password') !!}<span
@@ -45,14 +46,13 @@
                                         <div class="invalid-feedback d-block text-left">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="col-lg-12 mt-1">
+                                        <a href="{{ route('admin.password.request') }}" class="auth-text-sm auth-underline float-right text-hover-white">{!! __('labels.forgot_password') !!}</a>
+                                    </div>
                                 </div>
 
 
-                            <div class="form-group">
-                                <a href="{{ route('admin.password.request') }}" class="auth-text-sm float-right text-hover-white">{!! __('labels.forgot_password') !!}</a>
-                            </div>
-
-                            <div class="pb-lg-0 pb-5 pt-10">
+                                <div class="pb-lg-0 pb-5 pt-10">
                                 <button type="submit"  class="btn auth-login-btn font-weight-bolder font-size-h6 px-6 py-2">{!! __('labels.login') !!}</button>
                             </div>
 
@@ -64,7 +64,7 @@
                     </div>
                     <!--end:Sign In Form-->
 
-                   
+
 
                 </div>
             </div>

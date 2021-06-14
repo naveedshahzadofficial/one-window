@@ -42,7 +42,7 @@
                             <!--end:Sign In Form-->
 
 
-                        <div class="row mt-15">
+                        <div class="row mt-10">
                             <div class="col-md-12 pt-3 text-center"><a href="{{ route('login') }}"><span class="auth-text auth-underline sample-text">{!! __('labels.already_an_account') !!}</span></a></div>
                         </div>
 

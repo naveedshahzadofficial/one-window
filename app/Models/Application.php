@@ -13,7 +13,7 @@ class Application extends Model
 
     protected $fillable = ['prefix_id', 'first_name', 'middle_name', 'last_name', 'gender_id', 'cnic_no',
         'cnic_issue_date', 'cnic_expiry_question_id', 'cnic_expiry_date', 'date_of_birth', 'designation_business_id', 'minority_status_question_id',
-        'minority_status_id', 'minority_status_other', 'ntn_personal', 'education_level_id', 'technical_education_question_id',
+        'minority_status_id', 'minority_status_other', 'active_taxpayer_question_id', 'ntn_personal','disability_question_id', 'education_level_id', 'technical_education_question_id',
         'certificate_title', 'skilled_worker_question_id', 'skill_or_art', 'residence_address_type_id',
         'residence_address_form_id', 'residence_address_1', 'residence_address_2', 'residence_address_3',
         'residence_province_id','residence_city_id', 'residence_district_id','residence_tehsil_id', 'residence_capacity_id', 'residence_share', 'residence_acquisition_date',
@@ -63,6 +63,10 @@ class Application extends Model
     }
 
 
+    public function disabilities(){
+        return $this->hasMany(ApplicationDisability::class);
+    }
+
     public function technicalEducations(){
         return $this->hasMany(ApplicationTechnicalEducation::class);
     }
@@ -94,6 +98,16 @@ class Application extends Model
     public function cnicExpiryQuestion()
     {
         return $this->belongsTo(Question::class,'cnic_expiry_question_id');
+    }
+
+    public function activeTaxpayerQuestion()
+    {
+        return $this->belongsTo(Question::class,'active_taxpayer_question_id');
+    }
+
+    public function disabilityQuestion()
+    {
+        return $this->belongsTo(Question::class,'disability_question_id');
     }
 
     public function minorityStatusQuestion()

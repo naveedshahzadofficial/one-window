@@ -10,6 +10,7 @@ is_employee_info: '{{ $is_employee_info ? 'Yes' : 'No' }}',
 is_annual_export: '{{ $is_annual_export ? 'Yes' : 'No' }}',
 is_annual_import: '{{ $is_annual_import ? 'Yes' : 'No' }}',
 is_cnic_lifetime: '{{ $is_cnic_lifetime ? 'Yes' : 'No' }}',
+is_disability: '{{ $is_disability ? 'Yes' : 'No' }}',
 }"
 x-init="() => {
 select2 = $($refs.minority_status_id).select2();
@@ -301,7 +302,8 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <div class="col-lg-6" x-show.transition.opacity="is_minority_status_other">
                                 <label>{!! __('labels.other_than_minority') !!}<span
                                         class="text-danger">*</span></label>
-                                <input wire:model.defer="application.minority_status_other" type="text"
+                                <input wire:model.defer="application.minority_status_other"
+                                       type="text"
                                        class="form-control @error('application.minority_status_other') is-invalid @enderror"
                                        placeholder="Minority Status Other"/>
                                 @error('application.minority_status_other')
@@ -312,6 +314,104 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                         </div>
 
                         <div class="form-group row">
+
+                            <div class="col-lg-6">
+                                <label>{!! __('labels.is_disability') !!}<span class="text-danger">*</span></label>
+                                <div class="radio-inline" wire:ignore>
+                                    @foreach($questions as $question)
+                                        <label class="radio radio-success">
+                                            <input
+                                                wire:model.defer="application.disability_question_id"
+                                                @click="is_disability= '{{ $question->name }}'"
+                                                type="radio" name="disability_question_id"
+                                                value="{{ $question->id }}">
+                                            <span></span>{{ $question->name }}</label>
+                                    @endforeach
+                                </div>
+                                @error('application.disability_question_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <table class="form-group table">
+                                <thead>
+                                <tr>
+                                    <th class="text-left">{!! __('labels.disability') !!}</th>
+                                    <th colspan="2" class="text-left">{!! __('labels.disability_certificate') !!}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <select style="width:100%" name="disabilities[0][disability_id]">
+                                            <option value="" selected="">--- Please Select ---</option>
+                                            <option value="1">Absent limb (غیر حاضر اعضاء)</option>
+                                        </select>
+
+                                        <div class="any_other_disability m--margin-top-5">
+                                            <input type="text" required="" name="disabilities[0][disability_other]" value="" class="form-control m-input disability_other" placeholder="Any Other Disability">
+                                        </div>
+
+                                    </td>
+
+                                    <td>
+                                        <input type="hidden" name="disabilities[0][old_disability_certificate_file]" value="20201106125727_belt.png">
+
+                                        <div class="file_changer m--hide">
+                                            <input type="file" required="" name="disabilities[0][disability_certificate_file]" class="form-control m-input" placeholder="">
+                                            <span class="m-form__help">Files with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 10MB.</span>
+                                        </div>
+                                        <div class="file_view_div">
+                                            <a href="http://eloan.test/uploads/disabilities/20201106125727_belt.png" target="_blank" onclick="return false;" class="file_viewer" title="Certificate">View File</a> &nbsp;|&nbsp; <a href="#" class="show_file" onclick="return false;">Change File</a><a href="#" class="hide_file m--hide" onclick="return false;">Do Not Change File</a>
+                                        </div>
+
+                                    </td>
+
+
+                                    <td class="align-middle text-right">
+                                        <a href="javascript:;" data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
+                                            <i class="la la-remove"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                                <tfoot>
+                                <tr><td colspan="7" class="text-right">
+                                        <div data-repeater-create="" class="btn btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill m-btn--wide">
+					<span>
+						<i class="la la-plus"></i>
+						<span>Add Another Disability</span>
+					</span>
+                                        </div>
+                                    </td>
+                                </tr></tfoot>
+                            </table>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-lg-6">
+                                <label>{!! __('labels.is_active_taxpayer') !!}<span class="text-danger">*</span></label>
+                                <div class="radio-inline" wire:ignore>
+                                    @foreach($questions as $question)
+                                        <label class="radio radio-success">
+                                            <input
+                                                   wire:model.defer="application.active_taxpayer_question_id"
+                                                   type="radio" name="active_taxpayer_question_id"
+                                                   value="{{ $question->id }}">
+                                            <span></span>{{ $question->name }}</label>
+                                    @endforeach
+                                </div>
+                                @error('application.active_taxpayer_question_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
 
                             <div class="col-lg-6">
                                 <label>{!! __('labels.national_tax_number') !!}<span
@@ -1717,6 +1817,16 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                     class="opacity-70">{{ isset($application['minority_status_other'])?$application['minority_status_other']:'' }}</span>
                             </div>
 
+
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-5">
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">{!! __('labels.active_taxpayer') !!}</span>
+                                <span
+                                    class="opacity-70">{{ isset($application['active_taxpayer_question_id'])?getCollectionTitle($questions,'name',$application['active_taxpayer_question_id']):'' }}</span>
+                            </div>
+
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.national_tax_number') !!}<span
                                         class="text-danger"></span></span>
@@ -1725,6 +1835,9 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             </div>
 
                         </div>
+
+
+
                     </div>
 
                     <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.qualification_details') !!}</span></h4>

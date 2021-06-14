@@ -16,7 +16,7 @@ class ProvinceSeeder extends Seeder
     {
         Province::create(['province_name'=>'AZAD JAMMU AND KASHMIR']);
         Province::create(['province_name'=>'BALUCHISTAN']);
-        Province::create(['province_name'=>'FEDERALLY ADMINISTERED TRIBAL AREAS']);
+        Province::create(['province_name'=>'FEDERALLY ADMINISTERED TRIBAL AREAS', 'province_status'=>0]);
         Province::create(['province_name'=>'GILGIT BALTISTAN']);
         Province::create(['province_name'=>'ISLAMABAD CAPITAL TERRITORY']);
         Province::create(['province_name'=>'KHYBER PAKHTUNKHWA']);

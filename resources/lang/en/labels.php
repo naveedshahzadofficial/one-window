@@ -9,7 +9,7 @@ return [
 'confirm_email_address' => 'Confirm Email Address (<span class="urdu-label" dir="rtl"> ای میل اڈریس </span>)',
 'mobile_otp_code' => 'Verification Code (<span class="urdu-label" dir="rtl"> تصدیقی کوڈ </span>)',
 'email_otp_code' => 'Verification Code (<span class="urdu-label" dir="rtl">  تصدیقی کوڈ  </span>)',
-'prefix' => 'Prefix (<span class="urdu-label" dir="rtl"> ٹائٹل </span>)',
+'prefix' => 'Title (<span class="urdu-label" dir="rtl"> ٹائٹل </span>)',
 'first_name' => 'First Name (<span class="urdu-label" dir="rtl"> پہلا نام </span>)',
 'middle_name' => 'Middle Name (<span class="urdu-label" dir="rtl"> درمیانی نام </span>)',
 'last_name' => 'Last Name (<span class="urdu-label" dir="rtl"> آخری نام </span>)',
@@ -83,6 +83,12 @@ return [
 
 'minority_status' => 'Minority Status (<span class="urdu-label" dir="rtl"> اقلیت </span>)',
 'other_than_minority' => 'Other (<span class="urdu-label" dir="rtl"> دیگر </span>)',
+
+'is_disability' => 'Any Disability? (<span class="urdu-label" dir="rtl"> کوئی بھی معذوری؟ </span>)',
+'disability' => 'Disability (<span class="urdu-label" dir="rtl"> معذوری </span>)',
+'disability_certificate' => 'Disability Certificate (<span class="urdu-label" dir="rtl"> معذوری کا سرٹیفکیٹ </span>)',
+'is_active_taxpayer' => 'Are you part of Active Taxpayers List? <br>(<span class="urdu-label" dir="rtl"> کیا آپ ٹیکس دہندگان کی فہرست کا حصہ ہیں؟ </span>)',
+'active_taxpayer' => 'Active Taxpayer <br>(<span class="urdu-label" dir="rtl"> ٹیکس دہندہ </span>)',
 'national_tax_number' => 'National Tax Number (Personal) (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر - ذاتی </span>)',
 
 'education_level' => 'Education Level (<span class="urdu-label" dir="rtl"> تعلیمی قابلیت </span>)',

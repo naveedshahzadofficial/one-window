@@ -94,6 +94,7 @@ class ApplicationForm extends Component
     public $is_annual_export = false;
     public $is_annual_import = false;
     public $is_cnic_lifetime = false;
+    public $is_disability = false;
 
     // files
     public $proof_of_ownership_file,$registration_certificate_file,
@@ -396,6 +397,7 @@ class ApplicationForm extends Component
         'application.date_of_birth' => 'required',
         'application.designation_business_id' => 'required',
         'application.minority_status_question_id' => 'required',
+        'application.active_taxpayer_question_id' => 'required',
         'application.education_level_id' => 'required',
         'application.technical_education_question_id' => 'required',
         'application.skilled_worker_question_id' => 'required',
@@ -423,6 +425,7 @@ class ApplicationForm extends Component
         'application.date_of_birth.required' => 'Date of Birth is required.',
         'application.designation_business_id.required' => 'Designation in Business is required.',
         'application.minority_status_question_id.required' => 'Please select your choice!',
+        'application.active_taxpayer_question_id.required' => 'Please select your choice!',
         'application.education_level_id.required' => 'Education Level is required',
         'application.technical_education_question_id.required' => 'Please select your choice',
         'application.skilled_worker_question_id.required' => 'Please select your choice!',
