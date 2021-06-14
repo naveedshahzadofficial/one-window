@@ -1412,8 +1412,8 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <div x-show.transition.opacity="is_employee_info=='Yes'"
                                  class="employee_info_div">
 
-                                <div class="form-group row">
-                                    <div class="col-lg-4" wire:ignore>
+                                <div class="form-group row mb-0">
+                                    <div class="mt-7 col-lg-6" wire:ignore>
                                         <label class="checkbox checkbox-success">
                                             <input wire:model="employees.{{$index}}.employee_type_id" type="checkbox"
                                                    name="{{ $employee_type->type_name }}"
@@ -1421,16 +1421,17 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                             <span></span>&nbsp;{{  $employee_type->type_name }}&nbsp;(<lable class="urdu-label" dir="rtl"> {{ $employee_type->type_name_u }} </lable>)</label>
                                     </div>
 
-                                    <div class="col-lg-8 form-group @if(isset($employees[$index]['employee_type_id']) && $employees[$index]['employee_type_id']!=false) d-box @else d-none @endif">
+                                    <div class="col-lg-6 pl-0 pr-0 text-center mb-0 form-group @if(isset($employees[$index]['employee_type_id']) && $employees[$index]['employee_type_id']!=false) d-box @else d-none @endif">
                                         <div class="row">
                                         @foreach($genders as $gender)
-                                            <div class="col-lg-4">
+                                            <div class="{{ $loop->first?'col-lg-3':($loop->last?'col-lg-5':'col-lg-4') }}">
                                                 <label>{{ $gender->gender_name }} (<span class="urdu-label"
                                                                                          dir="rtl"> {{ $gender->gender_name_u }} </span>)</label>
                                                 <select
+                                                    style="width: 100px !important;{{ $loop->first?'':($loop->last?'':'margin: 0 auto;') }}"
                                                     wire:model="employees.{{$index}}.{{strtolower($gender->gender_name)}}"
-                                                    class="form-control @error("employees.".$index.'.'.strtolower($gender->gender_name)) is-invalid @enderror">
-                                                    <option value="">Select Number</option>
+                                                    class=" form-control @error("employees.".$index.'.'.strtolower($gender->gender_name)) is-invalid @enderror">
+                                                    <option value="">Select</option>
                                                     <option value="0">0</option>
 
                                                     @for($no=1; $no<=100;$no=$no+10)
