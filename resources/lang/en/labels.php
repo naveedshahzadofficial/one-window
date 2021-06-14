@@ -100,7 +100,7 @@ return [
 'residence_address_3' => 'Area/ Locality (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک </span>)',
 'residence_capacity' => 'Ownership Capacity of Residence Place (<span class="urdu-label" dir="rtl">  رہائش گاہ کی ملکیت   </span>)',
 
-'residence_acquisition_date' => 'Date of Acquisition of Residence Place (<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
+'residence_acquisition_date' => 'Acquisition Date of Residence Place (<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
 
 
 
@@ -133,7 +133,7 @@ return [
 
 'ownership_capacity_business' => 'Ownership Capacity of Business Place (<span class="urdu-label" dir="rtl">  کاروبار کی جگہ کی ملکیت    </span>)',
 
-'business_acquisition_date_place' => 'Date of Acquisition of Business Place (<span class="urdu-label" dir="rtl"> کاروباری جگہ کے حصول کی تاریخ   </span>)',
+'business_acquisition_date_place' => 'Acquisition Date of Business Place (<span class="urdu-label" dir="rtl"> کاروباری جگہ کے حصول کی تاریخ   </span>)',
 
 
 'business_evidence_tenancy' => 'Evidence of Ownership/ Tenancy of Business Place<br>(<span class="urdu-label"  dir="rtl">کاروباری جگہ کی ملکیت / کرایہ داری کا ثبوت  </span>)',
