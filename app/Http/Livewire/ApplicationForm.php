@@ -779,7 +779,7 @@ class ApplicationForm extends Component
             'utility_connections.*.utility_service_provider_id' => 'required',
             'utility_connections.*.connection_date' => 'required',
         ],[
-            'utility_connections.*.utility_provider_id.required' => 'Connection Ownership is required.',
+            'utility_connections.*.utility_service_provider_id.required' => 'Connection Ownership is required.',
             'utility_connections.*.utility_form_id.required' => 'Form/Type of Connection is required.',
             'utility_connections.*.utility_consumer_number.required' => 'Reference/ Consumer Number is required.',
             'utility_connections.*.utility_type_id.required' => 'Utility Type is required.',

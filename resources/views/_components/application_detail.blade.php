@@ -412,7 +412,7 @@
                                     <span class="font-weight-bolder mb-2">{!! __('labels.business_evidence_tenancy') !!}</span>
                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
+                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
                             </span>
                 </div>
             @endif

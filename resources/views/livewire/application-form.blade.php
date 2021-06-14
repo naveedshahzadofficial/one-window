@@ -2124,7 +2124,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                 <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.service_provider') !!}</span>
                                     <span
-                                        class="opacity-70">{{ isset($connection['utility_provider_id'])?getCollectionTitle($all_utility_service_providers,'provider_name',$connection['utility_provider_id']):'' }}</span>
+                                        class="opacity-70">{{ isset($connection['utility_service_provider_id'])?getCollectionTitle($all_utility_service_providers,'provider_name',$connection['utility_service_provider_id']):'' }}</span>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between pt-5">
