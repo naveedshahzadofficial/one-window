@@ -299,21 +299,21 @@
                 <tr>
                     <td>{!! __('labels.ownership_proof') !!}</td>
                     <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
-                            target="_blank" class="hand"><i class="flaticon2-download text-black-50"></i> Download</a></td>
+                            target="_blank" class="hand"><i class="flaticon2-download color-black"></i></a></td>
                 </tr>
             @endif
             @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
                 <tr>
                     <td>{!! __('labels.registration_proof') !!}</td>
                     <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}"
-                            target="_blank" class="hand"><i class="flaticon2-download text-black-50"></i> Download</a></td>
+                            target="_blank" class="hand"><i class="flaticon2-download color-black"></i></a></td>
                 </tr>
             @endif
             @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
                 <tr class="d-box @if(isset($application->businessRegistrationStatus->name) && $application->businessRegistrationStatus->name=='Unregistered') d-none-imp  @endif">
                     <td>{!! __('labels.registration_certificate') !!}</td>
                     <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
-                            target="_blank" class="hand"><i class="flaticon2-download text-black-50"></i> Download</a></td>
+                            target="_blank" class="hand"><i class="flaticon2-download color-black"></i></a></td>
                 </tr>
             @endif
             @if(isset($application->otherDocuments) && $application->otherDocuments->isNotEmpty())
@@ -322,7 +322,7 @@
                         <tr>
                             <td>{{ isset($other_file['document_title'])?$other_file['document_title']:'' }}</td>
                             <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($other_file['document_file']) }}"
-                                    target="_blank" class="hand"><i class="flaticon2-download text-black-50"></i> Download</a></td>
+                                    target="_blank" class="hand"><i class="flaticon2-download color-black"></i></a></td>
                         </tr>
                     @endif
                 @endforeach
@@ -478,7 +478,7 @@
                 <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.service_provider') !!}</span>
                     <span
-                        class="opacity-70">{{ isset($connection->utilityServiceProvider->provider_name)?$connection->utilityServiceProvider->provider_name:'' }}</span>
+                        class="opacity-70">{{ optional($connection->utilityServiceProvider)->provider_name }}</span>
                 </div>
             </div>
             <div class="d-flex justify-content-between pt-5">

@@ -151,7 +151,7 @@ return [
 'consumer_number' => 'Reference/ Consumer Number (<span class="urdu-label" dir="rtl"> حوالہ / صارف نمبر </span>)',
 'service_provider' => 'Service Provider (<span class="urdu-label" dir="rtl"> سروس مہیا کرنے والا </span>)',
 'connection_date' => 'Connection Date (<span class="urdu-label" dir="rtl"> کنکشن کی تاریخ  </span>)',
-'business_paid_bill_file' => 'Paid Utility bill of Business Place (not older than 3 months) (<span class="urdu-label" dir="rtl"> کاروباری جگہ کا ادا شدہ یوٹیلیٹی بل - تین ماہ سے پرانا نہ ہو </span>)',
+'business_paid_bill_file' => 'Paid Utility bill of Business Place (not older than 3 months)<br>(<span class="urdu-label" dir="rtl"> کاروباری جگہ کا ادا شدہ یوٹیلیٹی بل - تین ماہ سے پرانا نہ ہو </span>)',
 
 
 
