@@ -1547,7 +1547,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <label>{!! __('labels.currency') !!} <span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 @foreach($currencies as $currency)
-                                    <label class="radio">
+                                    <label class="radio radio-success">
                                         <input wire:model.defer="application.export_currency_id" type="radio" name="application.export_currency_id" value="{{ $currency->id }}">
                                         <span></span>{{ $currency->currency_name }}</label>
                                 @endforeach
@@ -1610,7 +1610,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                 <label>{!! __('labels.currency') !!} <span class="text-danger">*</span></label>
                                 <div class="radio-inline" wire:ignore>
                                     @foreach($currencies as $currency)
-                                        <label class="radio">
+                                        <label class="radio radio-success">
                                             <input wire:model.defer="application.import_currency_id" type="radio" name="application.import_currency_id" value="{{ $currency->id }}">
                                             <span></span>{{ $currency->currency_name }}</label>
                                     @endforeach
@@ -2058,7 +2058,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                     <span class="font-weight-bolder mb-2">{!! __('labels.business_evidence_tenancy') !!}</span>
                                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
+                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
                             </span>
                                 </div>
                             @endif
@@ -2139,7 +2139,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                         <span class="font-weight-bolder mb-2">{!! __('labels.business_paid_bill_file') !!}</span>
                                         <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($connection['bill_file']) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
+                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
                             </span>
                                     </div>
                                 @endif
@@ -2200,7 +2200,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                     <span class="font-weight-bolder mb-2">{!! __('labels.business_account_statement') !!}</span>
                                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
+                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
                             </span>
                                 </div>
                             @endif

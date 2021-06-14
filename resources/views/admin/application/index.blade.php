@@ -16,7 +16,7 @@
             <table class="table table-bordered table-checkable" id="my_datatable">
                 <thead>
                 <tr>
-                    <th>No</th>
+                    <th>Sr. No.</th>
                     <th>Business Name</th>
                     <th>Applicant Name</th>
                     <th>Email</th>

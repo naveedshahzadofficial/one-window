@@ -493,7 +493,7 @@
                                     <span class="font-weight-bolder mb-2">{!! __('labels.business_paid_bill_file') !!}</span>
                         <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($connection['bill_file']) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
+                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
                             </span>
                     </div>
                 @endif
@@ -555,7 +555,7 @@
                                     <span class="font-weight-bolder mb-2">{!! __('labels.business_account_statement') !!}</span>
                     <span class="opacity-70">
                                 <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a>
+                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
                             </span>
                 </div>
             @endif
