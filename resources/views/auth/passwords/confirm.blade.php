@@ -50,7 +50,7 @@
 
                     <div class="row mt-15">
                         <div class="col-md-12 pt-3 text-left"><span class="auth-text sample-text">{!! __('labels.already_an_account') !!}</span></div>
-                        <div class="col-md-12 pt-3"><a href="{{ route('login') }}" class="register_button btn btn-white btn-block">{!! __('labels.login') !!} <i class="fa fa-arrow-right float-right"></i></a></div>
+                        <div class="col-md-12 pt-3"><a href="{{ route('login') }}" class="register_button btn auth-underline btn-white btn-block">{!! __('labels.login') !!} <i class="fa fa-arrow-right float-right"></i></a></div>
                     </div>
 
 

@@ -65,7 +65,7 @@
 
 
                     <div class="row mt-15">
-                        <div class="col-md-12 pt-3 text-center"><a href="{{ route('register') }}"><span class="auth-text sample-text">{!! __('labels.not_an_account') !!}</span></a></div>
+                        <div class="col-md-12 pt-3 text-center"><a href="{{ route('register') }}"><span class="auth-text auth-underline sample-text">{!! __('labels.not_an_account') !!}</span></a></div>
                     </div>
 
 

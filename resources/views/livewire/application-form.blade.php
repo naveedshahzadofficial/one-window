@@ -1936,7 +1936,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <head>
                                 <tr>
                                     <th>{!! __('labels.document_title') !!}</th>
-                                    <th class="text-center">{!! __('labels.document') !!}</th>
+                                    <th class="text-center">{!! __('labels.download') !!}</th>
                                 </tr>
                             </head>
                             <tbody>
@@ -1944,30 +1944,30 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                 <tr>
                                     <td>{!! __('labels.ownership_proof') !!}</td>
                                     <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
-                                            target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
+                                            target="_blank" class="hand"><i class="flaticon2-download text-black-50"></i> Download</a></td>
                                 </tr>
                             @endif
                             @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
                                 <tr>
                                     <td>{!! __('labels.registration_proof') !!}</td>
                                     <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}"
-                                            target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
+                                            target="_blank" class="hand"><i class="flaticon2-download text-black-50"></i> Download</a></td>
                                 </tr>
                             @endif
                             @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
                                 <tr :class="{'d-none-imp': is_business_registered=='Registered'}" class="d-box">
                                     <td>{!! __('labels.registration_certificate') !!}</td>
                                     <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
-                                            target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
+                                            target="_blank" class="hand"><i class="flaticon2-download text-black-50"></i> Download</a></td>
                                 </tr>
                             @endif
                             @if(isset($business_other_files) && count($business_other_files)>0)
                             @foreach($business_other_files as $other_file)
                             @if(isset($other_file['document_file']) && !empty($other_file['document_file']))
-                                <tr :class="{'d-none-imp': is_business_registered=='Registered'}" class="d-box">
+                                <tr>
                                     <td>{{ isset($other_file['document_title'])?$other_file['document_title']:'' }}</td>
                                     <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($other_file['document_file']) }}"
-                                            target="_blank" class="hand"><i class="flaticon2-download"></i> Download</a></td>
+                                            target="_blank" class="hand"><i class="flaticon2-download text-black-50"></i></a></td>
                                 </tr>
                             @endif
                             @endforeach

@@ -41,6 +41,7 @@ return [
 'other_documents_heading' => 'Any Other Document (<label class="urdu-label" dir="rtl"> کوئی اور دستاویز </label>)',
 'document_title' => 'Document Title  (<span class="urdu-label" dir="rtl"> دستاویز کا عنوان </span>)',
 'document' => 'Document  (<span class="urdu-label" dir="rtl"> دستاویز </span>)',
+'download' => 'Download  (<span class="urdu-label" dir="rtl"> ڈاؤن لوڈ کریں </span>)',
 // property commons
 'property_type' => 'Type of Property (<span class="urdu-label" dir="rtl">  پراپرٹی کی قسم </span>)',
 'property_form' => 'Form of Property (<span class="urdu-label" dir="rtl">  پراپرٹی کی ذیلی قسم </span>)',
@@ -107,7 +108,7 @@ return [
 // Business Profile
 'business_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> کاروبار کے حصول کی تاریخ </span>)',
 'business_category' => 'Business Category (<span class="urdu-label" dir="rtl"> کاروبار کی قسم </span>)',
-'business_address_1' => 'Building No. / Unit No. / Plaza No. / Village (<span class="urdu-label" dir="rtl"> عمارت نمبر / یونٹ نمبر / پلازہ نمبر / گاؤں </span>)',
+'business_address_1' => 'Building No. / Unit No. / Plaza / Village (<span class="urdu-label" dir="rtl"> عمارت نمبر / یونٹ نمبر / پلازہ نمبر / گاؤں </span>)',
 'business_address_2' => 'Complex / Street / Block / Sector (<span class="urdu-label" dir="rtl">  کمپلیکس / اسٹریٹ / بلاک / سیکٹر </span>)',
 'business_address_3' => 'Area/ Locality (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک  </span>)',
 
@@ -122,7 +123,7 @@ return [
 
 'business_category' => 'Business Category (<span class="urdu-label" dir="rtl"> کاروبار کی قسم    </span>)',
 
-'ownership_proof' => 'Upload Proof of Ownership (<span class="urdu-label" dir="rtl"> ملکیت کا ثبوت  </span>)',
+'ownership_proof' => 'Proof of Ownership (<span class="urdu-label" dir="rtl"> ملکیت کا ثبوت  </span>)',
 
 'registration_proof' => 'License /Registration with chamber or Trade body <br>(<span class="urdu-label" dir="rtl"> چیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ   </span>)',
 
