@@ -12,6 +12,71 @@
         </div>
         <div class="card-body">
         @component('_components.alerts-default')@endcomponent
+
+            <div class="kt-form kt-form--fit mb-15">
+                <div class="row mb-6">
+                    <div class="col-lg-3 mb-lg-0 mb-6">
+                        <label>Province:</label>
+                        <select name="province_id" onchange="getProvinceDistricts(this)" class="form-control select2" id="province_id">
+                            <option value="">--- Select ---</option>
+                            @isset($provinces)
+                                @foreach($provinces as $province)
+                            <option {{ request()->get('province_id')==$province->id?'selected':'' }} value="{{ $province->id }}">{{ $province->province_name }}</option>
+                                @endforeach
+                            @endisset
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 mb-lg-0 mb-6">
+                        <label>District:</label>
+                        <select name="district_id" class="form-control select2" id="district_id">
+                            <option value="">--- Select ---</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 mb-lg-0 mb-6">
+                        <label>Business Category:</label>
+                        <select name="business_category_id" class="form-control select2" id="business_category_id">
+                            <option value="">--- Select ---</option>
+                            @isset($business_categories)
+                                @foreach($business_categories as $business_category)
+                                    <option {{ request()->get('business_category_id')==$business_category->id?'selected':'' }} value="{{ $business_category->id }}">{{ $business_category->category_name }}</option>
+                                @endforeach
+                            @endisset
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 mb-lg-0 mb-6">
+                        <label>Business Registration Status:</label>
+                        <div class="radio-inline mt-3">
+                            @isset($registration_status)
+                                @foreach($registration_status as $status)
+                            <label class="radio radio-success">
+                                <input {{ request()->get('business_registration_status_id')==$status->id?'checked':'' }} type="radio" name="business_registration_status_id" class="business_registration_status_id" value="{{ $status->id }}">
+                                <span></span>{{ $status->name }}</label>
+                                @endforeach
+                            @endisset
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mt-8">
+                    <div class="col-lg-12">
+                        <button onclick="reDrawDataTable();" class="btn btn-custom-color btn-primary--icon" id="kt_search">
+													<span>
+														<i class="la la-search text-white"></i>
+														<span>Search</span>
+													</span>
+                        </button>&nbsp;&nbsp;
+                        <button onclick="resetForm();" class="btn btn-secondary btn-secondary--icon" id="kt_reset">
+													<span>
+														<i class="la la-close"></i>
+														<span>Reset</span>
+													</span>
+                        </button></div>
+                </div>
+             </div>
+
         <!--begin: Datatable-->
             <table class="table table-bordered table-checkable" id="my_datatable">
                 <thead>
@@ -49,9 +114,10 @@
                     url: '{{ route('admin.applications.index-ajax') }}',
                     type: "POST",
                     data: function (row) {
-                        row.province_id='{{request()->get('province_id')}}'
-                        row.district_id='{{request()->get('district_id')}}'
-                        row.business_category_id='{{request()->get('business_category_id')}}'
+                        row.province_id= $('#province_id').val();
+                        row.district_id= $('#district_id').val();
+                        row.business_category_id=$('#business_category_id').val();
+                        row.business_registration_status_id=$('.business_registration_status_id:checked').val();
                     }
                 },
                 columns: [
@@ -145,5 +211,36 @@
             });
 
         });
+        function getProvinceDistricts(province_obj) {
+            var province_id =  $(province_obj).val();
+            getDistricts(province_id);
+        }
+
+        var districts = {!! isset($districts)?$districts:array() !!};
+
+        @if(request()->get('province_id'))
+        var selected_district = {{request()->get('district_id')}};
+        getDistricts({{request()->get('province_id')}},selected_district);
+        @endif
+
+        function getDistricts(province_id,selected_district) {
+            $('#district_id').empty();
+            var newOption = new Option("--- Select ---", "", false, false);
+            $('#district_id').append(newOption);
+           var filter_districts = _.filter(districts,  { 'province_id': parseInt(province_id)});
+            filter_districts.forEach(function (row) {
+                $('#district_id').append('<option '+(selected_district==row.id?"selected":"")+' value="'+ row.id + '">' + row.district_name_e+ '</option>');
+            });
+            $('#district_id').trigger('change.select2');
+
+        }
+
+        function resetForm(){
+            $('#province_id').val('').trigger('change.select2');
+            $('#district_id').val('').trigger('change.select2');
+            $('#business_category_id').val('').trigger('change.select2');
+            $('input[name=business_registration_status_id]').prop('checked', false);
+            reDrawDataTable();
+        }
     </script>
 @endpush

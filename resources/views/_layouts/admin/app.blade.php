@@ -173,6 +173,7 @@
 
 		<!--begin::Page Vendors(used by this page)-->
 		<script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
+		<script src="{{ asset('assets/plugins/lodash/lodash.min.js') }}"></script>
 
 		<!--end::Page Vendors-->
 
@@ -194,7 +195,19 @@
 
         @livewireScripts
 
+        <script>
+            $(function (){
+             $('.select2').select2();
+            });
+        </script>
+
         @stack('post-scripts')
+
+        <script>
+            function reDrawDataTable() {
+                myDataTable.draw()
+            }
+        </script>
 	</body>
 
 	<!--end::Body-->
