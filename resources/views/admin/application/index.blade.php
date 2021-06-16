@@ -69,7 +69,7 @@
                     </div>
 
 
-                    <div class="col-lg-9">
+                    <div class="col-lg-9 mt-7">
                         <button onclick="reDrawDataTable();" class="btn btn-custom-color btn-primary--icon" id="kt_search">
 													<span>
 														<i class="la la-search text-white"></i>
