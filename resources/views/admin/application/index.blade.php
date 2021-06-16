@@ -15,10 +15,6 @@
 
             <div class="kt-form kt-form--fit mb-15">
                 <div class="row mb-6">
-                    <div class="col-lg-3 mb-lg-0 mb-6">
-                        <label>Registration No.</label>
-                        <input type="text" name="registration_no" id="registration_no" class="form-control" placeholder="Registration No.">
-                    </div>
 
                     <div class="col-lg-3 mb-lg-0 mb-6">
                         <label>Province:</label>
@@ -51,8 +47,6 @@
                         </select>
                     </div>
 
-                </div>
-                <div class="row mt-8">
                     <div class="col-lg-3 mb-lg-0 mb-6">
                         <label>Business Registration Status:</label>
                         <div class="radio-inline mt-3">
@@ -65,6 +59,15 @@
                             @endisset
                         </div>
                     </div>
+
+                </div>
+                <div class="row mt-8">
+
+                    <div class="col-lg-3 mb-lg-0 mb-6">
+                        <label>Registration No.</label>
+                        <input type="text" name="registration_no" id="registration_no" class="form-control" placeholder="Registration No.">
+                    </div>
+
 
                     <div class="col-lg-9">
                         <button onclick="reDrawDataTable();" class="btn btn-custom-color btn-primary--icon" id="kt_search">

@@ -2477,7 +2477,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="alert alert-danger" role="alert">
-                                   Please fill all the required fileds.
+                                   Please fill all the required fields in all tabs.
                                 </div>
                             </div>
                         </div>

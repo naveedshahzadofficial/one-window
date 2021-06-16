@@ -76,16 +76,38 @@
 
         </div>
 
+        @if(optional($application->disabilityQuestion)->name=='Yes')
+        <div class="row pt-5">
+            <table class="table">
+                <head>
+                    <tr>
+                        <th>{!! __('labels.disability') !!}</th>
+                        <th class="text-center">{!! __('labels.disability_certificate') !!}</th>
+                    </tr>
+                </head>
+                <tbody>
+                @foreach($application->disabilities as $index=>$disability)
+                    @if(isset($disability->disability_certificate_file) && !empty($disability->disability_certificate_file))
+                        <tr>
+                            <td>{{ optional($disability->disability)->disability_name_e }}</td>
+                            <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($disability->disability_certificate_file) }}"
+                                                        target="_blank" class="hand"><i class="flaticon2-download color-black"></i></a></td>
+                        </tr>
+                    @endif
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+        @endif
+
+
         <div class="d-flex justify-content-between pt-5">
 
-            <div class="d-flex justify-content-between pt-5">
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">{!! __('labels.active_taxpayer') !!}</span>
                     <span
                         class="opacity-70">{{ optional($application->activeTaxpayerQuestion)->name }}</span>
                 </div>
-            </div>
-
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.national_tax_number') !!}<span
                                         class="text-danger"></span></span>

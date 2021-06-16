@@ -40,7 +40,7 @@ class ApplicationController extends Controller
 
         $query = Application::query()->select("*");
         if (!empty($registration_no)) {
-            $query->where('registration_no',  $registration_no);
+            $query->where('registration_no', 'like' ,"%$registration_no%");
         }
         if (!empty($province_id)) {
             $query->where('business_province_id',  $province_id);
@@ -58,7 +58,7 @@ class ApplicationController extends Controller
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row){
-                $actionBtn = '<a href="'.route('admin.applications.show',$row->id).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-eye text-white"></i></a>';
+                $actionBtn = '<a target="_blank" href="'.route('admin.applications.show',$row->id).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-eye text-white"></i></a>';
                 return $actionBtn;
             })
             ->rawColumns(['action'])
