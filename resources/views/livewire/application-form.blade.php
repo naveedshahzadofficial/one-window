@@ -2441,8 +2441,8 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="card card-custom wave wave-animate-fast wave-success">
-                                    <div class="card-body">
+                                <div class="card card-custom wave wave-animate-slow wave-success">
+                                    <div class="card-body bg-transparent">
                                         <div class="d-flex align-items-center py-5">
                                             <div class="mr-6">
                                                 @if($tab_applicant_profile_is_completed)
@@ -2466,7 +2466,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a wire:click.prevent="$set('step', 0)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h4 mb-3">Applicant Profile</a>
+                                                <a wire:click.prevent="$set('step', 0)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h6 mb-3">Applicant Profile</a>
                                                 <div class="text-dark-75">{{ $tab_applicant_profile_is_completed?'Completed':'In Completed' }}</div>
                                             </div>
                                         </div>
@@ -2475,8 +2475,8 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                             </div>
                             <div class="col-md-4">
-                                <div class="card card-custom wave wave-animate-fast wave-success">
-                                    <div class="card-body">
+                                <div class="card card-custom wave wave-animate-slow wave-success">
+                                    <div class="card-body bg-transparent">
                                         <div class="d-flex align-items-center py-5">
                                             <div class="mr-6">
                                                 @if($tab_business_profile_is_completed)
@@ -2500,7 +2500,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a wire:click.prevent="$set('step', 1)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h4 mb-3">Business Profile</a>
+                                                <a wire:click.prevent="$set('step', 1)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h6 mb-3">Business Profile</a>
                                                 <div class="text-dark-75">{{ $tab_business_profile_is_completed?'Completed':'In Completed' }}</div>
                                             </div>
                                         </div>
@@ -2509,8 +2509,8 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                             </div>
                             <div class="col-md-4">
-                                <div class="card card-custom wave wave-animate-fast wave-success">
-                                    <div class="card-body">
+                                <div class="card card-custom wave wave-animate-slow  wave-success">
+                                    <div class="card-body bg-transparent">
                                         <div class="d-flex align-items-center py-5">
                                             <div class="mr-6">
                                                 @if($tab_utility_connection_is_completed)
@@ -2533,7 +2533,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                                 @endif
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a wire:click.prevent="$set('step', 2)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h4 mb-3">Utility Connections</a>
+                                                <a wire:click.prevent="$set('step', 2)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h6 mb-3">Utility Connections</a>
                                                 <div class="text-dark-75">{{ $tab_utility_connection_is_completed?'Completed':'In Completed' }}</div>
                                             </div>
                                         </div>
@@ -2544,8 +2544,8 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                         </div>
                         <div class="row mt-20">
                             <div class="col-md-4">
-                                <div class="card card-custom wave wave-animate-fast wave-success">
-                                    <div class="card-body">
+                                <div class="card card-custom wave wave-animate-slow wave-success">
+                                    <div class="card-body bg-transparent">
                                         <div class="d-flex align-items-center py-5">
                                             <div class="mr-6">
                                                 @if($tab_employees_info_is_completed)
@@ -2568,7 +2568,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                                 @endif
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a wire:click.prevent="$set('step', 3)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h4 mb-3">Employees Info</a>
+                                                <a wire:click.prevent="$set('step', 3)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h6 mb-3">Employees Info</a>
                                                 <div class="text-dark-75">{{ $tab_employees_info_is_completed?'Completed':'In Completed' }}</div>
                                             </div>
                                         </div>
@@ -2577,8 +2577,8 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                             </div>
                             <div class="col-md-4">
-                                <div class="card card-custom wave wave-animate-fast wave-success">
-                                    <div class="card-body">
+                                <div class="card card-custom wave wave-animate-slow wave-success">
+                                    <div class="card-body bg-transparent">
                                         <div class="d-flex align-items-center py-5">
                                             <div class="mr-6">
                                                 @if($tab_annual_turnover_is_completed)
@@ -2601,7 +2601,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                                 @endif
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a wire:click.prevent="$set('step', 4)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h4 mb-3">Annual Turnover</a>
+                                                <a wire:click.prevent="$set('step', 4)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h6 mb-3">Annual Turnover</a>
                                                 <div class="text-dark-75"> {{ $tab_annual_turnover_is_completed?'Completed':'In Completed' }}</div>
                                             </div>
                                         </div>
