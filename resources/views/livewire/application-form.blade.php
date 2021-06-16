@@ -2618,7 +2618,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                         <label class="checkbox checkbox-success">
                                             <input wire:model.defer="accept_declaration" type="checkbox" name="declare_applicant_name">
                                             <span></span>
-                                            <p class="declare_notion mb-0">I&nbsp;<span id="declare_applicant_name">{{ isset($application['first_name'])?$application['first_name']:'' }}&nbsp;{{ isset($application['middle_name'])?$application['middle_name']:'' }}&nbsp;{{ isset($application['last_name'])?$application['last_name']:'' }}</span>&nbsp;do hereby solemnly, and sincerely declare that the information provided in the form and its enclosure is:</p>
+                                            <p class="declare_notion mb-0">I&nbsp;<span id="declare_applicant_name">{{ isset($application['first_name'])?$application['first_name']:'' }}{{ isset($application['middle_name']) && !empty($application['middle_name'])?' '.$application['middle_name']:'' }}{{ isset($application['last_name']) && !empty($application['last_name'])?' '.$application['last_name']:'' }}</span>, do hereby solemnly, and sincerely declare that the information provided in the form and its enclosure is:</p>
                                         </label>
                                     </div>
                                 @error('accept_declaration')
