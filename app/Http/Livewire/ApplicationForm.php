@@ -965,9 +965,12 @@ class ApplicationForm extends Component
         $validator = Validator::make(((array)$this),$rules_applicant_profile, $messages_applicant_profile);
 
         if($validator->fails())
-            $this->tab_business_profile_is_completed = false;
+            $this->tab_applicant_profile_is_completed = false;
         else
-            $this->tab_business_profile_is_completed = true;
+            $this->tab_applicant_profile_is_completed = true;
+
+        //dd($validator->errors()->first());
+        //dd($this->tab_employees_info_is_completed);
 
         /* End Applicant Profile Rules */
 
@@ -1058,8 +1061,7 @@ class ApplicationForm extends Component
 
         /* End Business Profile Rules */
 
-        //dd($validator->errors()->first());
-        //dd($this->tab_employees_info_is_completed);
+
 
         /* Start Utility Connections Validation Rules */
         $rules_utility_connections = [

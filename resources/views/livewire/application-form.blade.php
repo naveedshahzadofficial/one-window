@@ -349,8 +349,8 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <table class="form-group table">
                                 <thead>
                                 <tr>
-                                    <th width="50%" class="text-left">{!! __('labels.disability') !!}</th>
-                                    <th width="50%" colspan="2" class="text-left">{!! __('labels.disability_certificate') !!}</th>
+                                    <th width="50%" class="text-left">{!! __('labels.disability') !!}<span class="text-danger">*</span></th>
+                                    <th width="50%" colspan="2" class="text-left">{!! __('labels.disability_certificate') !!}<span class="text-danger">*</span></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -383,7 +383,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                                         <div class="file_changer" @if(isset($disability['disability_certificate_file']) && !empty($disability['disability_certificate_file'])) x-show="open" @endif>
                                             <input type="file"  wire:model.defer="disabilities.{{$index}}.new_disability_certificate_file" class="form-control m-input" placeholder="">
-                                            <span class="m-form__help">Files with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 10MB.</span>
+                                            <span class="m-form__help">Files with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
                                             @if($errors->has("disabilities.$index.new_disability_certificate_file"))
                                                 <div
                                                     class="invalid-feedback d-block">{{ $errors->first("disabilities.$index.new_disability_certificate_file") }}</div>
@@ -417,7 +417,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                 <button wire:click.prevent="addDisability()" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-right" class="btn btn btn-sm btn-custom-color">
                                 <span class="text-white">
                                 <i class="la la-plus text-white"></i>
-                                <span>Add Another Disability</span>
+                                <span>{!! __('labels.add_more') !!}</span>
                                 </span>
                                 </button>
                                 </td>
@@ -426,8 +426,6 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             </table>
 
                         </div>
-
-
 
                         <div class="form-group row">
 
@@ -507,54 +505,61 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                 </div>
 
                             </div>
-                            <div x-show.transition.opacity="is_technical_education=='Yes'">
+
+                        <div class="form-group row" x-show.transition.opacity="is_technical_education=='Yes'">
+
+                            <table class="form-group table">
+                                <thead>
+                                <tr>
+                                    <th width="95%" class="text-left">{!! __('labels.technical_education_detail') !!}<span
+                                            class="text-danger">*</span></th>
+                                    <th width="5%">&nbsp;</th>
+                                </tr>
+                                </thead>
+                                <tbody>
                                 @foreach($technical_educations as $index=>$technical_education)
-                                    <div class="mt-10 section_add_more">
-                                        <div class="row form-group">
-                                            <div class="col-lg-6">
-                                                <label>{!! __('labels.technical_education_detail') !!}<span
-                                                        class="text-danger">*</span></label>
-                                                <input
-                                                    wire:model.defer="technical_educations.{{$index}}.certificate_title"
-                                                    type="text"
-                                                    class="form-control @if($errors->has("technical_educations.$index.certificate_title")) is-invalid @endif"
-                                                    placeholder="Diploma/ Certificate Title"/>
-                                                @if($errors->has("technical_educations.$index.certificate_title"))
-                                                    <div
-                                                        class="invalid-feedback d-block">{{ $errors->first("technical_educations.$index.certificate_title") }}</div>
-                                                @endif
-                                            </div>
-                                            <div class="col-lg-6">
-                                                @if($index>0)
-                                                    <div class="d-flex justify-content-end">
-                                    <span wire:click.prevent="removeTechnicalEducation({{ $index }})"
-                                          wire:loading.attr="disabled"
-                                          class="btn btn-xs btn-icon px-4 py-4 btn-custom-color">
-                            <i class="flaticon2-delete text-white"></i>
-                            </span>
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <tr>
+                                        <td>
+                                            <input
+                                                wire:model.defer="technical_educations.{{$index}}.certificate_title"
+                                                type="text"
+                                                class="form-control @if($errors->has("technical_educations.$index.certificate_title")) is-invalid @endif"
+                                                placeholder="Diploma/ Certificate Title"/>
+                                            @if($errors->has("technical_educations.$index.certificate_title"))
+                                                <div
+                                                    class="invalid-feedback d-block">{{ $errors->first("technical_educations.$index.certificate_title") }}</div>
+                                            @endif
 
-                                    @if(count($technical_educations)==($index+1))
-                                        <div class="d-flex justify-content-end">
-                                            <div class="py-4">
-                                                <button type="button"
-                                                        wire:click.prevent="addTechnicalEducation"
-                                                        wire:loading.class="spinner spinner-white spinner-right"
-                                                        wire:loading.attr="disabled"
-                                                        class="btn btn-custom-color font-weight-bold px-4 py-2 d-block">
-                                                    {!! __('labels.add_more') !!}
-                                                </button>
-                                            </div>
-                                        </div>
-                                    @endif
+                                        </td>
 
+
+                                        <td class="align-middle text-right @unless($index>0) d-none @endunless">
+                                        <span wire:click.prevent="removeTechnicalEducation({{ $index }})"
+                                              wire:loading.attr="disabled"
+                                              wire:loading.class="spinner spinner-white spinner-center"
+                                              class="btn btn-xs btn-icon px-4 py-4 btn-custom-color">
+														<i class="flaticon2-delete text-white"></i>
+										</span>
+
+                                        </td>
+                                    </tr>
                                 @endforeach
-                            </div>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="7" class="text-right">
+                                        <button wire:click.prevent="addTechnicalEducation()" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-right" class="btn btn btn-sm btn-custom-color">
+                                <span class="text-white">
+                                <i class="la la-plus text-white"></i>
+                                <span>{!! __('labels.add_more') !!}</span>
+                                </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
 
+                        </div>
 
                         <div class="form-group row">
                             <div class="col-lg-6">
@@ -1004,21 +1009,18 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                 <label>{!!__('labels.business_other_documents') !!}<span class="text-danger"></span></label>
                             </div>
                             <div class="col-lg-12">
-                            @foreach($business_other_files as $index=>$business_other_file)
-                                    <div class="@if($index>0) mt-10 @endif section_add_more">
-                                        @if($index>0)
-                                            <div class="d-flex justify-content-end">
-																		<span wire:click.prevent="removeOtherDocument({{ $index }})"
-                                                                              wire:loading.attr="disabled"
-                                                                              class="btn btn-xs btn-icon px-4 py-4 btn-custom-color">
-														<i class="flaticon2-delete text-white"></i>
-														</span>
-                                            </div>
-                                        @endif
-                                        <div class="row form-group">
-                                            <div class="col-lg-6">
-                                                <label>{!!__('labels.document_title') !!}<span
-                                                        class="text-danger"></span></label>
+
+                                <table class="form-group table">
+                                    <thead>
+                                    <tr>
+                                        <th width="50%" class="text-left">{!!__('labels.document_title') !!}</th>
+                                        <th width="50%" colspan="2" class="text-left">{!!__('labels.document') !!}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($business_other_files as $index=>$business_other_file)
+                                        <tr>
+                                            <td>
                                                 <input
                                                     wire:model.defer="business_other_files.{{$index}}.document_title"
                                                     type="text"
@@ -1028,45 +1030,54 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                                     <div
                                                         class="invalid-feedback d-block">{{ $errors->first("business_other_files.$index.document_title") }}</div>
                                                 @endif
-                                            </div>
+                                            </td>
 
-                                            <div class="col-lg-6" x-data="{ open: false }">
-                                                <label>{!!__('labels.document') !!}</label>
+                                            <td  x-data="{ open: false }">
+
+                                                <div class="file_changer" @if(isset($business_other_file['document_file']) && !empty($business_other_file['document_file'])) x-show="open" @endif>
+                                                    <input type="file"  wire:model.defer="business_other_files.{{$index}}.new_document_file" class="form-control m-input" placeholder="">
+                                                    <span class="m-form__help">Files with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                                    @if($errors->has("business_other_files.$index.new_document_file"))
+                                                        <div
+                                                            class="invalid-feedback d-block">{{ $errors->first("business_other_files.$index.new_document_file") }}</div>
+                                                    @endif
+                                                </div>
                                                 @if(isset($business_other_file['document_file']) && !empty($business_other_file['document_file']))
-                                                    <br><a href="{{ asset('storage/'.$business_other_file['document_file']) }}"
-                                                           target="_blank" class="file_viewer" title="{{ $business_other_file['document_title']??'Other Document' }}">View
-                                                        File</a>
-                                                    &nbsp;|&nbsp;
-                                                    <a @click="open = true" href="javascript:;" class="show_file" x-show="!open"
-                                                       onClick="return false;">Change File
-                                                    </a><a href="javascript:;" onClick="return false;" x-show="open"
-                                                           @click="open = false">Do Not Change File</a>
+                                                    <div class="file_view_div">
+                                                        <a href="{{ asset('storage/'.$business_other_file['document_file']) }}" target="_blank" onclick="return false;" class="file_viewer" title="Certificate">View File</a> &nbsp;|&nbsp;
+                                                        <span  @click="open = true"  x-show="!open"  class="show_file" onclick="return false;">Change File</span>
+                                                        <span  @click="open = false" x-show="open"   class="hide_file m--hide" onclick="return false;">Do Not Change File</span>
+                                                    </div>
                                                 @endif
-                                                <input @if(isset($business_other_file['document_file']) && !empty($business_other_file['document_file'])) x-show="open" @endif
-                                                wire:model="business_other_files.{{$index}}.new_document_file" type="file" name="business_other_files.{{$index}}.new_document_file" class="form-control m-input" placeholder="" ><span class="form-text text-muted">Files with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
-                                                @if($errors->has("business_other_files.$index.new_document_file"))
-                                                    <div
-                                                        class="invalid-feedback d-block">{{ $errors->first("business_other_files.$index.new_document_file") }}</div>
-                                                @endif
-                                            </div>
 
-                                        </div>
-                                    </div>
+                                            </td>
 
-                                    @if(count($business_other_files)==($index+1))
-                                        <div class="d-flex justify-content-end">
-                                            <div class="py-4">
-                                                <button type="button"
-                                                        wire:click.prevent="addOtherDocument"
-                                                        wire:loading.class="spinner spinner-white spinner-right"
-                                                        wire:loading.attr="disabled"
-                                                        class="btn btn-custom-color font-weight-bold px-4 py-2 d-block">
-                                                   {!!__('labels.add_more') !!}
-                                                </button>
-                                            </div>
-                                        </div>
-                                    @endif
-                            @endforeach
+                                            <td class="align-middle text-right @unless($index>0) d-none @endunless">
+                                        <span wire:click.prevent="removeOtherDocument({{ $index }})"
+                                              wire:loading.attr="disabled"
+                                              wire:loading.class="spinner spinner-white spinner-center"
+                                              class="btn btn-xs btn-icon px-4 py-4 btn-custom-color">
+														<i class="flaticon2-delete text-white"></i>
+										</span>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="7" class="text-right">
+                                            <button wire:click.prevent="addOtherDocument()" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-right" class="btn btn btn-sm btn-custom-color">
+                                <span class="text-white">
+                                <i class="la la-plus text-white"></i>
+                                <span>{!! __('labels.add_more') !!}</span>
+                                </span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+
                             </div>
                         </div>
 
