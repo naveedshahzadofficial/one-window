@@ -34,7 +34,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step', 0)" wire:loading.attr="disabled"   class="wizard-label">
-                    <h3 class="wizard-title">{!! __('labels.applicant_profile') !!}</h3>
+                    <h3 class="wizard-title min-h-sm-30px">{!! __('labels.applicant_profile') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 1 Nav-->
@@ -43,7 +43,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step', 1)" wire:loading.attr="disabled"  class="wizard-label">
-                    <h3 class="wizard-title">{!! __('labels.business_profile') !!}</h3>
+                    <h3 class="wizard-title min-h-sm-30px">{!! __('labels.business_profile') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 2 Nav-->
@@ -52,7 +52,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step',2)" wire:loading.attr="disabled"  class="wizard-label">
-                    <h3 class="wizard-title">{!! __('labels.utility_connections') !!}</h3>
+                    <h3 class="wizard-title min-h-sm-30px">{!! __('labels.utility_connections') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 3 Nav-->
@@ -61,7 +61,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step', 3)" wire:loading.attr="disabled"  class="wizard-label">
-                    <h3 class="wizard-title">{!! __('labels.employees_info') !!}</h3>
+                    <h3 class="wizard-title min-h-sm-30px">{!! __('labels.employees_info') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 4 Nav-->
@@ -70,7 +70,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step', 4)" wire:loading.attr="disabled"  class="wizard-label">
-                    <h3 class="wizard-title">{!! __('labels.annual_turnover') !!}</h3>
+                    <h3 class="wizard-title min-h-sm-30px">{!! __('labels.annual_turnover') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 5 Nav-->
@@ -79,7 +79,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step', 5)" wire:loading.attr="disabled"  class="wizard-label">
-                    <h3 class="wizard-title">{!! __('labels.tab_review') !!}</h3>
+                    <h3 class="wizard-title min-h-sm-30px py-2">{!! __('labels.tab_review') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 6 Nav-->
@@ -88,7 +88,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==6){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step', 6)" wire:loading.attr="disabled"  class="wizard-label">
-                    <h3 class="wizard-title">{!! __('labels.tab_submit') !!}</h3>
+                    <h3 class="wizard-title py-2  min-h-sm-30px">{!! __('labels.tab_submit') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 6 Nav-->
