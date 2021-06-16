@@ -15,15 +15,16 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
+            $table->string('registration_no')->nullable()->unique();
             $table->foreignId('prefix_id')->nullable()->constrained();
-            $table->string('first_name');
+            $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
-            $table->string('last_name');
+            $table->string('last_name')->nullable();
             $table->foreignId('gender_id')->nullable()->constrained();
-            $table->string('cnic_no');
-            $table->date('cnic_issue_date');
-            $table->date('cnic_expiry_date');
-            $table->date('date_of_birth');
+            $table->string('cnic_no')->nullable();
+            $table->date('cnic_issue_date')->nullable();
+            $table->date('cnic_expiry_date')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->foreignId('cnic_expiry_question_id')->nullable()->constrained('questions');
             $table->foreignId('designation_business_id')->nullable()->constrained();
             $table->foreignId('minority_status_question_id')->nullable()->constrained('questions');
@@ -101,7 +102,7 @@ class CreateApplicationsTable extends Migration
             $table->foreignId('import_fiscal_year_id')->nullable()->constrained('fiscal_years');
             $table->foreignId('import_currency_id')->nullable()->constrained('currencies');
             $table->decimal('import_annual_turnover',20,2)->nullable();
-
+            $table->dateTime('submitted_at')->nullable();
             $table->foreignId('user_id')->nullable()->constrained();
             $table->softDeletes();
             $table->timestamps();

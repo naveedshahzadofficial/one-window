@@ -56,6 +56,8 @@ return [
 'employees_info' => 'Employees Info',
 'annual_turnover' => 'Annual Turnover',
 'review_submit' => 'Review and Submit',
+'tab_review' => 'Review',
+'tab_submit' => 'Submission',
 
 //Headings
 'basic_info' => 'BASIC INFO (<label class="urdu-label" dir="rtl"> بنیادی معلومات   </label>)',
@@ -71,6 +73,8 @@ return [
 'employee_info_detail' => 'EMPLOYEES INFO DETAIL (<label class="urdu-label" dir="rtl">  ملازمین سے متعلق تفصیلات  </label>)',
 
 'turnover_heading' => 'ANNUAL TURNOVER  (<label class="urdu-label" dir="rtl"> سالانہ کاروبار </label>)',
+
+'submission_info_heading' => 'SUBMISSION  (<label class="urdu-label" dir="rtl"> جمع کروائیں </label>)',
 
 
 // Applicant Profile
@@ -192,6 +196,8 @@ return [
 
 'connection_type' => 'Form/Type of Connection (<span class="urdu-label" dir="rtl"> کنکشن کی قسم </span>)',
 'save_and_next' => 'Save & Next (<span class="urdu-label" dir="rtl"> محفوظ کریں اور آگے جائیں </span>)',
+'save_btn' => 'Save (<span class="urdu-label" dir="rtl">محفوظ کریں</span>)',
+'next_btn' => 'Next (<span class="urdu-label" dir="rtl">آگے جائیں</span>)',
 'submit_form' => 'Submit (<span class="urdu-label" dir="rtl"> جمع کروائیں </span>)',
 'previous' => 'Back (<span class="urdu-label" dir="rtl"> پیچھے جائیں </span>)',
 

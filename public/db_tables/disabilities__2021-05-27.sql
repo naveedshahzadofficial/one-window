@@ -27,7 +27,7 @@
 LOCK TABLES `disabilities` WRITE;
 /*!40000 ALTER TABLE `disabilities` DISABLE KEYS */;
 
-INSERT INTO `disabilities` (`disability_id`, `disability_name_e`, `disability_name_u`, `disability_order`, `disability_remark`, `disability_status`, `created_at`, `updated_at`)
+INSERT INTO `disabilities` (`id`, `disability_name_e`, `disability_name_u`, `disability_order`, `disability_remark`, `disability_status`, `created_at`, `updated_at`)
 VALUES
 	(1,'Absent limb','غیر حاضر اعضاء',1,NULL,1,'2020-08-25 14:21:37','2020-08-25 14:21:37'),
 	(2,'Cerebral palsy','دماغی فالج',2,NULL,1,'2020-08-25 14:21:37','2020-08-25 14:21:37'),

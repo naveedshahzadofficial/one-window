@@ -33,11 +33,15 @@ class ApplicationController extends Controller
    public function indexAjax(Request $request)
     {
         $province_id = isset($request->province_id) && !empty($request->province_id) ?$request->province_id: '';
+        $registration_no = isset($request->registration_no) && !empty($request->registration_no) ?$request->registration_no: '';
         $district_id = isset($request->district_id) && !empty($request->district_id) ?$request->district_id: '';
         $business_category_id = isset($request->business_category_id) && !empty($request->business_category_id) ?$request->business_category_id: '';
         $business_registration_status_id = isset($request->business_registration_status_id) && !empty($request->business_registration_status_id) ?$request->business_registration_status_id: '';
 
         $query = Application::query()->select("*");
+        if (!empty($registration_no)) {
+            $query->where('registration_no',  $registration_no);
+        }
         if (!empty($province_id)) {
             $query->where('business_province_id',  $province_id);
         }

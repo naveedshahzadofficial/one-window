@@ -33,7 +33,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <!--begin::Wizard Step 1 Nav-->
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
-                <div class="wizard-label">
+                <div wire:click.prevent="$set('step', 0)" wire:loading.attr="disabled"   class="wizard-label">
                     <h3 class="wizard-title">{!! __('labels.applicant_profile') !!}</h3>
                 </div>
             </div>
@@ -42,7 +42,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <!--begin::Wizard Step 2 Nav-->
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
-                <div class="wizard-label">
+                <div wire:click.prevent="$set('step', 1)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('labels.business_profile') !!}</h3>
                 </div>
             </div>
@@ -51,7 +51,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <!--begin::Wizard Step 3 Nav-->
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
-                <div class="wizard-label">
+                <div wire:click.prevent="$set('step',2)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('labels.utility_connections') !!}</h3>
                 </div>
             </div>
@@ -60,7 +60,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <!--begin::Wizard Step 4 Nav-->
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
-                <div class="wizard-label">
+                <div wire:click.prevent="$set('step', 3)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('labels.employees_info') !!}</h3>
                 </div>
             </div>
@@ -69,7 +69,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <!--begin::Wizard Step 5 Nav-->
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
-                <div class="wizard-label">
+                <div wire:click.prevent="$set('step', 4)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('labels.annual_turnover') !!}</h3>
                 </div>
             </div>
@@ -78,8 +78,17 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
             <!--begin::Wizard Step 6 Nav-->
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
-                <div class="wizard-label">
-                    <h3 class="wizard-title">{!! __('labels.review_submit') !!}</h3>
+                <div wire:click.prevent="$set('step', 5)" wire:loading.attr="disabled"  class="wizard-label">
+                    <h3 class="wizard-title">{!! __('labels.tab_review') !!}</h3>
+                </div>
+            </div>
+            <!--end::Wizard Step 6 Nav-->
+
+            <!--begin::Wizard Step 6 Nav-->
+            <div class="wizard-step" data-wizard-type="step"
+                 data-wizard-state="@if($step==6){{ 'current' }}@else{{ 'done' }}@endif">
+                <div wire:click.prevent="$set('step', 6)" wire:loading.attr="disabled"  class="wizard-label">
+                    <h3 class="wizard-title">{!! __('labels.tab_submit') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 6 Nav-->
@@ -335,64 +344,90 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row" x-show.transition.opacity="is_disability=='Yes'">
 
                             <table class="form-group table">
                                 <thead>
                                 <tr>
-                                    <th class="text-left">{!! __('labels.disability') !!}</th>
-                                    <th colspan="2" class="text-left">{!! __('labels.disability_certificate') !!}</th>
+                                    <th width="50%" class="text-left">{!! __('labels.disability') !!}</th>
+                                    <th width="50%" colspan="2" class="text-left">{!! __('labels.disability_certificate') !!}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($disabilities as $index=>$disability)
                                 <tr>
                                     <td>
-                                        <select style="width:100%" name="disabilities[0][disability_id]">
-                                            <option value="" selected="">--- Please Select ---</option>
-                                            <option value="1">Absent limb (غیر حاضر اعضاء)</option>
-                                        </select>
+                                        <div wire:ignore>
+                                        <x-select2-dropdown wire:model.defer="disabilities.{{$index}}.disability_id"
+                                                            setFieldName="disabilities.{{$index}}.disability_id"
+                                                            id="disability_id_{{$index}}" fieldName="disability_name_e"
+                                                            :listing="$disability_options"/>
+                                        </div>
 
-                                        <div class="any_other_disability m--margin-top-5">
-                                            <input type="text" required="" name="disabilities[0][disability_other]" value="" class="form-control m-input disability_other" placeholder="Any Other Disability">
+                                    @if($errors->has("disabilities.$index.disability_id"))
+                                            <div
+                                                class="invalid-feedback d-block">{{ $errors->first("disabilities.$index.disability_id") }}</div>
+                                        @endif
+
+                                        <div class="any_other_disability mt-5 @if(isset($disability['disability_id']) && $disability['disability_id']==10)) d-box @else d-none @endif">
+                                            <input type="text" wire:model.defer="disabilities.{{$index}}.disability_other" value="" class="form-control m-input disability_other" placeholder="Any Other Disability">
+                                            @if($errors->has("disabilities.$index.disability_other"))
+                                                <div
+                                                    class="invalid-feedback d-block">{{ $errors->first("disabilities.$index.disability_other") }}</div>
+                                            @endif
                                         </div>
 
                                     </td>
 
-                                    <td>
-                                        <input type="hidden" name="disabilities[0][old_disability_certificate_file]" value="20201106125727_belt.png">
+                                    <td  x-data="{ open: false }">
 
-                                        <div class="file_changer m--hide">
-                                            <input type="file" required="" name="disabilities[0][disability_certificate_file]" class="form-control m-input" placeholder="">
+                                        <div class="file_changer" @if(isset($disability['disability_certificate_file']) && !empty($disability['disability_certificate_file'])) x-show="open" @endif>
+                                            <input type="file"  wire:model.defer="disabilities.{{$index}}.new_disability_certificate_file" class="form-control m-input" placeholder="">
                                             <span class="m-form__help">Files with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 10MB.</span>
+                                            @if($errors->has("disabilities.$index.new_disability_certificate_file"))
+                                                <div
+                                                    class="invalid-feedback d-block">{{ $errors->first("disabilities.$index.new_disability_certificate_file") }}</div>
+                                            @endif
                                         </div>
+                                        @if(isset($disability['disability_certificate_file']) && !empty($disability['disability_certificate_file']))
                                         <div class="file_view_div">
-                                            <a href="http://eloan.test/uploads/disabilities/20201106125727_belt.png" target="_blank" onclick="return false;" class="file_viewer" title="Certificate">View File</a> &nbsp;|&nbsp; <a href="#" class="show_file" onclick="return false;">Change File</a><a href="#" class="hide_file m--hide" onclick="return false;">Do Not Change File</a>
+                                            <a href="{{ asset('storage/'.$disability['disability_certificate_file']) }}" target="_blank" onclick="return false;" class="file_viewer" title="Certificate">View File</a> &nbsp;|&nbsp;
+                                            <span  @click="open = true"  x-show="!open"  class="show_file" onclick="return false;">Change File</span>
+                                            <span  @click="open = false" x-show="open"   class="hide_file m--hide" onclick="return false;">Do Not Change File</span>
                                         </div>
+                                       @endif
 
                                     </td>
 
+                                    <td class="align-middle text-right @unless($index>0) d-none @endunless">
+                                        <span wire:click.prevent="removeDisability({{ $index }})"
+                                              wire:loading.attr="disabled"
+                                              wire:loading.class="spinner spinner-white spinner-center"
+                                              class="btn btn-xs btn-icon px-4 py-4 btn-custom-color">
+														<i class="flaticon2-delete text-white"></i>
+										</span>
 
-                                    <td class="align-middle text-right">
-                                        <a href="javascript:;" data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
-                                            <i class="la la-remove"></i>
-                                        </a>
                                     </td>
                                 </tr>
-
+                                @endforeach
                                 </tbody>
                                 <tfoot>
-                                <tr><td colspan="7" class="text-right">
-                                        <div data-repeater-create="" class="btn btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill m-btn--wide">
-					<span>
-						<i class="la la-plus"></i>
-						<span>Add Another Disability</span>
-					</span>
-                                        </div>
-                                    </td>
-                                </tr></tfoot>
+                                <tr>
+                                <td colspan="7" class="text-right">
+                                <button wire:click.prevent="addDisability()" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-right" class="btn btn btn-sm btn-custom-color">
+                                <span class="text-white">
+                                <i class="la la-plus text-white"></i>
+                                <span>Add Another Disability</span>
+                                </span>
+                                </button>
+                                </td>
+                                </tr>
+                                </tfoot>
                             </table>
 
                         </div>
+
+
 
                         <div class="form-group row">
 
@@ -1251,11 +1286,9 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <div class="col-lg-6">
                                 <label>{!! __('labels.business_contact_no') !!}<span
                                         class="text-danger">*</span></label>
-                                <div wire:ignore>
-                                    <x-input-mask wire:model.defer="application.business_contact_number"
-                                                  class="business_contact_number" mask="9999-9999999"
-                                                  placeholder="Contact No." isInvalid=""/>
-                                </div>
+                                <input wire:model.defer="application.business_contact_number" type="text"
+                                       class="form-control @error('application.business_contact_number') is-invalid @enderror"
+                                       placeholder="Contact No." maxlength="50"/>
                                 @error('application.business_contact_number')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -1567,12 +1600,12 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label>{!! __('labels.fiscal_year') !!} <span class="text-danger">*</span></label>
-                                <select wire:model.defer="application.turnover_fiscal_year_id"  class="form-control @error('application.turnover_fiscal_year_id') is-invalid @enderror">
-                                    <option value="">Select Year</option>
-                                    @foreach($fiscal_years as $year)
-                                        <option value="{{ $year->id }}">{{ $year->year_name }}</option>
-                                    @endforeach
-                                </select>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="application.turnover_fiscal_year_id"
+                                                        setFieldName="application.turnover_fiscal_year_id"
+                                                        id="turnover_fiscal_year_id" fieldName="year_name"
+                                                        :listing="$fiscal_years"/>
+                                </div>
                                 @error('application.turnover_fiscal_year_id')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -1589,21 +1622,22 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-6" x-data="{ open: false }">
-                                <label>{!! __('labels.business_account_statement') !!} </label>
+                                <label>{!! __('labels.business_account_statement') !!} <span class="text-danger">*</span></label>
 
                                 @if(isset($application['business_account_statement_file']) && !empty($application['business_account_statement_file']))
                                     <br><a href="{{ asset('storage/'.$application['business_account_statement_file']) }}"
                                            target="_blank" class="file_viewer" title="Business Account Statement">View
                                         File</a>
                                     &nbsp;|&nbsp;
-                                    <a @click="open = true" href="javascript:;" class="show_file" x-show="!open"
-                                       onClick="return false;">Change File
-                                    </a><a href="javascript:;" onClick="return false;" x-show="open"
-                                           @click="open = false">Do Not Change File</a>
+                                    <a @click="open = true"  x-show="!open" href="javascript:;">Change File</a>
+                                    <a @click="open = false" x-show="open" wire:click.prevent="$set('business_account_statement_file', null)" href="javascript:;">Do Not Change File</a>
                                 @endif
 
                                 <input type="file" class="form-control" wire:model="business_account_statement_file" @if(isset($application['business_account_statement_file']) && !empty($application['business_account_statement_file'])) x-show="open" @endif >
                                 <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                @error('business_account_statement_file')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -1633,12 +1667,12 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                     <div class="form-group row"  x-show.transition.opacity="is_annual_export=='Yes'">
                         <div class="col-lg-6">
                             <label>{!! __('labels.fiscal_year') !!} <span class="text-danger">*</span></label>
-                            <select wire:model.defer="application.export_fiscal_year_id"  class="form-control @error('application.export_fiscal_year_id') is-invalid @enderror">
-                                <option value="">Select Year</option>
-                                @foreach($fiscal_years as $year)
-                                    <option value="{{ $year->id }}">{{ $year->year_name }}</option>
-                                @endforeach
-                            </select>
+                            <div wire:ignore>
+                                <x-select2-dropdown wire:model.defer="application.export_fiscal_year_id"
+                                                    setFieldName="application.export_fiscal_year_id"
+                                                    id="export_fiscal_year_id" fieldName="year_name"
+                                                    :listing="$fiscal_years"/>
+                            </div>
                             @error('application.export_fiscal_year_id')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -1696,12 +1730,13 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                         <div class="form-group row"  x-show.transition.opacity="is_annual_import=='Yes'">
                             <div class="col-lg-6">
                                 <label>{!! __('labels.fiscal_year') !!} <span class="text-danger">*</span></label>
-                                <select wire:model.defer="application.import_fiscal_year_id"  class="form-control @error('application.export_fiscal_year_id') is-invalid @enderror">
-                                    <option value="">Select Year</option>
-                                    @foreach($fiscal_years as $year)
-                                        <option value="{{ $year->id }}">{{ $year->year_name }}</option>
-                                    @endforeach
-                                </select>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="application.import_fiscal_year_id"
+                                                        setFieldName="application.import_fiscal_year_id"
+                                                        id="import_fiscal_year_id" fieldName="year_name"
+                                                        :listing="$fiscal_years"/>
+                                </div>
+
                                 @error('application.import_fiscal_year_id')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -2384,12 +2419,238 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                     <!--end::Section-->
                 </div>
-                <!--end: Wizard Step 5 -->
+                <!--end: Wizard Step 6 -->
+
+                <!--begin: Wizard Step 7 -->
+                <div class="pb-5" data-wizard-type="step-content"
+                     data-wizard-state="@if($step==6){{ 'current' }}@else{{ 'done' }}@endif">
+
+                    <h4 class="font-weight-bold section_heading text-white"><span>  {!!  __('labels.submission_info_heading') !!}</span></h4>
+                    <div class="section_box">
+                        @if(!($tab_applicant_profile_is_completed && $tab_business_profile_is_completed &&
+                                        $tab_utility_connection_is_completed && $tab_employees_info_is_completed &&
+                                        $tab_annual_turnover_is_completed))
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger" role="alert">
+                                   Please fill all the required fileds.
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card card-custom wave wave-animate-fast wave-success">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center p-5">
+                                            <div class="mr-6">
+                                                @if($tab_applicant_profile_is_completed)
+                                           <span class="svg-icon svg-icon-success svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Done-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+        <path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                @else
+
+                                                <span class="svg-icon svg-icon-danger svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Error-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+        <path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z" fill="#000000"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                    @endif
+
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <a wire:click.prevent="$set('step', 0)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h4 mb-3">Applicant Profile</a>
+                                                <div class="text-dark-75">{{ $tab_applicant_profile_is_completed?'Completed':'In Completed' }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card card-custom wave wave-animate-fast wave-success">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center p-5">
+                                            <div class="mr-6">
+                                                @if($tab_business_profile_is_completed)
+                                                    <span class="svg-icon svg-icon-success svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Done-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+        <path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                @else
+
+                                                    <span class="svg-icon svg-icon-danger svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Error-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+        <path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z" fill="#000000"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                @endif
+
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <a wire:click.prevent="$set('step', 1)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h4 mb-3">Business Profile</a>
+                                                <div class="text-dark-75">{{ $tab_business_profile_is_completed?'Completed':'In Completed' }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card card-custom wave wave-animate-fast wave-success">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center p-5">
+                                            <div class="mr-6">
+                                                @if($tab_utility_connection_is_completed)
+                                                    <span class="svg-icon svg-icon-success svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Done-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+        <path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                @else
+
+                                                    <span class="svg-icon svg-icon-danger svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Error-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+        <path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z" fill="#000000"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                @endif
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <a wire:click.prevent="$set('step', 2)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h4 mb-3">Utility Connections</a>
+                                                <div class="text-dark-75">{{ $tab_utility_connection_is_completed?'Completed':'In Completed' }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row mt-20">
+                            <div class="col-md-4">
+                                <div class="card card-custom wave wave-animate-fast wave-success">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center p-5">
+                                            <div class="mr-6">
+                                                @if($tab_employees_info_is_completed)
+                                                    <span class="svg-icon svg-icon-success svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Done-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+        <path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                @else
+
+                                                    <span class="svg-icon svg-icon-danger svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Error-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+        <path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z" fill="#000000"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                @endif
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <a wire:click.prevent="$set('step', 3)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h4 mb-3">Employees Info</a>
+                                                <div class="text-dark-75">{{ $tab_employees_info_is_completed?'Completed':'In Completed' }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card card-custom wave wave-animate-fast wave-success">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center p-5">
+                                            <div class="mr-6">
+                                                @if($tab_annual_turnover_is_completed)
+                                                    <span class="svg-icon svg-icon-success svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Done-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+        <path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                @else
+
+                                                    <span class="svg-icon svg-icon-danger svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Error-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+        <path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z" fill="#000000"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                @endif
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <a wire:click.prevent="$set('step', 4)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h4 mb-3">Annual Turnover</a>
+                                                <div class="text-dark-75"> {{ $tab_annual_turnover_is_completed?'Completed':'In Completed' }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row form-group mt-20">
+                            <div class="col-md-12 col-form-label">
+                                    <div class="checkbox-inline">
+                                        <label class="checkbox checkbox-success">
+                                            <input wire:model.defer="accept_declaration" type="checkbox" name="declare_applicant_name">
+                                            <span></span>
+                                            <p class="declare_notion mb-0">I&nbsp;<span id="declare_applicant_name">{{ isset($application['first_name'])?$application['first_name']:'' }}&nbsp;{{ isset($application['middle_name'])?$application['middle_name']:'' }}&nbsp;{{ isset($application['last_name'])?$application['last_name']:'' }}</span>&nbsp;do hereby solemnly, and sincerely declare that the information provided in the form and its enclosure is:</p>
+                                        </label>
+                                    </div>
+                                @error('accept_declaration')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-12">
+                                <p class="d-inline urdu-label ml-10" style="direction:rtl">میں حلفاََ بیان کرتا /کرتی ہوں کہ درخواست فارم میں دی گئی معلومات:</p>
+                            </div>
+
+                            <div class="col-md-12">
+                                <ol class="mt-3">
+                                    <li>
+                                        <p class="mb-0">True and correct to the best of my knowledge and nothing has been concealed; and</p>
+                                        <p class="d-inline urdu-label" style="direction:rtl">میرے علم کے مطابق بالکل سہی، درست اور سچی ہیں اور کوئی بات پوشیدہ نہیں رکھی گئی۔</p>
+                                    </li>
+                                    <li>
+                                        <p class="mb-0">In case of any forgery and/or concealment of any fact/ document is found, the same shall lead to the initiation of legal proceedings as per law, policy and rules.</p>
+                                        <p class="d-inline urdu-label" style="direction:rtl"> کسی کاغذ/ معلومات میں میری طرف سے غیر قانونی تبدیلی یا اسے چھپانے کی صورت میں میرے خلاف قانون و قواعد اور پالیسی کے مطابق کاروائی کی جا سکتی ہے۔</p>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--end: Wizard Step 7 -->
 
                 <!--begin: Wizard Actions-->
                 <div class="d-flex justify-content-between">
                     <div class="mr-2">
-                        @if($step> 0 && $step<=5)
+                        @if($step> 0 && $step<=6)
                             <button type="button"
                                     class="btn btn-custom-dark font-weight-bold px-8 py-2 d-block"
                                     data-wizard-type="action-prev"
@@ -2399,26 +2660,46 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             </button>
                         @endif
                     </div>
-                    <div>
-                        @if($step >= 5)
+
+                        @if($step >= 6)
+                        <div>
                             <button type="button"
+
+                                    @if(!($tab_applicant_profile_is_completed && $tab_business_profile_is_completed &&
+                                        $tab_utility_connection_is_completed && $tab_employees_info_is_completed &&
+                                        $tab_annual_turnover_is_completed))
+                                    disabled
+                                    @endif
+
                                     class="btn btn-custom-color font-weight-bold px-8 py-2 d-block"
                                     data-wizard-type="action-submit"
                                     wire:loading.class="spinner spinner-white spinner-right"
                                     wire:loading.attr="disabled"
                                     wire:click.prevent="submitApplication">{!! __('labels.submit_form') !!}
                             </button>
+                        </div>
                         @else
+                        <div>
+                            @if($step!=5)
+                            <button type="button"
+                                    class="btn btn-custom-color font-weight-bold px-8 py-2 d-block float-left mr-10"
+                                    data-wizard-type="action-next"
+                                    wire:loading.class="spinner spinner-white spinner-right"
+                                    wire:loading.attr="disabled"
+                                    wire:click.prevent="submitApplication"
+                            >{!! __('labels.save_btn') !!}
+                            </button>
+                            @endif
                             <button type="button"
                                     class="btn btn-custom-color font-weight-bold px-8 py-2 d-block"
                                     data-wizard-type="action-next"
                                     wire:loading.class="spinner spinner-white spinner-right"
                                     wire:loading.attr="disabled"
-                                    wire:click.prevent="submitApplication"
-                            >{!! __('labels.save_and_next') !!}
+                                    wire:click.prevent="increaseStep"
+                            >{!! __('labels.next_btn') !!}
                             </button>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
                 </div>
                 <!--end: Wizard Actions-->
             </form>
@@ -2428,3 +2709,17 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
     <!--end: Wizard Body-->
 </div>
 
+@push('post-scripts')
+    <script>
+        window.addEventListener('reinitialization:select2', event =>{
+            console.log(event.detail.id);
+            $(event.detail.id).select2();
+            $(event.detail.id).on('change', function (e) {
+                let data = $(this).val();
+                @this.set(event.detail.key_name, data);
+            });
+
+        });
+    </script>
+
+@endpush

@@ -46,5 +46,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BusinessActivitySeeder::class);
         $this->call(UtilityServiceProviderSeeder::class);
         $this->call(AdminSeeder::class);
+        $this->call(DisabilitySeeder::class);
     }
 }

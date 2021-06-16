@@ -11,7 +11,7 @@ class Application extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['prefix_id', 'first_name', 'middle_name', 'last_name', 'gender_id', 'cnic_no',
+    protected $fillable = ['registration_no', 'prefix_id', 'first_name', 'middle_name', 'last_name', 'gender_id', 'cnic_no',
         'cnic_issue_date', 'cnic_expiry_question_id', 'cnic_expiry_date', 'date_of_birth', 'designation_business_id', 'minority_status_question_id',
         'minority_status_id', 'minority_status_other', 'active_taxpayer_question_id', 'ntn_personal','disability_question_id', 'education_level_id', 'technical_education_question_id',
         'certificate_title', 'skilled_worker_question_id', 'skill_or_art', 'residence_address_type_id',
@@ -32,7 +32,7 @@ class Application extends Model
         'annual_turnover', 'business_account_statement_file',
         'export_question_id', 'export_fiscal_year_id', 'export_currency_id', 'export_annual_turnover',
         'import_question_id', 'import_fiscal_year_id', 'import_currency_id', 'import_annual_turnover',
-        'user_id'];
+        'user_id', 'submitted_at'];
 
     protected $casts = [
         'cnic_issue_date'=>'datetime:d-m-Y',
@@ -42,6 +42,7 @@ class Application extends Model
         'business_establishment_date'=>'datetime:d-m-Y',
         'business_registration_date'=>'datetime:d-m-Y',
         'business_acquisition_date'=>'datetime:d-m-Y',
+        'submitted_at'=>'datetime:d-m-Y',
     ];
 
     public function setAttribute($key, $value)
@@ -275,4 +276,12 @@ class Application extends Model
         return $this->belongsTo(Currency::class,'import_currency_id');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model){
+            $max_number = Application::max('id')+1;
+            $model->registration_no = str_pad($max_number, 7,'0',STR_PAD_LEFT).Carbon::today()->year;
+        });
+    }
 }

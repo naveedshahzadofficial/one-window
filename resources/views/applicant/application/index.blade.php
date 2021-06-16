@@ -28,7 +28,9 @@
             <table class="table table-bordered table-checkable" id="my_datatable">
                 <thead>
                 <tr>
+                    <th>Application ID</th>
                     <th>Sr. No.</th>
+                    <th>Registration No.</th>
                     <th>Business Name</th>
                     <th>Applicant Name</th>
                     <th>Email</th>
@@ -64,7 +66,9 @@
                     }
                 },
                 columns: [
+                    { data: 'id',searchable: false, visible: false, printable:false  },
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    {data: 'registration_no', name: 'registration_no'},
                     {data: 'business_name', name: 'business_name'},
                     {data: 'first_name', name: 'first_name', render:function(data,type,row,meta){
                         return row.first_name+ " "+row.last_name;
@@ -77,7 +81,7 @@
                         orderable: false, searchable: false
                     },
                 ],
-
+                order: [[0, 'desc']],
                 dom: 'lfrtip',
 
                 lengthMenu: [
