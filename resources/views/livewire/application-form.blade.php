@@ -1866,6 +1866,30 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                         </div>
 
+                        <div class="row pt-5" :class="{'d-none-imp': is_disability=='No'}">
+
+                            <table class="table">
+                                <head>
+                                    <tr>
+                                        <th>{!! __('labels.disability') !!}</th>
+                                        <th class="text-center">{!! __('labels.disability_certificate') !!}</th>
+                                    </tr>
+                                </head>
+                                <tbody>
+                                @foreach($disabilities as $index=>$disability)
+                                    @if(isset($disability['disability_certificate_file']) && !empty($disability['disability_certificate_file']))
+                                        <tr>
+                                            <td>{{ isset($disability['disability_id'])?getCollectionTitle($disability_options,'disability_name_e',$disability['disability_id']):'' }}</td>
+                                            <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($disability['disability_certificate_file']) }}"
+                                                                        target="_blank" class="hand"><i class="flaticon2-download color-black"></i></a></td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.active_taxpayer') !!}</span>
@@ -1895,17 +1919,26 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                     class="opacity-70">{{ isset($application['education_level_id'])?getCollectionTitle($education_level,'name',$application['education_level_id']):'' }}</span>
                             </div>
                         </div>
-                        @foreach($technical_educations as $index=>$technical_education)
-                            <div
-                                :class="{'d-none-imp': is_technical_education=='No'}"
-                                class="d-flex justify-content-between pt-5">
-                                <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2">{!! __('labels.technical_education_detail') !!}</span>
-                                    <span
-                                        class="opacity-70">{{ isset($technical_education['certificate_title'])?$technical_education['certificate_title']:'' }}</span>
-                                </div>
-                            </div>
-                        @endforeach
+
+                        <div class="row pt-5" :class="{'d-none-imp': is_technical_education=='No'}">
+                          <table class="table">
+                                <head>
+                                    <tr>
+                                        <th>{!! __('labels.technical_education_detail') !!}</th>
+                                    </tr>
+                                </head>
+                                <tbody>
+                                @foreach($technical_educations as $index=>$technical_education)
+                                    @if(isset($technical_education['certificate_title']) && !empty($technical_education['certificate_title']))
+                                        <tr>
+                                            <td>{{ isset($technical_education['certificate_title'])?$technical_education['certificate_title']:'' }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
                         <div class="d-flex justify-content-between pt-5">
 
                             <div
