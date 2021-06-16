@@ -2466,7 +2466,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a wire:click.prevent="$set('step', 0)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h6 mb-3">Applicant Profile</a>
+                                                <a wire:click.prevent="$set('step', 0)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-md mb-3">{!! __('labels.applicant_profile') !!}</a>
                                                 <div class="text-dark-75">{{ $tab_applicant_profile_is_completed?'Completed':'In Completed' }}</div>
                                             </div>
                                         </div>
@@ -2500,7 +2500,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a wire:click.prevent="$set('step', 1)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h6 mb-3">Business Profile</a>
+                                                <a wire:click.prevent="$set('step', 1)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-md mb-3">{!! __('labels.business_profile') !!}</a>
                                                 <div class="text-dark-75">{{ $tab_business_profile_is_completed?'Completed':'In Completed' }}</div>
                                             </div>
                                         </div>
@@ -2533,7 +2533,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                                 @endif
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a wire:click.prevent="$set('step', 2)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h6 mb-3">Utility Connections</a>
+                                                <a wire:click.prevent="$set('step', 2)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-md mb-3">{!! __('labels.utility_connections') !!}</a>
                                                 <div class="text-dark-75">{{ $tab_utility_connection_is_completed?'Completed':'In Completed' }}</div>
                                             </div>
                                         </div>
@@ -2568,7 +2568,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                                 @endif
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a wire:click.prevent="$set('step', 3)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h6 mb-3">Employees Info</a>
+                                                <a wire:click.prevent="$set('step', 3)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-md mb-3">{!! __('labels.employees_info') !!}</a>
                                                 <div class="text-dark-75">{{ $tab_employees_info_is_completed?'Completed':'In Completed' }}</div>
                                             </div>
                                         </div>
@@ -2601,7 +2601,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                                 @endif
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a wire:click.prevent="$set('step', 4)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-h6 mb-3">Annual Turnover</a>
+                                                <a wire:click.prevent="$set('step', 4)" wire:loading.attr="disabled" wire:loading.class="spinner spinner-white spinner-left" href="javascript:;" class="text-dark text-hover-primary font-weight-bold font-size-md mb-3">{!! __('labels.annual_turnover') !!}</a>
                                                 <div class="text-dark-75"> {{ $tab_annual_turnover_is_completed?'Completed':'In Completed' }}</div>
                                             </div>
                                         </div>
