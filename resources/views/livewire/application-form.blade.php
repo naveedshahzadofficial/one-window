@@ -2443,7 +2443,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <div class="col-md-4">
                                 <div class="card card-custom wave wave-animate-fast wave-success">
                                     <div class="card-body">
-                                        <div class="d-flex align-items-center p-5">
+                                        <div class="d-flex align-items-center py-5">
                                             <div class="mr-6">
                                                 @if($tab_applicant_profile_is_completed)
                                            <span class="svg-icon svg-icon-success svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Done-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -2477,7 +2477,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <div class="col-md-4">
                                 <div class="card card-custom wave wave-animate-fast wave-success">
                                     <div class="card-body">
-                                        <div class="d-flex align-items-center p-5">
+                                        <div class="d-flex align-items-center py-5">
                                             <div class="mr-6">
                                                 @if($tab_business_profile_is_completed)
                                                     <span class="svg-icon svg-icon-success svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Done-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -2511,7 +2511,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <div class="col-md-4">
                                 <div class="card card-custom wave wave-animate-fast wave-success">
                                     <div class="card-body">
-                                        <div class="d-flex align-items-center p-5">
+                                        <div class="d-flex align-items-center py-5">
                                             <div class="mr-6">
                                                 @if($tab_utility_connection_is_completed)
                                                     <span class="svg-icon svg-icon-success svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Done-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -2546,7 +2546,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <div class="col-md-4">
                                 <div class="card card-custom wave wave-animate-fast wave-success">
                                     <div class="card-body">
-                                        <div class="d-flex align-items-center p-5">
+                                        <div class="d-flex align-items-center py-5">
                                             <div class="mr-6">
                                                 @if($tab_employees_info_is_completed)
                                                     <span class="svg-icon svg-icon-success svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Done-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -2579,7 +2579,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <div class="col-md-4">
                                 <div class="card card-custom wave wave-animate-fast wave-success">
                                     <div class="card-body">
-                                        <div class="d-flex align-items-center p-5">
+                                        <div class="d-flex align-items-center py-5">
                                             <div class="mr-6">
                                                 @if($tab_annual_turnover_is_completed)
                                                     <span class="svg-icon svg-icon-success svg-icon-4x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Done-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
