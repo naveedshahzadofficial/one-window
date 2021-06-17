@@ -1810,7 +1810,8 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
     <div class="row">
         <div class="col-md-4">
-            <div class="card card-custom wave wave-animate-slow wave-success">
+            <div @if(!$tab_applicant_profile_is_completed) class="bg-white" @endif>
+            <div class="card card-custom wave wave-animate-slow {{ $tab_applicant_profile_is_completed?'wave-success':'wave-danger' }}">
                 <div class="card-body bg-transparent">
                     <div class="d-flex align-items-center py-5">
                         <div class="mr-6">
@@ -1841,10 +1842,11 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                     </div>
                 </div>
             </div>
-
+            </div>
         </div>
         <div class="col-md-4">
-            <div class="card card-custom wave wave-animate-slow wave-success">
+            <div @if(!$tab_business_profile_is_completed) class="bg-white" @endif>
+            <div class="card card-custom wave wave-animate-slow {{ $tab_business_profile_is_completed?'wave-success':'wave-danger' }}">
                 <div class="card-body bg-transparent">
                     <div class="d-flex align-items-center py-5">
                         <div class="mr-6">
@@ -1875,10 +1877,11 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                     </div>
                 </div>
             </div>
-
+            </div>
         </div>
         <div class="col-md-4">
-            <div class="card card-custom wave wave-animate-slow  wave-success">
+            <div @if(!$tab_utility_connection_is_completed) class="bg-white" @endif>
+            <div class="card card-custom wave wave-animate-slow  {{ $tab_utility_connection_is_completed?'wave-success':'wave-danger' }}">
                 <div class="card-body bg-transparent">
                     <div class="d-flex align-items-center py-5">
                         <div class="mr-6">
@@ -1908,12 +1911,13 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                     </div>
                 </div>
             </div>
-
+            </div>
         </div>
     </div>
     <div class="row mt-20">
         <div class="col-md-4">
-            <div class="card card-custom wave wave-animate-slow wave-success">
+            <div @if(!$tab_employees_info_is_completed) class="bg-white" @endif>
+            <div class="card card-custom wave wave-animate-slow {{ $tab_employees_info_is_completed?'wave-success':'wave-danger' }}">
                 <div class="card-body bg-transparent">
                     <div class="d-flex align-items-center py-5">
                         <div class="mr-6">
@@ -1943,10 +1947,11 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                     </div>
                 </div>
             </div>
-
+            </div>
         </div>
         <div class="col-md-4">
-            <div class="card card-custom wave wave-animate-slow wave-success">
+            <div @if(!$tab_annual_turnover_is_completed) class="bg-white" @endif>
+            <div class="card card-custom wave wave-animate-slow {{ $tab_annual_turnover_is_completed?'wave-success':'wave-danger' }}">
                 <div class="card-body bg-transparent">
                     <div class="d-flex align-items-center py-5">
                         <div class="mr-6">
@@ -1976,7 +1981,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                     </div>
                 </div>
             </div>
-
+            </div>
         </div>
     </div>
 
