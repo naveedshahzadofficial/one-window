@@ -254,17 +254,7 @@
                 KTUtil.scrollTop(300,3000);
             });
 
-            window.addEventListener('child:select2', event =>{
-                let child_id = event.detail.child_id;
-                $(child_id).empty();
-                var newOption = new Option("--- Please Select ---", "", false, false);
-                $(child_id).append(newOption);
-                event.detail.data.forEach(function(row){
-                    $(child_id).append('<option value="'+row.id+'">'+row[event.detail.field_name]+'</option>');
-                });
-                $(child_id).trigger('change.select2');
 
-            });
 
             window.addEventListener('reinitialization:utility', event =>{
                console.log(event);
@@ -274,12 +264,6 @@
                     formatDate:'d-m-Y',
                     scrollInput : false
                 });
-
-                /*$('#utility_service_provider_id_'+event.detail.id).select2();
-                $('#utility_service_provider_id_'+event.detail.id).on('change', function (e) {
-                    let data = $(this).val();
-                    let key_name = "utility_connections."+event.detail.id+".utility_service_provider_id";
-                });*/
 
             });
         </script>

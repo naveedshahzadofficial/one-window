@@ -407,6 +407,7 @@ class ApplicationForm extends Component
                     'data'=>$this->utility_service_providers[$key_index[0]],
                     'child_id'=>'#utility_service_provider_id_'.$key_index[0],
                     'field_name'=>'provider_name',
+                    'key_name'=>"utility_connections.$key_index[0].utility_service_provider_id",
                 ]);
                 break;
         }
