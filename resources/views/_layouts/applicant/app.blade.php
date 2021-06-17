@@ -254,8 +254,6 @@
                 KTUtil.scrollTop(300,3000);
             });
 
-
-
             window.addEventListener('reinitialization:utility', event =>{
                console.log(event);
                 $('#connection_date_'+event.detail.id).datetimepicker({

@@ -1,4 +1,6 @@
- <!--begin::Section-->
+<div class="pb-5" data-wizard-type="step-content"
+     data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
+<!--begin::Section-->
     <h4 class="main_section_heading">{!! __('labels.review_applicant_profile') !!}
     </h4>
     <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.basic_info') !!}</span></h4>
@@ -675,3 +677,5 @@
 
 
     <!--end::Section-->
+
+</div>
