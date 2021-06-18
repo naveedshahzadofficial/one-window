@@ -415,7 +415,6 @@ class ApplicationForm extends Component
                     'data'=>$this->utility_service_providers[$key_index[0]],
                     'child_id'=>'#utility_service_provider_id_'.$key_index[0],
                     'field_name'=>'provider_name',
-                    'key_name'=>"utility_connections.$key_index[0].utility_service_provider_id",
                 ]);
                 break;
         }
@@ -779,6 +778,8 @@ class ApplicationForm extends Component
     }
 
     public function addUtilityConnection(){
+        $current_index = count($this->utility_connections)-1;
+
         $this->validate([
             'utility_connections.*.utility_type_id' => 'required',
             'utility_connections.*.connection_ownership_id' => 'required',
@@ -793,6 +794,10 @@ class ApplicationForm extends Component
             'utility_connections.*.connection_ownership_id.required' => 'Provider is required.',
         ]);
         $this->utility_connections[] = ['utility_type_id'=>null,'utility_form_id'=>null,'connection_ownership_id'=>null,'utility_consumer_number'=>null, 'utility_service_provider_id'=>null,  'connection_date'=>null, 'bill_file'=>null];
+        $next_index = $current_index+1;
+        $select2_id = "#utility_service_provider_id_$next_index";
+        $key_name = "utility_connections.$next_index.utility_service_provider_id";
+        $this->dispatchBrowserEvent('reinitialization:select2',['id'=>$select2_id,'key_name'=>$key_name]);
         $this->dispatchBrowserEvent('reinitialization:utility',['id'=>(count($this->utility_connections)-1)]);
     }
     public function addTechnicalEducation(){
