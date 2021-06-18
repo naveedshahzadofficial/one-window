@@ -157,6 +157,14 @@ class Registration extends Component
         $this->validate();
         $this->user['password'] = bcrypt($this->user['password']);
         User::create($this->user);
+
+        $data = new \stdClass;
+        $data->subject = "SMERP Registration";
+        $data->name = $this->user['first_name'];
+        $data->body = "You are successful sign up, now you can registration your SMEs.";
+        SendEmailJob::dispatch($this->user['email'],$data,'default');
+
+
         session()->flash('success_message', 'User has been register successfully.');
         return $this->redirect(route('login'));
     }

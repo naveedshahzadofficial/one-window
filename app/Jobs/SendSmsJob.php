@@ -38,6 +38,6 @@ class SendSmsJob implements ShouldQueue
      */
     public function handle()
     {
-        (new SmsService())->sendSmsAsp($this->phone_number, $this->sms_text,$this->language);
+        (new SmsService())->sendSms($this->phone_number, $this->sms_text,$this->language);
     }
 }

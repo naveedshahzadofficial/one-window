@@ -270,7 +270,13 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/SendSmsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/SendSmsJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/DefaultMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/DefaultMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/UserSignUpMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/UserSignUpMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/SmsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/SmsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mails/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mails/default.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mails/user_sign_up.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mails/user_sign_up.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -541,7 +547,7 @@
       <workItem from="1623390822345" duration="22905000" />
       <workItem from="1623416175514" duration="33035000" />
       <workItem from="1623738771014" duration="49345000" />
-      <workItem from="1623921892860" duration="12513000" />
+      <workItem from="1623921892860" duration="13687000" />
     </task>
     <servers />
   </component>
