@@ -1856,7 +1856,6 @@ let data = $(this).val();
 
 window.addEventListener('child:select2', event =>{
 let child_id = event.detail.child_id;
-$(child_id).select2();
 $(child_id).empty();
 var newOption = new Option("--- Please Select ---", "", false, false);
 $(child_id).append(newOption);
@@ -1864,12 +1863,6 @@ event.detail.data.forEach(function(row){
 $(child_id).append('<option value="'+row.id+'">'+row[event.detail.field_name]+'</option>');
 });
 $(child_id).trigger('change.select2');
-
-$(child_id).on('change', function (e) {
-let data = $(this).val();
-@this.set(event.detail.key_name, data);
-});
-
 });
 
 </script>
