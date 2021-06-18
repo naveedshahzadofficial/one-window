@@ -269,14 +269,26 @@
       <change beforePath="$PROJECT_DIR$/../livewirekit/resources/views/livewire/tailwind/post-votes.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/smerp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/smerp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/SendSmsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/SendSmsJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/DefaultMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/DefaultMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/UserSignUpMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/UserSignUpMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/SmsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/SmsService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mails/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mails/default.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mails/user_sign_up.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mails/user_sign_up.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ApplicationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ApplicationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/ApplicationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Applicant/ApplicationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Application.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationDisability.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationDisability.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationEmployeeInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationEmployeeInfo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationOtherDocument.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationOtherDocument.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationTechnicalEducation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationTechnicalEducation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationUtilityConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationUtilityConnection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_components/alerts-default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_components/alerts-default.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -471,11 +483,11 @@
       <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
       <path value="$PROJECT_DIR$/vendor/livewire/livewire" />
-      <path value="$PROJECT_DIR$/vendor/hallindavid/manny" />
       <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
       <path value="$PROJECT_DIR$/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/owen-it/laravel-auditing" />
     </include_path>
   </component>
   <component name="ProjectId" id="1t14hw6WT22DXa42lTEeiHMevt9" />
@@ -491,7 +503,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Services" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/auditable" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -502,17 +514,18 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin/auditable" />
       <recent name="$PROJECT_DIR$/app/Services" />
       <recent name="$PROJECT_DIR$/public/assets/fonts" />
       <recent name="$PROJECT_DIR$/database/migrations" />
       <recent name="$PROJECT_DIR$/resources/views/components" />
-      <recent name="$PROJECT_DIR$/public/db_tables" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/applicant/application/tabs" />
@@ -547,7 +560,7 @@
       <workItem from="1623390822345" duration="22905000" />
       <workItem from="1623416175514" duration="33035000" />
       <workItem from="1623738771014" duration="49345000" />
-      <workItem from="1623921892860" duration="13687000" />
+      <workItem from="1623921892860" duration="31504000" />
     </task>
     <servers />
   </component>

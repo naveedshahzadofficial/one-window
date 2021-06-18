@@ -6,10 +6,13 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Application extends Model
+class Application extends Model implements Auditable
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, \OwenIt\Auditing\Auditable;
 
     protected $fillable = ['registration_no', 'prefix_id', 'first_name', 'middle_name', 'last_name', 'gender_id', 'cnic_no',
         'cnic_issue_date', 'cnic_expiry_question_id', 'cnic_expiry_date', 'date_of_birth', 'designation_business_id', 'minority_status_question_id',
@@ -63,215 +66,232 @@ class Application extends Model
         }
     }
 
+    public function generateTags(): array
+    {
+        return ['Registration'];
+    }
 
-    public function disabilities(){
+    public function certifications(): HasMany
+    {
+       return $this->hasMany(ApplicationCertification::class);
+    }
+
+    public function disabilities(): HasMany
+    {
         return $this->hasMany(ApplicationDisability::class);
     }
 
-    public function technicalEducations(){
+    public function technicalEducations(): HasMany
+    {
         return $this->hasMany(ApplicationTechnicalEducation::class);
     }
 
-    public function otherDocuments(){
+    public function otherDocuments(): HasMany
+    {
         return $this->hasMany(ApplicationOtherDocument::class);
     }
 
-    public function utilityConnections(){
+    public function utilityConnections(): HasMany
+    {
         return $this->hasMany(ApplicationUtilityConnection::class);
     }
 
-    public function employeeInfos(){
+    public function employeeInfos(): HasMany
+    {
         return $this->hasMany(ApplicationEmployeeInfo::class);
     }
 
-    public function prefix(){
+    public function prefix(): BelongsTo
+    {
         return $this->belongsTo(Prefix::class);
     }
 
-    public function gender(){
+    public function gender(): BelongsTo
+    {
         return $this->belongsTo(Gender::class);
     }
 
-    public function designationBusiness(){
+    public function designationBusiness(): BelongsTo
+    {
         return $this->belongsTo(DesignationBusiness::class);
     }
 
-    public function cnicExpiryQuestion()
+    public function cnicExpiryQuestion(): BelongsTo
     {
         return $this->belongsTo(Question::class,'cnic_expiry_question_id');
     }
 
-    public function activeTaxpayerQuestion()
+    public function activeTaxpayerQuestion(): BelongsTo
     {
         return $this->belongsTo(Question::class,'active_taxpayer_question_id');
     }
 
-    public function disabilityQuestion()
+    public function disabilityQuestion(): BelongsTo
     {
         return $this->belongsTo(Question::class,'disability_question_id');
     }
 
-    public function minorityStatusQuestion()
+    public function minorityStatusQuestion(): BelongsTo
     {
         return $this->belongsTo(Question::class,'minority_status_question_id');
     }
 
-    public function minorityStatus()
+    public function minorityStatus(): BelongsTo
     {
         return $this->belongsTo(MinorityStatus::class);
     }
 
-    public function educationLevel()
+    public function educationLevel(): BelongsTo
     {
         return $this->belongsTo(EducationLevel::class);
     }
-    public function educationLevelQuestion()
+    public function educationLevelQuestion(): BelongsTo
     {
         return $this->belongsTo(Question::class,'technical_education_question_id');
     }
 
-    public function skilledWorkerQuestion()
+    public function skilledWorkerQuestion(): BelongsTo
     {
         return $this->belongsTo(Question::class,'skilled_worker_question_id');
     }
 
-    public function residenceAddressType()
+    public function residenceAddressType(): BelongsTo
     {
         return $this->belongsTo(AddressType::class, 'residence_address_type_id');
     }
 
-    public function residenceAddressForm()
+    public function residenceAddressForm(): BelongsTo
     {
         return $this->belongsTo(AddressForm::class, 'residence_address_form_id');
     }
-    public function residenceProvince()
+    public function residenceProvince(): BelongsTo
     {
         return $this->belongsTo(Province::class, 'residence_province_id');
     }
 
-    public function residenceCity()
+    public function residenceCity(): BelongsTo
     {
         return $this->belongsTo(City::class, 'residence_city_id');
     }
 
-    public function residenceDistrict()
+    public function residenceDistrict(): BelongsTo
     {
         return $this->belongsTo(District::class, 'residence_district_id');
     }
-    public function residenceTehsil()
+    public function residenceTehsil(): BelongsTo
     {
         return $this->belongsTo(Tehsil::class, 'residence_tehsil_id');
     }
 
-    public function residenceAddressCapacity()
+    public function residenceAddressCapacity(): BelongsTo
     {
         return $this->belongsTo(AddressCapacity::class, 'residence_capacity_id');
     }
 
 
-    public function businessRegistrationStatus()
+    public function businessRegistrationStatus(): BelongsTo
     {
         return $this->belongsTo(BusinessRegistrationStatus::class);
     }
 
-    public function businessLegalStatus()
+    public function businessLegalStatus(): BelongsTo
     {
         return $this->belongsTo(BusinessLegalStatus::class);
     }
 
-    public function businessActivity()
+    public function businessActivity(): BelongsTo
     {
         return $this->belongsTo(BusinessActivity::class);
     }
 
-    public function businessCategory()
+    public function businessCategory(): BelongsTo
     {
         return $this->belongsTo(BusinessCategory::class);
     }
 
-    public function businessSector()
+    public function businessSector(): BelongsTo
     {
         return $this->belongsTo(BusinessSector::class);
     }
 
-    public function businessSubSector()
+    public function businessSubSector(): BelongsTo
     {
         return $this->belongsTo(BusinessSubSector::class);
     }
 
-    public function businessAddressType()
+    public function businessAddressType(): BelongsTo
     {
         return $this->belongsTo(AddressType::class, 'business_address_type_id');
     }
 
-    public function businessAddressForm()
+    public function businessAddressForm(): BelongsTo
     {
         return $this->belongsTo(AddressForm::class, 'business_address_form_id');
     }
 
-    public function businessProvince()
+    public function businessProvince(): BelongsTo
     {
         return $this->belongsTo(Province::class, 'business_province_id');
     }
 
 
-    public function businessCity()
+    public function businessCity(): BelongsTo
     {
         return $this->belongsTo(City::class, 'business_city_id');
     }
-    public function businessDistrict()
+    public function businessDistrict(): BelongsTo
     {
         return $this->belongsTo(District::class, 'business_district_id');
     }
 
-    public function businessTehsil()
+    public function businessTehsil(): BelongsTo
     {
         return $this->belongsTo(Tehsil::class, 'business_tehsil_id');
     }
-    public function businessCapacity()
+    public function businessCapacity(): BelongsTo
     {
         return $this->belongsTo(AddressCapacity::class, 'business_capacity_id');
     }
 
-    public function utilityConnectionQuestion()
+    public function utilityConnectionQuestion(): BelongsTo
     {
         return $this->belongsTo(Question::class,'utility_connection_question_id');
     }
 
-    public function employeesQuestion()
+    public function employeesQuestion(): BelongsTo
     {
         return $this->belongsTo(Question::class,'employees_question_id');
     }
 
-    public function turnoverFiscalYear()
+    public function turnoverFiscalYear(): BelongsTo
     {
         return $this->belongsTo(FiscalYear::class,'turnover_fiscal_year_id');
     }
 
-    public function exportQuestion()
+    public function exportQuestion(): BelongsTo
     {
         return $this->belongsTo(Question::class,'export_question_id');
     }
 
-    public function exportFiscalYear()
+    public function exportFiscalYear(): BelongsTo
     {
         return $this->belongsTo(FiscalYear::class,'export_fiscal_year_id');
     }
 
-    public function exportCurrency()
+    public function exportCurrency(): BelongsTo
     {
         return $this->belongsTo(Currency::class,'export_currency_id');
     }
 
-    public function importQuestion()
+    public function importQuestion(): BelongsTo
     {
         return $this->belongsTo(Question::class,'import_question_id');
     }
-    public function importFiscalYear()
+    public function importFiscalYear(): BelongsTo
     {
         return $this->belongsTo(FiscalYear::class,'import_fiscal_year_id');
     }
-    public function importCurrency()
+    public function importCurrency(): BelongsTo
     {
         return $this->belongsTo(Currency::class,'import_currency_id');
     }

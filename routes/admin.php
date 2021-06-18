@@ -16,8 +16,12 @@ Route::get('/login', [Auth\LoginController::class, 'showLoginForm'])->name('logi
 
     Route::group(['middleware' => ['auth:admin']], function () {
         Route::post('/logout', [Auth\LoginController::class,'logout'])->name('logout');
-        Route::resource('applications', Admin\ApplicationController::class);
+
         Route::post('applications/index-ajax', [ Admin\ApplicationController::class,'indexAjax'])->name('applications.index-ajax');
+        Route::resource('applications', Admin\ApplicationController::class);
+
+        Route::post('auditable/index-ajax', [ Admin\AuditableController::class,'indexAjax'])->name('auditable.index-ajax');
+        Route::resource('auditable', Admin\AuditableController::class);
 
         Route::get('dashboard', [ Admin\DashboardController::class,'index'])->name('dashboard');
     });

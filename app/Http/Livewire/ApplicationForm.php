@@ -762,6 +762,12 @@ class ApplicationForm extends Component
         ];
         $this->validate($rules,$messages);
 
+        $this->submitApplicantProfile();
+        $this->submitBusinessProfile();
+        $this->submitUtilityConnections();
+        $this->submitEmployeesInfo();
+        $this->submitAnnualTurnover();
+
         if(!isset($this->registration['submitted_at']) || empty($this->registration['submitted_at']))
             $this->registration['submitted_at'] = Carbon::now();
 

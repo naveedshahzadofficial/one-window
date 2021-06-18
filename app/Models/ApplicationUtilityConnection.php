@@ -4,12 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class ApplicationUtilityConnection extends Model
+class ApplicationUtilityConnection extends Model implements Auditable
 {
-    use HasFactory;
+    use HasFactory, \OwenIt\Auditing\Auditable;
     protected $fillable = ['application_id', 'connection_ownership_id', 'utility_type_id', 'utility_consumer_number',
         'utility_form_id', 'utility_service_provider_id', 'utility_provider_other', 'connection_date', 'bill_file' ];
+
+    public function generateTags(): array
+    {
+        return ['Registration','Utility Connection'];
+    }
 
     public function application()
     {

@@ -5,17 +5,13 @@ namespace App\Http\Controllers\Applicant;
 use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\Gender;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class ApplicationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): View
     {
         return view('applicant.application.index');
     }
@@ -25,42 +21,28 @@ class ApplicationController extends Controller
         $query = Application::query()->where('user_id', auth()->id())->select("*");
         return DataTables::of($query)
             ->addIndexColumn()
-            ->addColumn('action', function($row){
-                $actionBtn = '<a href="'.route('applicant.applications.edit',$row->id).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-edit text-white"></i></a>&nbsp;<a target="_blank" href="'.route('applicant.applications.show',$row->id).'" class="edit btn btn-custom-color text-center btn-icon btn-circle btn-xs"><i class="flaticon-eye text-white"></i></a>';
+            ->addColumn('action', function(Application $application){
+                $actionBtn = '<a href="'.route('applicant.applications.edit',$application).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-edit text-white"></i></a>&nbsp;
+                              <a target="_blank" href="'.route('applicant.applications.show',$application).'" class="edit btn btn-custom-color text-center btn-icon btn-circle btn-xs"><i class="flaticon-eye text-white"></i></a>';
+
+                $actionBtn .= '&nbsp;<a href="'.route('applicant.applications.certifications.create',$application).'" class="edit btn btn-custom-color text-center btn-icon btn-circle btn-xs"><i class="flaticon-interface-11 text-white"></i></a>';
                 return $actionBtn;
             })
             ->rawColumns(['action'])
             ->make(true);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): View
     {
         return view('applicant.application.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show($id): View
     {
        $application =  Application::
         with('prefix', 'gender','designationBusiness', 'minorityStatusQuestion', 'minorityStatus',
@@ -71,49 +53,23 @@ class ApplicationController extends Controller
        'businessCity', 'businessDistrict', 'businessTehsil', 'businessCapacity',
            'utilityConnectionQuestion', 'utilityConnections.connectionOwnership','utilityConnections.utilityType','utilityConnections.utilityForm',
            'employeesQuestion','employeeInfos.employeeType','turnoverFiscalYear', 'exportQuestion','exportFiscalYear', 'exportCurrency','importQuestion','importFiscalYear','importCurrency')
-           ->where('user_id', auth()->id())->find($id);
-        if(!$application){
-            session()->flash('error_message', 'No Record found.');
-            return redirect(route('applicant.applications.index'));
-        }
+           ->where('user_id', auth()->id())->findOrFail($id);
         $genders = Gender::where('gender_status',1)->get();
        return view('applicant.application.show',compact('application','genders'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit($id): View
     {
-        $application =  Application::with('utilityConnections','technicalEducations','employeeInfos')->where('user_id', auth()->id())->find($id);
-        if(!$application){
-            session()->flash('error_message', 'No Record found.');
-            return redirect(route('applicant.applications.index'));
-        }
+        $application =  Application::with('utilityConnections','technicalEducations','employeeInfos')->where('user_id', auth()->id())->findOrFail($id);
         return view('applicant.application.edit',compact('application'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
