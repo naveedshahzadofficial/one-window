@@ -18,14 +18,14 @@ class ApplicationController extends Controller
 
     public function indexAjax(Request $request)
     {
-        $query = Application::query()->where('user_id', auth()->id())->select("*");
+        $query = Application::with('certification')->where('user_id', auth()->id())->select("*");
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function(Application $application){
                 $actionBtn = '<a href="'.route('applicant.applications.edit',$application).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-edit text-white"></i></a>&nbsp;
                               <a target="_blank" href="'.route('applicant.applications.show',$application).'" class="edit btn btn-custom-color text-center btn-icon btn-circle btn-xs"><i class="flaticon-eye text-white"></i></a>';
-
-                $actionBtn .= '&nbsp;<a href="'.route('applicant.applications.certifications.create',$application).'" class="edit btn btn-custom-color text-center btn-icon btn-circle btn-xs"><i class="flaticon-interface-11 text-white"></i></a>';
+               // if(!optional($application->certification)->id)
+               // $actionBtn .= '&nbsp;<a href="'.route('applicant.applications.certifications.create',$application).'" class="edit btn btn-custom-color text-center btn-icon btn-circle btn-xs"><i class="flaticon-interface-11 text-white"></i></a>';
                 return $actionBtn;
             })
             ->rawColumns(['action'])

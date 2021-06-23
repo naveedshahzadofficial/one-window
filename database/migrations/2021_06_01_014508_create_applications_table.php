@@ -103,6 +103,7 @@ class CreateApplicationsTable extends Migration
             $table->foreignId('import_currency_id')->nullable()->constrained('currencies');
             $table->decimal('import_annual_turnover',20,2)->nullable();
             $table->dateTime('submitted_at')->nullable();
+            $table->foreignId('status_id')->nullable()->default(1)->constrained();
             $table->foreignId('user_id')->nullable()->constrained();
             $table->softDeletes();
             $table->timestamps();

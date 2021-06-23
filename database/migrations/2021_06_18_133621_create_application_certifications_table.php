@@ -19,6 +19,7 @@ class CreateApplicationCertificationsTable extends Migration
             $table->unsignedTinyInteger('is_applied')->nullable()->default(0);
             $table->text('certification_remark')->nullable();
             $table->boolean('certification_status')->default(1);
+            $table->foreignId('status_id')->nullable()->default(5)->constrained();
             $table->softDeletes();
             $table->timestamps();
         });

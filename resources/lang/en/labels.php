@@ -60,6 +60,9 @@ return [
 'tab_submit' => 'Submission',
 
 //Headings
+'status_form' => 'STATUS FORM (<label class="urdu-label" dir="rtl"> سٹیٹس فارم   </label>)',
+'status_logs' => 'STATUS LOGS (<label class="urdu-label" dir="rtl"> سٹیٹس لاگ   </label>)',
+
 'basic_info' => 'BASIC INFO (<label class="urdu-label" dir="rtl"> بنیادی معلومات   </label>)',
 'qualification_details' => 'QUALIFICATION DETAILS (<label class="urdu-label" dir="rtl"> تعلیمی تفصیلات </label>)',
 'residence_address' => 'RESIDENCE ADDRESS (<label class="urdu-label" dir="rtl"> رہائش کا پتہ </label>)',
@@ -76,6 +79,11 @@ return [
 
 'submission_info_heading' => 'SUBMISSION  (<label class="urdu-label" dir="rtl"> جمع کروائیں </label>)',
 
+
+ // status form
+'status' => 'Status (<span class="urdu-label" dir="rtl"> سٹیٹس </span>)',
+'upload_file' => 'Upload File (<span class="urdu-label" dir="rtl"> اپ لوڈ فائل </span>)',
+'remark_status' => 'Detail (<span class="urdu-label" dir="rtl"> تفصیل </span>)',
 
 // Applicant Profile
 'gender' => 'Gender (<span class="urdu-label" dir="rtl"> جنس </span>)',
@@ -185,6 +193,7 @@ return [
 
 //review
 
+'application_status' => 'APPLICATION STATUS (<span class="urdu-label" dir="rtl"> درخواست کی صورتحال </span>)',
 'review_applicant_profile' => 'APPLICANT PROFILE (<span class="urdu-label" dir="rtl"> درخواست دہندہ کی پروفائل </span>)',
 'review_business_profile' => 'BUSINESS PROFILE (<span class="urdu-label" dir="rtl"> بزنس پروفائل </span>)',
 'business_sector' => 'Business Sector (<span class="urdu-label"  dir="rtl"> کاروبار کا شعبہ </span>)',

@@ -47,5 +47,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UtilityServiceProviderSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(DisabilitySeeder::class);
+        $this->call(StatusSeeder::class);
     }
 }

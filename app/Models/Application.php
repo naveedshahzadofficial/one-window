@@ -5,6 +5,8 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -35,7 +37,7 @@ class Application extends Model implements Auditable
         'annual_turnover', 'business_account_statement_file',
         'export_question_id', 'export_fiscal_year_id', 'export_currency_id', 'export_annual_turnover',
         'import_question_id', 'import_fiscal_year_id', 'import_currency_id', 'import_annual_turnover',
-        'user_id', 'submitted_at'];
+        'user_id', 'submitted_at', 'status_id'];
 
     protected $casts = [
         'cnic_issue_date'=>'datetime:d-m-Y',
@@ -71,9 +73,9 @@ class Application extends Model implements Auditable
         return ['Registration'];
     }
 
-    public function certifications(): HasMany
+    public function certification(): HasOne
     {
-       return $this->hasMany(ApplicationCertification::class);
+       return $this->HasOne(ApplicationCertification::class);
     }
 
     public function disabilities(): HasMany
@@ -294,6 +296,16 @@ class Application extends Model implements Auditable
     public function importCurrency(): BelongsTo
     {
         return $this->belongsTo(Currency::class,'import_currency_id');
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function statuses(): MorphToMany
+    {
+        return $this->morphToMany(Status::class, 'statusable')->withTimestamps()->withPivot(['log_remark','log_file']);
     }
 
     public static function boot()

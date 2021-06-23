@@ -273,22 +273,21 @@
       <change beforePath="$PROJECT_DIR$/.idea/smerp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/smerp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ApplicationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ApplicationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/ApplicationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Applicant/ApplicationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/CertificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Applicant/CertificationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Application.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationDisability.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationDisability.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationEmployeeInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationEmployeeInfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationOtherDocument.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationOtherDocument.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationTechnicalEducation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationTechnicalEducation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationUtilityConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationUtilityConnection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationCertification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApplicationCertification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/SmsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/SmsService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_components/alerts-default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_components/alerts-default.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_01_014508_create_applications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_01_014508_create_applications_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_18_133621_create_application_certifications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_18_133621_create_application_certifications_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/labels.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/labels.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_components/application_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_components/application_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -488,6 +487,7 @@
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
       <path value="$PROJECT_DIR$/vendor/owen-it/laravel-auditing" />
+      <path value="$PROJECT_DIR$/vendor/brianium/paratest" />
     </include_path>
   </component>
   <component name="ProjectId" id="1t14hw6WT22DXa42lTEeiHMevt9" />
@@ -532,11 +532,45 @@
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin/Auth" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.UserRegistrationTest">
+    <configuration name="UserRegistrationTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP 7.3" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UserRegistrationTest.test_can_register_send_otp" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP 7.3" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" method="test_can_register_send_otp" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UserRegistrationTest.test_register_page_livewire_component" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP 7.3" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" method="test_register_page_livewire_component" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.UserRegistrationTest" />
+        <item itemvalue="PHPUnit.UserRegistrationTest.test_can_register_send_otp" />
+        <item itemvalue="PHPUnit.UserRegistrationTest.test_register_page_livewire_component" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -560,7 +594,8 @@
       <workItem from="1623390822345" duration="22905000" />
       <workItem from="1623416175514" duration="33035000" />
       <workItem from="1623738771014" duration="49345000" />
-      <workItem from="1623921892860" duration="31504000" />
+      <workItem from="1623921892860" duration="31762000" />
+      <workItem from="1624342584730" duration="35620000" />
     </task>
     <servers />
   </component>

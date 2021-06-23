@@ -74,7 +74,7 @@ class ApplicationController extends Controller
 
     public function show($id): View
     {
-        $application =  Application::
+        $application =  Application::with('certification')->
         with('prefix', 'gender','designationBusiness', 'minorityStatusQuestion', 'minorityStatus',
        'educationLevel', 'educationLevelQuestion', 'skilledWorkerQuestion',
            'residenceAddressType', 'residenceAddressForm', 'residenceCity', 'residenceDistrict',

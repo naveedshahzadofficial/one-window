@@ -1,4 +1,8 @@
 
+    @if(optional($application->certification)->id && auth()->guard('admin')->check())
+    @livewire('status-form',['application' => $application])
+    @endif
+
     <h4 class="main_section_heading">{!! __('labels.review_applicant_profile') !!}
     </h4>
     <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.basic_info') !!}</span></h4>

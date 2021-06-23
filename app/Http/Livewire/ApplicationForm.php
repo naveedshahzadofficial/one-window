@@ -29,6 +29,7 @@ use App\Models\MinorityStatus;
 use App\Models\Prefix;
 use App\Models\Province;
 use App\Models\Question;
+use App\Models\Status;
 use App\Models\Tehsil;
 use App\Models\UtilityForm;
 use App\Models\UtilityServiceProvider;
@@ -768,9 +769,12 @@ class ApplicationForm extends Component
         $this->submitEmployeesInfo();
         $this->submitAnnualTurnover();
 
-        if(!isset($this->registration['submitted_at']) || empty($this->registration['submitted_at']))
+        if(!isset($this->registration['submitted_at']) || empty($this->registration['submitted_at'])) {
             $this->registration['submitted_at'] = Carbon::now();
-
+            $status = Status::where('status_name','Completed')->where('status_type', 'registrations')->first();
+            $this->registration['status_id'] =$status->id;
+            $this->registration->statuses()->save($status,['user_id'=>auth()->id(),'user_type'=>'App\Models\User']);
+        }
 
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);

@@ -1,14 +1,62 @@
 <?php
+
 namespace App\Services;
+
+use Illuminate\Support\Facades\Config;
+
 /**
  * Created by Naveed Shahzad.
  * User: naveed
  * Date: 26/05/2021
  * Time: 11:22 AM
  */
-class SmsService{
+class SmsService
+{
 
-    public function sendSmsAsp($number, $sms_text,$language='en')
+    private $base_url;
+    public function __construct()
+    {
+        $this->base_url =  Config::get('sms.cmt_base_url');
+       // $this->base_url =  config('sms.cmt_base_url');
+        //$this->base_url =  config()->get('sms.cmt_base_url');
+    }
+
+    public function sendSmsJazz()
+    {
+        $post = array(
+            'Username' => '0300xxxxxxx',
+            'Password' => 'xxxxxx',
+            'From' => 'xxxxx',
+            'Message' => 'Test Message',
+            'ScheduleDateTime' => 'Y-m-d H:i:s',
+            'file_contents' => '$cfile');
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->base_url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible;)");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
+        curl_setopt($ch, CURLOPT_FRESH_CONNECT, 1);
+        curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 100);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+
+        $result = curl_exec($ch);
+
+        if ($result === FALSE) {
+            echo "Error sending" . curl_error($ch);
+            curl_close($ch);
+        } else {
+            curl_close($ch);
+            echo "Result: " . $result;
+        }
+
+
+    }
+
+    public function sendSmsAsp($number, $sms_text, $language = 'en')
     {
         $url = "http://sms.punjab.gov.pk/api/cmpservice.svc/smssend/NDAy/MQ==/$language";
         $fields = array(
@@ -36,7 +84,7 @@ class SmsService{
         return $result;
     }
 
-    public function sendSms($number, $sms_text,$language='english')
+    public function sendSms($number, $sms_text, $language = 'english')
     {
         $model = array(
             'phone_no' => $number,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Applicant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCertificationRequest;
 use App\Models\Application;
+use App\Models\Status;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,8 +25,12 @@ class CertificationController extends Controller
 
     public function store(StoreCertificationRequest $request, Application $application): RedirectResponse
     {
-        $application->certifications()->create($request->validated());
-        return redirect(route('applicant.applications.index'))
+       $certification = $application->certification()->create($request->validated());
+
+       $status = Status::where('status_type','applications')->where('status_name','Pending')->first();
+       $certification->statuses()->save($status,['user_id'=>auth()->id(),'user_type'=>'App\Models\User']);
+
+       return redirect(route('applicant.applications.index'))
             ->with('success_message', 'Certificate Request has been added successfully.');
     }
 
