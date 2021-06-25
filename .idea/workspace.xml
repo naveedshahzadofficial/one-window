@@ -15,9 +15,6 @@
       <change afterPath="$PROJECT_DIR$/../livewirekit/shopping-cart/.idea/shopping-cart.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../livewirekit/star-rating/.idea/star-rating.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../livewirekit_bk/.idea/livewirekit.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Applicant/RegistrationController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Registration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/applicant/registration/create.blade.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/blade.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/laravel-idea.xml" afterDir="false" />
@@ -273,54 +270,7 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ApplicationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/ApplicationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Applicant/ApplicationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/CertificationController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/StatusForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/StatusForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreCertificationRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreApplicationRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Application.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationCertification.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationDisability.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RegistrationDisability.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationEmployeeInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RegistrationEmployeeInfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationOtherDocument.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RegistrationOtherDocument.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationTechnicalEducation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RegistrationTechnicalEducation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApplicationUtilityConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RegistrationUtilityConnection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/BusinessCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/BusinessCategory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/District.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/District.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Province.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Province.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Status.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Status.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Statusable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Statusable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/GraphService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/GraphService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_01_014508_create_applications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_01_014508_create_registrations_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_01_054122_create_application_utility_connections_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_01_054122_create_registration_utility_connections_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_02_120222_create_application_technical_education_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_02_120222_create_registration_technical_education_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_02_134754_create_application_employee_infos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_02_134754_create_registration_employee_infos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_07_152028_create_application_other_documents_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_07_152028_create_registration_other_documents_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_14_134012_create_application_disabilities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_14_134012_create_registration_disabilities_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_18_133621_create_application_certifications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_18_133621_create_application_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/StatusSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/StatusSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_components/application_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_components/application_detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_aside.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_header-mobile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_header-mobile.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_aside.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_header-mobile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_header-mobile.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/application/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/registration/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/application/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/registration/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/application/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/registration/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/registration/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/registration/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/tabs/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/registration/tabs/review.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/application/tabs/submission.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/registration/tabs/submission.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/certification/create.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Applicant/RegistrationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -633,7 +583,7 @@
       <workItem from="1623921892860" duration="31762000" />
       <workItem from="1624342584730" duration="35947000" />
       <workItem from="1624530923981" duration="1127000" />
-      <workItem from="1624602953587" duration="10560000" />
+      <workItem from="1624602953587" duration="11406000" />
     </task>
     <servers />
   </component>

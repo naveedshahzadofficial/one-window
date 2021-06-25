@@ -27,8 +27,8 @@ class RegistrationController extends Controller
             ->addColumn('action', function(Registration $registration){
                 $actionBtn = '<a href="'.route('applicant.registrations.edit',$registration).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-edit text-white"></i></a>&nbsp;
                               <a target="_blank" href="'.route('applicant.registrations.show',$registration).'" class="edit btn btn-custom-color text-center btn-icon btn-circle btn-xs"><i class="flaticon-eye text-white"></i></a>';
-                if(!optional($registration->application)->id)
-                $actionBtn .= '&nbsp;<a href="'.route('applicant.registrations.applications.create',$registration).'" class="edit btn btn-custom-color text-center btn-icon btn-circle btn-xs"><i class="flaticon-interface-11 text-white"></i></a>';
+               // if(!optional($registration->application)->id && !empty($registration->submitted_at))
+               // $actionBtn .= '&nbsp;<a href="'.route('applicant.registrations.applications.create',$registration).'" class="edit btn btn-custom-color text-center btn-icon btn-circle btn-xs"><i class="flaticon-interface-11 text-white"></i></a>';
                 return $actionBtn;
             })
             ->rawColumns(['status_id','action'])
