@@ -270,7 +270,8 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Applicant/RegistrationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/applicant_custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/applicant_custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_extras/dropdown/user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/applicant/partials/_extras/dropdown/user.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -583,7 +584,7 @@
       <workItem from="1623921892860" duration="31762000" />
       <workItem from="1624342584730" duration="35947000" />
       <workItem from="1624530923981" duration="1127000" />
-      <workItem from="1624602953587" duration="11406000" />
+      <workItem from="1624602953587" duration="12512000" />
     </task>
     <servers />
   </component>

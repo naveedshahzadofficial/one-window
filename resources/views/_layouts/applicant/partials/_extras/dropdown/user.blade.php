@@ -10,7 +10,7 @@
 											<!--end::Symbol-->
 
 											<!--begin::Text-->
-											<div class="text-dark m-0 flex-grow-1 mr-3 font-size-h5">{{ auth()->user()->first_name.' '.auth()->user()->last_name }}</div>
+											<div class="text-custom-color m-0 flex-grow-1 mr-3 font-size-h5">{{ auth()->user()->first_name.' '.auth()->user()->last_name }}</div>
 
 											<!--end::Text-->
 										</div>
@@ -43,7 +43,7 @@
 											<!--begin::Footer-->
 										{{--	<div class="navi-separator mt-3"></div>--}}
 											<div class="navi-footer px-8 py-5">
-                                                <a class="btn btn-light-primary font-weight-bold" href="{{ route('logout') }}"
+                                                <a class="btn btn-custom-color font-weight-bold" href="{{ route('logout') }}"
                                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                                     {{ __('Sign Out') }}

@@ -42,7 +42,7 @@
 									<!--end::Toggle-->
 
 									<!--begin::Dropdown-->
-									<div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg p-0">
+									<div class="bg-custom-color dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg p-0">
 
 										<!--[html-partial:include:{"file":"partials/_extras/dropdown/user.html"}]/-->
                                         @section('dropdown-user')
