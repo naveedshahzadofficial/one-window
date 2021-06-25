@@ -6,12 +6,12 @@
     <div class="card card-custom gutter-b">
         <div class="card-header flex-wrap py-3">
             <div class="card-title">
-                <h3 class="card-label">{{ $application->business_name }}</h3>
+                <h3 class="card-label">{{ $registration->business_name }}</h3>
             </div>
         </div>
 
          <div class="card-body">
-            @component('_components.application_detail',['application'=>$application,'genders'=>$genders]) @endcomponent
+            @component('_components.application_detail',['registration'=>$registration,'genders'=>$genders]) @endcomponent
          </div>
     </div>
     <!--end::Card-->

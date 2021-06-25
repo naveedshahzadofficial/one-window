@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApplicationTechnicalEducationTable extends Migration
+class CreateRegistrationOtherDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateApplicationTechnicalEducationTable extends Migration
      */
     public function up()
     {
-        Schema::create('application_technical_education', function (Blueprint $table) {
+        Schema::create('registration_other_documents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('application_id')->nullable()->constrained();
-            $table->string('certificate_title')->nullable();
+            $table->foreignId('registration_id')->nullable()->constrained();
+            $table->string('document_title')->nullable();
+            $table->string('document_file')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateApplicationTechnicalEducationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('application_technical_education');
+        Schema::dropIfExists('application_other_documents');
     }
 }

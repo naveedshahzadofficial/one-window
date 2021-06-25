@@ -6,7 +6,7 @@
 					<div class="brand flex-column-auto" id="kt_brand">
 
 						<!--begin::Logo-->
-						<a href="{{ route('admin.applications.index') }}" class="brand-logo">
+						<a href="{{ route('admin.dashboard') }}" class="brand-logo">
 							<img alt="Logo" src="{{ asset('assets/img/main-logo.png') }}" class="flex-center h-60px mt-0 ml-1" />
 						</a>
 
@@ -52,8 +52,8 @@
                                     </a>
                                 </li>
 
-								<li class="menu-item {{ areActiveRoutes(['admin.applications.index','admin.applications.show']) }}" aria-haspopup="true">
-									<a href="{{ route('admin.applications.index') }}" class="menu-link">
+								<li class="menu-item {{ areActiveRoutes(['admin.registrations.index','admin.registrations.show']) }}" aria-haspopup="true">
+									<a href="{{ route('admin.registrations.index') }}" class="menu-link">
 										<span class="svg-icon svg-icon-white menu-icon" >
 
 											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->

@@ -5,12 +5,12 @@ namespace App\Http\Livewire;
 use App\Models\AddressCapacity;
 use App\Models\AddressForm;
 use App\Models\AddressType;
-use App\Models\Application;
-use App\Models\ApplicationDisability;
-use App\Models\ApplicationEmployeeInfo;
-use App\Models\ApplicationOtherDocument;
-use App\Models\ApplicationTechnicalEducation;
-use App\Models\ApplicationUtilityConnection;
+use App\Models\Registration;
+use App\Models\RegistrationDisability;
+use App\Models\RegistrationEmployeeInfo;
+use App\Models\RegistrationOtherDocument;
+use App\Models\RegistrationTechnicalEducation;
+use App\Models\RegistrationUtilityConnection;
 use App\Models\BusinessActivity;
 use App\Models\BusinessCategory;
 use App\Models\BusinessLegalStatus;
@@ -469,7 +469,7 @@ class ApplicationForm extends Component
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
         else
-            $this->registration = Application::create($this->application);
+            $this->registration = Registration::create($this->application);
 
         if($this->isYes('disability_question_id')) {
             $all_disabilities = array();
@@ -481,7 +481,7 @@ class ApplicationForm extends Component
                 }
                 if (isset($disability['disability_certificate_file']) && !empty($disability['disability_certificate_file']) &&
                     isset($disability['disability_id']) && !empty($disability['disability_id'])) {
-                    array_push($all_disabilities, new ApplicationDisability($disability));
+                    array_push($all_disabilities, new RegistrationDisability($disability));
                     $this->disabilities[$index] = $disability;
                 }
             }
@@ -501,7 +501,7 @@ class ApplicationForm extends Component
         $educations = array();
         foreach ($this->technical_educations as $education){
             if(isset($education['certificate_title']) && !empty($education['certificate_title']))
-            array_push($educations,new ApplicationTechnicalEducation($education));
+            array_push($educations,new RegistrationTechnicalEducation($education));
         }
         if(count($educations)>0)
         $this->registration->technicalEducations()->saveMany($educations);
@@ -578,13 +578,13 @@ class ApplicationForm extends Component
             }
             if(isset($business_other_file['document_file']) && !empty($business_other_file['document_file']) &&
                isset($business_other_file['document_title']) && !empty($business_other_file['document_title']))
-            array_push($other_documents, new ApplicationOtherDocument($business_other_file));
+            array_push($other_documents, new RegistrationOtherDocument($business_other_file));
         }
 
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
         else
-            $this->registration = Application::create($this->application);
+            $this->registration = Registration::create($this->application);
 
         if($this->registration->otherDocuments->isNotEmpty())
             $this->registration->otherDocuments()->delete();
@@ -637,7 +637,7 @@ class ApplicationForm extends Component
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
         else
-            $this->registration = Application::create($this->application);
+            $this->registration = Registration::create($this->application);
 
 
         $connections = array();
@@ -653,7 +653,7 @@ class ApplicationForm extends Component
 
             if( isset($connection['bill_file']) && !empty($connection['bill_file']) &&
                 isset($connection['utility_type_id']) && !empty($connection['utility_type_id']))
-            array_push($connections,new ApplicationUtilityConnection($connection));
+            array_push($connections,new RegistrationUtilityConnection($connection));
         }
 
         if($this->registration->utilityConnections->isNotEmpty())
@@ -692,7 +692,7 @@ class ApplicationForm extends Component
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
         else
-            $this->registration = Application::create($this->application);
+            $this->registration = Registration::create($this->application);
 
         if($this->registration->employeeInfos->isNotEmpty())
             $this->registration->employeeInfos()->delete();
@@ -701,7 +701,7 @@ class ApplicationForm extends Component
             $employees = array();
             foreach ($this->employees as $employee) {
                 if (isset($employee['employee_type_id']) && $employee['employee_type_id'])
-                    array_push($employees, new ApplicationEmployeeInfo($employee));
+                    array_push($employees, new RegistrationEmployeeInfo($employee));
             }
 
             if (count($employees) > 0)
@@ -739,7 +739,7 @@ class ApplicationForm extends Component
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
         else
-            $this->registration = Application::create($this->application);
+            $this->registration = Registration::create($this->application);
 
         $this->successAlert();
     }
@@ -748,13 +748,13 @@ class ApplicationForm extends Component
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
         else
-            $this->registration = Application::create($this->application);
+            $this->registration = Registration::create($this->application);
 
         $this->successAlert();
     }
     public function submission(){
 
-        $rules = [
+       $rules = [
             'accept_declaration' => 'required',
         ];
         $messages = [
@@ -769,22 +769,22 @@ class ApplicationForm extends Component
         $this->submitEmployeesInfo();
         $this->submitAnnualTurnover();
 
-        if(!isset($this->registration['submitted_at']) || empty($this->registration['submitted_at'])) {
-            $this->registration['submitted_at'] = Carbon::now();
+        if(!isset($this->registration['submitted_at']) || is_null($this->registration['submitted_at'])) {
+            $this->application['submitted_at'] = Carbon::now();
             $status = Status::where('status_name','Completed')->where('status_type', 'registrations')->first();
-            $this->registration['status_id'] =$status->id;
+            $this->application['status_id'] =$status->id;
             $this->registration->statuses()->save($status,['user_id'=>auth()->id(),'user_type'=>'App\Models\User']);
         }
 
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
         else
-            $this->registration = Application::create($this->application);
+            $this->registration = Registration::create($this->application);
 
 
 
         session()->flash('success_message', 'Registration has been saved successfully.');
-        return $this->redirect(route('applicant.applications.index'));
+        return $this->redirect(route('applicant.registrations.index'));
     }
 
     public function addUtilityConnection(){

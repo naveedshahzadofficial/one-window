@@ -1773,11 +1773,11 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                 <!--end: Wizard Step 5 -->
 
                 <!--begin: Wizard Step 6-->
-                @includeWhen($step==5, 'applicant.application.tabs.review')
+                @includeWhen($step==5, 'applicant.registration.tabs.review')
                 <!--end: Wizard Step 6 -->
 
                 <!--begin: Wizard Step 7 -->
-                 @includeWhen($step==6, 'applicant.application.tabs.submission')
+                 @includeWhen($step==6, 'applicant.registration.tabs.submission')
                 <!--end: Wizard Step 7 -->
 
 <!--begin: Wizard Actions-->

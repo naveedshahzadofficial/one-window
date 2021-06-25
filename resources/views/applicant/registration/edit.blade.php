@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="card-body p-0">
-                    @livewire('application-form', ['registration'=>$application])
+                    @livewire('application-form', ['registration'=>$registration])
                 </div>
             </div>
 

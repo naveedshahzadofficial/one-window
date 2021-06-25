@@ -1,6 +1,6 @@
 
-    @if(optional($application->certification)->id && auth()->guard('admin')->check())
-    @livewire('status-form',['application' => $application])
+    @if(optional($registration->application)->id && auth()->guard('admin')->check())
+    @livewire('status-form',['registration' => $registration])
     @endif
 
     <h4 class="main_section_heading">{!! __('labels.review_applicant_profile') !!}
@@ -11,76 +11,76 @@
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.first_name') !!}</span>
-                <span class="opacity-70">{{ isset($application->prefix->prefix_name)?$application->prefix->prefix_name:'' }} {{ isset($application['first_name'])?$application['first_name']:'' }}</span>
+                <span class="opacity-70">{{ isset($registration->prefix->prefix_name)?$registration->prefix->prefix_name:'' }} {{ isset($registration['first_name'])?$registration['first_name']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                 <span class="font-weight-bolder mb-2">{!! __('labels.middle_name') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['middle_name'])?$application['middle_name']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['middle_name'])?$registration['middle_name']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.last_name') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['last_name'])?$application['last_name']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['last_name'])?$registration['last_name']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.gender') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->gender->gender_name)?$application->gender->gender_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->gender->gender_name)?$registration->gender->gender_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.cnic_no') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['cnic_no'])?$application['cnic_no']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['cnic_no'])?$registration['cnic_no']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.cnic_issue_date') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['cnic_issue_date'])?$application['cnic_issue_date']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['cnic_issue_date'])?$registration['cnic_issue_date']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.cnic_expiry_date') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['cnic_expiry_date'])?$application['cnic_expiry_date']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['cnic_expiry_date'])?$registration['cnic_expiry_date']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.date_of_birth') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['date_of_birth'])?$application['date_of_birth']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['date_of_birth'])?$registration['date_of_birth']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.designation_business') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->designationBusiness->name)?$application->designationBusiness->name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->designationBusiness->name)?$registration->designationBusiness->name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div
-                class="d-flex flex-column flex-root @if(isset($application->minorityStatusQuestion->name) && $application->minorityStatusQuestion->name=='No') d-none-imp @endif">
+                class="d-flex flex-column flex-root @if(isset($registration->minorityStatusQuestion->name) && $registration->minorityStatusQuestion->name=='No') d-none-imp @endif">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.minority_status') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->minorityStatus->name)?$application->minorityStatus->name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->minorityStatus->name)?$registration->minorityStatus->name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
-            <div class="d-flex flex-column flex-root @if(isset($application->minorityStatus->name) && $application->minorityStatus->name=='Other') d-box @else d-none-imp @endif">
+            <div class="d-flex flex-column flex-root @if(isset($registration->minorityStatus->name) && $registration->minorityStatus->name=='Other') d-box @else d-none-imp @endif">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.other_than_minority') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['minority_status_other'])?$application['minority_status_other']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['minority_status_other'])?$registration['minority_status_other']:'' }}</span>
             </div>
 
 
         </div>
 
-        @if(optional($application->disabilityQuestion)->name=='Yes')
+        @if(optional($registration->disabilityQuestion)->name=='Yes')
         <div class="row pt-5">
             <table class="table">
                 <head>
@@ -90,7 +90,7 @@
                     </tr>
                 </head>
                 <tbody>
-                @foreach($application->disabilities as $index=>$disability)
+                @foreach($registration->disabilities as $index=>$disability)
                     @if(isset($disability->disability_certificate_file) && !empty($disability->disability_certificate_file))
                         <tr>
                             <td>{{ optional($disability->disability)->disability_name_e }}</td>
@@ -110,12 +110,12 @@
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">{!! __('labels.active_taxpayer') !!}</span>
                     <span
-                        class="opacity-70">{{ optional($application->activeTaxpayerQuestion)->name }}</span>
+                        class="opacity-70">{{ optional($registration->activeTaxpayerQuestion)->name }}</span>
                 </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.national_tax_number') !!}<span
                                         class="text-danger"></span></span>
-                <span class="opacity-70">{{ isset($application['ntn_personal'])?$application['ntn_personal']:'' }}</span>
+                <span class="opacity-70">{{ isset($registration['ntn_personal'])?$registration['ntn_personal']:'' }}</span>
             </div>
 
         </div>
@@ -129,11 +129,11 @@
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.education_level') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->educationLevel->name)?$application->educationLevel->name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->educationLevel->name)?$registration->educationLevel->name:'' }}</span>
             </div>
         </div>
-        @if(isset($application->technicalEducations) && $application->technicalEducations->isNotEmpty())
-        @foreach($application->technicalEducations as $index=>$education)
+        @if(isset($registration->technicalEducations) && $registration->technicalEducations->isNotEmpty())
+        @foreach($registration->technicalEducations as $index=>$education)
             <div
                 :class="{'d-none-imp': is_technical_education=='No'}"
                 class="d-flex justify-content-between pt-5">
@@ -147,10 +147,10 @@
         @endif
         <div class="d-flex justify-content-between pt-5">
             <div
-                class="d-flex flex-column flex-root @if(isset($application->skilledWorkerQuestion->name) && $application->skilledWorkerQuestion->name=='No') d-none-imp @endif">
+                class="d-flex flex-column flex-root @if(isset($registration->skilledWorkerQuestion->name) && $registration->skilledWorkerQuestion->name=='No') d-none-imp @endif">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.is_skilled_worker') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['skill_or_art'])?$application['skill_or_art']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['skill_or_art'])?$registration['skill_or_art']:'' }}</span>
             </div>
         </div>
     </div>
@@ -162,37 +162,37 @@
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->residenceAddressType->type_name)?$application->residenceAddressType->type_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->residenceAddressType->type_name)?$registration->residenceAddressType->type_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->residenceAddressForm->form_name)?$application->residenceAddressForm->form_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->residenceAddressForm->form_name)?$registration->residenceAddressForm->form_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_1') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['residence_address_1'])?$application['residence_address_1']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['residence_address_1'])?$registration['residence_address_1']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_2') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['residence_address_2'])?$application['residence_address_2']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['residence_address_2'])?$registration['residence_address_2']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.residence_address_3') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['residence_address_3'])?$application['residence_address_3']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['residence_address_3'])?$registration['residence_address_3']:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
 								<span class="font-weight-bolder mb-2">{!! __('labels.province') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->residenceProvince->province_name)?$application->residenceProvince->province_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->residenceProvince->province_name)?$registration->residenceProvince->province_name:'' }}</span>
             </div>
 
         </div>
@@ -201,13 +201,13 @@
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.city') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->residenceCity->city_name_e)?$application->residenceCity->city_name_e:'' }}</span>
+                    class="opacity-70">{{ isset($registration->residenceCity->city_name_e)?$registration->residenceCity->city_name_e:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.district') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->residenceDistrict->district_name_e)?$application->residenceDistrict->district_name_e:'' }}</span>
+                    class="opacity-70">{{ isset($registration->residenceDistrict->district_name_e)?$registration->residenceDistrict->district_name_e:'' }}</span>
             </div>
 
         </div>
@@ -217,37 +217,37 @@
             <div class="d-flex flex-column flex-root">
 															<span class="font-weight-bolder mb-2">{!! __('labels.tehsil') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->residenceTehsil->tehsil_name_e)?$application->residenceTehsil->tehsil_name_e:'' }}</span>
+                    class="opacity-70">{{ isset($registration->residenceTehsil->tehsil_name_e)?$registration->residenceTehsil->tehsil_name_e:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.property_capacity') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->residenceAddressCapacity->capacity_name)?$application->residenceAddressCapacity->capacity_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->residenceAddressCapacity->capacity_name)?$registration->residenceAddressCapacity->capacity_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.share_percentage') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['residence_share'])?$application['residence_share']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['residence_share'])?$registration['residence_share']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.residence_acquisition_date') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['residence_acquisition_date'])?$application['residence_acquisition_date']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['residence_acquisition_date'])?$registration['residence_acquisition_date']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.mobile_no') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['personal_mobile_no'])?$application['personal_mobile_no']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['personal_mobile_no'])?$registration['personal_mobile_no']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.email_address') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['personal_email'])?$application['personal_email']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['personal_email'])?$registration['personal_email']:'' }}</span>
             </div>
         </div>
     </div>
@@ -260,12 +260,12 @@
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_name') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_name'])?$application['business_name']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_name'])?$registration['business_name']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_acquisition_start_date') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_establishment_date'])?$application['business_establishment_date']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_establishment_date'])?$registration['business_establishment_date']:'' }}</span>
             </div>
 
         </div>
@@ -273,54 +273,54 @@
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_status') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessRegistrationStatus->name)?$application->businessRegistrationStatus->name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessRegistrationStatus->name)?$registration->businessRegistrationStatus->name:'' }}</span>
             </div>
         </div>
         <div
-            class="d-flex justify-content-between pt-5 @if(isset($application->businessRegistrationStatus->name) && $application->businessRegistrationStatus->name=='Unregistered') d-none-imp  @endif">
+            class="d-flex justify-content-between pt-5 @if(isset($registration->businessRegistrationStatus->name) && $registration->businessRegistrationStatus->name=='Unregistered') d-none-imp  @endif">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_legal_status') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessLegalStatus->legal_name)?$application->businessLegalStatus->legal_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessLegalStatus->legal_name)?$registration->businessLegalStatus->legal_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_no') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_registration_number'])?$application['business_registration_number']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_registration_number'])?$registration['business_registration_number']:'' }}</span>
             </div>
 
         </div>
         <div
-            class="d-flex justify-content-between pt-5 @if(isset($application->businessRegistrationStatus->name) && $application->businessRegistrationStatus->name=='Unregistered') d-none-imp  @endif">
+            class="d-flex justify-content-between pt-5 @if(isset($registration->businessRegistrationStatus->name) && $registration->businessRegistrationStatus->name=='Unregistered') d-none-imp  @endif">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_registration_date') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_registration_date'])?$application['business_registration_date']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_registration_date'])?$registration['business_registration_date']:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_ntn_no') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_ntn_no'])?$application['business_ntn_no']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_ntn_no'])?$registration['business_ntn_no']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_category') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessCategory->category_name)?$application->businessCategory->category_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessCategory->category_name)?$registration->businessCategory->category_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_sector') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessActivity->group_name)?$application->businessActivity->group_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessActivity->group_name)?$registration->businessActivity->group_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_sub_sector') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessActivity->class_name)?$application->businessActivity->class_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessActivity->class_name)?$registration->businessActivity->class_name:'' }}</span>
             </div>
         </div>
     </div>
@@ -335,29 +335,29 @@
                 </tr>
             </head>
             <tbody>
-            @if(isset($application['proof_of_ownership_file']) && !empty($application['proof_of_ownership_file']))
+            @if(isset($registration['proof_of_ownership_file']) && !empty($registration['proof_of_ownership_file']))
                 <tr>
                     <td>{!! __('labels.ownership_proof') !!}</td>
-                    <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['proof_of_ownership_file']) }}"
+                    <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($registration['proof_of_ownership_file']) }}"
                             target="_blank" class="hand"><i class="flaticon2-download color-black"></i></a></td>
                 </tr>
             @endif
-            @if(isset($application['license_registration_file']) && !empty($application['license_registration_file']))
+            @if(isset($registration['license_registration_file']) && !empty($registration['license_registration_file']))
                 <tr>
                     <td>{!! __('labels.registration_proof') !!}</td>
-                    <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['license_registration_file']) }}"
+                    <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($registration['license_registration_file']) }}"
                             target="_blank" class="hand"><i class="flaticon2-download color-black"></i></a></td>
                 </tr>
             @endif
-            @if(isset($application['registration_certificate_file']) && !empty($application['registration_certificate_file']))
-                <tr class="d-box @if(isset($application->businessRegistrationStatus->name) && $application->businessRegistrationStatus->name=='Unregistered') d-none-imp  @endif">
+            @if(isset($registration['registration_certificate_file']) && !empty($registration['registration_certificate_file']))
+                <tr class="d-box @if(isset($registration->businessRegistrationStatus->name) && $registration->businessRegistrationStatus->name=='Unregistered') d-none-imp  @endif">
                     <td>{!! __('labels.registration_certificate') !!}</td>
-                    <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($application['registration_certificate_file']) }}"
+                    <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($registration['registration_certificate_file']) }}"
                             target="_blank" class="hand"><i class="flaticon2-download color-black"></i></a></td>
                 </tr>
             @endif
-            @if(isset($application->otherDocuments) && $application->otherDocuments->isNotEmpty())
-                @foreach($application->otherDocuments as $other_file)
+            @if(isset($registration->otherDocuments) && $registration->otherDocuments->isNotEmpty())
+                @foreach($registration->otherDocuments as $other_file)
                     @if(isset($other_file['document_file']) && !empty($other_file['document_file']))
                         <tr>
                             <td>{{ isset($other_file['document_title'])?$other_file['document_title']:'' }}</td>
@@ -378,80 +378,80 @@
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.property_type') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessAddressType->type_name)?$application->businessAddressType->type_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessAddressType->type_name)?$registration->businessAddressType->type_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.property_form') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessAddressForm->form_name)?$application->businessAddressForm->form_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessAddressForm->form_name)?$registration->businessAddressForm->form_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_address_1') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_address_1'])?$application['business_address_1']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_address_1'])?$registration['business_address_1']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_address_2') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_address_2'])?$application['business_address_2']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_address_2'])?$registration['business_address_2']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_address_3') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_address_3'])?$application['business_address_3']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_address_3'])?$registration['business_address_3']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.province') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessProvince->province_name)?$application->businessProvince->province_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessProvince->province_name)?$registration->businessProvince->province_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                 <span class="font-weight-bolder mb-2">{!! __('labels.city') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessCity->city_name_e)?$application->businessCity->city_name_e:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessCity->city_name_e)?$registration->businessCity->city_name_e:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.district') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessDistrict->district_name_e)?$application->businessDistrict->district_name_e:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessDistrict->district_name_e)?$registration->businessDistrict->district_name_e:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.tehsil') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessTehsil->tehsil_name_e)?$application->businessTehsil->tehsil_name_e:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessTehsil->tehsil_name_e)?$registration->businessTehsil->tehsil_name_e:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.residence_capacity') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->businessCapacity->capacity_name)?$application->businessCapacity->capacity_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->businessCapacity->capacity_name)?$registration->businessCapacity->capacity_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.share_business_place') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_share'])?$application['business_share']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_share'])?$registration['business_share']:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_acquisition_date_place') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_acquisition_date'])?$application['business_acquisition_date']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_acquisition_date'])?$registration['business_acquisition_date']:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
-            @if(isset($application['business_evidence_ownership_file']) && !empty($application['business_evidence_ownership_file']))
+            @if(isset($registration['business_evidence_ownership_file']) && !empty($registration['business_evidence_ownership_file']))
                 <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.business_evidence_tenancy') !!}</span>
                     <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_evidence_ownership_file']) }}"
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($registration['business_evidence_ownership_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
                             </span>
                 </div>
@@ -463,13 +463,13 @@
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_contact_no') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_contact_number'])?$application['business_contact_number']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_contact_number'])?$registration['business_contact_number']:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">{!! __('labels.business_email_address') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['business_email'])?$application['business_email']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['business_email'])?$registration['business_email']:'' }}</span>
             </div>
         </div>
     </div>
@@ -480,8 +480,8 @@
         <span>{!! __('labels.utility_connections_detail') !!}</span></h4>
     <div class="section_box">
 
-        @if(isset($application->utilityConnections) && $application->utilityConnections->isNotEmpty())
-        @foreach($application->utilityConnections as $index=>$connection)
+        @if(isset($registration->utilityConnections) && $registration->utilityConnections->isNotEmpty())
+        @foreach($registration->utilityConnections as $index=>$connection)
             <div class="d-flex justify-content-between pt-5">
 
                 <div class="d-flex flex-column flex-root">
@@ -548,8 +548,8 @@
     <h4 class="mt-10 font-weight-bold section_heading text-white"><span>{!! __('labels.employee_info_detail') !!}</span></h4>
     <div class="section_box">
 
-        @if(isset($application->employeeInfos) && $application->employeeInfos->isNotEmpty())
-            @foreach($application->employeeInfos as $employee)
+        @if(isset($registration->employeeInfos) && $registration->employeeInfos->isNotEmpty())
+            @foreach($registration->employeeInfos as $employee)
                 <h6 class="mb-4 mt-5 font-weight-bold text-dark">{{ isset($employee->employeeType->type_name)?$employee->employeeType->type_name:'' }}
                     &nbsp;(<span class="urdu-label"
                                  dir="rtl"> {{ isset($employee->employeeType->type_name_u)?$employee->employeeType->type_name_u:'' }} </span>)
@@ -578,23 +578,23 @@
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->turnoverFiscalYear->year_name)?$application->turnoverFiscalYear->year_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->turnoverFiscalYear->year_name)?$registration->turnoverFiscalYear->year_name:'' }}</span>
             </div>
 
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.annual_turnover_fiscal_year') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['annual_turnover'])?$application['annual_turnover']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['annual_turnover'])?$registration['annual_turnover']:'' }}</span>
             </div>
         </div>
 
         <div class="d-flex justify-content-between pt-5">
 
-            @if(isset($application['business_account_statement_file']) && !empty($application['business_account_statement_file']))
+            @if(isset($registration['business_account_statement_file']) && !empty($registration['business_account_statement_file']))
                 <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.business_account_statement') !!}</span>
                     <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($application['business_account_statement_file']) }}"
+                                <a href="{{ \Illuminate\Support\Facades\Storage::url($registration['business_account_statement_file']) }}"
                                    target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
                             </span>
                 </div>
@@ -612,19 +612,19 @@
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->exportFiscalYear->year_name)?$application->exportFiscalYear->year_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->exportFiscalYear->year_name)?$registration->exportFiscalYear->year_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->exportCurrency->currency_name)?$application->exportCurrency->currency_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->exportCurrency->currency_name)?$registration->exportCurrency->currency_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.export_turnover') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['export_annual_turnover'])?$application['export_annual_turnover']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['export_annual_turnover'])?$registration['export_annual_turnover']:'' }}</span>
             </div>
         </div>
 
@@ -640,19 +640,19 @@
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.fiscal_year') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->importFiscalYear->year_name)?$application->importFiscalYear->year_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->importFiscalYear->year_name)?$registration->importFiscalYear->year_name:'' }}</span>
             </div>
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.currency') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application->importCurrency->currency_name)?$application->importCurrency->currency_name:'' }}</span>
+                    class="opacity-70">{{ isset($registration->importCurrency->currency_name)?$registration->importCurrency->currency_name:'' }}</span>
             </div>
         </div>
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
                                     <span class="font-weight-bolder mb-2">{!! __('labels.import_turnover') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['import_annual_turnover'])?$application['import_annual_turnover']:'' }}</span>
+                    class="opacity-70">{{ isset($registration['import_annual_turnover'])?$registration['import_annual_turnover']:'' }}</span>
             </div>
         </div>
 

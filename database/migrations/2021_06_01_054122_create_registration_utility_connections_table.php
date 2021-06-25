@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApplicationUtilityConnectionsTable extends Migration
+class CreateRegistrationUtilityConnectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateApplicationUtilityConnectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('application_utility_connections', function (Blueprint $table) {
+        Schema::create('registration_utility_connections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('application_id')->nullable()->constrained();
+            $table->foreignId('registration_id')->nullable()->constrained();
             $table->foreignId('connection_ownership_id')->nullable()->constrained();
             $table->foreignId('utility_type_id')->nullable()->constrained();
             $table->string('utility_consumer_number')->nullable();

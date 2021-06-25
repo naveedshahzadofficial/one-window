@@ -3,74 +3,53 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
-use App\Models\Application;
-use App\Models\Gender;
+use App\Http\Requests\StoreApplicationRequest;
+use App\Models\Registration;
+use App\Models\Status;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 
 class ApplicationController extends Controller
 {
-    public function index(): View
-    {
-        return view('applicant.application.index');
-    }
 
-    public function indexAjax(Request $request)
-    {
-        $query = Application::with('certification')->where('user_id', auth()->id())->select("*");
-        return DataTables::of($query)
-            ->addIndexColumn()
-            ->addColumn('action', function(Application $application){
-                $actionBtn = '<a href="'.route('applicant.applications.edit',$application).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-edit text-white"></i></a>&nbsp;
-                              <a target="_blank" href="'.route('applicant.applications.show',$application).'" class="edit btn btn-custom-color text-center btn-icon btn-circle btn-xs"><i class="flaticon-eye text-white"></i></a>';
-               // if(!optional($application->certification)->id)
-               // $actionBtn .= '&nbsp;<a href="'.route('applicant.applications.certifications.create',$application).'" class="edit btn btn-custom-color text-center btn-icon btn-circle btn-xs"><i class="flaticon-interface-11 text-white"></i></a>';
-                return $actionBtn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
-
-    public function create(): View
-    {
-        return view('applicant.application.create');
-    }
-
-    public function store(Request $request)
+    public function index(Registration $application): View
     {
         //
     }
 
-    public function show($id): View
+    public function create(Registration $registration): View
     {
-       $application =  Application::
-        with('prefix', 'gender','designationBusiness', 'minorityStatusQuestion', 'minorityStatus',
-       'educationLevel', 'educationLevelQuestion', 'skilledWorkerQuestion',
-           'residenceAddressType', 'residenceAddressForm', 'residenceCity', 'residenceDistrict',
-       'residenceAddressCapacity',
-       'businessRegistrationStatus', 'businessLegalStatus', 'businessActivity', 'businessAddressType', 'businessAddressForm', 'businessProvince',
-       'businessCity', 'businessDistrict', 'businessTehsil', 'businessCapacity',
-           'utilityConnectionQuestion', 'utilityConnections.connectionOwnership','utilityConnections.utilityType','utilityConnections.utilityForm',
-           'employeesQuestion','employeeInfos.employeeType','turnoverFiscalYear', 'exportQuestion','exportFiscalYear', 'exportCurrency','importQuestion','importFiscalYear','importCurrency')
-           ->where('user_id', auth()->id())->findOrFail($id);
-        $genders = Gender::where('gender_status',1)->get();
-       return view('applicant.application.show',compact('application','genders'));
+        return view('applicant.application.create',compact('registration'));
     }
 
-    public function edit($id): View
+    public function store(StoreApplicationRequest $request, Registration $registration): RedirectResponse
     {
-        $application =  Application::with('utilityConnections','technicalEducations','employeeInfos')->where('user_id', auth()->id())->findOrFail($id);
-        return view('applicant.application.edit',compact('application'));
+       $application = $registration->application()->create($request->validated());
+
+       $status = Status::where('status_type','applications')->where('status_name','Pending')->first();
+       $application->statuses()->save($status,['user_id'=>auth()->id(),'user_type'=>'App\Models\User']);
+
+       return redirect(route('applicant.registrations.index'))
+            ->with('success_message', 'Certificate Request has been added successfully.');
     }
 
-
-    public function update(Request $request, $id)
+    public function show(Registration $registration, $id): View
     {
         //
     }
 
-    public function destroy($id)
+    public function edit(Registration $registration, $id)
+    {
+        //
+    }
+
+    public function update(Request $request, Registration $registration, $id)
+    {
+        //
+    }
+
+    public function destroy(Registration $registration, $id)
     {
         //
     }

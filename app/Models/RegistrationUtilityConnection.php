@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class ApplicationUtilityConnection extends Model implements Auditable
+class RegistrationUtilityConnection extends Model implements Auditable
 {
     use HasFactory, \OwenIt\Auditing\Auditable;
-    protected $fillable = ['application_id', 'connection_ownership_id', 'utility_type_id', 'utility_consumer_number',
+    protected $fillable = ['registration_id', 'connection_ownership_id', 'utility_type_id', 'utility_consumer_number',
         'utility_form_id', 'utility_service_provider_id', 'utility_provider_other', 'connection_date', 'bill_file' ];
 
     public function generateTags(): array
@@ -17,27 +18,27 @@ class ApplicationUtilityConnection extends Model implements Auditable
         return ['Registration','Utility Connection'];
     }
 
-    public function application()
+    public function registration(): BelongsTo
     {
-        return $this->belongsTo(Application::class);
+        return $this->belongsTo(Registration::class);
     }
 
-    public function connectionOwnership()
+    public function connectionOwnership(): BelongsTo
     {
         return $this->belongsTo(ConnectionOwnership::class);
     }
 
-    public function utilityType()
+    public function utilityType(): BelongsTo
     {
         return $this->belongsTo(UtilityType::class);
     }
 
-    public function utilityForm()
+    public function utilityForm(): BelongsTo
     {
         return $this->belongsTo(UtilityForm::class, 'utility_form_id');
     }
 
-    public function utilityServiceProvider()
+    public function utilityServiceProvider(): BelongsTo
     {
         return $this->belongsTo(UtilityServiceProvider::class);
     }

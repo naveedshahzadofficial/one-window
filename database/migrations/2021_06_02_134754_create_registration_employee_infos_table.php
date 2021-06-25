@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApplicationEmployeeInfosTable extends Migration
+class CreateRegistrationEmployeeInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateApplicationEmployeeInfosTable extends Migration
      */
     public function up()
     {
-        Schema::create('application_employee_infos', function (Blueprint $table) {
+        Schema::create('registration_employee_infos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('application_id')->nullable()->constrained();
+            $table->foreignId('registration_id')->nullable()->constrained();
             $table->foreignId('employee_type_id')->nullable()->constrained();
             $table->string('male')->nullable()->default(0);
             $table->string('female')->nullable()->default(0);

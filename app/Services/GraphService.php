@@ -1,6 +1,6 @@
 <?php
 namespace App\Services;
-use App\Models\Application;
+use App\Models\Registration;
 use App\Models\BusinessCategory;
 use App\Models\District;
 use App\Models\Province;
@@ -26,9 +26,9 @@ class GraphService{
      */
     public function __construct()
     {
-        $this->category_counts = Application::select('business_province_id','business_district_id','business_category_id', DB::raw('count(*) as total'))->groupBy('business_province_id','business_district_id','business_category_id')->get();
-        $this->provinces = Province::withCount('applications')->orderBy('applications_count', 'desc')->where('province_status',1)->get();
-        $this->districts = District::withCount('applications')->orderBy('applications_count', 'desc')->where('district_status',1)->get();
+        $this->category_counts = Registration::select('business_province_id','business_district_id','business_category_id', DB::raw('count(*) as total'))->groupBy('business_province_id','business_district_id','business_category_id')->get();
+        $this->provinces = Province::withCount('registrations')->orderBy('registrations_count', 'desc')->where('province_status',1)->get();
+        $this->districts = District::withCount('registrations')->orderBy('registrations_count', 'desc')->where('district_status',1)->get();
         $this->business_categories =  BusinessCategory::where('category_status',1)->get();
 
         $this->series = array();
@@ -45,9 +45,9 @@ class GraphService{
             $obj->data = array();
             $obj_inner = new \stdClass;
             $obj_inner->name = $province->province_name;
-            $obj_inner->y = $province->applications_count;
+            $obj_inner->y = $province->registrations_count;
             $obj_inner->url = '';
-            if($province->applications_count) {
+            if($province->registrations_count) {
                 $obj_inner->drilldown = 'province_' . $province->id;
                 $this->districtWiseData($province);
             }
@@ -75,10 +75,10 @@ class GraphService{
 
             $obj_inner = new \stdClass;
             $obj_inner->name = $district->district_name_e;
-            $obj_inner->y = $district->applications_count;
+            $obj_inner->y = $district->registrations_count;
             $obj_inner->url = '';
 
-            if($district->applications_count) {
+            if($district->registrations_count) {
                 $obj_inner->drilldown = 'district_' . $district->id;
                 $this->businessWiseData($province, $district);
             }
@@ -99,7 +99,7 @@ class GraphService{
             $obj_inner = new \stdClass;
             $obj_inner->name = $business_category->category_name;
             $obj_inner->y = $category_count;
-            $obj_inner->url = route('admin.applications.index',['province_id'=>$province->id,'district_id'=>$district->id,'business_category_id'=>$business_category->id]);
+            $obj_inner->url = route('admin.registrations.index',['province_id'=>$province->id,'district_id'=>$district->id,'business_category_id'=>$business_category->id]);
             array_push($obj->data,$obj_inner);
         }
         array_push($this->drilldown_series,$obj);

@@ -4,20 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class ApplicationTechnicalEducation extends Model implements Auditable
+class RegistrationTechnicalEducation extends Model implements Auditable
 {
     use HasFactory, \OwenIt\Auditing\Auditable;
-    protected $fillable = ['application_id', 'certificate_title', ];
+    protected $fillable = ['registration_id', 'certificate_title', ];
 
     public function generateTags(): array
     {
         return ['Registration','Technical Education'];
     }
 
-    public function application()
+    public function registration(): BelongsTo
     {
-        return $this->belongsTo(Application::class);
+        return $this->belongsTo(Registration::class);
     }
 }

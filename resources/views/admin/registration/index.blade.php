@@ -11,18 +11,20 @@
 
         </div>
         <div class="card-body">
-        @component('_components.alerts-default')@endcomponent
+            @component('_components.alerts-default')@endcomponent
 
             <div class="kt-form kt-form--fit mb-15">
                 <div class="row mb-6">
 
                     <div class="col-lg-3 mb-lg-0 mb-6">
                         <label>Province:</label>
-                        <select name="province_id" onchange="getProvinceDistricts(this)" class="form-control select2" id="province_id">
+                        <select name="province_id" onchange="getProvinceDistricts(this)" class="form-control select2"
+                                id="province_id">
                             <option value="">--- Select ---</option>
                             @isset($provinces)
                                 @foreach($provinces as $province)
-                            <option {{ request()->get('province_id')==$province->id?'selected':'' }} value="{{ $province->id }}">{{ $province->province_name }}</option>
+                                    <option
+                                        {{ request()->get('province_id')==$province->id?'selected':'' }} value="{{ $province->id }}">{{ $province->province_name }}</option>
                                 @endforeach
                             @endisset
                         </select>
@@ -41,7 +43,8 @@
                             <option value="">--- Select ---</option>
                             @isset($business_categories)
                                 @foreach($business_categories as $business_category)
-                                    <option {{ request()->get('business_category_id')==$business_category->id?'selected':'' }} value="{{ $business_category->id }}">{{ $business_category->category_name }}</option>
+                                    <option
+                                        {{ request()->get('business_category_id')==$business_category->id?'selected':'' }} value="{{ $business_category->id }}">{{ $business_category->category_name }}</option>
                                 @endforeach
                             @endisset
                         </select>
@@ -53,7 +56,10 @@
                             @isset($registration_status)
                                 @foreach($registration_status as $status)
                                     <label class="radio radio-success">
-                                        <input {{ request()->get('business_registration_status_id')==$status->id?'checked':'' }} type="radio" name="business_registration_status_id" class="business_registration_status_id" value="{{ $status->id }}">
+                                        <input
+                                            {{ request()->get('business_registration_status_id')==$status->id?'checked':'' }} type="radio"
+                                            name="business_registration_status_id"
+                                            class="business_registration_status_id" value="{{ $status->id }}">
                                         <span></span>{{ $status->name }}</label>
                                 @endforeach
                             @endisset
@@ -65,12 +71,14 @@
 
                     <div class="col-lg-3 mb-lg-0 mb-6">
                         <label>Registration No.</label>
-                        <input type="text" name="registration_no" id="registration_no" class="form-control" placeholder="Registration No.">
+                        <input type="text" name="registration_no" id="registration_no" class="form-control"
+                               placeholder="Registration No.">
                     </div>
 
 
                     <div class="col-lg-9 mt-7">
-                        <button onclick="reDrawDataTable();" class="btn btn-custom-color btn-primary--icon" id="kt_search">
+                        <button onclick="reDrawDataTable();" class="btn btn-custom-color btn-primary--icon"
+                                id="kt_search">
 													<span>
 														<i class="la la-search text-white"></i>
 														<span>Search</span>
@@ -81,21 +89,22 @@
 														<i class="la la-close"></i>
 														<span>Reset</span>
 													</span>
-                        </button></div>
+                        </button>
+                    </div>
                 </div>
-             </div>
+            </div>
 
-        <!--begin: Datatable-->
+            <!--begin: Datatable-->
             <table class="table table-bordered table-checkable" id="my_datatable">
                 <thead>
                 <tr>
-                    <th>Application ID</th>
+                    <th>Registration ID</th>
                     <th>Sr. No.</th>
                     <th>Registration No.</th>
                     <th>Business Name</th>
                     <th>Applicant Name</th>
                     <th>Email</th>
-                    <th>Phone</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -121,43 +130,41 @@
                 serverSide: true,
                 searching: false,
                 ajax: {
-                    url: '{{ route('admin.applications.index-ajax') }}',
+                    url: '{{ route('admin.registrations.index-ajax') }}',
                     type: "POST",
                     data: function (row) {
-                        row.registration_no= $('#registration_no').val();
-                        row.province_id= $('#province_id').val();
-                        row.district_id= $('#district_id').val();
-                        row.business_category_id=$('#business_category_id').val();
-                        row.business_registration_status_id=$('.business_registration_status_id:checked').val();
+                        row.registration_no = $('#registration_no').val();
+                        row.province_id = $('#province_id').val();
+                        row.district_id = $('#district_id').val();
+                        row.business_category_id = $('#business_category_id').val();
+                        row.business_registration_status_id = $('.business_registration_status_id:checked').val();
                     }
                 },
                 columns: [
-                    { data: 'id',searchable: false, visible: false, printable:false  },
+                    {data: 'id', searchable: false, visible: false, printable: false},
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                     {data: 'registration_no', name: 'registration_no'},
                     {data: 'business_name', name: 'business_name'},
-                    {data: 'first_name', name: 'first_name', render:function(data,type,row,meta){
-                        return row.first_name+ " "+row.last_name;
-                    } },
-                    {data: 'personal_email', name: 'personal_email'},
-                    {data: 'personal_mobile_no', name: 'personal_mobile_no'},
                     {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false, searchable: false
+                        data: 'first_name', name: 'first_name', render: function (data, type, row, meta) {
+                            return row.first_name + " " + row.last_name;
+                        }
                     },
+                    {data: 'personal_email', name: 'personal_email'},
+                    {data: 'status_id', name: 'status_id'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],
                 order: [[0, 'desc']],
                 dom: 'lfrtip',
 
                 lengthMenu: [
-                    [ 10, 20,30,50,100, -1 ],
-                    [ '10', '20', '30','50','100', 'All' ]
+                    [10, 20, 30, 50, 100, -1],
+                    ['10', '20', '30', '50', '100', 'All']
                 ],
                 buttons: [
                     {
-                        extend:    'print',
-                        text:      '<i class="fa fa-print"></i>',
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>',
                         titleAttr: 'Print',
                         charset: "utf-8",
                         "bom": "true",
@@ -172,8 +179,8 @@
                         }
                     },
                     {
-                        extend:    'csvHtml5',
-                        text:      '<i class="fa fa-file-csv"></i>',
+                        extend: 'csvHtml5',
+                        text: '<i class="fa fa-file-csv"></i>',
                         titleAttr: 'CSV',
                         charset: "utf-8",
                         "bom": "true",
@@ -189,8 +196,8 @@
 
                     },
                     {
-                        extend:    'excelHtml5',
-                        text:      '<i class="fa fa-file-excel"></i>',
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel"></i>',
                         titleAttr: 'Excel',
                         charset: "utf-8",
                         "bom": "true",
@@ -205,8 +212,8 @@
                         }
                     },
                     {
-                        extend:    'pdfHtml5',
-                        text:      '<i class="fa fa-file-pdf"></i>',
+                        extend: 'pdfHtml5',
+                        text: '<i class="fa fa-file-pdf"></i>',
                         titleAttr: 'PDF',
                         charset: "utf-8",
                         "bom": "true",
@@ -224,8 +231,9 @@
             });
 
         });
+
         function getProvinceDistricts(province_obj) {
-            var province_id =  $(province_obj).val();
+            var province_id = $(province_obj).val();
             getDistricts(province_id);
         }
 
@@ -233,22 +241,22 @@
 
         @if(request()->get('province_id'))
         var selected_district = {{request()->get('district_id')}};
-        getDistricts({{request()->get('province_id')}},selected_district);
+        getDistricts({{request()->get('province_id')}}, selected_district);
         @endif
 
-        function getDistricts(province_id,selected_district) {
+        function getDistricts(province_id, selected_district) {
             $('#district_id').empty();
             var newOption = new Option("--- Select ---", "", false, false);
             $('#district_id').append(newOption);
-           var filter_districts = _.filter(districts,  { 'province_id': parseInt(province_id)});
+            var filter_districts = _.filter(districts, {'province_id': parseInt(province_id)});
             filter_districts.forEach(function (row) {
-                $('#district_id').append('<option '+(selected_district==row.id?"selected":"")+' value="'+ row.id + '">' + row.district_name_e+ '</option>');
+                $('#district_id').append('<option ' + (selected_district == row.id ? "selected" : "") + ' value="' + row.id + '">' + row.district_name_e + '</option>');
             });
             $('#district_id').trigger('change.select2');
 
         }
 
-        function resetForm(){
+        function resetForm() {
             $('#province_id').val('').trigger('change.select2');
             $('#district_id').val('').trigger('change.select2');
             $('#business_category_id').val('').trigger('change.select2');

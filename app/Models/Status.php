@@ -12,13 +12,13 @@ class Status extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [ 'status_name','status_type','status_order_no','status_color_class','status_remark','status_status'];
 
+    public function registrations(): MorphToMany
+    {
+        return $this->morphedByMany(Registration::class, 'statusable')->withTimestamps()->withPivot(['log_remark','log_file']);
+    }
+
     public function applications(): MorphToMany
     {
         return $this->morphedByMany(Application::class, 'statusable')->withTimestamps()->withPivot(['log_remark','log_file']);
-    }
-
-    public function certification(): MorphToMany
-    {
-        return $this->morphedByMany(ApplicationCertification::class, 'statusable')->withTimestamps()->withPivot(['log_remark','log_file']);
     }
 }

@@ -27,14 +27,14 @@ class Statusable extends Model
         return $this->belongsTo(Admin::class);
     }
 
-    public function application(): BelongsTo
-    {   $this->where('statusable_type','App\Models\Application');
-        return $this->belongsTo(Application::class,'statusable_id');
+    public function registration(): BelongsTo
+    {   $this->where('statusable_type', 'App\Models\Registration');
+        return $this->belongsTo(Registration::class,'statusable_id');
     }
 
-    public function certification(): BelongsTo
+    public function applications(): BelongsTo
     {
-        $this->where('statusable_type','App\Models\ApplicationCertification');
-        return $this->belongsTo(ApplicationCertification::class,'statusable_id');
+        $this->where('statusable_type', 'App\Models\Application');
+        return $this->belongsTo(Application::class,'statusable_id');
     }
 }

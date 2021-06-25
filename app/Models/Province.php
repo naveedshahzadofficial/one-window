@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Province extends Model
@@ -12,12 +13,12 @@ class Province extends Model
 
     protected $fillable = ['province_name', 'province_remark', 'province_status'];
 
-    public function applications()
+    public function registrations(): HasMany
     {
-        return $this->hasMany(Application::class,'business_province_id');
+        return $this->hasMany(Registration::class,'business_province_id');
     }
 
-    public function districts()
+    public function districts(): HasMany
     {
         return $this->hasMany(District::class);
     }

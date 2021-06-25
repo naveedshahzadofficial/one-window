@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Application;
+use App\Models\Registration;
 use App\Models\District;
 use App\Models\Province;
 use App\Services\GraphService;

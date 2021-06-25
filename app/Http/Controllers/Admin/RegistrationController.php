@@ -11,9 +11,9 @@ use App\Models\Province;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use App\Models\Application;
+use App\Models\Registration;
 
-class ApplicationController extends Controller
+class RegistrationController extends Controller
 {
     public function index(): View
     {
@@ -23,7 +23,7 @@ class ApplicationController extends Controller
        $data['registration_status'] = BusinessRegistrationStatus::where('status',1)->get();
        $data['business_categories'] = BusinessCategory::where('category_status',1)->get();
 
-       return view('admin.application.index')->with($data);
+       return view('admin.registration.index')->with($data);
     }
 
    public function indexAjax(Request $request)
@@ -34,7 +34,7 @@ class ApplicationController extends Controller
         $business_category_id = isset($request->business_category_id) && !empty($request->business_category_id) ?$request->business_category_id: '';
         $business_registration_status_id = isset($request->business_registration_status_id) && !empty($request->business_registration_status_id) ?$request->business_registration_status_id: '';
 
-        $query = Application::query()->select("*");
+        $query = Registration::query()->select("*");
         if (!empty($registration_no)) {
             $query->where('registration_no', 'like' ,"%$registration_no%");
         }
@@ -53,11 +53,14 @@ class ApplicationController extends Controller
 
         return DataTables::of($query)
             ->addIndexColumn()
-            ->addColumn('action', function(Application $application){
-                $actionBtn = '<a target="_blank" href="'.route('admin.applications.show',$application).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-eye text-white"></i></a>';
+            ->editColumn('status_id', function (Registration $registration){
+                return '<span class="btn btn-circle btn-sm border-0 cursor-move active '.optional($registration->status)->status_color_class.'">'.optional($registration->status)->status_name.'</span>';
+            })
+            ->addColumn('action', function(Registration $registration){
+                $actionBtn = '<a target="_blank" href="'.route('admin.registrations.show',$registration).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-eye text-white"></i></a>';
                 return $actionBtn;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['status_id','action'])
             ->make(true);
     }
 
@@ -74,7 +77,7 @@ class ApplicationController extends Controller
 
     public function show($id): View
     {
-        $application =  Application::with('certification')->
+        $registration =  Registration::with('application')->
         with('prefix', 'gender','designationBusiness', 'minorityStatusQuestion', 'minorityStatus',
        'educationLevel', 'educationLevelQuestion', 'skilledWorkerQuestion',
            'residenceAddressType', 'residenceAddressForm', 'residenceCity', 'residenceDistrict',
@@ -84,7 +87,7 @@ class ApplicationController extends Controller
            'utilityConnectionQuestion', 'utilityConnections.connectionOwnership','utilityConnections.utilityType','utilityConnections.utilityForm',
            'employeesQuestion','employeeInfos.employeeType','turnoverFiscalYear', 'exportQuestion','exportFiscalYear', 'exportCurrency','importQuestion','importFiscalYear','importCurrency')->findOrFail($id);;
        $genders = Gender::where('gender_status',1)->get();
-       return view('admin.application.show',compact('application','genders'));
+       return view('admin.registration.show',compact('registration','genders'));
     }
 
     public function edit($id)

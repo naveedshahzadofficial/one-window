@@ -15,8 +15,8 @@ class StatusSeeder extends Seeder
     public function run()
     {
         // Registrations
-        Status::create(['status_name'=>'Incomplete','status_order_no'=>1,'status_color_class'=>'btn-hover-danger','status_type'=>'registrations']);
-        Status::create(['status_name'=>'Completed','status_order_no'=>2,'status_color_class'=>'btn-hover-info','status_type'=>'registrations']);
+        Status::create(['status_name'=>'Incomplete','status_order_no'=>1,'status_color_class'=>'btn-hover-warning','status_type'=>'registrations']);
+        Status::create(['status_name'=>'Completed','status_order_no'=>2,'status_color_class'=>'btn-hover-success','status_type'=>'registrations']);
         Status::create(['status_name'=>'Re-Opened','status_order_no'=>3,'status_color_class'=>'btn-hover-primary','status_type'=>'registrations']);
         Status::create(['status_name'=>'Locked','status_order_no'=>4,'status_color_class'=>'btn-hover-secondary','status_type'=>'registrations']);
 
