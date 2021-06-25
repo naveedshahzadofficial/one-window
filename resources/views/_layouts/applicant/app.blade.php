@@ -63,7 +63,7 @@
 	<!--end::Head-->
 
 	<!--begin::Body-->
-	<body id="kt_body" class="header-fixed header-mobile-fixed  subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+	<body id="kt_body" class="header-fixed header-mobile-fixed  subheader-fixed aside-enabled aside-fixed aside-minimize aside-minimize-hoverable page-loading">
 
 		<!--[html-partial:include:{"file":"layout.html"}]/-->
         @section('layout')
