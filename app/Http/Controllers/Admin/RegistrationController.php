@@ -34,7 +34,7 @@ class RegistrationController extends Controller
         $business_category_id = isset($request->business_category_id) && !empty($request->business_category_id) ?$request->business_category_id: '';
         $business_registration_status_id = isset($request->business_registration_status_id) && !empty($request->business_registration_status_id) ?$request->business_registration_status_id: '';
 
-        $query = Registration::query()->select("*");
+        $query = Registration::with('status')->select("*");
         if (!empty($registration_no)) {
             $query->where('registration_no', 'like' ,"%$registration_no%");
         }
