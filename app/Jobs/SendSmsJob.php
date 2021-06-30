@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\OtpCode;
 use App\Services\SmsService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -9,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use NsTechNs\JazzCMS\JazzCMS;
 
 class SendSmsJob implements ShouldQueue
@@ -39,7 +41,12 @@ class SendSmsJob implements ShouldQueue
      */
     public function handle()
     {
-        (new JazzCMS)->sendSMS($this->phone_number,$this->sms_text);
+        Log::info("Phone: ".str_replace('-','',$this->phone_number)." Message {$this->sms_text} ");
+        $response = (new JazzCMS)->sendSMS(str_replace('-','',$this->phone_number),$this->sms_text);
+        $otp = OtpCode::where('mobile_no',$this->phone_number)->latest()->first();
+        if(isset($otp->id) && !empty($otp->id)){
+            $otp->update(['sms_response'=>$response]);
+        }
        // (new SmsService())->sendSms($this->phone_number, $this->sms_text,$this->language);
     }
 }

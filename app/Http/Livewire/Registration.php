@@ -111,7 +111,7 @@ class Registration extends Component
             'ip_address'=> Request::ip()??null,
         ]);
 
-        SendSmsJob::dispatch(str_replace('-','',$this->mobile_number), $message_sms);
+        SendSmsJob::dispatch($this->mobile_number, $message_sms);
         SendEmailJob::dispatch($this->user['email'],$data,'Registration');
 
 

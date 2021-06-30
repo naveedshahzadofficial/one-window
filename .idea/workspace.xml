@@ -270,6 +270,10 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/SendSmsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/SendSmsJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/OtpCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/OtpCode.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_26_063855_create_otp_codes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_26_063855_create_otp_codes_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -586,6 +590,7 @@
       <workItem from="1624602953587" duration="13985000" />
       <workItem from="1624865039063" duration="1215000" />
       <workItem from="1624950639760" duration="1055000" />
+      <workItem from="1625037938515" duration="1913000" />
     </task>
     <servers />
   </component>

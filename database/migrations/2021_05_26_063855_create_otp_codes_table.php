@@ -20,8 +20,9 @@ class CreateOtpCodesTable extends Migration
             $table->string('mobile_no');
             $table->string('mobile_otp_code');
             $table->string('email_otp_code');
-            $table->string('ip_address');
+            $table->string('ip_address')->nullable();
             $table->boolean('is_used')->default(false);
+            $table->text('sms_response')->nullable();
             $table->timestamps();
         });
     }
