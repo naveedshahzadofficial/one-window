@@ -45,7 +45,7 @@ class SendSmsJob implements ShouldQueue
         $response = (new JazzCMS)->sendSMS(str_replace('-','',$this->phone_number),$this->sms_text);
         $otp = OtpCode::where('mobile_no',$this->phone_number)->latest()->first();
         if(isset($otp->id) && !empty($otp->id)){
-            $otp->update(['sms_response'=>$response]);
+            $otp->update(['sms_response'=>json_encode($response)]);
         }
        // (new SmsService())->sendSms($this->phone_number, $this->sms_text,$this->language);
     }
