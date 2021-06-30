@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use JazzCMS;
+use NsTechNs\JazzCMS\JazzCMS;
 
 class SendSmsJob implements ShouldQueue
 {
@@ -39,7 +39,7 @@ class SendSmsJob implements ShouldQueue
      */
     public function handle()
     {
-        JazzCMS::sendSMS($this->phone_number,$this->sms_text);
+        (new JazzCMS)->sendSMS($this->phone_number,$this->sms_text);
        // (new SmsService())->sendSms($this->phone_number, $this->sms_text,$this->language);
     }
 }
