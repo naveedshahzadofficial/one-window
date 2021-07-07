@@ -14,7 +14,7 @@
         "laravel/ui": "^3.2",
         "laravelcollective/html": "^6.2",
         "livewire/livewire": "^2.4",
-        "nstechns/jazzcms-laravel": "^1.0.0",
+        "nstechns/jazzcms-laravel": "^1.0",
         "owen-it/laravel-auditing": "^12.0",
         "spatie/laravel-permission": "^4.0",
         "yajra/laravel-datatables-oracle": "^9.18"

@@ -159,8 +159,9 @@ class Registration extends Component
         User::create($this->user);
 
         $data = new \stdClass;
-        $data->subject = "SMERP Registration";
-        $data->name = $this->user['first_name'];
+        $data->subject = "SMERP Registered";
+        $prefix = $this->prefixes->firstWhere('id',$this->user['prefix_id']);
+        $data->name = trim(($prefix->prefix_name??'')." ".$this->user['first_name']);
         $data->body = "You are successful sign up, now you can registration your SMEs.";
         SendEmailJob::dispatch($this->user['email'],$data,'default');
 

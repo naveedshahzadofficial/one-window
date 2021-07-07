@@ -48,5 +48,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(DisabilitySeeder::class);
         $this->call(StatusSeeder::class);
+        $this->call(EmployeeSequenceSeeder::class);
     }
 }

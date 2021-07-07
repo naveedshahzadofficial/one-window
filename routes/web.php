@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Applicant;
 
-
 Route::get('/', function () {
     return view('auth.login');
 });

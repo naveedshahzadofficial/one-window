@@ -32,7 +32,7 @@ return [
 'add_more' => ' Add More',
 'province_state' => 'Province/ State (<span class="urdu-label" dir="rtl"> صوبہ / ریاست </span>)',
 'province' => 'Province/ State (<span class="urdu-label" dir="rtl"> صوبہ / ریاست  </span>)',
-'city' => 'City (<span class="urdu-label" dir="rtl"> شہر </span>)',
+'city' => 'City/ Village (<span class="urdu-label" dir="rtl"> شہر / گاؤں </span>)',
 'district' => 'District (<span class="urdu-label" dir="rtl"> ضلع </span>)',
 'tehsil' => 'Tehsil (<span class="urdu-label" dir="rtl"> تحصیل</span>)',
 'sector' => 'Sector (<span class="urdu-label" dir="rtl">  کاروبار کا شعبہ   </span>)',
@@ -75,7 +75,7 @@ return [
 'employee_info_heading' => 'EMPLOYEES INFO  (<label class="urdu-label" dir="rtl"> ملازمین کی معلومات </label>)',
 'employee_info_detail' => 'EMPLOYEES INFO DETAIL (<label class="urdu-label" dir="rtl">  ملازمین سے متعلق تفصیلات  </label>)',
 
-'turnover_heading' => 'ANNUAL TURNOVER  (<label class="urdu-label" dir="rtl"> سالانہ کاروبار </label>)',
+'turnover_heading' => 'ANNUAL TURNOVER  (<label class="urdu-label" dir="rtl"> سالانہ کاروبار کا حجم </label>)',
 
 'submission_info_heading' => 'SUBMISSION  (<label class="urdu-label" dir="rtl"> جمع کروائیں </label>)',
 

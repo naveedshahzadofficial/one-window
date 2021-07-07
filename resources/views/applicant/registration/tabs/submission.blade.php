@@ -236,6 +236,10 @@
                         <p class="mb-0">In case of any forgery and/or concealment of any fact/ document is found, the same shall lead to the initiation of legal proceedings as per law, policy and rules.</p>
                         <p class="d-inline urdu-label" style="direction:rtl"> کسی کاغذ/ معلومات میں میری طرف سے غیر قانونی تبدیلی یا اسے چھپانے کی صورت میں میرے خلاف قانون و قواعد اور پالیسی کے مطابق کاروائی کی جا سکتی ہے۔</p>
                     </li>
+                    <li>
+                        <p class="mb-0">I agree that the provided information may be verified from the concerned Governing Bodies / Organisation.</p>
+                        <p class="d-inline urdu-label" style="direction:rtl"> میں اتفاق کرتا ہوں کہ فراہم کردہ معلومات کی تصدیق متعلقہ گورننگ باڈیز / آرگنائزیشن سے کی جاسکتی ہے۔</p>
+                    </li>
                 </ol>
             </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\AddressCapacity;
 use App\Models\AddressForm;
 use App\Models\AddressType;
+use App\Models\EmployeeSequence;
 use App\Models\Registration;
 use App\Models\RegistrationDisability;
 use App\Models\RegistrationEmployeeInfo;
@@ -68,6 +69,7 @@ class ApplicationForm extends Component
 
     public $employees = [];
     public $employee_types;
+    public $employee_sequences;
 
     public $employee_numbers;
 
@@ -156,7 +158,7 @@ class ApplicationForm extends Component
         $this->minority_status = MinorityStatus::where('status',1)->get();
         $this->education_level = EducationLevel::where('status',1)->get();
 
-        $this->address_types = AddressType::where('type_status',1)->get();
+        $this->address_types = AddressType::where('type_status',1)->orderBy('type_name','desc')->get();
         $this->utility_forms = UtilityForm::where('form_status',1)->get();
 
         $this->address_capacities = AddressCapacity::where('capacity_status',1)->get();
@@ -171,6 +173,7 @@ class ApplicationForm extends Component
         $this->utility_types = UtilityType::where('type_status',1)->get();
 
         $this->employee_types = EmployeeType::where('type_status',1)->get();
+        $this->employee_sequences = EmployeeSequence::where('sequence_status',1)->get();
 
         $this->fiscal_years = FiscalYear::where('year_status',1)->get();
         $this->currencies = Currency::where('currency_status',1)->get();
@@ -192,7 +195,7 @@ class ApplicationForm extends Component
         $this->all_utility_service_providers = UtilityServiceProvider::where('provider_status',1)->get();
 
         // mount multiple options
-        $this->utility_service_providers[0] = UtilityServiceProvider::where('utility_form_id',2)->where('provider_status',1)->get();
+        $this->utility_service_providers[0] = UtilityServiceProvider::where('utility_form_id',1)->where('provider_status',1)->get();
 
         $this->disability_options = Disability::where('disability_status',1)->orderBy('disability_order')->get();
 
@@ -402,6 +405,26 @@ class ApplicationForm extends Component
                     'child_id'=>'#business_tehsil_id',
                     'field_name'=>'tehsil_name_e',
                 ]);
+                break;
+            case 'utility_connection_question_id':
+                $question = $this->questions->firstWhere('id',$value);
+                if($question->name=='Yes'){
+                    $this->utility_service_providers[0] = UtilityServiceProvider::where('utility_form_id',1)->where('provider_status',1)->get();
+                    $this->application["utility_connections.0.utility_service_provider_id"] = null;
+                    $this->utility_connections[0]['utility_form_id'] = null;
+                    $this->dispatchBrowserEvent('child:select2',[
+                        'data'=>$this->utility_service_providers[0],
+                        'child_id'=>'#utility_service_provider_id_0',
+                        'field_name'=>'provider_name',
+                    ]);
+                }
+                if($question->name=='No'){
+                    $this->dispatchBrowserEvent('child:select2',[
+                        'data'=>[],
+                        'child_id'=>'#utility_service_provider_id_0',
+                        'field_name'=>'provider_name',
+                    ]);
+                }
                 break;
         }
     }

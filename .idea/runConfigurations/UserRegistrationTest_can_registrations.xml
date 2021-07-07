@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="UserRegistrationTest.can_registrations" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" singleton="false">
+    <CommandLine>
+      <PhpTestInterpreterSettings>
+        <option name="interpreterName" value="PHP 7.3" />
+      </PhpTestInterpreterSettings>
+    </CommandLine>
+    <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" method="can_registrations" scope="Method" />
+    <method v="2" />
+  </configuration>
+</component>

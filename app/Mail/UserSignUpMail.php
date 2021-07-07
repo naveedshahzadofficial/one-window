@@ -29,7 +29,7 @@ class UserSignUpMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('mails.user_sign_up',compact(['user'=>$this->user]))->subject('SMERP - Register');
+        return $this->view('mails.user_sign_up',compact(['user'=>$this->user]))->subject('SMERP - OTP');
 
     }
 }

@@ -1328,7 +1328,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                     @foreach($questions as $question)
                                         <label class="radio radio-success">
                                             <input wire:model.defer="application.utility_connection_question_id"
-                                                   @click="is_utility_connection= '{{ $question->name }}'"
+                                                   @click="is_utility_connection= '{{ $question->name }}'; $wire.set('application.utility_connection_question_id', {{ $question->id }})"
                                                    type="radio"
                                                    name="utility_connection_question_id" value="{{ $question->id }}">
                                             <span></span>{{ $question->name }}</label>
@@ -1360,7 +1360,7 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                     <div class="form-group row" x-show.transition.opacity="is_utility_connection=='No' @if($index>0) {{ '|| true' }} @endif">
                                         <div class="col-lg-12">
                                             <label>{!! __('labels.type_of_utility') !!}<span class="text-danger">*</span></label>
-                                            <div class="radio-inline" wire:ignore>
+                                            <div class="radio-inline">
                                                 @foreach($utility_forms as $form)
                                                     <label class="radio radio-success" @if($form->form_name=='Electricity') x-show.transition.opacity="is_utility_connection=='Yes'" @endif  @if($index>0 && $form->form_name=='Electricity') x-show.transition.opacity="is_utility_connection=='No'" @endif>
                                                         <input
@@ -1566,11 +1566,9 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                                                     wire:model="employees.{{$index}}.{{strtolower($gender->gender_name)}}"
                                                     class=" form-control @error("employees.".$index.'.'.strtolower($gender->gender_name)) is-invalid @enderror">
                                                     <option value="">Select</option>
-                                                    <option value="0">0</option>
-
-                                                    @for($no=1; $no<=100;$no=$no+10)
-                                                        <option value="{{ $no }}&nbsp;-&nbsp;{{ $no+9 }}">{{ $no.'-'.($no+9) }}</option>
-                                                    @endfor
+                                                    @foreach($employee_sequences as $employee_sequence)
+                                                        <option value="{{ $employee_sequence->sequence_name }}">{{ $employee_sequence->sequence_name }}</option>
+                                                    @endforeach
                                                 </select>
                                                 @error("employees.".$index.'.'.strtolower($gender->gender_name))
                                                 <div class="invalid-feedback d-block">{{ $message }}</div>
