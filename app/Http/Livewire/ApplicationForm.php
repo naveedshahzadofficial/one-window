@@ -208,6 +208,7 @@ class ApplicationForm extends Component
         $this->application['personal_email'] = auth()->user()->email;
 
         if($registration){
+            $this->is_validation = true;
             $this->application = $registration->toArray();
 
             $this->technical_educations = $registration->technicalEducations->toArray();
