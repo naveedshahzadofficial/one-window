@@ -62,10 +62,28 @@ class Registration extends Model implements Auditable
             case 'business_acquisition_date':
                 $this->attributes[$key] = Carbon::parse($value)->format('Y-m-d');
             break;
+            case 'annual_turnover':
+            case 'export_annual_turnover':
+            case 'import_annual_turnover':
+                $this->attributes[$key] = (float) str_replace(',', '', $value);
+                break;
             default:
                 $this->attributes[$key] = $value;
             break;
         }
+    }
+
+    public function getAnnualTurnoverAttribute($value)
+    {
+        return number_format($value, 0, '.', '');
+    }
+    public function getExportAnnualTurnoverAttribute($value)
+    {
+        return number_format($value, 0, '.', '');
+    }
+    public function getImportAnnualTurnoverAttribute($value)
+    {
+        return number_format($value, 0, '.', '');
     }
 
     public function generateTags(): array

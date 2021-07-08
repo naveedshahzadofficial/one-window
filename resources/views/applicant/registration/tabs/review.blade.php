@@ -599,7 +599,7 @@
             <div class="d-flex flex-column flex-root">
                 <span class="font-weight-bolder mb-2">{!! __('labels.annual_turnover_fiscal_year') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['annual_turnover'])?$application['annual_turnover']:'' }}</span>
+                    class="opacity-70">{{ isset($application['annual_turnover'])?number_format($application['annual_turnover']):'' }}</span>
             </div>
         </div>
 
@@ -639,7 +639,7 @@
             <div class="d-flex flex-column flex-root">
                 <span class="font-weight-bolder mb-2">{!! __('labels.export_turnover') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['export_annual_turnover'])?$application['export_annual_turnover']:'' }}</span>
+                    class="opacity-70">{{ isset($application['export_annual_turnover'])?number_format($application['export_annual_turnover']):'' }}</span>
             </div>
         </div>
 
@@ -667,7 +667,7 @@
             <div class="d-flex flex-column flex-root">
                 <span class="font-weight-bolder mb-2">{!! __('labels.import_turnover') !!}</span>
                 <span
-                    class="opacity-70">{{ isset($application['import_annual_turnover'])?$application['import_annual_turnover']:'' }}</span>
+                    class="opacity-70">{{ isset($application['import_annual_turnover'])?number_format($application['import_annual_turnover']):'' }}</span>
             </div>
         </div>
 

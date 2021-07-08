@@ -1612,7 +1612,9 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                             <div class="col-lg-6">
                                 <label>{!! __('labels.annual_turnover_fiscal_year') !!} <span class="text-danger">*</span></label>
-                                <input wire:model.model.defer="application.annual_turnover" type="text" class="form-control @error('application.annual_turnover') is-invalid @enderror" placeholder="Annual Turnover" />
+                                <div wire:ignore>
+                                <x-money-format wire:model.model.defer="application.annual_turnover" class="annual_turnover" placeholder="Annual Turnover" />
+                                </div>
                                 @error('application.annual_turnover')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -1695,7 +1697,9 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                         <div class="col-lg-6">
                             <label>{!! __('labels.export_turnover') !!} <span class="text-danger">*</span></label>
-                            <input wire:model.defer="application.export_annual_turnover" type="text" class="form-control @error('application.export_annual_turnover') is-invalid @enderror" placeholder="Export Annual Turnover" />
+                            <div wire:ignore>
+                            <x-money-format wire:model.model.defer="application.export_annual_turnover" class="export_annual_turnover" placeholder="Export Annual Turnover" />
+                            </div>
                             @error('application.export_annual_turnover')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -1759,7 +1763,9 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
 
                             <div class="col-lg-6">
                                 <label>{!! __('labels.import_turnover') !!} <span class="text-danger">*</span></label>
-                                <input wire:model.defer="application.import_annual_turnover" type="text" class="form-control @error('application.import_annual_turnover') is-invalid @enderror" placeholder="Import Annual Turnover" />
+                                <div wire:ignore>
+                                <x-money-format wire:model.model.defer="application.import_annual_turnover" class="import_annual_turnover" placeholder="Import Annual Turnover" />
+                                </div>
                                 @error('application.import_annual_turnover')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror

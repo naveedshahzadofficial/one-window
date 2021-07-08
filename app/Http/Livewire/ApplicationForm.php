@@ -122,6 +122,7 @@ class ApplicationForm extends Component
     public $tab_annual_turnover_is_completed = false;
 
     public $accept_declaration;
+    public $is_validation = false;
 
     public $step;
     private $stepActions = [
@@ -133,7 +134,6 @@ class ApplicationForm extends Component
         'submitReview',
         'submission',
     ];
-
     public $tabsProgress = [
         'applicant_percentage'=>0,
         'business_percentage'=>0,
@@ -141,9 +141,7 @@ class ApplicationForm extends Component
         'employee_percentage'=>0,
         'turnover_percentage'=>0,
     ];
-
     public $registration;
-
 
     public function mount($registration=null)
     {
@@ -306,7 +304,6 @@ class ApplicationForm extends Component
 
         $this->pageChangeDispatch();
     }
-
     public function increaseStep()
     {
         if($this->step<7)
@@ -314,7 +311,6 @@ class ApplicationForm extends Component
 
         $this->pageChangeDispatch();
     }
-
     public function updatedApplication($value, $updatedKey)
     {
         switch ($updatedKey){
@@ -444,13 +440,13 @@ class ApplicationForm extends Component
         }
 
     }
-
     public function submitApplication()
     {
+        $this->checkCurrencyNumbers();
         $action = $this->stepActions[$this->step];
         $this->$action();
     }
-    public function submitApplicantProfile()
+    private function submitApplicantProfile()
     {
          $rules_applicant_profile = [
         'application.residence_share' => 'nullable|numeric|min:0|max:100',
@@ -531,7 +527,7 @@ class ApplicationForm extends Component
 
         $this->successAlert();
     }
-    public function submitBusinessProfile()
+    private function submitBusinessProfile()
     {
 
          $rules_business_profile = [
@@ -617,45 +613,11 @@ class ApplicationForm extends Component
 
         $this->successAlert();
     }
-    public function submitUtilityConnections()
+    private function submitUtilityConnections()
     {
-        $rules_utility_connections = array();
-        $messages_utility_connections = array();
 
-        foreach ($this->utility_connections as $index=>$conn){
-            if(isset($conn['new_bill_file']) && !empty($conn['new_bill_file'])){
-                    $rules_utility_connections["utility_connections.$index.new_bill_file"] = 'mimes:jpg,jpeg,png,pdf|max:5120';
-                    $messages_utility_connections["utility_connections.$index.new_bill_file.mimes"] = 'Utility bill must be a file of type: jpg, jpeg, png, pdf.';
-            }
-            if($this->isNo('utility_connection_question_id') || $index>0){
-                $rules_utility_connections["utility_connections.$index.utility_form_id"] = 'required';
-                $messages_utility_connections["utility_connections.$index.utility_form_id.required"] = 'Type of Utility is required.';
-            }
-            if($this->isYes('utility_connection_question_id') || $this->isNo('utility_connection_question_id')){
-                $rules_utility_connections["utility_connections.$index.utility_type_id"] = 'required';
-                $messages_utility_connections["utility_connections.$index.utility_type_id.required"] = 'Type of Connection is required.';
-
-                $rules_utility_connections["utility_connections.$index.connection_ownership_id"] = 'required';
-                $messages_utility_connections["utility_connections.$index.connection_ownership_id.required"] = 'Connection Ownership is required.';
-
-                $rules_utility_connections["utility_connections.$index.utility_consumer_number"] = 'required';
-                $messages_utility_connections["utility_connections.$index.utility_consumer_number.required"] = 'Reference/ Consumer Number is required.';
-
-                $rules_utility_connections["utility_connections.$index.utility_service_provider_id"] = 'required';
-                $messages_utility_connections["utility_connections.$index.utility_service_provider_id.required"] = 'Service Provider is required.';
-
-                $rules_utility_connections["utility_connections.$index.connection_date"] = 'required';
-                $messages_utility_connections["utility_connections.$index.connection_date.required"] = 'Connection Date is required.';
-
-                if(!isset($conn['bill_file']) || empty($conn['bill_file'])){
-                    $rules_utility_connections["utility_connections.$index.new_bill_file"] = 'required';
-                    $messages_utility_connections["utility_connections.$index.new_bill_file.required"] = 'Paid Utility bill is required.';
-                }
-                $this->validate($rules_utility_connections,$messages_utility_connections);
-            }
-         }
-
-
+        $validation = $this->utilityConnectionsRules();
+        $this->validate($validation->rules,$validation->messages);
 
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
@@ -687,30 +649,8 @@ class ApplicationForm extends Component
 
         $this->successAlert();
     }
-    public function submitEmployeesInfo()
+    private function submitEmployeesInfo()
     {
-
-        if($this->isYes('employees_question_id')){
-            $total_employee_types = 0;
-            $rules_employees_info = [];
-            $messages_employees_info = [];
-            foreach ($this->employees as $index=>$emp) {
-                if(isset($emp['employee_type_id']) && $emp['employee_type_id']) {
-                    $rules_employees_info["employees.$index.male"] = "required_without_all:employees.$index.female,employees.$index.transgender";
-                    $rules_employees_info["employees.$index.female"] = "required_without_all:employees.$index.male,employees.$index.transgender";
-                    $rules_employees_info["employees.$index.transgender"] = "required_without_all:employees.$index.male,employees.$index.female";
-
-                    $messages_employees_info["employees.$index.male.required_without_all"]="The male field is required when none of female / transgender are present.";
-                    $messages_employees_info["employees.$index.female.required_without_all"]="The female field is required when none of male / transgender are present.";
-                    $messages_employees_info["employees.$index.transgender.required_without_all"]="The transgender field is required when none of male / transgender are present.";
-                    $total_employee_types++;
-                }
-            }
-            if(!$total_employee_types)
-                $rules_employees_info['employees.0.employee_type_id'] = 'required';
-
-            $this->validate($rules_employees_info,$messages_employees_info);
-        }
 
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
@@ -736,13 +676,17 @@ class ApplicationForm extends Component
 
         $this->successAlert();
     }
-    public function submitAnnualTurnover()
+    private function submitAnnualTurnover()
     {
-        $rules_annual_turnover['business_account_statement_file'] = 'nullable|mimes:jpg,jpeg,png,pdf|max:5120';
-        $messages_annual_turnover['business_account_statement_file.mimes'] = 'Please Upload Business Account Statement.';
-        $this->validate($rules_annual_turnover,$messages_annual_turnover);
+
 
         if(isset($this->business_account_statement_file) && !empty($this->business_account_statement_file)) {
+
+            $rules['business_account_statement_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
+            $messages['business_account_statement_file.mimes'] = 'Attachment must be a file of type: jpg, jpeg, png, pdf.';
+            $messages['business_account_statement_file.max'] = 'Attachment must not be greater than 5MB.';
+            $this->validate($rules,$messages);
+
             $this->application['business_account_statement_file'] = $this->business_account_statement_file->store('business_account_statements', 'public');
             $this->business_account_statement_file = null;
         }
@@ -766,7 +710,7 @@ class ApplicationForm extends Component
 
         $this->successAlert();
     }
-    public function submitReview()
+    private function submitReview()
     {
         if($this->registration)
             $this->registration = tap($this->registration)->update($this->application);
@@ -775,7 +719,7 @@ class ApplicationForm extends Component
 
         $this->successAlert();
     }
-    public function submission(){
+    private function submission(){
 
        $rules = [
             'accept_declaration' => 'required',
@@ -784,6 +728,7 @@ class ApplicationForm extends Component
             'accept_declaration.required' => 'Please accept the accept declaration.',
 
         ];
+        $this->checkCurrencyNumbers();
         $this->validate($rules,$messages);
 
         $this->submitApplicantProfile();
@@ -809,23 +754,12 @@ class ApplicationForm extends Component
         session()->flash('success_message', 'Registration has been saved successfully.');
         return $this->redirect(route('applicant.registrations.index'));
     }
-
     public function addUtilityConnection(){
         $current_index = count($this->utility_connections)-1;
 
-        $this->validate([
-            'utility_connections.*.utility_type_id' => 'required',
-            'utility_connections.*.connection_ownership_id' => 'required',
-            'utility_connections.*.utility_consumer_number' => 'required',
-            'utility_connections.*.utility_service_provider_id' => 'required',
-            'utility_connections.*.connection_date' => 'required',
-        ],[
-            'utility_connections.*.utility_service_provider_id.required' => 'Connection Ownership is required.',
-            'utility_connections.*.utility_form_id.required' => 'Form/Type of Connection is required.',
-            'utility_connections.*.utility_consumer_number.required' => 'Reference/ Consumer Number is required.',
-            'utility_connections.*.utility_type_id.required' => 'Utility Type is required.',
-            'utility_connections.*.connection_ownership_id.required' => 'Provider is required.',
-        ]);
+        $validation = $this->utilityConnectionsRules();
+        $this->validate($validation->rules,$validation->messages);
+
         $this->utility_connections[] = ['utility_type_id'=>null,'utility_form_id'=>null,'connection_ownership_id'=>null,'utility_consumer_number'=>null, 'utility_service_provider_id'=>null,  'connection_date'=>null, 'bill_file'=>null];
         $next_index = $current_index+1;
         $select2_id = "#utility_service_provider_id_$next_index";
@@ -889,7 +823,6 @@ class ApplicationForm extends Component
         unset($this->disabilities[$index]);
         $this->disabilities = array_values($this->disabilities);
     }
-
     private function successAlert(){
 
         $this->dispatchBrowserEvent('toastr:message',[
@@ -901,19 +834,131 @@ class ApplicationForm extends Component
     private function pageChangeDispatch(){
         $this->dispatchBrowserEvent('page:tab',['change'=>true]);
     }
-    private function isYes($key_name){
+    private function isYes($key_name): bool
+    {
         return (isset($this->application[$key_name]) &&
             $this->questions->firstWhere('id', $this->application[$key_name])->name=='Yes');
     }
-    private function isNo($key_name){
+    private function isNo($key_name): bool
+    {
         return (isset($this->application[$key_name]) &&
             $this->questions->firstWhere('id', $this->application[$key_name])->name=='No');
     }
-
-    public function validationCheck(){
+    private function checkCurrencyNumbers(){
+        if(isset($this->application['annual_turnover']) && !empty($this->application['annual_turnover'])){
+            $this->application['annual_turnover'] = (float) str_replace(',', '', $this->application['annual_turnover']);
+        }
+        if(isset($this->application['export_annual_turnover']) && !empty($this->application['export_annual_turnover'])){
+            $this->application['export_annual_turnover'] = (float) str_replace(',', '', $this->application['export_annual_turnover']);
+        }
+        if(isset($this->application['import_annual_turnover']) && !empty($this->application['import_annual_turnover'])){
+            $this->application['import_annual_turnover'] = (float) str_replace(',', '', $this->application['import_annual_turnover']);
+        }
+    }
+    private function validationCheck(){
         /* Start Applicant Profile Validation Rules */
+        $validation = $this->applicantProfileRules();
+        $validator = Validator::make(((array)$this),$validation->rules, $validation->messages);
+        if($validator->fails()) {
+            $this->tab_applicant_profile_is_completed = false;
+            $this->tabsProgress['applicant_percentage'] = $this->findTabPercentage(count($validation->rules),$validator->errors()->count());
+        }else {
+            $this->tab_applicant_profile_is_completed = true;
+            $this->tabsProgress['applicant_percentage'] = 100;
+        }
+        /* End Applicant Profile Rules */
 
-        $rules_applicant_profile = [
+        /* Start Business Profile Validation Rules */
+        $validation = $this->businessProfileRules();
+        $validator = Validator::make(((array)$this),$validation->rules, $validation->messages);
+        if($validator->fails()) {
+            $this->tab_business_profile_is_completed = false;
+            $this->tabsProgress['business_percentage'] = $this->findTabPercentage(count($validation->rules),$validator->errors()->count());
+        }else {
+            $this->tab_business_profile_is_completed = true;
+            $this->tabsProgress['business_percentage'] = 100;
+        }
+        /* End Business Profile Rules */
+
+        /* Start Utility Connections Validation Rules */
+        $validation = $this->utilityConnectionsRules();
+        $validator = Validator::make(((array)$this),$validation->rules, $validation->messages);
+        if($validator->fails()) {
+            $this->tab_utility_connection_is_completed = false;
+            $this->tabsProgress['utility_percentage'] = $this->findTabPercentage(count($validation->rules),$validator->errors()->count());
+        }else {
+            $this->tab_utility_connection_is_completed = true;
+            $this->tabsProgress['utility_percentage'] = 100;
+        }
+        /* End Utility Connections Rules */
+
+        /* Start Employees Info Validation Rules */
+        $validation = $this->employeesInfoRules();
+        $validator = Validator::make(((array)$this),$validation->rules, $validation->messages);
+        if($validator->fails()) {
+            $this->tab_employees_info_is_completed = false;
+            $this->tabsProgress['employee_percentage'] = $this->findTabPercentage(count($validation->rules),$validator->errors()->count());
+        }else {
+            $this->tab_employees_info_is_completed = true;
+            $this->tabsProgress['employee_percentage'] = 100;
+        }
+        /* End Employees Info Rules */
+
+        /* Start Annual Turnover Validation Rules */
+        $validation = $this->annualTurnoverRules();
+        $validator = Validator::make(((array)$this),$validation->rules, $validation->messages);
+        if($validator->fails()) {
+            $this->tab_annual_turnover_is_completed = false;
+            $this->tabsProgress['turnover_percentage'] = $this->findTabPercentage(count($validation->rules),$validator->errors()->count());
+        }else {
+            $this->tab_annual_turnover_is_completed = true;
+            $this->tabsProgress['turnover_percentage'] = 100;
+        }
+        /* End Annual Turnover Rules */
+    }
+    private function findTabPercentage($total_fields,$in_completed){
+        $completed = $total_fields - $in_completed;
+        return $total_fields>0?round(($completed/$total_fields) * 100,2):100;
+    }
+
+
+    public function updated(){
+
+        if($this->step==6)
+            $this->is_validation = true;
+
+        if($this->is_validation){
+            switch ($this->step){
+                case 0:
+                    $validation = $this->applicantProfileRules();
+                    $this->validate($validation->rules,$validation->messages);
+                    break;
+                case 1:
+                    $validation = $this->businessProfileRules();
+                    $this->validate($validation->rules,$validation->messages);
+                    break;
+                case 2:
+                    $validation = $this->utilityConnectionsRules();
+                    $this->validate($validation->rules,$validation->messages);
+                    break;
+                case 3:
+                    $validation = $this->employeesInfoRules();
+                    $this->validate($validation->rules,$validation->messages);
+                    break;
+                case 4:
+                    $validation = $this->annualTurnoverRules();
+                    $this->validate($validation->rules,$validation->messages);
+                 break;
+            }
+        }
+
+    }
+
+    // All Validation Rules and Messages
+    private function applicantProfileRules(): \stdClass
+    {
+        $validation = new \stdClass();
+        $validation->rules = [
             'application.prefix_id' => 'required',
             'application.first_name' => 'required|string',
             'application.last_name' => 'required|string',
@@ -942,7 +987,7 @@ class ApplicationForm extends Component
             'application.residence_share' => 'required|numeric|min:0|max:100',
             'application.residence_acquisition_date' => 'required',
         ];
-        $messages_applicant_profile = [
+        $validation->messages = [
             'application.prefix_id.required' => 'Required.',
             'application.first_name.required' => 'First Name is required.',
             'application.last_name.required' => 'First Name is required.',
@@ -973,62 +1018,58 @@ class ApplicationForm extends Component
         ];
 
         if($this->isNo('cnic_expiry_question_id')){
-            $rules_applicant_profile['application.cnic_expiry_date'] = 'required';
-            $messages_applicant_profile['application.cnic_expiry_date.required'] = 'Expiry Date is required.';
+            $validation->rules['application.cnic_expiry_date'] = 'required';
+            $validation->messages['application.cnic_expiry_date.required'] = 'Expiry Date is required.';
         }
 
         if($this->isYes('minority_status_question_id')){
-            $rules_applicant_profile['application.minority_status_id'] = 'required';
-            $messages_applicant_profile['application.minority_status_id.required'] = 'Minority Status is required.';
+            $validation->rules['application.minority_status_id'] = 'required';
+            $validation->messages['application.minority_status_id.required'] = 'Minority Status is required.';
         }
 
         if(isset($this->application['minority_status_id']) && $this->minority_status->firstWhere('id', $this->application['minority_status_id'])->name=='Other') {
-            $rules_applicant_profile['application.minority_status_other'] = 'required';
-            $messages_applicant_profile['application.minority_status_other.required'] = 'Minority Status Other is required.';
+            $validation->rules['application.minority_status_other'] = 'required';
+            $validation->messages['application.minority_status_other.required'] = 'Minority Status Other is required.';
         }
 
         if($this->isYes('disability_question_id')) {
             foreach ($this->disabilities as $index=>$disability) {
 
-                $rules_applicant_profile["disabilities.$index.disability_id"] = 'required';
-                $messages_applicant_profile["disabilities.$index.disability_id.required"] = 'Disability is required.';
+                $validation->rules["disabilities.$index.disability_id"] = 'required';
+                $validation->messages["disabilities.$index.disability_id.required"] = 'Disability is required.';
+
+                if(isset($disability['new_disability_certificate_file']) && !empty($disability['new_disability_certificate_file'])) {
+                    $validation->rules["disabilities.$index.new_disability_certificate_file"] = 'mimes:jpg,jpeg,png,pdf|max:5120';
+                    $validation->messages["disabilities.$index.new_disability_certificate_file.mimes"] = 'Disability Certificate must be a file of type: jpg, jpeg, png, pdf.';
+                    $validation->messages["disabilities.$index.new_disability_certificate_file.max"] = 'Disability Certificate must not be greater than 5MB.';
+                }
 
                 if((!isset($disability['disability_certificate_file']) || empty($disability['disability_certificate_file'])) && empty($disability['new_disability_certificate_file'])){
-                    $rules_applicant_profile["disabilities.$index.new_disability_certificate_file"] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
-                    $messages_applicant_profile["disabilities.$index.new_disability_certificate_file.required"] = 'Disability Certificate is required.';
+                    $validation->rules["disabilities.$index.new_disability_certificate_file"] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
+                    $validation->messages["disabilities.$index.new_disability_certificate_file.required"] = 'Disability Certificate is required.';
                 }
 
             }
         }
 
         if($this->isYes('technical_education_question_id')){
-            $rules_applicant_profile['technical_educations.*.certificate_title'] = 'required';
-            $messages_applicant_profile['technical_educations.*.certificate_title.required'] = 'Diploma/ Certificate Title is required.';
+            $validation->rules['technical_educations.*.certificate_title'] = 'required';
+            $validation->messages['technical_educations.*.certificate_title.required'] = 'Diploma/ Certificate Title is required.';
         }
 
         if($this->isYes('skilled_worker_question_id')){
-            $rules_applicant_profile['application.skill_or_art'] = 'required';
-            $messages_applicant_profile['application.skill_or_art.required'] = 'Skill or Art is required.';
+            $validation->rules['application.skill_or_art'] = 'required';
+            $validation->messages['application.skill_or_art.required'] = 'Skill or Art is required.';
         }
 
+        return $validation;
+    }
 
-        $validator = Validator::make(((array)$this),$rules_applicant_profile, $messages_applicant_profile);
+    private function businessProfileRules(): \stdClass
+    {
+        $validation = new \stdClass();
 
-        if($validator->fails()) {
-            $this->tab_applicant_profile_is_completed = false;
-            $this->tabsProgress['applicant_percentage'] = $this->findTabPercentage(count($rules_applicant_profile),$validator->errors()->count());
-        }else {
-            $this->tab_applicant_profile_is_completed = true;
-            $this->tabsProgress['applicant_percentage'] = 100;
-        }
-        //dd($validator->errors()->first());
-        //dd($this->tab_employees_info_is_completed);
-
-        /* End Applicant Profile Rules */
-
-        /* Start Business Profile Validation Rules */
-
-        $rules_business_profile = [
+        $validation->rules = [
             'application.business_name' => 'required',
             'application.business_establishment_date' => 'required',
             'application.business_registration_status_id' => 'required',
@@ -1049,7 +1090,7 @@ class ApplicationForm extends Component
             'application.business_contact_number' => 'required',
             'application.business_email' => 'required|email',
         ];
-        $messages_business_profile = [
+        $validation->messages = [
             'application.business_name.required' => 'Business Name is required.',
             'application.business_establishment_date.required' => 'Business Acquisition Date is required.',
             'application.business_registration_status_id.required' => 'Business Registration Status is required.',
@@ -1074,54 +1115,61 @@ class ApplicationForm extends Component
         ];
 
         if(isset($this->application['business_registration_status_id']) &&  $this->business_registration_status->firstWhere('id', $this->application['business_registration_status_id'])->name=='Registered'){
-            $rules_business_profile['application.business_legal_status_id'] = 'required';
-            $messages_business_profile['application.business_legal_status_id.required'] = 'Legal Status of Business is required';
+            $validation->rules['application.business_legal_status_id'] = 'required';
+            $validation->messages['application.business_legal_status_id.required'] = 'Legal Status of Business is required';
 
-            $rules_business_profile['application.business_registration_number'] = 'required';
-            $messages_business_profile['application.business_registration_number.required'] = 'Business Registration Number is required';
+            $validation->rules['application.business_registration_number'] = 'required';
+            $validation->messages['application.business_registration_number.required'] = 'Business Registration Number is required';
 
-            $rules_business_profile['application.business_registration_date'] = 'required';
-            $messages_business_profile['application.business_registration_date.required'] = 'Business Registration Date is required';
+            $validation->rules['application.business_registration_date'] = 'required';
+            $validation->messages['application.business_registration_date.required'] = 'Business Registration Date is required';
 
-            // $rules_business_profile['application.business_ntn_no'] = 'required';
-            //$messages_business_profile['application.business_ntn_no.required'] = 'Business NTN is required';
+            if(isset($this->registration_certificate_file) && !empty($this->registration_certificate_file)) {
+                $validation->rules['registration_certificate_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
+                $validation->messages['registration_certificate_file.mimes'] = 'Registration Certificate must be a file of type: jpg, jpeg, png, pdf.';
+                $validation->messages['registration_certificate_file.max'] = 'Registration Certificate must not be greater than 5MB.';
+            }
 
             if((!isset($this->application['registration_certificate_file']) || empty($this->application['registration_certificate_file']))  && empty($this->registration_certificate_file)) {
-                $rules_business_profile['registration_certificate_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
-                $messages_business_profile['registration_certificate_file.required'] = 'Please Upload Registration Certificate.';
+                $validation->rules['registration_certificate_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
+                $validation->messages['registration_certificate_file.required'] = 'Please Upload Registration Certificate.';
             }
 
         }
 
+        if(isset($this->proof_of_ownership_file) && !empty($this->proof_of_ownership_file)) {
+            $validation->rules['proof_of_ownership_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
+            $validation->messages['proof_of_ownership_file.mimes'] = 'Proof of Ownership must be a file of type: jpg, jpeg, png, pdf.';
+            $validation->messages['proof_of_ownership_file.max'] = 'Proof of Ownership must not be greater than 5MB.';
+        }
+
         if((!isset($this->application['proof_of_ownership_file']) || empty($this->application['proof_of_ownership_file']))  && empty($this->proof_of_ownership_file)) {
-            $rules_business_profile['proof_of_ownership_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
-            $messages_business_profile['proof_of_ownership_file.required'] = 'Please Upload Proof of Ownership.';
+            $validation->rules['proof_of_ownership_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
+            $validation->messages['proof_of_ownership_file.required'] = 'Please Upload Proof of Ownership.';
+        }
+
+        if(isset($this->business_evidence_ownership_file) && !empty($this->business_evidence_ownership_file)) {
+            $validation->rules['business_evidence_ownership_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
+            $validation->messages['business_evidence_ownership_file.mimes'] = 'Evidence of Ownership must be a file of type: jpg, jpeg, png, pdf.';
+            $validation->messages['business_evidence_ownership_file.max'] = 'Evidence of Ownership must not be greater than 5MB.';
         }
 
         if((!isset($this->application['business_evidence_ownership_file']) || empty($this->application['business_evidence_ownership_file']))  && empty($this->business_evidence_ownership_file)) {
-            $rules_business_profile['business_evidence_ownership_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
-            $messages_business_profile['business_evidence_ownership_file.required'] = 'Please Upload Business Evidence of Ownership.';
+            $validation->rules['business_evidence_ownership_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
+            $validation->messages['business_evidence_ownership_file.required'] = 'Please Upload Business Evidence of Ownership.';
         }
 
 
-        $validator = Validator::make(((array)$this),$rules_business_profile, $messages_business_profile);
+        return $validation;
+    }
 
-        if($validator->fails()) {
-            $this->tab_business_profile_is_completed = false;
-            $this->tabsProgress['business_percentage'] = $this->findTabPercentage(count($rules_business_profile),$validator->errors()->count());
-        }else {
-            $this->tab_business_profile_is_completed = true;
-            $this->tabsProgress['business_percentage'] = 100;
-        }
-        /* End Business Profile Rules */
-
-
-
-        /* Start Utility Connections Validation Rules */
-        $rules_utility_connections = [
+    private function utilityConnectionsRules(): \stdClass
+    {
+        $validation = new \stdClass();
+        $validation->rules = [
             'application.utility_connection_question_id' => 'required',
         ];
-        $messages_utility_connections = [
+        $validation->messages = [
             'application.utility_connection_question_id.required' => 'Please select your choice.',
 
         ];
@@ -1129,52 +1177,49 @@ class ApplicationForm extends Component
         foreach ($this->utility_connections as $index=>$conn){
 
             if($this->isNo('utility_connection_question_id') || $index>0){
-                $rules_utility_connections["utility_connections.$index.utility_form_id"] = 'required';
-                $messages_utility_connections["utility_connections.$index.utility_form_id.required"] = 'Type of Utility is required.';
+                $validation->rules["utility_connections.$index.utility_form_id"] = 'required';
+                $validation->messages["utility_connections.$index.utility_form_id.required"] = 'Type of Utility is required.';
             }
             if($this->isYes('utility_connection_question_id') || $this->isNo('utility_connection_question_id')){
-                $rules_utility_connections["utility_connections.$index.utility_type_id"] = 'required';
-                $messages_utility_connections["utility_connections.$index.utility_type_id.required"] = 'Type of Connection is required.';
+                $validation->rules["utility_connections.$index.utility_type_id"] = 'required';
+                $validation->messages["utility_connections.$index.utility_type_id.required"] = 'Type of Connection is required.';
 
-                $rules_utility_connections["utility_connections.$index.connection_ownership_id"] = 'required';
-                $messages_utility_connections["utility_connections.$index.connection_ownership_id.required"] = 'Connection Ownership is required.';
+                $validation->rules["utility_connections.$index.connection_ownership_id"] = 'required';
+                $validation->messages["utility_connections.$index.connection_ownership_id.required"] = 'Connection Ownership is required.';
 
-                $rules_utility_connections["utility_connections.$index.utility_consumer_number"] = 'required';
-                $messages_utility_connections["utility_connections.$index.utility_consumer_number.required"] = 'Reference/ Consumer Number is required.';
+                $validation->rules["utility_connections.$index.utility_consumer_number"] = 'required';
+                $validation->messages["utility_connections.$index.utility_consumer_number.required"] = 'Reference/ Consumer Number is required.';
 
-                $rules_utility_connections["utility_connections.$index.utility_service_provider_id"] = 'required';
-                $messages_utility_connections["utility_connections.$index.utility_service_provider_id.required"] = 'Service Provider is required.';
+                $validation->rules["utility_connections.$index.utility_service_provider_id"] = 'required';
+                $validation->messages["utility_connections.$index.utility_service_provider_id.required"] = 'Service Provider is required.';
 
-                $rules_utility_connections["utility_connections.$index.connection_date"] = 'required';
-                $messages_utility_connections["utility_connections.$index.connection_date.required"] = 'Connection Date is required.';
+                $validation->rules["utility_connections.$index.connection_date"] = 'required';
+                $validation->messages["utility_connections.$index.connection_date.required"] = 'Connection Date is required.';
+
+                if(isset($conn['new_bill_file']) && !empty($conn['new_bill_file'])) {
+                    $validation->rules["utility_connections.$index.new_bill_file"] = 'mimes:jpg,jpeg,png,pdf|max:5120';
+                    $validation->messages["utility_connections.$index.new_bill_file.mimes"] = 'Paid Utility bill must be a file of type: jpg, jpeg, png, pdf.';
+                    $validation->messages["utility_connections.$index.new_bill_file.max"] = 'Paid Utility bill must not be greater than 5MB.';
+                }
 
                 if((!isset($conn['bill_file']) || empty($conn['bill_file'])) && empty($conn['new_bill_file'])){
-                    $rules_utility_connections["utility_connections.$index.new_bill_file"] = 'required';
-                    $messages_utility_connections["utility_connections.$index.new_bill_file.required"] = 'Paid Utility bill is required.';
+                    $validation->rules["utility_connections.$index.new_bill_file"] = 'required';
+                    $validation->messages["utility_connections.$index.new_bill_file.required"] = 'Paid Utility bill is required.';
                 }
             }
         }
 
+        return $validation;
+    }
 
-        $validator = Validator::make(((array)$this),$rules_utility_connections, $messages_utility_connections);
+    private function employeesInfoRules(): \stdClass
+    {
+        $validation = new \stdClass();
 
-        if($validator->fails()) {
-            $this->tab_utility_connection_is_completed = false;
-            $this->tabsProgress['utility_percentage'] = $this->findTabPercentage(count($rules_utility_connections),$validator->errors()->count());
-        }else {
-            $this->tab_utility_connection_is_completed = true;
-            $this->tabsProgress['utility_percentage'] = 100;
-        }
-        /* End Utility Connections Rules */
-
-
-
-        /* Start Employees Info Validation Rules */
-
-        $rules_employees_info = [
+        $validation->rules = [
             'application.employees_question_id' => 'required'
         ];
-        $messages_employees_info = [
+        $validation->messages = [
             'application.employees_question_id.required' => 'Please select your choice.',
         ];
 
@@ -1182,90 +1227,73 @@ class ApplicationForm extends Component
             $total_employee_types = 0;
             foreach ($this->employees as $index=>$emp) {
                 if(isset($emp['employee_type_id']) && !empty($emp['employee_type_id'])) {
-                    $rules_employees_info["employees.$index.male"] = "required_without_all:employees.$index.female,employees.$index.transgender";
-                    $rules_employees_info["employees.$index.female"] = "required_without_all:employees.$index.male,employees.$index.transgender";
-                    $rules_employees_info["employees.$index.transgender"] = "required_without_all:employees.$index.male,employees.$index.female";
+                    $validation->rules["employees.$index.male"] = "required_without_all:employees.$index.female,employees.$index.transgender";
+                    $validation->rules["employees.$index.female"] = "required_without_all:employees.$index.male,employees.$index.transgender";
+                    $validation->rules["employees.$index.transgender"] = "required_without_all:employees.$index.male,employees.$index.female";
 
-                    $messages_employees_info["employees.$index.male.required_without_all"]="The male field is required when none of female / transgender are present.";
-                    $messages_employees_info["employees.$index.female.required_without_all"]="The female field is required when none of male / transgender are present.";
-                    $messages_employees_info["employees.$index.transgender.required_without_all"]="The transgender field is required when none of male / transgender are present.";
+                    $validation->messages["employees.$index.male.required_without_all"]="The male field is required when none of female / transgender are present.";
+                    $validation->messages["employees.$index.female.required_without_all"]="The female field is required when none of male / transgender are present.";
+                    $validation->messages["employees.$index.transgender.required_without_all"]="The transgender field is required when none of male / transgender are present.";
                     $total_employee_types++;
                 }
             }
             if(!$total_employee_types)
-                $rules_employees_info['employees.0.employee_type_id'] = 'required';
+                $validation->rules['employees.0.employee_type_id'] = 'required';
         }
 
-        $validator = Validator::make(((array)$this),$rules_employees_info, $messages_employees_info);
+        return $validation;
 
-        if($validator->fails()) {
-            $this->tab_employees_info_is_completed = false;
-            $this->tabsProgress['employee_percentage'] = $this->findTabPercentage(count($rules_employees_info),$validator->errors()->count());
-        }else {
-            $this->tab_employees_info_is_completed = true;
-            $this->tabsProgress['employee_percentage'] = 100;
-        }
+    }
 
-        /* End Employees Info Rules */
-
-        /* Start Annual Turnover Validation Rules */
-        $rules_annual_turnover = [
+    private function annualTurnoverRules(): \stdClass
+    {
+        $validation = new \stdClass();
+        $validation->rules = [
             'application.turnover_fiscal_year_id' => 'required',
             'application.annual_turnover' => 'required',
             'application.export_question_id' => 'required',
             'application.import_question_id' => 'required',
         ];
-        $messages_annual_turnover= [
+        $validation->messages= [
             'application.turnover_fiscal_year_id.required' => 'Please select the fiscal year.',
             'application.annual_turnover.required' => 'Annual Turnover is required.',
             'application.export_question_id.required' => 'Please select your choice.',
             'application.import_question_id.required' => 'Please select your choice.',
         ];
 
+        if(isset($this->business_account_statement_file) && !empty($this->business_account_statement_file)) {
+            $validation->rules['business_account_statement_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
+            $validation->messages['business_account_statement_file.mimes'] = 'Attachment must be a file of type: jpg, jpeg, png, pdf.';
+            $validation->messages['business_account_statement_file.max'] = 'Attachment must not be greater than 5MB.';
+        }
 
         if((!isset($this->application['business_account_statement_file']) || empty($this->application['business_account_statement_file'])) && empty($this->business_account_statement_file)){
-            $rules_annual_turnover['business_account_statement_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
-            $messages_annual_turnover['business_account_statement_file.required'] = 'Please Upload Business Account Statement.';
+            $validation->rules['business_account_statement_file'] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
+            $validation->messages['business_account_statement_file.required'] = 'Please Upload Business Account Statement.';
         }
-
         if($this->isYes('export_question_id')){
 
-            $rules_annual_turnover['application.export_fiscal_year_id'] = 'required';
-            $messages_annual_turnover['application.export_fiscal_year_id.required'] = 'Please select export fiscal year.';
+            $validation->rules['application.export_fiscal_year_id'] = 'required';
+            $validation->messages['application.export_fiscal_year_id.required'] = 'Please select export fiscal year.';
 
-            $rules_annual_turnover['application.export_currency_id'] = 'required';
-            $messages_annual_turnover['application.export_currency_id.required'] = 'Currency is required.';
+            $validation->rules['application.export_currency_id'] = 'required';
+            $validation->messages['application.export_currency_id.required'] = 'Currency is required.';
 
-            $rules_annual_turnover['application.export_annual_turnover'] = 'required';
-            $messages_annual_turnover['application.export_annual_turnover.required'] = 'Export Turnover is required.';
+            $validation->rules['application.export_annual_turnover'] = 'required';
+            $validation->messages['application.export_annual_turnover.required'] = 'Export Turnover is required.';
         }
-
         if($this->isYes('import_question_id')){
 
-            $rules_annual_turnover['application.import_fiscal_year_id'] = 'required';
-            $messages_annual_turnover['application.import_fiscal_year_id.required'] = 'Please select import fiscal year.';
+            $validation->rules['application.import_fiscal_year_id'] = 'required';
+            $validation->messages['application.import_fiscal_year_id.required'] = 'Please select import fiscal year.';
 
-            $rules_annual_turnover['application.import_currency_id'] = 'required';
-            $messages_annual_turnover['application.import_currency_id.required'] = 'Currency is required.';
+            $validation->rules['application.import_currency_id'] = 'required';
+            $validation->messages['application.import_currency_id.required'] = 'Currency is required.';
 
-            $rules_annual_turnover['application.import_annual_turnover'] = 'required';
-            $messages_annual_turnover['application.import_annual_turnover.required'] = 'Import Turnover is required.';
+            $validation->rules['application.import_annual_turnover'] = 'required';
+            $validation->messages['application.import_annual_turnover.required'] = 'Import Turnover is required.';
         }
-
-        $validator = Validator::make(((array)$this),$rules_annual_turnover, $messages_annual_turnover);
-        if($validator->fails()) {
-            $this->tab_annual_turnover_is_completed = false;
-            $this->tabsProgress['turnover_percentage'] = $this->findTabPercentage(count($rules_annual_turnover),$validator->errors()->count());
-        }else {
-            $this->tab_annual_turnover_is_completed = true;
-            $this->tabsProgress['turnover_percentage'] = 100;
-        }
-        /* End Annual Turnover Rules */
-    }
-
-    private function findTabPercentage($total_fields,$in_completed){
-        $completed = $total_fields - $in_completed;
-        return $total_fields>0?round(($completed/$total_fields) * 100,2):100;
+        return $validation;
     }
 
 }

@@ -269,25 +269,12 @@
       <change beforePath="$PROJECT_DIR$/../livewirekit/resources/views/livewire/tailwind/post-votes.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/smerp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/smerp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/UserSignUpMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/UserSignUpMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/BusinessLegalStatusSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/BusinessLegalStatusSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/applicant_custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/applicant_custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/db_tables/utility_service_providers__2021-05-27.sql" beforeDir="false" afterPath="$PROJECT_DIR$/public/db_tables/utility_service_providers__2021-05-27.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/labels.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/labels.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/registration/tabs/submission.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/registration/tabs/submission.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_components/application_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_components/application_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/applicant/registration/tabs/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/registration/tabs/review.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mails/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mails/default.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mails/user_sign_up.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mails/user_sign_up.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -571,7 +558,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.UserRegistrationTest.can_registrations" />
         <item itemvalue="PHPUnit.UserRegistrationTest" />
         <item itemvalue="PHPUnit.UserRegistrationTest.test_can_register_send_otp" />
         <item itemvalue="PHPUnit.UserRegistrationTest.test_register_page_livewire_component" />
@@ -608,7 +594,8 @@
       <workItem from="1624950639760" duration="1055000" />
       <workItem from="1625037938515" duration="3097000" />
       <workItem from="1625640509691" duration="2619000" />
-      <workItem from="1625643345847" duration="22216000" />
+      <workItem from="1625643345847" duration="27195000" />
+      <workItem from="1625729001536" duration="9776000" />
     </task>
     <servers />
   </component>
