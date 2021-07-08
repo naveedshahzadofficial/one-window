@@ -78,11 +78,13 @@ class RegistrationController extends Controller
     public function show($id): View
     {
         $registration =  Registration::with('application')->
-        with('prefix', 'gender','designationBusiness', 'minorityStatusQuestion', 'minorityStatus',
-       'educationLevel', 'educationLevelQuestion', 'skilledWorkerQuestion',
+        with('prefix', 'gender','disabilities.disability','designationBusiness', 'minorityStatusQuestion', 'minorityStatus',
+       'educationLevel','technicalEducations', 'educationLevelQuestion', 'skilledWorkerQuestion',
            'residenceAddressType', 'residenceAddressForm', 'residenceCity', 'residenceDistrict',
        'residenceAddressCapacity',
-       'businessRegistrationStatus', 'businessLegalStatus', 'businessActivity', 'businessAddressType', 'businessAddressForm', 'businessProvince',
+       'businessRegistrationStatus', 'businessLegalStatus', 'businessActivity',
+            'otherDocuments',
+            'businessAddressType', 'businessAddressForm', 'businessProvince',
        'businessCity', 'businessDistrict', 'businessTehsil', 'businessCapacity',
            'utilityConnectionQuestion', 'utilityConnections.connectionOwnership','utilityConnections.utilityType','utilityConnections.utilityForm',
            'employeesQuestion','employeeInfos.employeeType','turnoverFiscalYear', 'exportQuestion','exportFiscalYear', 'exportCurrency','importQuestion','importFiscalYear','importCurrency')->findOrFail($id);;

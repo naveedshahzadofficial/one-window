@@ -85,7 +85,7 @@
             <table class="table">
                 <head>
                     <tr>
-                        <th>{!! __('labels.disability') !!}</th>
+                        <th class="d-none-imp">{!! __('labels.disability') !!}</th>
                         <th class="text-center">{!! __('labels.disability_certificate') !!}</th>
                     </tr>
                 </head>
@@ -93,7 +93,7 @@
                 @foreach($registration->disabilities as $index=>$disability)
                     @if(isset($disability->disability_certificate_file) && !empty($disability->disability_certificate_file))
                         <tr>
-                            <td>{{ optional($disability->disability)->disability_name_e }}</td>
+                            <td class="d-none-imp">{{ optional($disability->disability)->disability_name_e }}</td>
                             <td class="text-center"> <a href="{{ \Illuminate\Support\Facades\Storage::url($disability->disability_certificate_file) }}"
                                                         target="_blank" class="hand"><i class="flaticon2-download color-black"></i></a></td>
                         </tr>

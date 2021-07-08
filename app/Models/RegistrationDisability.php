@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class RegistrationDisability extends Model implements Auditable
 {
@@ -17,7 +18,8 @@ class RegistrationDisability extends Model implements Auditable
         return ['Registration','Disability'];
     }
 
-    public function disability(){
+    public function disability(): BelongsTo
+    {
         return $this->belongsTo(Disability::class);
     }
 }

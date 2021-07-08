@@ -48,11 +48,11 @@ class RegistrationController extends Controller
     public function show($id): View
     {
        $registration =  Registration::
-        with('prefix', 'gender','designationBusiness', 'minorityStatusQuestion', 'minorityStatus',
-       'educationLevel', 'educationLevelQuestion', 'skilledWorkerQuestion',
+        with('prefix', 'gender','disabilities.disability','designationBusiness', 'minorityStatusQuestion', 'minorityStatus',
+       'educationLevel','technicalEducations', 'educationLevelQuestion', 'skilledWorkerQuestion',
            'residenceAddressType', 'residenceAddressForm', 'residenceCity', 'residenceDistrict',
        'residenceAddressCapacity',
-       'businessRegistrationStatus', 'businessLegalStatus', 'businessActivity', 'businessAddressType', 'businessAddressForm', 'businessProvince',
+       'businessRegistrationStatus', 'businessLegalStatus', 'businessActivity', 'otherDocuments','businessAddressType', 'businessAddressForm', 'businessProvince',
        'businessCity', 'businessDistrict', 'businessTehsil', 'businessCapacity',
            'utilityConnectionQuestion', 'utilityConnections.connectionOwnership','utilityConnections.utilityType','utilityConnections.utilityForm',
            'employeesQuestion','employeeInfos.employeeType','turnoverFiscalYear', 'exportQuestion','exportFiscalYear', 'exportCurrency','importQuestion','importFiscalYear','importCurrency')
@@ -63,7 +63,7 @@ class RegistrationController extends Controller
 
     public function edit($id): View
     {
-        $registration =  Registration::with('utilityConnections','technicalEducations','employeeInfos')->where('user_id', auth()->id())->findOrFail($id);
+        $registration =  Registration::with('disabilities','utilityConnections','technicalEducations','employeeInfos')->where('user_id', auth()->id())->findOrFail($id);
         return view('applicant.registration.edit',compact('registration'));
     }
 

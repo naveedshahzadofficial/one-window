@@ -349,14 +349,14 @@ $wire.set('utility_connections.{{ $index }}.utility_service_provider_id', event.
                             <table class="form-group table">
                                 <thead>
                                 <tr>
-                                    <th width="50%" class="text-left">{!! __('labels.disability') !!}<span class="text-danger">*</span></th>
+                                    <th width="50%" class="text-left d-none-imp">{!! __('labels.disability') !!}<span class="text-danger">*</span></th>
                                     <th width="50%" colspan="2" class="text-left">{!! __('labels.disability_certificate') !!}<span class="text-danger">*</span></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($disabilities as $index=>$disability)
                                 <tr>
-                                    <td>
+                                    <td class="d-none-imp">
                                         <div wire:ignore>
                                         <x-select2-dropdown wire:model.defer="disabilities.{{$index}}.disability_id"
                                                             setFieldName="disabilities.{{$index}}.disability_id"

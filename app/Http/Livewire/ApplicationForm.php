@@ -499,8 +499,7 @@ class ApplicationForm extends Component
                     $disability['new_disability_certificate_file']=null;
                     //unset($disability['new_disability_certificate_file']);
                 }
-                if (isset($disability['disability_certificate_file']) && !empty($disability['disability_certificate_file']) &&
-                    isset($disability['disability_id']) && !empty($disability['disability_id'])) {
+                if (isset($disability['disability_certificate_file']) && !empty($disability['disability_certificate_file'])) {
                     array_push($all_disabilities, new RegistrationDisability($disability));
                     $this->disabilities[$index] = $disability;
                 }
@@ -788,15 +787,11 @@ class ApplicationForm extends Component
     }
     public function addDisability(){
         $current_index = count($this->disabilities)-1;
+        $validation = $this->disabilityRules();
+        if(isset($disability_rules->rules) && !empty($disability_rules->rules)) {
+            $this->validate($validation->rules, $validation->messages);
+        }
 
-        $this->validate([
-            "disabilities.$current_index.disability_id" => 'required',
-            "disabilities.$current_index.new_disability_certificate_file" => 'mimes:jpg,jpeg,png,pdf|max:5120',
-        ],[
-            "disabilities.$current_index.disability_id.required" => 'Disability is required.',
-            "disabilities.$current_index.new_disability_certificate_file.required" => 'Disability Certificate is required.',
-            "disabilities.$current_index.new_disability_certificate_file.mimes" => 'Disability Certificate must be a file of type: jpg, jpeg, png, pdf.',
-        ]);
         $this->disabilities[] = ['disability_id'=>null, 'disability_other'=>null, 'disability_certificate_file'=>null];
 
         $next_index = $current_index+1;
@@ -1033,24 +1028,10 @@ class ApplicationForm extends Component
             $validation->messages['application.minority_status_other.required'] = 'Minority Status Other is required.';
         }
 
-        if($this->isYes('disability_question_id')) {
-            foreach ($this->disabilities as $index=>$disability) {
-
-                $validation->rules["disabilities.$index.disability_id"] = 'required';
-                $validation->messages["disabilities.$index.disability_id.required"] = 'Disability is required.';
-
-                if(isset($disability['new_disability_certificate_file']) && !empty($disability['new_disability_certificate_file'])) {
-                    $validation->rules["disabilities.$index.new_disability_certificate_file"] = 'mimes:jpg,jpeg,png,pdf|max:5120';
-                    $validation->messages["disabilities.$index.new_disability_certificate_file.mimes"] = 'Disability Certificate must be a file of type: jpg, jpeg, png, pdf.';
-                    $validation->messages["disabilities.$index.new_disability_certificate_file.max"] = 'Disability Certificate must not be greater than 5MB.';
-                }
-
-                if((!isset($disability['disability_certificate_file']) || empty($disability['disability_certificate_file'])) && empty($disability['new_disability_certificate_file'])){
-                    $validation->rules["disabilities.$index.new_disability_certificate_file"] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
-                    $validation->messages["disabilities.$index.new_disability_certificate_file.required"] = 'Disability Certificate is required.';
-                }
-
-            }
+        $disability_rules = $this->disabilityRules();
+        if(isset($disability_rules->rules) && !empty($disability_rules->rules)){
+            $validation->rules = array_merge($validation->rules,$disability_rules->rules);
+            $validation->messages = array_merge($validation->messages,$disability_rules->messages);
         }
 
         if($this->isYes('technical_education_question_id')){
@@ -1294,6 +1275,32 @@ class ApplicationForm extends Component
             $validation->rules['application.import_annual_turnover'] = 'required';
             $validation->messages['application.import_annual_turnover.required'] = 'Import Turnover is required.';
         }
+        return $validation;
+    }
+
+    private function disabilityRules(): \stdClass
+    {
+        $validation = new \stdClass();
+        if($this->isYes('disability_question_id')) {
+            foreach ($this->disabilities as $index=>$disability) {
+
+                // $validation->rules["disabilities.$index.disability_id"] = 'required';
+                //$validation->messages["disabilities.$index.disability_id.required"] = 'Disability is required.';
+
+                if(isset($disability['new_disability_certificate_file']) && !empty($disability['new_disability_certificate_file'])) {
+                    $validation->rules["disabilities.$index.new_disability_certificate_file"] = 'mimes:jpg,jpeg,png,pdf|max:5120';
+                    $validation->messages["disabilities.$index.new_disability_certificate_file.mimes"] = 'Disability Certificate must be a file of type: jpg, jpeg, png, pdf.';
+                    $validation->messages["disabilities.$index.new_disability_certificate_file.max"] = 'Disability Certificate must not be greater than 5MB.';
+                }
+
+                if((!isset($disability['disability_certificate_file']) || empty($disability['disability_certificate_file'])) && empty($disability['new_disability_certificate_file'])){
+                    $validation->rules["disabilities.$index.new_disability_certificate_file"] = 'required|mimes:jpg,jpeg,png,pdf|max:5120';
+                    $validation->messages["disabilities.$index.new_disability_certificate_file.required"] = 'Disability Certificate is required.';
+                }
+
+            }
+        }
+
         return $validation;
     }
 
