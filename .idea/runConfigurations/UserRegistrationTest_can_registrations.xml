@@ -5,7 +5,7 @@
         <option name="interpreterName" value="PHP 7.3" />
       </PhpTestInterpreterSettings>
     </CommandLine>
-    <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" method="can_registrations" scope="Method" />
+    <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegisterTest.php" method="can_registrations" scope="Method" />
     <method v="2" />
   </configuration>
 </component>

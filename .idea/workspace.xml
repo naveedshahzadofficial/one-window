@@ -15,6 +15,7 @@
       <change afterPath="$PROJECT_DIR$/../livewirekit/shopping-cart/.idea/shopping-cart.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../livewirekit/star-rating/.idea/star-rating.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../livewirekit_bk/.idea/livewirekit.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Feature/UserRegisterTest.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/blade.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/laravel-idea.xml" afterDir="false" />
@@ -269,14 +270,10 @@
       <change beforePath="$PROJECT_DIR$/../livewirekit/resources/views/livewire/tailwind/post-votes.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/UserRegistrationTest_can_registrations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/UserRegistrationTest_can_registrations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Applicant/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RegistrationDisability.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RegistrationDisability.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_components/application_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_components/application_detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/applicant/registration/tabs/review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/applicant/registration/tabs/review.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/UserApplicationsTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -363,6 +360,7 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
@@ -526,14 +524,14 @@
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin/Auth" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.UserRegistrationTest.can_registrations">
+  <component name="RunManager" selected="PHPUnit.UserRegistrationTest.applicantProfile">
     <configuration name="UserRegistrationTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
           <option name="interpreterName" value="PHP 7.3" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" scope="Class" />
+      <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegisterTest.php" scope="Class" />
       <method v="2" />
     </configuration>
     <configuration name="UserRegistrationTest.test_can_register_send_otp" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -542,7 +540,7 @@
           <option name="interpreterName" value="PHP 7.3" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" method="test_can_register_send_otp" scope="Method" />
+      <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegisterTest.php" method="test_can_register_send_otp" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="UserRegistrationTest.test_register_page_livewire_component" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -551,7 +549,7 @@
           <option name="interpreterName" value="PHP 7.3" />
         </PhpTestInterpreterSettings>
       </CommandLine>
-      <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegistrationTest.php" method="test_register_page_livewire_component" scope="Method" />
+      <TestRunner class="Tests\Feature\UserRegistrationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" file="$PROJECT_DIR$/tests/Feature/UserRegisterTest.php" method="test_register_page_livewire_component" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -560,6 +558,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.UserRegistrationTest.applicantProfile" />
+        <item itemvalue="PHPUnit.UserRegistrationTest.create_registration_livewire_component" />
         <item itemvalue="PHPUnit.UserRegistrationTest" />
         <item itemvalue="PHPUnit.UserRegistrationTest.test_can_register_send_otp" />
         <item itemvalue="PHPUnit.UserRegistrationTest.test_register_page_livewire_component" />
@@ -597,7 +597,8 @@
       <workItem from="1625037938515" duration="3097000" />
       <workItem from="1625640509691" duration="2619000" />
       <workItem from="1625643345847" duration="27195000" />
-      <workItem from="1625729001536" duration="14621000" />
+      <workItem from="1625729001536" duration="15334000" />
+      <workItem from="1625812323566" duration="1810000" />
     </task>
     <servers />
   </component>
