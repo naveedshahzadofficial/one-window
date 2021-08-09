@@ -14,9 +14,7 @@ class DashboardController extends Controller
 {
     public function index(): View
     {
-        $data = array();
-        $data['province_graph_data'] = (new GraphService())->provinceWiseData();
-        return view('admin.dashboard.index')->with($data);
+        return view('admin.dashboard.index');
     }
 
 

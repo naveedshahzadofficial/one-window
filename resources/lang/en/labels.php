@@ -1,214 +1,211 @@
 <?php
 
 return [
-'telco_code' => 'Telco Code (<span class="urdu-label" dir="rtl"> موبائل نیٹ ورک کوڈ </span>)',
-'mobile_network' => 'Mobile Network (<span class="urdu-label" dir="rtl"> موبائل نیٹ ورک </span>)',
-'mobile_no' => 'Mobile No. (<span class="urdu-label" dir="rtl"> موبائل نمبر </span>)',
-'confirm_mobile_no' => 'Confirm Mobile No. (<span class="urdu-label" dir="rtl"> موبائل نمبر </span>)',
-'email_address' => 'Email Address (<span class="urdu-label" dir="rtl"> ای میل اڈریس </span>)',
-'confirm_email_address' => 'Confirm Email Address (<span class="urdu-label" dir="rtl"> ای میل اڈریس </span>)',
-'mobile_otp_code' => 'Verification Code (<span class="urdu-label" dir="rtl"> تصدیقی کوڈ </span>)',
-'email_otp_code' => 'Verification Code (<span class="urdu-label" dir="rtl">  تصدیقی کوڈ  </span>)',
-'prefix' => 'Title (<span class="urdu-label" dir="rtl"> ٹائٹل </span>)',
-'first_name' => 'First Name (<span class="urdu-label" dir="rtl"> پہلا نام </span>)',
-'middle_name' => 'Middle Name (<span class="urdu-label" dir="rtl"> درمیانی نام </span>)',
-'last_name' => 'Last Name (<span class="urdu-label" dir="rtl"> آخری نام </span>)',
-'cnic_no' => 'CNIC No. (<span class="urdu-label" dir="rtl"> قومی شناختی کارڈ نمبر </span>)',
-'password' => 'Password (<span class="urdu-label" dir="rtl"> پاس ورڈ </span>)',
-'confirm_password' => 'Confirm Password (<span class="urdu-label" dir="rtl"> پاس ورڈ کی تصدیق  </span>)',
-'forgot_password' => 'Forgot Password? (<span class="urdu-label" dir="rtl"> کیا آپ پاس ورڈ بھول گئے ہیں؟ </span>)',
-'login' => 'Login (<span class="urdu-label" dir="rtl"> لاگ ان </span>)',
-'not_an_account' => 'Don\'t have an account? (<span class="urdu-label" dir="rtl"> کیا آپ کا اکاؤنٹ نہیں ہے؟ </span>)',
-'already_an_account' => 'Already have an account? (<span class="urdu-label" dir="rtl"> پہلے سے ہی اکاؤنٹ ہے؟</span>)',
-'register_now' => 'Register (<span class="urdu-label" dir="rtl"> رجسٹر کریں </span>)',
-'send_code' => 'Send Code (<span class="urdu-label" dir="rtl"> کوڈ بھیجیں </span>)',
-'back' => 'Back (<span class="urdu-label" dir="rtl"> واپس جائیں </span>)',
-'verify_nd_next' => 'Verify & Next (<span class="urdu-label" dir="rtl"> تصدیق کریں اور اگے بھیجیں </span>)',
-'sign_up' => 'Sign-up (<span class="urdu-label" dir="rtl"> سائن اپ کریں </span>)',
-'submit' => 'Submit (<span class="urdu-label" dir="rtl"> بھیجیں </span>)',
-'reset_password' => 'Reset Password (<span class="urdu-label" dir="rtl"> پاس ورڈ ری سیٹ </span>)',
+    'telco_code' => 'Telco Code',
+    'mobile_network' => 'Mobile Network',
+    'mobile_no' => 'Mobile No.',
+    'confirm_mobile_no' => 'Confirm Mobile No.',
+    'email_address' => 'Email Address',
+    'confirm_email_address' => 'Confirm Email Address',
+    'mobile_otp_code' => 'Verification Code',
+    'email_otp_code' => 'Verification Code',
+    'prefix' => 'Title',
+    'first_name' => 'First Name',
+    'middle_name' => 'Middle Name',
+    'last_name' => 'Last Name',
+    'cnic_no' => 'CNIC No.',
+    'password' => 'Password',
+    'confirm_password' => 'Confirm Password',
+    'forgot_password' => 'Forgot Password?',
+    'login' => 'Login',
+    'not_an_account' => 'Don\'t have an account?',
+    'already_an_account' => 'Already have an account?',
+    'register_now' => 'Register',
+    'send_code' => 'Send Code',
+    'back' => 'Back',
+    'verify_nd_next' => 'Verify & Next',
+    'sign_up' => 'Sign-up',
+    'submit' => 'Submit',
+    'reset_password' => 'Reset Password',
 // Commons
-'share_percentage' => 'Share in Residence Place % (<span class="urdu-label" dir="rtl"> رہائش کی جگہ میں حصہ </span>)',
-'add_more' => ' Add More',
-'province_state' => 'Province/ State (<span class="urdu-label" dir="rtl"> صوبہ / ریاست </span>)',
-'province' => 'Province/ State (<span class="urdu-label" dir="rtl"> صوبہ / ریاست  </span>)',
-'city' => 'City/ Village (<span class="urdu-label" dir="rtl"> شہر / گاؤں </span>)',
-'district' => 'District (<span class="urdu-label" dir="rtl"> ضلع </span>)',
-'tehsil' => 'Tehsil (<span class="urdu-label" dir="rtl"> تحصیل</span>)',
-'sector' => 'Sector (<span class="urdu-label" dir="rtl">  کاروبار کا شعبہ   </span>)',
+    'add_more' => ' Add More',
+    'province_state' => 'Province/ State',
+    'province' => 'Province/ State',
+    'city' => 'City/ Village',
+    'district' => 'District',
+    'tehsil' => 'Tehsil',
 // document commons
-'business_other_documents' => 'Any Other Document (<span class="urdu-label" dir="rtl"> کوئی اور دستاویز </span>)',
-'other_documents_heading' => 'Any Other Document (<label class="urdu-label" dir="rtl"> کوئی اور دستاویز </label>)',
-'document_title' => 'Document Title  (<span class="urdu-label" dir="rtl"> دستاویز کا عنوان </span>)',
-'document' => 'Document  (<span class="urdu-label" dir="rtl"> دستاویز </span>)',
-'download' => 'Download  (<span class="urdu-label" dir="rtl"> ڈاؤن لوڈ کریں </span>)',
+    'any_other_documents' => 'Any Other Document',
+    'other_documents_heading' => 'Any Other Document',
+    'document_title' => 'Document Title ',
+    'document' => 'Document ',
+    'download' => 'Download ',
 // property commons
-'property_type' => 'Type of Property (<span class="urdu-label" dir="rtl">  پراپرٹی کی قسم </span>)',
-'property_form' => 'Form of Property (<span class="urdu-label" dir="rtl">  پراپرٹی کی ذیلی قسم </span>)',
+    'property_type' => 'Type of Property',
+    'property_form' => 'Form of Property',
 
-'property_capacity' => 'Capacity (<span class="urdu-label" dir="rtl"> ملکیت کی قسم </span>)',
+    'property_capacity' => 'Capacity',
 
 
 // Main Tabs
-'applicant_profile' => 'Applicant Profile',
-'business_profile' => 'Business Profile',
-'utility_connections' => 'Utility Connections',
-'employees_info' => 'Employees Info',
-'annual_turnover' => 'Annual Turnover',
-'review_submit' => 'Review and Submit',
-'tab_review' => 'Review',
-'tab_submit' => 'Submission',
+    'basic_info_tab' => 'Basic Info',
+    'applicant_profile' => 'Applicant Profile',
+    'business_profile' => 'Business Profile',
+    'utility_connections' => 'Utility Connections',
+    'employees_info' => 'Employees Info',
+    'annual_turnover' => 'Annual Turnover',
+    'review_submit' => 'Review and Submit',
+    'tab_review' => 'Review',
+    'tab_submit' => 'Submission',
 
 //Headings
-'status_form' => 'STATUS FORM (<label class="urdu-label" dir="rtl"> سٹیٹس فارم   </label>)',
-'status_logs' => 'STATUS LOGS (<label class="urdu-label" dir="rtl"> سٹیٹس لاگ   </label>)',
+    'status_form' => 'STATUS FORM',
+    'status_logs' => 'STATUS LOGS',
 
-'basic_info' => 'BASIC INFO (<label class="urdu-label" dir="rtl"> بنیادی معلومات   </label>)',
-'qualification_details' => 'QUALIFICATION DETAILS (<label class="urdu-label" dir="rtl"> تعلیمی تفصیلات </label>)',
-'residence_address' => 'RESIDENCE ADDRESS (<label class="urdu-label" dir="rtl"> رہائش کا پتہ </label>)',
+    'basic_info' => 'BASIC INFO',
+    'qualification_details' => 'QUALIFICATION DETAILS',
+    'residence_address' => 'RESIDENCE ADDRESS',
 
-'relevent_attachment' => 'ATTACHMENTS (<label class="urdu-label" dir="rtl"> دستاویزات  </label>)',
+    'relevent_attachment' => 'ATTACHMENTS',
 
-'business_address' => 'BUSINESS ADDRESS (<label class="urdu-label" dir="rtl"> کاروباری پتہ </label>)',
-'utility_connections_heading' => 'UTILITY CONNECTIONS (<label class="urdu-label" dir="rtl"> یوٹیلیٹی کننیکشنز </label>)',
+    'business_address' => 'BUSINESS ADDRESS',
+    'utility_connections_heading' => 'UTILITY CONNECTIONS',
 
-'employee_info_heading' => 'EMPLOYEES INFO  (<label class="urdu-label" dir="rtl"> ملازمین کی معلومات </label>)',
-'employee_info_detail' => 'EMPLOYEES INFO DETAIL (<label class="urdu-label" dir="rtl">  ملازمین سے متعلق تفصیلات  </label>)',
+    'employee_info_heading' => 'EMPLOYEES INFO ',
+    'employee_info_detail' => 'EMPLOYEES INFO DETAIL',
 
-'turnover_heading' => 'ANNUAL TURNOVER  (<label class="urdu-label" dir="rtl"> سالانہ کاروبار کا حجم </label>)',
+    'turnover_heading' => 'ANNUAL TURNOVER ',
 
-'submission_info_heading' => 'SUBMISSION  (<label class="urdu-label" dir="rtl"> جمع کروائیں </label>)',
-
-
- // status form
-'status' => 'Status (<span class="urdu-label" dir="rtl"> سٹیٹس </span>)',
-'upload_file' => 'Upload File (<span class="urdu-label" dir="rtl"> اپ لوڈ فائل </span>)',
-'remark_status' => 'Detail (<span class="urdu-label" dir="rtl"> تفصیل </span>)',
-
-// Applicant Profile
-'gender' => 'Gender (<span class="urdu-label" dir="rtl"> جنس </span>)',
-'date_of_birth' => 'Date of Birth - as per CNIC (<span class="urdu-label" dir="rtl"> تاریخ پیدائش - شناختی کارڈ کے مطابق </span>)',
-'cnic_issue_date' => 'CNIC Issue Date (<span class="urdu-label" dir="rtl"> شناختی کارڈ کے اجراء کی تاریخ </span>)',
-'cnic_expiry_date' => 'CNIC Expiry Date <br>(<span class="urdu-label" dir="rtl"> شناختی کارڈ کی میعاد ختم ہونے کی تاریخ </span>)',
-'designation_business' => 'Status in Business (<span class="urdu-label" dir="rtl"> کاروبار میں آپ کی حیثیت </span>)',
-'minority_status_question' => 'Do you have Minority Status? (<span class="urdu-label" dir="rtl"> کیا آپ کو اقلیت کا درجہ حاصل ہے؟ </span>)',
-
-'minority_status' => 'Minority Status (<span class="urdu-label" dir="rtl"> اقلیت </span>)',
-'other_than_minority' => 'Other (<span class="urdu-label" dir="rtl"> دیگر </span>)',
-
-'is_disability' => 'Any Disability? (<span class="urdu-label" dir="rtl"> کوئی بھی معذوری؟ </span>)',
-'disability' => 'Disability (<span class="urdu-label" dir="rtl"> معذوری </span>)',
-'disability_certificate' => 'Disability Certificate (<span class="urdu-label" dir="rtl"> معذوری کا سرٹیفکیٹ </span>)',
-'is_active_taxpayer' => 'Are you part of Active Taxpayers List? <br>(<span class="urdu-label" dir="rtl"> کیا آپ ٹیکس دہندگان کی فہرست کا حصہ ہیں؟ </span>)',
-'active_taxpayer' => 'Active Taxpayer <br>(<span class="urdu-label" dir="rtl"> ٹیکس دہندہ </span>)',
-'national_tax_number' => 'National Tax Number (Personal) (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر - ذاتی </span>)',
-
-'education_level' => 'Education Level (<span class="urdu-label" dir="rtl"> تعلیمی قابلیت </span>)',
-'technical_education_question' => 'Do you have any Technical Education? (<span class="urdu-label" dir="rtl"> تکنیکی تعلیم </span>)',
-'technical_education_detail' => 'Diploma/ Certificate Title  (<span class="urdu-label" dir="rtl"> ڈپلومہ / سرٹیفکیٹ کا عنوان </span>)',
-
-'profession_question' => 'Are you a skilled worker or an artisan? (<span class="urdu-label" dir="rtl"> ہنر مند یا کاریگر  </span>)',
-
-'is_skilled_worker' => 'Skill or Art (<span class="urdu-label" dir="rtl"> ہنر یا فن کی وضاحت کریں </span>)',
+    'submission_info_heading' => 'SUBMISSION ',
 
 
-'cnic_expiry_question' => 'Does your CNIC have life-time expiry? (<span class="urdu-label" dir="rtl"> کیا آپ کے شناختی کارڈ کی میعاد عمر بھر کیلئے ہے؟ </span>)',
-'residence_address_1' => 'House No./ Unit No./ Village (<span class="urdu-label" dir="rtl"> مکان نمبر / یونٹ نمبر/ گاؤں </span>)',
-'residence_address_2' => 'Complex/ Street/ Block/ Sector (<span class="urdu-label" dir="rtl"> کمپلکس/ گلی/ بلاک/ سیکٹر </span>)',
-'residence_address_3' => 'Area/ Locality (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک </span>)',
-'residence_capacity' => 'Ownership Capacity of Residence Place (<span class="urdu-label" dir="rtl">  رہائش گاہ کی ملکیت   </span>)',
+    // status form
+    'status' => 'Status',
+    'upload_file' => 'Upload File',
+    'remark_status' => 'Detail',
 
-'residence_acquisition_date' => 'Date of Acquisition of Residence Place <br>(<span class="urdu-label" dir="rtl"> رہائش کے حصول کی تاریخ </span>)',
+    // Applicant Profile
+    'gender' => 'Gender',
+    'date_of_birth' => 'Date of Birth - as per CNIC',
+    'cnic_issue_date' => 'CNIC Issue Date',
+    'cnic_expiry_date' => 'CNIC Expiry Date <br',
+    'designation_business' => 'Status in Business',
+    'minority_status_question' => 'Do you have Minority Status?',
+
+    'minority_status' => 'Minority Status',
+    'other_than_minority' => 'Other',
+
+    'is_disability' => 'Any Disability?',
+    'disability' => 'Disability',
+    'disability_certificate' => 'Disability Certificate',
+    'is_active_taxpayer' => 'Are you part of Active Taxpayers List? <br',
+    'active_taxpayer' => 'Active Taxpayer <br',
+    'national_tax_number' => 'National Tax Number (Personal)',
+
+    'education_level' => 'Education Level',
+    'technical_education_question' => 'Do you have any Technical Education?',
+    'technical_education_detail' => 'Diploma/ Certificate Title ',
+
+    'profession_question' => 'Are you a skilled worker or an artisan?',
+
+    'is_skilled_worker' => 'Skill or Art',
+
+
+    'cnic_expiry_question' => 'Does your CNIC have life-time expiry?',
+    'residence_address_1' => 'House No./ Unit No./ Village',
+    'residence_address_2' => 'Complex/ Street/ Block/ Sector',
+    'residence_address_3' => 'Area/ Locality',
+    'residence_capacity' => 'Ownership Capacity of Residence Place',
+
+    'residence_acquisition_date' => 'Date of Acquisition of Residence Place <br',
 
 
 
 
 // Business Profile
-'business_acquisition_date' => 'Acquisition Date (<span class="urdu-label" dir="rtl"> کاروبار کے حصول کی تاریخ </span>)',
-'business_category' => 'Business Category (<span class="urdu-label" dir="rtl"> کاروبار کی قسم </span>)',
-'business_address_1' => 'Building No. / Unit No. / Plaza / Village (<span class="urdu-label" dir="rtl"> عمارت نمبر / یونٹ نمبر / پلازہ نمبر / گاؤں </span>)',
-'business_address_2' => 'Complex / Street / Block / Sector (<span class="urdu-label" dir="rtl">  کمپلیکس / اسٹریٹ / بلاک / سیکٹر </span>)',
-'business_address_3' => 'Area/ Locality (<span class="urdu-label" dir="rtl"> علاقہ/ سڑک  </span>)',
+    'business_acquisition_date' => 'Acquisition Date',
+    'business_category' => 'Business Category',
+    'business_address_1' => 'Building No. / Unit No. / Plaza / Village',
+    'business_address_2' => 'Complex / Street / Block / Sector',
+    'business_address_3' => 'Area/ Locality',
 
-'business_name' => 'Business Name (<span class="urdu-label" dir="rtl"> کاروبار کا نام </span>)',
-'business_acquisition_start_date' => 'Business Acquisition/ Start Date (<span class="urdu-label" dir="rtl"> کاروبار کے آغاز / قیام کی تاریخ  </span>)',
-'business_registration_status' => 'Business Registration Status (<span class="urdu-label" dir="rtl">  کاروباری اندراج کی حیثیت    </span>)',
-'business_legal_status' => 'Business Legal Status (<span class="urdu-label" dir="rtl">  کاروباری قانونی حیثیت        </span>)',
-'business_registration_no' => 'Business Registration No. (<span class="urdu-label" dir="rtl">   بزنس رجسٹریشن نمبر      </span>)',
-'business_registration_date' => 'Business Registration Date (<span class="urdu-label" dir="rtl">   بزنس رجسٹریشن کی تاریخ    </span>)',
+    'business_name' => 'Business Name',
+    'business_acquisition_start_date' => 'Business Acquisition/ Start Date',
+    'business_registration_status' => 'Business Registration Status',
+    'business_legal_status' => 'Business Legal Status',
+    'business_registration_no' => 'Business Registration No.',
+    'business_registration_date' => 'Business Registration Date',
 
-'business_ntn_no' => 'National Tax Number (Business) (<span class="urdu-label" dir="rtl"> قومی ٹیکس نمبر - کاروبار  </span>)',
+    'business_ntn_no' => 'National Tax Number (Business)',
 
-'business_category' => 'Business Category (<span class="urdu-label" dir="rtl"> کاروبار کی قسم    </span>)',
+    'ownership_proof' => 'Proof of Ownership',
 
-'ownership_proof' => 'Proof of Ownership (<span class="urdu-label" dir="rtl"> ملکیت کا ثبوت  </span>)',
+    'registration_proof' => 'License /Registration with chamber or Trade body <br',
 
-'registration_proof' => 'License /Registration with chamber or Trade body <br>(<span class="urdu-label" dir="rtl"> چیمبر یا تجارتی ادارہ کے ساتھ لائسنس / رجسٹریشن کا سرٹیفکیٹ   </span>)',
+    'registration_certificate' => 'Upload Registration Certificate',
 
-'registration_certificate' => 'Upload Registration Certificate (<span class="urdu-label" dir="rtl"> رجسٹریشن سرٹیفکیٹ  </span>)',
+    'share_business_place' => 'Share in Business Place %',
 
-'share_business_place' => 'Share in Business Place % (<span class="urdu-label" dir="rtl"> کاروبار کی جگہ میں حصہ</span>)',
+    'ownership_capacity_business' => 'Ownership Capacity of Business Place',
 
-'ownership_capacity_business' => 'Ownership Capacity of Business Place (<span class="urdu-label" dir="rtl">  کاروبار کی جگہ کی ملکیت    </span>)',
-
-'business_acquisition_date_place' => 'Date of Acquisition of Business Place <br>(<span class="urdu-label" dir="rtl"> کاروباری جگہ کے حصول کی تاریخ   </span>)',
+    'business_acquisition_date_place' => 'Date of Acquisition of Business Place <br',
 
 
-'business_evidence_tenancy' => 'Evidence of Ownership/ Tenancy of Business Place<br>(<span class="urdu-label"  dir="rtl">کاروباری جگہ کی ملکیت / کرایہ داری کا ثبوت  </span>)',
+    'business_evidence_tenancy' => 'Evidence of Ownership/ Tenancy of Business Place<br',
 
-'business_contact_no' => 'Business Contact No. (<span class="urdu-label" dir="rtl"> کاروباری رابطہ نمبر </span>)',
+    'business_contact_no' => 'Business Contact No.',
 
-'business_email_address' => 'Business Email Address (<span class="urdu-label" dir="rtl"> کاروباری ای میل ایڈریس </span>)',
+    'business_email_address' => 'Business Email Address',
 
 
 // Utility Connections
-'electricity_connection_question' => 'Do you have Electricity Connection? (<span class="urdu-label" dir="rtl"> کیا آپ کے پاس کوئی بجلی کا کنکشن ہے؟ </span>)',
-'type_of_utility' => 'Type of Utility (<span class="urdu-label" dir="rtl"> یوٹیلیٹی کنکشن کی قسم </span>)',
-'type_of_connection' => 'Type of Connection (<span class="urdu-label" dir="rtl"> کنکشن کی قسم </span>)',
-'connection_ownership' => 'Connection Ownership (<span class="urdu-label" dir="rtl"> کنکشن کی ملکیت </span>)',
-'consumer_number' => 'Reference/ Consumer Number (<span class="urdu-label" dir="rtl"> حوالہ / صارف نمبر </span>)',
-'service_provider' => 'Service Provider (<span class="urdu-label" dir="rtl"> سروس مہیا کرنے والا </span>)',
-'connection_date' => 'Connection Date (<span class="urdu-label" dir="rtl"> کنکشن کی تاریخ  </span>)',
-'business_paid_bill_file' => 'Paid Utility bill of Business Place (not older than 3 months)<br>(<span class="urdu-label" dir="rtl"> کاروباری جگہ کا ادا شدہ یوٹیلیٹی بل - تین ماہ سے پرانا نہ ہو </span>)',
+    'electricity_connection_question' => 'Do you have Electricity Connection?',
+    'type_of_utility' => 'Type of Utility',
+    'type_of_connection' => 'Type of Connection',
+    'connection_ownership' => 'Connection Ownership',
+    'consumer_number' => 'Reference/ Consumer Number',
+    'service_provider' => 'Service Provider',
+    'connection_date' => 'Connection Date',
+    'business_paid_bill_file' => 'Paid Utility bill of Business Place (not older than 3 months)<br',
 
 
 
 
 //Employees Info
 
-'employees_question' => 'Do you have employees? (<span class="urdu-label" dir="rtl"> کیا آپ کے پاس ملازم ہیں؟ </span>)',
+    'employees_question' => 'Do you have employees?',
 
 // Annual Turn Over
-'estimated_annual_turnover' => 'ESTIMATED ANNUAL TURNOVER IN LAST COMPLETED FISCAL YEAR (<label class="urdu-label" dir="rtl"> آخری مالی سال میں تخمینہ شدہ سالانہ کاروبار </label>)',
-'fiscal_year' => 'Fiscal Year (<span class="urdu-label" dir="rtl"> مالی سال </span>)',
-'annual_turnover_fiscal_year' => 'Annual Turnover for the selected Fiscal Year (PKR)<br>(<span class="urdu-label" dir="rtl"> منتخب مالی سال کا کاروبار </span>)',
-'business_account_statement' => 'Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement)<br>(<span class="urdu-label" dir="rtl"> ملحقات - انکم ٹیکس ریٹرن / آڈٹ شدہ بیانات / کاروباری اکاؤنٹ کی بینک اسٹیٹمنٹ </span>)',
-'question_exports' => 'Do you have exports? (<span class="urdu-label" dir="rtl">   کیا آپ کے پاس برآمدات ہیں؟    </span>)',
-'question_imports' => 'Do you have imports? (<span class="urdu-label" dir="rtl"> کیا آپ کی درآمدات ہیں؟ </span>)',
-'exports' => 'EXPORTS (<label class="urdu-label" dir="rtl"> برآمدات </label>)',
-'imports' => 'IMPORTS (<label class="urdu-label" dir="rtl"> درآمدات </label>)',
-'currency' => 'Currency (<span class="urdu-label" dir="rtl"> کرنسی </span>)',
-'export_turnover' => 'Export Turnover for the selected Fiscal Year (PKR/ USD) <br>(<span class="urdu-label" dir="rtl"> منتخب مالی سال میں برآمدات کا حجم </span>)',
-'import_turnover' => 'Import Turnover for the selected Fiscal Year (PKR/ USD) <br>(<span class="urdu-label" dir="rtl"> منتخب مالی  سال میں درآمدات کا حجم   </span>)',
+    'estimated_annual_turnover' => 'ESTIMATED ANNUAL TURNOVER IN LAST COMPLETED FISCAL YEAR',
+    'fiscal_year' => 'Fiscal Year',
+    'annual_turnover_fiscal_year' => 'Annual Turnover for the selected Fiscal Year (PKR)<br',
+    'business_account_statement' => 'Attachments (Income Tax Return / Audited Statements / Business Account Bank Statement)<br',
+    'question_exports' => 'Do you have exports?',
+    'question_imports' => 'Do you have imports?',
+    'exports' => 'EXPORTS',
+    'imports' => 'IMPORTS',
+    'currency' => 'Currency',
+    'export_turnover' => 'Export Turnover for the selected Fiscal Year (PKR/ USD) <br',
+    'import_turnover' => 'Import Turnover for the selected Fiscal Year (PKR/ USD) <br',
 
 //review
 
-'application_status' => 'APPLICATION STATUS (<span class="urdu-label" dir="rtl"> درخواست کی صورتحال </span>)',
-'review_applicant_profile' => 'APPLICANT PROFILE (<span class="urdu-label" dir="rtl"> درخواست دہندہ کی پروفائل </span>)',
-'review_business_profile' => 'BUSINESS PROFILE (<span class="urdu-label" dir="rtl"> بزنس پروفائل </span>)',
-'business_sector' => 'Business Sector (<span class="urdu-label"  dir="rtl"> کاروبار کا شعبہ </span>)',
-'business_sub_sector' => 'Business Sub Sector (<span class="urdu-label" dir="rtl"> کاروبار کا شعبہ </span>)',
+    'application_status' => 'APPLICATION STATUS',
+    'review_applicant_profile' => 'APPLICANT PROFILE',
+    'review_business_profile' => 'BUSINESS PROFILE',
+    'business_sector' => 'Business Sector',
+    'business_sub_sector' => 'Business Sub Sector',
 
-'utility_connections_detail' => 'UTILITY CONNECTIONS DETAIL (<label class="urdu-label" dir="rtl">یوٹیلیٹی کننیکشنز   کی  تفصیلات </label>)',
+    'utility_connections_detail' => 'UTILITY CONNECTIONS DETAIL',
 
-'utility_connections_question' => 'Do you have Electricity Connection? (<span  class="urdu-label" dir="rtl"> کیا آپ کے پاس کوئی بجلی کا کنکشن ہے؟ </span>)',
+    'utility_connections_question' => 'Do you have Electricity Connection?',
 
-'connection_type' => 'Form/Type of Connection (<span class="urdu-label" dir="rtl"> کنکشن کی قسم </span>)',
-'save_and_next' => 'Save & Next (<span class="urdu-label" dir="rtl"> محفوظ کریں اور آگے جائیں </span>)',
-'save_btn' => 'Save (<span class="urdu-label" dir="rtl">محفوظ کریں</span>)',
-'next_btn' => 'Next (<span class="urdu-label" dir="rtl">آگے جائیں</span>)',
-'submit_form' => 'Submit (<span class="urdu-label" dir="rtl"> جمع کروائیں </span>)',
-'previous' => 'Back (<span class="urdu-label" dir="rtl"> پیچھے جائیں </span>)',
+    'connection_type' => 'Form/Type of Connection',
+    'save_and_next' => 'Save & Next',
+    'save_btn' => 'Save',
+    'next_btn' => 'Next',
+    'submit_form' => 'Submit',
+    'previous' => 'Back',
 
 
 ];

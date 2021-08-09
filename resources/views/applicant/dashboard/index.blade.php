@@ -1,4 +1,4 @@
-@extends('_layouts.admin.app')
+@extends('_layouts.applicant.app')
 @push('title','Dashboard')
 @section('content')
 

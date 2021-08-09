@@ -12,7 +12,7 @@
                     <!--begin:Sign In Form-->
                     <div class="login-signin">
 
-                        <div class="auth-smeda-logo pt-8">
+                        <div class="auth-smeda-logo pt-8 d-none">
                             <img src="{{ asset('assets/img/smeda-logo.png') }}" alt="Smeda Logo">
                         </div>
                         <div class="auth-login-icon pt-10">

@@ -52,8 +52,8 @@
                                     </a>
                                 </li>
 
-								<li class="menu-item {{ areActiveRoutes(['admin.registrations.index','admin.registrations.show']) }}" aria-haspopup="true">
-									<a href="{{ route('admin.registrations.index') }}" class="menu-link">
+								<li class="menu-item {{ areActiveRoutes(['admin.rlcos.index','admin.rlcos.show']) }}" aria-haspopup="true">
+									<a href="{{ route('admin.rlcos.index') }}" class="menu-link">
 										<span class="svg-icon svg-icon-white menu-icon" >
 
 											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -67,7 +67,7 @@
 
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-text text-white">All SMEs</span>
+										<span class="menu-text text-white">All RLCOs</span>
 									</a>
 								</li>
 							</ul>

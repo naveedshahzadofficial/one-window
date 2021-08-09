@@ -130,7 +130,7 @@
                 serverSide: true,
                 searching: false,
                 ajax: {
-                    url: '{{ route('admin.registrations.index-ajax') }}',
+                    url: '{{ route('admin.rlcos.index-ajax') }}',
                     type: "POST",
                     data: function (row) {
                         row.registration_no = $('#registration_no').val();

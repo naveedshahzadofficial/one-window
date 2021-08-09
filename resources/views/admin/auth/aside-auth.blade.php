@@ -10,8 +10,8 @@
         </div>
         <!--end::Logo-->
         <div class="auth-logo-caption pt-7 pt-lg-20">
-            <span>SME</span> <br>
-            <span>REGISTRATION</span>
+            <span>RLCOs</span><br>
+            <span>PUNJAB</span>
         </div>
 
         <div class="auth-nbdp-logo pt-10 pt-lg-30">

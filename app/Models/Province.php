@@ -13,11 +13,6 @@ class Province extends Model
 
     protected $fillable = ['province_name', 'province_remark', 'province_status'];
 
-    public function registrations(): HasMany
-    {
-        return $this->hasMany(Registration::class,'business_province_id');
-    }
-
     public function districts(): HasMany
     {
         return $this->hasMany(District::class);
