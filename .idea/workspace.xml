@@ -271,122 +271,6 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/ApplicationController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Applicant/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Applicant/RegistrationController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ApplicationForm.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/StatusForm.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/AddressCapacity.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/AddressForm.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/AddressShare.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/AddressType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Application.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/BusinessActivity.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/BusinessCategory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/BusinessLegalStatus.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/BusinessRegistrationStatus.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/BusinessSector.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/BusinessSubSector.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ConnectionOwnership.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ConnectionProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Currency.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/DesignationBusiness.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Disability.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/EducationLevel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/EmployeeSequence.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/EmployeeType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/FiscalYear.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/MinorityStatus.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Province.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Province.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Registration.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RegistrationDisability.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RegistrationEmployeeInfo.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RegistrationOtherDocument.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RegistrationTechnicalEducation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RegistrationUtilityConnection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Status.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Statusable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/UtilityForm.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/UtilityServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/UtilityType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/GraphService.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_124609_create_designation_businesses_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_130756_create_minority_statuses_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_153210_create_education_levels_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_231740_create_address_types_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_231808_create_address_forms_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_231828_create_address_capacities_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_27_231844_create_address_shares_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_28_034417_create_business_registration_statuses_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_28_035106_create_business_legal_statuses_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_28_035127_create_business_categories_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_28_035143_create_business_sectors_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_28_035200_create_business_sub_sectors_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_28_091646_create_connection_ownerships_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_28_091721_create_utility_types_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_28_091802_create_connection_providers_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_051915_create_business_activities_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_070840_create_fiscal_years_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_080724_create_currencies_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_081320_create_statuses_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_135050_create_utility_forms_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_31_141230_create_utility_service_providers_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_01_014508_create_registrations_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_01_054122_create_registration_utility_connections_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_02_120222_create_registration_technical_education_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_02_130200_create_employee_types_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_02_134754_create_registration_employee_infos_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_07_152028_create_registration_other_documents_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_14_133938_create_disabilities_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_14_134012_create_registration_disabilities_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_18_133621_create_application_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_23_073638_create_statusables_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_07_131538_create_employee_sequences_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/AddressCapacitySeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/AddressFormSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/AddressShareSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/AddressTypeSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/BusinessActivitySeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/BusinessCategorySeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/BusinessLegalStatusSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/BusinessRegistrationStatusSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/BusinessSectorSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/BusinessSubSectorSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ConnectionOwnershipSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ConnectionProviderSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/CurrencySeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DesignationBusinessSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DisabilitySeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/EducationLevelSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/EmployeeSequenceSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/EmployeeTypeSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/FiscalYearSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/MinorityStatusSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/StatusSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UtilityFormSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UtilityServiceProviderSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UtilityTypeSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/db_tables/address_forms__2021-05-27.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/db_tables/business_activities__2021-05-27.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/db_tables/disabilities__2021-05-27.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/db_tables/sectors__2021-05-27.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/db_tables/sub_sectors__2021-05-27.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/db_tables/utility_service_providers__2021-05-27.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/labels.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_aside.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/auth/aside-auth.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/auth/aside-auth.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/registration/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/registration/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/aside-auth.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/aside-auth.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/application-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -715,7 +599,8 @@
       <workItem from="1628230130574" duration="1156000" />
       <workItem from="1628235213821" duration="5281000" />
       <workItem from="1628248371240" duration="8791000" />
-      <workItem from="1628485713272" duration="4755000" />
+      <workItem from="1628485713272" duration="4923000" />
+      <workItem from="1628586435871" duration="572000" />
     </task>
     <servers />
   </component>
