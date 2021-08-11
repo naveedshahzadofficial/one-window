@@ -24,4 +24,7 @@ Route::get('/login', [Auth\LoginController::class, 'showLoginForm'])->name('logi
         Route::resource('auditable', Admin\AuditableController::class);
 
         Route::get('dashboard', [ Admin\DashboardController::class,'index'])->name('dashboard');
+
+        Route::post('activities/index-ajax', [ Admin\ActivityController::class,'indexAjax'])->name('activities.index-ajax');
+        Route::resource('activities', Admin\ActivityController::class);
     });

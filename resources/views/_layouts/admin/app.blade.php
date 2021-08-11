@@ -227,6 +227,7 @@
             window.addEventListener('page:tab', event =>{
                 KTUtil.scrollTop(300,3000);
             });
+
         </script>
 
         <script>
@@ -240,6 +241,39 @@
         <script>
             function reDrawDataTable() {
                 myDataTable.draw()
+            }
+            function toggleStatus(obj)
+            {
+                var action_url = $(obj).attr('data-href');
+                Swal.fire({
+                    title: "Are you sure?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: "Confirm",
+                    closeOnConfirm: false
+                }).then(function(result) {
+                    if (result.value) {
+                        var form = document.createElement("form");
+                        form.setAttribute("method", "POST");
+                        form.setAttribute("action", action_url);
+                        var form_method = document.createElement("input");
+                        form_method.setAttribute("type", "hidden");
+                        form_method.setAttribute("name", "_method");
+                        form_method.setAttribute("value", "DELETE");
+                        form.appendChild(form_method);
+                        // Create an input element for date of birth
+                        var csrf_field = document.createElement("input");
+                        csrf_field.setAttribute("type", "hidden");
+                        csrf_field.setAttribute("name", "_token");
+                        var csrf_token_val = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                        csrf_field.setAttribute("value", csrf_token_val);
+                        form.appendChild(csrf_field);
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+                });
             }
         </script>
 	</body>

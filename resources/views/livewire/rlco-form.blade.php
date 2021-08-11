@@ -42,7 +42,7 @@
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step',4)" wire:loading.attr="disabled"  class="wizard-label">
-                    <h3 class="wizard-title">{!! __('Review') !!}</h3>
+                    <h3 class="wizard-title">{!! __('FAQs') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 5 Nav-->
@@ -51,7 +51,7 @@
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step',5)" wire:loading.attr="disabled"  class="wizard-label">
-                    <h3 class="wizard-title">{!! __('Submission') !!}</h3>
+                    <h3 class="wizard-title">{!! __("FOS") !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 5 Nav-->
@@ -100,11 +100,16 @@
                         </div>
 
                         <div class="form-group row">
+
                             <div class="col-lg-6">
-                                <label>{!! __('Department Name') !!}<span class="text-danger">*</span></label>
-                                <input wire:model.defer="form.department_id" type="text"
-                                       class="form-control @error('form.department_id') is-invalid @enderror"
-                                       placeholder="Department Name"/>
+                                <label>{!! __('Department Name') !!}<span
+                                        class="text-danger">*</span></label>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="form.department_id"
+                                                        setFieldName="form.department_id"
+                                                        id="department_id" fieldName="department_name"
+                                                        :listing="$departments"/>
+                                </div>
                                 @error('form.department_id')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -141,7 +146,21 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row form-group">
+                            <div class="col-lg-6">
+                                <label>{!! __('Activity') !!}<span
+                                        class="text-danger">*</span></label>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="form.activity_id"
+                                                        setFieldName="form.activity_id"
+                                                        id="activity_id" fieldName="activity_name"
+                                                        :listing="$activities"/>
+                                </div>
+                                @error('form.activity_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="col-lg-6">
                                 <label>{!! __('Fee') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="form.fee" type="text"
@@ -151,6 +170,11 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
+
+                        </div>
+
+                        <div class="form-group row">
+
 
                             <div class="col-lg-6">
                                 <label>{!! __('Validity') !!}<span class="text-danger">*</span></label>
@@ -162,45 +186,12 @@
                                 @enderror
                             </div>
 
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label>{!! __('Challan form') !!}<span class="text-danger">*</span></label>
-                                <input  type="file" class="form-control" wire:model="form.challan_form">
-                                @error('form.challan_form')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
                             <div class="col-lg-6">
                                 <label>{!! __('Time Taken') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="form.time_taken" type="text"
                                        class="form-control @error('form.time_taken') is-invalid @enderror"
                                        placeholder="Time Taken"/>
                                 @error('form.time_taken')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                        </div>
-
-                        <div class="form-group row">
-
-                            <div class="col-lg-6">
-                                <label>{!! __('Relevant Notification/Order') !!}<span class="text-danger">*</span></label>
-                                <input wire:model.defer="form.relevant_order" type="text"
-                                       class="form-control @error('form.relevant_order') is-invalid @enderror"
-                                       placeholder="Relevant Notification"/>
-                                @error('form.relevant_order')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-lg-6">
-                                <label>{!! __('Process Flow Diagram') !!}<span class="text-danger">*</span></label>
-                                <input  type="file" class="form-control" wire:model="form.process_flow_diagram">
-                                @error('form.process_flow_diagram')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -222,18 +213,66 @@
                     </h4>
                     <div class="section_box">
 
+
                         <div class="form-group row">
+
                             <div class="col-lg-6">
-                                <label>{!! __('Links') !!}<span class="text-danger">*</span></label>
-                                <input wire:model.defer="form.links" type="text"
-                                       class="form-control @error('form.links') is-invalid @enderror"
-                                       placeholder="Links"/>
-                                @error('form.links')
+                                <label>{!! __('Relevant Notification/Order') !!}<span class="text-danger">*</span></label>
+                                <input  type="file" class="form-control" wire:model="form.relevant_order">
+                                @error('form.relevant_order')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Process Flow Diagram') !!}<span class="text-danger">*</span></label>
+                                <input  type="file" class="form-control" wire:model="form.process_flow_diagram">
+                                @error('form.process_flow_diagram')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
 
                         </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>{!! __('Challan form') !!}<span class="text-danger">*</span></label>
+                                <input  type="file" class="form-control" wire:model="form.challan_form">
+                                @error('form.challan_form')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Application Form') !!}<span class="text-danger">*</span></label>
+                                <input  type="file" class="form-control" wire:model="form.application_form">
+                                @error('form.application_form')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Required Documents') !!}<span
+                                        class="text-danger">*</span></label>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="form.required_documents"
+                                                        isMultiple="true"
+                                                        setFieldName="form.required_documents"
+                                                        id="required_documents" fieldName="document_title"
+                                                        :listing="$required_documents"/>
+                                </div>
+                                @error('form.required_documents')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+                        
 
 
                     </div>

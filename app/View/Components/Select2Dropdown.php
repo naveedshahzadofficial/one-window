@@ -11,6 +11,7 @@ class Select2Dropdown extends Component
     public $listing;
     public $id;
     public $setFieldName;
+    public $isMultiple;
 
     /**
      * Create a new component instance.
@@ -18,12 +19,13 @@ class Select2Dropdown extends Component
      * @param $fieldName
      * @param $listing
      */
-    public function __construct($fieldName, $listing, $id, $setFieldName)
+    public function __construct($fieldName, $listing, $id, $setFieldName, $isMultiple=false)
     {
         $this->fieldName = $fieldName;
         $this->id = $id;
         $this->listing = $listing;
         $this->setFieldName = $setFieldName;
+        $this->isMultiple = $isMultiple;
     }
 
     /**

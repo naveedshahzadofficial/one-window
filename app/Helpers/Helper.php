@@ -22,7 +22,7 @@ if (!function_exists('isActiveRoute')) {
 
 if (!function_exists('areActiveRoutes')) {
 
-    function areActiveRoutes(Array $routes, $output = "menu-item-active")
+    function areActiveRoutes(Array $routes, $output = "menu-item-active menu-item-open")
     {
         foreach ($routes as $route)
         {

@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Activity;
 use App\Models\BusinessActivity;
 use App\Models\BusinessCategory;
+use App\Models\Department;
+use App\Models\RequiredDocument;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -15,6 +18,9 @@ class RlcoForm extends Component
     private $rlco;
     public $business_categories;
     public $business_activities;
+    public $departments;
+    public $required_documents;
+    public $activities;
 
     public $step;
     private $stepActions = [
@@ -38,6 +44,9 @@ class RlcoForm extends Component
 
         $this->business_categories = BusinessCategory::where('category_status',1)->get();
         $this->business_activities = BusinessActivity::where('activity_status',1)->get();
+        $this->activities = Activity::orderBy('activity_order')->where('activity_status',1)->get();
+        $this->departments = Department::where('department_status',1)->get();
+        $this->required_documents = RequiredDocument::where('document_status','Active')->get();
 
     }
 

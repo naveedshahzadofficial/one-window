@@ -52,6 +52,29 @@
                                     </a>
                                 </li>
 
+
+                                <li class="menu-item menu-item-submenu {{ areActiveRoutes(['admin.activities.index']) }}" aria-haspopup="true" data-menu-toggle="hover">
+                                    <a href="javascript:;" class="menu-link menu-toggle">
+                                        <span class="svg-icon text-white svg-icon-white menu-icon fas fa-cog"></span>
+                                        <span class="menu-text text-white">System Settings</span>
+                                        <i class="menu-arrow"></i>
+                                    </a>
+
+                                    <div class="menu-submenu">
+                                        <i class="menu-arrow"></i>
+                                        <ul class="menu-subnav">
+                                            <li class="menu-item {{ areActiveRoutes(['admin.activities.index']) }}" aria-haspopup="true">
+                                                <a href="{{ route('admin.activities.index') }}" class="menu-link">
+                                                    <span class="menu-text text-white">Activities</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+
+
+
 								<li class="menu-item {{ areActiveRoutes(['admin.rlcos.index','admin.rlcos.show']) }}" aria-haspopup="true">
 									<a href="{{ route('admin.rlcos.index') }}" class="menu-link">
 										<span class="svg-icon svg-icon-white menu-icon" >
