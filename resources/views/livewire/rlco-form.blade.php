@@ -148,10 +148,11 @@
 
                         <div class="row form-group">
                             <div class="col-lg-6">
-                                <label>{!! __('Activity') !!}<span
+                                <label>{!! __('Activities') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="form.activity_id"
+                                                        isMultiple="true"
                                                         setFieldName="form.activity_id"
                                                         id="activity_id" fieldName="activity_name"
                                                         :listing="$activities"/>
@@ -160,6 +161,37 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
+
+                            <div class="col-lg-6">
+
+                                <label for="">Scope</label>
+                                <div class="radio-inline">
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.scope" name="scope"  value="Provincial">
+                                        <span></span>Provincial</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="Federal">
+                                        <span></span>Federal</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="District">
+                                        <span></span>District</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="Tehsil">
+                                        <span></span>Tehsil</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="UC">
+                                        <span></span>UC</label>
+                                </div>
+                                @error('activity_status')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div><!--form-group ends-->
+
+                        </div>
+
+                        <div class="form-group row">
 
                             <div class="col-lg-6">
                                 <label>{!! __('Fee') !!}<span class="text-danger">*</span></label>
@@ -171,11 +203,6 @@
                                 @enderror
                             </div>
 
-                        </div>
-
-                        <div class="form-group row">
-
-
                             <div class="col-lg-6">
                                 <label>{!! __('Validity') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="form.validity" type="text"
@@ -186,6 +213,9 @@
                                 @enderror
                             </div>
 
+                        </div>
+
+                        <div class="row form-group">
                             <div class="col-lg-6">
                                 <label>{!! __('Time Taken') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="form.time_taken" type="text"
@@ -195,11 +225,30 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-
                         </div>
 
 
                         </div>
+
+                    <h4 class="font-weight-bold section_heading text-white">
+                        <span>  {!! __('META DATA') !!}</span>
+                    </h4>
+                    <div class="section_box">
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>{!! __('Keywords') !!}<span class="text-danger">*</span></label>
+                                <input wire:model.defer="form.keywords" type="text"
+                                       class="form-control @error('form.keywords') is-invalid @enderror"
+                                       placeholder="Keywords"/>
+                                @error('form.keywords')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+                    </div>
+
+
                 <!--end: Section Box-->
                 </div>
                 <!--end: Wizard Step 1-->
@@ -209,7 +258,7 @@
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
-                        <span>  {!! __('FULLY AUTOMATED') !!}</span>
+                        <span>  {!! __('PROCESS') !!}</span>
                     </h4>
                     <div class="section_box">
 
@@ -272,12 +321,223 @@
                             </div>
 
                         </div>
-                        
+
 
 
                     </div>
                 </div>
                 <!--end: Wizard Step 2-->
+
+                <!--begin: Wizard Step 3-->
+                <div class="pb-5" data-wizard-type="step-content"
+                     data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
+                    <h4 class="font-weight-bold section_heading text-white">
+                        <span>  {!! __('INSPECTIONS') !!}</span>
+                    </h4>
+                    <div class="section_box">
+
+                    </div>
+                </div>
+                <!--end: Wizard Step 3-->
+
+                <!--begin: Wizard Step 4-->
+                <div class="pb-5" data-wizard-type="step-content"
+                     data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
+                    <h4 class="font-weight-bold section_heading text-white">
+                        <span>  {!! __('AUTOMATION') !!}</span>
+                    </h4>
+                    <div class="section_box">
+                        <div class="form-group row">
+                            <label class="control-label">In which form is the activity's data currently being maintained? <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="form-group row">
+                            <div class="radio-list">
+                                <label class="radio radio-success">
+                                    <input type="radio"  name="form.current_maintained" value="Manual">
+                                    <span></span>Manual</label>
+
+                                <label class="radio radio-success">
+                                    <input type="radio" name="form.current_maintained" value="Semi-Automated">
+                                    <span></span>Semi-Automated (e.g: Excel/Word/etc.)</label>
+                                <label class="radio radio-success">
+                                    <input type="radio" name="form.current_maintained" value="Fully-Automated">
+                                    <span></span>Fully-Automated</label>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Online URL') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="form.online_url" type="text"
+                                       class="form-control @error('form.online_url') is-invalid @enderror"
+                                       placeholder="Online URL:"/>
+                                @error('form.online_url')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-lg-12">
+                                <label>{!! __('Remarks (if any)') !!}<span class="text-danger"></span></label>
+                                <textarea wire:model.defer="form.remark" class="form-control" @error('form.remark') is-invalid @enderror></textarea>
+                                @error('form.remark')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--end: Wizard Step 4-->
+
+                <!--begin: Wizard Step 5-->
+                <div class="pb-5" data-wizard-type="step-content"
+                     data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
+                    <h4 class="font-weight-bold section_heading text-white">
+                        <span>  {!! __('FAQs') !!}</span>
+                    </h4>
+                    <div class="section_box">
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>{!! __('Question') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="faq_form.faq_question" type="text"
+                                       class="form-control @error('faq_form.faq_question') is-invalid @enderror"
+                                       placeholder="Question"/>
+                                @error('faq_form.faq_question')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Order') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="faq_form.faq_order" type="text"
+                                       class="form-control @error('faq_form.faq_order') is-invalid @enderror"
+                                       placeholder="Order No."/>
+                                @error('faq_form.faq_order')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+
+                            <div class="col-lg-12">
+                                <label>{!! __('Answer') !!}<span class="text-danger"></span></label>
+                                <textarea wire:model.defer="faq_form.faq_answer" class="form-control" @error('faq_form.faq_answer') is-invalid @enderror></textarea>
+                                @error('faq_form.faq_answer')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <button class="btn btn-primary" wire:click.prevent="addFaq()" >Add</button>
+                        </div>
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Answer</th>
+                                <th>Order</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($faqs as $index => $faq)
+                                <tr>
+                                    <td>{{ $faq->faq_question }}</td>
+                                    <td>{{ $faq->faq_answer }}</td>
+                                    <td>{{ $faq->faq_order }}</td>
+                                    <td><button wire:click.prevent="deleteFaq({{ $faq->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button></td>
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <!--end: Wizard Step 5-->
+
+                <!--begin: Wizard Step 5-->
+                <div class="pb-5" data-wizard-type="step-content"
+                     data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
+                    <h4 class="font-weight-bold section_heading text-white">
+                        <span>  {!! __('FOS') !!}</span>
+                    </h4>
+                    <div class="section_box">
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>{!! __('Observation') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="fos_form.fos_observation" type="text"
+                                       class="form-control @error('fos_form.fos_observation') is-invalid @enderror"
+                                       placeholder="Observation"/>
+                                @error('fos_form.fos_observation')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Order') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="fos_form.fos_order" type="text"
+                                       class="form-control @error('fos_form.fos_order') is-invalid @enderror"
+                                       placeholder="Order No."/>
+                                @error('fos_form.fos_order')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+
+                            <div class="col-lg-12">
+                                <label>{!! __('Solution') !!}<span class="text-danger"></span></label>
+                                <textarea wire:model.defer="fos_form.fos_solution" class="form-control" @error('fos_form.fos_solution') is-invalid @enderror></textarea>
+                                @error('fos_form.fos_solution')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <button class="btn btn-primary" wire:click.prevent="addFos()" >Add</button>
+                        </div>
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Observation</th>
+                                <th>Solution</th>
+                                <th>Order</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($foss as $index => $fos)
+                                <tr>
+                                    <td>{{ $fos->fos_observation }}</td>
+                                    <td>{{ $fos->fos_solution }}</td>
+                                    <td>{{ $fos->fos_order }}</td>
+                                    <td><button wire:click.prevent="deleteFos({{ $fos->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button></td>
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <!--end: Wizard Step 5-->
 
 
                 <!--begin: Wizard Actions-->
@@ -297,6 +557,15 @@
                     @if($step >= 5)
                         <div>
                             <button type="button"
+                                    class="btn btn-custom-color font-weight-bold px-8 py-2 d-block float-left mr-10"
+                                    data-wizard-type="action-next"
+                                    wire:loading.class="spinner spinner-white spinner-right"
+                                    wire:loading.attr="disabled"
+                                    wire:click.prevent="submitForm"
+                            >{!! __('Save') !!}
+                            </button>
+
+                            <button type="button"
                                     class="btn btn-custom-color font-weight-bold px-8 py-2 d-block"
                                     data-wizard-type="action-submit"
                                     wire:loading.class="spinner spinner-white spinner-right"
@@ -306,7 +575,6 @@
                         </div>
                     @else
                         <div>
-                            @if($step!=4)
                                 <button type="button"
                                         class="btn btn-custom-color font-weight-bold px-8 py-2 d-block float-left mr-10"
                                         data-wizard-type="action-next"
@@ -315,7 +583,6 @@
                                         wire:click.prevent="submitForm"
                                 >{!! __('Save') !!}
                                 </button>
-                            @endif
                             <button type="button"
                                     class="btn btn-custom-color font-weight-bold px-8 py-2 d-block"
                                     data-wizard-type="action-next"
