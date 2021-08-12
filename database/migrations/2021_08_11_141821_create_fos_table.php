@@ -15,12 +15,12 @@ class CreateFosTable extends Migration
     {
         Schema::create('fos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rlco_id')->nullable();
+            $table->foreignId('rlco_id')->nullable()->constrained();
             $table->text('fos_observation');
             $table->text('fos_solution');
             $table->unsignedInteger('fos_order')->nullable();
             $table->boolean('fos_status')->default(1);
-            $table->foreignId('admin_id')->nullable();
+            $table->foreignId('admin_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

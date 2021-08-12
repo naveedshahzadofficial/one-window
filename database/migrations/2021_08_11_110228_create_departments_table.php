@@ -18,7 +18,7 @@ class CreateDepartmentsTable extends Migration
             $table->foreignId('category_id')->nullable();
             $table->string('department_name');
             $table->string('department_display_name')->nullable();
-            $table->foreignId('department_id')->nullable();
+            $table->foreignId('department_id')->nullable()->constrained();
             $table->string('department_scope');
             $table->foreignId('province_id')->nullable();
             $table->text('department_remark')->nullable();

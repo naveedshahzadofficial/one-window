@@ -15,12 +15,12 @@ class CreateFaqsTable extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rlco_id')->nullable();
+            $table->foreignId('rlco_id')->nullable()->constrained();
             $table->text('faq_question');
             $table->text('faq_answer');
             $table->unsignedInteger('faq_order')->nullable();
             $table->boolean('faq_status')->default(1);
-            $table->foreignId('admin_id')->nullable();
+            $table->foreignId('admin_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

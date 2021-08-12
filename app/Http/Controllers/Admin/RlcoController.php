@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BusinessCategory;
+use App\Models\Rlco;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Yajra\DataTables\DataTables;
 
 class RlcoController extends Controller
 {
@@ -12,7 +15,33 @@ class RlcoController extends Controller
     public function index(): View
     {
         $data = [];
+        $data['business_categories'] = BusinessCategory::where('category_status',1)->get();
         return view('admin.rlco.index')->with($data);
+    }
+    public function indexAjax(Request $request)
+    {
+        $registration_no = isset($request->registration_no) && !empty($request->registration_no) ?$request->registration_no: '';
+        $business_category_id = isset($request->business_category_id) && !empty($request->business_category_id) ?$request->business_category_id: '';
+
+        $query = Rlco::select("*");
+        if (!empty($registration_no)) {
+            $query->where('rlco_no', 'like' ,"%$registration_no%");
+        }
+        if (!empty($business_category_id)) {
+            $query->where('business_category_id',  $business_category_id);
+        }
+
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->editColumn('rlco_status', function (Rlco $rlco){
+                return '<span class="btn btn-circle btn-sm border-0 cursor-move active '.($rlco->rlco_status==1?'btn-hover-success':'btn-hover-danger').'">'.$rlco->getRlcoStatus().'</span>';
+            })
+            ->addColumn('action', function(Rlco $rlco){
+                $actionBtn = '<a target="_blank" href="'.route('admin.rlcos.show',$rlco).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-eye text-white"></i></a>';
+                return $actionBtn;
+            })
+            ->rawColumns(['rlco_status','action'])
+            ->make(true);
     }
 
     public function create(): View

@@ -36,27 +36,6 @@
                 <div class="row mb-6">
 
                     <div class="col-lg-3 mb-lg-0 mb-6">
-                        <label>Province:</label>
-                        <select name="province_id" onchange="getProvinceDistricts(this)" class="form-control select2"
-                                id="province_id">
-                            <option value="">--- Select ---</option>
-                            @isset($provinces)
-                                @foreach($provinces as $province)
-                                    <option
-                                        {{ request()->get('province_id')==$province->id?'selected':'' }} value="{{ $province->id }}">{{ $province->province_name }}</option>
-                                @endforeach
-                            @endisset
-                        </select>
-                    </div>
-
-                    <div class="col-lg-3 mb-lg-0 mb-6">
-                        <label>District:</label>
-                        <select name="district_id" class="form-control select2" id="district_id">
-                            <option value="">--- Select ---</option>
-                        </select>
-                    </div>
-
-                    <div class="col-lg-3 mb-lg-0 mb-6">
                         <label>Business Category:</label>
                         <select name="business_category_id" class="form-control select2" id="business_category_id">
                             <option value="">--- Select ---</option>
@@ -68,34 +47,12 @@
                             @endisset
                         </select>
                     </div>
-
-                    <div class="col-lg-3 mb-lg-0 mb-6">
-                        <label>Business Registration Status:</label>
-                        <div class="radio-inline mt-3">
-                            @isset($registration_status)
-                                @foreach($registration_status as $status)
-                                    <label class="radio radio-success">
-                                        <input
-                                            {{ request()->get('business_registration_status_id')==$status->id?'checked':'' }} type="radio"
-                                            name="business_registration_status_id"
-                                            class="business_registration_status_id" value="{{ $status->id }}">
-                                        <span></span>{{ $status->name }}</label>
-                                @endforeach
-                            @endisset
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row mt-8">
-
                     <div class="col-lg-3 mb-lg-0 mb-6">
                         <label>Registration No.</label>
                         <input type="text" name="registration_no" id="registration_no" class="form-control"
                                placeholder="Registration No.">
                     </div>
-
-
-                    <div class="col-lg-9 mt-7">
+                    <div class="col-lg-6 mt-7">
                         <button onclick="reDrawDataTable();" class="btn btn-custom-color btn-primary--icon"
                                 id="kt_search">
 													<span>
@@ -110,19 +67,19 @@
 													</span>
                         </button>
                     </div>
+
                 </div>
+
             </div>
 
             <!--begin: Datatable-->
             <table class="table table-bordered table-checkable" id="my_datatable">
                 <thead>
                 <tr>
-                    <th>Registration ID</th>
+                    <th>Rlco ID</th>
                     <th>Sr. No.</th>
                     <th>Registration No.</th>
-                    <th>Business Name</th>
-                    <th>Applicant Name</th>
-                    <th>Email</th>
+                    <th>Rlco Name</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -134,3 +91,119 @@
     <!--end::Card-->
 
 @endsection
+
+
+@push('post-scripts')
+    <script type="text/javascript">
+        var myDataTable;
+        $(function () {
+
+            myDataTable = $('#my_datatable').DataTable({
+                language: {
+                    infoFiltered: ""
+                },
+                processing: true,
+                pageLength: 30,
+                serverSide: true,
+                searching: false,
+                ajax: {
+                    url: '{{ route('admin.rlcos.index-ajax') }}',
+                    type: "POST",
+                    data: function (row) {
+                        row.registration_no = $('#registration_no').val();
+                        row.business_category_id = $('#business_category_id').val();
+                    }
+                },
+                columns: [
+                    {data: 'id', searchable: false, visible: false, printable: false},
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    {data: 'rlco_no', name: 'registration_no'},
+                    {data: 'rlco_name', name: 'personal_email'},
+                    {data: 'rlco_status', name: 'status_id'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ],
+                order: [[0, 'desc']],
+                dom: 'lfrtip',
+
+                lengthMenu: [
+                    [10, 20, 30, 50, 100, -1],
+                    ['10', '20', '30', '50', '100', 'All']
+                ],
+                buttons: [
+                    {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>',
+                        titleAttr: 'Print',
+                        charset: "utf-8",
+                        "bom": "true",
+                        className: 'btn btn-xs',
+                        exportOptions: {
+                            columns: ':visible:not(.not-exported)',
+                            modifier: {
+                                search: 'applied',
+                                order: 'applied',
+                                page: 'all'
+                            }
+                        }
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: '<i class="fa fa-file-csv"></i>',
+                        titleAttr: 'CSV',
+                        charset: "utf-8",
+                        "bom": "true",
+                        className: 'btn btn-xs',
+                        exportOptions: {
+                            columns: ':visible:not(.not-exported)',
+                            modifier: {
+                                search: 'applied',
+                                order: 'applied',
+                                page: 'all'
+                            }
+                        }
+
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel"></i>',
+                        titleAttr: 'Excel',
+                        charset: "utf-8",
+                        "bom": "true",
+                        className: 'btn btn-xs',
+                        exportOptions: {
+                            columns: ':visible:not(.not-exported)',
+                            modifier: {
+                                search: 'applied',
+                                order: 'applied',
+                                page: 'all'
+                            }
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: '<i class="fa fa-file-pdf"></i>',
+                        titleAttr: 'PDF',
+                        charset: "utf-8",
+                        "bom": "true",
+                        className: 'btn btn-xs',
+                        exportOptions: {
+                            columns: ':visible:not(.not-exported)',
+                            modifier: {
+                                search: 'applied',
+                                order: 'applied',
+                                page: 'all'
+                            }
+                        }
+                    }
+                ],
+            });
+
+        });
+
+        function resetForm() {
+            $('#business_category_id').val('').trigger('change.select2');
+            reDrawDataTable();
+        }
+    </script>
+@endpush
+

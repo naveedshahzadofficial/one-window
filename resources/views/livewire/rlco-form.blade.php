@@ -1,4 +1,6 @@
-<div  class="wizard wizard-3" id="kt_wizard_v3" data-wizard-state="step-first" data-wizard-clickable="true">
+<div x-data="{
+    is_inspection: '{{ $is_inspection ? 'Other' : 'None' }}',
+}" class="wizard wizard-3" id="kt_wizard_v3" data-wizard-state="step-first" data-wizard-clickable="true">
     <!--begin: Wizard Nav-->
     <div class="wizard-nav">
         <div class="wizard-steps  py-0 px-9 py-lg-0 px-lg-9">
@@ -151,10 +153,10 @@
                                 <label>{!! __('Activities') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
-                                    <x-select2-dropdown wire:model.defer="form.activity_id"
+                                    <x-select2-dropdown wire:model.defer="form.activity_ids"
                                                         isMultiple="true"
-                                                        setFieldName="form.activity_id"
-                                                        id="activity_id" fieldName="activity_name"
+                                                        setFieldName="form.activity_ids"
+                                                        id="activity_ids" fieldName="activity_name"
                                                         :listing="$activities"/>
                                 </div>
                                 @error('form.activity_id')
@@ -265,18 +267,39 @@
 
                         <div class="row form-group">
 
-                            <div class="col-lg-6">
-                                <label>{!! __('Relevant Notification/Order') !!}<span class="text-danger">*</span></label>
-                                <input  type="file" class="form-control" wire:model="form.relevant_order">
-                                @error('form.relevant_order')
+                            <div x-data="{ open: false }" class="col-lg-6">
+                                <label>{!!__('Relevant Notification/Order') !!}<span class="text-danger">*</span></label>
+                                @if(isset($form['relevant_order_file']) && !empty($form['relevant_order_file']))
+                                    <br><a href="{{ asset('storage/'.$form['relevant_order_file']) }}"
+                                           target="_blank" class="file_viewer" title="Relevant Notification/Order">View File</a>
+                                    &nbsp;|&nbsp;
+                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
+                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('relevant_order_file', null)">Do Not Change File</a>
+                                @endif
+
+                                <input
+                                    @if(isset($form['relevant_order_file']) && !empty($form['relevant_order_file'])) x-show="open"
+                                    @endif  type="file" class="form-control" wire:model="relevant_order_file">
+                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                @error('relevant_order_file')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div x-data="{ open: false }" class="col-lg-6">
+                                <label>{!!__('Process Flow Diagram') !!}<span class="text-danger">*</span></label>
+                                @if(isset($form['process_flow_diagram_file']) && !empty($form['process_flow_diagram_file']))
+                                    <br><a href="{{ asset('storage/'.$form['process_flow_diagram_file']) }}"
+                                           target="_blank" class="file_viewer" title="Process Flow Diagram">View File</a>
+                                    &nbsp;|&nbsp;
+                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
+                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('process_flow_diagram_file', null)">Do Not Change File</a>
+                                @endif
 
-                            <div class="col-lg-6">
-                                <label>{!! __('Process Flow Diagram') !!}<span class="text-danger">*</span></label>
-                                <input  type="file" class="form-control" wire:model="form.process_flow_diagram">
-                                @error('form.process_flow_diagram')
+                                <input
+                                    @if(isset($form['process_flow_diagram_file']) && !empty($form['process_flow_diagram_file'])) x-show="open"
+                                    @endif  type="file" class="form-control" wire:model="process_flow_diagram_file">
+                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                @error('process_flow_diagram_file')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -285,21 +308,42 @@
 
 
                         <div class="row form-group">
-                            <div class="col-lg-6">
-                                <label>{!! __('Challan form') !!}<span class="text-danger">*</span></label>
-                                <input  type="file" class="form-control" wire:model="form.challan_form">
-                                @error('form.challan_form')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
+                            <div x-data="{ open: false }" class="col-lg-6">
+                                <label>{!!__('Challan form') !!}<span class="text-danger">*</span></label>
+                                @if(isset($form['challan_form_file']) && !empty($form['challan_form_file']))
+                                    <br><a href="{{ asset('storage/'.$form['challan_form_file']) }}"
+                                           target="_blank" class="file_viewer" title="Challan form">View File</a>
+                                    &nbsp;|&nbsp;
+                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
+                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('challan_form_file', null)">Do Not Change File</a>
+                                @endif
 
-                            <div class="col-lg-6">
-                                <label>{!! __('Application Form') !!}<span class="text-danger">*</span></label>
-                                <input  type="file" class="form-control" wire:model="form.application_form">
-                                @error('form.application_form')
+                                <input
+                                    @if(isset($form['challan_form_file']) && !empty($form['challan_form_file'])) x-show="open"
+                                    @endif  type="file" class="form-control" wire:model="challan_form_file">
+                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                @error('challan_form_file')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div x-data="{ open: false }" class="col-lg-6">
+                                    <label>{!!__('Application Form') !!}<span class="text-danger">*</span></label>
+                                    @if(isset($form['application_form_file']) && !empty($form['application_form_file']))
+                                        <br><a href="{{ asset('storage/'.$form['application_form_file']) }}"
+                                               target="_blank" class="file_viewer" title="Application Form">View File</a>
+                                        &nbsp;|&nbsp;
+                                        <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
+                                        <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('application_form_file', null)">Do Not Change File</a>
+                                    @endif
+
+                                    <input
+                                        @if(isset($form['application_form_file']) && !empty($form['application_form_file'])) x-show="open"
+                                        @endif  type="file" class="form-control" wire:model="application_form_file">
+                                    <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                    @error('application_form_file')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
                         </div>
 
@@ -309,10 +353,10 @@
                                 <label>{!! __('Required Documents') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
-                                    <x-select2-dropdown wire:model.defer="form.required_documents"
+                                    <x-select2-dropdown wire:model.defer="form.required_document_ids"
                                                         isMultiple="true"
-                                                        setFieldName="form.required_documents"
-                                                        id="required_documents" fieldName="document_title"
+                                                        setFieldName="form.required_document_ids"
+                                                        id="required_document_ids" fieldName="document_title"
                                                         :listing="$required_documents"/>
                                 </div>
                                 @error('form.required_documents')
@@ -343,20 +387,21 @@
                         <div class="row form-group">
                             <div class="radio-list">
                                 <label class="radio radio-success">
-                                    <input type="radio"  name="form.inspection_required" value="Manual">
+                                    <input @click="is_inspection= 'Manual'" type="radio"  name="form.inspection_required" value="Manual">
                                     <span></span>Pre-inspection</label>
                                 <label class="radio radio-success">
-                                    <input type="radio" name="form.inspection_required" value="Post-inspection">
+                                    <input @click="is_inspection= 'Post-inspection'" type="radio" name="form.inspection_required" value="Post-inspection">
                                     <span></span>Post-inspection</label>
                                 <label class="radio radio-success">
-                                    <input type="radio" name="form.inspection_required" value="Both">
+                                    <input @click="is_inspection= 'Both'" type="radio" name="form.inspection_required" value="Both">
                                     <span></span>Both</label>
                                 <label class="radio radio-success">
-                                    <input type="radio" name="form.inspection_required" value="None">
+                                    <input @click="is_inspection= 'None'" type="radio" name="form.inspection_required" value="None">
                                     <span></span>None</label>
                             </div>
                         </div>
 
+                        <div x-show.transition.opacity="is_inspection!='None'" >
                         <div class="row form-group">
                             <div class="col-lg-6">
                                 <label>{!! __('What is the purpose of inspection?') !!}<span class="text-danger">*</span></label>
@@ -367,29 +412,65 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-lg-6">
-                                <label>{!! __('Upload Relevant Laws') !!}<span class="text-danger"></span></label>
-                                <input  type="file" class="form-control" wire:model="form.relevant_laws_file">
-                                @error('form.relevant_laws_file')
+
+                            <div x-data="{ open: false }" class="col-lg-6">
+                                <label>{!!__('Upload Relevant Laws') !!}<span class="text-danger">*</span></label>
+                                @if(isset($form['relevant_laws_file']) && !empty($form['relevant_laws_file']))
+                                    <br><a href="{{ asset('storage/'.$form['relevant_laws_file']) }}"
+                                           target="_blank" class="file_viewer" title="Relevant Laws">View File</a>
+                                    &nbsp;|&nbsp;
+                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
+                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('relevant_laws_file', null)">Do Not Change File</a>
+                                @endif
+
+                                <input
+                                    @if(isset($form['relevant_laws_file']) && !empty($form['relevant_laws_file'])) x-show="open"
+                                    @endif  type="file" class="form-control" wire:model="relevant_laws_file">
+                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                @error('relevant_laws_file')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                         <div class="row form-group">
-                            <div class="col-lg-6">
-                                <label>{!! __('Upload Relevant Rules') !!}<span class="text-danger"></span></label>
-                                <input  type="file" class="form-control" wire:model="form.relevant_rules_file">
-                                @error('form.relevant_rules_file')
+                            <div x-data="{ open: false }" class="col-lg-6">
+                                <label>{!!__('Upload Relevant Rules') !!}<span class="text-danger">*</span></label>
+                                @if(isset($form['relevant_rules_file']) && !empty($form['relevant_rules_file']))
+                                    <br><a href="{{ asset('storage/'.$form['relevant_rules_file']) }}"
+                                           target="_blank" class="file_viewer" title="Relevant Rules">View File</a>
+                                    &nbsp;|&nbsp;
+                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
+                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('relevant_rules_file', null)">Do Not Change File</a>
+                                @endif
+
+                                <input
+                                    @if(isset($form['relevant_rules_file']) && !empty($form['relevant_rules_file'])) x-show="open"
+                                    @endif  type="file" class="form-control" wire:model="relevant_rules_file">
+                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                @error('relevant_rules_file')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-lg-6">
-                                <label>{!! __('Upload Relevant Notification') !!}<span class="text-danger"></span></label>
-                                <input  type="file" class="form-control" wire:model="form.relevant_notification_file">
-                                @error('form.relevant_notification_file')
+
+                            <div x-data="{ open: false }" class="col-lg-6">
+                                <label>{!!__('Upload Relevant Notification') !!}<span class="text-danger">*</span></label>
+                                @if(isset($form['relevant_notification_file']) && !empty($form['relevant_notification_file']))
+                                    <br><a href="{{ asset('storage/'.$form['relevant_notification_file']) }}"
+                                           target="_blank" class="file_viewer" title="Relevant Notification">View File</a>
+                                    &nbsp;|&nbsp;
+                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
+                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('relevant_notification_file', null)">Do Not Change File</a>
+                                @endif
+
+                                <input
+                                    @if(isset($form['relevant_notification_file']) && !empty($form['relevant_notification_file'])) x-show="open"
+                                    @endif  type="file" class="form-control" wire:model="relevant_notification_file">
+                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                @error('relevant_notification_file')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
+
                         </div>
                         <div class="row form-group">
                             <div class="col-lg-12">
@@ -413,22 +494,35 @@
                             <div class="col-lg-6">
                                     <label>{!! __('Which organization/authority do you conduct joint inspection with?') !!}<span class="text-danger"></span></label>
                                 <div wire:ignore>
-                                    <x-select2-dropdown wire:model.defer="form.joint_inspection_department_id"
-                                                        setFieldName="form.joint_inspection_department_id"
-                                                        id="joint_inspection_department_id" fieldName="department_name"
+                                    <x-select2-dropdown wire:model.defer="form.inspection_department_id"
+                                                        setFieldName="form.inspection_department_id"
+                                                        id="inspection_department_id" fieldName="department_name"
                                                         :listing="$departments"/>
                                 </div>
                                     @error('form.joint_inspection_department_id')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                     @enderror
                              </div>
-                            <div class="col-lg-6">
-                                <label>{!! __('Upload applicable fines/penalties/charges notification') !!}<span class="text-danger"></span></label>
-                                <input  type="file" class="form-control" wire:model="form.applicable_fines_file">
-                                @error('form.applicable_fines_file')
+
+                            <div x-data="{ open: false }" class="col-lg-6">
+                                <label>{!!__('Upload applicable fines/penalties/charges notification') !!}<span class="text-danger">*</span></label>
+                                @if(isset($form['applicable_fines_file']) && !empty($form['applicable_fines_file']))
+                                    <br><a href="{{ asset('storage/'.$form['applicable_fines_file']) }}"
+                                           target="_blank" class="file_viewer" title="Applicable Fines">View File</a>
+                                    &nbsp;|&nbsp;
+                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
+                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('applicable_fines_file', null)">Do Not Change File</a>
+                                @endif
+
+                                <input
+                                    @if(isset($form['applicable_fines_file']) && !empty($form['applicable_fines_file'])) x-show="open"
+                                    @endif  type="file" class="form-control" wire:model="applicable_fines_file">
+                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                @error('applicable_fines_file')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
+                        </div>
                         </div>
 
                     </div>
