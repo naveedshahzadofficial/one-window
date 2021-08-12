@@ -74,7 +74,7 @@
                     </h4>
                     <div class="section_box">
 
-                        <div class="form-group row">
+                        <div class="row form-group">
                             <div class="col-lg-6">
                                 <label>{!! __('RLCOs Name') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="form.rlco_name" type="text"
@@ -87,7 +87,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row form-group">
                             <div class="col-lg-12">
                                 <label>{!! __('Description') !!}<span class="text-danger">*</span></label>
                                 <textarea wire:model.defer="form.description" type="text"
@@ -99,7 +99,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row form-group">
 
                             <div class="col-lg-6">
                                 <label>{!! __('Department Name') !!}<span
@@ -131,7 +131,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row form-group">
                             <div class="col-lg-12">
                                 <label>{!! __('Sector') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
@@ -191,7 +191,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row form-group">
 
                             <div class="col-lg-6">
                                 <label>{!! __('Fee') !!}<span class="text-danger">*</span></label>
@@ -234,7 +234,7 @@
                         <span>  {!! __('META DATA') !!}</span>
                     </h4>
                     <div class="section_box">
-                        <div class="form-group row">
+                        <div class="row form-group">
                             <div class="col-lg-6">
                                 <label>{!! __('Keywords') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="form.keywords" type="text"
@@ -263,7 +263,7 @@
                     <div class="section_box">
 
 
-                        <div class="form-group row">
+                        <div class="row form-group">
 
                             <div class="col-lg-6">
                                 <label>{!! __('Relevant Notification/Order') !!}<span class="text-danger">*</span></label>
@@ -284,7 +284,7 @@
                         </div>
 
 
-                        <div class="form-group row">
+                        <div class="row form-group">
                             <div class="col-lg-6">
                                 <label>{!! __('Challan form') !!}<span class="text-danger">*</span></label>
                                 <input  type="file" class="form-control" wire:model="form.challan_form">
@@ -303,7 +303,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row form-group">
 
                             <div class="col-lg-6">
                                 <label>{!! __('Required Documents') !!}<span
@@ -335,6 +335,101 @@
                         <span>  {!! __('INSPECTIONS') !!}</span>
                     </h4>
                     <div class="section_box">
+                        <div class="row form-group">
+                            <div class="col-lg-12">
+                            <label class="control-label">What type of inspections are required? <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="radio-list">
+                                <label class="radio radio-success">
+                                    <input type="radio"  name="form.inspection_required" value="Manual">
+                                    <span></span>Pre-inspection</label>
+                                <label class="radio radio-success">
+                                    <input type="radio" name="form.inspection_required" value="Post-inspection">
+                                    <span></span>Post-inspection</label>
+                                <label class="radio radio-success">
+                                    <input type="radio" name="form.inspection_required" value="Both">
+                                    <span></span>Both</label>
+                                <label class="radio radio-success">
+                                    <input type="radio" name="form.inspection_required" value="None">
+                                    <span></span>None</label>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-lg-6">
+                                <label>{!! __('What is the purpose of inspection?') !!}<span class="text-danger">*</span></label>
+                                <input wire:model.defer="form.purpose_of_inspection" type="text"
+                                       class="form-control @error('form.purpose_of_inspection') is-invalid @enderror"
+                                       placeholder="Purpose of inspection"/>
+                                @error('form.purpose_of_inspection')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6">
+                                <label>{!! __('Upload Relevant Laws') !!}<span class="text-danger"></span></label>
+                                <input  type="file" class="form-control" wire:model="form.relevant_laws_file">
+                                @error('form.relevant_laws_file')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-6">
+                                <label>{!! __('Upload Relevant Rules') !!}<span class="text-danger"></span></label>
+                                <input  type="file" class="form-control" wire:model="form.relevant_rules_file">
+                                @error('form.relevant_rules_file')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6">
+                                <label>{!! __('Upload Relevant Notification') !!}<span class="text-danger"></span></label>
+                                <input  type="file" class="form-control" wire:model="form.relevant_notification_file">
+                                @error('form.relevant_notification_file')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-12">
+                            <label class="control-label">Mode of Inspection <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="radio-list">
+                                <label class="radio radio-success">
+                                    <input type="radio"  name="form.mode_of_inspection" value="Manual">
+                                    <span></span>Manual (Physical visit with manual data entry)</label>
+                                <label class="radio radio-success">
+                                    <input type="radio" name="form.mode_of_inspection" value="Post-inspection">
+                                    <span></span>Semi Automated (Physical visit with data entry using Mobile App/System)</label>
+                                <label class="radio radio-success">
+                                    <input type="radio" name="form.mode_of_inspection" value="Both">
+                                    <span></span>Fully Automated (No physical visit)</label>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-6">
+                                    <label>{!! __('Which organization/authority do you conduct joint inspection with?') !!}<span class="text-danger"></span></label>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="form.joint_inspection_department_id"
+                                                        setFieldName="form.joint_inspection_department_id"
+                                                        id="joint_inspection_department_id" fieldName="department_name"
+                                                        :listing="$departments"/>
+                                </div>
+                                    @error('form.joint_inspection_department_id')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                             </div>
+                            <div class="col-lg-6">
+                                <label>{!! __('Upload applicable fines/penalties/charges notification') !!}<span class="text-danger"></span></label>
+                                <input  type="file" class="form-control" wire:model="form.applicable_fines_file">
+                                @error('form.applicable_fines_file')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -347,10 +442,10 @@
                         <span>  {!! __('AUTOMATION') !!}</span>
                     </h4>
                     <div class="section_box">
-                        <div class="form-group row">
+                        <div class="row form-group">
                             <label class="control-label">In which form is the activity's data currently being maintained? <span class="text-danger">*</span></label>
                         </div>
-                        <div class="form-group row">
+                        <div class="row form-group">
                             <div class="radio-list">
                                 <label class="radio radio-success">
                                     <input type="radio"  name="form.current_maintained" value="Manual">
@@ -366,7 +461,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row form-group">
 
                             <div class="col-lg-6">
                                 <label>{!! __('Online URL') !!}<span class="text-danger"></span></label>
@@ -380,7 +475,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row form-group">
 
                             <div class="col-lg-12">
                                 <label>{!! __('Remarks (if any)') !!}<span class="text-danger"></span></label>
@@ -404,7 +499,7 @@
                         <span>  {!! __('FAQs') !!}</span>
                     </h4>
                     <div class="section_box">
-                        <div class="form-group row">
+                        <div class="row form-group">
                             <div class="col-lg-6">
                                 <label>{!! __('Question') !!}<span class="text-danger"></span></label>
                                 <input wire:model.defer="faq_form.faq_question" type="text"
@@ -426,7 +521,7 @@
                             </div>
 
                         </div>
-                        <div class="form-group row">
+                        <div class="row form-group">
 
                             <div class="col-lg-12">
                                 <label>{!! __('Answer') !!}<span class="text-danger"></span></label>
@@ -438,7 +533,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row form-group">
                             <button class="btn btn-primary" wire:click.prevent="addFaq()" >Add</button>
                         </div>
 
@@ -475,7 +570,7 @@
                         <span>  {!! __('FOS') !!}</span>
                     </h4>
                     <div class="section_box">
-                        <div class="form-group row">
+                        <div class="row form-group">
                             <div class="col-lg-6">
                                 <label>{!! __('Observation') !!}<span class="text-danger"></span></label>
                                 <input wire:model.defer="fos_form.fos_observation" type="text"
@@ -497,7 +592,7 @@
                             </div>
 
                         </div>
-                        <div class="form-group row">
+                        <div class="row form-group">
 
                             <div class="col-lg-12">
                                 <label>{!! __('Solution') !!}<span class="text-danger"></span></label>
@@ -509,7 +604,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row form-group">
                             <button class="btn btn-primary" wire:click.prevent="addFos()" >Add</button>
                         </div>
 

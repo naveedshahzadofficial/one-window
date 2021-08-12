@@ -256,3 +256,7 @@ select.select2{
 .color-black{
     color: #3F4254;
 }
+
+.select2-container--default .select2-selection--multiple{
+    background-color: #e6fffc;
+}
