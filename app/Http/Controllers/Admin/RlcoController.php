@@ -70,7 +70,7 @@ class RlcoController extends Controller
 
     public function edit(Rlco $rlco): View
     {
-        $rlco->load('activities','requiredDocuments','faqs','foss','dependencies.department');
+        $rlco->load('activities','requiredDocuments');
         return View('admin.rlco.edit',compact('rlco'));
     }
 

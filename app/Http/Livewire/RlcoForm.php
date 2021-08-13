@@ -21,14 +21,6 @@ class RlcoForm extends Component
     public $form;
     public $rlco;
 
-    public $faq_form;
-    public $faqs;
-
-    public $fos_form;
-    public $foss;
-
-    public $dependency_form;
-    public $dependencies;
 
     public $business_categories;
     public $business_activities;
@@ -55,7 +47,11 @@ class RlcoForm extends Component
             $applicable_fines_file;
 
     public $is_inspection = false;
-
+    public function setRlcoId($rlco_id)
+    {
+        if(!$this->rlco)
+            $this->rlco =  Rlco::find($rlco_id);
+    }
 
     public function render()
     {
@@ -70,9 +66,7 @@ class RlcoForm extends Component
         $this->activities = Activity::orderBy('activity_order')->where('activity_status',1)->get();
         $this->departments = Department::where('department_status',1)->get();
         $this->required_documents = RequiredDocument::where('document_status','Active')->get();
-        $this->faqs = Collect();
-        $this->foss = Collect();
-        $this->dependencies = Collect();
+
         $this->form['admin_id'] = auth()->id();
 
         if($this->rlco){
@@ -80,10 +74,6 @@ class RlcoForm extends Component
             $this->form['activity_ids'] = $this->rlco->activities->pluck('id');
             $this->form['required_document_ids'] = $this->rlco->requiredDocuments->pluck('id');
             $this->is_inspection = $this->rlco->inspection_required!='None';
-
-            $this->faqs = $this->rlco->faqs;
-            $this->foss = $this->rlco->foss;
-            $this->dependencies = $this->rlco->dependencies;
         }
     }
     public function decreaseStep()
@@ -251,66 +241,13 @@ class RlcoForm extends Component
     {
         if($this->rlco)
             $this->rlco = tap($this->rlco)->update($this->form);
-        else
+        else{
             $this->rlco = Rlco::create($this->form);
+            $this->emit('setRlcoId',$this->rlco->id);
+        }
         $this->successAlert();
     }
 
-    public function addDependency()
-    {
-        if(!$this->rlco)
-            $this->formSaved();
-        $this->dependency_form['rlco_id'] = $this->rlco->id;
-        $this->dependency_form['admin_id'] = auth()->id();
-        Dependency::create($this->dependency_form);
-        $this->dispatchBrowserEvent('reinitialization:select2',['id'=>'#organization_id','key_name'=>'dependency_form.department_id']);
-        $this->reset('dependency_form');
-        $this->dependencies = Dependency::with('department')->where('rlco_id', $this->rlco->id)->get();
-    }
-
-    public function deleteDependency($dependency_id)
-    {
-        $faq = Dependency::find($dependency_id);
-        $faq->delete();
-        $this->dependencies = Dependency::with('department')->where('rlco_id', $this->rlco->id)->get();
-    }
-
-    public function addFaq()
-    {
-        if(!$this->rlco)
-            $this->formSaved();
-        $this->faq_form['rlco_id'] = $this->rlco->id;
-        $this->faq_form['admin_id'] = auth()->id();
-        Faq::create($this->faq_form);
-        $this->reset('faq_form');
-        $this->faqs = Faq::where('rlco_id', $this->rlco->id)->get();
-    }
-
-    public function deleteFaq($faq_id)
-    {
-       $faq = Faq::find($faq_id);
-       $faq->delete();
-       $this->faqs = Faq::where('rlco_id', $this->rlco->id)->get();
-    }
-
-    public function addFos()
-    {
-        if(!$this->rlco)
-            $this->formSaved();
-
-        $this->fos_form['rlco_id'] = $this->rlco->id;
-        $this->fos_form['admin_id'] = auth()->id();
-        Fos::create($this->fos_form);
-        $this->reset('fos_form');
-        $this->foss = Fos::where('rlco_id', $this->rlco->id)->get();
-    }
-
-    public function deleteFos($fos_id)
-    {
-        $fos = Fos::find($fos_id);
-        $fos->delete();
-        $this->foss = Fos::where('rlco_id', $this->rlco->id)->get();
-    }
 
     private function successAlert(){
         $this->dispatchBrowserEvent('toastr:message',[
