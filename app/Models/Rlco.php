@@ -63,4 +63,8 @@ class Rlco extends Model
     public function foss(){
         return $this->hasMany(Fos::class)->orderBy('fos_order');
     }
+
+    public function dependencies(){
+        return $this->hasMany(Dependency::class);
+    }
 }

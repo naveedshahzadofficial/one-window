@@ -26,6 +26,15 @@
             <div class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step',2)" wire:loading.attr="disabled"  class="wizard-label">
+                    <h3 class="wizard-title">{!! __('Dependencies') !!}</h3>
+                </div>
+            </div>
+            <!--end::Wizard Step 3 Nav-->
+
+            <!--begin::Wizard Step 3 Nav-->
+            <div class="wizard-step" data-wizard-type="step"
+                 data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
+                <div wire:click.prevent="$set('step',3)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('Inspections') !!}</h3>
                 </div>
             </div>
@@ -33,8 +42,8 @@
 
             <!--begin::Wizard Step 4 Nav-->
             <div class="wizard-step" data-wizard-type="step"
-                 data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
-                <div wire:click.prevent="$set('step',3)" wire:loading.attr="disabled"  class="wizard-label">
+                 data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
+                <div wire:click.prevent="$set('step',4)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('Automation') !!}</h3>
                 </div>
             </div>
@@ -42,8 +51,8 @@
 
             <!--begin::Wizard Step 5 Nav-->
             <div class="wizard-step" data-wizard-type="step"
-                 data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
-                <div wire:click.prevent="$set('step',4)" wire:loading.attr="disabled"  class="wizard-label">
+                 data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
+                <div wire:click.prevent="$set('step',5)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('FAQs') !!}</h3>
                 </div>
             </div>
@@ -51,8 +60,8 @@
 
             <!--begin::Wizard Step 5 Nav-->
             <div class="wizard-step" data-wizard-type="step"
-                 data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
-                <div wire:click.prevent="$set('step',5)" wire:loading.attr="disabled"  class="wizard-label">
+                 data-wizard-state="@if($step==6){{ 'current' }}@else{{ 'done' }}@endif">
+                <div wire:click.prevent="$set('step',6)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __("FOS") !!}</h3>
                 </div>
             </div>
@@ -376,6 +385,80 @@
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
+                        <span>  {!! __('Dependencies') !!}</span>
+                    </h4>
+                    <div class="section_box">
+                        <div class="row form-group">
+                            <div class="col-lg-6">
+                                <label>{!! __('Organization') !!}<span class="text-danger"></span></label>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="dependency_form.department_id"
+                                                        setFieldName="dependency_form.department_id"
+                                                        id="organization_id" fieldName="department_name"
+                                                        :listing="$departments"/>
+                                </div>
+                                @error('dependency_form.department_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Activity Name') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="dependency_form.activity_name" type="text"
+                                       class="form-control @error('dependency_form.activity_name') is-invalid @enderror"
+                                       placeholder="Activity Name"/>
+                                @error('dependency_form.activity_name')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+                        <div class="row form-group">
+
+                            <div class="col-lg-12">
+                                <label>{!! __('Remarks (if any):') !!}<span class="text-danger"></span></label>
+                                <textarea wire:model.defer="dependency_form.remark" class="form-control" @error('dependency_form.fos_solution') is-invalid @enderror></textarea>
+                                @error('dependency_form.remark')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div class="row form-group">
+                            <button class="btn btn-custom-color" wire:click.prevent="addDependency()" >Add</button>
+                        </div>
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Organization</th>
+                                <th>Activity name</th>
+                                <th>Remarks</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($dependencies as $index => $dependency)
+                                <tr>
+                                    <td>{{ optional($dependency->department)->department_name }}</td>
+                                    <td>{{ $dependency->activity_name }}</td>
+                                    <td>{{ $dependency->remark }}</td>
+                                    <td><button wire:click.prevent="deleteDependency({{ $dependency->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button></td>
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <!--end: Wizard Step 3-->
+
+                <!--begin: Wizard Step 4-->
+                <div class="pb-5" data-wizard-type="step-content"
+                     data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
+                    <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('INSPECTIONS') !!}</span>
                     </h4>
                     <div class="section_box">
@@ -527,11 +610,12 @@
 
                     </div>
                 </div>
-                <!--end: Wizard Step 3-->
+                <!--end: Wizard Step 4-->
 
-                <!--begin: Wizard Step 4-->
+
+                <!--begin: Wizard Step 5-->
                 <div class="pb-5" data-wizard-type="step-content"
-                     data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
+                     data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('AUTOMATION') !!}</span>
                     </h4>
@@ -584,14 +668,15 @@
 
                     </div>
                 </div>
-                <!--end: Wizard Step 4-->
+                <!--end: Wizard Step 5-->
 
-                <!--begin: Wizard Step 5-->
+                <!--begin: Wizard Step 6-->
                 <div class="pb-5" data-wizard-type="step-content"
-                     data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
+                     data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('FAQs') !!}</span>
                     </h4>
+
                     <div class="section_box">
                         <div class="row form-group">
                             <div class="col-lg-6">
@@ -628,7 +713,7 @@
                         </div>
 
                         <div class="row form-group">
-                            <button class="btn btn-primary" wire:click.prevent="addFaq()" >Add</button>
+                            <button class="btn btn-custom-color" wire:click.prevent="addFaq()" >Add</button>
                         </div>
 
                         <table class="table">
@@ -655,11 +740,11 @@
 
                     </div>
                 </div>
-                <!--end: Wizard Step 5-->
+                <!--end: Wizard Step 6-->
 
-                <!--begin: Wizard Step 5-->
+                <!--begin: Wizard Step 7-->
                 <div class="pb-5" data-wizard-type="step-content"
-                     data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
+                     data-wizard-state="@if($step==6){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('FOS') !!}</span>
                     </h4>
@@ -699,7 +784,7 @@
                         </div>
 
                         <div class="row form-group">
-                            <button class="btn btn-primary" wire:click.prevent="addFos()" >Add</button>
+                            <button class="btn btn-custom-color" wire:click.prevent="addFos()" >Add</button>
                         </div>
 
                         <table class="table">
@@ -726,13 +811,13 @@
 
                     </div>
                 </div>
-                <!--end: Wizard Step 5-->
+                <!--end: Wizard Step 7-->
 
 
                 <!--begin: Wizard Actions-->
                 <div class="d-flex justify-content-between">
                     <div class="mr-2">
-                        @if($step> 0 && $step<=5)
+                        @if($step> 0 && $step<=6)
                             <button type="button"
                                     class="btn btn-custom-dark font-weight-bold px-8 py-2 d-block"
                                     data-wizard-type="action-prev"
@@ -743,7 +828,7 @@
                         @endif
                     </div>
 
-                    @if($step >= 5)
+                    @if($step >= 6)
                         <div>
                             <button type="button"
                                     class="btn btn-custom-color font-weight-bold px-8 py-2 d-block float-left mr-10"
@@ -791,3 +876,15 @@
         <!--end: Wizard Body-->
 
 </div>
+
+@push('post-scripts')
+    <script>
+        window.addEventListener('reinitialization:select2', event =>{
+            $(event.detail.id).select2();
+            $(event.detail.id).on('change', function (e) {
+            let data = $(this).val();
+            @this.set(event.detail.key_name, data);
+            });
+        });
+    </script>
+@endpush

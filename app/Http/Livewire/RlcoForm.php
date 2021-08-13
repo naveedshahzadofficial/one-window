@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\BusinessActivity;
 use App\Models\BusinessCategory;
 use App\Models\Department;
+use App\Models\Dependency;
 use App\Models\Faq;
 use App\Models\Fos;
 use App\Models\RequiredDocument;
@@ -26,6 +27,9 @@ class RlcoForm extends Component
     public $fos_form;
     public $foss;
 
+    public $dependency_form;
+    public $dependencies;
+
     public $business_categories;
     public $business_activities;
     public $departments;
@@ -36,6 +40,7 @@ class RlcoForm extends Component
     private $stepActions = [
         'submitBasicInfo',
         'submitProcess',
+        'submitDependency',
         'submitInspection',
         'submitAutomation',
         'submitFAQs',
@@ -50,6 +55,7 @@ class RlcoForm extends Component
             $applicable_fines_file;
 
     public $is_inspection = false;
+
 
     public function render()
     {
@@ -66,6 +72,7 @@ class RlcoForm extends Component
         $this->required_documents = RequiredDocument::where('document_status','Active')->get();
         $this->faqs = Collect();
         $this->foss = Collect();
+        $this->dependencies = Collect();
         $this->form['admin_id'] = auth()->id();
 
         if($this->rlco){
@@ -76,6 +83,7 @@ class RlcoForm extends Component
 
             $this->faqs = $this->rlco->faqs;
             $this->foss = $this->rlco->foss;
+            $this->dependencies = $this->rlco->dependencies;
         }
     }
     public function decreaseStep()
@@ -167,6 +175,11 @@ class RlcoForm extends Component
 
     }
 
+    private function submitDependency()
+    {
+        $this->formSaved();
+    }
+
     private function submitInspection()
     {
         $rules = [];
@@ -241,6 +254,25 @@ class RlcoForm extends Component
         else
             $this->rlco = Rlco::create($this->form);
         $this->successAlert();
+    }
+
+    public function addDependency()
+    {
+        if(!$this->rlco)
+            $this->formSaved();
+        $this->dependency_form['rlco_id'] = $this->rlco->id;
+        $this->dependency_form['admin_id'] = auth()->id();
+        Dependency::create($this->dependency_form);
+        $this->dispatchBrowserEvent('reinitialization:select2',['id'=>'#organization_id','key_name'=>'dependency_form.department_id']);
+        $this->reset('dependency_form');
+        $this->dependencies = Dependency::with('department')->where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
+    }
+
+    public function deleteDependency($dependency_id)
+    {
+        $faq = Dependency::find($dependency_id);
+        $faq->delete();
+        $this->dependencies = Dependency::with('department')->where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
     }
 
     public function addFaq()

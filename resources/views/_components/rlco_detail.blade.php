@@ -166,6 +166,39 @@
 
 </div>
 
+<h4 class="main_section_heading">{!! __('Dependencies') !!}</h4>
+<div class="section_box">
+
+    @if($rlco->dependencies->isNotEmpty())
+        <div class="d-flex justify-content-between pt-5">
+            <div class="d-flex flex-column flex-root">
+                <span class="font-weight-bolder mb-2">{!! __('Dependencies') !!}</span>
+                <table class="table">
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Organization</th>
+                        <th>Activity name</th>
+                        <th>Remarks</th>
+                    </tr>
+                    <tbody>
+                    @foreach($rlco->dependencies as $dependency)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ optional($dependency->department)->department_name }}</td>
+                            <td>{{ $dependency->activity_name }}</td>
+                            <td>{{ $dependency->remark }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @else
+        <span>No, Dependency available.</span>
+    @endif
+
+</div>
+
 <h4 class="main_section_heading">{!! __('INSPECTIONS') !!}</h4>
 <div class="section_box">
     <div class="d-flex justify-content-between pt-5">
@@ -310,7 +343,7 @@
 </div>
 
 
-<h4 class="main_section_heading">{!! __('FOS') !!}</h4>
+<h4 class="main_section_heading">{!! __('Frequent Observation & Solutions') !!}</h4>
 <div class="section_box">
 
     <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="accordionFaqs">
