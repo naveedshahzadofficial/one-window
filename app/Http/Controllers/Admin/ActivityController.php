@@ -53,27 +53,18 @@ class ActivityController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id): View
+    public function show(Activity $activity): View
     {
-        $activity = Activity::findorfail($id);
         return View('admin.activity.show',compact('activity'));
     }
 
-    public function edit($id): View
+    public function edit(Activity $activity): View
     {
-        $activity = Activity::findorfail($id);
         return View('admin.activity.edit',compact('activity'));
     }
 
-    public function update(ActivityRequest $request, $id): RedirectResponse
+    public function update(ActivityRequest $request,  Activity $activity): RedirectResponse
     {
-        $activity = Activity::findorfail($id);
         $affected = $activity->update($request->all());
         if($affected)
             session()->flash('success_message', 'Activity has been updated successfully.');
@@ -83,9 +74,9 @@ class ActivityController extends Controller
         return redirect()->route('admin.activities.index');
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy(Activity $activity): RedirectResponse
     {
-        $activity = Activity::findorfail($id);
+
         if($activity->activity_status)
             session()->flash('success_message', 'Activity has been inactive successfully.');
         else

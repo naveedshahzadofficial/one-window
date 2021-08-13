@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ActivityRequest extends FormRequest
 {
@@ -23,10 +24,11 @@ class ActivityRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'activity_name' => [
                 'required',
-                'unique:activities,activity_name,' . $this->activity.',id'
+                Rule::unique('activities', 'activity_name')->ignore($this->activity)
             ],
             'activity_order' => 'required',
             'activity_status' => 'required',

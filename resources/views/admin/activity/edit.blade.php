@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="card-body p-0">
-                    {{ Form::open(array('route' => ['admin.activities.update',$activity->id],'method'=>'PUT','class'=>'form form-horizontal','name'=>'activity_form','id'=>'activity_form')) }}
+                    {{ Form::open(array('route' => ['admin.activities.update',$activity],'method'=>'PUT','class'=>'form form-horizontal','name'=>'activity_form','id'=>'activity_form')) }}
                     <div class="form-body col-xl-8 col-xs-12">
 
                         <div class="form-group">

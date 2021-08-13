@@ -273,12 +273,14 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ActivityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ActivityController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/RlcoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/RlcoController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_11_110228_create_departments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_11_110228_create_departments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_11_141803_create_faqs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_11_141803_create_faqs_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_11_141821_create_fos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_11_141821_create_fos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/rlco/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/rlco/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ActivityRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ActivityRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Rlco.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Rlco.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/activity/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/activity/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/activity/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/activity/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/rlco/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/rlco/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
@@ -622,7 +624,8 @@
       <workItem from="1628606329154" duration="2134000" />
       <workItem from="1628658368839" duration="26505000" />
       <workItem from="1628744821845" duration="875000" />
-      <workItem from="1628763261581" duration="8218000" />
+      <workItem from="1628763261581" duration="8465000" />
+      <workItem from="1628835507290" duration="13846000" />
     </task>
     <servers />
   </component>

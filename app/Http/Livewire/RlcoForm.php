@@ -10,6 +10,7 @@ use App\Models\Faq;
 use App\Models\Fos;
 use App\Models\RequiredDocument;
 use App\Models\Rlco;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -17,13 +18,14 @@ class RlcoForm extends Component
 {
     use WithFileUploads;
     public $form;
+    public $rlco;
+
     public $faq_form;
     public $faqs;
 
     public $fos_form;
     public $foss;
 
-    private $rlco;
     public $business_categories;
     public $business_activities;
     public $departments;
@@ -54,20 +56,27 @@ class RlcoForm extends Component
         return view('livewire.rlco-form');
     }
 
-    public function mount($rlco=null)
+    public function mount()
     {
-        $this->rlco = null;
         $this->step = 0;
-
         $this->business_categories = BusinessCategory::where('category_status',1)->get();
         $this->business_activities = BusinessActivity::where('activity_status',1)->get();
         $this->activities = Activity::orderBy('activity_order')->where('activity_status',1)->get();
         $this->departments = Department::where('department_status',1)->get();
         $this->required_documents = RequiredDocument::where('document_status','Active')->get();
-        $this->faqs = Faq::where('admin_id',auth()->id())->get();
-        $this->foss = Fos::where('admin_id',auth()->id())->get();
+        $this->faqs = Collect();
+        $this->foss = Collect();
         $this->form['admin_id'] = auth()->id();
 
+        if($this->rlco){
+            $this->form = $this->rlco->toArray();
+            $this->form['activity_ids'] = $this->rlco->activities->pluck('id');
+            $this->form['required_document_ids'] = $this->rlco->requiredDocuments->pluck('id');
+            $this->is_inspection = $this->rlco->inspection_required!='None';
+
+            $this->faqs = $this->rlco->faqs;
+            $this->foss = $this->rlco->foss;
+        }
     }
     public function decreaseStep()
     {
@@ -93,7 +102,12 @@ class RlcoForm extends Component
 
     private function submitBasicInfo()
     {
-        $this->formSaved();
+        DB::transaction(function () {
+            $this->formSaved();
+            $activity_ids = $this->form['activity_ids']??null;
+            if(!empty($activity_ids))
+            $this->rlco->activities()->sync($activity_ids);
+        });
 
     }
 
@@ -122,6 +136,7 @@ class RlcoForm extends Component
             $messages['application_form_file.mimes'] = 'Application Form must be a file of type: jpg, jpeg, png, pdf.';
         }
 
+        if(!empty($rules) && !empty($messages))
         $this->validate($rules,$messages);
 
         if(!empty($this->relevant_order_file)) {
@@ -143,8 +158,12 @@ class RlcoForm extends Component
             $this->form['application_form_file'] = $this->application_form_file->store('application_form_files', 'public');
             $this->application_form_file = null;
         }
-
+        DB::transaction(function () {
         $this->formSaved();
+            $required_document_ids = $this->form['required_document_ids']??null;
+            if(!empty($required_document_ids))
+                $this->rlco->requiredDocuments()->sync($required_document_ids);
+        });
 
     }
 
@@ -173,6 +192,7 @@ class RlcoForm extends Component
             $messages['applicable_fines_file.mimes'] = 'Applicable Fines must be a file of type: jpg, jpeg, png, pdf.';
         }
 
+        if(!empty($rules) && !empty($messages))
         $this->validate($rules,$messages);
 
         if(!empty($this->relevant_laws_file)) {
@@ -231,14 +251,14 @@ class RlcoForm extends Component
         $this->faq_form['admin_id'] = auth()->id();
         Faq::create($this->faq_form);
         $this->reset('faq_form');
-        $this->faqs = Faq::where('admin_id',auth()->id())->get();
+        $this->faqs = Faq::where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
     }
 
     public function deleteFaq($faq_id)
     {
        $faq = Faq::find($faq_id);
        $faq->delete();
-       $this->faqs = Faq::where('admin_id',auth()->id())->get();
+       $this->faqs = Faq::where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
     }
 
     public function addFos()
@@ -250,14 +270,14 @@ class RlcoForm extends Component
         $this->fos_form['admin_id'] = auth()->id();
         Fos::create($this->fos_form);
         $this->reset('fos_form');
-        $this->foss = Fos::where('admin_id',auth()->id())->get();
+        $this->foss = Fos::where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
     }
 
     public function deleteFos($fos_id)
     {
         $fos = Fos::find($fos_id);
         $fos->delete();
-        $this->foss = Fos::where('admin_id',auth()->id())->get();
+        $this->foss = Fos::where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
     }
 
     private function successAlert(){

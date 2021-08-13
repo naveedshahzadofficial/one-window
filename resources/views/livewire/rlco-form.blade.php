@@ -387,16 +387,16 @@
                         <div class="row form-group">
                             <div class="radio-list">
                                 <label class="radio radio-success">
-                                    <input @click="is_inspection= 'Manual'" type="radio"  name="form.inspection_required" value="Manual">
+                                    <input @click="is_inspection= 'Manual'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="Manual">
                                     <span></span>Pre-inspection</label>
                                 <label class="radio radio-success">
-                                    <input @click="is_inspection= 'Post-inspection'" type="radio" name="form.inspection_required" value="Post-inspection">
+                                    <input @click="is_inspection= 'Post-inspection'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="Post-inspection">
                                     <span></span>Post-inspection</label>
                                 <label class="radio radio-success">
-                                    <input @click="is_inspection= 'Both'" type="radio" name="form.inspection_required" value="Both">
+                                    <input @click="is_inspection= 'Both'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="Both">
                                     <span></span>Both</label>
                                 <label class="radio radio-success">
-                                    <input @click="is_inspection= 'None'" type="radio" name="form.inspection_required" value="None">
+                                    <input @click="is_inspection= 'None'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="None">
                                     <span></span>None</label>
                             </div>
                         </div>
@@ -480,13 +480,13 @@
                         <div class="row form-group">
                             <div class="radio-list">
                                 <label class="radio radio-success">
-                                    <input type="radio"  name="form.mode_of_inspection" value="Manual">
+                                    <input type="radio"  wire:model="form.mode_of_inspection" name="mode_of_inspection" value="Manual (Physical visit with manual data entry)">
                                     <span></span>Manual (Physical visit with manual data entry)</label>
                                 <label class="radio radio-success">
-                                    <input type="radio" name="form.mode_of_inspection" value="Post-inspection">
+                                    <input type="radio" wire:model="form.mode_of_inspection" name="mode_of_inspection" value="Semi Automated (Physical visit with data entry using Mobile App/System)">
                                     <span></span>Semi Automated (Physical visit with data entry using Mobile App/System)</label>
                                 <label class="radio radio-success">
-                                    <input type="radio" name="form.mode_of_inspection" value="Both">
+                                    <input type="radio" wire:model="form.mode_of_inspection" name="mode_of_inspection" value="Fully Automated (No physical visit)">
                                     <span></span>Fully Automated (No physical visit)</label>
                             </div>
                         </div>
@@ -542,14 +542,14 @@
                         <div class="row form-group">
                             <div class="radio-list">
                                 <label class="radio radio-success">
-                                    <input type="radio"  name="form.current_maintained" value="Manual">
+                                    <input type="radio" wire:model="form.current_maintained"  name="current_maintained" value="Manual">
                                     <span></span>Manual</label>
 
                                 <label class="radio radio-success">
-                                    <input type="radio" name="form.current_maintained" value="Semi-Automated">
+                                    <input type="radio" wire:model="form.current_maintained" name="current_maintained" value="Semi-Automated">
                                     <span></span>Semi-Automated (e.g: Excel/Word/etc.)</label>
                                 <label class="radio radio-success">
-                                    <input type="radio" name="form.current_maintained" value="Fully-Automated">
+                                    <input type="radio" wire:model="form.current_maintained" name="current_maintained" value="Fully-Automated">
                                     <span></span>Fully-Automated</label>
                             </div>
 

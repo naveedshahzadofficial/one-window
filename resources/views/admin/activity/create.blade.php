@@ -57,11 +57,11 @@
                             <label for="">Status</label>
                             <div class="radio-inline">
                                 <label class="radio radio-success">
-                                    <input type="radio"  @if(old('activity_status')=='1')checked="checked"@endif name="activity_status" value="Active">
+                                    <input type="radio"  @if(old('activity_status')=='1')checked="checked"@endif name="activity_status" value="1">
                                     <span></span>Active</label>
 
                                 <label class="radio radio-danger">
-                                    <input type="radio"  @if(old('activity_status')=='0')checked="checked"@endif name="activity_status" value="Inactive">
+                                    <input type="radio"  @if(old('activity_status')=='0')checked="checked"@endif name="activity_status" value="0">
                                     <span></span>Inactive</label>
                             </div>
                             @error('activity_status')

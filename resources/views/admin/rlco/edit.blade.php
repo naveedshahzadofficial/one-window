@@ -1,5 +1,5 @@
 @extends('_layouts.admin.app')
-@push('title','Add RLCO')
+@push('title','Update RLCO')
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -7,12 +7,12 @@
             <div class="card card-custom ">
                 <div class="card-header flex-wrap py-3">
                     <div class="card-title">
-                        <h3 class="card-label">Add RLCO</h3>
+                        <h3 class="card-label">Update RLCO</h3>
                     </div>
                 </div>
 
                 <div class="card-body p-0">
-                    @livewire('rlco-form')
+                    @livewire('rlco-form', ['rlco'=>$rlco])
                 </div>
             </div>
 
