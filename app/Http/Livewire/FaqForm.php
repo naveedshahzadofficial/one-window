@@ -43,6 +43,6 @@ class FaqForm extends Component
     }
 
     private function loadFaqs(){
-        $this->faqs = Faq::where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
+        $this->faqs = Faq::where('rlco_id', $this->rlco->id)->get();
     }
 }

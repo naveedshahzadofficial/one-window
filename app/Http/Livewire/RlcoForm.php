@@ -265,14 +265,14 @@ class RlcoForm extends Component
         Dependency::create($this->dependency_form);
         $this->dispatchBrowserEvent('reinitialization:select2',['id'=>'#organization_id','key_name'=>'dependency_form.department_id']);
         $this->reset('dependency_form');
-        $this->dependencies = Dependency::with('department')->where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
+        $this->dependencies = Dependency::with('department')->where('rlco_id', $this->rlco->id)->get();
     }
 
     public function deleteDependency($dependency_id)
     {
         $faq = Dependency::find($dependency_id);
         $faq->delete();
-        $this->dependencies = Dependency::with('department')->where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
+        $this->dependencies = Dependency::with('department')->where('rlco_id', $this->rlco->id)->get();
     }
 
     public function addFaq()
@@ -283,14 +283,14 @@ class RlcoForm extends Component
         $this->faq_form['admin_id'] = auth()->id();
         Faq::create($this->faq_form);
         $this->reset('faq_form');
-        $this->faqs = Faq::where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
+        $this->faqs = Faq::where('rlco_id', $this->rlco->id)->get();
     }
 
     public function deleteFaq($faq_id)
     {
        $faq = Faq::find($faq_id);
        $faq->delete();
-       $this->faqs = Faq::where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
+       $this->faqs = Faq::where('rlco_id', $this->rlco->id)->get();
     }
 
     public function addFos()
@@ -302,14 +302,14 @@ class RlcoForm extends Component
         $this->fos_form['admin_id'] = auth()->id();
         Fos::create($this->fos_form);
         $this->reset('fos_form');
-        $this->foss = Fos::where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
+        $this->foss = Fos::where('rlco_id', $this->rlco->id)->get();
     }
 
     public function deleteFos($fos_id)
     {
         $fos = Fos::find($fos_id);
         $fos->delete();
-        $this->foss = Fos::where('admin_id',auth()->id())->where('rlco_id', $this->rlco->id)->get();
+        $this->foss = Fos::where('rlco_id', $this->rlco->id)->get();
     }
 
     private function successAlert(){

@@ -346,7 +346,7 @@
 <h4 class="main_section_heading">{!! __('Frequent Observation & Solutions') !!}</h4>
 <div class="section_box">
 
-    <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="accordionFaqs">
+    <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="accordionFoss">
         @forelse($rlco->foss as $fos)
             <div class="card bg-custom-color">
                 <div class="card-header" id="heading_fos_{{$loop->iteration}}">
@@ -365,7 +365,7 @@
                         <div class="card-label pl-4">{{ $fos->fos_observation }}</div>
                     </div>
                 </div>
-                <div id="collapse_fos_{{$loop->iteration}}" class="collapse" data-parent="#accordionFaqs" style="">
+                <div id="collapse_fos_{{$loop->iteration}}" class="collapse" data-parent="#accordionFoss" style="">
                     <div class="card-body pl-12">{!! $fos->fos_solution !!}</div>
                 </div>
             </div>
