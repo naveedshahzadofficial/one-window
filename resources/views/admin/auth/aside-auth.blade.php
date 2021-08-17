@@ -10,11 +10,11 @@
         </div>
         <!--end::Logo-->
         <div class="auth-logo-caption pt-7 pt-lg-20">
-            <span>RLCOs</span><br>
-            <span>PUNJAB</span>
+            <span style="font-size:24px;">Automation of Business Regulations</span><br>
+            <span style="font-size:24px;">PUNJAB</span>
         </div>
 
-        <div class="auth-nbdp-logo pt-10 pt-lg-30">
+        <div class="auth-nbdp-logo pt-10 pt-lg-30 d-none">
             <img src="{{ asset('assets/img/nbdp-logo.png') }}" alt="NBDP">
         </div>
 

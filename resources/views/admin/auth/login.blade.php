@@ -76,7 +76,7 @@
     <div class="d-flex justify-content-between">
         <div class="d-flex flex-column flex-root" style="background-color: #7D7D7D;">
             <div class="auth-left-footer">
-                &copy Small and Medium Enterprises Development Authority, Government of Pakistan
+                &copy Government of Punajab
             </div>
 
         </div>

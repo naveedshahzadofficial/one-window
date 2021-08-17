@@ -14,7 +14,7 @@
 
 							<!--begin::Nav-->
 							<div class="nav nav-dark">
-                                <span class="text-white font-weight-bold mr-2">&copy; Small and Medium Enterprises Development Authority, Government of Pakistan</span>
+                                <span class="text-white font-weight-bold mr-2">&copy; Government of Punajab</span>
                             </div>
 
 							<!--end::Nav-->

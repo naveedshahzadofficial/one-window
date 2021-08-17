@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Applicant;
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('admin.auth.login');
 });
 
 Auth::routes();
