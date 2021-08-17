@@ -84,7 +84,7 @@ class RlcoForm extends Component
     }
     public function increaseStep()
     {
-        if($this->step<5)
+        if($this->step<6)
             $this->step++;
         $this->pageChangeDispatch();
     }
@@ -235,6 +235,8 @@ class RlcoForm extends Component
     private function submitFOS()
     {
         $this->formSaved();
+        session()->flash('success_message', 'RLCOs has been saved successfully.');
+        return $this->redirect(route('admin.rlcos.index'));
     }
 
     private function formSaved()
