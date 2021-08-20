@@ -21,11 +21,35 @@
         </div>
 
     </div>
+
+    <div class="row form-group">
+        <div x-data="{ open: false }" class="col-lg-6">
+            <label>{!!__('Attachment (if any)') !!}<span class="text-danger"></span></label>
+            @if(isset($faq_form['faq_file']) && !empty($faq_form['faq_file']))
+                <br><a href="{{ asset('storage/'.$faq_form['faq_file']) }}"
+                       target="_blank" class="file_viewer" title="Attachment FAQ">View File</a>
+                &nbsp;|&nbsp;
+                <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
+                <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('faq_file', null)">Do Not Change File</a>
+            @endif
+
+            <input
+                @if(isset($faq_form['faq_file']) && !empty($faq_form['faq_file'])) x-show="open"
+                @endif  type="file" class="form-control" wire:model="faq_file">
+            <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf, doc, docx are allowed, Max. upload size is 5MB.</span>
+            @error('faq_file')
+            <div class="invalid-feedback d-block">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+
     <div class="row form-group">
 
         <div class="col-lg-12">
             <label>{!! __('Answer') !!}<span class="text-danger"></span></label>
-            <textarea wire:model.defer="faq_form.faq_answer" class="form-control" @error('faq_form.faq_answer') is-invalid @enderror></textarea>
+            <div wire:ignore>
+                <x-c-k-editor wire:model.debounce.999999s="faq_form.faq_answer" id="faq_answer-ckeditor" placeholder="Answer" setFieldName="faq_form.faq_answer" ></x-c-k-editor>
+            </div>
             @error('faq_form.faq_answer')
             <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
@@ -54,11 +78,15 @@
                                                                     <!--end::Svg Icon-->
 																</span>
                         <div class="card-label pl-4">{{ $faq->faq_question }}</div>
+                        @if(!empty($faq->faq_file))
+                            <a  href="{{ asset('storage/'.$faq->faq_file) }}" target="_blank" title="Attachment Faq" class="btn btn-info text-center btn-circle btn-icon btn-xs"><i class="flaticon2-file text-white"></i></a>
+                        @endif
                         <button wire:click.prevent="deleteFaq({{ $faq->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button>
                     </div>
                 </div>
                 <div id="collapse_faq_{{$loop->iteration}}" class="collapse" data-parent="#accordionFaqs" style="">
-                    <div class="card-body pl-12">{!! $faq->faq_answer !!}</div>
+                    <div class="card-body pl-12">{!! $faq->faq_answer !!}
+                    </div>
                 </div>
             </div>
         @empty

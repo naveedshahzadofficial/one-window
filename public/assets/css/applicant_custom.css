@@ -260,3 +260,7 @@ select.select2{
 .select2-container--default .select2-selection--multiple{
     background-color: #e6fffc;
 }
+
+.ck.ck-editor__main>.ck-editor__editable {
+    background: #E6FFFC !important;
+}

@@ -12,8 +12,10 @@ class Rlco extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['rlco_no', 'rlco_name', 'description', 'department_id', 'business_category_id', 'business_activity_id',
-        'scope', 'fee', 'validity', 'time_taken', 'keywords', 'relevant_order_file', 'process_flow_diagram_file', 'challan_form_file', 'application_form_file', 'inspection_required', 'purpose_of_inspection',
-        'relevant_laws_file', 'relevant_rules_file', 'relevant_notification_file', 'mode_of_inspection', 'inspection_department_id', 'applicable_fines_file', 'current_maintained', 'online_url', 'remark','admin_id', 'rlco_status'];
+        'scope','title_of_law', 'link_of_law', 'fee', 'renewal_required','renewal_fee', 'fee_submission_mode', 'payment_source', 'validity', 'time_taken', 'keywords' , 'automated_system_link',
+        'process_flow_diagram_file', 'challan_form_file', 'application_form_file', 'inspection_required', 'fine_details',
+        'relevant_laws_file', 'mode_of_inspection', 'inspection_department_id',
+         'manual_detail', 'admin_id', 'rlco_status'];
 
     public function getRlcoStatus()
     {
@@ -46,6 +48,11 @@ class Rlco extends Model
     public function activities()
     {
         return $this->belongsToMany(Activity::class);
+    }
+
+    public function rlcoKeywords()
+    {
+        return $this->hasMany(RlcoKeyword::class);
     }
 
     public function requiredDocuments()

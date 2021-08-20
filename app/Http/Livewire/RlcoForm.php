@@ -11,6 +11,7 @@ use App\Models\Faq;
 use App\Models\Fos;
 use App\Models\RequiredDocument;
 use App\Models\Rlco;
+use App\Models\RlcoKeyword;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -28,25 +29,25 @@ class RlcoForm extends Component
     public $required_documents;
     public $activities;
 
+    public $rlcos_keywords;
+
     public $step;
     private $stepActions = [
+        'submitZero',
         'submitBasicInfo',
         'submitProcess',
         'submitDependency',
         'submitInspection',
-        'submitAutomation',
         'submitFAQs',
         'submitFOS',
     ];
 
     // files
-    public $relevant_order_file, $process_flow_diagram_file,
-            $challan_form_file, $application_form_file,
-            $relevant_laws_file,
-            $relevant_rules_file, $relevant_notification_file,
-            $applicable_fines_file;
+    public  $process_flow_diagram_file,
+            $challan_form_file, $application_form_file;
 
-    public $is_inspection = false;
+    protected $listeners = ['setRlcoId'];
+
     public function setRlcoId($rlco_id)
     {
         if(!$this->rlco)
@@ -60,31 +61,33 @@ class RlcoForm extends Component
 
     public function mount()
     {
-        $this->step = 0;
+        $this->step = 1;
         $this->business_categories = BusinessCategory::where('category_status',1)->get();
         $this->business_activities = BusinessActivity::where('activity_status',1)->get();
         $this->activities = Activity::orderBy('activity_order')->where('activity_status',1)->get();
         $this->departments = Department::where('department_status',1)->get();
         $this->required_documents = RequiredDocument::where('document_status','Active')->get();
-
+        $this->rlcos_keywords = Collect();
         $this->form['admin_id'] = auth()->id();
 
         if($this->rlco){
             $this->form = $this->rlco->toArray();
             $this->form['activity_ids'] = $this->rlco->activities->pluck('id');
             $this->form['required_document_ids'] = $this->rlco->requiredDocuments->pluck('id');
-            $this->is_inspection = $this->rlco->inspection_required!='None';
+            $this->rlcos_keywords = $this->rlco->rlcoKeywords;
+            $this->form['keyword_names'] = $this->rlco->rlcoKeywords->pluck('keywords');
         }
     }
+
     public function decreaseStep()
     {
-        if($this->step>0)
+        if($this->step>1)
             $this->step--;
         $this->pageChangeDispatch();
     }
     public function increaseStep()
     {
-        if($this->step<6)
+        if($this->step<7)
             $this->step++;
         $this->pageChangeDispatch();
     }
@@ -100,11 +103,24 @@ class RlcoForm extends Component
 
     private function submitBasicInfo()
     {
+
         DB::transaction(function () {
             $this->formSaved();
             $activity_ids = $this->form['activity_ids']??null;
+            $keyword_names = $this->form['keyword_names']??null;
             if(!empty($activity_ids))
             $this->rlco->activities()->sync($activity_ids);
+
+            $this->rlco->rlcoKeywords()->delete();
+
+            if(!empty($keyword_names)){
+                $keyword_names = Collect($keyword_names);
+                $collectionKeywords = $keyword_names->map(function ($keyword){
+                    return new RlcoKeyword(['keyword_name'=>$keyword]);
+                });
+                $this->rlco->rlcoKeywords()->saveMany($collectionKeywords);
+            }
+
         });
 
     }
@@ -114,10 +130,7 @@ class RlcoForm extends Component
         $rules = [];
         $messages = [];
 
-        if(!empty($this->relevant_order_file)) {
-            $rules['relevant_order_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
-            $messages['relevant_order_file.mimes'] = 'Relevant Notification/Order must be a file of type: jpg, jpeg, png, pdf.';
-        }
+
 
         if(!empty($this->process_flow_diagram_file)) {
             $rules['process_flow_diagram_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
@@ -137,10 +150,6 @@ class RlcoForm extends Component
         if(!empty($rules) && !empty($messages))
         $this->validate($rules,$messages);
 
-        if(!empty($this->relevant_order_file)) {
-            $this->form['relevant_order_file'] = $this->relevant_order_file->store('relevant_order_files', 'public');
-            $this->relevant_order_file = null;
-        }
 
         if(!empty($this->process_flow_diagram_file)) {
             $this->form['process_flow_diagram_file'] = $this->process_flow_diagram_file->store('process_flow_diagram_files', 'public');
@@ -175,57 +184,14 @@ class RlcoForm extends Component
         $rules = [];
         $messages = [];
 
-        if(!empty($this->relevant_laws_file)) {
-            $rules['relevant_laws_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
-            $messages['relevant_laws_file.mimes'] = 'Relevant Laws must be a file of type: jpg, jpeg, png, pdf.';
-        }
-
-        if(!empty($this->relevant_rules_file)) {
-            $rules['relevant_rules_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
-            $messages['relevant_rules_file.mimes'] = 'Relevant Rules must be a file of type: jpg, jpeg, png, pdf.';
-        }
-
-        if(!empty($this->relevant_notification_file)) {
-            $rules['relevant_notification_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
-            $messages['relevant_notification_file.mimes'] = 'Relevant Notification must be a file of type: jpg, jpeg, png, pdf.';
-        }
-
-        if(!empty($this->applicable_fines_file)) {
-            $rules['applicable_fines_file'] = 'mimes:jpg,jpeg,png,pdf|max:5120';
-            $messages['applicable_fines_file.mimes'] = 'Applicable Fines must be a file of type: jpg, jpeg, png, pdf.';
-        }
 
         if(!empty($rules) && !empty($messages))
         $this->validate($rules,$messages);
 
-        if(!empty($this->relevant_laws_file)) {
-            $this->form['relevant_laws_file'] = $this->relevant_laws_file->store('relevant_laws_files', 'public');
-            $this->relevant_laws_file = null;
-        }
-        if(!empty($this->relevant_rules_file)) {
-            $this->form['relevant_rules_file'] = $this->relevant_rules_file->store('relevant_rules_files', 'public');
-            $this->relevant_rules_file = null;
-        }
-
-        if(!empty($this->relevant_notification_file)) {
-            $this->form['relevant_notification_file'] = $this->relevant_notification_file->store('relevant_notification_files', 'public');
-            $this->relevant_notification_file = null;
-        }
-
-        if(!empty($this->applicable_fines_file)) {
-            $this->form['applicable_fines_file'] = $this->applicable_fines_file->store('applicable_fines_files', 'public');
-            $this->applicable_fines_file = null;
-        }
-
         $this->formSaved();
 
     }
 
-    private function submitAutomation()
-    {
-        $this->formSaved();
-
-    }
 
     private function submitFAQs()
     {
@@ -233,6 +199,11 @@ class RlcoForm extends Component
     }
 
     private function submitFOS()
+    {
+        $this->formSaved();
+    }
+
+    public function finalSubmitForm()
     {
         $this->formSaved();
         session()->flash('success_message', 'RLCOs has been saved successfully.');

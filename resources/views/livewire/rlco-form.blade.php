@@ -1,5 +1,8 @@
 <div x-data="{
-    is_inspection: '{{ $is_inspection ? 'Other' : 'None' }}',
+    inspection_required: '{{ $form['inspection_required']??null }}',
+    automation_status: '{{ $form['automation_status']??null }}',
+    fee_submission_mode: '{{ $form['fee_submission_mode']??null }}',
+    renewal_required: '{{ $form['renewal_required']??null }}',
 }" class="wizard wizard-3" id="kt_wizard_v3" data-wizard-state="step-first" data-wizard-clickable="true">
     <!--begin: Wizard Nav-->
     <div class="wizard-nav">
@@ -7,50 +10,44 @@
 
             <!--begin::Wizard Step 1 Nav-->
             <div class="wizard-step" data-wizard-type="step"
-                 data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
-                <div wire:click.prevent="$set('step', 0)" wire:loading.attr="disabled"   class="wizard-label">
+                 data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
+                <div wire:click.prevent="$set('step', 1)" wire:loading.attr="disabled"   class="wizard-label">
                     <h3 class="wizard-title">{!! __('Basic Info') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 1 Nav-->
+
+
             <!--begin::Wizard Step 2 Nav-->
             <div class="wizard-step" data-wizard-type="step"
-                 data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
-                <div wire:click.prevent="$set('step', 1)" wire:loading.attr="disabled"  class="wizard-label">
+                 data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
+                <div wire:click.prevent="$set('step', 2)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('Process') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 2 Nav-->
 
             <!--begin::Wizard Step 3 Nav-->
-            <div class="wizard-step" data-wizard-type="step"
-                 data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
-                <div wire:click.prevent="$set('step',2)" wire:loading.attr="disabled"  class="wizard-label">
+            <div x-show.transition.opacity="automation_status!='Manual'" class="wizard-step" data-wizard-type="step"
+                 data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
+                <div wire:click.prevent="$set('step',3)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('Dependencies') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 3 Nav-->
 
-            <!--begin::Wizard Step 3 Nav-->
-            <div class="wizard-step" data-wizard-type="step"
-                 data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
-                <div wire:click.prevent="$set('step',3)" wire:loading.attr="disabled"  class="wizard-label">
-                    <h3 class="wizard-title">{!! __('Inspections') !!}</h3>
-                </div>
-            </div>
-            <!--end::Wizard Step 3 Nav-->
-
             <!--begin::Wizard Step 4 Nav-->
-            <div class="wizard-step" data-wizard-type="step"
+            <div x-show.transition.opacity="automation_status!='Manual'" class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step',4)" wire:loading.attr="disabled"  class="wizard-label">
-                    <h3 class="wizard-title">{!! __('Automation') !!}</h3>
+                    <h3 class="wizard-title">{!! __('Inspections') !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 4 Nav-->
 
+
             <!--begin::Wizard Step 5 Nav-->
-            <div class="wizard-step" data-wizard-type="step"
+            <div x-show.transition.opacity="automation_status!='Manual'" class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step',5)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('FAQs') !!}</h3>
@@ -58,14 +55,14 @@
             </div>
             <!--end::Wizard Step 5 Nav-->
 
-            <!--begin::Wizard Step 5 Nav-->
-            <div class="wizard-step" data-wizard-type="step"
+            <!--begin::Wizard Step 6 Nav-->
+            <div x-show.transition.opacity="automation_status!='Manual'" class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==6){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step',6)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __("FOS") !!}</h3>
                 </div>
             </div>
-            <!--end::Wizard Step 5 Nav-->
+            <!--end::Wizard Step 6 Nav-->
 
         </div>
     </div>
@@ -79,13 +76,27 @@
 
                 <!--begin: Wizard Step 1-->
                 <div class="pb-5" data-wizard-type="step-content"
-                     data-wizard-state="@if($step==0){{ 'current' }}@else{{ 'done' }}@endif">
+                     data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('BASIC INFO') !!}</span>
                     </h4>
                     <div class="section_box">
 
                         <div class="row form-group">
+                            <div class="col-lg-6">
+                                <label>{!! __('Department Name') !!}<span
+                                        class="text-danger">*</span></label>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="form.department_id"
+                                                        setFieldName="form.department_id"
+                                                        id="department_id" fieldName="department_name"
+                                                        :listing="$departments"/>
+                                </div>
+                                @error('form.department_id')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="col-lg-6">
                                 <label>{!! __('RLCOs Name') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="form.rlco_name" type="text"
@@ -100,10 +111,10 @@
 
                         <div class="row form-group">
                             <div class="col-lg-12">
-                                <label>{!! __('Description') !!}<span class="text-danger">*</span></label>
-                                <textarea wire:model.defer="form.description" type="text"
-                                       class="form-control @error('form.description') is-invalid @enderror"
-                                          placeholder="Description"></textarea>
+                                <label>{!! __('Description') !!}<span class="text-danger"></span></label>
+                                <div wire:ignore>
+                                    <x-c-k-editor wire:model.debounce.999999s="form.description" id="description-ckeditor" placeholder="Description" setFieldName="form.description" ></x-c-k-editor>
+                                </div>
                                 @error('form.description')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -113,18 +124,31 @@
                         <div class="row form-group">
 
                             <div class="col-lg-6">
-                                <label>{!! __('Department Name') !!}<span
-                                        class="text-danger">*</span></label>
-                                <div wire:ignore>
-                                    <x-select2-dropdown wire:model.defer="form.department_id"
-                                                        setFieldName="form.department_id"
-                                                        id="department_id" fieldName="department_name"
-                                                        :listing="$departments"/>
+                                <label for="">Scope</label>
+                                <div class="radio-inline">
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.scope" name="scope"  value="Provincial">
+                                        <span></span>Provincial</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="Federal">
+                                        <span></span>Federal</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="District">
+                                        <span></span>District</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="Tehsil">
+                                        <span></span>Tehsil</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="UC">
+                                        <span></span>UC</label>
                                 </div>
-                                @error('form.department_id')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @error('form.scope')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
                                 @enderror
-                            </div>
+                            </div><!--form-group ends-->
+
 
                             <div class="col-lg-6">
                                 <label>{!! __('Business Category') !!}<span
@@ -173,27 +197,47 @@
                                 @enderror
                             </div>
 
-                            <div class="col-lg-6">
+                        </div>
 
-                                <label for="">Scope</label>
+                        <div class="row form-group">
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Title of Law') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="form.title_of_law" type="text"
+                                       class="form-control @error('form.title_of_law') is-invalid @enderror"
+                                       placeholder=""/>
+                                @error('form.title_of_law')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Link of Law') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="form.link_of_law" type="text"
+                                       class="form-control @error('form.link_of_law') is-invalid @enderror"
+                                       placeholder=""/>
+                                @error('form.link_of_law')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-lg-6">
+                                <label for="">Automation Status<span class="text-danger">*</span></label>
                                 <div class="radio-inline">
                                     <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.scope" name="scope"  value="Provincial">
-                                        <span></span>Provincial</label>
+                                        <input type="radio" wire:model="form.automation_status" name="automation_status" @click="automation_status= 'Fully Automated'"  value="Fully Automated">
+                                        <span></span>Fully Automated</label>
                                     <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="Federal">
-                                        <span></span>Federal</label>
+                                        <input type="radio" wire:model="form.automation_status" name="automation_status" @click="automation_status= 'Semi Automated'" value="Semi Automated">
+                                        <span></span>Semi Automated</label>
                                     <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="District">
-                                        <span></span>District</label>
-                                    <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="Tehsil">
-                                        <span></span>Tehsil</label>
-                                    <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="UC">
-                                        <span></span>UC</label>
+                                        <input type="radio" wire:model="form.automation_status" name="automation_status" @click="automation_status= 'Manual'" value="Manual">
+                                        <span></span>Manual</label>
                                 </div>
-                                @error('activity_status')
+                                @error('form.automation_status')
                                 <div class="invalid-feedback d-block">
                                     {{ $message }}
                                 </div>
@@ -202,43 +246,6 @@
 
                         </div>
 
-                        <div class="row form-group">
-
-                            <div class="col-lg-6">
-                                <label>{!! __('Fee') !!}<span class="text-danger">*</span></label>
-                                <input wire:model.defer="form.fee" type="text"
-                                       class="form-control @error('form.fee') is-invalid @enderror"
-                                       placeholder="Fee"/>
-                                @error('form.fee')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-lg-6">
-                                <label>{!! __('Validity') !!}<span class="text-danger">*</span></label>
-                                <input wire:model.defer="form.validity" type="text"
-                                       class="form-control @error('form.validity') is-invalid @enderror"
-                                       placeholder="Validity"/>
-                                @error('form.validity')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                        </div>
-
-                        <div class="row form-group">
-                            <div class="col-lg-6">
-                                <label>{!! __('Time Taken') !!}<span class="text-danger">*</span></label>
-                                <input wire:model.defer="form.time_taken" type="text"
-                                       class="form-control @error('form.time_taken') is-invalid @enderror"
-                                       placeholder="Time Taken"/>
-                                @error('form.time_taken')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-
                         </div>
 
                     <h4 class="font-weight-bold section_heading text-white">
@@ -246,11 +253,16 @@
                     </h4>
                     <div class="section_box">
                         <div class="row form-group">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <label>{!! __('Keywords') !!}<span class="text-danger">*</span></label>
-                                <input wire:model.defer="form.keywords" type="text"
-                                       class="form-control @error('form.keywords') is-invalid @enderror"
-                                       placeholder="Keywords"/>
+                                <div wire:ignore >
+                                <x-select2-tag wire:model.defer="form.keyword_names"
+                                                    isMultiple="true"
+                                                    setFieldName="form.keyword_names"
+                                                    id="keyword_names" fieldName="keyword_name"
+                                                    :listing="$rlcos_keywords"/>
+                                </div>
+
                                 @error('form.keywords')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -265,35 +277,159 @@
                 <!--end: Wizard Step 1-->
 
 
+
                 <!--begin: Wizard Step 2-->
                 <div class="pb-5" data-wizard-type="step-content"
-                     data-wizard-state="@if($step==1){{ 'current' }}@else{{ 'done' }}@endif">
+                     data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('PROCESS') !!}</span>
                     </h4>
                     <div class="section_box">
 
-
-                        <div class="row form-group">
-
-                            <div x-data="{ open: false }" class="col-lg-6">
-                                <label>{!!__('Relevant Notification/Order') !!}<span class="text-danger">*</span></label>
-                                @if(isset($form['relevant_order_file']) && !empty($form['relevant_order_file']))
-                                    <br><a href="{{ asset('storage/'.$form['relevant_order_file']) }}"
-                                           target="_blank" class="file_viewer" title="Relevant Notification/Order">View File</a>
-                                    &nbsp;|&nbsp;
-                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
-                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('relevant_order_file', null)">Do Not Change File</a>
-                                @endif
-
-                                <input
-                                    @if(isset($form['relevant_order_file']) && !empty($form['relevant_order_file'])) x-show="open"
-                                    @endif  type="file" class="form-control" wire:model="relevant_order_file">
-                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
-                                @error('relevant_order_file')
+                        <div x-show.transition.opacity="automation_status=='Manual'" class="row form-group">
+                            <div class="col-lg-12">
+                                <label>{!! __('Contact Detail / Department office address Detail') !!}<span class="text-danger">*</span></label>
+                                <div wire:ignore>
+                                <x-c-k-editor wire:model.debounce.999999s="form.manual_detail" id="manual_detail-ckeditor" placeholder="Contact Detail / Department office address Detail" setFieldName="form.manual_detail" ></x-c-k-editor>
+                                </div>
+                                @error('form.manual_detail')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Fee') !!}<span class="text-danger">*</span></label>
+                                <input wire:model.defer="form.fee" type="text"
+                                       class="form-control @error('form.fee') is-invalid @enderror"
+                                       placeholder="Fee"/>
+                                @error('form.fee')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label for="">Renewal Required<span class="text-danger">*</span></label>
+                                <div class="radio-inline">
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.renewal_required" name="renewal_required" @click="renewal_required= 'Yes'"  value="Yes">
+                                        <span></span>Yes</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.renewal_required" name="renewal_required" @click="renewal_required= 'No'" value="No">
+                                        <span></span>No</label>
+                                </div>
+                                @error('form.automation_status')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div><!--form-group ends-->
+
+
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='Manual' && renewal_required=='Yes'" class="row form-group">
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Validity') !!}<span class="text-danger">*</span></label>
+                                <input wire:model.defer="form.validity" type="text"
+                                       class="form-control @error('form.validity') is-invalid @enderror"
+                                       placeholder="Validity"/>
+                                @error('form.validity')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Renewal Fee') !!}<span class="text-danger">*</span></label>
+                                <input wire:model.defer="form.renewal_fee" type="text"
+                                       class="form-control @error('form.renewal_fee') is-invalid @enderror"
+                                       placeholder="Renewal Fee"/>
+                                @error('form.renewal_fee')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
+
+                            <div class="col-lg-6">
+                                <label>Fee Submission Mode<span class="text-danger">*</span></label>
+                                <div class="radio-inline">
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.fee_submission_mode" name="fee_submission_mode" @click="fee_submission_mode= 'Online'" value="Online">
+                                        <span></span>Online</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.fee_submission_mode" name="fee_submission_mode" @click="fee_submission_mode= 'Challan'" value="Challan">
+                                        <span></span>Challan</label>
+                                    <label x-show.transition.opacity="automation_status=='Semi Automated'" class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.fee_submission_mode" name="fee_submission_mode" @click="fee_submission_mode= 'Manual'" value="Manual">
+                                        <span></span>Manual</label>
+                                </div>
+                                @error('form.fee_submission_mode')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div><!--form-group ends-->
+
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='Manual'"class="row form-group">
+
+                            <div x-show.transition.opacity="fee_submission_mode=='Online'" class="col-lg-6">
+                                <label>Payment Source<span class="text-danger">*</span></label>
+                                <div class="radio-inline">
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.payment_source" name="payment_source"  value="ePay Punjab">
+                                        <span></span>ePay Punjab</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.payment_source" name="payment_source" value="Banks">
+                                        <span></span>Banks</label>
+                                </div>
+                                @error('form.payment_source')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div><!--form-group ends-->
+
+                            <div x-show.transition.opacity="fee_submission_mode=='Challan'"  class="col-lg-6">
+                                <div x-data="{ open: false }">
+                                    <label>{!!__('Challan form') !!}<span class="text-danger">*</span></label>
+                                    @if(isset($form['challan_form_file']) && !empty($form['challan_form_file']))
+                                        <br><a href="{{ asset('storage/'.$form['challan_form_file']) }}"
+                                               target="_blank" class="file_viewer" title="Challan form">View File</a>
+                                        &nbsp;|&nbsp;
+                                        <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
+                                        <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('challan_form_file', null)">Do Not Change File</a>
+                                    @endif
+
+                                    <input
+                                        @if(isset($form['challan_form_file']) && !empty($form['challan_form_file'])) x-show="open"
+                                        @endif  type="file" class="form-control" wire:model="challan_form_file">
+                                    <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
+                                    @error('challan_form_file')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>{!! __('Time Taken') !!}<span class="text-danger">*</span></label>
+                                <input wire:model.defer="form.time_taken" type="text"
+                                       class="form-control @error('form.time_taken') is-invalid @enderror"
+                                       placeholder="Time Taken"/>
+                                @error('form.time_taken')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
                             <div x-data="{ open: false }" class="col-lg-6">
                                 <label>{!!__('Process Flow Diagram') !!}<span class="text-danger">*</span></label>
                                 @if(isset($form['process_flow_diagram_file']) && !empty($form['process_flow_diagram_file']))
@@ -312,30 +448,36 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-
-                        </div>
-
-
-                        <div class="row form-group">
-                            <div x-data="{ open: false }" class="col-lg-6">
-                                <label>{!!__('Challan form') !!}<span class="text-danger">*</span></label>
-                                @if(isset($form['challan_form_file']) && !empty($form['challan_form_file']))
-                                    <br><a href="{{ asset('storage/'.$form['challan_form_file']) }}"
-                                           target="_blank" class="file_viewer" title="Challan form">View File</a>
-                                    &nbsp;|&nbsp;
-                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
-                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('challan_form_file', null)">Do Not Change File</a>
-                                @endif
-
-                                <input
-                                    @if(isset($form['challan_form_file']) && !empty($form['challan_form_file'])) x-show="open"
-                                    @endif  type="file" class="form-control" wire:model="challan_form_file">
-                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
-                                @error('challan_form_file')
+                            <div class="col-lg-6">
+                                <label>{!! __('Required Documents') !!}<span
+                                        class="text-danger">*</span></label>
+                                <div wire:ignore>
+                                    <x-select2-dropdown wire:model.defer="form.required_document_ids"
+                                                        isMultiple="true"
+                                                        setFieldName="form.required_document_ids"
+                                                        id="required_document_ids" fieldName="document_title"
+                                                        :listing="$required_documents"/>
+                                </div>
+                                @error('form.required_documents')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div x-data="{ open: false }" class="col-lg-6">
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
+
+                            <div x-show.transition.opacity="automation_status=='Fully Automated'" class="col-lg-6">
+                                <label>{!! __('Automated System Link') !!}<span class="text-danger">*</span></label>
+                                <input wire:model.defer="form.automated_system_link" type="text"
+                                       class="form-control @error('form.automated_system_link') is-invalid @enderror"
+                                       placeholder="Automated System Link"/>
+                                @error('form.automated_system_link')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div x-show.transition.opacity="automation_status=='Semi Automated'" class="col-lg-6" >
+                            <div x-data="{ open: false }" >
                                     <label>{!!__('Application Form') !!}<span class="text-danger">*</span></label>
                                     @if(isset($form['application_form_file']) && !empty($form['application_form_file']))
                                         <br><a href="{{ asset('storage/'.$form['application_form_file']) }}"
@@ -353,26 +495,7 @@
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-                        </div>
-
-                        <div class="row form-group">
-
-                            <div class="col-lg-6">
-                                <label>{!! __('Required Documents') !!}<span
-                                        class="text-danger">*</span></label>
-                                <div wire:ignore>
-                                    <x-select2-dropdown wire:model.defer="form.required_document_ids"
-                                                        isMultiple="true"
-                                                        setFieldName="form.required_document_ids"
-                                                        id="required_document_ids" fieldName="document_title"
-                                                        :listing="$required_documents"/>
-                                </div>
-                                @error('form.required_documents')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
                             </div>
-
                         </div>
 
 
@@ -383,7 +506,7 @@
 
                 <!--begin: Wizard Step 3-->
                 <div class="pb-5" data-wizard-type="step-content"
-                     data-wizard-state="@if($step==2){{ 'current' }}@else{{ 'done' }}@endif">
+                     data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('Dependencies') !!}</span>
                     </h4>
@@ -393,7 +516,7 @@
 
                 <!--begin: Wizard Step 4-->
                 <div class="pb-5" data-wizard-type="step-content"
-                     data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
+                     data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('INSPECTIONS') !!}</span>
                     </h4>
@@ -406,91 +529,23 @@
                         <div class="row form-group">
                             <div class="radio-list">
                                 <label class="radio radio-success">
-                                    <input @click="is_inspection= 'Manual'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="Manual">
+                                    <input @click="inspection_required= 'Manual'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="Manual">
                                     <span></span>Pre-inspection</label>
                                 <label class="radio radio-success">
-                                    <input @click="is_inspection= 'Post-inspection'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="Post-inspection">
+                                    <input @click="inspection_required= 'Post-inspection'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="Post-inspection">
                                     <span></span>Post-inspection</label>
                                 <label class="radio radio-success">
-                                    <input @click="is_inspection= 'Both'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="Both">
+                                    <input @click="inspection_required= 'Both'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="Both">
                                     <span></span>Both</label>
                                 <label class="radio radio-success">
-                                    <input @click="is_inspection= 'None'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="None">
+                                    <input @click="inspection_required= 'None'" type="radio" wire:model.defer="form.inspection_required" name="inspection_required" value="None">
                                     <span></span>None</label>
                             </div>
                         </div>
 
-                        <div x-show.transition.opacity="is_inspection!='None'" >
-                        <div class="row form-group">
-                            <div class="col-lg-6">
-                                <label>{!! __('What is the purpose of inspection?') !!}<span class="text-danger">*</span></label>
-                                <input wire:model.defer="form.purpose_of_inspection" type="text"
-                                       class="form-control @error('form.purpose_of_inspection') is-invalid @enderror"
-                                       placeholder="Purpose of inspection"/>
-                                @error('form.purpose_of_inspection')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div x-show.transition.opacity="inspection_required && inspection_required!='None'" >
 
-                            <div x-data="{ open: false }" class="col-lg-6">
-                                <label>{!!__('Upload Relevant Laws') !!}<span class="text-danger">*</span></label>
-                                @if(isset($form['relevant_laws_file']) && !empty($form['relevant_laws_file']))
-                                    <br><a href="{{ asset('storage/'.$form['relevant_laws_file']) }}"
-                                           target="_blank" class="file_viewer" title="Relevant Laws">View File</a>
-                                    &nbsp;|&nbsp;
-                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
-                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('relevant_laws_file', null)">Do Not Change File</a>
-                                @endif
 
-                                <input
-                                    @if(isset($form['relevant_laws_file']) && !empty($form['relevant_laws_file'])) x-show="open"
-                                    @endif  type="file" class="form-control" wire:model="relevant_laws_file">
-                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
-                                @error('relevant_laws_file')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div x-data="{ open: false }" class="col-lg-6">
-                                <label>{!!__('Upload Relevant Rules') !!}<span class="text-danger">*</span></label>
-                                @if(isset($form['relevant_rules_file']) && !empty($form['relevant_rules_file']))
-                                    <br><a href="{{ asset('storage/'.$form['relevant_rules_file']) }}"
-                                           target="_blank" class="file_viewer" title="Relevant Rules">View File</a>
-                                    &nbsp;|&nbsp;
-                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
-                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('relevant_rules_file', null)">Do Not Change File</a>
-                                @endif
-
-                                <input
-                                    @if(isset($form['relevant_rules_file']) && !empty($form['relevant_rules_file'])) x-show="open"
-                                    @endif  type="file" class="form-control" wire:model="relevant_rules_file">
-                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
-                                @error('relevant_rules_file')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div x-data="{ open: false }" class="col-lg-6">
-                                <label>{!!__('Upload Relevant Notification') !!}<span class="text-danger">*</span></label>
-                                @if(isset($form['relevant_notification_file']) && !empty($form['relevant_notification_file']))
-                                    <br><a href="{{ asset('storage/'.$form['relevant_notification_file']) }}"
-                                           target="_blank" class="file_viewer" title="Relevant Notification">View File</a>
-                                    &nbsp;|&nbsp;
-                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
-                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('relevant_notification_file', null)">Do Not Change File</a>
-                                @endif
-
-                                <input
-                                    @if(isset($form['relevant_notification_file']) && !empty($form['relevant_notification_file'])) x-show="open"
-                                    @endif  type="file" class="form-control" wire:model="relevant_notification_file">
-                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
-                                @error('relevant_notification_file')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                        </div>
                         <div class="row form-group">
                             <div class="col-lg-12">
                             <label class="control-label">Mode of Inspection <span class="text-danger">*</span></label>
@@ -523,25 +578,20 @@
                                     @enderror
                              </div>
 
-                            <div x-data="{ open: false }" class="col-lg-6">
-                                <label>{!!__('Upload applicable fines/penalties/charges notification') !!}<span class="text-danger">*</span></label>
-                                @if(isset($form['applicable_fines_file']) && !empty($form['applicable_fines_file']))
-                                    <br><a href="{{ asset('storage/'.$form['applicable_fines_file']) }}"
-                                           target="_blank" class="file_viewer" title="Applicable Fines">View File</a>
-                                    &nbsp;|&nbsp;
-                                    <a @click="open = true" href="javascript:;"  x-show="!open">Change File</a>
-                                    <a href="javascript:;"  x-show="open" @click="open = false" wire:click.prevent="$set('applicable_fines_file', null)">Do Not Change File</a>
-                                @endif
-
-                                <input
-                                    @if(isset($form['applicable_fines_file']) && !empty($form['applicable_fines_file'])) x-show="open"
-                                    @endif  type="file" class="form-control" wire:model="applicable_fines_file">
-                                <span class="form-text text-muted">File with extension jpg, jpeg, png, pdf are allowed, Max. upload size is 5MB.</span>
-                                @error('applicable_fines_file')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
                         </div>
+
+                            <div class="row form-group">
+                                <div class="col-lg-12">
+                                    <label>{!! __('Fine Details (if any)') !!}<span class="text-danger"></span></label>
+                                    <div wire:ignore>
+                                        <x-c-k-editor wire:model.debounce.999999s="form.fine_details" id="fine_details-ckeditor" placeholder="Fine Details" setFieldName="form.fine_details" ></x-c-k-editor>
+                                    </div>
+                                    @error('form.fine_details')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
@@ -551,72 +601,15 @@
 
                 <!--begin: Wizard Step 5-->
                 <div class="pb-5" data-wizard-type="step-content"
-                     data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
-                    <h4 class="font-weight-bold section_heading text-white">
-                        <span>  {!! __('AUTOMATION') !!}</span>
-                    </h4>
-                    <div class="section_box">
-                        <div class="row form-group">
-                            <label class="control-label">In which form is the activity's data currently being maintained? <span class="text-danger">*</span></label>
-                        </div>
-                        <div class="row form-group">
-                            <div class="radio-list">
-                                <label class="radio radio-success">
-                                    <input type="radio" wire:model="form.current_maintained"  name="current_maintained" value="Manual">
-                                    <span></span>Manual</label>
-
-                                <label class="radio radio-success">
-                                    <input type="radio" wire:model="form.current_maintained" name="current_maintained" value="Semi-Automated">
-                                    <span></span>Semi-Automated (e.g: Excel/Word/etc.)</label>
-                                <label class="radio radio-success">
-                                    <input type="radio" wire:model="form.current_maintained" name="current_maintained" value="Fully-Automated">
-                                    <span></span>Fully-Automated</label>
-                            </div>
-
-                        </div>
-
-                        <div class="row form-group">
-
-                            <div class="col-lg-6">
-                                <label>{!! __('Online URL') !!}<span class="text-danger"></span></label>
-                                <input wire:model.defer="form.online_url" type="text"
-                                       class="form-control @error('form.online_url') is-invalid @enderror"
-                                       placeholder="Online URL:"/>
-                                @error('form.online_url')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                        </div>
-
-                        <div class="row form-group">
-
-                            <div class="col-lg-12">
-                                <label>{!! __('Remarks (if any)') !!}<span class="text-danger"></span></label>
-                                <textarea wire:model.defer="form.remark" class="form-control" @error('form.remark') is-invalid @enderror></textarea>
-                                @error('form.remark')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                </div>
-                <!--end: Wizard Step 5-->
-
-                <!--begin: Wizard Step 6-->
-                <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('FAQs') !!}</span>
                     </h4>
                     @livewire('faq-form', ['rlco' => $rlco])
                 </div>
-                <!--end: Wizard Step 6-->
+                <!--end: Wizard Step 5-->
 
-                <!--begin: Wizard Step 7-->
+                <!--begin: Wizard Step 6-->
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==6){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
@@ -624,13 +617,13 @@
                     </h4>
                     @livewire('fos-form', ['rlco' => $rlco])
                 </div>
-                <!--end: Wizard Step 7-->
+                <!--end: Wizard Step 6-->
 
 
                 <!--begin: Wizard Actions-->
                 <div class="d-flex justify-content-between">
                     <div class="mr-2">
-                        @if($step> 0 && $step<=6)
+                        @if($step> 1 && $step<=6)
                             <button type="button"
                                     class="btn btn-custom-dark font-weight-bold px-8 py-2 d-block"
                                     data-wizard-type="action-prev"
@@ -641,11 +634,12 @@
                         @endif
                     </div>
 
-                    @if($step >= 6)
+                    @if($step >= 6 || (isset($form['automation_status']) && $form['automation_status']=='Manual' && $step==2))
                         <div>
                             <button type="button"
                                     class="btn btn-custom-color font-weight-bold px-8 py-2 d-block float-left mr-10"
                                     data-wizard-type="action-next"
+                                    id="saved"
                                     wire:loading.class="spinner spinner-white spinner-right"
                                     wire:loading.attr="disabled"
                                     wire:click.prevent="submitForm"
@@ -655,9 +649,10 @@
                             <button type="button"
                                     class="btn btn-custom-color font-weight-bold px-8 py-2 d-block"
                                     data-wizard-type="action-submit"
+                                    id="submitted"
                                     wire:loading.class="spinner spinner-white spinner-right"
                                     wire:loading.attr="disabled"
-                                    wire:click.prevent="submitApplication">{!! __('Submit') !!}
+                                    wire:click.prevent="finalSubmitForm">{!! __('Submit') !!}
                             </button>
                         </div>
                     @else
@@ -665,6 +660,7 @@
                                 <button type="button"
                                         class="btn btn-custom-color font-weight-bold px-8 py-2 d-block float-left mr-10"
                                         data-wizard-type="action-next"
+                                        id="saved"
                                         wire:loading.class="spinner spinner-white spinner-right"
                                         wire:loading.attr="disabled"
                                         wire:click.prevent="submitForm"

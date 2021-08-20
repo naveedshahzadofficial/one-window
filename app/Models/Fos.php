@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Fos extends Model
 {
     use HasFactory;
-    protected $fillable = ['rlco_id', 'fos_observation','fos_solution','fos_order','admin_id','fos_status'];
+    protected $fillable = ['rlco_id', 'fos_observation','fos_solution', 'fos_file','fos_order','admin_id','fos_status'];
 }
