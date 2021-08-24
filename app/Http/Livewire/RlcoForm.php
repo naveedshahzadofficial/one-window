@@ -9,6 +9,7 @@ use App\Models\Department;
 use App\Models\Dependency;
 use App\Models\Faq;
 use App\Models\Fos;
+use App\Models\Keyword;
 use App\Models\RequiredDocument;
 use App\Models\Rlco;
 use App\Models\RlcoKeyword;
@@ -28,7 +29,7 @@ class RlcoForm extends Component
     public $departments;
     public $required_documents;
     public $activities;
-    public $rlcos_keywords;
+    public $keywords;
 
     public $dependency_form;
     public $dependencies;
@@ -56,6 +57,8 @@ class RlcoForm extends Component
     public  $process_flow_diagram_file,
             $challan_form_file, $application_form_file;
 
+    protected $listeners = ['confirmDelete'];
+
 
     public function render()
     {
@@ -70,7 +73,7 @@ class RlcoForm extends Component
         $this->activities = Activity::orderBy('activity_order')->where('activity_status',1)->get();
         $this->departments = Department::where('department_status',1)->get();
         $this->required_documents = RequiredDocument::where('document_status','Active')->get();
-        $this->rlcos_keywords = Collect();
+        $this->keywords = Collect();
         $this->form['admin_id'] = auth()->id();
 
         $this->dependencies = Collect();
@@ -81,8 +84,9 @@ class RlcoForm extends Component
             $this->form = $this->rlco->toArray();
             $this->form['activity_ids'] = $this->rlco->activities->pluck('id');
             $this->form['required_document_ids'] = $this->rlco->requiredDocuments->pluck('id');
-            $this->rlcos_keywords = $this->rlco->rlcoKeywords;
-            $this->form['keyword_names'] = $this->rlco->rlcoKeywords->pluck('keywords');
+            $this->keywords = $this->rlco->keywords;
+            $this->form['keyword_ids'] = $this->rlco->keywords->pluck('id');
+
             $this->loadDependencies();
             $this->loadFaqs();
             $this->loadFoss();
@@ -113,23 +117,48 @@ class RlcoForm extends Component
 
     private function submitBasicInfo()
     {
+        $rules = [
+            'form.department_id' => 'required',
+            'form.rlco_name' => 'required',
+            'form.business_category_id' => 'required',
+            'form.business_activity_id' => 'required',
+            'form.activity_ids' => 'required',
+            'form.automation_status' => 'required',
+        ];
+
+        $messages = [
+            'form.department_id.required' => 'Department is required.',
+            'form.rlco_name.required' => 'RLCOs Name is required.',
+            'form.business_category_id.required' => 'Business Category is required.',
+            'form.business_activity_id.required' => 'Sector is required.',
+            'form.activity_ids.required' => 'Activities is required.',
+            'form.automation_status.required' => 'Automation Status is required.',
+        ];
+
+        if(!empty($rules) && !empty($messages))
+            $this->validate($rules,$messages);
 
         DB::transaction(function () {
             $this->formSaved();
             $activity_ids = $this->form['activity_ids']??null;
-            $keyword_names = $this->form['keyword_names']??null;
-            if(!empty($activity_ids))
-            $this->rlco->activities()->sync($activity_ids);
-
-            $this->rlco->rlcoKeywords()->delete();
-
-            if(!empty($keyword_names)){
-                $keyword_names = Collect($keyword_names);
-                $collectionKeywords = $keyword_names->map(function ($keyword){
-                    return new RlcoKeyword(['keyword_name'=>$keyword]);
-                });
-                $this->rlco->rlcoKeywords()->saveMany($collectionKeywords);
+            $keyword_ids = $this->form['keyword_ids']??null;
+            $new_keyword_ids = array();
+            if(!empty($keyword_ids)){
+                foreach ($keyword_ids as $keyword_id){
+                    if ((int)$keyword_id === 0) {
+                        $keyword = Keyword::firstOrCreate(
+                            ['keyword_name' => $keyword_id],
+                            ['keyword_status' => 1]
+                        );
+                        array_push($new_keyword_ids, $keyword->id);
+                    } else {
+                        array_push($new_keyword_ids, $keyword_id);
+                    }
+                }
             }
+
+            $this->rlco->activities()->sync($activity_ids);
+            $this->rlco->keywords()->sync($new_keyword_ids);
 
         });
 
@@ -178,8 +207,7 @@ class RlcoForm extends Component
         DB::transaction(function () {
         $this->formSaved();
             $required_document_ids = $this->form['required_document_ids']??null;
-            if(!empty($required_document_ids))
-                $this->rlco->requiredDocuments()->sync($required_document_ids);
+            $this->rlco->requiredDocuments()->sync($required_document_ids);
         });
 
     }
@@ -191,10 +219,12 @@ class RlcoForm extends Component
 
     private function submitInspection()
     {
-        $rules = [];
-        $messages = [];
-
-
+        $rules = [
+            'form.inspection_required' => 'required',
+        ];
+        $messages = [
+            'form.inspection_required.required' => 'Inspections is required.',
+        ];
         if(!empty($rules) && !empty($messages))
         $this->validate($rules,$messages);
 
@@ -246,6 +276,17 @@ class RlcoForm extends Component
 
     public function addDependency()
     {
+        $rules = [
+            'dependency_form.department_id' => 'required',
+            'dependency_form.activity_name' => 'required',
+        ];
+        $messages = [
+            'dependency_form.department_id.required' => 'Department / Organization Name is required.',
+            'dependency_form.activity_name.required' => 'RLCO Name is required.',
+        ];
+        if(!empty($rules) && !empty($messages))
+            $this->validate($rules,$messages);
+
         if(!$this->rlco) {
             $this->formSaved();
         }
@@ -271,8 +312,16 @@ class RlcoForm extends Component
 
     public function addFaq()
     {
-        $rules = array();
-        $messages = array();
+        $rules = [
+            'faq_form.faq_question' => 'required',
+            'faq_form.faq_order' => 'required',
+            'faq_form.faq_answer' => 'required',
+        ];
+        $messages = [
+            'faq_form.faq_question.required' => 'Question is required.',
+            'faq_form.faq_order.required' => 'Order is required.',
+            'faq_form.faq_answer.required' => 'Answer is required.',
+        ];
 
         if(!empty($this->faq_file)) {
             $rules['faq_file'] = 'mimes:jpg,jpeg,png,pdf,doc,docx|max:5120';
@@ -307,8 +356,14 @@ class RlcoForm extends Component
 
     public function addFos()
     {
-        $rules = array();
-        $messages = array();
+        $rules = [
+            'fos_form.fos_observation' => 'required',
+            'fos_form.fos_order' => 'required',
+        ];
+        $messages = [
+            'fos_form.fos_observation.required' => 'Observation is required.',
+            'fos_form.fos_order.required' => 'Order is required.',
+        ];
 
         if(!empty($this->fos_file)) {
             $rules['fos_file'] = 'mimes:jpg,jpeg,png,pdf,doc,docx|max:5120';
@@ -344,6 +399,27 @@ class RlcoForm extends Component
     private function loadFoss()
     {
         $this->foss = Fos::where('rlco_id', $this->rlco->id)->get();
+    }
+
+    public function confirmDialog($type, $id){
+        $this->dispatchBrowserEvent('confirm:delete',[
+            'type'=> $type,
+            'id'=> $id,
+        ]);
+    }
+
+    public function confirmDelete($type, $id){
+        switch (strtolower(trim($type))){
+            case 'dependency':
+                $this->deleteDependency($id);
+                break;
+            case 'faq':
+                $this->deleteFaq($id);
+                break;
+            case 'fos':
+                $this->deleteFos($id);
+                break;
+        }
     }
 
 }

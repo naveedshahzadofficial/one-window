@@ -224,6 +224,26 @@
                 }
 
             });
+
+            window.addEventListener('confirm:delete', event =>{
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete it!"
+            }).then(function(result) {
+                    if (result.value) {
+                        window.livewire.emit('confirmDelete', event.detail.type, event.detail.id);
+                        Swal.fire(
+                            "Deleted!",
+                            "Your record has been deleted.",
+                            "success"
+                        )
+                    }
+                });
+            });
+
             window.addEventListener('page:tab', event =>{
                 KTUtil.scrollTop(300,3000);
             });

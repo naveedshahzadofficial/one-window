@@ -33,7 +33,6 @@ class CreateRlcosTable extends Migration
             $table->string('challan_form_file')->nullable();
             $table->string('validity')->nullable();
             $table->string('time_taken')->nullable();
-            $table->string('keywords')->nullable();
             $table->string('process_flow_diagram_file')->nullable();
             $table->string('automated_system_link')->nullable();
             $table->string('application_form_file')->nullable();

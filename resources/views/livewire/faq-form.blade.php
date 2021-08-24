@@ -1,7 +1,7 @@
 <div class="section_box">
     <div class="row form-group">
         <div class="col-lg-6">
-            <label>{!! __('Question') !!}<span class="text-danger"></span></label>
+            <label>{!! __('Question') !!}<span class="text-danger">*</span></label>
             <input wire:model.defer="faq_form.faq_question" type="text"
                    class="form-control @error('faq_form.faq_question') is-invalid @enderror"
                    placeholder="Question"/>
@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-lg-6">
-            <label>{!! __('Order') !!}<span class="text-danger"></span></label>
+            <label>{!! __('Order') !!}<span class="text-danger">*</span></label>
             <input wire:model.defer="faq_form.faq_order" type="text"
                    class="form-control @error('faq_form.faq_order') is-invalid @enderror"
                    placeholder="Order No."/>
@@ -46,7 +46,7 @@
     <div class="row form-group">
 
         <div class="col-lg-12">
-            <label>{!! __('Answer') !!}<span class="text-danger"></span></label>
+            <label>{!! __('Answer') !!}<span class="text-danger">*</span></label>
             <div wire:ignore>
                 <x-c-k-editor wire:model.debounce.999999s="faq_form.faq_answer" id="faq_answer-ckeditor" placeholder="Answer" setFieldName="faq_form.faq_answer" ></x-c-k-editor>
             </div>
@@ -81,7 +81,7 @@
                         @if(!empty($faq->faq_file))
                             <a  href="{{ asset('storage/'.$faq->faq_file) }}" target="_blank" title="Attachment Faq" class="btn btn-info text-center btn-circle btn-icon btn-xs"><i class="flaticon2-file text-white"></i></a>&nbsp;&nbsp;
                         @endif
-                        <button wire:click.prevent="deleteFaq({{ $faq->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button>
+                        <button wire:click.prevent="confirmDialog('faq',{{ $faq->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button>
                     </div>
                 </div>
                 <div id="collapse_faq_{{$loop->iteration}}" class="collapse" data-parent="#accordionFaqs" style="">

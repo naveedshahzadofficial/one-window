@@ -17,7 +17,7 @@ class CreateFosTable extends Migration
             $table->id();
             $table->foreignId('rlco_id')->nullable()->constrained();
             $table->text('fos_observation');
-            $table->text('fos_solution');
+            $table->text('fos_solution')->nullable();
             $table->string('fos_file')->nullable();
             $table->unsignedInteger('fos_order')->nullable();
             $table->boolean('fos_status')->default(1);

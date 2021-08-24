@@ -1,7 +1,7 @@
 <div class="section_box">
     <div class="row form-group">
         <div class="col-lg-6">
-            <label>{!! __('Observation') !!}<span class="text-danger"></span></label>
+            <label>{!! __('Observation') !!}<span class="text-danger">*</span></label>
             <input wire:model.defer="fos_form.fos_observation" type="text"
                    class="form-control @error('fos_form.fos_observation') is-invalid @enderror"
                    placeholder="Observation"/>
@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-lg-6">
-            <label>{!! __('Order') !!}<span class="text-danger"></span></label>
+            <label>{!! __('Order') !!}<span class="text-danger">*</span></label>
             <input wire:model.defer="fos_form.fos_order" type="text"
                    class="form-control @error('fos_form.fos_order') is-invalid @enderror"
                    placeholder="Order No."/>
@@ -47,7 +47,7 @@
     <div class="row form-group d-none">
 
         <div class="col-lg-12">
-            <label>{!! __('Solution') !!}<span class="text-danger"></span></label>
+            <label>{!! __('Solution') !!}<span class="text-danger">*</span></label>
             <div wire:ignore>
                 <x-c-k-editor wire:model.debounce.999999s="fos_form.fos_solution" id="fos_solution-ckeditor" placeholder="Solution" setFieldName="fos_form.fos_solution" ></x-c-k-editor>
             </div>
@@ -82,7 +82,7 @@
                         @if(!empty($fos->fos_file))
                         <a  href="{{ asset('storage/'.$fos->fos_file) }}" target="_blank" title="Attachment FOS" class="btn btn-info text-center btn-circle btn-icon btn-xs"><i class="flaticon2-file text-white"></i></a>&nbsp;&nbsp;
                         @endif
-                        <button wire:click.prevent="deleteFos({{ $fos->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button>
+                        <button wire:click.prevent="confirmDialog('fos',{{ $fos->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button>
                     </div>
                 </div>
                 <div id="collapse_fos_{{$loop->iteration}}" class="collapse" data-parent="#accordionFoss" style="">

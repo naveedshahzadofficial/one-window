@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRlcoKeywordsTable extends Migration
+class CreateKeywordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateRlcoKeywordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rlco_keywords', function (Blueprint $table) {
+        Schema::create('keywords', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('rlco_id')->nullable()->constrained();
-            $table->text('keyword_name');
+            $table->string('keyword_name');
+            $table->unsignedInteger('keyword_order')->nullable();
+            $table->text('keyword_remark')->nullable();
+            $table->boolean('keyword_status')->nullable()->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateRlcoKeywordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rlco_keywords');
+        Schema::dropIfExists('keywords');
     }
 }

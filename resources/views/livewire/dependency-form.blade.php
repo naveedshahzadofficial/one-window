@@ -1,7 +1,7 @@
 <div class="section_box">
     <div class="row form-group">
         <div class="col-lg-6">
-            <label>{!! __('Department / Organization Name') !!}<span class="text-danger"></span></label>
+            <label>{!! __('Department / Organization Name') !!}<span class="text-danger">*</span></label>
             <div wire:ignore>
                 <x-select2-dropdown wire:model.defer="dependency_form.department_id"
                                     setFieldName="dependency_form.department_id"
@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-lg-6">
-            <label>{!! __('RLCO Name') !!}<span class="text-danger"></span></label>
+            <label>{!! __('RLCO Name') !!}<span class="text-danger">*</span></label>
             <input wire:model.defer="dependency_form.activity_name" type="text"
                    class="form-control @error('dependency_form.activity_name') is-invalid @enderror"
                    placeholder="RLCO Name"/>
@@ -56,8 +56,8 @@
             <tr>
                 <td>{{ optional($dependency->department)->department_name }}</td>
                 <td>{{ $dependency->activity_name }}</td>
-                <td>{{ $dependency->remark }}</td>
-                <td><button wire:click.prevent="deleteDependency({{ $dependency->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button></td>
+                <td>{!! $dependency->remark !!}</td>
+                <td><button wire:click.prevent="confirmDialog('dependency',{{ $dependency->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button></td>
             </tr>
         @empty
             <tr><td colspan="4" class="opacity-70">Currently no Dependency is added.</td></tr>

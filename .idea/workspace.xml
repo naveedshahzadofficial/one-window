@@ -273,9 +273,19 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/RlcoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/RlcoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Rlco.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Rlco.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/RlcoKeyword.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_11_123930_create_rlcos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_11_123930_create_rlcos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_components/rlco_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_components/rlco_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_11_141803_create_faqs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_11_141803_create_faqs_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_11_141821_create_fos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_11_141821_create_fos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_20_144324_create_rlco_keywords_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_24_144324_create_keyword_rlco_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dependency-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dependency-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/faq-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/faq-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/fos-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/fos-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -624,7 +634,7 @@
       <workItem from="1629180431379" duration="297000" />
       <workItem from="1629443361015" duration="22788000" />
       <workItem from="1629785166602" duration="2502000" />
-      <workItem from="1629789109861" duration="4867000" />
+      <workItem from="1629789109861" duration="10858000" />
     </task>
     <servers />
   </component>

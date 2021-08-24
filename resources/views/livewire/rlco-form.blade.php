@@ -256,11 +256,11 @@
                             <div class="col-lg-12">
                                 <label>{!! __('Keywords') !!}<span class="text-danger"></span></label>
                                 <div wire:ignore >
-                                <x-select2-tag wire:model.defer="form.keyword_names"
+                                <x-select2-tag wire:model.defer="form.keyword_ids"
                                                     isMultiple="true"
-                                                    setFieldName="form.keyword_names"
-                                                    id="keyword_names" fieldName="keyword_name"
-                                                    :listing="$rlcos_keywords"/>
+                                                    setFieldName="form.keyword_ids"
+                                                    id="keyword_ids" fieldName="keyword_name"
+                                                    :listing="$keywords"/>
                                 </div>
 
                                 @error('form.keywords')
