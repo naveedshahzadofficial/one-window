@@ -3,6 +3,12 @@
 
     <div class="d-flex justify-content-between">
         <div class="d-flex flex-column flex-root">
+            <span class="font-weight-bolder mb-2">{!! __('Department Name') !!}</span>
+            <span
+                class="opacity-70">{{ optional($rlco->department)->department_name }}</span>
+        </div>
+
+        <div class="d-flex flex-column flex-root">
             <span class="font-weight-bolder mb-2">{!! __('RLCOs Name') !!}</span>
             <span class="opacity-70">{{ $rlco->rlco_name }}</span>
         </div>
@@ -12,16 +18,19 @@
         <div class="d-flex flex-column flex-root">
             <span class="font-weight-bolder mb-2">{!! __('Description') !!}</span>
             <span
-                class="opacity-70">{{ $rlco->description }}</span>
+                class="opacity-70">{!! $rlco->description  !!}</span>
         </div>
     </div>
 
+
     <div class="d-flex justify-content-between pt-5">
+
         <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __('Department Name') !!}</span>
+            <span class="font-weight-bolder mb-2">{!! __('Scope') !!}</span>
             <span
-                class="opacity-70">{{ optional($rlco->department)->department_name }}</span>
+                class="opacity-70">{{ $rlco->scope }}</span>
         </div>
+
         <div class="d-flex flex-column flex-root">
             <span class="font-weight-bolder mb-2">{!! __('Business Category') !!}</span>
             <span
@@ -59,29 +68,93 @@
     </div>
     @endif
 
+    <div class="d-flex justify-content-between pt-5">
+        <div class="d-flex flex-column flex-root">
+            <span class="font-weight-bolder mb-2">{!! __('Title of Law') !!}</span>
+            <span
+                class="opacity-70">{{ $rlco->title_of_law }}</span>
+        </div>
+        <div class="d-flex flex-column flex-root">
+            <span class="font-weight-bolder mb-2">{!! __('Link of Law') !!}</span>
+            <span
+                class="opacity-70">{{ $rlco->link_of_law }}</span>
+        </div>
+    </div>
 
 
     <div class="d-flex justify-content-between pt-5">
         <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __('Scope') !!}</span>
+            <span class="font-weight-bolder mb-2">{!! __('Automation Status') !!}</span>
             <span
-                class="opacity-70">{{ $rlco->scope }}</span>
+                class="opacity-70">{{ $rlco->automation_status }}</span>
         </div>
+    </div>
 
+
+</div>
+
+@if($rlco->automation_status!="Manual")
+
+<h4 class="main_section_heading">{!! __('PROCESS') !!}</h4>
+<div class="section_box">
+
+    <div class="d-flex justify-content-between pt-5">
         <div class="d-flex flex-column flex-root">
             <span class="font-weight-bolder mb-2">{!! __('Fee') !!}</span>
             <span
                 class="opacity-70">{{ $rlco->fee }}</span>
         </div>
 
+        <div class="d-flex flex-column flex-root">
+            <span class="font-weight-bolder mb-2">{!! __('Fee Submission Mode') !!}</span>
+            <span
+                class="opacity-70">{{ $rlco->fee_submission_mode }}</span>
+        </div>
+
     </div>
 
+    <div class="d-flex justify-content-between pt-5">
+        @if($rlco->fee_submission_mode=='Online')
+        <div class="d-flex flex-column flex-root">
+            <span class="font-weight-bolder mb-2">{!! __('Payment Source') !!}</span>
+            <span
+                class="opacity-70">{{ $rlco->payment_source }}</span>
+        </div>
+        @endif
+
+        @if(!empty($rlco->challan_form_file) && $rlco->fee_submission_mode=='Challan')
+                @if(!empty($rlco->challan_form_file))
+                    <div class="d-flex flex-column flex-root">
+                        <span class="font-weight-bolder mb-2">{!! __('Challan form') !!}</span>
+                        <span class="opacity-70">
+								<a href="{{ \Illuminate\Support\Facades\Storage::url($rlco->challan_form_file) }}"
+                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
+							</span>
+                    </div>
+                @endif
+         @endif
+
+    </div>
+
+    @if($rlco->renewal_required=='Yes')
     <div class="d-flex justify-content-between pt-5">
         <div class="d-flex flex-column flex-root">
             <span class="font-weight-bolder mb-2">{!! __('Validity') !!}</span>
             <span
                 class="opacity-70">{{ $rlco->validity }}</span>
         </div>
+
+        <div class="d-flex flex-column flex-root">
+            <span class="font-weight-bolder mb-2">{!! __('Renewal Fee') !!}</span>
+            <span
+                class="opacity-70">{{ $rlco->renewal_fee }}</span>
+        </div>
+
+    </div>
+    @endif
+
+
+    <div class="d-flex justify-content-between pt-5">
         <div class="d-flex flex-column flex-root">
             <span class="font-weight-bolder mb-2">{!! __('Time Taken') !!}</span>
             <span
@@ -90,22 +163,8 @@
 
     </div>
 
-
-</div>
-
-<h4 class="main_section_heading">{!! __('PROCESS') !!}</h4>
-<div class="section_box">
-    @if(!empty($rlco->relevant_order_file) || !empty($rlco->process_flow_diagram_file))
+    @if(!empty($rlco->process_flow_diagram_file))
     <div class="d-flex justify-content-between pt-5">
-        @if(!empty($rlco->relevant_order_file))
-        <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __('Relevant Notification/Order') !!}</span>
-            <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($rlco->relevant_order_file) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
-                            </span>
-        </div>
-         @endif
          @if(!empty($rlco->process_flow_diagram_file))
                 <div class="d-flex flex-column flex-root">
                     <span class="font-weight-bolder mb-2">{!! __('Process Flow Diagram') !!}</span>
@@ -115,20 +174,44 @@
                             </span>
                 </div>
           @endif
+    </div>
+    @endif
+
+    @if($rlco->requiredDocuments->isNotEmpty())
+        <div class="d-flex justify-content-between pt-5">
+            <div class="d-flex flex-column flex-root">
+                <span class="font-weight-bolder mb-2">{!! __('Required Documents') !!}</span>
+                <table class="table">
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Title</th>
+                    </tr>
+                    <tbody>
+                    @foreach($rlco->requiredDocuments as $document)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $document->document_title }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @endif
+
+    @if($rlco->automation_status=='Fully Automated')
+    <div class="d-flex justify-content-between pt-5">
+        <div class="d-flex flex-column flex-root">
+            <span class="font-weight-bolder mb-2">{!! __('Automated System Link') !!}</span>
+            <span
+                class="opacity-70">{{ $rlco->automated_system_link }}</span>
+        </div>
 
     </div>
     @endif
-    @if(!empty($rlco->challan_form_file) || !empty($rlco->application_form_file))
+
+    @if(!empty($rlco->application_form_file) && $rlco->automation_status=='Semi Automated')
             <div class="d-flex justify-content-between pt-5">
-                @if(!empty($rlco->challan_form_file))
-                    <div class="d-flex flex-column flex-root">
-                        <span class="font-weight-bolder mb-2">{!! __('Challan form') !!}</span>
-                        <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($rlco->challan_form_file) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
-                            </span>
-                    </div>
-                @endif
                 @if(!empty($rlco->application_form_file))
                     <div class="d-flex flex-column flex-root">
                         <span class="font-weight-bolder mb-2">{!! __('Application Form') !!}</span>
@@ -141,29 +224,6 @@
 
             </div>
     @endif
-
-        @if($rlco->requiredDocuments->isNotEmpty())
-            <div class="d-flex justify-content-between pt-5">
-                <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">{!! __('Required Documents') !!}</span>
-                    <table class="table">
-                        <tr>
-                            <th>Sr. No.</th>
-                            <th>Title</th>
-                        </tr>
-                        <tbody>
-                        @foreach($rlco->requiredDocuments as $document)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $document->document_title }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        @endif
-
 </div>
 
 <h4 class="main_section_heading">{!! __('Dependencies') !!}</h4>
@@ -186,7 +246,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ optional($dependency->department)->department_name }}</td>
                             <td>{{ $dependency->activity_name }}</td>
-                            <td>{{ $dependency->remark }}</td>
+                            <td>{!! $dependency->remark !!}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -194,7 +254,7 @@
             </div>
         </div>
     @else
-        <span>No, Dependency available.</span>
+        <span>No, Dependency is available.</span>
     @endif
 
 </div>
@@ -210,48 +270,7 @@
     </div>
 
     @if($rlco->inspection_required!="None")
-    <div class="d-flex justify-content-between pt-5">
-        <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __('What is the purpose of inspection?') !!}</span>
-            <span
-                class="opacity-70">{{ $rlco->purpose_of_inspection }}</span>
-        </div>
 
-        @if(!empty($rlco->relevant_laws_file))
-            <div class="d-flex flex-column flex-root">
-                <span class="font-weight-bolder mb-2">{!! __('Relevant Laws') !!}</span>
-                <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($rlco->relevant_laws_file) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
-                            </span>
-            </div>
-        @endif
-    </div>
-
-         @if(!empty($rlco->relevant_rules_file) || !empty($rlco->relevant_notification_file))
-        <div class="d-flex justify-content-between pt-5">
-            @if(!empty($rlco->relevant_rules_file))
-                <div class="d-flex flex-column flex-root">
-                    <span class="font-weight-bolder mb-2">{!! __('Relevant Rules') !!}</span>
-                    <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($rlco->relevant_rules_file) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
-                            </span>
-                </div>
-            @endif
-
-             @if(!empty($rlco->relevant_notification_file))
-                    <div class="d-flex flex-column flex-root">
-                        <span class="font-weight-bolder mb-2">{!! __('Relevant Notification') !!}</span>
-                        <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($rlco->relevant_notification_file) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
-                            </span>
-                    </div>
-              @endif
-
-        </div>
-        @endif
 
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
@@ -261,51 +280,24 @@
             </div>
 
             <div class="d-flex flex-column flex-root">
-                <span class="font-weight-bolder mb-2">{!! __('Which organization/authority do you conduct joint inspection with?') !!}</span>
+                <span class="font-weight-bolder mb-2">{!! __('Joint inspection with') !!}</span>
                 <span
                     class="opacity-70">{{ optional($rlco->inspectionDepartment)->department_name }}</span>
             </div>
 
         </div>
 
-        @if(!empty($rlco->applicable_fines_file))
-            <div class="d-flex justify-content-between pt-5">
+        <div class="d-flex justify-content-between pt-5">
             <div class="d-flex flex-column flex-root">
-                <span class="font-weight-bolder mb-2">{!! __('Applicable fines/ Penalties/ Charges notification') !!}</span>
-                <span class="opacity-70">
-                                <a href="{{ \Illuminate\Support\Facades\Storage::url($rlco->applicable_fines_file) }}"
-                                   target="_blank" class="hand"><i class="flaticon2-download color-black"></i> Download</a>
-                            </span>
+                <span class="font-weight-bolder mb-2">{!! __('Fine Details') !!}</span>
+                <span
+                    class="opacity-70">{!! $rlco->fine_details !!}</span>
             </div>
-            </div>
-        @endif
+
+        </div>
+
 
     @endif
-</div>
-
-<h4 class="main_section_heading">{!! __('AUTOMATION') !!}</h4>
-<div class="section_box">
-    <div class="d-flex justify-content-between pt-5">
-        <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __("In which form is the activity's data currently being maintained?") !!}</span>
-            <span
-                class="opacity-70">{{ $rlco->current_maintained }}</span>
-        </div>
-
-        <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __('Online URL') !!}</span>
-            <span
-                class="opacity-70">{{ $rlco->online_url }}</span>
-        </div>
-
-    </div>
-    <div class="d-flex justify-content-between pt-5">
-        <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __("Remarks") !!}</span>
-            <span
-                class="opacity-70">{{ $rlco->remark }}</span>
-        </div>
-    </div>
 </div>
 
 
@@ -329,6 +321,9 @@
                                                                     <!--end::Svg Icon-->
 																</span>
                     <div class="card-label pl-4">{{ $faq->faq_question }}</div>
+                    @if(!empty($faq->faq_file))
+                        <a  href="{{ asset('storage/'.$faq->faq_file) }}" target="_blank" title="Attachment Faq" class="btn btn-info text-center btn-circle btn-icon btn-xs"><i class="flaticon2-file text-white"></i></a>&nbsp;&nbsp;
+                    @endif
                 </div>
             </div>
             <div id="collapse_faq_{{$loop->iteration}}" class="collapse" data-parent="#accordionFaqs" style="">
@@ -363,6 +358,9 @@
                                                                     <!--end::Svg Icon-->
 																</span>
                         <div class="card-label pl-4">{{ $fos->fos_observation }}</div>
+                        @if(!empty($fos->fos_file))
+                            <a  href="{{ asset('storage/'.$fos->fos_file) }}" target="_blank" title="Attachment FOS" class="btn btn-info text-center btn-circle btn-icon btn-xs"><i class="flaticon2-file text-white"></i></a>&nbsp;&nbsp;
+                        @endif
                     </div>
                 </div>
                 <div id="collapse_fos_{{$loop->iteration}}" class="collapse" data-parent="#accordionFoss" style="">
@@ -375,3 +373,16 @@
     </div>
 
 </div>
+
+@else
+<h4 class="main_section_heading">{!! __('Manual') !!}</h4>
+<div class="section_box">
+    <div class="d-flex justify-content-between pt-5">
+        <div class="d-flex flex-column flex-root">
+            <span class="font-weight-bolder mb-2">{!! __("Contact Detail / Department office address Detail") !!}</span>
+            <span
+                class="opacity-70">{{ $rlco->manual_detail }}</span>
+        </div>
+    </div>
+</div>
+@endif

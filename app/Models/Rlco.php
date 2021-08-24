@@ -12,7 +12,7 @@ class Rlco extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['rlco_no', 'rlco_name', 'description', 'department_id', 'business_category_id', 'business_activity_id',
-        'scope','title_of_law', 'link_of_law', 'fee', 'renewal_required','renewal_fee', 'fee_submission_mode', 'payment_source', 'validity', 'time_taken', 'keywords' , 'automated_system_link',
+        'scope','title_of_law', 'link_of_law', 'automation_status', 'fee', 'renewal_required','renewal_fee', 'fee_submission_mode', 'payment_source', 'validity', 'time_taken', 'keywords' , 'automated_system_link',
         'process_flow_diagram_file', 'challan_form_file', 'application_form_file', 'inspection_required', 'fine_details',
         'relevant_laws_file', 'mode_of_inspection', 'inspection_department_id',
          'manual_detail', 'admin_id', 'rlco_status'];

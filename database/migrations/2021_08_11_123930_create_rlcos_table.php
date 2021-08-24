@@ -24,6 +24,7 @@ class CreateRlcosTable extends Migration
             $table->string('scope')->nullable();
             $table->string('title_of_law')->nullable();
             $table->string('link_of_law')->nullable();
+            $table->string('automation_status')->nullable();
             $table->string('fee')->nullable();
             $table->string('renewal_required')->nullable();
             $table->string('renewal_fee')->nullable();
