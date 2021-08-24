@@ -59,7 +59,7 @@
     </div>
 
     <div class="row form-group">
-        <button class="btn btn-custom-color" wire:click.prevent="addFos()" >Add</button>
+        <button class="btn btn-custom-color" wire:click.prevent="addFos()" >Add Fos</button>
     </div>
 
     <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="accordionFoss">
@@ -80,7 +80,7 @@
 																</span>
                         <div class="card-label pl-4">{{ $fos->fos_observation }}</div>
                         @if(!empty($fos->fos_file))
-                        <a  href="{{ asset('storage/'.$fos->fos_file) }}" target="_blank" title="Attachment FOS" class="btn btn-info text-center btn-circle btn-icon btn-xs"><i class="flaticon2-file text-white"></i></a>
+                        <a  href="{{ asset('storage/'.$fos->fos_file) }}" target="_blank" title="Attachment FOS" class="btn btn-info text-center btn-circle btn-icon btn-xs"><i class="flaticon2-file text-white"></i></a>&nbsp;&nbsp;
                         @endif
                         <button wire:click.prevent="deleteFos({{ $fos->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button>
                     </div>
@@ -90,7 +90,7 @@
                 </div>
             </div>
         @empty
-            <span class="opacity-70">No, Fos is available.</span>
+            <span class="opacity-70">Currently no observation is added.</span>
         @endforelse
     </div>
 

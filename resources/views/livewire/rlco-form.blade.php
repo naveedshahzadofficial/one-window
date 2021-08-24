@@ -127,11 +127,11 @@
                                 <label for="">Scope</label>
                                 <div class="radio-inline">
                                     <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.scope" name="scope"  value="Provincial">
-                                        <span></span>Provincial</label>
-                                    <label class="radio radio-success">
                                         <input type="radio" wire:model.defer="form.scope" name="scope" value="Federal">
                                         <span></span>Federal</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.scope" name="scope"  value="Provincial">
+                                        <span></span>Provincial</label>
                                     <label class="radio radio-success">
                                         <input type="radio" wire:model.defer="form.scope" name="scope" value="District">
                                         <span></span>District</label>
@@ -182,7 +182,7 @@
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <label>{!! __('Activities') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
@@ -254,7 +254,7 @@
                     <div class="section_box">
                         <div class="row form-group">
                             <div class="col-lg-12">
-                                <label>{!! __('Keywords') !!}<span class="text-danger">*</span></label>
+                                <label>{!! __('Keywords') !!}<span class="text-danger"></span></label>
                                 <div wire:ignore >
                                 <x-select2-tag wire:model.defer="form.keyword_names"
                                                     isMultiple="true"
@@ -301,7 +301,7 @@
                         <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
 
                             <div class="col-lg-6">
-                                <label>{!! __('Fee') !!}<span class="text-danger">*</span></label>
+                                <label>{!! __('Fee') !!}<span class="text-danger"></span></label>
                                 <input wire:model.defer="form.fee" type="text"
                                        class="form-control @error('form.fee') is-invalid @enderror"
                                        placeholder="Fee"/>
@@ -310,54 +310,9 @@
                                 @enderror
                             </div>
 
-                            <div class="col-lg-6">
-                                <label for="">Renewal Required<span class="text-danger">*</span></label>
-                                <div class="radio-inline">
-                                    <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.renewal_required" name="renewal_required" @click="renewal_required= 'Yes'"  value="Yes">
-                                        <span></span>Yes</label>
-                                    <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.renewal_required" name="renewal_required" @click="renewal_required= 'No'" value="No">
-                                        <span></span>No</label>
-                                </div>
-                                @error('form.automation_status')
-                                <div class="invalid-feedback d-block">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div><!--form-group ends-->
-
-
-                        </div>
-
-                        <div x-show.transition.opacity="automation_status!='Manual' && renewal_required=='Yes'" class="row form-group">
 
                             <div class="col-lg-6">
-                                <label>{!! __('Validity') !!}<span class="text-danger">*</span></label>
-                                <input wire:model.defer="form.validity" type="text"
-                                       class="form-control @error('form.validity') is-invalid @enderror"
-                                       placeholder="Validity"/>
-                                @error('form.validity')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-lg-6">
-                                <label>{!! __('Renewal Fee') !!}<span class="text-danger">*</span></label>
-                                <input wire:model.defer="form.renewal_fee" type="text"
-                                       class="form-control @error('form.renewal_fee') is-invalid @enderror"
-                                       placeholder="Renewal Fee"/>
-                                @error('form.renewal_fee')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                        </div>
-
-                        <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
-
-                            <div class="col-lg-6">
-                                <label>Fee Submission Mode<span class="text-danger">*</span></label>
+                                <label>Fee Submission Mode<span class="text-danger"></span></label>
                                 <div class="radio-inline">
                                     <label class="radio radio-success">
                                         <input type="radio" wire:model.defer="form.fee_submission_mode" name="fee_submission_mode" @click="fee_submission_mode= 'Online'" value="Online">
@@ -376,7 +331,11 @@
                                 @enderror
                             </div><!--form-group ends-->
 
+
+
+
                         </div>
+
 
                         <div x-show.transition.opacity="automation_status!='Manual'"class="row form-group">
 
@@ -417,8 +376,56 @@
                                     @enderror
                                 </div>
                             </div>
+
+                        </div>
+
+
+                        <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
                             <div class="col-lg-6">
-                                <label>{!! __('Time Taken') !!}<span class="text-danger">*</span></label>
+                                <label for="">Renewal Required<span class="text-danger">*</span></label>
+                                <div class="radio-inline">
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.renewal_required" name="renewal_required" @click="renewal_required= 'Yes'"  value="Yes">
+                                        <span></span>Yes</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.renewal_required" name="renewal_required" @click="renewal_required= 'No'" value="No">
+                                        <span></span>No</label>
+                                </div>
+                                @error('form.automation_status')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div><!--form-group ends-->
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='Manual' && renewal_required=='Yes'" class="row form-group">
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Validity') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="form.validity" type="text"
+                                       class="form-control @error('form.validity') is-invalid @enderror"
+                                       placeholder="Validity"/>
+                                @error('form.validity')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>{!! __('Renewal Fee') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="form.renewal_fee" type="text"
+                                       class="form-control @error('form.renewal_fee') is-invalid @enderror"
+                                       placeholder="Renewal Fee"/>
+                                @error('form.renewal_fee')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='Manual'"  class="row form-group">
+                            <div class="col-lg-6">
+                                <label>{!! __('Time Taken') !!}<span class="text-danger"></span></label>
                                 <input wire:model.defer="form.time_taken" type="text"
                                        class="form-control @error('form.time_taken') is-invalid @enderror"
                                        placeholder="Time Taken"/>
@@ -426,12 +433,11 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-
                         </div>
 
                         <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
                             <div x-data="{ open: false }" class="col-lg-6">
-                                <label>{!!__('Process Flow Diagram') !!}<span class="text-danger">*</span></label>
+                                <label>{!!__('Process Flow Diagram') !!}<span class="text-danger"></span></label>
                                 @if(isset($form['process_flow_diagram_file']) && !empty($form['process_flow_diagram_file']))
                                     <br><a href="{{ asset('storage/'.$form['process_flow_diagram_file']) }}"
                                            target="_blank" class="file_viewer" title="Process Flow Diagram">View File</a>
@@ -450,7 +456,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <label>{!! __('Required Documents') !!}<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger"></span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="form.required_document_ids"
                                                         isMultiple="true"
@@ -467,7 +473,7 @@
                         <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
 
                             <div x-show.transition.opacity="automation_status=='Fully Automated'" class="col-lg-6">
-                                <label>{!! __('Automated System Link') !!}<span class="text-danger">*</span></label>
+                                <label>{!! __('Automated System Link') !!}<span class="text-danger"></span></label>
                                 <input wire:model.defer="form.automated_system_link" type="text"
                                        class="form-control @error('form.automated_system_link') is-invalid @enderror"
                                        placeholder="Automated System Link"/>
@@ -478,7 +484,7 @@
 
                             <div x-show.transition.opacity="automation_status=='Semi Automated'" class="col-lg-6" >
                             <div x-data="{ open: false }" >
-                                    <label>{!!__('Application Form') !!}<span class="text-danger">*</span></label>
+                                    <label>{!!__('Application Form') !!}<span class="text-danger"></span></label>
                                     @if(isset($form['application_form_file']) && !empty($form['application_form_file']))
                                         <br><a href="{{ asset('storage/'.$form['application_form_file']) }}"
                                                target="_blank" class="file_viewer" title="Application Form">View File</a>
@@ -510,7 +516,7 @@
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('Dependencies') !!}</span>
                     </h4>
-                    @livewire('dependency-form', ['rlco' => $rlco, 'departments'=>$departments])
+                    @include('livewire.dependency-form')
                 </div>
                 <!--end: Wizard Step 3-->
 
@@ -554,19 +560,19 @@
                         <div class="row form-group">
                             <div class="radio-list">
                                 <label class="radio radio-success">
-                                    <input type="radio"  wire:model="form.mode_of_inspection" name="mode_of_inspection" value="Manual (Physical visit with manual data entry)">
+                                    <input type="radio"  wire:model.defer="form.mode_of_inspection" name="mode_of_inspection" value="Manual (Physical visit with manual data entry)">
                                     <span></span>Manual (Physical visit with manual data entry)</label>
                                 <label class="radio radio-success">
-                                    <input type="radio" wire:model="form.mode_of_inspection" name="mode_of_inspection" value="Semi Automated (Physical visit with data entry using Mobile App/System)">
+                                    <input type="radio" wire:model.defer="form.mode_of_inspection" name="mode_of_inspection" value="Semi Automated (Physical visit with data entry using Mobile App/System)">
                                     <span></span>Semi Automated (Physical visit with data entry using Mobile App/System)</label>
                                 <label class="radio radio-success">
-                                    <input type="radio" wire:model="form.mode_of_inspection" name="mode_of_inspection" value="Fully Automated (No physical visit)">
+                                    <input type="radio" wire:model.defer="form.mode_of_inspection" name="mode_of_inspection" value="Fully Automated (No physical visit)">
                                     <span></span>Fully Automated (No physical visit)</label>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-lg-6">
-                                    <label>{!! __('Which organization/authority do you conduct joint inspection with?') !!}<span class="text-danger"></span></label>
+                                    <label>{!! __('Joint inspection with (if applicable)') !!}<span class="text-danger"></span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="form.inspection_department_id"
                                                         setFieldName="form.inspection_department_id"
@@ -605,7 +611,7 @@
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('FAQs') !!}</span>
                     </h4>
-                    @livewire('faq-form', ['rlco' => $rlco])
+                    @include('livewire.faq-form')
                 </div>
                 <!--end: Wizard Step 5-->
 
@@ -615,7 +621,7 @@
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('FOS') !!}</span>
                     </h4>
-                    @livewire('fos-form', ['rlco' => $rlco])
+                    @includeWhen($step==6, 'livewire.fos-form')
                 </div>
                 <!--end: Wizard Step 6-->
 

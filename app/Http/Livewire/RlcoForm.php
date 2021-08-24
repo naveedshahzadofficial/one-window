@@ -28,8 +28,18 @@ class RlcoForm extends Component
     public $departments;
     public $required_documents;
     public $activities;
-
     public $rlcos_keywords;
+
+    public $dependency_form;
+    public $dependencies;
+
+    public $faq_form;
+    public $faqs;
+    public  $faq_file;
+
+    public $fos_form;
+    public $foss;
+    public  $fos_file;
 
     public $step;
     private $stepActions = [
@@ -46,13 +56,6 @@ class RlcoForm extends Component
     public  $process_flow_diagram_file,
             $challan_form_file, $application_form_file;
 
-    protected $listeners = ['setRlcoId'];
-
-    public function setRlcoId($rlco_id)
-    {
-        if(!$this->rlco)
-            $this->rlco =  Rlco::find($rlco_id);
-    }
 
     public function render()
     {
@@ -70,12 +73,19 @@ class RlcoForm extends Component
         $this->rlcos_keywords = Collect();
         $this->form['admin_id'] = auth()->id();
 
+        $this->dependencies = Collect();
+        $this->faqs = Collect();
+        $this->foss = Collect();
+
         if($this->rlco){
             $this->form = $this->rlco->toArray();
             $this->form['activity_ids'] = $this->rlco->activities->pluck('id');
             $this->form['required_document_ids'] = $this->rlco->requiredDocuments->pluck('id');
             $this->rlcos_keywords = $this->rlco->rlcoKeywords;
             $this->form['keyword_names'] = $this->rlco->rlcoKeywords->pluck('keywords');
+            $this->loadDependencies();
+            $this->loadFaqs();
+            $this->loadFoss();
         }
     }
 
@@ -214,10 +224,9 @@ class RlcoForm extends Component
     {
         if($this->rlco)
             $this->rlco = tap($this->rlco)->update($this->form);
-        else{
+        else
             $this->rlco = Rlco::create($this->form);
-            $this->emit('setRlcoId',$this->rlco->id);
-        }
+
         $this->successAlert();
     }
 
@@ -228,6 +237,113 @@ class RlcoForm extends Component
             'title'=> 'Record has been saved successfully.',
             'text'=> '',
         ]);
+    }
+
+    private function loadDependencies()
+    {
+        $this->dependencies = Dependency::with('department')->where('rlco_id', $this->rlco->id)->get();
+    }
+
+    public function addDependency()
+    {
+        if(!$this->rlco) {
+            $this->formSaved();
+        }
+
+        $this->dependency_form['rlco_id'] = $this->rlco->id;
+        $this->dependency_form['admin_id'] = auth()->id();
+        Dependency::create($this->dependency_form);
+        $this->dispatchBrowserEvent('dependency:select2',['id'=>'#organization_id','key_name'=>'dependency_form.department_id']);
+        $this->reset('dependency_form');
+        $this->loadDependencies();
+    }
+
+    public function deleteDependency($dependency_id)
+    {
+        $faq = Dependency::find($dependency_id);
+        $faq->delete();
+        $this->loadDependencies();
+    }
+
+    private function loadFaqs(){
+        $this->faqs = Faq::where('rlco_id', $this->rlco->id)->orderBy('faq_order')->get();
+    }
+
+    public function addFaq()
+    {
+        $rules = array();
+        $messages = array();
+
+        if(!empty($this->faq_file)) {
+            $rules['faq_file'] = 'mimes:jpg,jpeg,png,pdf,doc,docx|max:5120';
+            $messages['faq_file.mimes'] = 'Attachment must be a file of type: jpg, jpeg, png, pdf, doc, docx.';
+        }
+
+        if(!empty($rules) && !empty($messages))
+            $this->validate($rules,$messages);
+
+        if(!$this->rlco) {
+            $this->formSaved();
+         }
+
+        if(!empty($this->faq_file)) {
+            $this->faq_form['faq_file'] = $this->faq_file->store('faq_files', 'public');
+            $this->faq_file = null;
+        }
+
+        $this->faq_form['rlco_id'] = $this->rlco->id;
+        $this->faq_form['admin_id'] = auth()->id();
+        Faq::create($this->faq_form);
+        $this->reset('faq_form');
+        $this->loadFaqs();
+    }
+
+    public function deleteFaq($faq_id)
+    {
+        $faq = Faq::find($faq_id);
+        $faq->delete();
+        $this->loadFaqs();
+    }
+
+    public function addFos()
+    {
+        $rules = array();
+        $messages = array();
+
+        if(!empty($this->fos_file)) {
+            $rules['fos_file'] = 'mimes:jpg,jpeg,png,pdf,doc,docx|max:5120';
+            $messages['fos_file.mimes'] = 'Attachment must be a file of type: jpg, jpeg, png, pdf, doc, docx.';
+        }
+
+        if(!empty($rules) && !empty($messages))
+            $this->validate($rules,$messages);
+
+        if(!$this->rlco) {
+            $this->formSaved();
+        }
+
+        if(!empty($this->fos_file)) {
+            $this->fos_form['fos_file'] = $this->fos_file->store('fos_files', 'public');
+            $this->fos_file = null;
+        }
+
+        $this->fos_form['rlco_id'] = $this->rlco->id;
+        $this->fos_form['admin_id'] = auth()->id();
+        Fos::create($this->fos_form);
+        $this->reset('fos_form');
+        $this->loadFoss();
+    }
+
+    public function deleteFos($fos_id)
+    {
+        $fos = Fos::find($fos_id);
+        $fos->delete();
+        $this->loadFoss();
+    }
+
+    private function loadFoss()
+    {
+        $this->foss = Fos::where('rlco_id', $this->rlco->id)->get();
     }
 
 }

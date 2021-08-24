@@ -36,6 +36,19 @@
                 <div class="row mb-6">
 
                     <div class="col-lg-3 mb-lg-0 mb-6">
+                        <label>Department:</label>
+                        <select name="department_id" class="form-control select2" id="department_id">
+                            <option value="">--- Select ---</option>
+                            @isset($departments)
+                                @foreach($departments as $department)
+                                    <option
+                                        {{ request()->get('department_id')==$department->id?'selected':'' }} value="{{ $department->id }}">{{ $department->department_name }}</option>
+                                @endforeach
+                            @endisset
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 mb-lg-0 mb-6">
                         <label>Business Category:</label>
                         <select name="business_category_id" class="form-control select2" id="business_category_id">
                             <option value="">--- Select ---</option>
@@ -47,11 +60,7 @@
                             @endisset
                         </select>
                     </div>
-                    <div class="col-lg-3 mb-lg-0 mb-6">
-                        <label>Registration No.</label>
-                        <input type="text" name="registration_no" id="registration_no" class="form-control"
-                               placeholder="Registration No.">
-                    </div>
+
                     <div class="col-lg-6 mt-7">
                         <button onclick="reDrawDataTable();" class="btn btn-custom-color btn-primary--icon"
                                 id="kt_search">
@@ -78,8 +87,8 @@
                 <tr>
                     <th>Rlco ID</th>
                     <th>Sr. No.</th>
-                    <th>Registration No.</th>
                     <th>Rlco Name</th>
+                    <th>Department</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -111,14 +120,15 @@
                     type: "POST",
                     data: function (row) {
                         row.registration_no = $('#registration_no').val();
+                        row.department_id = $('#department_id').val();
                         row.business_category_id = $('#business_category_id').val();
                     }
                 },
                 columns: [
                     {data: 'id', searchable: false, visible: false, printable: false},
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-                    {data: 'rlco_no', name: 'registration_no'},
-                    {data: 'rlco_name', name: 'personal_email'},
+                    {data: 'rlco_name', name: 'rlco_name'},
+                    {data: 'department_name', name: 'department_id'},
                     {data: 'rlco_status', name: 'status_id'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],

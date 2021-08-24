@@ -39,7 +39,7 @@
     </div>
 
     <div class="row form-group">
-        <button class="btn btn-custom-color" wire:click.prevent="addDependency()" >Add more</button>
+        <button class="btn btn-custom-color" wire:click.prevent="addDependency()" >Add Dependency</button>
     </div>
 
     <table class="table">
@@ -52,14 +52,16 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($dependencies as $index => $dependency)
+        @forelse($dependencies as $dependency)
             <tr>
                 <td>{{ optional($dependency->department)->department_name }}</td>
                 <td>{{ $dependency->activity_name }}</td>
                 <td>{{ $dependency->remark }}</td>
                 <td><button wire:click.prevent="deleteDependency({{ $dependency->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button></td>
             </tr>
-        @endforeach
+        @empty
+            <tr><td colspan="4" class="opacity-70">Currently no Dependency is added.</td></tr>
+        @endforelse
 
         </tbody>
     </table>

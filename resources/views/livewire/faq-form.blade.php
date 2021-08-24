@@ -58,7 +58,7 @@
     </div>
 
     <div class="row form-group">
-        <button class="btn btn-custom-color" wire:click.prevent="addFaq()" >Add</button>
+        <button class="btn btn-custom-color" wire:click.prevent="addFaq()" >Add FAQ</button>
     </div>
 
     <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="accordionFaqs">
@@ -79,7 +79,7 @@
 																</span>
                         <div class="card-label pl-4">{{ $faq->faq_question }}</div>
                         @if(!empty($faq->faq_file))
-                            <a  href="{{ asset('storage/'.$faq->faq_file) }}" target="_blank" title="Attachment Faq" class="btn btn-info text-center btn-circle btn-icon btn-xs"><i class="flaticon2-file text-white"></i></a>
+                            <a  href="{{ asset('storage/'.$faq->faq_file) }}" target="_blank" title="Attachment Faq" class="btn btn-info text-center btn-circle btn-icon btn-xs"><i class="flaticon2-file text-white"></i></a>&nbsp;&nbsp;
                         @endif
                         <button wire:click.prevent="deleteFaq({{ $faq->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button>
                     </div>
@@ -90,7 +90,7 @@
                 </div>
             </div>
         @empty
-            <span class="opacity-70">No, Faqs is available.</span>
+            <span class="opacity-70">Currently no FAQ is added.</span>
         @endforelse
     </div>
 

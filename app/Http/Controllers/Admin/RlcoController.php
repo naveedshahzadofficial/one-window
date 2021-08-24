@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BusinessCategory;
+use App\Models\Department;
 use App\Models\Rlco;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,16 +18,21 @@ class RlcoController extends Controller
     {
         $data = [];
         $data['business_categories'] = BusinessCategory::where('category_status',1)->get();
+        $data['departments'] = Department::where('department_status',1)->get();
         return view('admin.rlco.index')->with($data);
     }
     public function indexAjax(Request $request): JsonResponse
     {
+        $department_id = isset($request->department_id) && !empty($request->department_id) ?$request->department_id: '';
         $registration_no = isset($request->registration_no) && !empty($request->registration_no) ?$request->registration_no: '';
         $business_category_id = isset($request->business_category_id) && !empty($request->business_category_id) ?$request->business_category_id: '';
 
-        $query = Rlco::select("*");
+        $query = Rlco::select("*")->with('department');
         if (!empty($registration_no)) {
             $query->where('rlco_no', 'like' ,"%$registration_no%");
+        }
+        if (!empty($department_id)) {
+            $query->where('department_id', $department_id);
         }
         if (!empty($business_category_id)) {
             $query->where('business_category_id',  $business_category_id);
@@ -34,6 +40,9 @@ class RlcoController extends Controller
 
         return DataTables::of($query)
             ->addIndexColumn()
+            ->editColumn('department_name', function (Rlco $rlco){
+                return $rlco->department->department_name??'';
+            })
             ->editColumn('rlco_status', function (Rlco $rlco){
                 return '<span class="btn btn-circle btn-sm border-0 cursor-move active '.($rlco->rlco_status==1?'btn-hover-success':'btn-hover-danger').'">'.$rlco->getRlcoStatus().'</span>';
             })

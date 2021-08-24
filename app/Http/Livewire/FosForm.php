@@ -16,7 +16,6 @@ class FosForm extends Component
 
     public $fos_form;
     public $foss;
-
     public  $fos_file;
 
     protected $listeners = ['setRlcoId'];
