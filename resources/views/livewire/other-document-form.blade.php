@@ -40,7 +40,7 @@
                 <td><button wire:click.prevent="confirmDialog('other_document',{{ $document->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button></td>
             </tr>
         @empty
-            <tr><td colspan="4" class="opacity-70">Currently no Other Document is added.</td></tr>
+            <tr><td colspan="4" class="opacity-70">Currently no other document is added.</td></tr>
         @endforelse
 
         </tbody>

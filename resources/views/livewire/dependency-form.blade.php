@@ -74,7 +74,7 @@
                 <td><button wire:click.prevent="confirmDialog('dependency',{{ $dependency->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button></td>
             </tr>
         @empty
-            <tr><td colspan="4" class="opacity-70">Currently no Dependency is added.</td></tr>
+            <tr><td colspan="4" class="opacity-70">Currently no dependency is added.</td></tr>
         @endforelse
 
         </tbody>

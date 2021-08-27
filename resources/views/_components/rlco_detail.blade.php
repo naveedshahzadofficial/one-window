@@ -256,7 +256,7 @@
             </div>
         </div>
     @else
-        <span>No, Dependency is available.</span>
+        <span>No, dependency is available.</span>
     @endif
 
 </div>
@@ -370,7 +370,7 @@
                 </div>
             </div>
         @empty
-          <span class="opacity-70">No, Fos is available.</span>
+          <span class="opacity-70">No, observation is available.</span>
         @endforelse
     </div>
 
