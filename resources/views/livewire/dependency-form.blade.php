@@ -1,4 +1,4 @@
-<div class="section_box">
+<div>
     <div class="row form-group">
         <div class="col-lg-6">
             <label>{!! __('Department / Organization Name') !!}<span class="text-danger">*</span></label>
@@ -25,6 +25,18 @@
 
     </div>
     <div class="row form-group">
+        <div class="col-lg-6">
+            <label>{!! __('Priority') !!}<span class="text-danger">*</span></label>
+            <input wire:model.defer="dependency_form.priority" type="text"
+                   class="form-control @error('dependency_form.priority') is-invalid @enderror"
+                   placeholder="Priority"/>
+            @error('dependency_form.priority')
+            <div class="invalid-feedback d-block">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+
+    <div class="row form-group">
 
         <div class="col-lg-12">
             <label>{!! __('Remarks (if any):') !!}<span class="text-danger"></span></label>
@@ -47,6 +59,7 @@
         <tr>
             <th>Organization</th>
             <th>RLCO Name</th>
+            <th>Priority</th>
             <th>Remarks</th>
             <th>Action</th>
         </tr>
@@ -56,6 +69,7 @@
             <tr>
                 <td>{{ optional($dependency->department)->department_name }}</td>
                 <td>{{ $dependency->activity_name }}</td>
+                <td>{{ $dependency->priority }}</td>
                 <td>{!! $dependency->remark !!}</td>
                 <td><button wire:click.prevent="confirmDialog('dependency',{{ $dependency->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button></td>
             </tr>

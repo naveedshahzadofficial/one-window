@@ -10,6 +10,7 @@ use App\Models\Dependency;
 use App\Models\Faq;
 use App\Models\Fos;
 use App\Models\Keyword;
+use App\Models\OtherDocument;
 use App\Models\RequiredDocument;
 use App\Models\Rlco;
 use App\Models\RlcoKeyword;
@@ -41,6 +42,10 @@ class RlcoForm extends Component
     public $fos_form;
     public $foss;
     public  $fos_file;
+
+    public $other_document_form;
+    public $other_documents;
+    public  $other_document_file;
 
     public $step;
     private $stepActions = [
@@ -80,6 +85,8 @@ class RlcoForm extends Component
         $this->faqs = Collect();
         $this->foss = Collect();
 
+        $this->other_documents = Collect();
+
         if($this->rlco){
             $this->form = $this->rlco->toArray();
             $this->form['activity_ids'] = $this->rlco->activities->pluck('id');
@@ -90,6 +97,7 @@ class RlcoForm extends Component
             $this->loadDependencies();
             $this->loadFaqs();
             $this->loadFoss();
+            $this->loadOtherDocuments();
         }
     }
 
@@ -279,10 +287,12 @@ class RlcoForm extends Component
         $rules = [
             'dependency_form.department_id' => 'required',
             'dependency_form.activity_name' => 'required',
+            'dependency_form.priority' => 'required',
         ];
         $messages = [
             'dependency_form.department_id.required' => 'Department / Organization Name is required.',
             'dependency_form.activity_name.required' => 'RLCO Name is required.',
+            'dependency_form.priority.required' => 'Priority is required.',
         ];
         if(!empty($rules) && !empty($messages))
             $this->validate($rules,$messages);
@@ -401,6 +411,53 @@ class RlcoForm extends Component
         $this->foss = Fos::where('rlco_id', $this->rlco->id)->get();
     }
 
+
+    public function addOtherDocument()
+    {
+        $rules = [
+            'other_document_form.document_title' => 'required',
+            'other_document_file' => 'required',
+        ];
+        $messages = [
+            'other_document_form.fos_observation.required' => 'Title is required.',
+            'other_document_file.required' => 'Attachment is required.',
+        ];
+
+        if(!empty($this->other_document_file)) {
+            $rules['other_document_file'] = 'mimes:jpg,jpeg,png,pdf,doc,docx|max:5120';
+            $messages['other_document_file.mimes'] = 'Attachment must be a file of type: jpg, jpeg, png, pdf, doc, docx.';
+        }
+
+        if(!empty($rules) && !empty($messages))
+            $this->validate($rules,$messages);
+
+        if(!$this->rlco) {
+            $this->formSaved();
+        }
+
+        if(!empty($this->other_document_file)) {
+            $this->other_document_form['other_document_file'] = $this->other_document_file->store('other_document_files', 'public');
+            $this->other_document_file = null;
+        }
+
+        $this->other_document_form['rlco_id'] = $this->rlco->id;
+        OtherDocument::create($this->other_document_form);
+        $this->reset('other_document_form');
+        $this->loadOtherDocuments();
+    }
+
+    public function deleteOtherDocument($doc_id)
+    {
+        $doc = OtherDocument::find($doc_id);
+        $doc->delete();
+        $this->loadOtherDocuments();
+    }
+
+    private function loadOtherDocuments()
+    {
+        $this->other_documents = OtherDocument::where('rlco_id', $this->rlco->id)->get();
+    }
+
     public function confirmDialog($type, $id){
         $this->dispatchBrowserEvent('confirm:delete',[
             'type'=> $type,
@@ -418,6 +475,9 @@ class RlcoForm extends Component
                 break;
             case 'fos':
                 $this->deleteFos($id);
+                break;
+            case 'other_document':
+                $this->deleteOtherDocument($id);
                 break;
         }
     }

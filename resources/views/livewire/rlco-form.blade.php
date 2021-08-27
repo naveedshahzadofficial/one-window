@@ -3,6 +3,7 @@
     automation_status: '{{ $form['automation_status']??null }}',
     fee_submission_mode: '{{ $form['fee_submission_mode']??null }}',
     renewal_required: '{{ $form['renewal_required']??null }}',
+    dependency_question: '{{ $form['dependency_question']??null }}',
 }" class="wizard wizard-3" id="kt_wizard_v3" data-wizard-state="step-first" data-wizard-clickable="true">
     <!--begin: Wizard Nav-->
     <div class="wizard-nav">
@@ -28,7 +29,7 @@
             <!--end::Wizard Step 2 Nav-->
 
             <!--begin::Wizard Step 3 Nav-->
-            <div x-show.transition.opacity="automation_status!='Manual'" class="wizard-step" data-wizard-type="step"
+            <div x-show.transition.opacity="automation_status!='No Information'" class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==3){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step',3)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('Dependencies') !!}</h3>
@@ -37,7 +38,7 @@
             <!--end::Wizard Step 3 Nav-->
 
             <!--begin::Wizard Step 4 Nav-->
-            <div x-show.transition.opacity="automation_status!='Manual'" class="wizard-step" data-wizard-type="step"
+            <div x-show.transition.opacity="automation_status!='No Information'" class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==4){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step',4)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('Inspections') !!}</h3>
@@ -47,7 +48,7 @@
 
 
             <!--begin::Wizard Step 5 Nav-->
-            <div x-show.transition.opacity="automation_status!='Manual'" class="wizard-step" data-wizard-type="step"
+            <div x-show.transition.opacity="automation_status!='No Information'" class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==5){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step',5)" wire:loading.attr="disabled"  class="wizard-label">
                     <h3 class="wizard-title">{!! __('FAQs') !!}</h3>
@@ -56,10 +57,19 @@
             <!--end::Wizard Step 5 Nav-->
 
             <!--begin::Wizard Step 6 Nav-->
-            <div x-show.transition.opacity="automation_status!='Manual'" class="wizard-step" data-wizard-type="step"
+            <div x-show.transition.opacity="automation_status!='No Information'" class="wizard-step" data-wizard-type="step"
                  data-wizard-state="@if($step==6){{ 'current' }}@else{{ 'done' }}@endif">
                 <div wire:click.prevent="$set('step',6)" wire:loading.attr="disabled"  class="wizard-label">
-                    <h3 class="wizard-title">{!! __("FOS") !!}</h3>
+                    <h3 class="wizard-title">{!! __("Observations") !!}</h3>
+                </div>
+            </div>
+            <!--end::Wizard Step 6 Nav-->
+
+            <!--begin::Wizard Step 6 Nav-->
+            <div x-show.transition.opacity="automation_status!='No Information'" class="wizard-step" data-wizard-type="step"
+                 data-wizard-state="@if($step==7){{ 'current' }}@else{{ 'done' }}@endif">
+                <div wire:click.prevent="$set('step',7)" wire:loading.attr="disabled"  class="wizard-label">
+                    <h3 class="wizard-title">{!! __("Other Documents") !!}</h3>
                 </div>
             </div>
             <!--end::Wizard Step 6 Nav-->
@@ -224,7 +234,7 @@
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <label for="">Automation Status<span class="text-danger">*</span></label>
                                 <div class="radio-inline">
                                     <label class="radio radio-success">
@@ -236,6 +246,9 @@
                                     <label class="radio radio-success">
                                         <input type="radio" wire:model="form.automation_status" name="automation_status" @click="automation_status= 'Manual'" value="Manual">
                                         <span></span>Manual</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model="form.automation_status" name="automation_status" @click="automation_status= 'No Information'" value="No Information">
+                                        <span></span>No Information</label>
                                 </div>
                                 @error('form.automation_status')
                                 <div class="invalid-feedback d-block">
@@ -286,7 +299,7 @@
                     </h4>
                     <div class="section_box">
 
-                        <div x-show.transition.opacity="automation_status=='Manual'" class="row form-group">
+                        <div x-show.transition.opacity="automation_status=='No Information'" class="row form-group">
                             <div class="col-lg-12">
                                 <label>{!! __('Contact Detail / Department office address Detail') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
@@ -298,7 +311,7 @@
                             </div>
                         </div>
 
-                        <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
+                        <div x-show.transition.opacity="automation_status!='No Information'" class="row form-group">
 
                             <div class="col-lg-6">
                                 <label>{!! __('Fee') !!}<span class="text-danger"></span></label>
@@ -337,7 +350,7 @@
                         </div>
 
 
-                        <div x-show.transition.opacity="automation_status!='Manual'"class="row form-group">
+                        <div x-show.transition.opacity="automation_status!='No Information'"class="row form-group">
 
                             <div x-show.transition.opacity="fee_submission_mode=='Online'" class="col-lg-6">
                                 <label>Payment Source<span class="text-danger">*</span></label>
@@ -380,7 +393,7 @@
                         </div>
 
 
-                        <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
+                        <div x-show.transition.opacity="automation_status!='No Information'" class="row form-group">
                             <div class="col-lg-6">
                                 <label for="">Renewal Required<span class="text-danger">*</span></label>
                                 <div class="radio-inline">
@@ -391,7 +404,7 @@
                                         <input type="radio" wire:model.defer="form.renewal_required" name="renewal_required" @click="renewal_required= 'No'" value="No">
                                         <span></span>No</label>
                                 </div>
-                                @error('form.automation_status')
+                                @error('form.renewal_required')
                                 <div class="invalid-feedback d-block">
                                     {{ $message }}
                                 </div>
@@ -399,7 +412,7 @@
                             </div><!--form-group ends-->
                         </div>
 
-                        <div x-show.transition.opacity="automation_status!='Manual' && renewal_required=='Yes'" class="row form-group">
+                        <div x-show.transition.opacity="automation_status!='No Information' && renewal_required=='Yes'" class="row form-group">
 
                             <div class="col-lg-6">
                                 <label>{!! __('Validity') !!}<span class="text-danger"></span></label>
@@ -423,9 +436,25 @@
 
                         </div>
 
-                        <div x-show.transition.opacity="automation_status!='Manual'"  class="row form-group">
+                        <div x-show.transition.opacity="automation_status!='No Information'"  class="row form-group">
+
                             <div class="col-lg-6">
-                                <label>{!! __('Time Taken') !!}<span class="text-danger"></span></label>
+                                <label>{!! __('Time Taken') !!}&nbsp;&nbsp;
+                                    <div class="radio-inline float-right">
+                                        <label class="radio radio-success">
+                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit"  value="Minutes">
+                                            <span></span>Minutes</label>
+                                        <label class="radio radio-success">
+                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit"  value="Hours">
+                                            <span></span>Hours</label>
+                                        <label class="radio radio-success">
+                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit"  value="Days">
+                                            <span></span>Days</label>
+                                        <label class="radio radio-success">
+                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit"  value="Months">
+                                            <span></span>Months</label>
+                                    </div>
+                                </label>
                                 <input wire:model.defer="form.time_taken" type="text"
                                        class="form-control @error('form.time_taken') is-invalid @enderror"
                                        placeholder="Time Taken"/>
@@ -433,9 +462,7 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
 
-                        <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
                             <div x-data="{ open: false }" class="col-lg-6">
                                 <label>{!!__('Process Flow Diagram') !!}<span class="text-danger"></span></label>
                                 @if(isset($form['process_flow_diagram_file']) && !empty($form['process_flow_diagram_file']))
@@ -454,7 +481,13 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-lg-6">
+
+
+                        </div>
+
+
+                        <div x-show.transition.opacity="automation_status!='No Information'" class="row form-group">
+                            <div class="col-lg-12">
                                 <label>{!! __('Required Documents') !!}<span
                                         class="text-danger"></span></label>
                                 <div wire:ignore>
@@ -470,7 +503,7 @@
                             </div>
                         </div>
 
-                        <div x-show.transition.opacity="automation_status!='Manual'" class="row form-group">
+                        <div x-show.transition.opacity="automation_status!='No Information'" class="row form-group">
 
                             <div x-show.transition.opacity="automation_status=='Fully Automated'" class="col-lg-6">
                                 <label>{!! __('Automated System Link') !!}<span class="text-danger"></span></label>
@@ -516,7 +549,32 @@
                     <h4 class="font-weight-bold section_heading text-white">
                         <span>  {!! __('Dependencies') !!}</span>
                     </h4>
+
+                    <div class="section_box">
+
+                        <div class="row form-group">
+                        <div class="col-lg-12">
+                            <label for="">Is there involvement of any other organization as a prerequisite to this RLCO?<span class="text-danger">*</span></label>
+                            <div class="radio-inline">
+                                <label class="radio radio-success">
+                                    <input type="radio" wire:model.defer="form.dependency_question" name="dependency_question" @click="dependency_question= 'Yes'"  value="Yes">
+                                    <span></span>Yes</label>
+                                <label class="radio radio-success">
+                                    <input type="radio" wire:model.defer="form.dependency_question" name="dependency_question" @click="dependency_question= 'No'" value="No">
+                                    <span></span>No</label>
+                            </div>
+                            @error('form.dependency_question')
+                            <div class="invalid-feedback d-block">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!--form-group ends-->
+                    </div>
+                   <div  x-show.transition.opacity="dependency_question=='Yes'">
                     @include('livewire.dependency-form')
+                   </div>
+
+                    </div>
                 </div>
                 <!--end: Wizard Step 3-->
 
@@ -619,9 +677,19 @@
                 <div class="pb-5" data-wizard-type="step-content"
                      data-wizard-state="@if($step==6){{ 'current' }}@else{{ 'done' }}@endif">
                     <h4 class="font-weight-bold section_heading text-white">
-                        <span>  {!! __('FOS') !!}</span>
+                        <span>  {!! __('OBSERVATION') !!}</span>
                     </h4>
                     @includeWhen($step==6, 'livewire.fos-form')
+                </div>
+                <!--end: Wizard Step 6-->
+
+                <!--begin: Wizard Step 6-->
+                <div class="pb-5" data-wizard-type="step-content"
+                     data-wizard-state="@if($step==7){{ 'current' }}@else{{ 'done' }}@endif">
+                    <h4 class="font-weight-bold section_heading text-white">
+                        <span>  {!! __('Other Document') !!}</span>
+                    </h4>
+                    @includeWhen($step==7, 'livewire.other-document-form')
                 </div>
                 <!--end: Wizard Step 6-->
 

@@ -93,7 +93,7 @@
 
 </div>
 
-@if($rlco->automation_status!="Manual")
+@if($rlco->automation_status!="No Information")
 
 <h4 class="main_section_heading">{!! __('PROCESS') !!}</h4>
 <div class="section_box">
@@ -238,6 +238,7 @@
                         <th>Sr. No.</th>
                         <th>Organization</th>
                         <th>Activity name</th>
+                        <th>Priority</th>
                         <th>Remarks</th>
                     </tr>
                     <tbody>
@@ -246,6 +247,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ optional($dependency->department)->department_name }}</td>
                             <td>{{ $dependency->activity_name }}</td>
+                            <td>{{ $dependency->priority }}</td>
                             <td>{!! $dependency->remark !!}</td>
                         </tr>
                     @endforeach
@@ -338,7 +340,7 @@
 </div>
 
 
-<h4 class="main_section_heading">{!! __('Frequent Observation & Solutions') !!}</h4>
+<h4 class="main_section_heading">{!! __('Observations') !!}</h4>
 <div class="section_box">
 
     <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="accordionFoss">
@@ -374,8 +376,36 @@
 
 </div>
 
+<h4 class="main_section_heading">{!! __('Other Documents') !!}</h4>
+<div class="section_box">
+    @if($rlco->otherDocuments->isNotEmpty())
+        <div class="d-flex justify-content-between pt-5">
+            <div class="d-flex flex-column flex-root">
+                <span class="font-weight-bolder mb-2">{!! __('Other Documents') !!}</span>
+                <table class="table">
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Title</th>
+                        <th class="text-center">Attachment</th>
+                    </tr>
+                    <tbody>
+                    @foreach($rlco->otherDocuments as $document)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $document->document_title }}</td>
+                            <td class="text-center"><a  href="{{ asset('storage/'.$document->document_file) }}" target="_blank" title="{{ $document->document_title }} attachment" class="btn btn-info text-center btn-circle btn-icon btn-xs"><i class="flaticon2-file text-white"></i></a></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @else
+        <span>No, Other Document is available.</span>
+    @endif
+</div>
 @else
-<h4 class="main_section_heading">{!! __('Manual') !!}</h4>
+<h4 class="main_section_heading">{!! __('No Information') !!}</h4>
 <div class="section_box">
     <div class="d-flex justify-content-between pt-5">
         <div class="d-flex flex-column flex-root">

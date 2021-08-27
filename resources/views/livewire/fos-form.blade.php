@@ -59,7 +59,7 @@
     </div>
 
     <div class="row form-group">
-        <button class="btn btn-custom-color" wire:click.prevent="addFos()" >Add Fos</button>
+        <button class="btn btn-custom-color" wire:click.prevent="addFos()" >Add Observation</button>
     </div>
 
     <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="accordionFoss">
