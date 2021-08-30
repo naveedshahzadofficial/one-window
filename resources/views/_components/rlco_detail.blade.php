@@ -32,7 +32,7 @@
         </div>
 
         <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __('Business Category') !!}</span>
+            <span class="font-weight-bolder mb-2">{!! __('Business Category/ Section') !!}</span>
             <span
                 class="opacity-70">{{ optional($rlco->businessCategory)->category_name }}</span>
         </div>
@@ -40,9 +40,17 @@
 
     <div class="d-flex justify-content-between pt-5">
         <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __('Sector') !!}</span>
+            <span class="font-weight-bolder mb-2">{!! __('Type of business is this applicable for') !!}</span>
             <span
-                class="opacity-70">{{ optional($rlco->businessActivity)->class_name }}</span>
+                class="opacity-70">{{ $rlco->generic_sector }}</span>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between pt-5">
+        <div class="d-flex flex-column flex-root">
+            <span class="font-weight-bolder mb-2">{!! __('Sectors') !!}</span>
+            <span class="opacity-70">{{ $rlco->businessActivities->pluck('class_name')->implode(', ') }}
+            </span>
         </div>
     </div>
 
@@ -401,7 +409,7 @@
             </div>
         </div>
     @else
-        <span>No, Other Document is available.</span>
+        <span>No, other document is available.</span>
     @endif
 </div>
 @else

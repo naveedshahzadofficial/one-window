@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class BusinessActivity extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['section_code', 'section_name', 'division_id',
+    protected $fillable = ['business_category_id','section_code', 'section_name', 'division_id',
         'division_name', 'group_id', 'group_name', 'class_code', 'class_name',
         'sub_class_code', 'sub_class_name','activity_remark', 'activity_status'];
 }

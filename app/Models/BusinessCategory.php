@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class BusinessCategory extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['category_name', 'category_remark', 'category_status'];
+    protected $fillable = ['category_name','category_code', 'category_remark', 'category_status'];
 }

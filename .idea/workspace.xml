@@ -273,9 +273,16 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/RlcoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/RlcoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/BusinessActivity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/BusinessActivity.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/BusinessCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/BusinessCategory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Rlco.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Rlco.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/BusinessCategorySeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/BusinessCategorySeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/_components/rlco_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_components/rlco_detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dependency-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dependency-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/other-document-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/other-document-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/c-k-editor.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/c-k-editor.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -626,7 +633,9 @@
       <workItem from="1629443361015" duration="22788000" />
       <workItem from="1629785166602" duration="2502000" />
       <workItem from="1629789109861" duration="11501000" />
-      <workItem from="1630054913031" duration="6721000" />
+      <workItem from="1630054913031" duration="6985000" />
+      <workItem from="1630304502010" duration="1411000" />
+      <workItem from="1630313844123" duration="15852000" />
     </task>
     <servers />
   </component>

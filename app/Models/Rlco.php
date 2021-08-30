@@ -15,7 +15,7 @@ class Rlco extends Model
         'scope','title_of_law', 'link_of_law', 'automation_status', 'fee', 'renewal_required','renewal_fee', 'fee_submission_mode', 'payment_source', 'validity', 'time_taken' , 'automated_system_link',
         'process_flow_diagram_file', 'challan_form_file', 'application_form_file', 'inspection_required', 'fine_details',
         'relevant_laws_file', 'mode_of_inspection', 'inspection_department_id',
-         'manual_detail', 'admin_id', 'rlco_status', 'dependency_question', 'time_unit', ];
+         'manual_detail', 'admin_id', 'rlco_status', 'dependency_question', 'time_unit', 'generic_sector', ];
 
     public function getRlcoStatus()
     {
@@ -77,5 +77,10 @@ class Rlco extends Model
 
     public function otherDocuments(){
         return $this->hasMany(OtherDocument::class);
+    }
+
+    public function businessActivities()
+    {
+        return $this->belongsToMany(BusinessActivity::class);
     }
 }

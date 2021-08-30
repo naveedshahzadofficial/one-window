@@ -9,7 +9,7 @@
                 .then(editor => {
                    // editor.ui.view.editable.element.style.height = '10px';
                     editor.model.document.on('change:data', () => {
-                    setTimeout(function () { }, 5000);
+                   // setTimeout(function () { }, 5000);
                     @this.set('{{ $setFieldName }}', editor.getData());
                     })
                 })

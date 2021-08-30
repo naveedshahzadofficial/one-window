@@ -73,13 +73,13 @@ class RlcoController extends Controller
 
     public function show(Rlco $rlco): View
     {
-        $rlco->load('activities','requiredDocuments', 'keywords','faqs','foss','dependencies.department', 'otherDocuments');
+        $rlco->load('activities','requiredDocuments', 'keywords','businessActivities','faqs','foss','dependencies.department', 'otherDocuments');
         return view('admin.rlco.show',compact('rlco'));
     }
 
     public function edit(Rlco $rlco): View
     {
-        $rlco->load('activities','requiredDocuments', 'keywords');
+        $rlco->load('activities','requiredDocuments', 'keywords', 'businessActivities');
         return View('admin.rlco.edit',compact('rlco'));
     }
 

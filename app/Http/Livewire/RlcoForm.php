@@ -74,7 +74,7 @@ class RlcoForm extends Component
     {
         $this->step = 1;
         $this->business_categories = BusinessCategory::where('category_status',1)->get();
-        $this->business_activities = BusinessActivity::where('activity_status',1)->get();
+        $this->business_activities = Collect();
         $this->activities = Activity::orderBy('activity_order')->where('activity_status',1)->get();
         $this->departments = Department::where('department_status',1)->get();
         $this->required_documents = RequiredDocument::where('document_status','Active')->get();
@@ -93,6 +93,12 @@ class RlcoForm extends Component
             $this->form['required_document_ids'] = $this->rlco->requiredDocuments->pluck('id');
             $this->keywords = $this->rlco->keywords;
             $this->form['keyword_ids'] = $this->rlco->keywords->pluck('id');
+            $this->form['business_activity_ids'] = $this->rlco->businessActivities->pluck('id');
+
+            $ba_query = BusinessActivity::where('activity_status',1);
+            if($this->rlco->business_category_id!=1)
+                $ba_query->where('business_category_id', $this->rlco->business_category_id);
+            $this->business_activities = $ba_query->get();
 
             $this->loadDependencies();
             $this->loadFaqs();
@@ -117,6 +123,24 @@ class RlcoForm extends Component
         $this->dispatchBrowserEvent('page:tab',['change'=>true]);
     }
 
+    public function updatedForm($value, $updatedKey)
+    {
+        switch ($updatedKey){
+            case 'business_category_id':
+                $ba_query = BusinessActivity::where('activity_status',1);
+                if($value!='Select All')
+                    $ba_query->where('business_category_id', $value);
+                $this->business_activities = $ba_query->get();
+                $this->dispatchBrowserEvent('child:multi-column-checkbox-select2',[
+                    'data'=>$this->business_activities,
+                    'field_name'=>'class_name',
+                    'child_id'=>'#business_activity_ids'
+                ]);
+                break;
+
+        }
+    }
+
     public function submitForm()
     {
         $action = $this->stepActions[$this->step];
@@ -129,7 +153,6 @@ class RlcoForm extends Component
             'form.department_id' => 'required',
             'form.rlco_name' => 'required',
             'form.business_category_id' => 'required',
-            'form.business_activity_id' => 'required',
             'form.activity_ids' => 'required',
             'form.automation_status' => 'required',
         ];
@@ -138,7 +161,6 @@ class RlcoForm extends Component
             'form.department_id.required' => 'Department is required.',
             'form.rlco_name.required' => 'RLCOs Name is required.',
             'form.business_category_id.required' => 'Business Category is required.',
-            'form.business_activity_id.required' => 'Sector is required.',
             'form.activity_ids.required' => 'Activities is required.',
             'form.automation_status.required' => 'Automation Status is required.',
         ];
@@ -148,6 +170,8 @@ class RlcoForm extends Component
 
         DB::transaction(function () {
             $this->formSaved();
+            $business_activity_ids = $this->form['business_activity_ids']??null;
+
             $activity_ids = $this->form['activity_ids']??null;
             $keyword_ids = $this->form['keyword_ids']??null;
             $new_keyword_ids = array();
@@ -165,6 +189,8 @@ class RlcoForm extends Component
                 }
             }
 
+
+            $this->rlco->businessActivities()->sync($business_activity_ids);
             $this->rlco->activities()->sync($activity_ids);
             $this->rlco->keywords()->sync($new_keyword_ids);
 

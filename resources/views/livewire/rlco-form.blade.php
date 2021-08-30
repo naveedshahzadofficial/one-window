@@ -4,6 +4,7 @@
     fee_submission_mode: '{{ $form['fee_submission_mode']??null }}',
     renewal_required: '{{ $form['renewal_required']??null }}',
     dependency_question: '{{ $form['dependency_question']??null }}',
+    generic_sector: '{{ $form['generic_sector']??null }}',
 }" class="wizard wizard-3" id="kt_wizard_v3" data-wizard-state="step-first" data-wizard-clickable="true">
     <!--begin: Wizard Nav-->
     <div class="wizard-nav">
@@ -161,7 +162,7 @@
 
 
                             <div class="col-lg-6">
-                                <label>{!! __('Business Category') !!}<span
+                                <label>{!! __('Business Category/ Section') !!}<span
                                         class="text-danger">*</span></label>
                                 <div wire:ignore>
                                     <x-select2-dropdown wire:model.defer="form.business_category_id"
@@ -178,12 +179,31 @@
 
                         <div class="row form-group">
                             <div class="col-lg-12">
-                                <label>{!! __('Sector') !!}<span class="text-danger">*</span></label>
+                                <label for="">What type of business is this applicable for? <span class="text-danger">*</span></label>
+                                <div class="radio-inline">
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.generic_sector" name="generic_sector" @click="generic_sector= 'Specific'"  value="Specific">
+                                        <span></span>Specific</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.generic_sector" name="generic_sector" @click="generic_sector= 'Generic for all'" value="Generic for all">
+                                        <span></span>Generic for all</label>
+                                </div>
+                                @error('form.dependency_question')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div  x-show.transition.opacity="generic_sector=='Specific'" class="row form-group">
+                            <div class="col-lg-12">
+                                <label>{!! __('Sectors') !!}<span class="text-danger">*</span></label>
                                 <div wire:ignore>
-                                    <x-multi-column-select2 :listing="$business_activities"
-                                                            wire:model.defer="form.business_activity_id"
-                                                            setFieldName="form.business_activity_id"
-                                                            id="business_activity_id" fieldName="class_name"/>
+                                    <x-multi-column-checkbox-select2 :listing="$business_activities"
+                                                            wire:model.defer="form.business_activity_ids"
+                                                            setFieldName="form.business_activity_ids"
+                                                            id="business_activity_ids" fieldName="class_name"/>
                                 </div>
                                 @error('form.business_activity_id')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -760,4 +780,20 @@
 
 </div>
 
+@push('post-scripts')
+<script>
 
+window.addEventListener('child:multi-column-checkbox-select2', event =>{
+let child_id = event.detail.child_id;
+$(child_id).empty();
+var newOption = new Option("--- Please Select ---", "", false, false);
+$(child_id).append(newOption);
+event.detail.data.forEach(function(row){
+$(child_id).append('<option data-json=\''+JSON.stringify(row)+'\' value="'+row.id+'">'+row[event.detail.field_name]+'</option>');
+});
+$(child_id).trigger('change.select2');
+});
+
+</script>
+
+@endpush
