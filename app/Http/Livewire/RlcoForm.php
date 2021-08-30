@@ -128,7 +128,7 @@ class RlcoForm extends Component
         switch ($updatedKey){
             case 'business_category_id':
                 $ba_query = BusinessActivity::where('activity_status',1);
-                if($value!='Select All')
+                if($value!=1)
                     $ba_query->where('business_category_id', $value);
                 $this->business_activities = $ba_query->get();
                 $this->dispatchBrowserEvent('child:multi-column-checkbox-select2',[
