@@ -287,7 +287,7 @@
                     <div class="section_box">
                         <div class="row form-group">
                             <div class="col-lg-12">
-                                <label>{!! __('Keywords') !!}<span class="text-danger"></span></label>
+                                <label>{!! __('Keywords') !!} <span class="text-dark-50">(Enter Comma Separated keywords)</span><span class="text-danger"></span></label>
                                 <div wire:ignore >
                                 <x-select2-tag wire:model.defer="form.keyword_ids"
                                                     isMultiple="true"
