@@ -46,13 +46,34 @@
         </div>
     </div>
 
+    @if($rlco->businessActivities->isNotEmpty() && $rlco->generic_sector=="Specific")
     <div class="d-flex justify-content-between pt-5">
         <div class="d-flex flex-column flex-root">
             <span class="font-weight-bolder mb-2">{!! __('Sectors') !!}</span>
-            <span class="opacity-70">{{ $rlco->businessActivities->pluck('class_name')->implode(', ') }}
-            </span>
+            <table class="table">
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Section Name</th>
+                    <th>Division Name</th>
+                    <th>Group Name</th>
+                    <th>Class Name</th>
+                </tr>
+                <tbody>
+                @foreach($rlco->businessActivities as $activity)
+                    <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $activity->section_name }}</td>
+                    <td>{{ $activity->division_name }}</td>
+                    <td>{{ $activity->group_name }}</td>
+                    <td>{{ $activity->class_name }}</td>
+                    </tr>
+                @endforeach
+
+                </tbody>
+            </table>
         </div>
     </div>
+    @endif
 
     @if($rlco->activities->isNotEmpty())
     <div class="d-flex justify-content-between pt-5">
