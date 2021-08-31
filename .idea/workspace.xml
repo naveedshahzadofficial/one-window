@@ -16,56 +16,6 @@
       <change afterPath="$PROJECT_DIR$/../livewirekit/star-rating/.idea/star-rating.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../livewirekit_bk/.idea/livewirekit.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ppmf/application/libraries/Zone_graph_service.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/Logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/background.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-grid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-grid.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-grid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-grid.rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-grid.rtl.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-grid.rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-grid.rtl.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-reboot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-reboot.rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-reboot.rtl.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-reboot.rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-reboot.rtl.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-utilities.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-utilities.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-utilities.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-utilities.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-utilities.rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-utilities.rtl.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-utilities.rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap-utilities.rtl.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap.rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap.rtl.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap.rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/css/bootstrap.rtl.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.bundle.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.bundle.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.esm.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.esm.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.esm.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/js/bootstrap.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/frontend/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/_layouts/frontend/app.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/frontend/home.blade.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/blade.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../worldpixelmarket/.idea/laravel-idea.xml" afterDir="false" />
@@ -322,10 +272,7 @@
       <change beforePath="$PROJECT_DIR$/../livewirekit/resources/views/livewire/tailwind/post-votes.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -684,7 +631,7 @@
       <workItem from="1630304502010" duration="1411000" />
       <workItem from="1630313844123" duration="16491000" />
       <workItem from="1630390692850" duration="2634000" />
-      <workItem from="1630399319630" duration="306000" />
+      <workItem from="1630399319630" duration="487000" />
     </task>
     <servers />
   </component>

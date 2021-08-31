@@ -467,7 +467,7 @@ class RlcoForm extends Component
         }
 
         if(!empty($this->other_document_file)) {
-            $this->other_document_form['other_document_file'] = $this->other_document_file->store('other_document_files', 'public');
+            $this->other_document_form['document_file'] = $this->other_document_file->store('other_document_files', 'public');
             $this->other_document_file = null;
         }
 
