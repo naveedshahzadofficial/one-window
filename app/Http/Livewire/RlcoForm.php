@@ -56,6 +56,7 @@ class RlcoForm extends Component
         'submitInspection',
         'submitFAQs',
         'submitFOS',
+        'submitDocuments',
     ];
 
     // files
@@ -115,7 +116,7 @@ class RlcoForm extends Component
     }
     public function increaseStep()
     {
-        if($this->step<7)
+        if($this->step<8)
             $this->step++;
         $this->pageChangeDispatch();
     }
@@ -274,6 +275,10 @@ class RlcoForm extends Component
 
     private function submitFOS()
     {
+        $this->formSaved();
+    }
+
+    private function submitDocuments(){
         $this->formSaved();
     }
 

@@ -717,7 +717,7 @@
                 <!--begin: Wizard Actions-->
                 <div class="d-flex justify-content-between">
                     <div class="mr-2">
-                        @if($step> 1 && $step<=6)
+                        @if($step> 1 && $step<=7)
                             <button type="button"
                                     class="btn btn-custom-dark font-weight-bold px-8 py-2 d-block"
                                     data-wizard-type="action-prev"
@@ -728,7 +728,7 @@
                         @endif
                     </div>
 
-                    @if($step >= 6 || (isset($form['automation_status']) && $form['automation_status']=='Manual' && $step==2))
+                    @if($step >= 7 || (isset($form['automation_status']) && $form['automation_status']=='No Information' && $step==2))
                         <div>
                             <button type="button"
                                     class="btn btn-custom-color font-weight-bold px-8 py-2 d-block float-left mr-10"

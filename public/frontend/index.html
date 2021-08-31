@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+        integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    </style>
+    <title>BIZ PUNJAB</title>
+</head>
+
+<body>
+    <!-- background image / main div start -->
+    <div class="bg container-fluid ">
+        <!-- header start for Logo -->
+        <header class="row">
+            <div class="logo mx-2 px-3 py-4">
+                <img src="Logo.png" alt="">
+            </div>
+        </header>
+        <!-- header end for Logo -->
+
+        <!-- div start for heading -->
+        <div class="heading text-center">
+            <p> FIND THE PERMITS AND LICENCS YOU NEED TO YOUR BUSINESS.</p>
+        </div>
+        <!-- div end for heading -->
+
+        <!-- description paragraph start -->
+        <p class="description text-center">BizPal helps you find the permits and licencs you may require whrn
+            starting
+            and/or operating<br>
+            your business. Filter permits based on your location, industry and business activities and save <br>
+            the ones that apply to your situation.</p>
+        <!-- description paragraph end -->
+
+        <!-- grid starts for select options -->
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-2 col-sm-12">
+                </div>
+                <div class="col-md-8  col-sm-12">
+                    <div class="row">
+                        <div class="col-md-4  col-sm-12">
+                            <label class="lable fw-bold" for="Deparrtment">Deparrtment</label>
+                            <br>
+                            <select name="deparrtment" id="deparrtment" class="select2 w-100 shadow-sm rounded">
+                                <option value="Select">Select</option>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4  col-sm-12">
+                            <label class="lable fw-bold" for="business">Business</label>
+                            <br>
+                            <input class="w-100" type="text">
+                        </div>
+                        <div class="col-md-4  col-sm-12">
+                            <label class="lable fw-bold" for="activity">Activity</label>
+                            <br>
+                            <select name="activity" id="activity" class="select2 w-100">
+                                <option value="Select">Select</option>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                </div>
+            </div>
+            <div class="col-md-12  col-sm-12 text-center"><button type="button"
+                    class="btn btn-sm px-5 text-light">Search</button></div>
+        </div>
+        <!-- grid end for select options  -->
+
+        <!-- footer div start -->
+        <div class="row">
+            <div class="overlay">
+                <div>
+                    <div class="col-md-12 mt-3 footer text-center">
+                        <a href="#news">Overview</a>
+                        <a href="#news">Starting a business</a>
+                        <a href="#contact">EoDB Punjab</a>
+                        <a href="#about">EoDB Pakistan</a>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-6 col-sm-12">
+                            <span class="nowrap footer2">©Automation of Business Regulations, Government of
+                                Punjab</span>
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-right">
+                            <div class="nowrap1 footer2 ">Powerd by:Punjab Information Technology Board</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer div end -->
+    </div>
+    <!-- background image / main div end -->
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        referrerpolicy="no-referrer"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+        integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
+</body>
+
+</html>

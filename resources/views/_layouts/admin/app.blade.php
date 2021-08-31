@@ -9,7 +9,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@stack('title','Dashboard') - @stack('app-name',config('app.name', 'Admin Panel'))</title>
         @section('metas')
-            <meta name="description" content="National SME Registration Portal (SMERP)" />
+            <meta name="keywords" content="RLCOs" />
+            <meta name="description" content="RLCOs" />
         @show
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
