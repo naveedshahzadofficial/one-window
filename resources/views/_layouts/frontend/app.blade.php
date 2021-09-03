@@ -31,7 +31,7 @@
 
 <body>
 <!-- background image / main div start -->
-<div class="bg container-fluid ">
+<div  class="bg container-fluid full-width">
     <!-- header start for Logo -->
     <header class="row">
         <div class="logo mx-2 px-3 py-4">
@@ -43,6 +43,7 @@
     @yield('content')
 
     <!-- footer div start -->
+    <footer class="main-footer">
     <div class="row">
         <div class="overlay">
             <div>
@@ -64,6 +65,7 @@
             </div>
         </div>
     </div>
+    </footer>
     <!-- footer div end -->
 </div>
 <!-- background image / main div end -->

@@ -11,7 +11,7 @@
 }
 .bg{
     background-image: url("background.jpg");
-    background-position: fixed;
+    background-position: center;
 }
 .heading p{
     font-size: 24px;
@@ -29,18 +29,21 @@
 .lable{
     width: 100%;
     border-radius: 10px;
-    color: #000c60;
+    color: white;
+    font-weight: 400 !important;
+    font-size: 16px;
 }
 .btn{
-    background-color: #000c60;
-    margin-top: 55px;
+    background-color: white;
+    color: #000c60 !important;
+    margin-top: 33px;
 }
 .footer a{
-    color: #000c60;  
+        color: #000c60;
         padding: 14px 16px;
         text-decoration: none;
         font-size: 16px;
-      
+
 }
 .footer2{
     color: #000c60;
@@ -78,4 +81,48 @@ input, button, select, optgroup, textarea {
 }
 input{
     margin-top: 10px;
+}
+.main-footer {
+    height: 100px;
+    width: 100%;
+}
+
+.full-width {
+    min-height: 100vh;
+}
+
+.flex-fill {
+    flex:1 1 auto;
+}
+
+.search-box{
+    background-color: #000c60;
+    padding-bottom: 35px;
+    padding-top: 30px;
+    padding-left: 45px;
+}
+.whole-desc-box{
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px -1px 10px #888;
+}
+.desc-box{
+    padding: 30px;
+    border-bottom: 2px solid #888;
+}
+.desc-title{
+    color: #000c60;
+    font-weight: bold;
+}
+.desc-title a {
+    color: #000c60;
+    text-decoration: none;
+}
+.desc-content {
+    text-align: justify;
+}
+.detail-btn{
+    background-color: #000c60;
+    color: white !important;
+    margin-top: 0 !important;
+    font-size: 12px !important;
 }
