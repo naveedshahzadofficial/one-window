@@ -26,13 +26,11 @@ class SearchRlco extends Component
     public $search = false;
 
     protected $rules = [
-        'department_id' => 'required',
-        'business_category_id' => 'required|string',
+        'department_id' => 'required'
     ];
 
     protected $messages = [
-        'department_id.required' => 'Department is required.',
-        'business_category_id.required' => 'Business is required.',
+        'department_id.required' => 'Department is required.'
     ];
 
     public function mount()

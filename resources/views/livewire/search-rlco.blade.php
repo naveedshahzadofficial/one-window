@@ -63,7 +63,7 @@
                         Searching RLCOs...
                     </div>
                 </div>
-            
+
                 <div class="row" wire:loading.remove>
                     @if($rlcos->isNotEmpty())
                     <div class="row">
