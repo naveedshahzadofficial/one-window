@@ -4,10 +4,10 @@
             <div class="search-box">
                 <div class="row">
                 <div class="col-md-3  col-sm-12">
-                    <label class="lable fw-bold" for="Deparrtment">Deparrtment</label>
+                    <label class="lable fw-bold" for="department_id">Department</label>
                     <br>
                     <div wire:ignore >
-                    <select wire:model.defer="department_id" name="deparrtment" id="department_id" class="w-100 shadow-sm rounded">
+                    <select wire:model.defer="department_id" name="department_id" id="department_id" class="w-100 shadow-sm rounded">
                         <option value="">Select</option>
                         @foreach($departments as $department)
                         <option value="{{ $department->id }}">{{ $department->department_name }}</option>
@@ -19,7 +19,7 @@
                     @enderror
                 </div>
                 <div class="col-md-3  col-sm-12">
-                    <label class="lable fw-bold" for="business">Business</label>
+                    <label class="lable fw-bold" for="business_category_id">Business</label>
                     <br>
 
                     <div wire:ignore >
@@ -36,7 +36,7 @@
                     @enderror
                 </div>
                 <div class="col-md-3  col-sm-12">
-                    <label class="lable fw-bold" for="activity">Activity</label>
+                    <label class="lable fw-bold" for="activity_id">Activity</label>
                     <br>
                     <div wire:ignore >
                     <select wire:model.defer="activity_id" name="activity_id" id="activity_id" class="select2 w-100">

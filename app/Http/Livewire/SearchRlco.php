@@ -35,6 +35,9 @@ class SearchRlco extends Component
 
     public function mount()
     {
+        if(!empty($this->department_id)){
+            $this->search = true;
+        }
         $this->departments = Department::where('department_status',1)->get();
         $this->businesses = BusinessCategory::where('category_status',1)->get();
         $this->activities = Activity::orderBy('activity_order')->where('activity_status',1)->get();
