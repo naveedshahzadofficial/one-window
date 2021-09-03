@@ -34,8 +34,8 @@
 <div  class="bg container-fluid full-width">
     <!-- header start for Logo -->
     <header class="row">
-        <div class="logo mx-2 px-3 py-4">
-            <img src="{{ asset('frontend/Logo.png') }}" alt="">
+        <div class="logo">
+            <a href="{{ route('home') }}"><img src="{{ asset('frontend/Inner-Logo.png') }}" alt=""></a>
         </div>
     </header>
     <!-- header end for Logo -->
