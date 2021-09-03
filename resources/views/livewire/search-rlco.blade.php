@@ -56,14 +56,15 @@
                 </div>
             </div>
 
-            <div class="row " wire:loading>
-                <div class="col-md-12 col-sm-12">
-                    Searching RLCOs...
-                </div>
-            </div>
-
-            <div class="row" wire:loading.remove>
                 @if($search)
+
+                <div class="row " wire:loading>
+                    <div class="col-md-12 col-sm-12">
+                        Searching RLCOs...
+                    </div>
+                </div>
+            
+                <div class="row" wire:loading.remove>
                     @if($rlcos->isNotEmpty())
                     <div class="row">
                         <div class="col-md-12 my-3 col-sm-12">
@@ -103,8 +104,9 @@
 
                     </div>
                     </div>
-                @endif
+
             </div>
+                @endif
 
         </div>
     </div>
