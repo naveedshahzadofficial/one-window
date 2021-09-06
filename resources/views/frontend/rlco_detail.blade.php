@@ -6,7 +6,7 @@
         <div class="card card-custom gutter-b">
             <div class="card-header flex-wrap py-3">
                 <div class="card-title">
-                    <h3 class="card-label">RLCO Detail</h3>
+                    <h3 class="card-label">{{ $rlco->rlco_name??'RLCO Detail' }}</h3>
                 </div>
             </div>
 
@@ -25,6 +25,12 @@
     <style>
         .section_box, .card.card-custom, .card-body, .bg-custom-color{
             background-color: rgba(255, 255, 255, 0.9) !important;
+        }
+        .main_section_heading{
+            background-color: #000c60;
+        }
+        .card.card-custom > .card-header .card-title, .card.card-custom > .card-header .card-title .card-label{
+            color: #000c60;
         }
     </style>
 @endpush
