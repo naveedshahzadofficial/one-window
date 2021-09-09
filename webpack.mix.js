@@ -35,7 +35,8 @@ mix.browserSync('rlcos.test');
 
 if (mix.inProduction()) {
     mix.version()
-    mix.setResourceRoot('../');
+    //mix.setResourceRoot('../');
+    mix.setResourceRoot(`/${process.env.MIX_BASE_URL}/`);
     //mix.setResourceRoot('/rlcos/public/');
     //mix.setPublicPath('/rlcos/public/');
 }
