@@ -25,12 +25,14 @@ mix.js('resources/js/app.js', 'public/js')
                 }),
             ],
         };
-    }).setResourceRoot('/rlcos/public/');
+    });
 
 
 
 
 if (mix.inProduction()) {
     mix.version()
+    //mix.setResourceRoot('/rlcos/public/');
+    //mix.setPublicPath('/rlcos/public/');
 }
 
