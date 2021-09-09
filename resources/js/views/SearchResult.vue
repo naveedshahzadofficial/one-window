@@ -79,7 +79,7 @@ export default {
         },
        loadRlcos(page = this.page) {
             this.loading = true;
-            axios.get('/api/v1/rlcos_search?page=' + page, {
+            axios.get('rlcos_search?page=' + page, {
                 params: {
                     department_id: this.department_id,
                     business_category_id: this.business_category_id,

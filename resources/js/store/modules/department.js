@@ -12,7 +12,7 @@ const actions = {
 
 const mutations = {
     setDepartment(state) {
-        axios.get('/api/v1/department_list').then(response => {
+        axios.get('department_list').then(response => {
             state.departments = response.data.departments
         });
     }

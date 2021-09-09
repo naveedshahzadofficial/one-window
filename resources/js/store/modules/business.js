@@ -12,7 +12,7 @@ const actions = {
 
 const mutations = {
     setBusiness(state) {
-        axios.get('/api/v1/business_list').then(response => {
+        axios.get('business_list').then(response => {
             state.businesses = response.data.businesses
         });
     }

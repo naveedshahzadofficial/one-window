@@ -25,14 +25,17 @@ mix.js('resources/js/app.js', 'public/js')
                 }),
             ],
         };
-    }).setResourceRoot("rlcos/")
+    });
 
 
-
+if (!mix.inProduction()) {
+mix.browserSync('rlcos.test');
+}
 
 
 if (mix.inProduction()) {
     mix.version()
+    mix.setResourceRoot('../');
     //mix.setResourceRoot('/rlcos/public/');
     //mix.setPublicPath('/rlcos/public/');
 }

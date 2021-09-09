@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import SearchResult from "../views/SearchResult.vue";
 
 export const router = createRouter({
+    base: process.env.MIX_BASE_URL,
     history: createWebHistory(),
     linkActiveClass: 'text-dark bg-white',
     routes: [
