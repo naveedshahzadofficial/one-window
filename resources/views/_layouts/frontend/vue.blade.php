@@ -17,7 +17,7 @@
 <!-- background image / main div start -->
 <div id="app"></div>
 
-<script type="module" src="{{ mix('js/app.js') }}"></script>
+<script type="module" src="{{ asset(mix('js/app.js')) }}"></script>
 
 </body>
 
