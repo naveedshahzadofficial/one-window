@@ -122,6 +122,16 @@
 
                         <div class="row form-group">
                             <div class="col-lg-12">
+                                <label>{!! __('Purpose/Short Description') !!}<span class="text-danger"></span></label>
+                                <textarea wire:model.defer="form.purpose"  class="text-danger" ></textarea>
+                                @error('form.purpose')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-lg-12">
                                 <label>{!! __('Description') !!}<span class="text-danger"></span></label>
                                 <div wire:ignore>
                                     <x-c-k-editor wire:model.debounce.999999s="form.description" id="description-ckeditor" placeholder="Description" setFieldName="form.description" ></x-c-k-editor>
@@ -432,6 +442,7 @@
                             </div><!--form-group ends-->
                         </div>
 
+
                         <div x-show.transition.opacity="automation_status!='No Information' && renewal_required=='Yes'" class="row form-group">
 
                             <div class="col-lg-6">
@@ -452,6 +463,22 @@
                                 @error('form.renewal_fee')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
+                            </div>
+
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='No Information'" class="row form-group">
+
+                            <div class="row form-group">
+                                <div class="col-lg-12">
+                                    <label>{!! __('Fee Schedule') !!}<span class="text-danger"></span></label>
+                                    <div wire:ignore>
+                                        <x-c-k-editor wire:model.debounce.999999s="form.fee_schedule" id="fee_schedule-ckeditor" placeholder="Fee Schedule" setFieldName="form.fee_schedule" ></x-c-k-editor>
+                                    </div>
+                                    @error('form.fee_schedule')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
 
                         </div>
@@ -555,6 +582,29 @@
                                     @enderror
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div  x-show.transition.opacity="automation_status!='No Information'"  class="col-lg-6">
+                                <label>{!! __('Application URL') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="form.application_url" type="text"
+                                       class="form-control @error('form.application_url') is-invalid @enderror"
+                                       placeholder="Application URL"/>
+                                @error('form.application_url')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div  class="col-lg-6">
+                                <label>{!! __('Department Website') !!}<span class="text-danger"></span></label>
+                                <input wire:model.defer="form.department_website" type="text"
+                                       class="form-control @error('form.department_website') is-invalid @enderror"
+                                       placeholder="Department Website"/>
+                                @error('form.department_website')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                         </div>
 
 
