@@ -13,6 +13,11 @@ export const router = createRouter({
             component: Home
         },
         {
+            path: "/rlcos",
+            name: "home",
+            component: Home
+        },
+        {
             path: "/search",
             name: "search",
             component: SearchResult,
