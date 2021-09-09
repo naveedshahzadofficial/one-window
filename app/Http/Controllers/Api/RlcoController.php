@@ -43,7 +43,7 @@ class RlcoController extends Controller
 
         if (!empty($activity_id)) {
             $query->whereHas('activities', function ($q) {
-                    $q->where('activity_id', $activity_id);
+                    $q->where('id', $activity_id);
                 });
         }
 

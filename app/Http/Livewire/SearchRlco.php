@@ -58,7 +58,7 @@ class SearchRlco extends Component
 
             if(!empty($this->activity_id)) {
                 $query->whereHas('activities', function ($q) {
-                    $q->where('activity_id', $this->activity_id);
+                    $q->where('id', $this->activity_id);
                 });
             }
             $rlcos = $query->where('rlco_status',1)->paginate(30);
