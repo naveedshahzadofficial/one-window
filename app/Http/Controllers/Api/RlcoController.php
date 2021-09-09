@@ -33,7 +33,7 @@ class RlcoController extends Controller
          $business_category_id = isset($request->business_category_id) && !empty($request->business_category_id) ?$request->business_category_id: '';
          $activity_id = isset($request->activity_id) && !empty($request->activity_id) ?$request->activity_id: '';
 
-         $query = Rlco::select("*")->with('department');
+         $query = Rlco::select("*")->with('department')>where('rlco_status',1);
          if (!empty($department_id)) {
             $query->where('department_id', $department_id);
         }
@@ -42,7 +42,9 @@ class RlcoController extends Controller
         }
 
         if (!empty($activity_id)) {
-            $query->where('activity_id', $activity_id);
+            $query->whereHas('activities', function ($q) {
+                    $q->where('activity_id', $this->activity_id);
+                });
         }
 
         $query_count = clone $query;
