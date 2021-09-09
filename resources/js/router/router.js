@@ -3,7 +3,7 @@ import Home from "../views/Home.vue";
 import SearchResult from "../views/SearchResult.vue";
 
 export const router = createRouter({
-    base: '/rlcos',
+    base: '/rlcos/',
     history: createWebHistory(),
     linkActiveClass: 'text-dark bg-white',
     routes: [
