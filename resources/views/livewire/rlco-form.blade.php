@@ -123,7 +123,7 @@
                         <div class="row form-group">
                             <div class="col-lg-12">
                                 <label>{!! __('Purpose/Short Description') !!}<span class="text-danger"></span></label>
-                                <textarea wire:model.defer="form.purpose"  class="text-danger" ></textarea>
+                                <textarea wire:model.defer="form.purpose"  class="form-control" ></textarea>
                                 @error('form.purpose')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -468,8 +468,6 @@
                         </div>
 
                         <div x-show.transition.opacity="automation_status!='No Information'" class="row form-group">
-
-                            <div class="row form-group">
                                 <div class="col-lg-12">
                                     <label>{!! __('Fee Schedule') !!}<span class="text-danger"></span></label>
                                     <div wire:ignore>
@@ -479,8 +477,6 @@
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
-
                         </div>
 
                         <div x-show.transition.opacity="automation_status!='No Information'"  class="row form-group">
@@ -586,10 +582,10 @@
 
                         <div class="row form-group">
                             <div  x-show.transition.opacity="automation_status!='No Information'"  class="col-lg-6">
-                                <label>{!! __('Application URL') !!}<span class="text-danger"></span></label>
+                                <label>{!! __('System/ Application URL') !!}<span class="text-danger"></span></label>
                                 <input wire:model.defer="form.application_url" type="text"
                                        class="form-control @error('form.application_url') is-invalid @enderror"
-                                       placeholder="Application URL"/>
+                                       placeholder="System/ Application URL"/>
                                 @error('form.application_url')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
