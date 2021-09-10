@@ -548,7 +548,7 @@
 
                         <div x-show.transition.opacity="automation_status!='No Information'" class="row form-group">
 
-                            <div x-show.transition.opacity="automation_status=='Fully Automated'" class="col-lg-6">
+                            <div class="col-lg-6 d-none">
                                 <label>{!! __('Automated System Link') !!}<span class="text-danger"></span></label>
                                 <input wire:model.defer="form.automated_system_link" type="text"
                                        class="form-control @error('form.automated_system_link') is-invalid @enderror"
