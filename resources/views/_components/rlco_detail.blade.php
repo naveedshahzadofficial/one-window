@@ -3,7 +3,7 @@
 
     <div class="d-flex justify-content-between">
         <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __('Department Name') !!}</span>
+            <span class="font-weight-bolder">{!! __('Department Name') !!}</span>
             <span
                 class="opacity-70">{{ optional($rlco->department)->department_name }}</span>
         </div>

@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import SearchResult from "../views/SearchResult.vue";
+import RlcoDetail from "../views/RlcoDetail";
 
 export const router = createRouter({
-    base: process.env.MIX_BASE_URL,
-    history: createWebHistory(),
+    history: createWebHistory('/rlcos/'),
     linkActiveClass: 'text-dark bg-white',
     routes: [
         {
@@ -13,14 +13,15 @@ export const router = createRouter({
             component: Home
         },
         {
-            path: "/rlcos",
-            name: "home",
-            component: Home
-        },
-        {
             path: "/search",
             name: "search",
             component: SearchResult,
+            props: true,
+        },
+        {
+            path: "/rlco/:id",
+            name: "rlco.show",
+            component: RlcoDetail,
             props: true,
         },
             ]

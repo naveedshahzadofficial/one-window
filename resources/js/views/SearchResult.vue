@@ -15,13 +15,15 @@
                         <div v-for="(rlco, index) in rlcos" :key="index" class="desc-box" >
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12">
-                                        <span class="desc-title"><a target="_blank" href="#">{{ rlco?.rlco_name }}</a></span>
+                                        <span class="desc-title"><router-link :to="{ name: 'rlco.show', params: { id: rlco.id } }">{{ rlco?.rlco_name }}</router-link></span>
                                     </div>
                                     <div class="col-md-10 col-sm-12">
                                         <p class="desc-content">{{ rlco?.purpose }}</p>
                                     </div>
                                     <div class="col-md-2 col-sm-12 text-center">
-                                        <a target="_blank" href="#" class="btn detail-btn">View Detail</a>
+                                        <router-link class="btn detail-btn" :to="{ name: 'rlco.show', params: { id: rlco.id } }">
+                                            View Detail
+                                        </router-link>
                                     </div>
                                 </div>
                         </div>

@@ -11,11 +11,11 @@
                 </div>
                     <div class="row mt-4 ml-0 mr-0">
                         <div class="col-md-6 col-sm-12">
-							<span class="nowrap footer2">©Automation of Business Regulations, Government of
+							<span class="nowrap footer2">&copy; Automation of Business Regulations, Government of
 								Punjab</span>
                         </div>
                         <div class="col-md-6 col-sm-12 text-right">
-                            <div class="nowrap1 footer2 ">Powerd by:Punjab Information Technology Board</div>
+                            <div class="nowrap1 footer2 ">Powered By: Punjab Information Technology Board</div>
                         </div>
                     </div>
         </div>

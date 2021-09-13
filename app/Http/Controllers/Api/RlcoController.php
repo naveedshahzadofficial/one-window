@@ -59,4 +59,9 @@ class RlcoController extends Controller
             'paginate' => $paginate
         ]);
     }
+
+    public function rlcoDetail(Rlco $rlco){
+        $rlco->load('department', 'activities','requiredDocuments', 'keywords','businessActivities','faqs','foss','dependencies.department', 'otherDocuments');
+        return response()->json(['rlco'=>$rlco]);
+    }
 }

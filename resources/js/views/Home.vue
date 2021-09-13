@@ -7,11 +7,8 @@
     <!-- div end for heading -->
 
     <!-- description paragraph start -->
-    <p class="description text-center">BizPal helps you find the permits and licencs you may require whrn
-        starting
-        and/or operating<br>
-        your business. Filter permits based on your location, industry and business activities and save <br>
-        the ones that apply to your situation.</p>
+    <p class="description text-center">Facilitating Businesses with a smarter, efficient and convenient way to interact with Government. <br>
+        Biz Punjab facilitates you in finding the registrations, permits and licenses <br>you may require for starting your business or running its operations.</p>
     <!-- description paragraph end -->
 
     <!-- grid starts for select options -->
