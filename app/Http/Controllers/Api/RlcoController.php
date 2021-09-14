@@ -32,7 +32,25 @@ class RlcoController extends Controller
          $activity_id = isset($request->activity_id) && !empty($request->activity_id) ?$request->activity_id: '';
 
          /* Activities with count of RLCOs */
-        $query = Activity::with(['rlcos'=>function($q){$q->with('businessCategory','department','inspectionDepartment','requiredDocuments','faqs','foss','dependencies.department', 'otherDocuments')->where('rlco_status',1);}])->withCount(['rlcos'=>function($q){$q->where('rlco_status',1);}])->having('rlcos_count', '>', 0)->where('activity_status',1);
+        $query = Activity::with(['rlcos'=>function($q) use($department_id,$business_category_id){
+            if (!empty($department_id)) {
+                $q->where('department_id', $department_id);
+            }
+            if (!empty($business_category_id)) {
+                $q->where('business_category_id', $business_category_id);
+            }
+            return $q->where('rlco_status',1)->with('businessCategory','department','inspectionDepartment','requiredDocuments','faqs','foss','dependencies.department', 'otherDocuments');
+            }])
+            ->withCount(['rlcos'=>function($q){
+                if (!empty($department_id)) {
+                    $q->where('department_id', $department_id);
+                }
+                if (!empty($business_category_id)) {
+                    $q->where('business_category_id', $business_category_id);
+                }
+                $q->where('rlco_status',1);
+            }])
+            ->having('rlcos_count', '>', 0)->where('activity_status',1);
 
         if (!empty($business_category_id)) {
             $query->whereHas('rlcos', function ($q) use($business_category_id) {
