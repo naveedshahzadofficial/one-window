@@ -61,7 +61,7 @@ $font-light: 'poppinslight';
 }
 
 .page-background{
-    background-image: url("#{$fa-font-path}background.jpg");
+    background-image: url("#{$media-path}background.jpg");
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;

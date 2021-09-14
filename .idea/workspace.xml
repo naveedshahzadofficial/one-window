@@ -272,7 +272,6 @@
       <change beforePath="$PROJECT_DIR$/../livewirekit/resources/views/livewire/tailwind/post-votes.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/_custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_custom.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
@@ -664,7 +663,7 @@
       <workItem from="1631536428415" duration="3452000" />
       <workItem from="1631540557292" duration="104000" />
       <workItem from="1631541301780" duration="780000" />
-      <workItem from="1631567658838" duration="12701000" />
+      <workItem from="1631567658838" duration="12819000" />
     </task>
     <servers />
   </component>
