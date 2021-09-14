@@ -309,11 +309,11 @@ export default {
     computed: {
         filteredList:function () {
             return  this.activity_rlcos.filter(rlco => {
-                return rlco.rlco_name.toLowerCase().includes(this.filterSearch.toLowerCase()) ||
-                       rlco.purpose.toLowerCase().includes(this.filterSearch.toLowerCase()) ||
-                       rlco.scope.toLowerCase().includes(this.filterSearch.toLowerCase())
+                return rlco.rlco_name?.toLowerCase().includes(this.filterSearch?.toLowerCase()) ||
+                       rlco.purpose?.toLowerCase().includes(this.filterSearch?.toLowerCase()) ||
+                       rlco.scope?.toLowerCase().includes(this.filterSearch?.toLowerCase())
             }).sort((a, b) => {
-                return this.scopeSort ?((a.scope > b.scope) ? 1 : -1): ((b.scope > a.scope) ? 1 : -1);
+                return this.scopeSort ?((a?.scope > b?.scope) ? 1 : -1): ((b?.scope > a?.scope) ? 1 : -1);
             });
         },
         processDiagramFile: function () {
