@@ -10,4 +10,9 @@ class Department extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = ['category_id','department_name','department_display_name', 'department_id', 'department_scope', 'province_id', 'department_remarks', 'department_status'];
+
+    public function rlcos()
+    {
+        return $this->hasMany(Rlco::class);
+    }
 }

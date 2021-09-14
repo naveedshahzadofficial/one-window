@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 class RlcoController extends Controller
 {
     public function departmentList(){
-        $departments = Department::select('id',DB::raw('department_name as text'))->where('department_status', 1)->get();
+        $departments = Department::select('id',DB::raw('department_name as text'))->where('department_status', 1)->has('rlcos')->get();
         return response()->json(['departments'=>$departments]);
     }
     public function businessList(){
