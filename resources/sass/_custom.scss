@@ -1,22 +1,24 @@
+$fa-font-path: '/rlcos/fonts/';
+$media-path: '/rlcos/media/';
 @font-face {
     font-family: 'poppinsregular';
-    src: url('../fonts/poppins-regular-webfont.woff2') format('woff2'),
-    url('../fonts/poppins-regular-webfont.woff') format('woff');
+    src: url('#{$fa-font-path}poppins-regular-webfont.woff2') format('woff2'),
+    url('#{$fa-font-path}poppins-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'poppinsbold';
-    src: url('../fonts/poppins-bold.woff2') format('woff2'),
-    url('../fonts/poppins-bold.woff') format('woff');
+    src: url('#{$fa-font-path}poppins-bold.woff2') format('woff2'),
+    url('#{$fa-font-path}poppins-bold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'poppinslight';
-    src: url('../fonts/poppins-light-webfont.woff2') format('woff2'),
-    url('../fonts/poppins-light-webfont.woff') format('woff');
+    src: url('#{$fa-font-path}poppins-light-webfont.woff2') format('woff2'),
+    url('#{$fa-font-path}poppins-light-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -59,7 +61,7 @@ $font-light: 'poppinslight';
 }
 
 .page-background{
-    background-image: url("../media/background.jpg");
+    background-image: url("#{$fa-font-path}background.jpg");
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
