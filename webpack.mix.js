@@ -25,7 +25,8 @@ mix.js('resources/js/app.js', 'public/js')
                 }),
             ],
         };
-    });
+    }).copyDirectory('resources/fonts', 'public/fonts')
+    .copyDirectory('resources/media', 'public/media');
 
 
 if (!mix.inProduction()) {

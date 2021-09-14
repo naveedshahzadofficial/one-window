@@ -2,28 +2,30 @@
     <form @submit.prevent="onSubmit" class="search-form">
 
                 <div class="row search-box">
-                    <div class="col-md-3  col-sm-12">
-                        <label class="lable fw-bold" :for="department_id">Department</label>
+                    <div class="col-lg-4 col-md-4  col-sm-12">
+                        <label class="label-field" :for="department_id">Department</label>
                         <br>
                         <Select2 v-model="department_id" :options="departments" :placeholder="`--- Please Select ---`" />
 
                     </div>
-                    <div class="col-md-3  col-sm-12">
-                        <label class="lable fw-bold" :for="business_category_id">Business</label>
+                    <div class="col-lg-4 col-md-4  col-sm-12">
+                        <label class="label-field" :for="business_category_id">Business</label>
                         <br>
                         <Select2 v-model="business_category_id" :options="businesses" :placeholder="`--- Please Select ---`" />
                     </div>
-                    <div class="col-md-3  col-sm-12">
-                        <label class="lable fw-bold" :for="activity_id">Activity</label>
+                    <div class="col-lg-4 col-md-4  col-sm-12">
+                        <label class="label-field" :for="activity_id">Activity</label>
                         <br>
                         <Select2 v-model="activity_id" :options="activities" :placeholder="`--- Please Select ---`" />
                     </div>
-                     <div class="col-md-3  col-sm-12">
-                        <button type="button" class="btn btn-sm px-4 text-light search-reset-btn" @click.prevent="resetSearch">Reset</button>&nbsp;&nbsp;
-                        <button type="submit" class="btn btn-sm px-5 text-light search-btn">Search</button>
+
+                    <div class="col-lg-12 col-md-12  col-sm-12 text-right">
+                        <button type="button" class="btn btn-sm px-4 text-light search-reset-btn" :class="{'btn-loading': isLoading}" @click.prevent="resetSearch">Reset</button>&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-sm px-5 text-light search-btn" :class="{'btn-loading': isLoading}">Search</button>
                     </div>
+
                 </div>
-       
+
     </form>
 </template>
 
@@ -40,6 +42,7 @@ export default {
         department_id: "",
         business_category_id: "",
         activity_id: "",
+        isLoading:false,
       }},
     computed: {
         departments() {
@@ -63,14 +66,17 @@ export default {
     },
     methods:{
         onSubmit: function (){
+            this.isLoading = true;
             const newParams = {
                 department_id: this.department_id,
                 business_category_id: this.business_category_id,
                 activity_id: this.activity_id,
             };
             this.$emit('search-params', newParams);
+            this.isLoading = false;
         },
         resetSearch: function(){
+            this.isLoading = true;
 
             this.department_id = ""
             this.business_category_id = ""
@@ -83,6 +89,8 @@ export default {
             };
 
             this.$emit('search-params', newParams);
+
+            this.isLoading = false;
         }
     }
 }

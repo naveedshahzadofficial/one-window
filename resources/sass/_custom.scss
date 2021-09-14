@@ -1,3 +1,37 @@
+@font-face {
+    font-family: 'poppinsregular';
+    src: url('../fonts/poppins-regular-webfont.woff2') format('woff2'),
+    url('../fonts/poppins-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'poppinsbold';
+    src: url('../fonts/poppins-bold.woff2') format('woff2'),
+    url('../fonts/poppins-bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'poppinslight';
+    src: url('../fonts/poppins-light-webfont.woff2') format('woff2'),
+    url('../fonts/poppins-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$navi-blue-color : #000c60;
+$white-color: #fff;
+$off-white-color: #f2f2f2;
+$font-regular: 'poppinsregular';
+$font-bold: 'poppinsbold';
+$font-light: 'poppinslight';
+
+*{
+    font-family: $font-regular, sans-serif;
+}
+
 .btn-loading {
   position: relative;
   pointer-events: none;
@@ -22,4 +56,119 @@
 @keyframes spinAround {
   from { transform: rotate(0deg); }
   to { transform: rotate(359deg); }
+}
+
+.page-background{
+    background-image: url("../media/background.jpg");
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.logo{
+    margin-left: -15px;
+    a{
+        background-color: transparent !important;
+    }
+}
+.main-heading{
+    color: $navi-blue-color;
+    font-family: $font-bold;
+    font-size: 39px;
+    margin-bottom: 0;
+}
+.sub-heading{
+    font-family: $font-bold;
+    background-color: $navi-blue-color;
+    padding: 7px;
+    color:white;
+    font-size: 19px;
+}
+.sub-heading-caption{
+    font-family: $font-bold;
+    color: $navi-blue-color;
+    font-size: 25px;
+}
+.description{
+    font-family: $font-regular;
+    font-size: 14px;
+    font-weight: normal;
+}
+.label-field{
+    color: $navi-blue-color;
+    font-family: $font-regular;
+}
+.home-search-btn{
+    font-family: $font-regular;
+    background-color: $navi-blue-color;
+    font-size: 14px;
+    margin-top: 30px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 6px;
+}
+.select2-container--default .select2-selection--single {
+    border: 1px solid $navi-blue-color !important;
+    height: 35px !important;
+}
+.select2-container .select2-selection--single{
+    height: 35px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    padding-top: 5px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    top:5px !important;
+}
+.footer-overlay{
+    background-color: #ffffff40;
+    box-shadow:  0px -1px 10px #888;
+    clip-path: inset(-10px 0px 0px 0px);
+}
+.footer a{
+    color: $navi-blue-color;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+}
+.footer2{
+    color: $navi-blue-color;
+    font-size: 14px;
+    padding: 10px;
+}
+.content-wrap {
+    min-height: 357px;
+}
+
+.search-btn {
+    margin-top: 30px;
+    font-family: $font-regular;
+    background-color: $navi-blue-color;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 6px;
+}
+.search-reset-btn {
+    margin-top: 30px;
+    font-family: $font-regular;
+    background-color: $navi-blue-color;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 6px;
+}
+.wrapping-searching{
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.searching-box-heading{
+    font-family: $font-light;
+    background-color: $navi-blue-color;
+    color: $off-white-color;
+    margin: 0;
+    font-size: 14px;
+    padding: 10px;
+}
+.activities-listing,.business-listing,.business-detail{
+    background-color: $white-color;
+    height: 200px;
 }

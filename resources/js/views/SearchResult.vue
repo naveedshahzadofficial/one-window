@@ -1,5 +1,7 @@
 <template>
+        <div class="wrapping-searching">
         <SearchForm :prop_department_id="prop_department_id" :prop_business_category_id="prop_business_category_id" :prop_activity_id="prop_activity_id" @search-params="searchParams" />
+
 
         <div class="row">
                         <div class="col-md-12 my-3 col-sm-12">
@@ -9,7 +11,7 @@
                         </div>
          </div>
 
-          <div class="row my-3 search-record" :class="{'loading': loading}">
+        <div class="row my-3 search-record" :class="{'loading': loading}">
                     <div class="whole-desc-box">
 
                         <div v-for="(rlco, index) in rlcos" :key="index" class="desc-box" >
@@ -38,12 +40,15 @@
                 <pagination v-model="page" :records="records" :per-page="per_page" @paginate="loadRlcos" />
             </div>
         </div>
-
+        </div>
 
 </template>
 
 <script>
 import SearchForm from "../components/SearchForm";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret, faFolder } from '@fortawesome/free-solid-svg-icons'
+library.add(faUserSecret,faFolder)
 
 export default {
     name: "SearchResult",
@@ -100,5 +105,42 @@ export default {
 </script>
 
 <style scoped>
+
+
+.whole-desc-box{
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px -1px 10px #888;
+}
+.desc-box{
+    padding: 30px;
+    border-bottom: 2px solid #888;
+}
+.desc-title{
+    color: #000c60;
+    font-weight: bold;
+}
+.desc-title a {
+    color: #000c60;
+    text-decoration: none;
+}
+.desc-content {
+    text-align: justify;
+}
+.detail-btn{
+    background-color: #000c60;
+    color: white !important;
+    margin-top: 0 !important;
+    font-size: 12px !important;
+}
+.search-record{
+    display: block !important;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+.pagination-row{
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+}
+
 
 </style>

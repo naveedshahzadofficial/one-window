@@ -273,16 +273,23 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/RlcoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/RlcoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/frontend/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Footer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/HomeSearchForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/HomeSearchForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/SearchForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/SearchForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router/router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/RlcoDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/RlcoDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/SearchResult.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/SearchResult.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_components/rlco_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_components/rlco_detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/_custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_custom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/frontend/vue.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/frontend/vue.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
@@ -533,7 +540,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/media" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -551,11 +558,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/media" />
+      <recent name="$PROJECT_DIR$/resources/fonts" />
+      <recent name="$PROJECT_DIR$/public/fonts" />
+      <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/resources/js/components" />
-      <recent name="$PROJECT_DIR$/resources/js/store/modules" />
-      <recent name="$PROJECT_DIR$/resources/views/_layouts/frontend" />
-      <recent name="$PROJECT_DIR$/public/frontend" />
-      <recent name="$PROJECT_DIR$/resources/views/admin/activity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/frontend" />
@@ -670,7 +677,11 @@
       <workItem from="1631172652221" duration="264000" />
       <workItem from="1631270216519" duration="683000" />
       <workItem from="1631271756695" duration="465000" />
-      <workItem from="1631532952444" duration="1959000" />
+      <workItem from="1631532952444" duration="2099000" />
+      <workItem from="1631536428415" duration="3452000" />
+      <workItem from="1631540557292" duration="104000" />
+      <workItem from="1631541301780" duration="780000" />
+      <workItem from="1631567658838" duration="12148000" />
     </task>
     <servers />
   </component>

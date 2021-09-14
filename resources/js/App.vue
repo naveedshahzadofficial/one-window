@@ -1,5 +1,5 @@
 <template>
-    <div class="bg container-fluid pl-0 pr-0">
+    <div class="page-background container-fluid">
         <Header />
         <div class="content-wrap mb-5" >
             <router-view></router-view>

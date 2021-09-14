@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import SearchResult from "../views/SearchResult.vue";
 import RlcoDetail from "../views/RlcoDetail";
+import Overview from "../views/Overview";
 
 export const router = createRouter({
     history: createWebHistory('/rlcos/'),
@@ -22,6 +23,12 @@ export const router = createRouter({
             path: "/rlco/:id",
             name: "rlco.show",
             component: RlcoDetail,
+            props: true,
+        },
+        {
+            path: "/overview",
+            name: "Overview",
+            component: Overview,
             props: true,
         },
             ]

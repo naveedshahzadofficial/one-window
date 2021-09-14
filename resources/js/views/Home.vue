@@ -1,21 +1,25 @@
 <template>
+    <div class="row" style="margin-top: 60px;">
+        <div class="col-lg-1 col-md-1"></div>
+            <!-- div start for heading -->
+            <div class="col-lg-5 col-md-5 text-center">
+            <h2 class="main-heading">FACILITATING BUSINESSES</h2>
+            <h3 class="sub-heading">WITH A SMARTER, EFFICIENT AND CONVENIENT WAY</h3>
+            <h4 class="sub-heading-caption">TO INTERACT WITH GOVERNMENT</h4>
+            <!-- description paragraph start -->
+            <p class="description text-center my-5">
+                Biz Punjab facilitates you in finding the registrations, permits and licenses you may require for starting your business or running its operations.</p>
+            <!-- description paragraph end -->
+        </div>
+        <div class="col-lg-1 col-md-1"></div>
 
-    <!-- div start for heading -->
-    <div class="heading text-center">
-        <p> FIND THE PERMITS AND LICENCS YOU NEED TO YOUR BUSINESS.</p>
+        <div class="col-lg-4 col-md-4">
+            <!-- grid starts for select options -->
+                <HomeSearchForm @search-params="searchParams" />
+            <!-- grid end for select options  -->
+        </div>
+        <div class="col-lg-1 col-md-1"></div>
     </div>
-    <!-- div end for heading -->
-
-    <!-- description paragraph start -->
-    <p class="description text-center">Facilitating Businesses with a smarter, efficient and convenient way to interact with Government. <br>
-        Biz Punjab facilitates you in finding the registrations, permits and licenses <br>you may require for starting your business or running its operations.</p>
-    <!-- description paragraph end -->
-
-    <!-- grid starts for select options -->
-    <div class="my-5">
-        <HomeSearchForm @search-params="searchParams" />
-    </div>
-    <!-- grid end for select options  -->
 
 </template>
 
@@ -35,6 +39,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>

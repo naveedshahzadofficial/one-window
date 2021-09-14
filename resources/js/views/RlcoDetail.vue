@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-12">
+    <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="d-flex justify-content-between">
         <div class="d-flex flex-column flex-root ml-30">
             <span class="font-weight-bolder mb-2">Department Name</span>
