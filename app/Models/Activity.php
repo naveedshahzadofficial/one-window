@@ -11,6 +11,10 @@ class Activity extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = ['activity_name','activity_order', 'activity_remark', 'activity_status'];
 
+    public function rlcos()
+    {
+        return $this->belongsToMany(Rlco::class);
+    }
     public function getActivityStatus()
     {
         return ($this->activity_status)?'Active':'Inactive';

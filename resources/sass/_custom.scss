@@ -1,5 +1,6 @@
 $fa-font-path: '/rlcos/fonts/';
 $media-path: '/rlcos/media/';
+
 @font-face {
     font-family: 'poppinsregular';
     src: url('#{$fa-font-path}poppins-regular-webfont.woff2') format('woff2'),
@@ -24,6 +25,7 @@ $media-path: '/rlcos/media/';
 }
 
 $navi-blue-color : #000c60;
+$blue-highlight: #D3E2EA;
 $white-color: #fff;
 $off-white-color: #f2f2f2;
 $font-regular: 'poppinsregular';
@@ -172,5 +174,155 @@ $font-light: 'poppinslight';
 }
 .activities-listing,.business-listing,.business-detail{
     background-color: $white-color;
-    height: 200px;
+    height: 335px;
+    overflow-y: scroll;
 }
+.list-item{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #999999;
+    margin-left: 0;
+    margin-right: 0;
+    cursor: pointer;
+    &.active {
+        background-color: $blue-highlight;
+        color: $navi-blue-color;
+    }
+    .list-icon{
+        padding: 5px;
+    }
+    .list-heading{
+        font-family: $font-bold;
+        color: $navi-blue-color;
+    }
+    .list-scop{
+        font-size: 10px;
+        text-align: right;
+        padding: 10px;
+    }
+    .list-desc{
+        font-family: $font-light;
+        font-size: 12px;
+        display: block;
+        text-align: justify;
+        padding-left: 27px;
+    }
+    .tiny-label{
+        font-family: $font-light;
+        font-size: 12px;
+        padding-right: 5px;
+    }
+    .tiny-search-field{
+        font-family: $font-light;
+        font-size: 12px;
+        height: 20px;
+        border: 1px solid #999999;
+        width: 140px;
+    }
+    .sorting a{
+        font-family: $font-light;
+        font-size: 12px;
+        text-decoration: none;
+        .triangle-down, .triangle-up{
+            color: #999999;
+        }
+    }
+}
+
+.business-detail {
+    .list-detail{
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        .detail-heading{
+            font-family: $font-bold;
+            color: $navi-blue-color;
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+        .detail-scope{
+            font-family: $font-light;
+            font-size: 12px;
+            display: block;
+        }
+        .detail-department{
+            font-size: 12px;
+            color: $navi-blue-color;
+            display: block;
+        }
+        .detail-desc{
+            display: block;
+            margin-top: 15px;
+        }
+        .custom-detail-btn {
+            font-family: $font-regular;
+            background-color: $navi-blue-color;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-radius: 6px;
+        }
+        .detail-table{
+            border-bottom: 1px solid #e5e5e5;
+            tr{
+                background: #f8f8f8;
+                border-top: 1px solid #e5e5e5;
+                border-bottom: 1px solid #e5e5e5;
+                th{
+                    color: #333;
+                    font-family: $font-bold;
+                    font-weight: 600;
+                    text-transform: none;
+                    font-size: 1em;
+                }
+            }
+        }
+
+        .accordion.accordion-light .card {
+            border: 0;
+        }
+        .accordion.accordion-light .card .card-header {
+            background-color: transparent;
+            border: 0;
+        }
+        .accordion .card .card-header {
+            cursor: pointer;
+            margin: 0;
+            border-bottom: 0;
+            padding: 0;
+            background-color: #F3F6F9;
+        }
+        .accordion .card-title{
+            .card-label {
+                padding-top: 3px;
+            }
+            .svg-icon{
+                float: left;
+            }
+        }
+        .accordion {
+             .card-header .card-title{
+                 margin: 0;
+                 font-family: $font-bold;
+                 font-weight: 500;
+                 color: $navi-blue-color;
+            }
+             .card-header .card-title.collapsed {
+                color: #3F4254;
+            }
+            .bg-custom-color{
+                margin-top: 10px;
+            }
+            .svg-icon svg {
+                height: 1.5rem;
+                width: 1.5rem;
+            }
+
+            svg {
+                overflow: hidden;
+                vertical-align: middle;
+            }
+        }
+    }
+
+}
+

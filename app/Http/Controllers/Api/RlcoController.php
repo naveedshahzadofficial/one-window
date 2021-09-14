@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 class RlcoController extends Controller
 {
     public function departmentList(){
-        $departments = Department::select('id',DB::raw('department_name as text'))->where('department_status', 1)->has('rlcos')->get();
+        $departments = Department::select('id',DB::raw('department_name as text'))->where('department_status', 1)->whereHas('rlcos', function ($q){ $q->where('rlco_status',1);})->get();
         return response()->json(['departments'=>$departments]);
     }
     public function businessList(){
@@ -26,37 +26,44 @@ class RlcoController extends Controller
     }
 
     public function searchRlcos(Request $request){
-        $paginate = 30;
-
 
          $department_id = isset($request->department_id) && !empty($request->department_id) ?$request->department_id: '';
          $business_category_id = isset($request->business_category_id) && !empty($request->business_category_id) ?$request->business_category_id: '';
          $activity_id = isset($request->activity_id) && !empty($request->activity_id) ?$request->activity_id: '';
 
-         $query = Rlco::select("*")->with('department')->where('rlco_status',1);
-         if (!empty($department_id)) {
-            $query->where('department_id', $department_id);
-        }
+         /* Activities with count of RLCOs */
+        $query = Activity::with(['rlcos'=>function($q){$q->with('businessCategory','department','inspectionDepartment','requiredDocuments','faqs','foss','dependencies.department', 'otherDocuments')->where('rlco_status',1);}])->withCount(['rlcos'=>function($q){$q->where('rlco_status',1);}])->having('rlcos_count', '>', 0)->where('activity_status',1);
+
         if (!empty($business_category_id)) {
-            $query->where('business_category_id', $business_category_id);
+            $query->whereHas('rlcos', function ($q) use($business_category_id) {
+                $q->where('business_category_id', $business_category_id);
+            });
         }
 
         if (!empty($activity_id)) {
-            $query->whereHas('activities', function ($q) use($activity_id) {
-                    $q->where('id', $activity_id);
-                });
+            $query->where('id', $activity_id);
+        }
+        if (!empty($department_id)) {
+            $query->whereHas('rlcos', function ($q) use($department_id) {
+                $q->where('department_id', $department_id);
+            });
         }
 
-        $query_count = clone $query;
+        $activities = $query->get();
 
-        $rlcos = $query->paginate($paginate);
-
-        $rlcos_count = $query_count->count();
+        $rlcos = array();
+        foreach ($activities as $activity){
+            foreach ($activity->rlcos as $rlco){
+                $rlco->activity_id = $activity->id;
+                array_push($rlcos, $rlco);
+            }
+        }
+        $total_rlcos = $activities->sum('rlcos_count');
 
         return response()->json([
+            'activities' => $activities,
             'rlcos' => $rlcos,
-            'rlcos_count' => $rlcos_count,
-            'paginate' => $paginate
+            'total_rlcos' => $total_rlcos,
         ]);
     }
 
