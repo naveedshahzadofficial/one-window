@@ -40,5 +40,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.saved-permits{
+    display: none !important;
+}
 </style>

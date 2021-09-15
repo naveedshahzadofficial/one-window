@@ -94,34 +94,36 @@ $font-light: 'poppinslight';
 }
 .description{
     font-family: $font-regular;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: normal;
+    color: #000;
 }
 .label-field{
     color: $navi-blue-color;
     font-family: $font-regular;
+    margin-bottom: 0;
 }
 .home-search-btn{
     font-family: $font-regular;
     background-color: $navi-blue-color;
     font-size: 14px;
     margin-top: 30px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-radius: 6px;
 }
 .select2-container--default .select2-selection--single {
     border: 1px solid $navi-blue-color !important;
-    height: 35px !important;
+    height: 30px !important;
 }
 .select2-container .select2-selection--single{
-    height: 35px !important;
+    height: 30px !important;
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered{
-    padding-top: 5px !important;
+    padding-top: 3px !important;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow{
-    top:5px !important;
+    top:3px !important;
 }
 .footer-overlay{
     background-color: #ffffff40;
@@ -137,30 +139,31 @@ $font-light: 'poppinslight';
 .footer2{
     color: $navi-blue-color;
     font-size: 14px;
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .content-wrap {
     min-height: 357px;
 }
 
 .search-btn {
-    margin-top: 30px;
+    margin-top: 15px;
     font-family: $font-regular;
     background-color: $navi-blue-color;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-radius: 6px;
 }
 .search-reset-btn {
-    margin-top: 30px;
+    margin-top: 15px;
     font-family: $font-regular;
     background-color: $navi-blue-color;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-radius: 6px;
 }
 .wrapping-searching{
-    margin-top: 30px;
+    margin-top: 25px;
     padding-left: 30px;
     padding-right: 30px;
 }
@@ -171,6 +174,7 @@ $font-light: 'poppinslight';
     margin: 0;
     font-size: 14px;
     padding: 10px;
+    line-height: 20px;
 }
 .activities-listing,.business-listing,.business-detail{
     background-color: $white-color;
@@ -187,9 +191,32 @@ $font-light: 'poppinslight';
     &.active {
         background-color: $blue-highlight;
         color: $navi-blue-color;
+        .list-icon{
+            svg:not(.un-favorite-icon svg, .favorite-icon svg){
+            fill: $navi-blue-color;
+            color: $navi-blue-color;
+            }
+            &.un-favorite-icon svg{
+                fill: #8c8585;
+                color: #8c8585;
+            }
+            &.favorite-icon svg{
+                fill: #e6bd37;
+                color: #e6bd37;
+            }
+        }
     }
     .list-icon{
-        padding: 5px;
+        padding: 0 5px 5px;
+        float: left;
+        svg{
+            fill: #e4e4e4;
+            color: #ddd;
+        }
+        &.favorite-icon svg{
+            fill: #e6bd37;
+            color: #e6bd37;
+        }
     }
     .list-heading{
         font-family: $font-bold;
@@ -205,7 +232,6 @@ $font-light: 'poppinslight';
         font-size: 12px;
         display: block;
         text-align: justify;
-        padding-left: 27px;
     }
     .tiny-label{
         font-family: $font-light;
@@ -324,3 +350,25 @@ $font-light: 'poppinslight';
 
 }
 
+.page-content p{
+    font-size: 16px;
+    color: #000;
+}
+.saved-permits{
+    float: right;
+    margin-top: 35px;
+    margin-right: 30px;
+    color:$navi-blue-color;
+    a{
+        text-decoration: none;
+        color:$navi-blue-color;
+    }
+    &.un-favorite-icon svg{
+        fill: #8c8585;
+        color: #8c8585;
+    }
+    &.favorite-icon svg{
+        fill: #e6bd37;
+        color: #e6bd37;
+    }
+}

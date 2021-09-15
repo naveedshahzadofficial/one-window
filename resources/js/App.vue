@@ -1,11 +1,11 @@
 <template>
-    <div class="page-background container-fluid">
+    <div class="container-fluid">
         <Header />
-        <div class="content-wrap mb-5" >
+        <div class="content-wrap mb-4" >
             <router-view></router-view>
         </div>
-        <Footer />
     </div>
+    <Footer />
 </template>
 
 <script>

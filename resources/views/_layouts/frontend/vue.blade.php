@@ -12,7 +12,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="page-background">
 <!-- background image / main div start -->
 <div id="app"></div>
 

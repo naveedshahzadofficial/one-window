@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import SearchResult from "../views/SearchResult.vue";
 import RlcoDetail from "../views/RlcoDetail";
 import Overview from "../views/Overview";
+import Favorite from "../views/Favorite";
 
 export const router = createRouter({
     history: createWebHistory('/rlcos/'),
@@ -29,6 +30,12 @@ export const router = createRouter({
             path: "/overview",
             name: "Overview",
             component: Overview,
+            props: true,
+        },
+        {
+            path: "/saved",
+            name: "favorite",
+            component: Favorite,
             props: true,
         },
             ]

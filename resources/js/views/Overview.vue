@@ -1,6 +1,6 @@
 <template>
     <div class="row my-5 mx-5">
-    <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 page-content">
         <h3>Overview</h3>
         <p>
             To obtain licenses, permits, etc; businesses have to go through cumbersome processing using manual application procedures at various departments such as Housing and Urban Development, Local Government, Environment Protection Authority, Excise & Taxation, Labour Department, Punjab Revenue Authority, Punjab Food Authority, Punjab Power Development Company limited, Water & Sanitation Agency, etc.

@@ -2,16 +2,16 @@
         <div class="wrapping-searching">
         <SearchForm :prop_department_id="prop_department_id" :prop_business_category_id="prop_business_category_id" :prop_activity_id="prop_activity_id" @search-params="searchParams" />
 
-            <div class="row mt-5">
+            <div class="row mt-3">
 
                 <div class="col-lg-3">
                     <h4 class="searching-box-heading">Browse by Activity</h4>
                     <div class="activities-listing overflow-auto">
 
-                        <div v-for="(activity, index) in activities" class="row list-item" :key="activity.id" :class="[(activeActivity == activity.id) ? 'active':'']" @click.prevent="findRlcos(activity.id)">
+                        <div v-for="(activity, index) in activities" class="row list-item" :key="activity.id" :class="[(activeActivity == activity.id) ? 'active':'']" @click.prevent="findRlcos(activity)">
                             <div class="col-lg-10 col-md-10">
                                 <span class="list-icon"><font-awesome-icon icon="folder" /></span>
-                                <span class="list-title">{{ activity.activity_name }}</span>
+                                <div class="list-title">{{ activity.activity_name }}</div>
                             </div>
                             <div class="col-lg-2 col-md-2 text-center">
                                 <span class="list-count">{{ activity.rlcos_count }}</span>
@@ -19,10 +19,10 @@
                         </div>
 
 
-                        <div  class="row list-item " :class="[(activeActivity == 'all') ? 'active':'']" @click.prevent="activity_rlcos = rlcos; activeActivity='all';">
+                        <div  class="row list-item " :class="[(activeActivity == 'all') ? 'active':'']" @click.prevent="allActivites">
                             <div class="col-lg-10 col-md-10">
                                 <span class="list-icon"><font-awesome-icon icon="folder" /></span>
-                                <span class="list-title">All Activities</span>
+                                <div class="list-title">All Activities</div>
                             </div>
                             <div class="col-lg-2 col-md-2 text-center">
                                 <span class="list-count">{{ totalRlcos }}</span>
@@ -33,12 +33,11 @@
                 </div>
 
                 <div class="col-lg-4 pl-0 pr-0">
-                    <h4 class="searching-box-heading">
-                        Starting a Business</h4>
+                    <h4 class="searching-box-heading" v-text="activityName"></h4>
                     <div class="business-listing overflow-auto">
                         <div  class="row list-item">
                                 <div class="col-lg-9 col-md-9 col-sm-12">
-                                <span class="list-icon d-none"><font-awesome-icon icon="star" /></span>
+                                <span class="list-icon"><font-awesome-icon icon="star" /></span>
                                 <span>
                                     <span class="tiny-label">Permit Title</span>
                                     <input type="text" v-model="filterSearch" class="tiny-search-field" placeholder="Filter titles by keyword...">
@@ -53,15 +52,15 @@
                              </div>
                         </div>
 
-                        <div v-for="(rlco, index) in filteredList" class="row list-item" :key="rlco.id" :class="[(activeRlco == rlco.id) ? 'active':'']" @click.prevent="rlcoDetail(rlco.id)">
+                        <div v-for="(rlco, index) in filteredList" class="row list-item" :key="rlco.id" :class="[(activeRlco == rlco.id) ? 'active':'']">
                             <div class="col-lg-9 col-md-9">
-                                <span class="list-icon d-none"><font-awesome-icon icon="star" /></span>
-                                <span class="list-heading">{{ rlco.rlco_name }}</span>
+                                <span class="list-icon" :class="[isFavorite(rlco)?'favorite-icon':'un-favorite-icon']" @click.prevent="toggleFavorite(rlco)"><font-awesome-icon icon="star" /></span>
+                                <span class="list-heading" @click.prevent="rlcoDetail(rlco)">{{ rlco.rlco_name }}</span>
                             </div>
-                            <div class="col-lg-3 col-md-3">
+                            <div @click.prevent="rlcoDetail(rlco)" class="col-lg-3 col-md-3">
                                 <span class="list-scop">{{ rlco.scope }}</span>
                             </div>
-                            <div class="col-lg-12 col-md-12">
+                            <div @click.prevent="rlcoDetail(rlco)" class="col-lg-12 col-md-12">
                                 <span class="list-desc">{{ rlco.purpose }}</span>
                             </div>
 
@@ -73,11 +72,9 @@
                 </div>
 
                 <div class="col-lg-5">
-                    <h4 class="searching-box-heading">Business Number Registration</h4>
+                    <h4 class="searching-box-heading" v-text="rlcoName"></h4>
                     <div class="business-detail overflow-auto">
                         <div v-if="rlco_detail && rlco_detail.id" class="col-lg-12 col-md-12 list-detail">
-                            <h3 class="detail-heading">{{ rlco_detail.rlco_name}} </h3>
-
                             <div class="row">
                             <div class="col-lg-9 col-md-9"><span class="detail-department">{{ rlco_detail.department?.department_name }}</span></div>
                             <div class="col-lg-3 col-md-3"><span class="detail-scope">{{ rlco_detail.scope }}</span></div>
@@ -129,7 +126,7 @@
                                 </tbody>
                             </table>
 
-                            <h3  v-if="rlco_detail.required_documents?.length > 0" class="detail-heading pt-2 pb-2">REQUIRED DOCUMENTS</h3>
+                            <h3  v-if="rlco_detail.required_documents?.length > 0" class="detail-heading pt-2 pb-2">Required Documents</h3>
                             <table class="table detail-table" v-if="rlco_detail.required_documents?.length > 0">
                                 <thead>
                                 <tr>
@@ -145,7 +142,7 @@
                                 </tbody>
                             </table>
 
-                            <h3  v-if="rlco_detail.dependencies?.length > 0" class="detail-heading pt-2 pb-2">DEPENDENCIES</h3>
+                            <h3  v-if="rlco_detail.dependencies?.length > 0" class="detail-heading pt-2 pb-2">Dependencies</h3>
                             <table class="table detail-table" v-if="rlco_detail.dependencies?.length > 0">
                                 <thead>
                                 <tr>
@@ -167,7 +164,7 @@
                                 </tbody>
                             </table>
 
-                            <h3 class="detail-heading pt-2 pb-2">INSPECTIONS</h3>
+                            <h3 class="detail-heading pt-2 pb-2">Inspections</h3>
                             <table class="table detail-table">
                                 <tbody>
                                 <tr v-if="rlco_detail.inspection_required">
@@ -219,7 +216,7 @@
                             </div>
 
 
-                            <h3  v-if="rlco_detail.foss?.length > 0" class="detail-heading pt-2 pb-2">OBSERVATIONS</h3>
+                            <h3  v-if="rlco_detail.foss?.length > 0" class="detail-heading pt-2 pb-2">Observations</h3>
 
                             <table class="table detail-table" v-if="rlco_detail.foss?.length > 0">
                                 <thead>
@@ -238,7 +235,7 @@
                                 </tbody>
                             </table>
 
-                            <h3  v-if="rlco_detail.other_documents?.length > 0" class="detail-heading pt-2 pb-2">OTHER DOCUMENTS</h3>
+                            <h3  v-if="rlco_detail.other_documents?.length > 0" class="detail-heading pt-2 pb-2">Other documents</h3>
                             <table class="table detail-table" v-if="rlco_detail.other_documents?.length > 0">
                                 <thead>
                                 <tr>
@@ -257,8 +254,8 @@
                             </table>
 
                             <div class="row detail-btn my-3  mb-2">
-                                <div class="col-lg-6" v-if="rlco_detail.automation_status !='No Information' && rlco_detail.application_url"> <a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.application_url">ONLINE APPLICATION FORM</a></div>
-                                <div class="col-lg-6 text-right"  v-if="rlco_detail.department_website"><a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.department_website">MORE INFORMATION</a></div>
+                                <div class="col-lg-6" v-if="rlco_detail.automation_status !='No Information' && rlco_detail.application_url"> <a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.application_url">Online Application Form</a></div>
+                                <div class="col-lg-6 text-right"  v-if="rlco_detail.department_website"><a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.department_website">More Information</a></div>
                             </div>
 
                         </div>
@@ -274,7 +271,6 @@
 import SearchForm from "../components/SearchForm";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStar, faFolder } from '@fortawesome/free-solid-svg-icons'
-import activity from "../store/modules/activity";
 library.add(faStar,faFolder)
 
 export default {
@@ -300,6 +296,9 @@ export default {
             totalRlcos: 0,
             filterSearch: "",
             scopeSort: null,
+            activityName: "Starting a Business",
+            rlcoName: "Business Number Registration",
+            favorites: [],
         }
     },
     computed: {
@@ -311,7 +310,7 @@ export default {
             }).sort((a, b) => {
                 return this.scopeSort===null?0:(this.scopeSort ?((a?.scope > b?.scope) ? 1 : -1): ((b?.scope > a?.scope) ? 1 : -1));
             });
-        },
+        }
     },
     filters: {
 
@@ -321,9 +320,19 @@ export default {
             this.department_id = this.prop_department_id;
             this.business_category_id = this.prop_business_category_id;
             this.activity_id = this.prop_activity_id;
+            this.loadFavoriteItems();
             this.loadActivities();
      },
     methods: {
+        loadFavoriteItems: function(){
+            if (localStorage.getItem('favorites')) {
+                try {
+                    this.favorites = JSON.parse(localStorage.getItem('favorites'));
+                } catch(e) {
+                    localStorage.removeItem('favorites');
+                }
+            }
+        },
         searchParams: function (params){
             this.department_id = params.department_id;
             this.business_category_id = params.business_category_id;
@@ -346,31 +355,58 @@ export default {
                 this.rlcos = response.data.rlcos;
                 let activity = _.head(this.activities);
                 if(activity!==undefined) {
-                    this.findRlcos(activity.id);
+                    this.findRlcos(activity);
                 }
                 this.loading = false;
             })
         },
-         findRlcos: function (id){
-             this.activeActivity = id;
-             this.activity_rlcos = this.rlcos.filter((rlco) => rlco.activity_id === parseInt(id));
+         findRlcos: function (activity){
+             this.activeActivity = activity.id;
+             this.activityName = activity.activity_name;
+             this.activity_rlcos = this.rlcos.filter((rlco) => rlco.activity_id === parseInt(activity.id));
              let rlco = _.head(this.activity_rlcos);
              if(rlco!==undefined) {
-                 this.rlcoDetail(rlco.id);
+                 this.rlcoDetail(rlco);
              }
          },
-         rlcoDetail: function (id){
-           this.activeRlco = id;
-           let detail = this.activity_rlcos.filter((rlco) => rlco.id === parseInt(id));
+         rlcoDetail: function (rlco){
+           this.activeRlco = rlco.id;
+           this.rlcoName = rlco.rlco_name;
+           let detail = this.activity_rlcos.filter((rlco) => rlco.id === parseInt(rlco.id));
            if(detail)
            this.rlco_detail = detail[0];
         },
-        toggleSort: function (){
+         toggleSort: function (){
             if(this.scopeSort===null) {
                 this.scopeSort = false;
             }else
             this.scopeSort = !this.scopeSort
+        },
+         allActivites: function(){
+             this.activity_rlcos = this.rlcos;
+             this.activeActivity='all';
+             this.activityName = 'All Activities';
+             let rlco = _.head(this.activity_rlcos);
+             if(rlco!==undefined) {
+                 this.rlcoDetail(rlco);
+             }
+         },
+        isFavorite:function (rlco){
+            let items = this.favorites.filter((fav) => fav.id === parseInt(rlco.id));
+            return items.length;
+        },
+        toggleFavorite: function (rlco){
+            if(this.isFavorite(rlco))
+            this.favorites = this.favorites.filter((fav) => fav.id !== parseInt(rlco.id));
+            else
+            this.favorites.push(rlco);
+
+            console.log(this.favorites);
+
+            const parsedFavorites = JSON.stringify(this.favorites);
+            localStorage.setItem('favorites', parsedFavorites);
         }
+
     },
 
 }
