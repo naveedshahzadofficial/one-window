@@ -2,7 +2,7 @@
   <header>
     <div class="logo">
       <router-link  exact :to="{ name: 'home' }"><img :src="logo" alt="{{ app_title }}"></router-link>
-      <div class="saved-permits" :class="[favoriteCount?'favorite-icon':'un-favorite-icon']"><router-link :to="{ name: 'favorite' }"><font-awesome-icon icon="star" />&nbsp;Saved Permits<span v-if="favoriteCount">&nbsp;(<span  class="favorite-count" v-text="favoriteCount"></span>)</span></router-link></div>
+      <div v-if="!isOnHomePage" class="saved-permits" :class="[favoriteCount?'favorite-icon':'un-favorite-icon']"><router-link :to="{ name: 'favorite' }"><font-awesome-icon icon="star" />&nbsp;Saved Permits<span v-if="favoriteCount">&nbsp;(<span  class="favorite-count" v-text="favoriteCount"></span>)</span></router-link></div>
     </div>
   </header>
 </template>
@@ -33,6 +33,12 @@ export default {
             return count;
         }
     },
+    methods: {
+    isOnHomePage: function() {
+        console.log(this.$route.path);
+        return this.$route.path === '/' || this.$route.path === '/rlcos/'
+    }
+    }
 }
 </script>
 
