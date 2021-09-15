@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ActivityResource;
+use App\Http\Resources\RlcoResource;
 use App\Models\Activity;
 use App\Models\BusinessCategory;
 use App\Models\Department;
@@ -79,8 +81,8 @@ class RlcoController extends Controller
         $total_rlcos = $activities->sum('rlcos_count');
 
         return response()->json([
-            'activities' => $activities,
-            'rlcos' => $rlcos,
+            'activities' => ActivityResource::collection($activities),
+            'rlcos' => RlcoResource::collection($rlcos),
             'total_rlcos' => $total_rlcos,
         ]);
     }
