@@ -31,13 +31,14 @@ export default {
                 }
             }
             return count;
+        },
+        isOnHomePage: function() {
+            console.log(this.$route.path);
+            return this.$route.path === '/' || this.$route.path === '/rlcos/'
         }
     },
     methods: {
-    isOnHomePage: function() {
-        console.log(this.$route.path);
-        return this.$route.path === '/' || this.$route.path === '/rlcos/'
-    }
+
     }
 }
 </script>
