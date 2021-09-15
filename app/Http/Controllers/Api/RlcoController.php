@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class RlcoController extends Controller
 {
     public function departmentList(){
-        $departments = Department::select('id',DB::raw('department_name as text'))->where('department_status', 1)->whereHas('rlcos', function ($q){ $q->where('rlco_status',1);})->get();
+        $departments = Department::select('id',DB::raw('department_name as text'))->where('department_status', 1)->whereHas('rlcos', function ($q){ $q->where('rlco_status',1);})->orderBy('department_name')->get();
         return response()->json(['departments'=>$departments]);
     }
     public function businessList(){
