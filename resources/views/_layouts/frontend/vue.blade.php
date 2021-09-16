@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'BIZ PUNJAB') }}</title>
+    <title>{{ config('app.name', 'eBIZ PUNJAB') }}</title>
     <meta name="keywords" content="RLCOs" />
     <meta name="description" content="RLCOs" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
