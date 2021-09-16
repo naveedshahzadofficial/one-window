@@ -531,7 +531,7 @@
 
                         <div x-show.transition.opacity="automation_status!='No Information'" class="row form-group">
                             <div class="col-lg-12">
-                                <label>{!! __('Required Documents') !!}<span
+                                <label>{!! __('Required Documents') !!}<span class="text-dark-50">(Enter comma separated required documents)</span><span
                                         class="text-danger"></span></label>
                                 <div wire:ignore>
                                     <x-select2-tag wire:model.defer="form.required_document_ids"
