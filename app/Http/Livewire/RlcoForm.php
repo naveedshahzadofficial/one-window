@@ -174,6 +174,7 @@ class RlcoForm extends Component
             $business_activity_ids = $this->form['business_activity_ids']??null;
 
             $activity_ids = $this->form['activity_ids']??null;
+
             $keyword_ids = $this->form['keyword_ids']??null;
             $new_keyword_ids = array();
             if(!empty($keyword_ids)){
@@ -242,7 +243,23 @@ class RlcoForm extends Component
         DB::transaction(function () {
         $this->formSaved();
             $required_document_ids = $this->form['required_document_ids']??null;
-            $this->rlco->requiredDocuments()->sync($required_document_ids);
+            $new_document_ids = array();
+            if(!empty($required_document_ids)){
+                foreach ($required_document_ids as $required_document_id){
+                    if ((int)$required_document_id === 0) {
+                        $required_document = Keyword::firstOrCreate(
+                            ['document_title' => $required_document_id],
+                            ['keyword_status' => 'Active']
+                        );
+                        array_push($new_document_ids, $required_document->id);
+                    } else {
+                        array_push($new_document_ids, $required_document_id);
+                    }
+                }
+            }
+
+            $this->rlco->requiredDocuments()->sync($new_document_ids);
+
         });
 
     }

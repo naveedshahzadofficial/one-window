@@ -534,11 +534,11 @@
                                 <label>{!! __('Required Documents') !!}<span
                                         class="text-danger"></span></label>
                                 <div wire:ignore>
-                                    <x-select2-dropdown wire:model.defer="form.required_document_ids"
-                                                        isMultiple="true"
-                                                        setFieldName="form.required_document_ids"
-                                                        id="required_document_ids" fieldName="document_title"
-                                                        :listing="$required_documents"/>
+                                    <x-select2-tag wire:model.defer="form.required_document_ids"
+                                                   isMultiple="true"
+                                                   setFieldName="form.required_document_ids"
+                                                   id="required_document_ids" fieldName="document_title"
+                                                   :listing="$required_documents"/>
                                 </div>
                                 @error('form.required_documents')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
