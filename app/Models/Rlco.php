@@ -73,7 +73,7 @@ class Rlco extends Model
     }
 
     public function dependencies(){
-        return $this->hasMany(Dependency::class);
+        return $this->hasMany(Dependency::class)->orderBy('priority');
     }
 
     public function otherDocuments(){

@@ -70,6 +70,7 @@
 
                     </div>
                 </div>
+
                 <RlcoDetailComponent :rlco_detail="rlco_detail"/>
             </div>
 

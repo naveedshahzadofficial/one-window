@@ -3,9 +3,9 @@
         <h4 class="searching-box-heading" v-text="rlco_detail?.rlco_name"></h4>
         <div class="business-detail overflow-auto">
             <div v-if="rlco_detail && rlco_detail.id" class="col-lg-12 col-md-12 list-detail">
-                <div class="row">
-                    <div class="col-lg-9 col-md-9"><span class="detail-department">{{ rlco_detail.department?.department_name }}</span></div>
-                    <div class="col-lg-3 col-md-3"><span class="detail-scope">{{ rlco_detail.scope }}</span></div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="row"><span class="detail-department">{{ rlco_detail.department?.department_name }}</span></div>
+                    <div class="row"><span class="detail-scope">{{ rlco_detail.scope }}</span></div>
                 </div>
 
                 <div class="detail-desc" v-html="rlco_detail.description"></div>
@@ -84,20 +84,9 @@
 
                 <h3  v-if="rlco_detail.dependencies?.length > 0" class="detail-heading pt-3 pb-1">Dependencies</h3>
                 <table class="table detail-table" v-if="rlco_detail.dependencies?.length > 0">
-                    <thead>
-                    <tr>
-                        <th>Organization</th>
-                        <th>Activity name</th>
-                        <th>Priority</th>
-                        <th>Remarks</th>
-                    </tr>
-                    </thead>
                     <tbody>
                     <tr v-for="(dependency, index) in rlco_detail.dependencies">
-                        <td>{{ dependency.department?.department_name }}</td>
-                        <td>{{ dependency.activity_name }}</td>
-                        <td>{{ dependency.priority }}</td>
-                        <td>{{ dependency.remark }}</td>
+                        <td>{{ dependency.activity_name }}<div style="font-size: 12px; margin-top: -5px;">From: {{ dependency.department?.department_name }}</div></td>
                     </tr>
                     </tbody>
                 </table>
@@ -147,7 +136,7 @@
                             </div>
                         </div>
                         <div :id="`collapse_faq_${index}`" class="collapse" data-parent="#accordionFaqs">
-                            <div class="card-body pl-12" v-html="faq.faq_answer"></div>
+                            <div class="card-body pt-2 pb-2 pl-4" v-html="faq.faq_answer"></div>
                             <div v-if="faq.faq_file"><a class="btn" :href="faq.faq_file" target="_blank" download><font-awesome-icon icon="download" /></a></div>
                         </div>
                     </div>
