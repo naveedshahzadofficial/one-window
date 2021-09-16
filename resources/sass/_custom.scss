@@ -134,11 +134,11 @@ $font-light: 'poppinslight';
     color: $navi-blue-color;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
 }
 .footer2{
     color: $navi-blue-color;
-    font-size: 14px;
+    font-size: 12px;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -157,7 +157,7 @@ $font-light: 'poppinslight';
 .search-reset-btn {
     margin-top: 15px;
     font-family: $font-regular;
-    background-color: $navi-blue-color;
+    background-color: #7f818d;
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 6px;
@@ -293,10 +293,13 @@ $font-light: 'poppinslight';
                 border-bottom: 1px solid #e5e5e5;
                 th{
                     color: #333;
-                    font-family: $font-bold;
-                    font-weight: 600;
+                    font-family: $font-regular;
                     text-transform: none;
-                    font-size: 1em;
+                    font-size: 14px;
+                    padding: 0.50rem;
+                }
+                td{
+                    padding: 0.50rem;
                 }
             }
         }

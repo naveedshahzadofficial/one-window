@@ -22,6 +22,7 @@ class Rlco extends Model
         return ($this->rlco_status)?'Active':'Inactive';
     }
 
+
     public static function boot()
     {
         parent::boot();

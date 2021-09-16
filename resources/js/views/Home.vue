@@ -8,7 +8,7 @@
             <h4 class="sub-heading-caption">TO INTERACT WITH GOVERNMENT</h4>
             <!-- description paragraph start -->
             <p class="description text-center my-5">
-                Biz Punjab facilitates you in finding the registrations, permits and licenses you may require for starting your business or running its operations.</p>
+                eBiz Punjab facilitates you in finding the registrations, permits and licenses you may require for starting your business or running its operations.</p>
             <!-- description paragraph end -->
         </div>
         <div class="col-lg-1 col-md-1"></div>

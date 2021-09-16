@@ -47,7 +47,7 @@ class RlcoResource extends JsonResource
             "rlco_status" => $this->rlco_status,
             "scope" => $this->scope,
             "time_taken" => $this->time_taken,
-            "time_unit" => $this->time_unit,
+            "time_unit" => !empty($this->time_unit)?substr_replace($this->time_unit ,"(s)",-1):null,
             "title_of_law" => $this->title_of_law,
             "validity" => $this->validity,
             "application_form_file" => !empty($this->application_form_file)?Storage::url($this->application_form_file):null,

@@ -36,7 +36,7 @@
                     <h4 class="searching-box-heading" v-text="activityName"></h4>
                     <div class="business-listing overflow-auto">
                         <div  class="row list-item">
-                                <div class="col-lg-9 col-md-9 col-sm-12">
+                                <div class="col-lg-9 col-md-9 col-sm-12 pl-0">
                                 <span class="list-icon"><font-awesome-icon icon="star" /></span>
                                 <span>
                                     <span class="tiny-label">Permit Title</span>
@@ -52,15 +52,15 @@
                              </div>
                         </div>
 
-                        <div v-for="(rlco, index) in filteredList" class="row list-item" :key="rlco.id" :class="[(activeRlco == rlco.id) ? 'active':'']">
-                            <div class="col-lg-9 col-md-9">
+                        <div v-for="(rlco, index) in filteredList" class="row list-item" :key="rlco.id" :class="[(activeRlco == rlco.id) ? 'active':'']"  @click.prevent="rlcoDetail(rlco)">
+                            <div class="col-lg-9 col-md-9 pl-0 pr-0">
                                 <span class="list-icon" :class="[isFavorite(rlco)?'favorite-icon':'un-favorite-icon']" @click.prevent="toggleFavorite(rlco)"><font-awesome-icon icon="star" /></span>
-                                <span class="list-heading" @click.prevent="rlcoDetail(rlco)">{{ rlco.rlco_name }}</span>
+                                <span class="list-heading">{{ rlco.rlco_name }}</span>
                             </div>
-                            <div @click.prevent="rlcoDetail(rlco)" class="col-lg-3 col-md-3">
+                            <div  class="col-lg-3 col-md-3">
                                 <span class="list-scop">{{ rlco.scope }}</span>
                             </div>
-                            <div @click.prevent="rlcoDetail(rlco)" class="col-lg-12 col-md-12">
+                            <div  class="col-lg-12 col-md-12">
                                 <span class="list-desc">{{ rlco.purpose }}</span>
                             </div>
 
@@ -89,17 +89,17 @@
                                 </tr>
 
                                 <tr v-if="rlco_detail.title_of_law && rlco_detail.link_of_law">
-                                    <th>Law</th>
+                                    <th>Enforcing Law</th>
                                     <td><a target="_blank" :href="rlco_detail.link_of_law">{{ rlco_detail.title_of_law }}</a></td>
                                 </tr>
 
                                 <tr v-if="rlco_detail.fee">
-                                    <th>Fee (Rs)</th>
+                                    <th>Fee (PKR)</th>
                                     <td>{{ rlco_detail.fee }}</td>
                                 </tr>
 
                                 <tr v-if="rlco_detail.fee_submission_mode">
-                                    <th>Fee Submission Mode</th>
+                                    <th>Payment Mode</th>
                                     <td>{{ rlco_detail.fee_submission_mode }}</td>
                                 </tr>
 
@@ -114,59 +114,15 @@
                                 </tr>
 
                                 <tr v-if="rlco_detail.time_taken">
-                                    <th>Time Taken</th>
+                                    <th>Processing Time</th>
                                     <td>{{ rlco_detail.time_taken }}&nbsp;{{ rlco_detail.time_unit }}</td>
                                 </tr>
 
                                 <tr v-if="rlco_detail.process_flow_diagram_file">
                                     <th>Process Flow Diagram</th>
-                                    <td><a target="_blank" :href="rlco_detail.process_flow_diagram_file">Download</a></td>
+                                    <td><a target="_blank" :href="rlco_detail.process_flow_diagram_file" download><font-awesome-icon icon="download" /></a></td>
                                 </tr>
 
-                                </tbody>
-                            </table>
-
-                            <h3  v-if="rlco_detail.required_documents?.length > 0" class="detail-heading pt-2 pb-2">Required Documents</h3>
-                            <table class="table detail-table" v-if="rlco_detail.required_documents?.length > 0">
-                                <thead>
-                                <tr>
-                                    <th>Sr. No.	</th>
-                                    <th>Title</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="(document, index) in rlco_detail.required_documents">
-                                    <td>{{ index+1 }}</td>
-                                    <td>{{ document.document_title }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            <h3  v-if="rlco_detail.dependencies?.length > 0" class="detail-heading pt-2 pb-2">Dependencies</h3>
-                            <table class="table detail-table" v-if="rlco_detail.dependencies?.length > 0">
-                                <thead>
-                                <tr>
-                                    <th>Sr. No.	</th>
-                                    <th>Organization</th>
-                                    <th>Activity name</th>
-                                    <th>Priority</th>
-                                    <th>Remarks</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="(dependency, index) in rlco_detail.dependencies">
-                                    <td>{{ index+1 }}</td>
-                                    <td>{{ dependency.department?.department_name }}</td>
-                                    <td>{{ dependency.activity_name }}</td>
-                                    <td>{{ dependency.priority }}</td>
-                                    <td>{{ dependency.remark }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            <h3 class="detail-heading pt-2 pb-2">Inspections</h3>
-                            <table class="table detail-table">
-                                <tbody>
                                 <tr v-if="rlco_detail.inspection_required">
                                     <th>Inspection</th>
                                     <td>{{ rlco_detail.inspection_required }}</td>
@@ -183,10 +139,42 @@
                                     <th>Fine Details</th>
                                     <td><p v-html="rlco_detail.fine_details"></p></td>
                                 </tr>
+
                                 </tbody>
                             </table>
 
-                            <h3  v-if="rlco_detail.faqs?.length > 0" class="detail-heading pt-2 pb-2">FAQs</h3>
+                            <h3  v-if="rlco_detail.required_documents?.length > 0" class="detail-heading pt-3 pb-2">Documents to be Attached</h3>
+                            <table class="table detail-table" v-if="rlco_detail.required_documents?.length > 0">
+
+                                <tbody>
+                                <tr v-for="(document, index) in rlco_detail.required_documents">
+                                    <td>{{ document.document_title }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <h3  v-if="rlco_detail.dependencies?.length > 0" class="detail-heading pt-3 pb-1">Dependencies</h3>
+                            <table class="table detail-table" v-if="rlco_detail.dependencies?.length > 0">
+                                <thead>
+                                <tr>
+                                    <th>Organization</th>
+                                    <th>Activity name</th>
+                                    <th>Priority</th>
+                                    <th>Remarks</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="(dependency, index) in rlco_detail.dependencies">
+                                    <td>{{ dependency.department?.department_name }}</td>
+                                    <td>{{ dependency.activity_name }}</td>
+                                    <td>{{ dependency.priority }}</td>
+                                    <td>{{ dependency.remark }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                            <h3  v-if="rlco_detail.faqs?.length > 0" class="detail-heading pt-3 pb-1">FAQs</h3>
 
                             <div v-if="rlco_detail.faqs?.length > 0" class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="accordionFaqs">
 
@@ -209,46 +197,37 @@
                                     </div>
                                     <div :id="`collapse_faq_${index}`" class="collapse" data-parent="#accordionFaqs">
                                         <div class="card-body pl-12" v-html="faq.faq_answer"></div>
-                                        <div v-if="faq.faq_file"><a class="btn" :href="faq.faq_file" target="_blank">Download</a></div>
+                                        <div v-if="faq.faq_file"><a class="btn" :href="faq.faq_file" target="_blank" download><font-awesome-icon icon="download" /></a></div>
                                     </div>
                                 </div>
 
                             </div>
 
 
-                            <h3  v-if="rlco_detail.foss?.length > 0" class="detail-heading pt-2 pb-2">Observations</h3>
+                            <h3  v-if="rlco_detail.foss?.length > 0" class="detail-heading pt-3 pb-1">Common Mistakes</h3>
 
                             <table class="table detail-table" v-if="rlco_detail.foss?.length > 0">
-                                <thead>
-                                <tr>
-                                    <th>Sr. No.	</th>
-                                    <th>Observation</th>
-                                    <th>Attachment</th>
-                                </tr>
-                                </thead>
+
                                 <tbody>
                                 <tr v-for="(fos, index) in rlco_detail.foss">
-                                    <td>{{ index+1 }}</td>
                                     <td>{{ fos.fos_observation }}</td>
-                                    <td><span v-if="fos.fos_file"><a :href="fos.fos_file" target="_blank">Download</a></span></td>
+                                    <td><span v-if="fos.fos_file"><a :href="fos.fos_file" target="_blank" download><font-awesome-icon icon="download" /></a></span></td>
                                 </tr>
                                 </tbody>
                             </table>
 
-                            <h3  v-if="rlco_detail.other_documents?.length > 0" class="detail-heading pt-2 pb-2">Other documents</h3>
+                            <h3  v-if="rlco_detail.other_documents?.length > 0" class="detail-heading pt-3 pb-1">Help Documents</h3>
                             <table class="table detail-table" v-if="rlco_detail.other_documents?.length > 0">
                                 <thead>
                                 <tr>
-                                    <th>Sr. No.	</th>
                                     <th>Title</th>
                                     <th>Download</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="(document, index) in rlco_detail.other_documents">
-                                    <td>{{ index+1 }}</td>
                                     <td>{{ document.document_title }}</td>
-                                    <td><span v-if="document.document_file"><a target="_blank" :href="document.document_file">Download</a></span></td>
+                                    <td><span v-if="document.document_file"><a target="_blank" :href="document.document_file" download><font-awesome-icon icon="download" /></a></span></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -270,8 +249,8 @@
 <script>
 import SearchForm from "../components/SearchForm";
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faStar, faFolder } from '@fortawesome/free-solid-svg-icons'
-library.add(faStar,faFolder)
+import { faStar, faFolder, faDownload } from '@fortawesome/free-solid-svg-icons'
+library.add(faStar,faFolder, faDownload)
 
 export default {
     name: "SearchResult",
