@@ -247,9 +247,9 @@ class RlcoForm extends Component
             if(!empty($required_document_ids)){
                 foreach ($required_document_ids as $required_document_id){
                     if ((int)$required_document_id === 0) {
-                        $required_document = Keyword::firstOrCreate(
+                        $required_document = RequiredDocument::firstOrCreate(
                             ['document_title' => $required_document_id],
-                            ['keyword_status' => 'Active']
+                            ['document_status' => 'Active']
                         );
                         array_push($new_document_ids, $required_document->id);
                     } else {
