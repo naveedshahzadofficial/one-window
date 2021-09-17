@@ -456,7 +456,7 @@ class RlcoForm extends Component
 
     private function loadFoss()
     {
-        $this->foss = Fos::where('rlco_id', $this->rlco->id)->get();
+        $this->foss = Fos::where('rlco_id', $this->rlco->id)->orderBy('fos_order')->get();
     }
 
 

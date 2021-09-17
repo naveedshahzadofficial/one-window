@@ -63,7 +63,7 @@ class Handler extends ExceptionHandler
                 return response()->json(['status'=>401,'error'=>true,'message' => 'Access denied. Unauthenticated user found.'], 401);
                 break;
             default:
-                $login = 'login';
+                $login = 'admin.login';
                 break;
         }
 

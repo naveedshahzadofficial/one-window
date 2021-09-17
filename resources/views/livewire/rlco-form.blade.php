@@ -5,6 +5,10 @@
     renewal_required: '{{ $form['renewal_required']??null }}',
     dependency_question: '{{ $form['dependency_question']??null }}',
     generic_sector: '{{ $form['generic_sector']??null }}',
+    fee_question: '{{ $form['fee_question']??null }}',
+    fee_plan: '{{ $form['fee_plan']??null }}',
+    renewal_fee_plan: '{{ $form['renewal_fee_plan']??null }}',
+    time_unit: '{{ $form['time_unit']??null }}',
 }" class="wizard wizard-3" id="kt_wizard_v3" data-wizard-state="step-first" data-wizard-clickable="true">
     <!--begin: Wizard Nav-->
     <div class="wizard-nav">
@@ -344,6 +348,48 @@
                         <div x-show.transition.opacity="automation_status!='No Information'" class="row form-group">
 
                             <div class="col-lg-6">
+                                <label>Fee Required<span class="text-danger">*</span></label>
+                                <div class="radio-inline">
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.fee_question" name="fee_question" @click="fee_question= 'Yes'"  value="Yes">
+                                        <span></span>Yes</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.fee_question" name="fee_question" @click="fee_question= 'No'" value="No">
+                                        <span></span>No</label>
+                                </div>
+                                @error('form.payment_source')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div><!--form-group ends-->
+
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='No Information' && fee_question=='Yes'" class="row form-group">
+
+                            <div class="col-lg-6">
+                                <label>Fee Plan<span class="text-danger">*</span></label>
+                                <div class="radio-inline">
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.fee_plan" name="fee_plan" @click="fee_plan= 'Single Fee'"  value="Single Fee">
+                                        <span></span>Single Fee</label>
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.fee_plan" name="fee_plan" @click="fee_plan= 'Schedule'" value="Schedule">
+                                        <span></span>Schedule</label>
+                                </div>
+                                @error('form.payment_source')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div><!--form-group ends-->
+
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='No Information' && fee_question=='Yes'" class="row form-group">
+
+                            <div class="col-lg-6" x-show.transition.opacity="fee_plan=='Single Fee'" >
                                 <label>{!! __('Fee') !!}<span class="text-danger"></span></label>
                                 <input wire:model.defer="form.fee" type="text"
                                        class="form-control @error('form.fee') is-invalid @enderror"
@@ -352,7 +398,6 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-
 
                             <div class="col-lg-6">
                                 <label>Fee Submission Mode<span class="text-danger"></span></label>
@@ -375,12 +420,10 @@
                             </div><!--form-group ends-->
 
 
-
-
                         </div>
 
 
-                        <div x-show.transition.opacity="automation_status!='No Information'"class="row form-group">
+                        <div x-show.transition.opacity="automation_status!='No Information' && fee_question=='Yes'" class="row form-group">
 
                             <div x-show.transition.opacity="fee_submission_mode=='Online'" class="col-lg-6">
                                 <label>Payment Source<span class="text-danger">*</span></label>
@@ -422,6 +465,18 @@
 
                         </div>
 
+                        <div x-show.transition.opacity="automation_status!='No Information' && fee_question=='Yes' && fee_plan=='Schedule'" class="row form-group">
+                            <div class="col-lg-12">
+                                <label>{!! __('Fee Schedule') !!}<span class="text-danger"></span></label>
+                                <div wire:ignore>
+                                    <x-c-k-editor wire:model.debounce.999999s="form.fee_schedule" id="fee_schedule-ckeditor" placeholder="Fee Schedule" setFieldName="form.fee_schedule" ></x-c-k-editor>
+                                </div>
+                                @error('form.fee_schedule')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
 
                         <div x-show.transition.opacity="automation_status!='No Information'" class="row form-group">
                             <div class="col-lg-6">
@@ -443,6 +498,7 @@
                         </div>
 
 
+
                         <div x-show.transition.opacity="automation_status!='No Information' && renewal_required=='Yes'" class="row form-group">
 
                             <div class="col-lg-6">
@@ -455,29 +511,49 @@
                                 @enderror
                             </div>
 
-                            <div class="col-lg-6">
-                                <label>{!! __('Renewal Fee') !!}<span class="text-danger"></span></label>
-                                <input wire:model.defer="form.renewal_fee" type="text"
-                                       class="form-control @error('form.renewal_fee') is-invalid @enderror"
-                                       placeholder="Renewal Fee"/>
-                                @error('form.renewal_fee')
+                                <div class="col-lg-6">
+                                    <label>Renewal Fee Plan<span class="text-danger">*</span></label>
+                                    <div class="radio-inline">
+                                        <label class="radio radio-success">
+                                            <input type="radio" wire:model.defer="form.renewal_fee_plan" name="renewal_fee_plan" @click="renewal_fee_plan= 'Single Fee'"  value="Single Fee">
+                                            <span></span>Single Fee</label>
+                                        <label class="radio radio-success">
+                                            <input type="radio" wire:model.defer="form.renewal_fee_plan" name="renewal_fee_plan" @click="renewal_fee_plan= 'Schedule'" value="Schedule">
+                                            <span></span>Schedule</label>
+                                    </div>
+                                    @error('form.payment_source')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div><!--form-group ends-->
+
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='No Information' && renewal_required=='Yes' && renewal_fee_plan=='Single Fee'" class="row form-group">
+                        <div class="col-lg-6">
+                            <label>{!! __('Renewal Fee') !!}<span class="text-danger"></span></label>
+                            <input wire:model.defer="form.renewal_fee" type="text"
+                                   class="form-control @error('form.renewal_fee') is-invalid @enderror"
+                                   placeholder="Renewal Fee"/>
+                            @error('form.renewal_fee')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        </div>
+
+                        <div x-show.transition.opacity="automation_status!='No Information' && renewal_required=='Yes' && renewal_fee_plan=='Schedule'" class="row form-group">
+                            <div class="col-lg-12">
+                                <label>{!! __('Renewal Fee Schedule') !!}<span class="text-danger"></span></label>
+                                <div wire:ignore>
+                                    <x-c-k-editor wire:model.debounce.999999s="form.renewal_fee_schedule" id="renewal_fee_schedule-ckeditor" placeholder="Renewal Fee Schedule" setFieldName="form.renewal_fee_schedule" ></x-c-k-editor>
+                                </div>
+                                @error('form.renewal_fee_schedule')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-
                         </div>
 
-                        <div x-show.transition.opacity="automation_status!='No Information'" class="row form-group">
-                                <div class="col-lg-12">
-                                    <label>{!! __('Fee Schedule') !!}<span class="text-danger"></span></label>
-                                    <div wire:ignore>
-                                        <x-c-k-editor wire:model.debounce.999999s="form.fee_schedule" id="fee_schedule-ckeditor" placeholder="Fee Schedule" setFieldName="form.fee_schedule" ></x-c-k-editor>
-                                    </div>
-                                    @error('form.fee_schedule')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                        </div>
 
                         <div x-show.transition.opacity="automation_status!='No Information'"  class="row form-group">
 
@@ -485,20 +561,23 @@
                                 <label>{!! __('Time Taken') !!}&nbsp;&nbsp;
                                     <div class="radio-inline float-right">
                                         <label class="radio radio-success">
-                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit"  value="Minutes">
+                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit" @click="time_unit= 'Instantly'"  value="Instantly">
+                                            <span></span>Instantly</label>
+                                        <label class="radio radio-success">
+                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit" @click="time_unit= 'Minute (s)'" value="Minute (s)">
                                             <span></span>Minutes</label>
                                         <label class="radio radio-success">
-                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit"  value="Hours">
+                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit" @click="time_unit= 'Hour (s)'" value="Hour (s)">
                                             <span></span>Hours</label>
                                         <label class="radio radio-success">
-                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit"  value="Days">
+                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit" @click="time_unit= 'Day (s)'" value="Day (s)">
                                             <span></span>Days</label>
                                         <label class="radio radio-success">
-                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit"  value="Months">
+                                            <input type="radio" wire:model.defer="form.time_unit" name="time_unit" @click="time_unit= 'Month (s)'" value="Month (s)">
                                             <span></span>Months</label>
                                     </div>
                                 </label>
-                                <input wire:model.defer="form.time_taken" type="text"
+                                <input  x-show.transition.opacity="time_unit!='Instantly'" wire:model.defer="form.time_taken" type="text"
                                        class="form-control @error('form.time_taken') is-invalid @enderror"
                                        placeholder="Time Taken"/>
                                 @error('form.time_taken')

@@ -1,5 +1,4 @@
 <template>
-    <div class="col-lg-5">
         <h4 class="searching-box-heading" v-text="rlco_detail?.rlco_name"></h4>
         <div class="business-detail overflow-auto">
             <div v-if="rlco_detail && rlco_detail.id" class="col-lg-12 col-md-12 list-detail">
@@ -21,25 +20,32 @@
                         <td><a target="_blank" :href="rlco_detail.link_of_law">{{ rlco_detail.title_of_law }}</a></td>
                     </tr>
 
-                    <tr v-if="rlco_detail.fee">
+                    <tr v-if="rlco_detail.fee_question">
                         <th>Fee (PKR)</th>
-                        <td>{{ rlco_detail.fee }}</td>
+                        <td> <span v-if="rlco_detail.fee_question==='Yes' && rlco_detail.fee_plan==='Schedule' && rlco_detail.fee_schedule" @click.prevent="toggleModal" class="make-link">Fee Schedule</span>
+                             <span v-else-if="rlco_detail.fee_question==='Yes' && rlco_detail.fee_plan==='Single Fee' && rlco_detail.fee">{{ rlco_detail.fee }}</span>
+                             <span v-else>Not Applicable</span>
+                        </td>
                     </tr>
 
-                    <tr v-if="rlco_detail.fee_submission_mode">
+                    <tr v-if="rlco_detail.fee_question==='Yes' && rlco_detail.fee_submission_mode">
                         <th>Payment Mode</th>
                         <td><span  v-if="rlco_detail.fee_submission_mode=='Online'"><a href="https://epay.punjab.gov.pk" target="_blank">Online via ePay Punjab</a></span>  <span v-if="rlco_detail.fee_submission_mode!='Online'">Online via Bank</span></td>
                     </tr>
 
-                    <tr v-if="rlco_detail.validity">
+                    <tr v-if="rlco_detail.renewal_required">
+                        <th>Renewal Fee (PKR)</th>
+                        <td> <span v-if="rlco_detail.renewal_required==='Yes' && rlco_detail.renewal_fee_plan==='Schedule' && rlco_detail.renewal_fee_schedule" @click.prevent="toggleModal" class="make-link">Renewal Fee Schedule</span>
+                            <span v-else-if="rlco_detail.renewal_required==='Yes' && rlco_detail.renewal_fee_plan==='Single Fee' && rlco_detail.renewal_fee">{{ rlco_detail.renewal_fee }}</span>
+                            <span v-else>Not Applicable</span>
+                        </td>
+                    </tr>
+
+                    <tr v-if="rlco_detail.renewal_required==='Yes' &&  rlco_detail.validity">
                         <th>Validity</th>
                         <td>{{ rlco_detail.validity }}</td>
                     </tr>
 
-                    <tr v-if="rlco_detail.renewal_fee">
-                        <th>Renewal Fee</th>
-                        <td>{{ rlco_detail.renewal_fee }}</td>
-                    </tr>
 
                     <tr v-if="rlco_detail.time_taken">
                         <th>Processing Time</th>
@@ -150,19 +156,31 @@
 
             </div>
         </div>
-    </div>
+
+        <base-modal-component title="Fee Schedule" @toggle-modal="toggleModal" v-if="isShowModal">
+            <div v-html="rlco_detail?.fee_schedule"></div>
+        </base-modal-component>
+
 </template>
 
 <script>
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faStar, faDownload } from '@fortawesome/free-solid-svg-icons'
-library.add(faStar, faDownload)
+
+import BaseModalComponent from "./BaseModalComponent";
 
 export default {
     name: "RlcoDetailComponent",
+    components: {BaseModalComponent},
     props: {
         rlco_detail: Object
-    }
+    },
+    data: () => ({
+        isShowModal: false
+    }),
+    methods: {
+        toggleModal() {
+            this.isShowModal = !this.isShowModal;
+        },
+    },
 }
 </script>
 

@@ -1,19 +1,19 @@
 <template>
     <div class="container-fluid">
-        <Header :totalFavorite="totalFavorite" />
+        <HeaderComponent :totalFavorite="totalFavorite" />
         <div class="content-wrap mb-4" >
             <router-view @toggle-favorite="toggleFavorite"></router-view>
         </div>
     </div>
-    <Footer />
+    <FooterComponent />
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import Footer from "./components/Footer.vue";
+import HeaderComponent from "./components/HeaderComponent.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 export default {
     name: "App",
-    components: {Footer, Header},
+    components: {FooterComponent, HeaderComponent},
     data() {
         return {
         totalFavorite: 0

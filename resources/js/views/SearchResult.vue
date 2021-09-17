@@ -1,10 +1,10 @@
 <template>
         <div class="wrapping-searching">
-        <SearchForm :prop_department_id="prop_department_id" :prop_business_category_id="prop_business_category_id" :prop_activity_id="prop_activity_id" @search-params="searchParams" />
+        <SearchFormComponent :prop_department_id="prop_department_id" :prop_business_category_id="prop_business_category_id" :prop_activity_id="prop_activity_id" @search-params="searchParams" />
 
             <div class="row mt-3">
 
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-3 col-sm-12">
                     <h4 class="searching-box-heading">Browse by Activity</h4>
                     <div class="activities-listing overflow-auto">
 
@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 pl-0 pr-0">
+                <div class="col-lg-4 col-md-4 col-sm-12 pl-0 pr-0">
                     <h4 class="searching-box-heading" v-text="activityName"></h4>
                     <div class="business-listing overflow-auto">
                         <div  class="row list-item">
@@ -71,7 +71,10 @@
                     </div>
                 </div>
 
+                <div class="col-lg-5 col-md-5 col-sm-12">
                 <RlcoDetailComponent :rlco_detail="rlco_detail"/>
+                </div>
+
             </div>
 
         </div>
@@ -79,7 +82,7 @@
 </template>
 
 <script>
-import SearchForm from "../components/SearchForm";
+import SearchFormComponent from "../components/SearchFormComponent";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStar, faFolder, faDownload } from '@fortawesome/free-solid-svg-icons'
 import RlcoDetailComponent from "../components/RlcoDetailComponent";
@@ -128,7 +131,7 @@ export default {
     filters: {
 
     },
-    components: {RlcoDetailComponent, SearchForm},
+    components: {RlcoDetailComponent, SearchFormComponent},
     mounted() {
             this.department_id = this.prop_department_id;
             this.business_category_id = this.prop_business_category_id;
@@ -185,7 +188,6 @@ export default {
          rlcoDetail: function (rlco){
            this.activeRlco = rlco.id;
            this.rlco_detail = rlco;
-
         },
          toggleSort: function (){
             if(this.scopeSort===null) {
@@ -202,11 +204,11 @@ export default {
                  this.rlcoDetail(rlco);
              }
          },
-        isFavorite:function (rlco){
+         isFavorite:function (rlco){
             let items = this.favorites.filter((fav) => fav.id === parseInt(rlco.id));
             return items.length;
         },
-        toggleFavorite: function (rlco){
+         toggleFavorite: function (rlco){
             if(this.isFavorite(rlco))
             this.favorites = this.favorites.filter((fav) => fav.id !== parseInt(rlco.id));
             else

@@ -143,7 +143,7 @@ $font-light: 'poppinslight';
     padding-right: 10px;
 }
 .content-wrap {
-    min-height: 357px;
+    min-height: 378px;
 }
 
 .search-btn {
@@ -377,4 +377,9 @@ $font-light: 'poppinslight';
         fill: #e6bd37;
         color: #e6bd37;
     }
+}
+
+span.make-link{
+    color: #3490dc;
+    cursor: pointer;
 }

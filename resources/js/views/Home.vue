@@ -15,7 +15,7 @@
 
         <div class="col-lg-4 col-md-4">
             <!-- grid starts for select options -->
-                <HomeSearchForm @search-params="searchParams" />
+                <HomeSearchFormComponent @search-params="searchParams" />
             <!-- grid end for select options  -->
         </div>
         <div class="col-lg-1 col-md-1"></div>
@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import HomeSearchForm from "../components/HomeSearchForm";
+import HomeSearchFormComponent from "../components/HomeSearchFormComponent";
 export default {
     name: "Home.vue",
-    components: {HomeSearchForm},
+    components: {HomeSearchFormComponent},
     methods: {
         searchParams: function (params){
             this.$router.push({

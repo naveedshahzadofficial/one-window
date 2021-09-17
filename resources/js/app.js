@@ -9,7 +9,9 @@ import {i18n} from "./plugins/i18n"
 import Select2 from 'vue3-select2-component';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {faStar, faDownload, faFolder} from '@fortawesome/free-solid-svg-icons'
+library.add(faStar,faFolder, faDownload)
 
 const app = createApp(App);
 
@@ -19,6 +21,7 @@ app.use(i18n);
 app.component('pagination', pagination);
 app.component('Select2', Select2)
 app.component('font-awesome-icon', FontAwesomeIcon)
+
 
 app.mount('#app');
 
