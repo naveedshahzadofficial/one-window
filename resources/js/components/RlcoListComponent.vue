@@ -21,7 +21,7 @@
 
             <div v-for="(rlco, index) in filteredList" class="row list-item" :key="rlco.id" :class="[(activeItem == rlco.id) ? 'active':'']"  @click.prevent="$emit('detail-rlco',rlco)">
             <RlcoItemComponent
-                @toggle-favorite="$emit('toggle-favorite',rlco)"
+                @toggle-favorite="toggleFavorite"
                 :isFavorite="isFavorite(rlco)"
                 :rlco="rlco" />
             </div>
@@ -39,20 +39,20 @@ export default {
     components: {RlcoItemComponent},
     props: {
         rlcos: {},
-        favorites: {},
         activityName: "",
         activeItem: 0,
 
     },
     data() {
         return {
+            favorites: [],
             filterSearch: "",
             scopeSort: null,
 
         }
     },
     mounted() {
-
+        this.loadFavoriteItems();
     },
     computed: {
         filteredList:function () {
@@ -69,6 +69,15 @@ export default {
         }
     },
     methods: {
+        loadFavoriteItems: function () {
+            if (localStorage.getItem('favorites')) {
+                try {
+                    this.favorites = JSON.parse(localStorage.getItem('favorites'));
+                } catch (e) {
+                    localStorage.removeItem('favorites');
+                }
+            }
+        },
         toggleSort: function (){
             if(this.scopeSort===null) {
                 this.scopeSort = false;
@@ -79,6 +88,15 @@ export default {
             let items = this.favorites.filter((fav) => fav.id === parseInt(rlco.id));
             return (items.length>0);
         },
+        toggleFavorite: function (rlco){
+            if(this.isFavorite(rlco))
+                this.favorites = this.favorites.filter((fav) => fav.id !== parseInt(rlco.id));
+            else
+                this.favorites.push(rlco);
+            const parsedFavorites = JSON.stringify(this.favorites);
+            localStorage.setItem('favorites', parsedFavorites);
+            this.$emit('toggle-favorite', this.favorites.length);
+        }
     }
 
 }

@@ -2,18 +2,18 @@
     <form @submit.prevent="onSubmit" class="search-form">
         <div class="row">
                     <div class="col-lg-12 col-md-12  col-sm-12">
-                        <label class="label-field" :for="department_id">Department</label>
+                        <label class="label-field">Department</label>
                         <br>
-                        <Select2 v-model="department_id" :options="departments" :placeholder="`--- Please Select ---`" />
+                        <Select2 v-model="department_id"  :options="departments" :placeholder="`--- Please Select ---`" />
 
                     </div>
                     <div class="col-lg-12 col-md-12  col-sm-12 my-3">
-                        <label class="label-field" :for="business_category_id">Business</label>
+                        <label class="label-field">Business</label>
                         <br>
                         <Select2 v-model="business_category_id" :options="businesses" :placeholder="`--- Please Select ---`" />
                     </div>
                     <div class="col-lg-12 col-md-12  col-sm-12">
-                        <label class="label-field" :for="activity_id">Activity</label>
+                        <label class="label-field">Activity</label>
                         <br>
                         <Select2 v-model="activity_id" :options="activities" :placeholder="`--- Please Select ---`" />
                     </div>
@@ -53,6 +53,7 @@ export default {
         this.$store.dispatch('department/getDepartment');
         this.$store.dispatch('business/getBusiness');
         this.$store.dispatch('activity/getActivity');
+        this.select2focus();
     },
     methods:{
         onSubmit: function (){
@@ -64,6 +65,11 @@ export default {
             };
             this.$emit('search-params', newParams);
             this.isLoading = false;
+        },
+        select2focus: function (){
+            $(document).on('select2:open', () => {
+                document.querySelector('.select2-search__field').focus();
+            });
         }
     }
 }

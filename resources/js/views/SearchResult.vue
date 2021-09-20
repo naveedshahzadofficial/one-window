@@ -132,6 +132,7 @@ export default {
 
     },
     components: {RlcoDetailComponent, SearchFormComponent},
+    emits: ['search-params'],
     mounted() {
             this.department_id = this.prop_department_id;
             this.business_category_id = this.prop_business_category_id;

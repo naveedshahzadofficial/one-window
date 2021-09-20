@@ -6,7 +6,7 @@
         <RlcoListComponent
             :rlcos="rlcos"
             :activeItem="activeItem"
-            :favorites="favorites"
+            @toggle-favorite="$emit('toggle-favorite')"
             @detail-rlco="rlcoDetail"/>
         </div>
 
@@ -26,7 +26,6 @@ export default {
     data() {
         return {
             rlcos: [],
-            favorites: [],
             rlco_detail: {},
             activeItem: 0,
         }
@@ -37,7 +36,6 @@ export default {
         if(rlco!==undefined) {
             this.rlcoDetail(rlco);
         }
-        this.favorites = this.rlcos;
     },
     methods: {
         loadFavoriteItems: function () {
@@ -53,7 +51,12 @@ export default {
             this.activeItem = rlco.id;
             this.rlco_detail = rlco;
         },
+        toggleFavorite: function (total){
+            this.$emit('toggle-favorite',total);
+            this.loadFavoriteItems();
+        }
     }
+
 }
 </script>
 

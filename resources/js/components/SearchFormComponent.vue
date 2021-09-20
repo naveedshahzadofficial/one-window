@@ -3,18 +3,19 @@
 
                 <div class="row search-box">
                     <div class="col-lg-4 col-md-4  col-sm-12">
-                        <label class="label-field" :for="department_id">Department</label>
-                        <br>
-                        <Select2 v-model="department_id" :options="departments" :placeholder="`--- Please Select ---`" />
+                        <label class="label-field" >Department</label>
+                        <div>
+                        <Select2 v-model="department_id"  :options="departments" :placeholder="`--- Please Select ---`" />
+                        </div>
 
                     </div>
                     <div class="col-lg-4 col-md-4  col-sm-12">
-                        <label class="label-field" :for="business_category_id">Business</label>
+                        <label class="label-field" >Business</label>
                         <br>
-                        <Select2 v-model="business_category_id" :options="businesses" :placeholder="`--- Please Select ---`" />
+                        <Select2 v-model="business_category_id"  :options="businesses" :placeholder="`--- Please Select ---`" />
                     </div>
                     <div class="col-lg-4 col-md-4  col-sm-12">
-                        <label class="label-field" :for="activity_id">Activity</label>
+                        <label class="label-field" >Activity</label>
                         <br>
                         <Select2 v-model="activity_id" :options="activities" :placeholder="`--- Please Select ---`" />
                     </div>
@@ -63,6 +64,7 @@ export default {
         this.department_id = this.prop_department_id;
         this.business_category_id = this.prop_business_category_id;
         this.activity_id = this.prop_activity_id;
+        this.select2focus();
     },
     methods:{
         onSubmit: function (){
@@ -91,6 +93,11 @@ export default {
             this.$emit('search-params', newParams);
 
             this.isLoading = false;
+        },
+        select2focus: function (){
+            $(document).on('select2:open', () => {
+                document.querySelector('.select2-search__field').focus();
+            });
         }
     }
 }
