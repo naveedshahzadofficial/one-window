@@ -378,6 +378,7 @@ class RlcoForm extends Component
         $messages = [
             'faq_form.faq_question.required' => 'Question is required.',
             'faq_form.faq_order.required' => 'Order is required.',
+            'faq_form.faq_order.unique' => 'Order No. is already exits.',
             'faq_form.faq_answer.required' => 'Answer is required.',
         ];
 
@@ -398,9 +399,8 @@ class RlcoForm extends Component
             $this->faq_file = null;
         }
 
-        $this->faq_form['rlco_id'] = $this->rlco->id;
-        $this->faq_form['admin_id'] = auth()->id();
-        Faq::create($this->faq_form);
+        $this->rlco->faqs()->create($this->faq_form);
+
         $this->reset('faq_form');
         $this->loadFaqs();
     }

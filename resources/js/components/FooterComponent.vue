@@ -6,7 +6,7 @@
                         <router-link  :to="{ name: 'Overview' }">Overview</router-link>
                         <a target="_blank" href="https://business.punjab.gov.pk/starting-business">Starting a Business</a>
                         <a target="_blank" href="https://eodbpunjab.com">EoDB Punjab</a>
-                        <a target="_blank" href="https://business.gov.pk/">PRMI Punjab</a>
+                        <a target="_blank" href="https://business.gov.pk/">PRMI</a>
                         <a target="_blank" href="https://invest.gov.pk/eodb">EoDB Pakistan</a>
                     </div>
                 </div>
