@@ -327,33 +327,105 @@ class RlcoForm extends Component
 
     private function loadDependencies()
     {
-        $this->dependencies = Dependency::with('department')->where('rlco_id', $this->rlco->id)->get();
+        $this->dependencies = Dependency::with('department')->where('rlco_id', $this->rlco->id)->orderBy('priority')->get();
     }
 
     public function addDependency()
     {
+        if(!$this->rlco) {
+            $this->formSaved();
+        }
+
         $rules = [
             'dependency_form.department_id' => 'required',
             'dependency_form.activity_name' => 'required',
-            'dependency_form.priority' => 'required',
+            'dependency_form.priority' => 'required|numeric|min:1|unique:dependencies,priority,NULL,id,rlco_id,' . $this->rlco->id,
+
         ];
         $messages = [
             'dependency_form.department_id.required' => 'Department / Organization Name is required.',
             'dependency_form.activity_name.required' => 'RLCO Name is required.',
             'dependency_form.priority.required' => 'Priority is required.',
+            'dependency_form.priority.unique' => 'Priority is already exits.',
+            'dependency_form.priority.min' => 'Priority must be at least 1.',
         ];
         if(!empty($rules) && !empty($messages))
             $this->validate($rules,$messages);
 
-        if(!$this->rlco) {
-            $this->formSaved();
-        }
 
-        $this->dependency_form['rlco_id'] = $this->rlco->id;
-        $this->dependency_form['admin_id'] = auth()->id();
-        Dependency::create($this->dependency_form);
+        $this->rlco->dependencies()->create($this->dependency_form);
         $this->dispatchBrowserEvent('dependency:select2',['id'=>'#organization_id','key_name'=>'dependency_form.department_id']);
         $this->reset('dependency_form');
+        $this->setEditorData('#dependency_remark-ckeditor', "");
+        $this->loadDependencies();
+    }
+
+    public function editDependency($dependency_id){
+        $dependency = Dependency::find($dependency_id);
+        if($dependency){
+            $this->dependency_form['id'] = $dependency->id;
+            $this->dependency_form['department_id'] = $dependency->department_id;
+            $this->dependency_form['activity_name'] = $dependency->activity_name;
+            $this->dependency_form['remark'] = $dependency->remark;
+            $this->dependency_form['priority'] = $dependency->priority;
+            $this->dispatchBrowserEvent('select2:setValue',['id'=>'#organization_id','value'=>$dependency->department_id]);
+            $this->setEditorData('#dependency_remark-ckeditor', $dependency->remark);
+        }
+    }
+
+    public function updateDependency($dependency_id)
+    {
+        $dependency = Dependency::find($dependency_id);
+        if(!$dependency){
+            $this->reset('dependency_form');
+            $this->dispatchBrowserEvent('dependency:select2',['id'=>'#organization_id','key_name'=>'dependency_form.department_id']);
+            $this->setEditorData('#dependency_remark-ckeditor', "");
+            return false;
+        }
+
+        $rules = [
+            'dependency_form.department_id' => 'required',
+            'dependency_form.activity_name' => 'required',
+            'dependency_form.priority' => "required|numeric|min:1|unique:dependencies,priority,{$dependency_id},id,rlco_id,{$this->rlco->id}",
+
+        ];
+        $messages = [
+            'dependency_form.department_id.required' => 'Department / Organization Name is required.',
+            'dependency_form.activity_name.required' => 'RLCO Name is required.',
+            'dependency_form.priority.required' => 'Priority is required.',
+            'dependency_form.priority.unique' => 'Priority is already exits.',
+            'dependency_form.priority.min' => 'Priority must be at least 1.',
+        ];
+        if(!empty($rules) && !empty($messages))
+            $this->validate($rules,$messages);
+
+        $dependency->update($this->dependency_form);
+        $this->dispatchBrowserEvent('dependency:select2',['id'=>'#organization_id','key_name'=>'dependency_form.department_id']);
+        $this->reset('dependency_form');
+        $this->setEditorData('#dependency_remark-ckeditor', "");
+        $this->loadDependencies();
+    }
+
+    public function dependencyUp($dependency_id, $rlco_id)
+    {
+        $dependency = Dependency::find($dependency_id);
+        if ($dependency) {
+            Dependency::where('rlco_id', $rlco_id)->where('priority', $dependency->priority - 1)->update([
+                'priority' => $dependency->priority
+            ]);
+            $dependency->update(['priority' => $dependency->priority - 1]);
+        }
+        $this->loadDependencies();
+    }
+    public function dependencyDown($dependency_id, $rlco_id)
+    {
+        $dependency = Dependency::find($dependency_id);
+        if ($dependency) {
+            Dependency::where('rlco_id', $rlco_id)->where('priority', $dependency->priority + 1)->update([
+                'priority' => $dependency->priority
+            ]);
+            $dependency->update(['priority' => $dependency->priority + 1]);
+        }
         $this->loadDependencies();
     }
 
@@ -370,15 +442,20 @@ class RlcoForm extends Component
 
     public function addFaq()
     {
+        if(!$this->rlco) {
+            $this->formSaved();
+        }
+
         $rules = [
             'faq_form.faq_question' => 'required',
-            'faq_form.faq_order' => 'required',
+            'faq_form.faq_order' => 'required|numeric|min:1|unique:faqs,faq_order,NULL,id,rlco_id,' . $this->rlco->id,
             'faq_form.faq_answer' => 'required',
         ];
         $messages = [
             'faq_form.faq_question.required' => 'Question is required.',
-            'faq_form.faq_order.required' => 'Order is required.',
+            'faq_form.faq_order.required' => 'Order No. is required.',
             'faq_form.faq_order.unique' => 'Order No. is already exits.',
+            'faq_form.faq_order.min' => 'Order No. must be at least 1.',
             'faq_form.faq_answer.required' => 'Answer is required.',
         ];
 
@@ -390,9 +467,6 @@ class RlcoForm extends Component
         if(!empty($rules) && !empty($messages))
             $this->validate($rules,$messages);
 
-        if(!$this->rlco) {
-            $this->formSaved();
-         }
 
         if(!empty($this->faq_file)) {
             $this->faq_form['faq_file'] = $this->faq_file->store('faq_files', 'public');
@@ -400,27 +474,91 @@ class RlcoForm extends Component
         }
 
         $this->rlco->faqs()->create($this->faq_form);
-
         $this->reset('faq_form');
+        $this->setEditorData('#faq_answer-ckeditor', "");
         $this->loadFaqs();
+    }
+    public function editFaq($faq_id){
+        $faq = Faq::find($faq_id);
+        if($faq){
+            $this->faq_form['id'] = $faq->id;
+            $this->faq_form['faq_question'] = $faq->faq_question;
+            $this->faq_form['faq_order'] = $faq->faq_order;
+            $this->faq_form['faq_file'] = $faq->faq_file;
+            $this->faq_form['faq_answer'] = $faq->faq_answer;
+            $this->faq_file = null;
+            $this->setEditorData('#faq_answer-ckeditor', $faq->faq_answer);
+        }
+    }
+    public function updateFaq($faq_id){
+        $faq = Faq::find($faq_id);
+        if(!$faq){
+            $this->reset('faq_form');
+            $this->setEditorData('#faq_answer-ckeditor', "");
+            return false;
+        }
+
+        $rules = [
+            'faq_form.faq_question' => 'required',
+            'faq_form.faq_order' => "required|numeric|min:1|unique:faqs,faq_order,{$faq_id},id,rlco_id,{$this->rlco->id}",
+            'faq_form.faq_answer' => 'required',
+        ];
+        $messages = [
+            'faq_form.faq_question.required' => 'Question is required.',
+            'faq_form.faq_order.required' => 'Order No. is required.',
+            'faq_form.faq_order.unique' => 'Order No. is already exits.',
+            'faq_form.faq_order.min' => 'Order No. must be at least 1.',
+            'faq_form.faq_answer.required' => 'Answer is required.',
+        ];
+
+        if(!empty($this->faq_file)) {
+            $rules['faq_file'] = 'mimes:jpg,jpeg,png,pdf,doc,docx|max:5120';
+            $messages['faq_file.mimes'] = 'Attachment must be a file of type: jpg, jpeg, png, pdf, doc, docx.';
+        }
+
+        if(!empty($rules) && !empty($messages))
+            $this->validate($rules,$messages);
+
+
+        if(!empty($this->faq_file)) {
+            $this->faq_form['faq_file'] = $this->faq_file->store('faq_files', 'public');
+            $this->faq_file = null;
+        }
+
+        $faq->update($this->faq_form);
+        $this->reset('faq_form');
+        $this->setEditorData('#faq_answer-ckeditor', "");
+        $this->loadFaqs();
+
     }
 
     public function deleteFaq($faq_id)
     {
         $faq = Faq::find($faq_id);
+        $this->resetFaqOrder($faq->rlco_id, $faq->faq_order);
         $faq->delete();
         $this->loadFaqs();
+    }
+    public function resetFaqOrder($rlco_id, $order_no){
+        Faq::where('rlco_id', $rlco_id)->where('faq_order','>',$order_no)->decrement('faq_order');
     }
 
     public function addFos()
     {
+        if(!$this->rlco) {
+            $this->formSaved();
+        }
+
         $rules = [
             'fos_form.fos_observation' => 'required',
-            'fos_form.fos_order' => 'required',
+            'fos_form.fos_order' => 'required|numeric|min:1|unique:fos,fos_order,NULL,id,rlco_id,' . $this->rlco->id,
         ];
         $messages = [
             'fos_form.fos_observation.required' => 'Observation is required.',
-            'fos_form.fos_order.required' => 'Order is required.',
+            'fos_form.fos_order.required' => 'Order No. is required.',
+            'fos_form.fos_order.unique' => 'Order No. is already exits.',
+            'fos_form.fos_order.min' => 'Order No. must be at least 1.',
+
         ];
 
         if(!empty($this->fos_file)) {
@@ -431,43 +569,118 @@ class RlcoForm extends Component
         if(!empty($rules) && !empty($messages))
             $this->validate($rules,$messages);
 
-        if(!$this->rlco) {
-            $this->formSaved();
-        }
 
         if(!empty($this->fos_file)) {
             $this->fos_form['fos_file'] = $this->fos_file->store('fos_files', 'public');
             $this->fos_file = null;
         }
 
-        $this->fos_form['rlco_id'] = $this->rlco->id;
-        $this->fos_form['admin_id'] = auth()->id();
-        Fos::create($this->fos_form);
+        $this->rlco->foss()->create($this->fos_form);
+
         $this->reset('fos_form');
         $this->loadFoss();
     }
-
+    public function fosUp($fos_id, $rlco_id)
+    {
+        $fos = Fos::find($fos_id);
+        if ($fos) {
+            Fos::where('rlco_id', $rlco_id)->where('fos_order', $fos->fos_order - 1)->update([
+                'fos_order' => $fos->fos_order
+            ]);
+            $fos->update(['fos_order' => $fos->fos_order - 1]);
+        }
+        $this->loadFoss();
+    }
+    public function fosDown($fos_id, $rlco_id)
+    {
+        $fos = Fos::find($fos_id);
+        if ($fos) {
+            Fos::where('rlco_id', $rlco_id)->where('fos_order', $fos->fos_order + 1)->update([
+                'fos_order' => $fos->fos_order
+            ]);
+            $fos->update(['fos_order' => $fos->fos_order + 1]);
+        }
+        $this->loadFoss();
+    }
+    public function editFos($fos_id){
+        $fos = Fos::find($fos_id);
+        if($fos){
+            $this->fos_form['id'] = $fos->id;
+            $this->fos_form['fos_observation'] = $fos->fos_observation;
+            $this->fos_form['fos_order'] = $fos->fos_order;
+            $this->fos_form['fos_file'] = $fos->fos_file;
+            $this->fos_file = null;
+        }
+    }
     public function deleteFos($fos_id)
     {
         $fos = Fos::find($fos_id);
+        $this->resetFosOrder($fos->rlco_id, $fos->fos_order);
         $fos->delete();
         $this->loadFoss();
+    }
+    public function updateFos($fos_id){
+        $fos = Fos::find($fos_id);
+        if(!$fos){
+            $this->reset('fos_form');
+            return false;
+        }
+
+        $rules = [
+            'fos_form.fos_observation' => 'required',
+            'fos_form.fos_order' => 'required|numeric|min:1|unique:fos,fos_order,'.$fos_id.',id,rlco_id,' . $this->rlco->id,
+        ];
+        $messages = [
+            'fos_form.fos_observation.required' => 'Observation is required.',
+            'fos_form.fos_order.required' => 'Order No. is required.',
+            'fos_form.fos_order.unique' => 'Order No. is already exits.',
+            'fos_form.fos_order.min' => 'Order No. must be at least 1.',
+
+        ];
+
+        if(!empty($this->fos_file)) {
+            $rules['fos_file'] = 'mimes:jpg,jpeg,png,pdf,doc,docx|max:5120';
+            $messages['fos_file.mimes'] = 'Attachment must be a file of type: jpg, jpeg, png, pdf, doc, docx.';
+        }
+
+        if(!empty($rules) && !empty($messages))
+            $this->validate($rules,$messages);
+
+        if(!empty($this->fos_file)) {
+            $this->fos_form['fos_file'] = $this->fos_file->store('fos_files', 'public');
+            $this->fos_file = null;
+        }
+
+        $fos->update($this->fos_form);
+        $this->reset('fos_form');
+        $this->loadFoss();
+
     }
 
     private function loadFoss()
     {
         $this->foss = Fos::where('rlco_id', $this->rlco->id)->orderBy('fos_order')->get();
     }
-
+    public function resetFosOrder($rlco_id, $order_no){
+        Fos::where('rlco_id', $rlco_id)->where('fos_order','>',$order_no)->decrement('fos_order');
+    }
 
     public function addOtherDocument()
     {
+        if(!$this->rlco) {
+            $this->formSaved();
+        }
+
         $rules = [
             'other_document_form.document_title' => 'required',
             'other_document_file' => 'required',
+            'other_document_form.document_order' => 'required|numeric|min:1|unique:other_documents,document_order,NULL,id,rlco_id,' . $this->rlco->id,
         ];
         $messages = [
-            'other_document_form.fos_observation.required' => 'Title is required.',
+            'other_document_form.document_title.required' => 'Title is required.',
+            'other_document_form.document_order.required' => 'Order No. is required.',
+            'other_document_form.document_order.unique' => 'Order No. is already exits.',
+            'other_document_form.document_order.min' => 'Order No. must be at least 1.',
             'other_document_file.required' => 'Attachment is required.',
         ];
 
@@ -479,17 +692,13 @@ class RlcoForm extends Component
         if(!empty($rules) && !empty($messages))
             $this->validate($rules,$messages);
 
-        if(!$this->rlco) {
-            $this->formSaved();
-        }
 
         if(!empty($this->other_document_file)) {
             $this->other_document_form['document_file'] = $this->other_document_file->store('other_document_files', 'public');
             $this->other_document_file = null;
         }
 
-        $this->other_document_form['rlco_id'] = $this->rlco->id;
-        OtherDocument::create($this->other_document_form);
+        $this->rlco->otherDocuments()->create($this->other_document_form);
         $this->reset('other_document_form');
         $this->loadOtherDocuments();
     }
@@ -497,13 +706,14 @@ class RlcoForm extends Component
     public function deleteOtherDocument($doc_id)
     {
         $doc = OtherDocument::find($doc_id);
+        $this->resetDocumentOrder($doc->rlco_id, $doc->document_order);
         $doc->delete();
         $this->loadOtherDocuments();
     }
 
     private function loadOtherDocuments()
     {
-        $this->other_documents = OtherDocument::where('rlco_id', $this->rlco->id)->get();
+        $this->other_documents = OtherDocument::where('rlco_id', $this->rlco->id)->orderBy('document_order')->get();
     }
 
     public function confirmDialog($type, $id){
@@ -530,4 +740,80 @@ class RlcoForm extends Component
         }
     }
 
+    public function otherDocumentUp($document_id, $rlco_id)
+    {
+        $document = OtherDocument::find($document_id);
+        if ($document) {
+            OtherDocument::where('rlco_id', $rlco_id)->where('document_order', $document->document_order - 1)->update([
+                'document_order' => $document->document_order
+            ]);
+            $document->update(['document_order' => $document->document_order - 1]);
+        }
+        $this->loadOtherDocuments();
+    }
+    public function otherDocumentDown($document_id, $rlco_id)
+    {
+        $document = OtherDocument::find($document_id);
+        if ($document) {
+            OtherDocument::where('rlco_id', $rlco_id)->where('document_order', $document->document_order + 1)->update([
+                'document_order' => $document->document_order
+            ]);
+            $document->update(['document_order' => $document->document_order + 1]);
+        }
+        $this->loadOtherDocuments();
+    }
+    public function editOtherDocument($document_id){
+        $document = OtherDocument::find($document_id);
+        if($document){
+           $this->other_document_form['id'] = $document->id;
+           $this->other_document_form['document_title'] = $document->document_title;
+           $this->other_document_form['document_file'] = $document->document_file;
+           $this->other_document_form['document_order'] = $document->document_order;
+           $this->other_document_file = null;
+        }
+    }
+    public function updateOtherDocument($document_id){
+        $document = OtherDocument::find($document_id);
+        if(!$document){
+            $this->reset('other_document_form');
+            return false;
+        }
+        $rules = [
+            'other_document_form.document_title' => 'required',
+            'other_document_form.document_order' => 'required|numeric|min:1|unique:other_documents,document_order,'.$document_id.',id,rlco_id,' . $this->rlco->id,
+        ];
+        $messages = [
+            'other_document_form.document_title.required' => 'Title is required.',
+            'other_document_form.document_order.required' => 'Order No. is required.',
+            'other_document_form.document_order.unique' => 'Order No. is already exits.',
+        ];
+
+        if(!empty($this->other_document_file)) {
+            $rules['other_document_file'] = 'mimes:jpg,jpeg,png,pdf,doc,docx|max:5120';
+            $messages['other_document_file.mimes'] = 'Attachment must be a file of type: jpg, jpeg, png, pdf, doc, docx.';
+        }
+
+        if(!empty($rules) && !empty($messages))
+            $this->validate($rules,$messages);
+
+        if(!empty($this->other_document_file)) {
+            $this->other_document_form['document_file'] = $this->other_document_file->store('other_document_files', 'public');
+            $this->other_document_file = null;
+        }
+
+        $document->update($this->other_document_form);
+        $this->reset('other_document_form');
+        $this->loadOtherDocuments();
+
+    }
+    public function resetDocumentOrder($rlco_id, $order_no){
+        OtherDocument::where('rlco_id', $rlco_id)->where('document_order','>',$order_no)->decrement('document_order');
+    }
+
+    private function setEditorData($editor_id, $text){
+        $this->dispatchBrowserEvent('editor:setData',[
+            'editor_id'=> $editor_id,
+            'editor_text'=> $text,
+        ]);
+    }
 }

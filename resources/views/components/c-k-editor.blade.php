@@ -3,10 +3,10 @@
 
 @push('post-scripts')
     <script>
-
         $(function (){
             ClassicEditor.create(document.querySelector('#{{ $id }}'))
                 .then(editor => {
+                    editors['#{{ $id }}'] = editor;
                    // editor.ui.view.editable.element.style.height = '10px';
                     editor.model.document.on('change:data', () => {
                    // setTimeout(function () { }, 5000);

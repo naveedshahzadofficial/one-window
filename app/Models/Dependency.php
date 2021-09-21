@@ -13,4 +13,12 @@ class Dependency extends Model
     public function department(){
         return $this->belongsTo(Department::class);
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model){
+            $model->admin_id = auth()->guard('admin')->id();
+        });
+    }
 }

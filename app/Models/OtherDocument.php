@@ -9,5 +9,5 @@ use Wildside\Userstamps\Userstamps;
 class OtherDocument extends Model
 {
     use HasFactory, Userstamps;
-    protected $fillable = ['rlco_id', 'document_title', 'document_file', ];
+    protected $fillable = ['rlco_id', 'document_title', 'document_file', 'document_order', ];
 }

@@ -9,6 +9,7 @@
     fee_plan: '{{ $form['fee_plan']??null }}',
     renewal_fee_plan: '{{ $form['renewal_fee_plan']??null }}',
     time_unit: '{{ $form['time_unit']??null }}',
+    fee_manual_mode: '{{ $form['fee_manual_mode']??null }}',
 }" class="wizard wizard-3" id="kt_wizard_v3" data-wizard-state="step-first" data-wizard-clickable="true">
     <!--begin: Wizard Nav-->
     <div class="wizard-nav">
@@ -405,10 +406,7 @@
                                     <label class="radio radio-success">
                                         <input type="radio" wire:model.defer="form.fee_submission_mode" name="fee_submission_mode" @click="fee_submission_mode= 'Online'" value="Online">
                                         <span></span>Online</label>
-                                    <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.fee_submission_mode" name="fee_submission_mode" @click="fee_submission_mode= 'Challan'" value="Challan">
-                                        <span></span>Challan</label>
-                                    <label x-show.transition.opacity="automation_status=='Semi Automated'" class="radio radio-success">
+                                    <label  class="radio radio-success">
                                         <input type="radio" wire:model.defer="form.fee_submission_mode" name="fee_submission_mode" @click="fee_submission_mode= 'Manual'" value="Manual">
                                         <span></span>Manual</label>
                                 </div>
@@ -422,11 +420,32 @@
 
                         </div>
 
+                        <div x-show.transition.opacity="automation_status!='No Information' && fee_question=='Yes' && fee_submission_mode=='Manual'" class="row form-group">
+
+                            <div class="col-lg-6">
+                                <label>Way of Payment<span class="text-danger"></span></label>
+                                <div class="radio-inline">
+                                    <label class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.fee_manual_mode" name="fee_manual_mode" @click="fee_manual_mode= 'OTC'" value="OTC">
+                                        <span></span>OTC</label>
+                                    <label  class="radio radio-success">
+                                        <input type="radio" wire:model.defer="form.fee_manual_mode" name="fee_manual_mode" @click="fee_manual_mode= 'By Hand'" value="By Hand">
+                                        <span></span>By Hand</label>
+                                </div>
+                                @error('form.fee_manual_mode')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div><!--form-group ends-->
+
+                        </div>
+
 
                         <div x-show.transition.opacity="automation_status!='No Information' && fee_question=='Yes'" class="row form-group">
 
                             <div x-show.transition.opacity="fee_submission_mode=='Online'" class="col-lg-6">
-                                <label>Payment Source<span class="text-danger">*</span></label>
+                                <label>Way of Payment<span class="text-danger">*</span></label>
                                 <div class="radio-inline">
                                     <label class="radio radio-success">
                                         <input type="radio" wire:model.defer="form.payment_source" name="payment_source"  value="ePay Punjab">
@@ -442,7 +461,7 @@
                                 @enderror
                             </div><!--form-group ends-->
 
-                            <div x-show.transition.opacity="fee_submission_mode=='Challan'"  class="col-lg-6">
+                            <div x-show.transition.opacity="fee_submission_mode=='Manual' && fee_manual_mode=='OTC'"  class="col-lg-6">
                                 <div x-data="{ open: false }">
                                     <label>{!!__('Challan form') !!}<span class="text-danger">*</span></label>
                                     @if(isset($form['challan_form_file']) && !empty($form['challan_form_file']))
@@ -558,7 +577,7 @@
                         <div x-show.transition.opacity="automation_status!='No Information'"  class="row form-group">
 
                             <div class="col-lg-6">
-                                <label>{!! __('Time Taken') !!}&nbsp;&nbsp;
+                                <label>{!! __('Processing Time') !!}&nbsp;&nbsp;
                                     <div class="radio-inline float-right">
                                         <label class="radio radio-success">
                                             <input type="radio" wire:model.defer="form.time_unit" name="time_unit" @click="time_unit= 'Instantly'"  value="Instantly">

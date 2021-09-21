@@ -12,7 +12,7 @@
 
         <div class="col-lg-6">
             <label>{!! __('Order') !!}<span class="text-danger">*</span></label>
-            <input wire:model.defer="faq_form.faq_order" type="text"
+            <input wire:model.defer="faq_form.faq_order" type="number"
                    class="form-control @error('faq_form.faq_order') is-invalid @enderror"
                    placeholder="Order No."/>
             @error('faq_form.faq_order')
@@ -58,7 +58,11 @@
     </div>
 
     <div class="row form-group">
-        <button class="btn btn-custom-color" wire:click.prevent="addFaq()" >Add FAQ</button>
+        @if(isset($faq_form['id']) && !empty($faq_form['id']))
+            <button class="btn btn-custom-color" wire:click.prevent="updateFaq({{ $faq_form['id'] }})"  wire:loading.class="spinner spinner-white spinner-right" wire:loading.attr="disabled" >Update FAQ</button>
+        @else
+        <button class="btn btn-custom-color" wire:click.prevent="addFaq()"  wire:loading.class="spinner spinner-white spinner-right" wire:loading.attr="disabled">Add FAQ</button>
+       @endif
     </div>
 
     <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="accordionFaqs">
@@ -81,6 +85,7 @@
                         @if(!empty($faq->faq_file))
                             <a  href="{{ asset('storage/'.$faq->faq_file) }}" target="_blank" title="Attachment Faq" class="btn btn-info text-center btn-circle btn-icon btn-xs"><i class="flaticon2-file text-white"></i></a>&nbsp;&nbsp;
                         @endif
+                        <button wire:click.prevent="editFaq({{ $faq->id }})" class="btn btn-primary text-center btn-circle btn-icon btn-xs"><i class="flaticon2-edit text-white"></i></button> &nbsp; &nbsp;
                         <button wire:click.prevent="confirmDialog('faq',{{ $faq->id }})" class="btn btn-danger text-center btn-circle btn-icon btn-xs"><i class="flaticon2-trash text-white"></i></button>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <template>
         <h4 class="searching-box-heading" v-text="rlco_detail?.rlco_name"></h4>
-        <div class="business-detail overflow-auto">
+        <div id="top_detial" ref="detail_page" class="business-detail overflow-auto">
             <div v-if="rlco_detail && rlco_detail.id" class="col-lg-12 col-md-12 list-detail">
                 <div class="col-lg-12 col-md-12">
                     <div class="row"><span class="detail-department">{{ rlco_detail.department?.department_name }}</span></div>
@@ -28,9 +28,14 @@
                         </td>
                     </tr>
 
-                    <tr v-if="rlco_detail.fee_question==='Yes' && rlco_detail.fee_submission_mode">
+                    <tr v-if="rlco_detail.fee_question==='Yes' && rlco_detail.fee_submission_mode==='Online' && rlco_detail.payment_source">
                         <th>Payment Mode</th>
-                        <td><span  v-if="rlco_detail.fee_submission_mode=='Online'"><a href="https://epay.punjab.gov.pk" target="_blank">Online via ePay Punjab</a></span>  <span v-if="rlco_detail.fee_submission_mode!='Online'">Online via Bank</span></td>
+                        <td><span  v-if="rlco_detail.payment_source==='ePay Punjab'"><a href="https://epay.punjab.gov.pk" target="_blank">Online via ePay Punjab</a></span>  <span v-if="rlco_detail.payment_source==='Banks'">Online via Bank</span></td>
+                    </tr>
+
+                    <tr v-if="rlco_detail.fee_question==='Yes' && rlco_detail.fee_submission_mode==='Manual' && rlco_detail.fee_manual_mode">
+                        <th>Payment Mode</th>
+                        <td><span  v-if="rlco_detail.fee_manual_mode==='OTC'"><a :href="rlco_detail.challan_form_file" target="_blank">Challan form</a></span>  <span v-if="rlco_detail.fee_manual_mode==='By Hand'">By Hand</span></td>
                     </tr>
 
                     <tr v-if="rlco_detail.renewal_required">
@@ -47,7 +52,7 @@
                     </tr>
 
 
-                    <tr v-if="rlco_detail.time_taken">
+                    <tr v-if="rlco_detail.time_taken || rlco_detail.time_unit">
                         <th>Processing Time</th>
                         <td>{{ rlco_detail.time_taken }}&nbsp;{{ rlco_detail.time_unit }}</td>
                     </tr>
@@ -92,7 +97,7 @@
                 <table class="table detail-table" v-if="rlco_detail.dependencies?.length > 0">
                     <tbody>
                     <tr v-for="(dependency, index) in rlco_detail.dependencies">
-                        <td>{{ dependency.activity_name }}<div style="font-size: 12px; margin-top: -5px;">From: {{ dependency.department?.department_name }}</div></td>
+                        <td>{{ dependency.activity_name }}<div style="font-size: 12px; margin-top: -5px;">From {{ dependency.department?.department_name }}</div></td>
                     </tr>
                     </tbody>
                 </table>
@@ -151,21 +156,28 @@
 
                 <div class="row detail-btn my-3  mb-2">
                     <div class="col-lg-6" v-if="rlco_detail.automation_status !='No Information' && rlco_detail.application_url"> <a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.application_url">Apply Online</a></div>
-                    <div class="col-lg-6 text-right"  v-if="rlco_detail.department_website"><a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.department_website">More Information</a></div>
+                    <div class="col-lg-6 text-right"  v-if="rlco_detail.department_website"><a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.department_website">Department Website</a></div>
                 </div>
 
             </div>
+
+            <div class="d-none scrolltop" @click.prevent="scrollToTop">
+                <font-awesome-icon class="svg-icon" icon="arrow-up" />
+            </div>
+
         </div>
 
-        <base-modal-component title="Fee Schedule" @toggle-modal="toggleModal" v-if="isShowModal">
+
+    <base-modal-component title="Fee Schedule" @toggle-modal="toggleModal" v-if="isShowModal">
             <div v-html="rlco_detail?.fee_schedule"></div>
-        </base-modal-component>
+    </base-modal-component>
 
 </template>
 
 <script>
 
 import BaseModalComponent from "./BaseModalComponent";
+import {clearInterval} from "../../../public/assets/plugins/custom/tinymce/tinymce.bundle";
 
 export default {
     name: "RlcoDetailComponent",
@@ -176,9 +188,22 @@ export default {
     data: () => ({
         isShowModal: false
     }),
+    mounted() {
+        //this.scrollToTop();
+    },
+    watch: {
+
+    },
     methods: {
         toggleModal() {
             this.isShowModal = !this.isShowModal;
+        },
+        scrollToTop() {
+            let top = this.$refs.detail_page.offsetTop;
+            console.log(top);
+            //$('.business-detail').scrollTo(0, 0);
+
+
         },
     },
 }

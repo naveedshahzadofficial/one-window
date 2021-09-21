@@ -103,11 +103,14 @@
             <span
                 class="opacity-70">{{ $rlco->title_of_law }}</span>
         </div>
+        @if($rlco->link_of_law && $rlco->title_of_law)
         <div class="d-flex flex-column flex-root">
             <span class="font-weight-bolder mb-2">{!! __('Link of Law') !!}</span>
             <span
-                class="opacity-70">{{ $rlco->link_of_law }}</span>
+                class="opacity-70"><a href="{{ $rlco->link_of_law }}" target="_blank">{{ $rlco->title_of_law }}</a></span>
         </div>
+         @endif
+
     </div>
 
 
@@ -185,9 +188,8 @@
 
     <div class="d-flex justify-content-between pt-5">
         <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __('Time Taken') !!}</span>
-            <span
-                class="opacity-70">{{ $rlco->time_taken }}</span>
+            <span class="font-weight-bolder mb-2">{!! __('Processing Time') !!}</span>
+            <span class="opacity-70">{{ $rlco->time_taken }} {{ $rlco->time_unit }}</span>
         </div>
 
     </div>

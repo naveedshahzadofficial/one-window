@@ -188,6 +188,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+            let editors = [];
         </script>
 
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
@@ -247,6 +248,14 @@
 
             window.addEventListener('page:tab', event =>{
                 KTUtil.scrollTop(300,3000);
+            });
+
+            window.addEventListener('editor:setData', event =>{
+                editors[event.detail.editor_id].setData(event.detail.editor_text);
+            });
+
+            window.addEventListener('select2:setValue', event =>{
+                $(event.detail.id).val(event.detail.value).trigger("change")
             });
 
         </script>

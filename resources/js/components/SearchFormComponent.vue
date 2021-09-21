@@ -21,8 +21,8 @@
                     </div>
 
                     <div class="col-lg-12 col-md-12  col-sm-12 text-right">
-                        <button type="button" class="btn btn-sm px-4 text-light search-reset-btn" :class="{'btn-loading': isLoading}" @click.prevent="resetSearch">Reset</button>&nbsp;&nbsp;
-                        <button type="submit" class="btn btn-sm px-5 text-light search-btn" :class="{'btn-loading': isLoading}">Search</button>
+                        <button type="submit" class="btn btn-sm px-5 text-light search-btn" :class="{'btn-loading': isLoading}">Search</button>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-sm px-4 text-light search-reset-btn" :class="{'btn-loading': isLoading}" @click.prevent="resetSearch">Reset</button>
                     </div>
 
                 </div>

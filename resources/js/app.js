@@ -10,8 +10,8 @@ import Select2 from 'vue3-select2-component';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {faStar, faDownload, faFolder} from '@fortawesome/free-solid-svg-icons'
-library.add(faStar,faFolder, faDownload)
+import {faStar, faDownload, faFolder, faArrowUp} from '@fortawesome/free-solid-svg-icons'
+library.add(faStar,faFolder, faDownload, faArrowUp)
 
 const app = createApp(App);
 
