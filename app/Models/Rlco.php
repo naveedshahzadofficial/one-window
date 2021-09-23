@@ -16,7 +16,7 @@ class Rlco extends Model
         'process_flow_diagram_file', 'challan_form_file', 'application_form_file', 'inspection_required', 'fine_details',
         'relevant_laws_file', 'mode_of_inspection', 'inspection_department_id',
          'manual_detail', 'admin_id', 'rlco_status', 'dependency_question', 'time_unit', 'generic_sector', 'purpose', 'application_url', 'department_website', 'fee_schedule', 'fee_question','fee_plan',
-        'renewal_fee_plan', 'renewal_fee_schedule', 'fee_manual_mode'];
+        'renewal_fee_plan', 'renewal_fee_schedule', 'fee_manual_mode', 'last_updated_date'];
 
     public function getRlcoStatus()
     {

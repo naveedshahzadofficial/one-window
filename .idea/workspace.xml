@@ -273,27 +273,14 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/RlcoResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/RlcoResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Dependency.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Dependency.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Fos.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Fos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/OtherDocument.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/OtherDocument.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Rlco.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Rlco.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/livewire.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/livewire.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/HeaderComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/HeaderComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/RlcoDetailComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/RlcoDetailComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/SearchFormComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/SearchFormComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/_custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_components/rlco_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_components/rlco_detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/c-k-editor.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/c-k-editor.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dependency-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dependency-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/faq-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/faq-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/fos-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/fos-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/other-document-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/other-document-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
@@ -691,7 +678,8 @@
       <workItem from="1632119315823" duration="1873000" />
       <workItem from="1632126859799" duration="312000" />
       <workItem from="1632142659219" duration="5568000" />
-      <workItem from="1632208027924" duration="19848000" />
+      <workItem from="1632208027924" duration="20028000" />
+      <workItem from="1632397188425" duration="1613000" />
     </task>
     <servers />
   </component>

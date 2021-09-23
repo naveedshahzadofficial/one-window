@@ -64,7 +64,7 @@
 
                     <tr v-if="rlco_detail.inspection_required">
                         <th>Inspection</th>
-                        <td>{{ rlco_detail.inspection_required=='None'?'Not Required':'Required' }}</td>
+                        <td>{{ rlco_detail.inspection_required=='None'?'Not Applicable':rlco_detail.inspection_required }}</td>
                     </tr>
 
                     <tr v-if="rlco_detail.mode_of_inspection && 1==2">
@@ -157,6 +157,12 @@
                 <div class="row detail-btn my-3  mb-2">
                     <div class="col-lg-6" v-if="rlco_detail.automation_status !='No Information' && rlco_detail.application_url"> <a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.application_url">Apply Online</a></div>
                     <div class="col-lg-6 text-right"  v-if="rlco_detail.department_website"><a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.department_website">Department Website</a></div>
+                </div>
+
+                <div v-if="rlco_detail.last_updated_date" class="row detail-btn my-3  mb-2">
+                    <div class="col-lg-12 text-left">
+                        <span class="last-updated-date">Last verified: {{ rlco_detail.last_updated_date }}</span>
+                    </div>
                 </div>
 
             </div>

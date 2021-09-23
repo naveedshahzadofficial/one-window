@@ -315,8 +315,21 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-
                         </div>
+
+                        <div class="row form-group">
+                            <div class="col-lg-6">
+                                <label>Last Verified Date<span
+                                        class="text-danger">*</span></label>
+                                <div wire:ignore>
+                                    <x-date-picker wire:model.defer="form.last_updated_date" id="last_updated_date"/>
+                                </div>
+                                @error('application.last_updated_date')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
                     </div>
 
 
