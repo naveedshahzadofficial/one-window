@@ -13,7 +13,7 @@ use App\Models\Keyword;
 use App\Models\OtherDocument;
 use App\Models\RequiredDocument;
 use App\Models\Rlco;
-use App\Models\RlcoKeyword;
+use App\Models\RlcoRequiredDocument;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -24,13 +24,16 @@ class RlcoForm extends Component
     public $form;
     public $rlco;
 
-
+    public $required_documents;
     public $business_categories;
     public $business_activities;
     public $departments;
-    public $required_documents;
     public $activities;
     public $keywords;
+
+
+    public $rlcoRequiredDocuments;
+    public $required_document_form;
 
     public $dependency_form;
     public $dependencies;
@@ -82,6 +85,7 @@ class RlcoForm extends Component
         $this->keywords = Collect();
         $this->form['admin_id'] = auth()->id();
 
+        $this->rlcoRequiredDocuments = Collect();
         $this->dependencies = Collect();
         $this->faqs = Collect();
         $this->foss = Collect();
@@ -91,7 +95,6 @@ class RlcoForm extends Component
         if($this->rlco){
             $this->form = $this->rlco->toArray();
             $this->form['activity_ids'] = $this->rlco->activities->pluck('id');
-            $this->form['required_document_ids'] = $this->rlco->requiredDocuments->pluck('id');
             $this->keywords = $this->rlco->keywords;
             $this->form['keyword_ids'] = $this->rlco->keywords->pluck('id');
             $this->form['business_activity_ids'] = $this->rlco->businessActivities->pluck('id');
@@ -101,6 +104,7 @@ class RlcoForm extends Component
                 $ba_query->where('business_category_id', $this->rlco->business_category_id);
             $this->business_activities = $ba_query->get();
 
+            $this->loadRlcoRequiredDocuments();
             $this->loadDependencies();
             $this->loadFaqs();
             $this->loadFoss();
@@ -242,23 +246,6 @@ class RlcoForm extends Component
         }
         DB::transaction(function () {
         $this->formSaved();
-            $required_document_ids = $this->form['required_document_ids']??null;
-            $new_document_ids = array();
-            if(!empty($required_document_ids)){
-                foreach ($required_document_ids as $required_document_id){
-                    if ((int)$required_document_id === 0) {
-                        $required_document = RequiredDocument::firstOrCreate(
-                            ['document_title' => $required_document_id],
-                            ['document_status' => 'Active']
-                        );
-                        array_push($new_document_ids, $required_document->id);
-                    } else {
-                        array_push($new_document_ids, $required_document_id);
-                    }
-                }
-            }
-
-            $this->rlco->requiredDocuments()->sync($new_document_ids);
 
         });
 
@@ -325,9 +312,145 @@ class RlcoForm extends Component
         ]);
     }
 
+    private function loadRlcoRequiredDocuments()
+    {
+        $this->rlcoRequiredDocuments = RlcoRequiredDocument::with('requiredDocument')->where('rlco_id', $this->rlco->id)->orderBy('position')->get();
+    }
+
     private function loadDependencies()
     {
         $this->dependencies = Dependency::with('department')->where('rlco_id', $this->rlco->id)->orderBy('priority')->get();
+    }
+
+    public function addRequiredDocument(){
+        if(!$this->rlco) {
+            $this->formSaved();
+        }
+
+        $rules = [
+            'required_document_form.required_document_id' => 'required|unique:rlco_required_documents,required_document_id,NULL,id,rlco_id,' . $this->rlco->id,
+            'required_document_form.position' => 'required|numeric|min:1|unique:rlco_required_documents,position,NULL,id,rlco_id,' . $this->rlco->id,
+
+        ];
+        $messages = [
+            'required_document_form.required_document_id.unique' => 'Required Document is already exits..',
+            'required_document_form.required_document_id.required' => 'Required Document is required.',
+            'required_document_form.position.required' => 'Order is required.',
+            'required_document_form.position.unique' => 'Order is already exits.',
+            'required_document_form.position.min' => 'Order must be at least 1.',
+        ];
+
+        if(!empty($rules) && !empty($messages))
+            $this->validate($rules,$messages);
+
+        $required_document_id = $this->required_document_form['required_document_id']??null;
+
+            if ((int)$required_document_id === 0) {
+                    $required_document = RequiredDocument::firstOrCreate(
+                        ['document_title' => $required_document_id],
+                        ['document_status' => 'Active']
+                    );
+
+                    $new_document = ['required_document_id'=>$required_document->id,'position'=>$this->required_document_form['position']??null];
+                } else {
+                    $new_document = ['required_document_id'=>$required_document_id, 'position'=>$this->required_document_form['position']??null];
+                }
+
+        $this->rlco->requiredDocuments()->create($new_document);
+        $this->reset('required_document_form');
+        $this->dispatchBrowserEvent('select2:setValue',['id'=>'#required_document_id','value'=>'']);
+        $this->loadRlcoRequiredDocuments();
+
+    }
+
+
+    public function editRequiredDocument($document_id){
+        $document = RlcoRequiredDocument::find($document_id);
+        if($document){
+            $this->required_document_form['id'] = $document->id;
+            $this->required_document_form['required_document_id'] = $document->required_document_id;
+            $this->required_document_form['position'] = $document->position;
+            $this->dispatchBrowserEvent('select2:setValue',['id'=>'#required_document_id','value'=>$document->required_document_id]);
+        }
+    }
+
+    public function updateRequiredDocument($document_id){
+
+        $document = RlcoRequiredDocument::find($document_id);
+        if(!$document){
+            $this->reset('required_document_form');
+            $this->dispatchBrowserEvent('select2:setValue',['id'=>'#required_document_id','value'=>'']);
+            return false;
+        }
+
+        if(!$this->rlco) {
+            $this->formSaved();
+        }
+
+        $rules = [
+            'required_document_form.required_document_id' => "required|unique:rlco_required_documents,required_document_id,{$document_id},id,rlco_id,{$this->rlco->id}",
+            'required_document_form.position' => "required|numeric|min:1|unique:rlco_required_documents,position,{$document_id},id,rlco_id,{$this->rlco->id}",
+        ];
+        $messages = [
+            'required_document_form.required_document_id.unique' => 'Required Document is already exits..',
+            'required_document_form.required_document_id.required' => 'Required Document is required.',
+            'required_document_form.position.required' => 'Order is required.',
+            'required_document_form.position.unique' => 'Order is already exits.',
+            'required_document_form.position.min' => 'Order must be at least 1.',
+        ];
+
+        if(!empty($rules) && !empty($messages))
+            $this->validate($rules,$messages);
+
+        $required_document_id = $this->required_document_form['required_document_id']??null;
+
+        if ((int)$required_document_id === 0) {
+            $required_document = RequiredDocument::firstOrCreate(
+                ['document_title' => $required_document_id],
+                ['document_status' => 'Active']
+            );
+
+            $new_document = ['required_document_id'=>$required_document->id,'position'=>$this->required_document_form['position']??null];
+        } else {
+            $new_document = ['required_document_id'=>$required_document_id, 'position'=>$this->required_document_form['position']??null];
+        }
+
+        $document->update($new_document);
+        $this->reset('required_document_form');
+        $this->dispatchBrowserEvent('select2:setValue',['id'=>'#required_document_id','value'=>'']);
+        $this->loadRlcoRequiredDocuments();
+
+    }
+
+    public function requiredDocumentUp($document_id,$rlco_id){
+        $document = RlcoRequiredDocument::find($document_id);
+        if ($document) {
+            RlcoRequiredDocument::where('rlco_id', $rlco_id)->where('position', $document->position - 1)->update([
+                'position' => $document->position
+            ]);
+            $document->update(['position' => $document->position - 1]);
+        }
+        $this->loadRlcoRequiredDocuments();
+    }
+    public function requiredDocumentDown($document_id, $rlco_id){
+        $document = RlcoRequiredDocument::find($document_id);
+        if ($document) {
+            RlcoRequiredDocument::where('rlco_id', $rlco_id)->where('position', $document->position + 1)->update([
+                'position' => $document->position
+            ]);
+            $document->update(['position' => $document->position + 1]);
+        }
+        $this->loadRlcoRequiredDocuments();
+    }
+    public function deleteRequiredDocument($document_id)
+    {
+        $document = RlcoRequiredDocument::find($document_id);
+        $this->resetRequiredDocumentOrder($document->rlco_id, $document->position);
+        $document->delete();
+        $this->loadRlcoRequiredDocuments();
+    }
+    private function resetRequiredDocumentOrder($rlco_id, $position){
+        RlcoRequiredDocument::where('rlco_id', $rlco_id)->where('position','>',$position)->decrement('position');
     }
 
     public function addDependency()
@@ -736,6 +859,9 @@ class RlcoForm extends Component
                 break;
             case 'other_document':
                 $this->deleteOtherDocument($id);
+                break;
+            case 'required_document':
+                $this->deleteRequiredDocument($id);
                 break;
         }
     }

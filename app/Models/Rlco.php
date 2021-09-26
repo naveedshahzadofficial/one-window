@@ -59,7 +59,7 @@ class Rlco extends Model
 
     public function requiredDocuments()
     {
-        return $this->belongsToMany(RequiredDocument::class);
+        return $this->hasMany(RlcoRequiredDocument::class)->orderBy('position');
     }
 
     public function inspectionDepartment(){
