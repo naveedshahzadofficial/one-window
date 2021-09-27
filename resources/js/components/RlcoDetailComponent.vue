@@ -1,6 +1,6 @@
 <template>
         <h4 class="searching-box-heading" v-text="rlco_detail?.rlco_name"></h4>
-        <div id="top_detial" ref="detail_page" class="business-detail overflow-auto">
+        <div id="top_detail" ref="detail_page" class="business-detail overflow-auto">
             <div v-if="rlco_detail && rlco_detail.id" class="col-lg-12 col-md-12 list-detail">
                 <div class="col-lg-12 col-md-12">
                     <div class="row"><span class="detail-department">{{ rlco_detail.department?.department_name }}</span></div>
