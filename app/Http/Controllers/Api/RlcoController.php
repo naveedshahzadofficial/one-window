@@ -41,7 +41,7 @@ class RlcoController extends Controller
             if (!empty($business_category_id)) {
                 $q->where('business_category_id', $business_category_id);
             }
-            return $q->where('rlco_status',1)->with('businessCategory','department','inspectionDepartment','requiredDocuments','faqs','foss','dependencies.department', 'otherDocuments');
+            return $q->where('rlco_status',1)->with('businessCategory','department','inspectionDepartment','requiredDocuments.requiredDocument','faqs','foss','dependencies.department', 'otherDocuments');
             }])
             ->withCount(['rlcos'=>function($q) use($department_id,$business_category_id){
                 if (!empty($department_id)) {

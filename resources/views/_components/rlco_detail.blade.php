@@ -221,7 +221,7 @@
                     @foreach($rlco->requiredDocuments as $document)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $document->document_title }}</td>
+                            <td>{{ optional($document->requiredDocument)->document_title }}</td>
                         </tr>
                     @endforeach
                     </tbody>

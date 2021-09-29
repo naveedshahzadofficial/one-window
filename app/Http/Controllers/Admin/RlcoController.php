@@ -73,7 +73,7 @@ class RlcoController extends Controller
 
     public function show(Rlco $rlco): View
     {
-        $rlco->load('activities','requiredDocuments', 'keywords','businessActivities','faqs','foss','dependencies.department', 'otherDocuments');
+        $rlco->load('activities','requiredDocuments.requiredDocument', 'keywords','businessActivities','faqs','foss','dependencies.department', 'otherDocuments');
         return view('admin.rlco.show',compact('rlco'));
     }
 

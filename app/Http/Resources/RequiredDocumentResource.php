@@ -17,7 +17,8 @@ class RequiredDocumentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'document_title' => $this->document_title
+            'position' => $this->position,
+            'document_title' => optional($this->requiredDocument)->document_title
         ];
     }
 }
