@@ -1,5 +1,5 @@
 <template>
-        <h4 class="searching-box-heading" v-text="rlco_detail?.rlco_name"></h4>
+        <h4 class="searching-box-heading" v-text="rlco_detail?.rlco_name?rlco_detail?.rlco_name:'No RLCOs found.'"></h4>
         <div id="top_detail" ref="detail_page" class="business-detail overflow-auto">
             <div v-if="rlco_detail && rlco_detail.id" class="col-lg-12 col-md-12 list-detail">
                 <div class="col-lg-12 col-md-12">
@@ -167,7 +167,7 @@
 
             </div>
 
-            <div class="d-none scrolltop" @click.prevent="scrollToTop">
+            <div class="scroll-top" @click.prevent="scrollToTop">
                 <font-awesome-icon class="svg-icon" icon="arrow-up" />
             </div>
 
@@ -195,22 +195,39 @@ export default {
         isShowModal: false
     }),
     mounted() {
-        //this.scrollToTop();
+        window.addEventListener('scroll', this.handleScroll);
+        this.$refs.detail_page.addEventListener('scroll', this.handleDetailScroll);
     },
     watch: {
-
+        rlco_detail: function(newVal, oldVal) { // watch it
+           if(oldVal){
+               this.$refs.detail_page.scrollTo(0, 0);
+           }
+        }
     },
     methods: {
         toggleModal() {
             this.isShowModal = !this.isShowModal;
         },
         scrollToTop() {
-            let top = this.$refs.detail_page.offsetTop;
-            console.log(top);
-            //$('.business-detail').scrollTo(0, 0);
-
-
+            let refDiv = this.$refs.detail_page;
+                refDiv.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
         },
+        handleScroll: function () {
+            let scrollY = window.scrollY;
+            document.querySelector(".scroll-top").style.bottom = (50 + scrollY)+'px' ;
+        },
+        handleDetailScroll: function (){
+            let scrollTop = this.$refs.detail_page.scrollTop;
+            if(scrollTop > 200){
+                document.querySelector(".scroll-top").style.display = 'block' ;
+            }else{
+                document.querySelector(".scroll-top").style.display = 'none' ;
+            }
+        }
     },
 }
 </script>
