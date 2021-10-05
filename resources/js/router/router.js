@@ -33,8 +33,8 @@ export const router = createRouter({
             props: true,
         },
         {
-            path: "/rlco/:id",
-            name: "rlcos.rlco.show",
+            path: "/rlco/detail/:id",
+            name: "rlcos.show",
             component: Detail
         },
             ]
