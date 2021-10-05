@@ -275,7 +275,8 @@ $font-light: 'poppinslight';
             margin-top: -5px;
         }
         .detail-department{
-            font-size: 14px;
+            font-family: $font-bold;
+            font-size: 15px;
             color: $navi-blue-color;
         }
         .detail-desc{
@@ -304,7 +305,7 @@ $font-light: 'poppinslight';
                     padding: 0.50rem;
                 }
                 td{
-                    padding: 0.50rem;
+                    padding: 0.1rem;
                 }
             }
         }

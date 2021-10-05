@@ -88,7 +88,7 @@ class RlcoController extends Controller
     }
 
     public function rlcoDetail(Rlco $rlco){
-        $rlco->load('department', 'activities','requiredDocuments', 'keywords','businessActivities','faqs','foss','dependencies.department', 'otherDocuments');
-        return response()->json(['rlco'=>$rlco]);
+        $rlco->load('businessCategory','department','inspectionDepartment','requiredDocuments.requiredDocument','faqs','foss','dependencies.department', 'otherDocuments');
+        return response()->json(['rlco_detail'=>new RlcoResource($rlco)]);
     }
 }

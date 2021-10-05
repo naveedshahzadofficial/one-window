@@ -1,6 +1,6 @@
 <template>
         <h4 class="searching-box-heading" v-text="rlco_detail?.rlco_name?rlco_detail?.rlco_name:'No RLCOs found.'"></h4>
-        <div id="top_detail" ref="detail_page" class="business-detail overflow-auto">
+        <div id="top_detail" ref="detail_page" class="business-detail"  :class="[{'overflow-auto': !isOverFlow}, {'overflow-hidden h-100': isOverFlow}]">
             <div v-if="rlco_detail && rlco_detail.id" class="col-lg-12 col-md-12 list-detail">
                 <div class="col-lg-12 col-md-12">
                     <div class="row"><span class="detail-department">{{ rlco_detail.department?.department_name }}</span></div>
@@ -40,7 +40,7 @@
 
                     <tr v-if="rlco_detail.renewal_required">
                         <th>Renewal Fee (PKR)</th>
-                        <td> <span v-if="rlco_detail.renewal_required==='Yes' && rlco_detail.renewal_fee_plan==='Schedule' && rlco_detail.renewal_fee_schedule" @click.prevent="toggleModal" class="make-link">Renewal Fee Schedule</span>
+                        <td> <span v-if="rlco_detail.renewal_required==='Yes' && rlco_detail.renewal_fee_plan==='Schedule' && rlco_detail.renewal_fee_schedule" @click.prevent="toggleModalRenewal" class="make-link">Renewal Fee Schedule</span>
                             <span v-else-if="rlco_detail.renewal_required==='Yes' && rlco_detail.renewal_fee_plan==='Single Fee' && rlco_detail.renewal_fee">{{ rlco_detail.renewal_fee }}</span>
                             <span v-else>Not Applicable</span>
                         </td>
@@ -64,7 +64,7 @@
 
                     <tr v-if="rlco_detail.inspection_required">
                         <th>Inspection</th>
-                        <td>{{ rlco_detail.inspection_required=='None'?'Not Applicable':rlco_detail.inspection_required }}</td>
+                        <td>{{ rlco_detail.inspection_required=='None'?'Not Applicable':'Applicable' }}</td>
                     </tr>
 
                     <tr v-if="rlco_detail.mode_of_inspection && 1==2">
@@ -147,8 +147,12 @@
                             </div>
                         </div>
                         <div :id="`collapse_faq_${index}`" class="collapse" data-parent="#accordionFaqs">
-                            <div class="card-body pt-2 pb-2 pl-4" v-html="faq.faq_answer"></div>
-                            <div v-if="faq.faq_file"><a class="btn" :href="faq.faq_file" target="_blank" download><font-awesome-icon icon="download" /></a></div>
+
+                            <div class="card-body">
+                            <div class="pt-2 pl-4" v-html="faq.faq_answer"></div>
+                            <div v-if="faq.faq_file"><a class="btn" :href="faq.faq_file" target="_blank" download>Download attachment <font-awesome-icon icon="download" /></a></div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -167,7 +171,7 @@
 
             </div>
 
-            <div class="scroll-top" @click.prevent="scrollToTop">
+            <div v-if="!isOverFlow" class="scroll-top" @click.prevent="scrollToTop">
                 <font-awesome-icon class="svg-icon" icon="arrow-up" />
             </div>
 
@@ -178,29 +182,36 @@
             <div v-html="rlco_detail?.fee_schedule"></div>
     </base-modal-component>
 
+    <base-modal-component title="Renewal Fee Schedule" @toggle-modal="toggleModalRenewal" v-if="isShowModalRenewal">
+        <div v-html="rlco_detail?.renewal_fee_schedule"></div>
+    </base-modal-component>
+
 </template>
 
 <script>
 
 import BaseModalComponent from "./BaseModalComponent";
-import {clearInterval} from "../../../public/assets/plugins/custom/tinymce/tinymce.bundle";
 
 export default {
     name: "RlcoDetailComponent",
     components: {BaseModalComponent},
     props: {
-        rlco_detail: Object
+        rlco_detail: Object,
+        isOverFlow: Boolean,
     },
     data: () => ({
-        isShowModal: false
+        isShowModal: false,
+        isShowModalRenewal: false,
     }),
     mounted() {
-        window.addEventListener('scroll', this.handleScroll);
-        this.$refs.detail_page.addEventListener('scroll', this.handleDetailScroll);
+        if(!this.isOverFlow) {
+            window.addEventListener('scroll', this.handleScroll);
+            this.$refs.detail_page.addEventListener('scroll', this.handleDetailScroll);
+        }
     },
     watch: {
         rlco_detail: function(newVal, oldVal) { // watch it
-           if(oldVal){
+           if(oldVal && !this.isOverFlow){
                this.$refs.detail_page.scrollTo(0, 0);
            }
         }
@@ -208,6 +219,9 @@ export default {
     methods: {
         toggleModal() {
             this.isShowModal = !this.isShowModal;
+        },
+        toggleModalRenewal() {
+            this.isShowModalRenewal = !this.isShowModalRenewal;
         },
         scrollToTop() {
             let refDiv = this.$refs.detail_page;
