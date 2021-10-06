@@ -256,6 +256,11 @@ export default {
         rlco_detail: function(newVal, oldVal) { // watch it
            if(oldVal && !this.isOverFlow){
                this.$refs.detail_page.scrollTo(0, 0);
+
+               this.isShowModalRenewal =  false;
+               this.feedbackForm = {rating: null, feedback: ''};
+               this.feedback_label=  "Glad to know any additional feedback";
+               this.isSubmitted = false;
            }
         }
     },
