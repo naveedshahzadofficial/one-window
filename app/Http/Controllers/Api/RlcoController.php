@@ -91,4 +91,9 @@ class RlcoController extends Controller
         $rlco->load('businessCategory','department','inspectionDepartment','requiredDocuments.requiredDocument','faqs','foss','dependencies.department', 'otherDocuments');
         return response()->json(['rlco_detail'=>new RlcoResource($rlco)]);
     }
+
+    public function review(Request $request, Rlco $rlco){
+        $rlco->reviews()->create($request->all()+ ['ip_address'=> $request->ip()]);
+        return response()->json(['id'=>$rlco->id]);
+    }
 }

@@ -27,4 +27,7 @@ Route::get('/login', [Auth\LoginController::class, 'showLoginForm'])->name('logi
 
         Route::post('activities/index-ajax', [ Admin\ActivityController::class,'indexAjax'])->name('activities.index-ajax');
         Route::resource('activities', Admin\ActivityController::class);
+
+        Route::post('reviews/index-ajax', [ Admin\ReviewController::class,'indexAjax'])->name('reviews.index-ajax');
+        Route::resource('reviews', Admin\ReviewController::class);
     });

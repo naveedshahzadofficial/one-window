@@ -265,3 +265,7 @@ select.select2{
 .ck.ck-editor__main>.ck-editor__editable {
     background: #E6FFFC !important;
 }
+
+.aside-menu .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-heading, .aside-menu .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link{
+    background-color: #404040 !important;
+}

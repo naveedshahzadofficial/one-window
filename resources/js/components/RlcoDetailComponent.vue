@@ -1,10 +1,10 @@
 <template>
-    <div id="printSection">
+    <div id="printSection" >
 
         <div class="section-detail-heading">
             <h4  v-text="rlco_detail?.rlco_name?rlco_detail?.rlco_name:'No RLCOs found.'"></h4>
             <span v-if="rlco_detail?.id && !isOverFlow" class="view-detail-icon" @click.prevent="openDetailPage" title="Full Page"><font-awesome-icon icon="expand" /></span>
-            <span v-if="rlco_detail?.id && isOverFlow" class="view-detail-icon" @click.prevent="PrintPage" title="Print Page"><font-awesome-icon icon="print" /></span>
+            <span v-if="rlco_detail?.id && isOverFlow" class="view-detail-icon"   v-print="'#printSection'" title="Print Page"><font-awesome-icon icon="print" /></span>
         </div>
 
         <div id="top_detail" ref="detail_page" class="business-detail"  :class="[{'overflow-auto': !isOverFlow}, {'overflow-hidden h-100': isOverFlow}]">
@@ -178,15 +178,15 @@
                     </div>
                 </div>
 
-                <div v-show="!isSubmitted" class="row">
+                <div v-show="!isSubmitted && !checkFeedbackExits" class="row">
                     <div class="col-lg-12">
                     <h3 class="detail-heading pt-3 pb-2">Rating & Review</h3>
                     <div class="text-body">How would you rate this information?</div>
                     </div>
                 </div>
-                <div v-show="!isSubmitted" class="row mb-4">
+                <div v-show="!isSubmitted && !checkFeedbackExits" class="row mb-4">
                     <div class="col-lg-12 text-left">
-                    <star-rating  :star-size="30" :show-rating="false" @update:rating="feedbackForm.rating = $event" v-model="feedbackForm.rating" />
+                    <star-rating  :star-size="30" :show-rating="false" @update:rating="feedbackForm.rating = $event"  />
                      </div>
                     <div v-show="feedbackForm.rating" class="col-lg-12 mt-3 mb-5">
                         <label for="feedback" v-text="currentFeedbackLabel"></label>
@@ -244,7 +244,7 @@ export default {
             feedback: ''
         },
         feedback_label: "Glad to know any additional feedback",
-        isSubmitted: false
+        isSubmitted: false,
     }),
     mounted() {
         if(!this.isOverFlow) {
@@ -256,7 +256,6 @@ export default {
         rlco_detail: function(newVal, oldVal) { // watch it
            if(oldVal && !this.isOverFlow){
                this.$refs.detail_page.scrollTo(0, 0);
-
                this.isShowModalRenewal =  false;
                this.feedbackForm = {rating: null, feedback: ''};
                this.feedback_label=  "Glad to know any additional feedback";
@@ -277,6 +276,16 @@ export default {
                 this.feedback_label = "Glad to know any additional feedback";
             }
             return this.feedback_label;
+        },
+        feedbacks(){
+            if (localStorage.getItem("rlcoFeedbacks")){
+                return JSON.parse(localStorage.getItem("rlcoFeedbacks"))
+            }
+            return [];
+        },
+        checkFeedbackExits(){
+           let rlco = this.feedbacks.filter((rlco) => (rlco.rlco_id === this.rlco_detail?.id));
+           return !!(rlco && rlco.length);
         }
     },
     methods: {
@@ -307,14 +316,18 @@ export default {
         },
         submitFeedback: function (){
             this.isSubmitted = true;
+            axios.post(`review/${this.rlco_detail?.id}`, this.feedbackForm ).then(response => {
+                let feedback = {rlco_id: response.data.id};
+                localStorage.setItem('rlcoFeedbacks',JSON.stringify([...this.feedbacks, feedback]))
+                this.loading = false;
+            }).catch(error => {
+                this.loading = false;
+            })
         },
         openDetailPage: function (){
             let routeData = this.$router.resolve({ name: 'rlcos.show', params: { id: this.rlco_detail.id } });
             window.open(routeData.href, '_blank');
         },
-        PrintPage: function (){
-            this.$htmlToPaper("printSection");
-        }
     },
 }
 </script>

@@ -85,4 +85,7 @@ class Rlco extends Model
     {
         return $this->belongsToMany(BusinessActivity::class);
     }
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
 }
