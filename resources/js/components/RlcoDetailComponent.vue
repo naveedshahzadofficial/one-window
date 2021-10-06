@@ -258,7 +258,7 @@ export default {
                 : "Please select your rating";
         },
         currentFeedbackLabel() {
-            if(this.feedbackForm.rating < 3){
+            if(this.feedbackForm.rating <= 3){
                 this.feedback_label = "Tell us how we can improve it?";
             }else{
                 this.feedback_label = "Glad we helped! Anything more we can do for you?";
