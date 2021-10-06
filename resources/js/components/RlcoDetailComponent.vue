@@ -182,7 +182,7 @@
                      </div>
                     <div class="col-lg-3">&nbsp;</div>
                     <div v-show="feedbackForm.rating" class="col-lg-12 mt-3 mb-5">
-                        <label for="feedback">Glad we helped! Anything more we can do for you?</label>
+                        <label for="feedback" v-text="currentFeedbackLabel"></label>
                         <textarea class="form-control" name="feedback" id="feedback" v-model="feedbackForm.feedback" cols="2" rows="2"></textarea>
                         <button class="btn btn-sm px-3 text-light custom-detail-btn mt-3" @click.prevent="submitFeedback">Submit</button>
                     </div>
@@ -235,6 +235,7 @@ export default {
             rating: null,
             feedback: ''
         },
+        feedback_label: "Glad we helped! Anything more we can do for you?",
         isSubmitted: false
     }),
     mounted() {
@@ -255,6 +256,14 @@ export default {
             return this.feedbackForm.rating
                 ? "You have selected " + this.feedbackForm.rating + " stars"
                 : "Please select your rating";
+        },
+        currentFeedbackLabel() {
+            if(this.feedbackForm.rating < 3){
+                this.feedback_label = "Tell us how we can improve it?";
+            }else{
+                this.feedback_label = "Glad we helped! Anything more we can do for you?";
+            }
+            return this.feedback_label;
         }
     },
     methods: {
