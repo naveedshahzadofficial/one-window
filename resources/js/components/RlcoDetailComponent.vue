@@ -1,5 +1,12 @@
 <template>
-        <h4 class="searching-box-heading" v-text="rlco_detail?.rlco_name?rlco_detail?.rlco_name:'No RLCOs found.'"></h4>
+    <div id="printSection">
+
+        <div class="section-detail-heading">
+            <h4  v-text="rlco_detail?.rlco_name?rlco_detail?.rlco_name:'No RLCOs found.'"></h4>
+            <span v-if="rlco_detail?.id && !isOverFlow" class="view-detail-icon" @click.prevent="openDetailPage" title="Full Page"><font-awesome-icon icon="expand" /></span>
+            <span v-if="rlco_detail?.id && isOverFlow" class="view-detail-icon" @click.prevent="PrintPage" title="Print Page"><font-awesome-icon icon="print" /></span>
+        </div>
+
         <div id="top_detail" ref="detail_page" class="business-detail"  :class="[{'overflow-auto': !isOverFlow}, {'overflow-hidden h-100': isOverFlow}]">
             <div v-if="rlco_detail && rlco_detail.id" class="col-lg-12 col-md-12 list-detail">
                 <div class="col-lg-12 col-md-12">
@@ -38,6 +45,18 @@
                         <td><span  v-if="rlco_detail.fee_manual_mode==='OTC'"><a :href="rlco_detail.challan_form_file" target="_blank">Challan form</a></span>  <span v-if="rlco_detail.fee_manual_mode==='By Hand'">By Hand</span></td>
                     </tr>
 
+
+
+                    <tr v-if="rlco_detail.time_taken || rlco_detail.time_unit">
+                        <th>Processing Time</th>
+                        <td>{{ rlco_detail.time_taken }}&nbsp;{{ rlco_detail.time_unit }}</td>
+                    </tr>
+
+                    <tr v-if="rlco_detail.renewal_required==='Yes' &&  rlco_detail.validity">
+                        <th>Validity</th>
+                        <td>{{ rlco_detail.validity }}</td>
+                    </tr>
+
                     <tr v-if="rlco_detail.renewal_required">
                         <th>Renewal Fee (PKR)</th>
                         <td> <span v-if="rlco_detail.renewal_required==='Yes' && rlco_detail.renewal_fee_plan==='Schedule' && rlco_detail.renewal_fee_schedule" @click.prevent="toggleModalRenewal" class="make-link">Renewal Fee Schedule</span>
@@ -46,21 +65,6 @@
                         </td>
                     </tr>
 
-                    <tr v-if="rlco_detail.renewal_required==='Yes' &&  rlco_detail.validity">
-                        <th>Validity</th>
-                        <td>{{ rlco_detail.validity }}</td>
-                    </tr>
-
-
-                    <tr v-if="rlco_detail.time_taken || rlco_detail.time_unit">
-                        <th>Processing Time</th>
-                        <td>{{ rlco_detail.time_taken }}&nbsp;{{ rlco_detail.time_unit }}</td>
-                    </tr>
-
-                    <tr v-if="rlco_detail.process_flow_diagram_file">
-                        <th>Process Flow Diagram</th>
-                        <td><a target="_blank" :href="rlco_detail.process_flow_diagram_file" download><font-awesome-icon icon="download" /></a></td>
-                    </tr>
 
                     <tr v-if="rlco_detail.inspection_required">
                         <th>Inspection</th>
@@ -78,6 +82,11 @@
                     <tr v-if="rlco_detail.fine_details && 1==2">
                         <th>Fine Details</th>
                         <td><p v-html="rlco_detail.fine_details"></p></td>
+                    </tr>
+
+                    <tr v-if="rlco_detail.process_flow_diagram_file">
+                        <th>Process Flow Diagram</th>
+                        <td><a target="_blank" :href="rlco_detail.process_flow_diagram_file" download><font-awesome-icon icon="download" /></a></td>
                     </tr>
 
                     </tbody>
@@ -176,11 +185,9 @@
                     </div>
                 </div>
                 <div v-show="!isSubmitted" class="row mb-4">
-                    <div class="col-lg-3">&nbsp;</div>
-                    <div class="col-lg-6 text-center">
-                    <star-rating style="align-items: center; justify-content: center;" :star-size="30" :show-rating="false" @update:rating="feedbackForm.rating = $event" v-model="feedbackForm.rating" />
+                    <div class="col-lg-12 text-left">
+                    <star-rating  :star-size="30" :show-rating="false" @update:rating="feedbackForm.rating = $event" v-model="feedbackForm.rating" />
                      </div>
-                    <div class="col-lg-3">&nbsp;</div>
                     <div v-show="feedbackForm.rating" class="col-lg-12 mt-3 mb-5">
                         <label for="feedback" v-text="currentFeedbackLabel"></label>
                         <textarea class="form-control" name="feedback" id="feedback" v-model="feedbackForm.feedback" cols="2" rows="2"></textarea>
@@ -210,6 +217,7 @@
     <base-modal-component title="Renewal Fee Schedule" @toggle-modal="toggleModalRenewal" v-if="isShowModalRenewal">
         <div v-html="rlco_detail?.renewal_fee_schedule"></div>
     </base-modal-component>
+    </div>
 
 </template>
 
@@ -259,7 +267,7 @@ export default {
         },
         currentFeedbackLabel() {
             if(this.feedbackForm.rating <= 3){
-                this.feedback_label = "Tell us how we can improve it?";
+                this.feedback_label = "Tell us how can we improve";
             }else{
                 this.feedback_label = "Glad to know any additional feedback";
             }
@@ -294,6 +302,13 @@ export default {
         },
         submitFeedback: function (){
             this.isSubmitted = true;
+        },
+        openDetailPage: function (){
+            let routeData = this.$router.resolve({ name: 'rlcos.show', params: { id: this.rlco_detail.id } });
+            window.open(routeData.href, '_blank');
+        },
+        PrintPage: function (){
+            this.$htmlToPaper("printSection");
         }
     },
 }

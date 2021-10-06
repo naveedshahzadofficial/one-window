@@ -178,6 +178,24 @@ $font-light: 'poppinslight';
     padding: 10px;
     line-height: 20px;
 }
+.section-detail-heading{
+    font-family: $font-light;
+    background-color: $navi-blue-color;
+    padding: 10px;
+    color: $off-white-color;
+    margin: 0;
+    line-height: 20px;
+    h4{
+        font-family: $font-light;
+        font-size: 14px;
+        width: 95%;
+        display: inline-block;
+        margin:0;
+    }
+    .view-detail-icon{
+        cursor: pointer;
+    }
+}
 .activities-listing,.business-listing,.business-detail{
     background-color: $white-color;
     height: 335px;
