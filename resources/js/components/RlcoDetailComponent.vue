@@ -235,7 +235,7 @@ export default {
             rating: null,
             feedback: ''
         },
-        feedback_label: "Glad we helped! Anything more we can do for you?",
+        feedback_label: "Glad to know any additional feedback",
         isSubmitted: false
     }),
     mounted() {
@@ -261,7 +261,7 @@ export default {
             if(this.feedbackForm.rating <= 3){
                 this.feedback_label = "Tell us how we can improve it?";
             }else{
-                this.feedback_label = "Glad we helped! Anything more we can do for you?";
+                this.feedback_label = "Glad to know any additional feedback";
             }
             return this.feedback_label;
         }
