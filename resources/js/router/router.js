@@ -4,6 +4,7 @@ import SearchResult from "../views/SearchResult.vue";
 import Overview from "../views/Overview";
 import Favorite from "../views/Favorite";
 import Detail from "../views/Detail";
+import PageNotFound from "../views/PageNotFound";
 
 export const router = createRouter({
     history: createWebHistory('/rlcos/'),
@@ -36,6 +37,6 @@ export const router = createRouter({
             path: "/rlco/detail/:id",
             name: "rlcos.show",
             component: Detail
-        },
+        }
             ]
 });

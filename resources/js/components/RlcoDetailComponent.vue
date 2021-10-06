@@ -169,6 +169,31 @@
                     </div>
                 </div>
 
+                <div v-show="!isSubmitted" class="row">
+                    <div class="col-lg-12">
+                    <h3 class="detail-heading pt-3 pb-2">Rating & Review</h3>
+                    <div class="text-body">How would you rate this information?</div>
+                    </div>
+                </div>
+                <div v-show="!isSubmitted" class="row mb-4">
+                    <div class="col-lg-3">&nbsp;</div>
+                    <div class="col-lg-6 text-center">
+                    <star-rating style="align-items: center; justify-content: center;" :star-size="30" :show-rating="false" @update:rating="feedbackForm.rating = $event" v-model="feedbackForm.rating" />
+                     </div>
+                    <div class="col-lg-3">&nbsp;</div>
+                    <div v-show="feedbackForm.rating" class="col-lg-12 mt-3 mb-5">
+                        <label for="feedback">Glad we helped! Anything more we can do for you?</label>
+                        <textarea class="form-control" name="feedback" id="feedback" v-model="feedbackForm.feedback" cols="2" rows="2"></textarea>
+                        <button class="btn btn-sm px-3 text-light custom-detail-btn mt-3" @click.prevent="submitFeedback">Submit</button>
+                    </div>
+                </div>
+
+                <div v-show="isSubmitted" class="row mb-4">
+                    <div class="col-lg-12 text-center">
+                        Thanks for your feedback!
+                    </div>
+                </div>
+
             </div>
 
             <div v-if="!isOverFlow" class="scroll-top" @click.prevent="scrollToTop">
@@ -191,10 +216,14 @@
 <script>
 
 import BaseModalComponent from "./BaseModalComponent";
+import StarRating from 'vue-star-rating'
 
 export default {
     name: "RlcoDetailComponent",
-    components: {BaseModalComponent},
+    components: {
+        BaseModalComponent,
+        StarRating
+    },
     props: {
         rlco_detail: Object,
         isOverFlow: Boolean,
@@ -202,6 +231,11 @@ export default {
     data: () => ({
         isShowModal: false,
         isShowModalRenewal: false,
+        feedbackForm: {
+            rating: null,
+            feedback: ''
+        },
+        isSubmitted: false
     }),
     mounted() {
         if(!this.isOverFlow) {
@@ -214,6 +248,13 @@ export default {
            if(oldVal && !this.isOverFlow){
                this.$refs.detail_page.scrollTo(0, 0);
            }
+        }
+    },
+    computed: {
+        currentRatingText() {
+            return this.feedbackForm.rating
+                ? "You have selected " + this.feedbackForm.rating + " stars"
+                : "Please select your rating";
         }
     },
     methods: {
@@ -241,6 +282,9 @@ export default {
             }else{
                 document.querySelector(".scroll-top").style.display = 'none' ;
             }
+        },
+        submitFeedback: function (){
+            this.isSubmitted = true;
         }
     },
 }
