@@ -61,14 +61,14 @@
                 processing: true,
                 pageLength: 30,
                 serverSide: true,
-                searching: false,
+                searching: true,
                 ajax: {
                     url: '{{ route('admin.required-documents.index-ajax') }}',
                     type: "POST"
                 },
                 columns: [
                     {data: 'id', searchable: false, visible: false, printable: false},
-                    {data: 'document_title', name: 'activity_name'},
+                    {data: 'document_title', name: 'document_title'},
                     {data: 'document_status', name: 'document_status', class: 'text-center'},
                     {data: 'action', name: 'action', orderable: false, searchable: false,class: 'text-center'},
                 ],
