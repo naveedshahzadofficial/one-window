@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="bmd-label-floating">Document Short Title <span class="color-red-700">*</span> </label>
+                            <label class="bmd-label-floating">Document Short Title <span class="color-red-700"></span> </label>
 
                             <input type="text" class="form-control  @error('document_short_name') is-invalid @enderror" name="document_short_name"
                                    value="{{ old('document_short_name')??$required_document->document_short_name }}"
