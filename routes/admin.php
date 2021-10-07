@@ -30,4 +30,7 @@ Route::get('/login', [Auth\LoginController::class, 'showLoginForm'])->name('logi
 
         Route::post('reviews/index-ajax', [ Admin\ReviewController::class,'indexAjax'])->name('reviews.index-ajax');
         Route::resource('reviews', Admin\ReviewController::class);
+
+        Route::post('required-documents/index-ajax', [ Admin\RequiredDocumentController::class,'indexAjax'])->name('required-documents.index-ajax');
+        Route::resource('required-documents', Admin\RequiredDocumentController::class);
     });

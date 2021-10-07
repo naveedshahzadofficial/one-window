@@ -53,7 +53,8 @@
                                 </li>
 
 
-                                <li class="menu-item menu-item-submenu {{ areActiveRoutes(['admin.activities.index']) }}" aria-haspopup="true" data-menu-toggle="hover">
+                                <li class="menu-item menu-item-submenu {{ areActiveRoutes(['admin.activities.index','admin.activities.create','admin.activities.edit',
+                                                                                            'admin.required-documents.index','admin.required-documents.create','admin.required-documents.edit']) }}" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon text-white svg-icon-white menu-icon fas fa-cog"></span>
                                         <span class="menu-text text-white">System Settings</span>
@@ -63,11 +64,18 @@
                                     <div class="menu-submenu">
                                         <i class="menu-arrow"></i>
                                         <ul class="menu-subnav">
-                                            <li class="menu-item {{ areActiveRoutes(['admin.activities.index']) }}" aria-haspopup="true">
+                                            <li class="menu-item {{ areActiveRoutes(['admin.activities.index','admin.activities.create','admin.activities.edit']) }}" aria-haspopup="true">
                                                 <a href="{{ route('admin.activities.index') }}" class="menu-link">
                                                     <span class="menu-text text-white">Activities</span>
                                                 </a>
                                             </li>
+
+                                            <li class="menu-item {{ areActiveRoutes(['admin.required-documents.index','admin.required-documents.create','admin.required-documents.edit']) }}" aria-haspopup="true">
+                                                <a href="{{ route('admin.required-documents.index') }}" class="menu-link">
+                                                    <span class="menu-text text-white">Required Documents</span>
+                                                </a>
+                                            </li>
+
                                         </ul>
                                     </div>
                                 </li>
@@ -126,3 +134,9 @@
 				</div>
 
 				<!--end::Aside-->
+
+<style>
+    .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-active > .menu-link{
+        background-color: #404040 !important;
+    }
+</style>
