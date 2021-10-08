@@ -405,7 +405,7 @@
 
                             <div class="col-lg-6" x-show.transition.opacity="fee_plan=='Single Fee'" >
                                 <label>{!! __('Fee') !!}<span class="text-danger"></span></label>
-                                <input wire:model.defer="form.fee" type="text"
+                                <input wire:model.defer="form.fee" type="number"
                                        class="form-control @error('form.fee') is-invalid @enderror"
                                        placeholder="Fee"/>
                                 @error('form.fee')
@@ -565,7 +565,7 @@
                         <div x-show.transition.opacity="automation_status!='No Information' && renewal_required=='Yes' && renewal_fee_plan=='Single Fee'" class="row form-group">
                         <div class="col-lg-6">
                             <label>{!! __('Renewal Fee') !!}<span class="text-danger"></span></label>
-                            <input wire:model.defer="form.renewal_fee" type="text"
+                            <input wire:model.defer="form.renewal_fee" type="number"
                                    class="form-control @error('form.renewal_fee') is-invalid @enderror"
                                    placeholder="Renewal Fee"/>
                             @error('form.renewal_fee')
