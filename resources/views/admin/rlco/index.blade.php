@@ -90,7 +90,7 @@
                     <th>Rlco Name</th>
                     <th>Department</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th style="width: 65px;">Action</th>
                 </tr>
                 </thead>
             </table>
