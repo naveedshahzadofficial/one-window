@@ -37,7 +37,7 @@
 
                     <tr v-if="rlco_detail.fee_question==='Yes' && rlco_detail.fee_submission_mode==='Online' && rlco_detail.payment_source">
                         <th>Payment Mode</th>
-                        <td><span  v-if="rlco_detail.payment_source==='ePay Punjab'"><a href="https://epay.punjab.gov.pk" target="_blank">Online</a></span>  <span v-if="rlco_detail.payment_source==='Banks'">Online</span></td>
+                        <td><span  v-if="rlco_detail.payment_source==='ePay Punjab'">Online</span>  <span v-if="rlco_detail.payment_source==='Banks'">Online</span></td>
                     </tr>
 
                     <tr v-if="rlco_detail.fee_question==='Yes' && rlco_detail.fee_submission_mode==='Manual' && rlco_detail.fee_manual_mode">
