@@ -4,7 +4,7 @@
         <div class="section-detail-heading">
             <h4  v-text="rlco_detail?.rlco_name?rlco_detail?.rlco_name:'No RLCOs found.'"></h4>
             <span v-if="rlco_detail?.id && !isOverFlow" class="view-detail-icon" @click.prevent="openDetailPage" title="Full Page"><font-awesome-icon icon="expand" /></span>
-            <span v-if="rlco_detail?.id && isOverFlow" class="view-detail-icon"   v-print="'#printSection'" title="Print Page"><font-awesome-icon icon="print" /></span>
+            <span v-if="rlco_detail?.id && isOverFlow" class="view-detail-icon"   v-print="printObj" title="Print Page"><font-awesome-icon icon="print" /></span>
         </div>
 
         <div id="top_detail" ref="detail_page" class="business-detail"  :class="[{'overflow-auto': !isOverFlow}, {'overflow-hidden h-100': isOverFlow}]">
@@ -124,7 +124,8 @@
                     </tbody>
                 </table>
 
-                <h3  v-if="rlco_detail.other_documents?.length > 0" class="detail-heading pt-3 pb-1">Help Documents</h3>
+                    <h3  v-if="rlco_detail.other_documents?.length > 0" class="detail-heading pt-3 pb-1">Help Documents</h3>
+
                 <table class="table detail-table" v-if="rlco_detail.other_documents?.length > 0">
                     <tbody>
                     <tr v-for="(document, index) in rlco_detail.other_documents">
@@ -135,12 +136,16 @@
                 </table>
 
 
-                <h3  v-if="rlco_detail.faqs?.length > 0" class="detail-heading pt-3 pb-1">FAQs</h3>
+                <div  v-if="rlco_detail.faqs?.length > 0">
+                    <h3 class="detail-heading pt-3 pb-1">FAQs</h3>
+                <a href="javascript:;" class="text-decoration-none btn-expend" @click.prevent="isExpand=false">Collapse All</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" class="text-decoration-none btn-expend" @click.prevent="isExpand=true" >Expand All</a>
+                </div>
+
                 <div v-if="rlco_detail.faqs?.length > 0" class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="accordionFaqs">
 
                     <div v-for="(faq, index) in rlco_detail.faqs" class="card bg-custom-color">
                         <div class="card-header" :id="`heading_faq_${index}`">
-                            <div class="card-title collapsed" data-toggle="collapse" :data-target="`#collapse_faq_${index}`" aria-expanded="false">
+                            <div class="card-title" :class="!isExpand?'collapsed':''" data-toggle="collapse" :data-target="`#collapse_faq_${index}`" :aria-expanded="isExpand?true:false">
 																<span class="svg-icon svg-icon-primary">
 																	<!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Navigation/Angle-double-right.svg-->
 																	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -155,10 +160,10 @@
                                 <div class="card-label pl-4">{{ faq.faq_question }}</div>
                             </div>
                         </div>
-                        <div :id="`collapse_faq_${index}`" class="collapse" data-parent="#accordionFaqs">
+                        <div :id="`collapse_faq_${index}`" class="collapse" :class="isExpand?'show':''" data-parent="#accordionFaqs">
 
-                            <div class="card-body">
-                            <div class="pt-2 pl-4" v-html="faq.faq_answer"></div>
+                            <div class="card-body pt-2 pb-0">
+                            <div  v-html="faq.faq_answer"></div>
                             <div v-if="faq.faq_file"><a class="btn" :href="faq.faq_file" target="_blank" download>Download attachment <font-awesome-icon icon="download" /></a></div>
                             </div>
 
@@ -178,26 +183,26 @@
                     </div>
                 </div>
 
-                <div v-show="!isSubmitted && !checkFeedbackExits" class="row">
+                <div v-show="!isSubmitted && !checkFeedbackExits" class="row feedback-div">
                     <div class="col-lg-12">
                     <h3 class="detail-heading pt-3 pb-2">Rating & Review</h3>
                     <div class="text-body">How would you rate this information?</div>
                     </div>
                 </div>
-                <div v-show="!isSubmitted && !checkFeedbackExits" class="row mb-4">
+                <div v-show="!isSubmitted && !checkFeedbackExits" class="row mb-4 feedback-div">
                     <div class="col-lg-12 text-left">
                     <star-rating  :star-size="30" :show-rating="false" @update:rating="feedbackForm.rating = $event"  />
                      </div>
-                    <div v-show="feedbackForm.rating" class="col-lg-12 mt-3 mb-5">
+                    <div v-show="feedbackForm.rating" class="col-lg-12 mt-3 mb-5 feedback-div">
                         <label for="feedback" v-text="currentFeedbackLabel"></label>
                         <textarea class="form-control" name="feedback" id="feedback" v-model="feedbackForm.feedback" cols="2" rows="2"></textarea>
                         <button class="btn btn-sm px-3 text-light custom-detail-btn mt-3" @click.prevent="submitFeedback">Submit</button>
                     </div>
                 </div>
 
-                <div v-show="isSubmitted" class="row mb-4">
+                <div v-show="isSubmitted" class="row mb-4 feedback-div">
                     <div class="col-lg-12 text-center">
-                        Thanks for your feedback!
+                        Thank you for your feedback!
                     </div>
                 </div>
 
@@ -205,6 +210,10 @@
 
             <div v-if="!isOverFlow" class="scroll-top" @click.prevent="scrollToTop">
                 <font-awesome-icon class="svg-icon" icon="arrow-up" />
+            </div>
+
+            <div class="col-lg-12 col-md-12 pb-3">
+            <a href="javascript:;" v-if="rlco_detail?.id" class="text-decoration-none view-detail-icon" v-print="printObj"><font-awesome-icon icon="print" />&nbsp; Print it</a>
             </div>
 
         </div>
@@ -245,6 +254,12 @@ export default {
         },
         feedback_label: "Glad to know any additional feedback",
         isSubmitted: false,
+        printObj: {
+            id: "printSection",
+            popTitle: 'BizPunjab',
+            extraCss: '/rlcos/assets/print.css',
+        },
+        isExpand: false,
     }),
     mounted() {
         if(!this.isOverFlow) {
