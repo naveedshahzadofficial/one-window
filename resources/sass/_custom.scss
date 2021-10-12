@@ -241,6 +241,7 @@ $font-light: 'poppinslight';
     .list-heading{
         font-family: $font-bold;
         color: $navi-blue-color;
+        line-height: 1.3;
     }
     .list-scop{
         font-size: 10px;
@@ -290,12 +291,13 @@ $font-light: 'poppinslight';
         .detail-scope{
             font-family: $font-light;
             font-size: 12px;
-            margin-top: -5px;
+            margin-top: 0;
         }
         .detail-department{
             font-family: $font-bold;
             font-size: 15px;
             color: $navi-blue-color;
+            line-height: 1.3;
         }
         .detail-desc{
             display: block;

@@ -33,42 +33,12 @@
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-12 pl-0 pr-0">
-                    <h4 class="searching-box-heading" v-text="activityName"></h4>
-                    <div class="business-listing overflow-auto">
-                        <div  class="row list-item">
-                                <div class="col-lg-9 col-md-9 col-sm-12 pl-0">
-                                <span class="list-icon"><font-awesome-icon icon="star" /></span>
-                                <span>
-                                    <span class="tiny-label">Permit Title</span>
-                                    <input type="text" v-model="filterSearch" class="tiny-search-field" placeholder="Filter titles by keyword...">
-                                </span>
-                                </div>
-                            <div class="col-lg-3 col-md-3 col-sm-12 text-center">
-                                <span class="sorting">
-                                    <a href="#" @click.prevent="toggleSort"><span>Scope</span></a>
-                                    <span class="triangle-down" v-if="scopeSort!==null && scopeSort"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="triangle-down"><polygon points="5 7 15 7 10 12"></polygon></svg></span>
-                                    <span class="triangle-up" v-if="scopeSort!==null && !scopeSort"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="triangle-up"><polygon points="5 13 10 8 15 13"></polygon></svg></span>
-                                </span>
-                             </div>
-                        </div>
-
-                        <div v-for="(rlco, index) in filteredList" class="row list-item" :key="rlco.id" :class="[(activeRlco == rlco.id) ? 'active':'']"  @click.prevent="rlcoDetail(rlco)">
-                            <div class="col-lg-9 col-md-9 pl-0 pr-0">
-                                <span class="list-icon" :class="[isFavorite(rlco)?'favorite-icon':'un-favorite-icon']" @click.prevent="toggleFavorite(rlco)"><font-awesome-icon icon="star" /></span>
-                                <span class="list-heading">{{ rlco.rlco_name }}</span>
-                            </div>
-                            <div  class="col-lg-3 col-md-3">
-                                <span class="list-scop">{{ rlco.scope }}</span>
-                            </div>
-                            <div  class="col-lg-12 col-md-12">
-                                <span class="list-desc">{{ rlco.purpose }}</span>
-                            </div>
-
-                        </div>
-
-
-
-                    </div>
+                    <RlcoListComponent
+                        :activity-name="getActivityName"
+                        :rlcos="loadRlcos"
+                        :activeItem="activeItem"
+                        @toggle-favorite="$emit('toggle-favorite')"
+                        @detail-rlco="rlcoDetail"/>
                 </div>
 
                 <div class="col-lg-5 col-md-5 col-sm-12">
@@ -85,6 +55,7 @@
 import SearchFormComponent from "../components/SearchFormComponent";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStar, faFolder, faDownload } from '@fortawesome/free-solid-svg-icons'
+import RlcoListComponent from "../components/RlcoListComponent";
 import RlcoDetailComponent from "../components/RlcoDetailComponent";
 
 library.add(faStar,faFolder, faDownload)
@@ -102,7 +73,6 @@ export default {
             rlcos: [],
             activity_rlcos: [],
             rlco_detail: {},
-            now: new Date().toISOString(),
             loading: true,
             department_id: "",
             business_category_id: "",
@@ -110,46 +80,31 @@ export default {
             activeActivity : '0',
             activeRlco : 0,
             totalRlcos: 0,
-            filterSearch: "",
-            scopeSort: null,
             activityName: "Starting a Business",
             rlcoName: "Business Number Registration",
-            favorites: [],
+            activeItem: 0,
         }
     },
     computed: {
-        filteredList:function () {
-            return  this.activity_rlcos.filter(rlco => {
-                return rlco.rlco_name?.toLowerCase().includes(this.filterSearch?.toLowerCase()) ||
-                       rlco.purpose?.toLowerCase().includes(this.filterSearch?.toLowerCase()) ||
-                       rlco.scope?.toLowerCase().includes(this.filterSearch?.toLowerCase())
-            }).sort((a, b) => {
-                return this.scopeSort===null?0:(this.scopeSort ?((a?.scope > b?.scope) ? 1 : -1): ((b?.scope > a?.scope) ? 1 : -1));
-            });
+        loadRlcos: function (){
+            return this.activity_rlcos;
+        },
+        getActivityName: function (){
+            return this.activityName;
         }
     },
     filters: {
 
     },
-    components: {RlcoDetailComponent, SearchFormComponent},
-    emits: ['search-params'],
+    components: {RlcoListComponent, RlcoDetailComponent, SearchFormComponent},
+    emits: ['search-params','toggle-favorite'],
     mounted() {
             this.department_id = this.prop_department_id;
             this.business_category_id = this.prop_business_category_id;
             this.activity_id = this.prop_activity_id;
-            this.loadFavoriteItems();
             this.loadActivities();
      },
     methods: {
-        loadFavoriteItems: function(){
-            if (localStorage.getItem('favorites')) {
-                try {
-                    this.favorites = JSON.parse(localStorage.getItem('favorites'));
-                } catch(e) {
-                    localStorage.removeItem('favorites');
-                }
-            }
-        },
         searchParams: function (params){
             this.department_id = params.department_id;
             this.business_category_id = params.business_category_id;
@@ -188,13 +143,8 @@ export default {
          },
          rlcoDetail: function (rlco){
            this.activeRlco = rlco.id;
+           this.activeItem = rlco.id;
            this.rlco_detail = rlco;
-        },
-         toggleSort: function (){
-            if(this.scopeSort===null) {
-                this.scopeSort = false;
-            }else
-            this.scopeSort = !this.scopeSort
         },
          allActivites: function(){
              this.activity_rlcos = this.rlcos;
@@ -205,19 +155,6 @@ export default {
                  this.rlcoDetail(rlco);
              }
          },
-         isFavorite:function (rlco){
-            let items = this.favorites.filter((fav) => fav.id === parseInt(rlco.id));
-            return items.length;
-        },
-         toggleFavorite: function (rlco){
-            if(this.isFavorite(rlco))
-            this.favorites = this.favorites.filter((fav) => fav.id !== parseInt(rlco.id));
-            else
-            this.favorites.push(rlco);
-            const parsedFavorites = JSON.stringify(this.favorites);
-            localStorage.setItem('favorites', parsedFavorites);
-            this.$emit('toggle-favorite', this.favorites.length);
-        }
 
     },
 

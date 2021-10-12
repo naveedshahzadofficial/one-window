@@ -5,6 +5,9 @@
     font-weight: normal;
     font-style: normal;
 }
+#printSection{
+    margin: 20px;
+}
 .section-detail-heading h4{
     color: #000c60;
     font-family: "poppinsbold" !important;

@@ -1,7 +1,7 @@
 <template>
 
         <h4 class="searching-box-heading" v-text="getActivityName"></h4>
-        <div class="business-listing overflow-auto">
+        <div class="business-listing overflow-auto" ref="listing_page">
             <div  class="row list-item">
                 <div class="col-lg-9 col-md-9 col-sm-12 pl-0">
                     <span class="list-icon"><font-awesome-icon icon="star" /></span>
@@ -25,7 +25,6 @@
                 :isFavorite="isFavorite(rlco)"
                 :rlco="rlco" />
             </div>
-
 
 
         </div>
@@ -61,7 +60,18 @@ export default {
                     rlco.purpose?.toLowerCase().includes(this.filterSearch?.toLowerCase()) ||
                     rlco.scope?.toLowerCase().includes(this.filterSearch?.toLowerCase())
             }).sort((a, b) => {
-                return this.scopeSort===null?0:(this.scopeSort ?((a?.scope > b?.scope) ? 1 : -1): ((b?.scope > a?.scope) ? 1 : -1));
+                if(this.scopeSort){
+                    return (this.scopeSort ?((a?.scope > b?.scope) ? 1 : -1): ((b?.scope > a?.scope) ? 1 : -1));
+                }else{
+                    let fa = a.rlco_name.toLowerCase(), fb = b.rlco_name.toLowerCase();
+                    if (fa < fb) {
+                        return -1
+                    }
+                    if (fa > fb) {
+                        return 1
+                    }
+                    return 0
+                }
             });
         },
         getActivityName: function (){

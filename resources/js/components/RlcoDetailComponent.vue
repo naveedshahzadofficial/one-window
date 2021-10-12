@@ -172,9 +172,9 @@
 
                 </div>
 
-                <div class="row detail-btn my-3  mb-2">
-                    <div class="col-lg-6" v-if="rlco_detail.automation_status !='No Information' && rlco_detail.application_url"> <a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.application_url">Apply Online</a></div>
-                    <div class="col-lg-6 text-right"  v-if="rlco_detail.department_website"><a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.department_website">Department Website</a></div>
+                <div class="detail-btn my-3 d-flex justify-content-center">
+                    <div  v-if="rlco_detail.automation_status !='No Information' && rlco_detail.application_url"> <a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.application_url">Apply Online</a></div>&nbsp;&nbsp;
+                    <div  v-if="rlco_detail.department_website"><a class="btn btn-sm px-3 text-light custom-detail-btn" target="_blank"  :href="rlco_detail.department_website">Department Website</a></div>
                 </div>
 
                 <div v-if="rlco_detail.last_updated_date" class="row detail-btn my-3  mb-2">
@@ -246,6 +246,7 @@ export default {
         isOverFlow: Boolean,
     },
     data: () => ({
+        base_url: process.env.MIX_BASE_URL,
         isShowModal: false,
         isShowModalRenewal: false,
         feedbackForm: {
@@ -257,7 +258,7 @@ export default {
         printObj: {
             id: "printSection",
             popTitle: 'BizPunjab',
-            extraCss: '/rlcos/assets/print.css',
+            extraCss: process.env.MIX_BASE_URL+'/assets/print.css',
         },
         isExpand: false,
     }),
