@@ -1,5 +1,13 @@
 <template>
-    <div class="row" style="margin-top: 60px;">
+    <div>
+    <div class="row">
+        <div class="col-lg-7"></div>
+        <div class="col-lg-4">
+        <p class="home-notice">Browse list of permits you may require by selecting the relevant government agency, business sector and/or business activity.</p>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
         <div class="col-lg-1 col-md-1"></div>
             <!-- div start for heading -->
             <div class="col-lg-5 col-md-5 text-center">
@@ -14,14 +22,13 @@
         <div class="col-lg-1 col-md-1"></div>
 
         <div class="col-lg-4 col-md-4">
-            <p class="home-notice">Browse list of permits you may require by selecting the relevant government agency, business sector and/or business activity.</p>
             <!-- grid starts for select options -->
                 <HomeSearchFormComponent @search-params="searchParams" />
             <!-- grid end for select options  -->
         </div>
         <div class="col-lg-1 col-md-1"></div>
     </div>
-
+    </div>
 </template>
 
 <script>

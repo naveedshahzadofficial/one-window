@@ -463,7 +463,9 @@ span.make-link{
     padding: 10px;
     font-family: $font-regular;
     color: $navi-blue-color;
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1.3;
     font-weight: 500;
     text-align: justify;
+    border: 2px solid #edeef0;
 }
