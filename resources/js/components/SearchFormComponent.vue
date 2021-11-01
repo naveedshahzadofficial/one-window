@@ -3,19 +3,19 @@
 
                 <div class="row search-box">
                     <div class="col-lg-4 col-md-4  col-sm-12">
-                        <label class="label-field" >Department</label>
+                        <label class="label-field" >Government Agency</label>
                         <div>
                         <Select2 v-model="department_id"  :options="departments" :placeholder="`--- Please Select ---`" />
                         </div>
 
                     </div>
                     <div class="col-lg-4 col-md-4  col-sm-12">
-                        <label class="label-field" >Business</label>
+                        <label class="label-field" >Business Sector</label>
                         <br>
                         <Select2 v-model="business_category_id"  :options="businesses" :placeholder="`--- Please Select ---`" />
                     </div>
                     <div class="col-lg-4 col-md-4  col-sm-12">
-                        <label class="label-field" >Activity</label>
+                        <label class="label-field" >Business Activity</label>
                         <br>
                         <Select2 v-model="activity_id" :options="activities" :placeholder="`--- Please Select ---`" />
                     </div>

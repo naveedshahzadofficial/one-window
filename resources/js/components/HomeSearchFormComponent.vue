@@ -2,20 +2,14 @@
     <form @submit.prevent="onSubmit" class="search-form">
         <div class="row">
                     <div class="col-lg-12 col-md-12  col-sm-12">
-                        <label class="label-field">Department</label>
-                        <br>
-                        <Select2 v-model="department_id"  :options="departments" :placeholder="`--- Please Select ---`" />
+                        <Select2 v-model="department_id"  :options="departments" :placeholder="`Government Agency`" />
 
                     </div>
                     <div class="col-lg-12 col-md-12  col-sm-12 my-3">
-                        <label class="label-field">Business</label>
-                        <br>
-                        <Select2 v-model="business_category_id" :options="businesses" :placeholder="`--- Please Select ---`" />
+                        <Select2 v-model="business_category_id" :options="businesses" :placeholder="`Business Sector`" />
                     </div>
                     <div class="col-lg-12 col-md-12  col-sm-12">
-                        <label class="label-field">Activity</label>
-                        <br>
-                        <Select2 v-model="activity_id" :options="activities" :placeholder="`--- Please Select ---`" />
+                        <Select2 v-model="activity_id" :options="activities" :placeholder="`Business Activity`" />
                     </div>
         </div>
         <div class="row">

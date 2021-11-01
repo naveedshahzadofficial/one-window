@@ -14,6 +14,7 @@
         <div class="col-lg-1 col-md-1"></div>
 
         <div class="col-lg-4 col-md-4">
+            <p class="home-notice">Browse list of permits you may require by selecting the relevant government agency, business sector and/or business activity.</p>
             <!-- grid starts for select options -->
                 <HomeSearchFormComponent @search-params="searchParams" />
             <!-- grid end for select options  -->
