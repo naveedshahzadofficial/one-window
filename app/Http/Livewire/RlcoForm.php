@@ -14,6 +14,7 @@ use App\Models\OtherDocument;
 use App\Models\RequiredDocument;
 use App\Models\Rlco;
 use App\Models\RlcoRequiredDocument;
+use App\Models\Scope;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -29,6 +30,7 @@ class RlcoForm extends Component
     public $business_activities;
     public $departments;
     public $activities;
+    public $scopes;
     public $keywords;
 
 
@@ -80,6 +82,7 @@ class RlcoForm extends Component
         $this->business_categories = BusinessCategory::where('category_status',1)->get();
         $this->business_activities = Collect();
         $this->activities = Activity::orderBy('activity_order')->where('activity_status',1)->get();
+        $this->scopes = Scope::orderBy('scope_order')->where('scope_status',1)->get();
         $this->departments = Department::where('department_status',1)->get();
         $this->required_documents = RequiredDocument::where('document_status','Active')->get();
         $this->keywords = Collect();
@@ -95,6 +98,7 @@ class RlcoForm extends Component
         if($this->rlco){
             $this->form = $this->rlco->toArray();
             $this->form['activity_ids'] = $this->rlco->activities->pluck('id');
+            $this->form['scope_ids'] = $this->rlco->scopes->pluck('id');
             $this->keywords = $this->rlco->keywords;
             $this->form['keyword_ids'] = $this->rlco->keywords->pluck('id');
             $this->form['business_activity_ids'] = $this->rlco->businessActivities->pluck('id');
@@ -178,6 +182,7 @@ class RlcoForm extends Component
             $business_activity_ids = $this->form['business_activity_ids']??null;
 
             $activity_ids = $this->form['activity_ids']??null;
+            $scope_ids = $this->form['scope_ids']??null;
 
             $keyword_ids = $this->form['keyword_ids']??null;
             $new_keyword_ids = array();
@@ -198,6 +203,7 @@ class RlcoForm extends Component
 
             $this->rlco->businessActivities()->sync($business_activity_ids);
             $this->rlco->activities()->sync($activity_ids);
+            $this->rlco->scopes()->sync($scope_ids);
             $this->rlco->keywords()->sync($new_keyword_ids);
 
         });

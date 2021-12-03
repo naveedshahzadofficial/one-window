@@ -1,7 +1,7 @@
-$fa-font-path: '/rlcos/fonts/';
-$media-path: '/rlcos/media/';
-//$fa-font-path: '/fonts/';
-//$media-path: '/media/';
+//$fa-font-path: '/rlcos/fonts/';
+//$media-path: '/rlcos/media/';
+$fa-font-path: '/fonts/';
+$media-path: '/media/';
 
 @font-face {
     font-family: 'poppinsregular';
@@ -459,7 +459,6 @@ span.make-link{
 #top_detail{ position: relative; }
 
 .home-notice{
-    background-color: rgba(255, 255, 255, 0.6);
     padding: 10px;
     font-family: $font-regular;
     color: $navi-blue-color;

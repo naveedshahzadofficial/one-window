@@ -32,5 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartmentSeeder::class);
         $this->call(RequiredDocumentSeeder::class);
         $this->call(ActivitySectionSeeder::class);
+        $this->call(ScopeSeeder::class);
     }
 }

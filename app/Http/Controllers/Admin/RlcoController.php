@@ -44,10 +44,11 @@ class RlcoController extends Controller
                 return $rlco->department->department_name??'';
             })
             ->editColumn('rlco_status', function (Rlco $rlco){
-                return '<span class="btn btn-circle btn-sm border-0 cursor-move active '.($rlco->rlco_status==1?'btn-hover-success':'btn-hover-danger').'">'.$rlco->getRlcoStatus().'</span>';
+                return '<span onclick="toggleStatus(this); return false;" data-href="'.route('admin.rlcos.destroy',$rlco).'"   class="btn btn-circle btn-sm border-0 cursor-move active '.($rlco->rlco_status?'btn-hover-success':'btn-hover-danger').'">'.$rlco->getRlcoStatus().'</span>';
             })
             ->addColumn('action', function(Rlco $rlco){
-                $actionBtn = '<a target="_blank" href="'.route('admin.rlcos.show',$rlco).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-eye text-white"></i></a>';
+                $actionBtn = '<span onclick="toggleStatus(this); return false;"  data-href="'.route('admin.rlcos.destroy',$rlco).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs">'.($rlco->rlco_status?'<i class="fa fa-toggle-on text-white"></i>':'<i class="fa fa-toggle-off text-danger"></i>').'</span>';
+                $actionBtn .= '&nbsp;&nbsp;<a target="_blank" href="'.route('admin.rlcos.show',$rlco).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-eye text-white"></i></a>';
                 $actionBtn .= '&nbsp;&nbsp;<a  href="'.route('admin.rlcos.edit',$rlco).'" class="edit btn btn-custom-color text-center btn-circle btn-icon btn-xs"><i class="flaticon-edit text-white"></i></a>';
                 return $actionBtn;
             })
@@ -60,12 +61,6 @@ class RlcoController extends Controller
         return view('admin.rlco.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
@@ -73,36 +68,28 @@ class RlcoController extends Controller
 
     public function show(Rlco $rlco): View
     {
-        $rlco->load('activities','requiredDocuments.requiredDocument', 'keywords','businessActivities','faqs','foss','dependencies.department', 'otherDocuments');
+        $rlco->load('activities','scopes', 'requiredDocuments.requiredDocument', 'keywords','businessActivities','faqs','foss','dependencies.department', 'otherDocuments');
         return view('admin.rlco.show',compact('rlco'));
     }
 
     public function edit(Rlco $rlco): View
     {
-        $rlco->load('activities','requiredDocuments', 'keywords', 'businessActivities');
+        $rlco->load('activities','scopes', 'requiredDocuments', 'keywords', 'businessActivities');
         return View('admin.rlco.edit',compact('rlco'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Rlco $rlco)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Rlco $rlco)
     {
-        //
+        if($rlco->rlco_status)
+            session()->flash('success_message', 'Rlco has been inactive successfully.');
+        else
+            session()->flash('success_message', 'Rlco has been active successfully.');
+        $rlco->update(['rlco_status'=>!$rlco->rlco_status]);
+        return redirect()->route('admin.rlcos.index');
     }
 }

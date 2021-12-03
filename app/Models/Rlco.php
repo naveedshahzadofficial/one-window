@@ -57,6 +57,11 @@ class Rlco extends Model
         return $this->belongsToMany(Keyword::class);
     }
 
+    public function scopes()
+    {
+        return $this->belongsToMany(Scope::class);
+    }
+
     public function requiredDocuments()
     {
         return $this->hasMany(RlcoRequiredDocument::class)->orderBy('position');

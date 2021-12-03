@@ -90,7 +90,7 @@
                     <th>Rlco Name</th>
                     <th>Department</th>
                     <th>Status</th>
-                    <th style="width: 65px;">Action</th>
+                    <th style="width: 90px;" class="text-center">Action</th>
                 </tr>
                 </thead>
             </table>
@@ -130,7 +130,7 @@
                     {data: 'rlco_name', name: 'rlco_name'},
                     {data: 'department_name', name: 'department_id'},
                     {data: 'rlco_status', name: 'status_id'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'action', name: 'action', orderable: false, searchable: false, class:'text-center'},
                 ],
                 order: [[0, 'desc']],
                 dom: 'lfrtip',

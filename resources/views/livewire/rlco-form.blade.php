@@ -151,22 +151,12 @@
 
                             <div class="col-lg-6">
                                 <label for="">Scope</label>
-                                <div class="radio-inline">
-                                    <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="Federal">
-                                        <span></span>Federal</label>
-                                    <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.scope" name="scope"  value="Provincial">
-                                        <span></span>Provincial</label>
-                                    <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="District">
-                                        <span></span>District</label>
-                                    <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="Tehsil">
-                                        <span></span>Tehsil</label>
-                                    <label class="radio radio-success">
-                                        <input type="radio" wire:model.defer="form.scope" name="scope" value="UC">
-                                        <span></span>UC</label>
+                                <div class="checkbox-inline">
+                                    @foreach($scopes as $scope)
+                                    <label class="checkbox checkbox-success">
+                                        <input type="checkbox" wire:model.defer="form.scope_ids" name="scope" value="{{ $scope->id }}">
+                                        <span></span>{{ $scope->scope_title }}</label>
+                                    @endforeach
                                 </div>
                                 @error('form.scope')
                                 <div class="invalid-feedback d-block">
