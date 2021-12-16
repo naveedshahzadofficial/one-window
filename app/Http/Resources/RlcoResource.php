@@ -52,7 +52,7 @@ class RlcoResource extends JsonResource
             "rlco_name" => $this->rlco_name,
             "rlco_no" => $this->rlco_no,
             "rlco_status" => $this->rlco_status,
-            "scope" => $this->scope,
+            "scope" => $this->scopes->isNotEmpty()?$this->scopes->pluck('scope_title')->implode(' / '):$this->scope,
             "time_unit" => $this->time_unit,
             "time_taken" => $this->time_unit!='Instantly'?$this->time_taken:'',
             "title_of_law" => $this->title_of_law,
