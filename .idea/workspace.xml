@@ -273,9 +273,17 @@
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/pandakitchenpk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pandakitchenpk/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/RlcoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/RlcoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/RlcoResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/RlcoResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/RlcoForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ActivityRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ActivityRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/RequiredDocumentRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/RequiredDocumentRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/_custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_custom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/activity/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/activity/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/required_document/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/required_document/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/required_document/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/required_document/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../world_pixel_market/.idea/php.xml" beforeDir="false" />
@@ -692,7 +700,9 @@
       <workItem from="1636027190022" duration="526000" />
       <workItem from="1636028705814" duration="247000" />
       <workItem from="1638536497498" duration="3056000" />
-      <workItem from="1639658960242" duration="1623000" />
+      <workItem from="1639658960242" duration="2513000" />
+      <workItem from="1639663669056" duration="31000" />
+      <workItem from="1640162356582" duration="2983000" />
     </task>
     <servers />
   </component>

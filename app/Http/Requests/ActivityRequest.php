@@ -28,7 +28,8 @@ class ActivityRequest extends FormRequest
         return [
             'activity_name' => [
                 'required',
-                Rule::unique('activities', 'activity_name')->ignore($this->activity)
+                Rule::unique('activities', 'activity_name')->ignore($this->activity),
+                'max:255'
             ],
             'activity_order' => 'required',
             'activity_status' => 'required',

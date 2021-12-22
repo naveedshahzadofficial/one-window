@@ -27,7 +27,8 @@ class RequiredDocumentRequest extends FormRequest
         return [
             'document_title' => [
                 'required',
-                Rule::unique('required_documents', 'document_title')->ignore($this->required_document)
+                Rule::unique('required_documents', 'document_title')->ignore($this->required_document),
+                'max:255'
             ],
             'document_status' => 'required',
         ];

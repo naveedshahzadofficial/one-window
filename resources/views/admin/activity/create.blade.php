@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label class="bmd-label-floating">Name <span class="color-red-700">*</span> </label>
 
-                            <input type="text" class="form-control  @error('activity_name') is-invalid @enderror" name="activity_name"
+                            <input maxlength="255" type="text" class="form-control  @error('activity_name') is-invalid @enderror" name="activity_name"
                                    value="{{ old('activity_name') }}"
                                    id="activity_name"  required />
                                 @error('activity_name')
@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label class="bmd-label-floating">Order <span class="color-red-700">*</span> </label>
 
-                            <input type="text" class="form-control  @error('activity_order') is-invalid @enderror" name="activity_order"
+                            <input maxlength="255" type="text" class="form-control  @error('activity_order') is-invalid @enderror" name="activity_order"
                                    value="{{ old('activity_order') }}"
                                    id="activity_order"  required />
                             @error('activity_order')

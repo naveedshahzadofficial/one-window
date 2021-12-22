@@ -87,6 +87,7 @@ class RlcoForm extends Component
         $this->required_documents = RequiredDocument::where('document_status','Active')->get();
         $this->keywords = Collect();
         $this->form['admin_id'] = auth()->id();
+        $this->form['scope_ids'] = [];
 
         $this->rlcoRequiredDocuments = Collect();
         $this->dependencies = Collect();
@@ -158,9 +159,11 @@ class RlcoForm extends Component
 
     private function submitBasicInfo()
     {
+        $rlco_id = $this->rlco->id??'';
+
         $rules = [
             'form.department_id' => 'required',
-            'form.rlco_name' => 'required',
+            'form.rlco_name' => "required|unique:rlcos,rlco_name,{$rlco_id},id",
             'form.business_category_id' => 'required',
             'form.activity_ids' => 'required',
             'form.automation_status' => 'required',
@@ -169,6 +172,7 @@ class RlcoForm extends Component
         $messages = [
             'form.department_id.required' => 'Department is required.',
             'form.rlco_name.required' => 'RLCOs Name is required.',
+            'form.rlco_name.unique' => 'RLCOs Name name has already been taken.',
             'form.business_category_id.required' => 'Business Category is required.',
             'form.activity_ids.required' => 'Activities is required.',
             'form.automation_status.required' => 'Automation Status is required.',

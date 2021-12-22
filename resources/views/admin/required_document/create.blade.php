@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label class="bmd-label-floating">Document Title <span class="color-red-700">*</span> </label>
 
-                            <input type="text" class="form-control  @error('document_title') is-invalid @enderror" name="document_title"
+                            <input maxlength="255" type="text" class="form-control  @error('document_title') is-invalid @enderror" name="document_title"
                                    value="{{ old('document_title') }}"
                                    id="document_title"  required />
                                 @error('document_title')
@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label class="bmd-label-floating">Document Short Title <span class="color-red-700"></span> </label>
 
-                            <input type="text" class="form-control  @error('document_short_name') is-invalid @enderror" name="document_short_name"
+                            <input maxlength="255" type="text" class="form-control  @error('document_short_name') is-invalid @enderror" name="document_short_name"
                                    value="{{ old('document_short_name') }}"
                                    id="document_short_name"  />
                             @error('document_short_name')
