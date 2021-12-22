@@ -99,7 +99,7 @@ class RlcoForm extends Component
         if($this->rlco){
             $this->form = $this->rlco->toArray();
             $this->form['activity_ids'] = $this->rlco->activities->pluck('id');
-            $this->form['scope_ids'] = $this->rlco->scopes->pluck('id');
+            $this->form['scope_ids'] = $this->rlco->scopes->pluck('id')->transform(function ($item){ return  (string) $item;});
             $this->keywords = $this->rlco->keywords;
             $this->form['keyword_ids'] = $this->rlco->keywords->pluck('id');
             $this->form['business_activity_ids'] = $this->rlco->businessActivities->pluck('id');

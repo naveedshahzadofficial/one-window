@@ -151,10 +151,10 @@
 
                             <div class="col-lg-6">
                                 <label for="">Scope</label>
-                                <div class="checkbox-inline">
+                                <div class="checkbox-inline" wire:ignore>
                                     @foreach($scopes as $scope)
                                     <label class="checkbox checkbox-success">
-                                        <input type="checkbox" wire:model.defer="form.scope_ids" name="scope_{{ $scope->id }}" value="{{ $scope->id }}">
+                                        <input type="checkbox" wire:model.defer="form.scope_ids" name="scope_ids" value="{{ $scope->id }}">
                                         <span></span>{{ $scope->scope_title }}</label>
                                     @endforeach
                                 </div>
