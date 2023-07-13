@@ -5,7 +5,7 @@
     <base href="{{ url('/')}}">
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@stack('title','Home') - @stack('app-name',config('app.name', 'BIZ PUNJAB'))</title>
+    <title>@stack('title','Home') - @stack('app-name',config('app.name', 'SMEDA One Window'))</title>
     @section('metas')
         <meta name="keywords" content="RLCOs" />
         <meta name="description" content="RLCOs" />
