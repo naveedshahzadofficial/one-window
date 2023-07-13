@@ -1,13 +1,13 @@
 {
-    "/js/app.js": "/js/app.js?id=a3c9eae24e0500fcb5c4",
-    "/css/app.css": "/css/app.css?id=785a10af046ad0f25284",
-    "/fonts/poppins-bold.woff": "/fonts/poppins-bold.woff?id=05551343c5acd525f596",
-    "/fonts/poppins-bold.woff2": "/fonts/poppins-bold.woff2?id=92d44fce9d087075e431",
-    "/fonts/poppins-light-webfont.woff": "/fonts/poppins-light-webfont.woff?id=8a564dea126f1e959d61",
-    "/fonts/poppins-light-webfont.woff2": "/fonts/poppins-light-webfont.woff2?id=11ab2494bbea4ab736f9",
-    "/fonts/poppins-regular-webfont.woff": "/fonts/poppins-regular-webfont.woff?id=3a1ea617534e51a39e23",
-    "/fonts/poppins-regular-webfont.woff2": "/fonts/poppins-regular-webfont.woff2?id=96d755028103585de46e",
-    "/media/background.jpg": "/media/background.jpg?id=105bf591875f68ce9eea",
-    "/media/logo-blue.png": "/media/logo-blue.png?id=521ffa51e920e74ee5c7",
-    "/media/logo.png": "/media/logo.png?id=7be267978478cf7e022b"
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/fonts/poppins-bold.woff": "/fonts/poppins-bold.woff",
+    "/fonts/poppins-bold.woff2": "/fonts/poppins-bold.woff2",
+    "/fonts/poppins-light-webfont.woff": "/fonts/poppins-light-webfont.woff",
+    "/fonts/poppins-light-webfont.woff2": "/fonts/poppins-light-webfont.woff2",
+    "/fonts/poppins-regular-webfont.woff": "/fonts/poppins-regular-webfont.woff",
+    "/fonts/poppins-regular-webfont.woff2": "/fonts/poppins-regular-webfont.woff2",
+    "/media/background.jpg": "/media/background.jpg",
+    "/media/logo-blue.png": "/media/logo-blue.png",
+    "/media/logo.png": "/media/logo.png"
 }
