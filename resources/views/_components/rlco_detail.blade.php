@@ -9,7 +9,7 @@
         </div>
 
         <div class="d-flex flex-column flex-root">
-            <span class="font-weight-bolder mb-2">{!! __('RLCOs Name') !!}</span>
+            <span class="font-weight-bolder mb-2">{!! __('Permit Name') !!}</span>
             <span class="opacity-70">{{ $rlco->rlco_name }}</span>
         </div>
     </div>

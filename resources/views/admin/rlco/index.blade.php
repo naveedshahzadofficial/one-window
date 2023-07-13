@@ -1,12 +1,12 @@
 @extends('_layouts.admin.app')
-@push('title','All RLCOs')
+@push('title','All Permits')
 @section('content')
 
     <!--begin::Card-->
     <div class="card card-custom gutter-b">
         <div class="card-header flex-wrap py-3">
             <div class="card-title">
-                <h3 class="card-label">All RLCOs</h3>
+                <h3 class="card-label">All Permits</h3>
             </div>
 
             <div class="card-toolbar">
@@ -24,7 +24,7 @@
             fill="#000000"/>
     </g>
 </svg><!--end::Svg Icon--></span>
-                    New RLCO</a>
+                    New Permit</a>
                 <!--end::Button-->
             </div>
 
@@ -85,9 +85,9 @@
             <table class="table table-bordered table-checkable" id="my_datatable">
                 <thead>
                 <tr>
-                    <th>Rlco ID</th>
+                    <th>Permit ID</th>
                     <th>Sr. No.</th>
-                    <th>Rlco Name</th>
+                    <th>Permit Name</th>
                     <th>Department</th>
                     <th>Status</th>
                     <th style="width: 90px;" class="text-center">Action</th>

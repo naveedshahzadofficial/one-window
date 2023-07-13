@@ -114,10 +114,10 @@
                             </div>
 
                             <div class="col-lg-6">
-                                <label>{!! __('RLCOs Name') !!}<span class="text-danger">*</span></label>
+                                <label>{!! __('Permit Name') !!}<span class="text-danger">*</span></label>
                                 <input wire:model.defer="form.rlco_name" type="text"
                                        class="form-control @error('form.rlco_name') is-invalid @enderror"
-                                       placeholder="RLCOs Name"/>
+                                       placeholder="Permit Name"/>
                                 @error('form.rlco_name')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -707,7 +707,7 @@
 
                         <div class="row form-group">
                         <div class="col-lg-12">
-                            <label for="">Is there involvement of any other organization as a prerequisite to this RLCO?<span class="text-danger">*</span></label>
+                            <label for="">Is there involvement of any other organization as a prerequisite to this Permit?<span class="text-danger">*</span></label>
                             <div class="radio-inline">
                                 <label class="radio radio-success">
                                     <input type="radio" wire:model.defer="form.dependency_question" name="dependency_question" @click="dependency_question= 'Yes'"  value="Yes">

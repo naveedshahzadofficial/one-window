@@ -14,10 +14,10 @@
         </div>
 
         <div class="col-lg-6">
-            <label>{!! __('RLCO Name') !!}<span class="text-danger">*</span></label>
+            <label>{!! __('Permit Name') !!}<span class="text-danger">*</span></label>
             <input wire:model.defer="dependency_form.activity_name" type="text"
                    class="form-control @error('dependency_form.activity_name') is-invalid @enderror"
-                   placeholder="RLCO Name"/>
+                   placeholder="Permit Name"/>
             @error('dependency_form.activity_name')
             <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror

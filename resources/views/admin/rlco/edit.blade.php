@@ -1,5 +1,5 @@
 @extends('_layouts.admin.app')
-@push('title','Update RLCO')
+@push('title','Update Permit')
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -7,7 +7,7 @@
             <div class="card card-custom ">
                 <div class="card-header flex-wrap py-3">
                     <div class="card-title">
-                        <h3 class="card-label">Update RLCO</h3>
+                        <h3 class="card-label">Update Permit</h3>
                     </div>
                 </div>
 

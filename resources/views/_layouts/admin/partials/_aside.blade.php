@@ -7,7 +7,7 @@
 
 						<!--begin::Logo-->
 						<a href="{{ route('admin.dashboard') }}" class="brand-logo">
-							<img alt="Logo" src="{{ asset('assets/img/main-logo.png') }}" class="flex-center h-60px mt-0 ml-1" />
+							<img alt="Logo" src="{{ asset('assets/img/smeda-logo.png') }}" class="flex-center h-60px mt-0 ml-1" />
 						</a>
 
 						<!--end::Logo-->
@@ -98,7 +98,7 @@
 
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-text text-white">All RLCOs</span>
+										<span class="menu-text text-white">All Permits</span>
 									</a>
 								</li>
 
