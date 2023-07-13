@@ -76,15 +76,13 @@
     <div class="d-flex justify-content-between">
         <div class="d-flex flex-column flex-root" style="background-color: #7D7D7D;">
             <div class="auth-left-footer">
-                &copy SMEs, Government of Pakistan
+                &copy Small and Medium Enterprises Development Authority,<br>Government of Pakistan
             </div>
-
         </div>
         <div class="d-flex flex-column flex-root" style="background-color: #30807d;">
-            <div class="auth-right-footer">
+            <div class="auth-right-footer"><br>
                 Powered by Punjab Information Technology Board
             </div>
-
         </div>
     </div>
 

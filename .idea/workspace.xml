@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c07ecf93-05e8-4e93-90fe-75fc50e9441e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_components/rlco_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_components/rlco_detail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_aside.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/admin/partials/_footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/rlco/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/rlco/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/rlco/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/rlco/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/rlco/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/rlco/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/rlco/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/rlco/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dependency-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dependency-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/rlco-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/auth/login.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -379,7 +372,7 @@
       <workItem from="1639658960242" duration="2513000" />
       <workItem from="1639663669056" duration="31000" />
       <workItem from="1640162356582" duration="6259000" />
-      <workItem from="1689226014943" duration="8945000" />
+      <workItem from="1689226014943" duration="9430000" />
     </task>
     <servers />
   </component>

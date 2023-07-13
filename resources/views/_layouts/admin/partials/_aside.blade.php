@@ -98,7 +98,7 @@
 
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-text text-white">All Permits</span>
+										<span class="menu-text text-white">Permits</span>
 									</a>
 								</li>
 
