@@ -1,12 +1,12 @@
 @extends('_layouts.admin.app')
-@push('title','All Permits')
+@push('title','Permits')
 @section('content')
 
     <!--begin::Card-->
     <div class="card card-custom gutter-b">
         <div class="card-header flex-wrap py-3">
             <div class="card-title">
-                <h3 class="card-label">All Permits</h3>
+                <h3 class="card-label">Permits</h3>
             </div>
 
             <div class="card-toolbar">
