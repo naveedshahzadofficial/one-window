@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'SMEDA One Window') }}</title>
+    <title>{{ config('app.name', 'SMEDA - One Window') }}</title>
     <meta name="keywords" content="SMEDA One Window" />
     <meta name="description" content="SMEDA One Window" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

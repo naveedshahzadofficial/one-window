@@ -7,7 +7,7 @@ import activity from "./modules/activity";
 
 export const store = createStore({
     state: { // data
-        app_title: 'BizPunjab',
+        app_title: 'SMEDA - One Window',
         show_content: !!localStorage.getItem("authToken"),
 
     },

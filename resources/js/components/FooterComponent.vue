@@ -13,8 +13,7 @@
 
                     <div class="row mt-2 ml-0 mr-0">
                         <div class="col-lg-6 col-md-6 col-sm-12">
-							<span class="nowrap footer2">&copy; Automation of Business Regulations, Government of
-								Punjab</span>
+							<span class="nowrap footer2">&copy; Small and Medium Enterprises Development Authority, Government of Pakistan</span>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 text-right">
                             <div class="nowrap1 footer2 ">Powered By: Punjab Information Technology Board</div>

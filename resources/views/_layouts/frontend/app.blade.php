@@ -5,7 +5,7 @@
     <base href="{{ url('/')}}">
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@stack('title','Home') - @stack('app-name',config('app.name', 'SMEDA One Window'))</title>
+    <title>@stack('title','Home') - @stack('app-name',config('app.name', 'SMEDA - One Window'))</title>
     @section('metas')
         <meta name="keywords" content="RLCOs" />
         <meta name="description" content="RLCOs" />
@@ -55,8 +55,7 @@
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-6 col-sm-12">
-                            <span class="nowrap footer2">©Automation of Business Regulations, Government of
-                                Punjab</span>
+                            <span class="nowrap footer2">©Small and Medium Enterprises Development Authority,<br>Government of Pakistan</span>
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
                         <div class="nowrap1 footer2 ">Powerd by:Punjab Information Technology Board</div>
