@@ -29,9 +29,9 @@ mix.js('resources/js/app.js', 'public/js')
     .copyDirectory('resources/media', 'public/media');
 
 
-if (!mix.inProduction()) {
+/*if (!mix.inProduction()) {
 mix.browserSync('rlcos.test');
-}
+}*/
 
 
 if (mix.inProduction()) {

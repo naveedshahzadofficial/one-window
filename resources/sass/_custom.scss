@@ -27,7 +27,9 @@ $media-path: '/smedaonewindow/media/';
     font-style: normal;
 }
 
-$navi-blue-color : #006837;
+$dark-green-color : #061e00;
+$light-green-color : #0b3000;
+$gold-color : #d8a43d;
 $blue-highlight: #D3E2EA;
 $white-color: #fff;
 $off-white-color: #f2f2f2;
@@ -78,37 +80,38 @@ $font-light: 'poppinslight';
     }
 }
 .main-heading{
-    color: $navi-blue-color;
+    color: $light-green-color;
     font-family: $font-bold;
     font-size: 39px;
     margin-bottom: 0;
 }
 .sub-heading{
     font-family: $font-bold;
-    background-color: $navi-blue-color;
+    background-color: $dark-green-color;
     padding: 7px;
     color:white;
     font-size: 19px;
 }
 .sub-heading-caption{
     font-family: $font-bold;
-    color: $navi-blue-color;
+    color: $light-green-color;
     font-size: 25px;
 }
 .description{
     font-family: $font-regular;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: normal;
-    color: #000;
+    color: $light-green-color;
 }
 .label-field{
-    color: $navi-blue-color;
+    color: $dark-green-color;
     font-family: $font-regular;
     margin-bottom: 0;
 }
 .home-search-btn{
     font-family: $font-regular;
-    background-color: $navi-blue-color;
+    background-color: $gold-color;
+    color: $dark-green-color;
     font-size: 14px;
     margin-top: 30px;
     padding-top: 5px;
@@ -116,7 +119,7 @@ $font-light: 'poppinslight';
     border-radius: 6px;
 }
 .select2-container--default .select2-selection--single {
-    border: 1px solid $navi-blue-color !important;
+    border: 1px solid $dark-green-color !important;
     height: 30px !important;
 }
 .select2-container .select2-selection--single{
@@ -134,13 +137,13 @@ $font-light: 'poppinslight';
     clip-path: inset(-10px 0px 0px 0px);
 }
 .footer a{
-    color: $navi-blue-color;
+    color: $dark-green-color;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 14px;
 }
 .footer2{
-    color: $navi-blue-color;
+    color: $dark-green-color;
     font-size: 12px;
     padding-left: 10px;
     padding-right: 10px;
@@ -152,7 +155,8 @@ $font-light: 'poppinslight';
 .search-btn {
     margin-top: 15px;
     font-family: $font-regular;
-    background-color: $navi-blue-color;
+    background-color: $gold-color;
+    color: $dark-green-color;
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 6px;
@@ -172,7 +176,7 @@ $font-light: 'poppinslight';
 }
 .searching-box-heading{
     font-family: $font-light;
-    background-color: $navi-blue-color;
+    background-color: $dark-green-color;
     color: $off-white-color;
     margin: 0;
     font-size: 14px;
@@ -181,7 +185,7 @@ $font-light: 'poppinslight';
 }
 .section-detail-heading{
     font-family: $font-light;
-    background-color: $navi-blue-color;
+    background-color: $dark-green-color;
     padding: 10px;
     color: $off-white-color;
     margin: 0;
@@ -211,11 +215,11 @@ $font-light: 'poppinslight';
     cursor: pointer;
     &.active {
         background-color: $blue-highlight;
-        color: $navi-blue-color;
+        color: $dark-green-color;
         .list-icon{
             svg:not(.un-favorite-icon svg, .favorite-icon svg){
-            fill: $navi-blue-color;
-            color: $navi-blue-color;
+            fill: $dark-green-color;
+            color: $dark-green-color;
             }
             &.un-favorite-icon svg{
                 fill: #8c8585;
@@ -241,7 +245,7 @@ $font-light: 'poppinslight';
     }
     .list-heading{
         font-family: $font-bold;
-        color: $navi-blue-color;
+        color: $dark-green-color;
         line-height: 1.3;
     }
     .list-scop{
@@ -285,7 +289,7 @@ $font-light: 'poppinslight';
 
         .detail-heading{
             font-family: $font-bold;
-            color: $navi-blue-color;
+            color: $dark-green-color;
             font-size: 15px;
             margin-bottom: 0;
         }
@@ -297,7 +301,7 @@ $font-light: 'poppinslight';
         .detail-department{
             font-family: $font-bold;
             font-size: 15px;
-            color: $navi-blue-color;
+            color: $dark-green-color;
             line-height: 1.3;
         }
         .detail-desc{
@@ -307,7 +311,7 @@ $font-light: 'poppinslight';
         }
         .custom-detail-btn {
             font-family: $font-regular;
-            background-color: $navi-blue-color;
+            background-color: $dark-green-color;
             padding-top: 8px;
             padding-bottom: 8px;
             border-radius: 6px;
@@ -359,7 +363,7 @@ $font-light: 'poppinslight';
                  margin: 0;
                  font-family: $font-bold;
                  font-weight: 500;
-                 color: $navi-blue-color;
+                 color: $dark-green-color;
             }
              .card-header .card-title.collapsed {
                 color: #3F4254;
@@ -388,10 +392,10 @@ $font-light: 'poppinslight';
 .saved-permits{
     margin-top: 35px;
     margin-right: 30px;
-    color:$navi-blue-color;
+    color:$dark-green-color;
     a{
         text-decoration: none;
-        color:$navi-blue-color;
+        color:$dark-green-color;
     }
     &.un-favorite-icon svg{
         fill: #8c8585;
@@ -407,7 +411,7 @@ $font-light: 'poppinslight';
     padding-right: 30px;
     a{
         text-decoration: none;
-        color:$navi-blue-color;
+        color:$dark-green-color;
     }
 }
 span.make-link{
@@ -462,7 +466,7 @@ span.make-link{
 .home-notice{
     padding: 10px;
     font-family: $font-regular;
-    color: $navi-blue-color;
+    color: $dark-green-color;
     font-size: 14px;
     line-height: 1.3;
     font-weight: 500;

@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 text-right">
-                <button type="submit" class="btn home-search-btn btn-sm px-5 text-light" :class="{'btn-loading': isLoading}">Search</button>
+                <button type="submit" class="btn home-search-btn btn-sm px-5" :class="{'btn-loading': isLoading}">Search</button>
             </div>
         </div>
     </form>

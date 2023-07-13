@@ -11,12 +11,12 @@
         <div class="col-lg-1 col-md-1"></div>
             <!-- div start for heading -->
             <div class="col-lg-5 col-md-5 text-center">
-            <h2 class="main-heading">FACILITATING BUSINESSES</h2>
+            <h2 class="main-heading">FACILITATING SMEs</h2>
             <h3 class="sub-heading">WITH A SMARTER, EFFICIENT AND CONVENIENT WAY</h3>
             <h4 class="sub-heading-caption">TO INTERACT WITH GOVERNMENT</h4>
             <!-- description paragraph start -->
             <p class="description text-center my-5">
-                eBiz Punjab facilitates you in finding the registrations, permits and licenses you may require for starting your business or running its operations.</p>
+                SMEDA one window facilitates you in finding the registrations, permits and licenses you may require for starting your business or running its operations.</p>
             <!-- description paragraph end -->
         </div>
         <div class="col-lg-1 col-md-1"></div>
