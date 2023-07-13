@@ -5,13 +5,12 @@
         <!--begin::Logo-->
         <div class="auth-logo max-h-75px">
             <a href="javascript:;" class="login-logo">
-                <img src="{{ asset('assets/img/main-logo.png') }}" alt="SMERP">
+                <img src="{{ asset('media/logo.png') }}" alt="SMERP">
             </a>
         </div>
         <!--end::Logo-->
         <div class="auth-logo-caption pt-7 pt-lg-20">
-            <span style="font-size:24px;">Automation of Business Regulations</span><br>
-            <span style="font-size:24px;">PUNJAB</span>
+            <span style="font-size:24px;">Small and Medium Enterprises Development Authority</span><br>
         </div>
 
         <div class="auth-nbdp-logo pt-10 pt-lg-30 d-none">

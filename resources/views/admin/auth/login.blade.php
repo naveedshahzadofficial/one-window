@@ -76,7 +76,7 @@
     <div class="d-flex justify-content-between">
         <div class="d-flex flex-column flex-root" style="background-color: #7D7D7D;">
             <div class="auth-left-footer">
-                &copy Government of Punajab
+                &copy SMEs, Government of Pakistan
             </div>
 
         </div>

@@ -9,12 +9,10 @@
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/HomeSearchFormComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/HomeSearchFormComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/SearchFormComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/SearchFormComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/_custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/_layouts/frontend/vue.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_layouts/frontend/vue.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/auth/aside-auth.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/auth/aside-auth.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/auth/login.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -379,7 +377,7 @@
       <workItem from="1639658960242" duration="2513000" />
       <workItem from="1639663669056" duration="31000" />
       <workItem from="1640162356582" duration="6259000" />
-      <workItem from="1689226014943" duration="5134000" />
+      <workItem from="1689226014943" duration="7456000" />
     </task>
     <servers />
   </component>
